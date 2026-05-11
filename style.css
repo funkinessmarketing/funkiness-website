@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Pacifico&display=swap');
+
+:root {
+  --pink: #f21b7a;
+  --black: #080403;
+  --cream: #f7efe7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--cream);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+.navbar {
+  width: 100%;
+  padding: 48px 7vw 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: clamp(28px, 3vw, 46px);
+  font-weight: 900;
+  color: white;
+  text-decoration: none;
+  -webkit-text-stroke: 3px var(--pink);
+  text-shadow: 3px 3px 0 var(--pink);
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.menu span {
+  color: var(--pink);
+}
+
+.nav-button {
+  background: var(--black);
+  color: white;
+  text-decoration: none;
+  padding: 18px 34px;
+  border-radius: 999px;
+}
+
+.hero {
+  min-height: 700px;
+  padding: 70px 7vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.script-word {
+  font-family: "Pacifico", cursive;
+  color: var(--pink);
+  font-size: 120px;
+  line-height: 0.8;
+}
+
+h1 {
+  font-size: 110px;
+  line-height: 0.9;
+  font-weight: 900;
+}
+
+h1 span {
+  color: var(--pink);
+}
+
+.small-line {
+  width: 50px;
+  height: 4px;
+  background: var(--pink);
+  margin: 40px 0 24px;
+}
+
+.intro {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.intro span {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+.hero-visual {
+  position: relative;
+  height: 600px;
+}
+
+.pink-shape {
+  position: absolute;
+  width: 900px;
+  height: 350px;
+  background: var(--pink);
+  border-radius: 50% 50% 0 0;
+  right: -200px;
+  bottom: 0;
+}
+
+.jeep {
+  position: absolute;
+  width: 850px;
+  right: -40px;
+  bottom: 20px;
+}
+
+.ticker {
+  width: calc(100% - 8vw);
+  margin: -50px auto 40px;
+  background: var(--black);
+  color: white;
+  border-radius: 999px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticker b {
+  color: var(--pink);
+}
+
+@media (max-width: 1000px) {
+  .menu {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 72px;
+  }
+
+  .script-word {
+    font-size: 80px;
+  }
+
+  .jeep {
+    width: 120%;
+    right: -40px;
+  }
+}
