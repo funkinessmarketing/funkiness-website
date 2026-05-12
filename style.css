@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Allura&display=swap');
 
 :root {
   --pink: #f21b7a;
   --black: #080403;
   --cream: #f7efe7;
+  --soft-pink: #f6b4a6;
 }
 
 * {
@@ -25,15 +26,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
-  font-size: clamp(28px, 3vw, 46px);
+  font-size: clamp(32px, 3vw, 48px);
   font-weight: 900;
   color: white;
   text-decoration: none;
   -webkit-text-stroke: 3px var(--pink);
   text-shadow: 3px 3px 0 var(--pink);
+  letter-spacing: -2px;
 }
 
 .menu {
@@ -41,16 +45,18 @@ body {
   align-items: center;
   gap: 28px;
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .menu a {
-  text-decoration: none;
   color: var(--black);
+  text-decoration: none;
 }
 
 .menu span {
   color: var(--pink);
+  font-weight: 900;
+  font-size: 21px;
 }
 
 .nav-button {
@@ -59,27 +65,46 @@ body {
   text-decoration: none;
   padding: 18px 34px;
   border-radius: 999px;
+  font-size: 17px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-button span {
+  color: var(--pink);
+  font-size: 24px;
 }
 
 .hero {
-  min-height: 700px;
-  padding: 70px 7vw;
+  min-height: 720px;
+  padding: 70px 7vw 120px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.82fr 1.18fr;
   align-items: center;
+  position: relative;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 4;
 }
 
 .script-word {
-  font-family: "Pacifico", cursive;
+  font-family: "Allura", cursive;
   color: var(--pink);
-  font-size: 120px;
-  line-height: 0.8;
+  font-size: clamp(112px, 12vw, 190px);
+  line-height: 0.72;
+  margin-bottom: 18px;
+  font-weight: 400;
+  transform: rotate(-3deg);
 }
 
 h1 {
-  font-size: 110px;
-  line-height: 0.9;
+  font-size: clamp(68px, 7.1vw, 118px);
+  line-height: 0.88;
   font-weight: 900;
+  letter-spacing: -6px;
 }
 
 h1 span {
@@ -87,79 +112,160 @@ h1 span {
 }
 
 .small-line {
-  width: 50px;
+  width: 54px;
   height: 4px;
   background: var(--pink);
-  margin: 40px 0 24px;
+  margin: 46px 0 28px;
 }
 
 .intro {
-  font-size: 32px;
-  line-height: 1.2;
+  font-size: clamp(24px, 2vw, 34px);
+  line-height: 1.15;
+  font-weight: 500;
 }
 
 .intro span {
   color: var(--pink);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .hero-visual {
   position: relative;
-  height: 600px;
+  height: 620px;
+  z-index: 2;
 }
 
 .pink-shape {
   position: absolute;
-  width: 900px;
-  height: 350px;
+  width: 1120px;
+  height: 405px;
   background: var(--pink);
-  border-radius: 50% 50% 0 0;
-  right: -200px;
-  bottom: 0;
+  right: -300px;
+  bottom: -92px;
+  border-radius: 48% 52% 0 0 / 45% 42% 0 0;
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+.pink-shape::before {
+  content: "";
+  position: absolute;
+  left: -250px;
+  top: 35px;
+  width: 500px;
+  height: 310px;
+  background: var(--cream);
+  border-radius: 54% 46% 50% 50%;
+  transform: rotate(8deg);
 }
 
 .jeep {
   position: absolute;
-  width: 850px;
-  right: -40px;
-  bottom: 20px;
+  width: min(940px, 70vw);
+  right: -35px;
+  bottom: 42px;
+  z-index: 2;
+  filter: drop-shadow(0 34px 28px rgba(0, 0, 0, 0.28));
+}
+
+.pattern {
+  position: absolute;
+  width: 125px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(circle at 14px 14px, transparent 7px, var(--soft-pink) 8px, transparent 10px),
+    radial-gradient(circle at 30px 28px, transparent 7px, var(--soft-pink) 8px, transparent 10px);
+  background-size: 34px 34px;
+  z-index: 1;
 }
 
 .ticker {
   width: calc(100% - 8vw);
-  margin: -50px auto 40px;
+  margin: -85px auto 40px;
   background: var(--black);
   color: white;
   border-radius: 999px;
-  padding: 20px 30px;
+  padding: 20px 34px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 28px;
+  position: relative;
+  z-index: 5;
+  font-size: 14px;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .ticker b {
   color: var(--pink);
+  font-size: 22px;
 }
 
 @media (max-width: 1000px) {
+  .navbar {
+    padding: 28px 24px;
+  }
+
   .menu {
     display: none;
   }
 
   .hero {
     grid-template-columns: 1fr;
+    padding: 30px 24px 100px;
   }
 
-  h1 {
-    font-size: 72px;
-  }
-
-  .script-word {
-    font-size: 80px;
+  .hero-visual {
+    height: 420px;
+    margin-top: 30px;
   }
 
   .jeep {
-    width: 120%;
-    right: -40px;
+    width: 115%;
+    right: -80px;
+    bottom: 40px;
+  }
+
+  .pink-shape {
+    width: 760px;
+    height: 280px;
+    right: -280px;
+    bottom: -40px;
+  }
+
+  .ticker {
+    margin-top: -40px;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-button {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .script-word {
+    font-size: 88px;
+  }
+
+  h1 {
+    font-size: 58px;
+    letter-spacing: -3px;
+  }
+
+  .intro {
+    font-size: 22px;
+  }
+
+  .ticker {
+    border-radius: 28px;
+    padding: 16px 20px;
+    font-size: 12px;
   }
 }
