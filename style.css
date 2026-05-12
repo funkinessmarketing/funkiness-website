@@ -55,7 +55,6 @@ body {
 
 .menu span {
   color: var(--pink);
-  font-weight: 900;
   font-size: 21px;
 }
 
@@ -93,15 +92,14 @@ body {
 .script-word {
   font-family: "Allura", cursive;
   color: var(--pink);
-  font-size: clamp(112px, 12vw, 190px);
+  font-size: clamp(120px, 12vw, 200px);
   line-height: 0.72;
   margin-bottom: 18px;
-  font-weight: 400;
   transform: rotate(-3deg);
 }
 
 h1 {
-  font-size: clamp(68px, 7.1vw, 118px);
+  font-size: clamp(68px, 7vw, 118px);
   line-height: 0.88;
   font-weight: 900;
   letter-spacing: -6px;
@@ -121,7 +119,6 @@ h1 span {
 .intro {
   font-size: clamp(24px, 2vw, 34px);
   line-height: 1.15;
-  font-weight: 500;
 }
 
 .intro span {
@@ -132,17 +129,16 @@ h1 span {
 .hero-visual {
   position: relative;
   height: 620px;
-  z-index: 2;
 }
 
 .pink-shape {
   position: absolute;
-  width: 1120px;
-  height: 405px;
+  width: 1180px;
+  height: 430px;
   background: var(--pink);
-  right: -300px;
-  bottom: -92px;
-  border-radius: 48% 52% 0 0 / 45% 42% 0 0;
+  right: -340px;
+  bottom: -90px;
+  border-radius: 45% 55% 0 0 / 45% 42% 0 0;
   transform: rotate(-2deg);
   z-index: 1;
 }
@@ -150,27 +146,26 @@ h1 span {
 .pink-shape::before {
   content: "";
   position: absolute;
-  left: -250px;
-  top: 35px;
-  width: 500px;
-  height: 310px;
+  left: -240px;
+  top: 28px;
+  width: 480px;
+  height: 320px;
   background: var(--cream);
-  border-radius: 54% 46% 50% 50%;
-  transform: rotate(8deg);
+  border-radius: 50%;
 }
 
 .jeep {
   position: absolute;
-  width: min(940px, 70vw);
-  right: -35px;
-  bottom: 42px;
+  width: min(950px, 70vw);
+  right: -40px;
+  bottom: 45px;
   z-index: 2;
   filter: drop-shadow(0 34px 28px rgba(0, 0, 0, 0.28));
 }
 
 .pattern {
   position: absolute;
-  width: 125px;
+  width: 120px;
   height: 100%;
   left: 0;
   top: 0;
@@ -179,36 +174,50 @@ h1 span {
     radial-gradient(circle at 14px 14px, transparent 7px, var(--soft-pink) 8px, transparent 10px),
     radial-gradient(circle at 30px 28px, transparent 7px, var(--soft-pink) 8px, transparent 10px);
   background-size: 34px 34px;
-  z-index: 1;
 }
 
-.ticker {
+.ticker-wrap {
   width: calc(100% - 8vw);
-  margin: -85px auto 40px;
+  margin: -70px auto 40px;
   background: var(--black);
-  color: white;
   border-radius: 999px;
-  padding: 20px 34px;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.ticker-track {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  position: relative;
-  z-index: 5;
+  gap: 40px;
+  width: max-content;
+  padding: 22px 0;
+  animation: ticker 28s linear infinite;
+}
+
+.ticker-track span {
+  color: white;
   font-size: 14px;
   letter-spacing: 1px;
   white-space: nowrap;
 }
 
-.ticker b {
+.ticker-track b {
   color: var(--pink);
   font-size: 22px;
 }
 
-@media (max-width: 1000px) {
-  .navbar {
-    padding: 28px 24px;
+@keyframes ticker {
+  from {
+    transform: translateX(0);
   }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1000px) {
 
   .menu {
     display: none;
@@ -221,51 +230,22 @@ h1 span {
 
   .hero-visual {
     height: 420px;
-    margin-top: 30px;
-  }
-
-  .jeep {
-    width: 115%;
-    right: -80px;
-    bottom: 40px;
+    margin-top: 40px;
   }
 
   .pink-shape {
-    width: 760px;
+    width: 780px;
     height: 280px;
-    right: -280px;
-    bottom: -40px;
+    right: -260px;
   }
 
-  .ticker {
-    margin-top: -40px;
-    overflow-x: auto;
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 600px) {
-  .nav-button {
-    padding: 14px 20px;
-    font-size: 14px;
+  .jeep {
+    width: 120%;
+    right: -70px;
   }
 
-  .script-word {
-    font-size: 88px;
+  .ticker-wrap {
+    margin-top: -30px;
   }
 
-  h1 {
-    font-size: 58px;
-    letter-spacing: -3px;
-  }
-
-  .intro {
-    font-size: 22px;
-  }
-
-  .ticker {
-    border-radius: 28px;
-    padding: 16px 20px;
-    font-size: 12px;
-  }
 }
