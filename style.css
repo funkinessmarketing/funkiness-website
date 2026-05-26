@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Poppins:wght@700;800;900&display=swap');
 
 :root {
   --pink: #f21b7a;
@@ -89,6 +89,9 @@ a { color: inherit; }
   margin-bottom: 22px;
   transform: rotate(-4deg);
   display: inline-block;
+  font-family: 'Permanent Marker', cursive;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .hero {
@@ -111,6 +114,7 @@ h1, h2 {
 h1 {
   font-size: clamp(68px, 7vw, 118px);
   line-height: 0.88;
+  font-weight: 600;
 }
 
 h1 span { color: var(--pink); }
