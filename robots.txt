@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://funkiness.ai/sitemap.xml
+Sitemap: https://www.funkiness.ai/sitemap.xml
