@@ -165,29 +165,33 @@
 
         <form action="https://formspree.io/f/mdajpopd" method="POST" onsubmit="handleSubmit(event)">
           <div class="form-group">
-            <label>Naam</label>
-            <input type="text" name="naam" placeholder="Jouw naam" required>
+            <label>Name</label>
+            <input type="text" name="naam" placeholder="Your name" required>
           </div>
           <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" name="email" placeholder="jouw@email.com" required>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="your@email.com" required>
           </div>
           <div class="form-group">
-            <label>Bedrijf</label>
-            <input type="text" name="bedrijf" placeholder="Naam van je bedrijf">
+            <label>Company</label>
+            <input type="text" name="bedrijf" placeholder="Your company name">
           </div>
           <div class="form-group">
-            <label>Bericht</label>
-            <textarea name="bericht" placeholder="Vertel ons over jouw merk..." required></textarea>
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="+1 234 567 890">
           </div>
-          <button type="submit" class="form-submit">Verstuur <span>↗</span></button>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="bericht" placeholder="Tell us about your brand..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send <span>↗</span></button>
         </form>
       </div>
 
       <div class="form-success" id="formSuccess">
         <div style="font-size:56px;margin-bottom:16px;">🐆</div>
-        <h3>Bericht ontvangen!</h3>
-        <p>We rijden jouw kant op.<br>Je hoort snel van ons.</p>
+        <h3>Message received!</h3>
+        <p>We are on our way.<br>You will hear from us soon.</p>
       </div>
     </div>
   </div>
@@ -378,7 +382,7 @@
           document.getElementById('formSuccess').style.display = 'block';
         }
       } catch (error) {
-        alert('Er ging iets mis. Stuur ons een e-mail op sayhello@funkiness.ai');
+        alert('Something went wrong. Please email us at sayhello@funkiness.ai');
       }
     }
   </script>
