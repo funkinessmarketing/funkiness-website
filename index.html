@@ -90,8 +90,6 @@
       position: relative;
     }
 
- }
-
     .hero-content {
       position: relative;
       z-index: 4;
@@ -365,7 +363,7 @@
       display: inline-block;
     }
 
-    /* MOBILE */
+    /* TABLET */
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: 1fr;
@@ -379,14 +377,15 @@
       }
 
       .pink-blob {
-        width: 130%;
-        right: -15%;
-        height: 260px;
+        width: 100%;
+        right: -10%;
+        height: 300px;
+        border-radius: 42% 58% 38% 62% / 55% 45% 55% 45%;
       }
 
       .jeep {
-        width: 130%;
-        right: -40px;
+        width: 120%;
+        right: -30px;
       }
 
       .form-wrap { max-width: 100%; }
@@ -398,6 +397,27 @@
         grid-template-columns: 1fr;
         padding: 60px 24px;
       }
+
+      .tagline { max-width: 100%; font-size: 18px; }
+      .launch-date { font-size: 13px; padding: 12px 20px; }
+    }
+
+    /* MOBILE */
+    @media (max-width: 480px) {
+      .boring { font-size: 64px; }
+      h1 { font-size: 42px; letter-spacing: -2px; }
+      .hero { padding: 16px 20px 50px; }
+      .hero-visual { height: 280px; }
+      .pink-blob { height: 240px; }
+      .jeep { width: 130%; right: -30px; }
+      .form-wrap { padding: 24px 20px; }
+      .form-wrap h2 { font-size: 22px; }
+      .navbar { padding: 20px 20px; }
+      .logo { font-size: 26px; }
+      .ladies-copy h2 { font-size: 36px; }
+      .ladies-copy p { font-size: 17px; }
+      .slogan-bar { padding: 40px 20px; }
+      .ticker-wrap { width: calc(100% - 4vw); }
     }
   </style>
 </head>
