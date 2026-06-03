@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI & Marketing Scan — FUNkiness!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">FUNkiness!</div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel">Step 1 of 6</span>
+    </div>
+  </header>
+
+  <!-- SCAN FORM -->
+  <main id="scanApp">
+
+    <!-- STEP 0: Intro + basic info -->
+    <section class="step active" data-step="0">
+      <div class="step-inner">
+        <p class="eyebrow">The Marketing Scan</p>
+        <h1>Your marketing.<br><span class="pink">Scanned smart.</span></h1>
+        <p class="sub">15 quick questions. A personalized report. Zero fluff.<br>Find out exactly where you stand — and what to do next.</p>
+        <div class="form-group">
+          <label>Business name</label>
+          <input type="text" id="bedrijf" placeholder="e.g. Blue Bay Resort" />
+        </div>
+        <div class="form-group">
+          <label>Your sector</label>
+          <div class="options-grid" data-field="sector">
+            <button class="option-btn" data-value="hotel">Hotel / Resort</button>
+            <button class="option-btn" data-value="restaurant">Restaurant / Café</button>
+            <button class="option-btn" data-value="makelaar">Real Estate</button>
+            <button class="option-btn" data-value="airbnb">Airbnb / Rental</button>
+            <button class="option-btn" data-value="anders">Other</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your email <span class="hint">(for your report)</span></label>
+          <input type="email" id="email" placeholder="you@yourbusiness.com" />
+        </div>
+        <div class="form-group">
+          <label>Instagram handle <span class="hint">(optional)</span></label>
+          <input type="text" id="instagram" placeholder="@yourbusiness" />
+        </div>
+        <button class="btn-next" onclick="nextStep()">Let's go <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 1: Socials -->
+    <section class="step" data-step="1">
+      <div class="step-inner">
+        <p class="eyebrow">Social Media Check</p>
+        <h2>Let's talk about<br><span class="pink">your socials.</span></h2>
+
+        <div class="question" data-category="socials" data-key="posting_frequency" data-scores='{"0 posts":0,"1-2 per week":40,"3-4 per week":70,"5+ per week":100}'>
+          <p class="q-label">How often do you post per week?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="0 posts">I barely post</button>
+            <button class="option-btn" data-value="1-2 per week">1-2 times</button>
+            <button class="option-btn" data-value="3-4 per week">3-4 times</button>
+            <button class="option-btn" data-value="5+ per week">5 or more</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="socials" data-key="platforms" data-scores='{"Only Facebook":30,"Instagram":60,"Instagram + Facebook":70,"Instagram + TikTok":90,"Everything":100}'>
+          <p class="q-label">Which platforms do you actively use?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Only Facebook">Only Facebook</button>
+            <button class="option-btn" data-value="Instagram">Instagram only</button>
+            <button class="option-btn" data-value="Instagram + Facebook">Instagram + Facebook</button>
+            <button class="option-btn" data-value="Instagram + TikTok">Instagram + TikTok</button>
+            <button class="option-btn" data-value="Everything">All platforms</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="socials" data-key="engagement" data-scores='{"Never":0,"Sometimes":40,"Usually":70,"Always":100}'>
+          <p class="q-label">Do you reply to comments and DMs?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Never">Never, no time</button>
+            <button class="option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="option-btn" data-value="Usually">Usually within 24h</button>
+            <button class="option-btn" data-value="Always">Always, fast</button>
+          </div>
+        </div>
+
+        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Content -->
+    <section class="step" data-step="2">
+      <div class="step-inner">
+        <p class="eyebrow">Content Check</p>
+        <h2>What does your<br><span class="pink">content look like?</span></h2>
+
+        <div class="question" data-category="content" data-key="content_maker" data-scores='{"No one":0,"I do it myself":50,"A team member":60,"External agency":70,"Mix of all":90}'>
+          <p class="q-label">Who creates your content?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No one">Nobody really</button>
+            <button class="option-btn" data-value="I do it myself">I do it myself</button>
+            <button class="option-btn" data-value="A team member">A team member</button>
+            <button class="option-btn" data-value="External agency">External agency</button>
+            <button class="option-btn" data-value="Mix of all">Mix of everything</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="content" data-key="content_plan" data-scores='{"No plan":0,"Post when I remember":20,"Loose schedule":50,"Content calendar":90}'>
+          <p class="q-label">Do you work with a content planning?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No plan">No plan at all</button>
+            <button class="option-btn" data-value="Post when I remember">I post when I think of it</button>
+            <button class="option-btn" data-value="Loose schedule">Loosely planned</button>
+            <button class="option-btn" data-value="Content calendar">Yes, full content calendar</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="content" data-key="content_type" data-scores='{"Static photos only":30,"Mix of photos and stories":60,"Photos, reels and stories":80,"Video-first strategy":100}'>
+          <p class="q-label">What type of content do you mainly make?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Static photos only">Static photos only</button>
+            <button class="option-btn" data-value="Mix of photos and stories">Photos + stories</button>
+            <button class="option-btn" data-value="Photos, reels and stories">Photos, reels, stories</button>
+            <button class="option-btn" data-value="Video-first strategy">Video-first (reels, TikTok)</button>
+          </div>
+        </div>
+
+        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Branding -->
+    <section class="step" data-step="3">
+      <div class="step-inner">
+        <p class="eyebrow">Brand & Strategy Check</p>
+        <h2>How strong is<br><span class="pink">your brand?</span></h2>
+
+        <div class="question" data-category="branding" data-key="brand_guide" data-scores='{"No guidelines":0,"In my head":20,"Informal notes":50,"Full brand guide":100}'>
+          <p class="q-label">Do you have a brand guide or visual style guide?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No guidelines">Nothing at all</button>
+            <button class="option-btn" data-value="In my head">It exists in my head</button>
+            <button class="option-btn" data-value="Informal notes">Some informal notes</button>
+            <button class="option-btn" data-value="Full brand guide">Yes, full brand guide</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="branding" data-key="brand_consistency" data-scores='{"Not consistent":0,"Somewhat consistent":40,"Mostly consistent":70,"Always consistent":100}'>
+          <p class="q-label">Is your brand visually consistent across all channels?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Not consistent">Not really</button>
+            <button class="option-btn" data-value="Somewhat consistent">Somewhat</button>
+            <button class="option-btn" data-value="Mostly consistent">Mostly yes</button>
+            <button class="option-btn" data-value="Always consistent">100% consistent</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="branding" data-key="brand_message" data-scores='{"No message":0,"Still figuring it out":30,"Roughly defined":60,"Clear and sharp":100}'>
+          <p class="q-label">Do you have a clear brand message or positioning?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No message">Not at all</button>
+            <button class="option-btn" data-value="Still figuring it out">Still figuring it out</button>
+            <button class="option-btn" data-value="Roughly defined">Roughly defined</button>
+            <button class="option-btn" data-value="Clear and sharp">Yes, sharp and clear</button>
+          </div>
+        </div>
+
+        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Strategy -->
+    <section class="step" data-step="4">
+      <div class="step-inner">
+        <p class="eyebrow">Strategy Check</p>
+        <h2>Are you playing<br><span class="pink">to win?</span></h2>
+
+        <div class="question" data-category="strategie" data-key="goals" data-scores='{"No goals":0,"Vague goals":30,"Yearly goals":70,"Clear KPIs":100}'>
+          <p class="q-label">Do you have clear marketing goals for this year?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No goals">No goals</button>
+            <button class="option-btn" data-value="Vague goals">Vague ideas</button>
+            <button class="option-btn" data-value="Yearly goals">Yes, yearly goals</button>
+            <button class="option-btn" data-value="Clear KPIs">Yes, concrete KPIs</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="strategie" data-key="measurement" data-scores='{"Never":0,"Rarely":20,"Sometimes":50,"Regularly":100}'>
+          <p class="q-label">Do you track and measure your marketing results?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Never">Never</button>
+            <button class="option-btn" data-value="Rarely">Rarely</button>
+            <button class="option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="option-btn" data-value="Regularly">Yes, regularly</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="strategie" data-key="budget" data-scores='{"No budget":0,"Ad hoc":20,"Small fixed budget":60,"Proper budget":100}'>
+          <p class="q-label">Do you have a marketing budget?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No budget">No budget</button>
+            <button class="option-btn" data-value="Ad hoc">Ad hoc spending</button>
+            <button class="option-btn" data-value="Small fixed budget">Small fixed budget</button>
+            <button class="option-btn" data-value="Proper budget">Yes, proper budget</button>
+          </div>
+        </div>
+
+        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 5: AI -->
+    <section class="step" data-step="5">
+      <div class="step-inner">
+        <p class="eyebrow">AI Check</p>
+        <h2>Where are you<br><span class="pink">with AI?</span></h2>
+
+        <div class="question" data-category="ai" data-key="ai_usage" data-scores='{"Not using AI":0,"Tried it once":20,"Use it sometimes":60,"Use it daily":100}'>
+          <p class="q-label">Do you use AI tools in your business?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Not using AI">Not at all</button>
+            <button class="option-btn" data-value="Tried it once">Tried it once or twice</button>
+            <button class="option-btn" data-value="Use it sometimes">Use it sometimes</button>
+            <button class="option-btn" data-value="Use it daily">Use it daily</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="ai" data-key="ai_for_what" data-scores='{"Nothing":0,"Writing content":40,"Writing + images":60,"Multiple workflows":80,"Full AI workflow":100}'>
+          <p class="q-label">What do you use AI for?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Nothing">Nothing yet</button>
+            <button class="option-btn" data-value="Writing content">Writing content</button>
+            <button class="option-btn" data-value="Writing + images">Writing + images</button>
+            <button class="option-btn" data-value="Multiple workflows">Multiple workflows</button>
+            <button class="option-btn" data-value="Full AI workflow">Full AI-powered workflow</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="ai" data-key="ai_comfort" data-scores='{"Scared of it":10,"Not sure where to start":30,"Getting comfortable":60,"Fully on board":100}'>
+          <p class="q-label">How do you feel about AI for your business?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Scared of it">Honestly a bit scared</button>
+            <button class="option-btn" data-value="Not sure where to start">Not sure where to start</button>
+            <button class="option-btn" data-value="Getting comfortable">Getting comfortable</button>
+            <button class="option-btn" data-value="Fully on board">Fully on board</button>
+          </div>
+        </div>
+
+        <button class="btn-next" onclick="submitScan()">Get my report <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- LOADING -->
+    <section class="step" data-step="6" id="loadingStep">
+      <div class="step-inner center">
+        <div class="loader"></div>
+        <h2>Scanning <span class="pink" id="loadingName">your business</span>...</h2>
+        <p class="sub">We're generating your personalized report. This takes about 10 seconds.</p>
+      </div>
+    </section>
+
+    <!-- REPORT -->
+    <section class="step" data-step="7" id="reportStep">
+      <div class="step-inner">
+        <p class="eyebrow">Your Scan Report</p>
+        <h2 id="reportTitle">Your marketing.<br><span class="pink">Exposed.</span></h2>
+        <p class="intro-text" id="reportIntro"></p>
+
+        <div class="radar-wrap">
+          <canvas id="radarChart"></canvas>
+        </div>
+
+        <div class="score-badge-wrap">
+          <div class="score-badge">
+            <span class="score-num" id="totalScore">0</span>
+            <span class="score-label">Overall Score</span>
+          </div>
+        </div>
+
+        <div class="category-cards" id="categoryCards"></div>
+
+        <div class="kansen-wrap">
+          <h3>Your top 3 opportunities</h3>
+          <ul id="kansenList"></ul>
+        </div>
+
+        <div class="quickwin-wrap">
+          <h3>Quick win this week</h3>
+          <p id="quickwinText"></p>
+        </div>
+
+        <div class="cta-wrap">
+          <p>Want to actually fix this?</p>
+          <a href="mailto:hello@funkiness.com" class="btn-cta">Let's talk <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
