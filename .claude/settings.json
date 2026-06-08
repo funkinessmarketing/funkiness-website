@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s *)",
+      "Bash(brew --version)",
+      "Bash(npm --version)"
+    ]
+  }
+}

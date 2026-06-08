@@ -3,33 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free AI & Marketing Scan — FUNkiness!</title>
+  <title>Free Social Media Scan by FUNkiness!</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="logo">FUNkiness!</div>
     <div class="progress-wrap">
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <span class="progress-label" id="progressLabel">Step 1 of 6</span>
+      <span class="progress-label" id="progressLabel">Step 1 of 5</span>
     </div>
   </header>
 
-  <!-- SCAN FORM -->
   <main id="scanApp">
 
     <!-- STEP 0: Intro + basic info -->
     <section class="step active" data-step="0">
       <div class="step-inner">
-        <p class="eyebrow">The Marketing Scan</p>
-        <h1>Your marketing.<br><span class="pink">Scanned smart.</span></h1>
-        <p class="sub">15 quick questions. A personalized report. Zero fluff.<br>Find out exactly where you stand — and what to do next.</p>
+        <p class="eyebrow">Free Social Media Scan</p>
+        <h1>Your socials.<br><span class="pink">No filter.</span></h1>
+        <p class="sub">Find out exactly where your social media stands. What's working, what's not, and what to do next. Takes 3 minutes. Zero fluff.</p>
+
         <div class="form-group">
           <label>Business name</label>
           <input type="text" id="bedrijf" placeholder="e.g. Blue Bay Resort" />
@@ -45,51 +44,68 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Your email <span class="hint">(for your report)</span></label>
+          <label>Your name</label>
+          <input type="text" id="naam" placeholder="e.g. Sarah" />
+        </div>
+        <div class="form-group">
+          <label>Your job title</label>
+          <input type="text" id="functie" placeholder="e.g. Marketing Manager" />
+        </div>
+        <div class="form-group">
+          <label>Your email <span class="hint">(your report lands here)</span></label>
           <input type="email" id="email" placeholder="you@yourbusiness.com" />
         </div>
         <div class="form-group">
-          <label>Instagram handle <span class="hint">(optional)</span></label>
-          <input type="text" id="instagram" placeholder="@yourbusiness" />
+          <label>Your phone number <span class="hint">(fill in at least one)</span></label>
+          <div class="phone-row">
+            <span class="phone-prefix">+599</span>
+            <input type="tel" id="telefoon" placeholder="9 123 4567" />
+          </div>
+          <div class="phone-row" style="margin-top:10px">
+            <span class="phone-prefix">+31</span>
+            <input type="tel" id="telefoon_nl" placeholder="6 12 34 56 78" />
+          </div>
         </div>
         <button class="btn-next" onclick="nextStep()">Let's go <span>→</span></button>
       </div>
     </section>
 
-    <!-- STEP 1: Socials -->
+    <!-- STEP 1: Platforms -->
     <section class="step" data-step="1">
       <div class="step-inner">
-        <p class="eyebrow">Social Media Check</p>
-        <h2>Let's talk about<br><span class="pink">your socials.</span></h2>
+        <p class="eyebrow">Step 1: Your Channels</p>
+        <h2>Where are you<br><span class="pink">showing up?</span></h2>
 
-        <div class="question" data-category="socials" data-key="posting_frequency" data-scores='{"0 posts":0,"1-2 per week":40,"3-4 per week":70,"5+ per week":100}'>
-          <p class="q-label">How often do you post per week?</p>
+        <div class="question" data-category="platforms" data-key="main_platform" data-scores='{"Instagram":80,"Facebook":50,"TikTok":90,"Instagram + Facebook":70,"Instagram + TikTok":100,"Not really active":0}'>
+          <p class="q-label">What is your main social media platform?</p>
           <div class="options-list">
-            <button class="option-btn" data-value="0 posts">I barely post</button>
-            <button class="option-btn" data-value="1-2 per week">1-2 times</button>
-            <button class="option-btn" data-value="3-4 per week">3-4 times</button>
-            <button class="option-btn" data-value="5+ per week">5 or more</button>
-          </div>
-        </div>
-
-        <div class="question" data-category="socials" data-key="platforms" data-scores='{"Only Facebook":30,"Instagram":60,"Instagram + Facebook":70,"Instagram + TikTok":90,"Everything":100}'>
-          <p class="q-label">Which platforms do you actively use?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="Only Facebook">Only Facebook</button>
-            <button class="option-btn" data-value="Instagram">Instagram only</button>
+            <button class="option-btn" data-value="Instagram">Instagram</button>
+            <button class="option-btn" data-value="Facebook">Facebook</button>
+            <button class="option-btn" data-value="TikTok">TikTok</button>
             <button class="option-btn" data-value="Instagram + Facebook">Instagram + Facebook</button>
             <button class="option-btn" data-value="Instagram + TikTok">Instagram + TikTok</button>
-            <button class="option-btn" data-value="Everything">All platforms</button>
+            <button class="option-btn" data-value="Not really active">Not really active</button>
           </div>
         </div>
 
-        <div class="question" data-category="socials" data-key="engagement" data-scores='{"Never":0,"Sometimes":40,"Usually":70,"Always":100}'>
-          <p class="q-label">Do you reply to comments and DMs?</p>
+        <div class="question" data-category="platforms" data-key="posting_freq" data-scores='{"Rarely or never":0,"1-2x per week":40,"3-4x per week":75,"Daily":100}'>
+          <p class="q-label">How often do you post on your main platform?</p>
           <div class="options-list">
-            <button class="option-btn" data-value="Never">Never, no time</button>
-            <button class="option-btn" data-value="Sometimes">Sometimes</button>
-            <button class="option-btn" data-value="Usually">Usually within 24h</button>
-            <button class="option-btn" data-value="Always">Always, fast</button>
+            <button class="option-btn" data-value="Rarely or never">Rarely or never</button>
+            <button class="option-btn" data-value="1-2x per week">1-2x per week</button>
+            <button class="option-btn" data-value="3-4x per week">3-4x per week</button>
+            <button class="option-btn" data-value="Daily">Daily or more</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="platforms" data-key="followers" data-scores='{"Under 500":10,"500-1,500":30,"1,500-5,000":60,"5,000-15,000":80,"15,000+":100}'>
+          <p class="q-label">How many followers do you have on your main platform?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Under 500">Under 500</button>
+            <button class="option-btn" data-value="500-1,500">500 – 1,500</button>
+            <button class="option-btn" data-value="1,500-5,000">1,500 – 5,000</button>
+            <button class="option-btn" data-value="5,000-15,000">5,000 – 15,000</button>
+            <button class="option-btn" data-value="15,000+">15,000+</button>
           </div>
         </div>
 
@@ -97,120 +113,39 @@
       </div>
     </section>
 
-    <!-- STEP 2: Content -->
+    <!-- STEP 2: Instagram BIO + content -->
     <section class="step" data-step="2">
       <div class="step-inner">
-        <p class="eyebrow">Content Check</p>
-        <h2>What does your<br><span class="pink">content look like?</span></h2>
+        <p class="eyebrow">Step 2: Instagram</p>
+        <h2>Let's look at<br><span class="pink">your Instagram.</span></h2>
 
-        <div class="question" data-category="content" data-key="content_maker" data-scores='{"No one":0,"I do it myself":50,"A team member":60,"External agency":70,"Mix of all":90}'>
-          <p class="q-label">Who creates your content?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="No one">Nobody really</button>
-            <button class="option-btn" data-value="I do it myself">I do it myself</button>
-            <button class="option-btn" data-value="A team member">A team member</button>
-            <button class="option-btn" data-value="External agency">External agency</button>
-            <button class="option-btn" data-value="Mix of all">Mix of everything</button>
-          </div>
+        <div class="form-group">
+          <label>Your Instagram handle <span class="hint">(optional but recommended)</span></label>
+          <input type="text" id="instagram" placeholder="@yourbusiness" />
         </div>
 
-        <div class="question" data-category="content" data-key="content_plan" data-scores='{"No plan":0,"Post when I remember":20,"Loose schedule":50,"Content calendar":90}'>
-          <p class="q-label">Do you work with a content planning?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="No plan">No plan at all</button>
-            <button class="option-btn" data-value="Post when I remember">I post when I think of it</button>
-            <button class="option-btn" data-value="Loose schedule">Loosely planned</button>
-            <button class="option-btn" data-value="Content calendar">Yes, full content calendar</button>
-          </div>
+        <div class="form-group">
+          <label>Paste your current Instagram bio here <span class="hint">(copy it from your profile)</span></label>
+          <textarea id="bio" placeholder="Copy your bio here exactly as it appears on your profile..." rows="4"></textarea>
         </div>
 
-        <div class="question" data-category="content" data-key="content_type" data-scores='{"Static photos only":30,"Mix of photos and stories":60,"Photos, reels and stories":80,"Video-first strategy":100}'>
-          <p class="q-label">What type of content do you mainly make?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="Static photos only">Static photos only</button>
-            <button class="option-btn" data-value="Mix of photos and stories">Photos + stories</button>
-            <button class="option-btn" data-value="Photos, reels and stories">Photos, reels, stories</button>
-            <button class="option-btn" data-value="Video-first strategy">Video-first (reels, TikTok)</button>
-          </div>
-        </div>
-
-        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
-      </div>
-    </section>
-
-    <!-- STEP 3: Branding -->
-    <section class="step" data-step="3">
-      <div class="step-inner">
-        <p class="eyebrow">Brand & Strategy Check</p>
-        <h2>How strong is<br><span class="pink">your brand?</span></h2>
-
-        <div class="question" data-category="branding" data-key="brand_guide" data-scores='{"No guidelines":0,"In my head":20,"Informal notes":50,"Full brand guide":100}'>
-          <p class="q-label">Do you have a brand guide or visual style guide?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="No guidelines">Nothing at all</button>
-            <button class="option-btn" data-value="In my head">It exists in my head</button>
-            <button class="option-btn" data-value="Informal notes">Some informal notes</button>
-            <button class="option-btn" data-value="Full brand guide">Yes, full brand guide</button>
-          </div>
-        </div>
-
-        <div class="question" data-category="branding" data-key="brand_consistency" data-scores='{"Not consistent":0,"Somewhat consistent":40,"Mostly consistent":70,"Always consistent":100}'>
-          <p class="q-label">Is your brand visually consistent across all channels?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="Not consistent">Not really</button>
-            <button class="option-btn" data-value="Somewhat consistent">Somewhat</button>
-            <button class="option-btn" data-value="Mostly consistent">Mostly yes</button>
-            <button class="option-btn" data-value="Always consistent">100% consistent</button>
-          </div>
-        </div>
-
-        <div class="question" data-category="branding" data-key="brand_message" data-scores='{"No message":0,"Still figuring it out":30,"Roughly defined":60,"Clear and sharp":100}'>
-          <p class="q-label">Do you have a clear brand message or positioning?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="No message">Not at all</button>
-            <button class="option-btn" data-value="Still figuring it out">Still figuring it out</button>
-            <button class="option-btn" data-value="Roughly defined">Roughly defined</button>
-            <button class="option-btn" data-value="Clear and sharp">Yes, sharp and clear</button>
-          </div>
-        </div>
-
-        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
-      </div>
-    </section>
-
-    <!-- STEP 4: Strategy -->
-    <section class="step" data-step="4">
-      <div class="step-inner">
-        <p class="eyebrow">Strategy Check</p>
-        <h2>Are you playing<br><span class="pink">to win?</span></h2>
-
-        <div class="question" data-category="strategie" data-key="goals" data-scores='{"No goals":0,"Vague goals":30,"Yearly goals":70,"Clear KPIs":100}'>
-          <p class="q-label">Do you have clear marketing goals for this year?</p>
-          <div class="options-list">
-            <button class="option-btn" data-value="No goals">No goals</button>
-            <button class="option-btn" data-value="Vague goals">Vague ideas</button>
-            <button class="option-btn" data-value="Yearly goals">Yes, yearly goals</button>
-            <button class="option-btn" data-value="Clear KPIs">Yes, concrete KPIs</button>
-          </div>
-        </div>
-
-        <div class="question" data-category="strategie" data-key="measurement" data-scores='{"Never":0,"Rarely":20,"Sometimes":50,"Regularly":100}'>
-          <p class="q-label">Do you track and measure your marketing results?</p>
+        <div class="question" data-category="instagram" data-key="reels" data-scores='{"Never":0,"Sometimes":40,"Regularly":80,"It is our main format":100}'>
+          <p class="q-label">Do you use Reels?</p>
           <div class="options-list">
             <button class="option-btn" data-value="Never">Never</button>
-            <button class="option-btn" data-value="Rarely">Rarely</button>
             <button class="option-btn" data-value="Sometimes">Sometimes</button>
             <button class="option-btn" data-value="Regularly">Yes, regularly</button>
+            <button class="option-btn" data-value="It is our main format">It's our main format</button>
           </div>
         </div>
 
-        <div class="question" data-category="strategie" data-key="budget" data-scores='{"No budget":0,"Ad hoc":20,"Small fixed budget":60,"Proper budget":100}'>
-          <p class="q-label">Do you have a marketing budget?</p>
+        <div class="question" data-category="instagram" data-key="stories" data-scores='{"Never":0,"Sometimes":30,"Weekly":60,"Daily":100}'>
+          <p class="q-label">How often do you use Stories?</p>
           <div class="options-list">
-            <button class="option-btn" data-value="No budget">No budget</button>
-            <button class="option-btn" data-value="Ad hoc">Ad hoc spending</button>
-            <button class="option-btn" data-value="Small fixed budget">Small fixed budget</button>
-            <button class="option-btn" data-value="Proper budget">Yes, proper budget</button>
+            <button class="option-btn" data-value="Never">Never</button>
+            <button class="option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="option-btn" data-value="Weekly">A few times a week</button>
+            <button class="option-btn" data-value="Daily">Daily</button>
           </div>
         </div>
 
@@ -218,61 +153,111 @@
       </div>
     </section>
 
-    <!-- STEP 5: AI -->
-    <section class="step" data-step="5">
+    <!-- STEP 3: Engagement + content quality -->
+    <section class="step" data-step="3">
       <div class="step-inner">
-        <p class="eyebrow">AI Check</p>
-        <h2>Where are you<br><span class="pink">with AI?</span></h2>
+        <p class="eyebrow">Step 3: Engagement</p>
+        <h2>Are people actually<br><span class="pink">interacting?</span></h2>
 
-        <div class="question" data-category="ai" data-key="ai_usage" data-scores='{"Not using AI":0,"Tried it once":20,"Use it sometimes":60,"Use it daily":100}'>
-          <p class="q-label">Do you use AI tools in your business?</p>
+        <div class="question" data-category="engagement" data-key="engagement_rate" data-scores='{"Under 1%":10,"1-3%":50,"3-6%":80,"Above 6%":100,"I have no idea":20}'>
+          <p class="q-label">What is your average engagement rate? <span class="hint">(likes + comments / followers)</span></p>
           <div class="options-list">
-            <button class="option-btn" data-value="Not using AI">Not at all</button>
-            <button class="option-btn" data-value="Tried it once">Tried it once or twice</button>
-            <button class="option-btn" data-value="Use it sometimes">Use it sometimes</button>
-            <button class="option-btn" data-value="Use it daily">Use it daily</button>
+            <button class="option-btn" data-value="I have no idea">I have no idea</button>
+            <button class="option-btn" data-value="Under 1%">Under 1%</button>
+            <button class="option-btn" data-value="1-3%">1 – 3%</button>
+            <button class="option-btn" data-value="3-6%">3 – 6%</button>
+            <button class="option-btn" data-value="Above 6%">Above 6%</button>
           </div>
         </div>
 
-        <div class="question" data-category="ai" data-key="ai_for_what" data-scores='{"Nothing":0,"Writing content":40,"Writing + images":60,"Multiple workflows":80,"Full AI workflow":100}'>
-          <p class="q-label">What do you use AI for?</p>
+        <div class="question" data-category="engagement" data-key="reply_speed" data-scores='{"Never":0,"Eventually":20,"Within 24 hours":70,"Within 1 hour":100}'>
+          <p class="q-label">How fast do you reply to comments and DMs?</p>
           <div class="options-list">
-            <button class="option-btn" data-value="Nothing">Nothing yet</button>
-            <button class="option-btn" data-value="Writing content">Writing content</button>
-            <button class="option-btn" data-value="Writing + images">Writing + images</button>
-            <button class="option-btn" data-value="Multiple workflows">Multiple workflows</button>
-            <button class="option-btn" data-value="Full AI workflow">Full AI-powered workflow</button>
+            <button class="option-btn" data-value="Never">I don't really reply</button>
+            <button class="option-btn" data-value="Eventually">Eventually</button>
+            <button class="option-btn" data-value="Within 24 hours">Within 24 hours</button>
+            <button class="option-btn" data-value="Within 1 hour">Within 1 hour</button>
           </div>
         </div>
 
-        <div class="question" data-category="ai" data-key="ai_comfort" data-scores='{"Scared of it":10,"Not sure where to start":30,"Getting comfortable":60,"Fully on board":100}'>
-          <p class="q-label">How do you feel about AI for your business?</p>
+        <div class="question" data-category="engagement" data-key="hashtags" data-scores='{"Never":10,"Sometimes, random":20,"Yes, researched":80,"Always, strategic":100}'>
+          <p class="q-label">Do you use hashtags strategically?</p>
           <div class="options-list">
-            <button class="option-btn" data-value="Scared of it">Honestly a bit scared</button>
-            <button class="option-btn" data-value="Not sure where to start">Not sure where to start</button>
-            <button class="option-btn" data-value="Getting comfortable">Getting comfortable</button>
-            <button class="option-btn" data-value="Fully on board">Fully on board</button>
+            <button class="option-btn" data-value="Never">I don't use them</button>
+            <button class="option-btn" data-value="Sometimes, random">Sometimes, random ones</button>
+            <button class="option-btn" data-value="Yes, researched">Yes, I research them</button>
+            <button class="option-btn" data-value="Always, strategic">Always, very strategic</button>
           </div>
         </div>
 
-        <button class="btn-next" onclick="submitScan()">Get my report <span>→</span></button>
+        <button class="btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Content + strategy -->
+    <section class="step" data-step="4">
+      <div class="step-inner">
+        <p class="eyebrow">Step 4: Content</p>
+        <h2>What does your<br><span class="pink">content look like?</span></h2>
+
+        <div class="question" data-category="content" data-key="content_type" data-scores='{"Stock photos or reposts":10,"Own photos only":40,"Mix of photos and video":70,"Professional video-first":100}'>
+          <p class="q-label">What type of content do you mainly post?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Stock photos or reposts">Stock photos or reposts</button>
+            <button class="option-btn" data-value="Own photos only">Our own photos only</button>
+            <button class="option-btn" data-value="Mix of photos and video">Mix of photos and video</button>
+            <button class="option-btn" data-value="Professional video-first">Professional, video-first</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="content" data-key="content_plan" data-scores='{"No plan":0,"Post when inspired":20,"Loose schedule":55,"Full content calendar":100}'>
+          <p class="q-label">Do you work with a content plan?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="No plan">No plan at all</button>
+            <button class="option-btn" data-value="Post when inspired">I post when I feel like it</button>
+            <button class="option-btn" data-value="Loose schedule">Loosely planned</button>
+            <button class="option-btn" data-value="Full content calendar">Full content calendar</button>
+          </div>
+        </div>
+
+        <div class="question" data-category="content" data-key="ads" data-scores='{"Never":0,"Tried it once":20,"Sometimes":50,"Regularly, with strategy":100}'>
+          <p class="q-label">Do you run paid social media ads?</p>
+          <div class="options-list">
+            <button class="option-btn" data-value="Never">Never</button>
+            <button class="option-btn" data-value="Tried it once">Tried it once</button>
+            <button class="option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="option-btn" data-value="Regularly, with strategy">Yes, with a clear strategy</button>
+          </div>
+        </div>
+
+        <button class="btn-next" onclick="submitScan()">Get my scan report <span>→</span></button>
       </div>
     </section>
 
     <!-- LOADING -->
-    <section class="step" data-step="6" id="loadingStep">
+    <section class="step" data-step="5" id="loadingStep">
       <div class="step-inner center">
         <div class="loader"></div>
-        <h2>Scanning <span class="pink" id="loadingName">your business</span>...</h2>
-        <p class="sub">We're generating your personalized report. This takes about 10 seconds.</p>
+        <h2>Scanning <span class="pink" id="loadingName">your socials</span>...</h2>
+        <p class="sub">Buckle up. We're pulling zero punches.<br>Your report is being built right now.</p>
+      </div>
+    </section>
+
+    <!-- CHECK EMAIL -->
+    <section class="step" data-step="6" id="checkEmailStep">
+      <div class="step-inner center">
+        <p class="eyebrow">You're done.</p>
+        <h2>Check your<br><span class="pink">inbox.</span></h2>
+        <p class="sub">Your personal report is on its way to <strong id="checkEmailAddress"></strong>.<br>The link is valid for 7 days.</p>
+        <p class="hint">Not seeing it? Check your spam folder.</p>
       </div>
     </section>
 
     <!-- REPORT -->
     <section class="step" data-step="7" id="reportStep">
       <div class="step-inner">
-        <p class="eyebrow">Your Scan Report</p>
-        <h2 id="reportTitle">Your marketing.<br><span class="pink">Exposed.</span></h2>
+        <p class="eyebrow">Your Social Media Scan</p>
+        <h2 id="reportTitle">Your socials.<br><span class="pink">Exposed.</span></h2>
         <p class="intro-text" id="reportIntro"></p>
 
         <div class="radar-wrap">
@@ -286,21 +271,40 @@
           </div>
         </div>
 
-        <div class="category-cards" id="categoryCards"></div>
+        <div class="benchmark-wrap" id="benchmarkWrap"></div>
 
-        <div class="kansen-wrap">
-          <h3>Your top 3 opportunities</h3>
-          <ul id="kansenList"></ul>
+        <div class="whats-working-wrap" id="whatsWorkingWrap">
+          <p class="whats-working-label">Already killing it here</p>
+          <p id="whatsWorking"></p>
         </div>
 
+        <div class="category-cards" id="categoryCards"></div>
+
+        <div class="bio-wrap" id="bioWrap" style="display:none">
+          <h3>Your Instagram bio</h3>
+          <p id="bioFeedback"></p>
+        </div>
+
+        <div class="kansen-wrap">
+          <h3>Your #1 quick win</h3>
+          <p id="topQuickwin"></p>
+          <div class="teaser-wins" id="teaserWins"></div>
+        </div>
+
+        <div class="fomo-wrap" id="fomoWrap"></div>
+
         <div class="quickwin-wrap">
-          <h3>Quick win this week</h3>
+          <h3>Do this today</h3>
           <p id="quickwinText"></p>
         </div>
 
+        <div class="download-wrap">
+          <button class="btn-download" onclick="downloadReport()">Download your report <span>↓</span></button>
+        </div>
+
         <div class="cta-wrap">
-          <p>Want to actually fix this?</p>
-          <a href="mailto:hello@funkiness.com" class="btn-cta">Let's talk <span>→</span></a>
+          <p class="cta-hook" id="ctaHook"></p>
+          <a id="btnWhatsApp" href="https://wa.me/59996751737" class="btn-cta" target="_blank" rel="noopener">Say hello on WhatsApp <span>→</span></a>
         </div>
       </div>
     </section>

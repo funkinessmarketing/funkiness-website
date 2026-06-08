@@ -22,7 +22,7 @@ Merkarchetype: The Magician meets The Outlaw. Eén creëert transformatie, de an
 ## Wat we NOOIT schrijven
 
 Corporate. Traag. Voorspelbaar. Safe. Verontschuldigend. Negatief. Jeukwoorden als premium, boutique etc. 
-Als een tekst klinkt als een personeelshandboek, hoort hij niet bij FUNkiness!
+Als een tekst klinkt als een personeelshandboek, hoort hij niet bij FUNkiness! We gebruiken nooit emdash.
 
 ## De kapstok
 
