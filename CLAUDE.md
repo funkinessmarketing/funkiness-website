@@ -14,19 +14,21 @@ We zitten in de opstartfase. Slogan: *Boring was never the plan.*
 
 ## Producten en diensten
 
-**AI & Marketingscan** — onze leadgenerator. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie.
+FUNkiness! is een **fullservice marketingbureau**: strategie, AI-integratie, social media, content en campagnes.
 
-**Social media abonnementen** (in ontwikkeling) — structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
+**AI & Marketingscan** - onze leadgenerator. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie. Scan knop op website linkt naar https://scan.funkiness.ai (apart in te stellen).
+
+**Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
 ## Doelgroep
 
-bedrijven op Curaçao: hotels, resorts, makelaars restaurants, Airbnb-verhuurders. De klant die voorover leunt en denkt: *"Who the hell ARE these people — and why haven't I called them yet?"*
-
-Hun pijn: ze zien er allemaal hetzelfde uit, AI voelt als bedreiging, en kennis en budget zijn beperkt.
+Alle bedrijven op Curaçao: hotels, resorts, makelaars, restaurants, Airbnb-verhuurders, banken en meer. Budget maakt niet uit: zowel grote bedrijven als kleine verhuurders zijn welkom. Geen vaste pakketten, altijd op maat.
 
 ## Schrijfstijl
 
-Casual, direct, bold, met humor — en altijd positief en vanuit kansen. Kort en krachtig. Nooit corporate, traag, voorspelbaar, safe of verontschuldigend. Engels op de website, Nederlands én Engels op social media. TikTok is een kernplatform. Altijd spreektaal en er wordt nooit emdash gebruikt. Je blijft weg van woorden als 'premium', luxury etc.
+Casual, direct, bold, met humor. Altijd positief en vanuit eigen kracht. Kort en krachtig. Nooit corporate, traag, voorspelbaar, safe of verontschuldigend. Engels op de website, Nederlands en Engels op social media. TikTok is een kernplatform. Altijd spreektaal.
+
+Verboden: emdash, woorden als 'premium' of 'luxury', negatieve vergelijkingen met anderen of de markt, onverifieerbare claims over concurrenten.
 
 Als een tekst saai klinkt, past hij niet bij FUNkiness!
 

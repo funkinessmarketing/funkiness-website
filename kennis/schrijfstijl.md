@@ -17,6 +17,8 @@ Merkarchetype: The Magician meets The Outlaw. Eén creëert transformatie, de an
 - TikTok is een kernplatform — content moet werken op snelheid en gevoel.
 - Altijd een positieve toon in schrijfstijl
 - je zegt niet wat de rest niet doet, laat je niet negatief uit over andere marketingbureaus. Ga altijd uit van eigen kracht.
+GEO en SEO voeren de boventoon in teksten voor zowel social media als de website.
+
 
 
 ## Wat we NOOIT schrijven

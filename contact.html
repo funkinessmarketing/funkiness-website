@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | FUNkiness! Say Hello</title>
+  <meta name="description" content="Get in touch with FUNkiness! on Curaçao. We come to you. You pick the spot.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.funkiness.ai/contact.html">
+
+  <meta property="og:title" content="Contact | FUNkiness!">
+  <meta property="og:description" content="Get in touch. We come to you. You pick the spot.">
+  <meta property="og:image" content="https://www.funkiness.ai/jeep3.png">
+  <meta property="og:url" content="https://www.funkiness.ai/contact.html">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="/" class="logo">FUNkiness!</a>
+    <nav class="menu">
+      <a href="what-we-do.html">What We Do</a>
+      <span>✚</span>
+      <a href="scan.html">Free Scan</a>
+      <span>✚</span>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="nav-button" style="background:var(--pink);">Say Hello <span>↗</span></a>
+    </nav>
+    <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+    <a href="/" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
+    <a href="what-we-do.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">What We Do</a>
+    <a href="scan.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Free Scan</a>
+    <a href="blog.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Blog</a>
+    <a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="kicker">Contact</span>
+    <h1>Let's <span>talk.</span></h1>
+    <p class="page-tagline">You pick the spot. We bring the office. Drop your details below and we'll be in touch to set something up. No obligation, no pitch deck, just a real conversation.</p>
+  </div>
+
+  <section class="contact-page-section">
+
+    <div class="contact-info-col">
+      <p class="section-kicker">Get in touch</p>
+      <h2>We'd love to<br><span style="color:var(--pink);">hear from you.</span></h2>
+      <p>Whether you have a question, want to know more about the scan, or are ready to talk about working together. Just reach out. We respond fast.</p>
+
+      <div class="contact-detail">
+        <p class="contact-detail-label">Email</p>
+        <p class="contact-detail-value"><a href="mailto:sayhello@funkiness.ai">sayhello@funkiness.ai</a></p>
+      </div>
+
+      <div class="contact-detail">
+        <p class="contact-detail-label">Location</p>
+        <p class="contact-detail-value">Curaçao, Dutch Caribbean</p>
+      </div>
+
+      <div class="contact-detail">
+        <p class="contact-detail-label">We come to you</p>
+        <p class="contact-detail-value">You pick the spot: beach bar, hotel lobby, your office. We're on the island.</p>
+      </div>
+
+      <div style="margin-top:44px;">
+        <p class="contact-detail-label" style="margin-bottom:16px;">Follow us</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="https://instagram.com/funkiness.ai" target="_blank" rel="noopener" style="background:var(--black);color:white;padding:12px 22px;border-radius:999px;font-weight:800;font-size:14px;text-decoration:none;transition:transform 200ms ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">Instagram ↗</a>
+          <a href="https://tiktok.com/@funkiness.ai" target="_blank" rel="noopener" style="background:var(--black);color:white;padding:12px 22px;border-radius:999px;font-weight:800;font-size:14px;text-decoration:none;transition:transform 200ms ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">TikTok ↗</a>
+          <a href="https://linkedin.com/company/funkiness" target="_blank" rel="noopener" style="background:var(--black);color:white;padding:12px 22px;border-radius:999px;font-weight:800;font-size:14px;text-decoration:none;transition:transform 200ms ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-col">
+      <div id="formContent">
+        <label for="name">Your name</label>
+        <form action="https://formspree.io/f/mdajpopd" method="POST" onsubmit="handleContactSubmit(event)">
+          <input type="text" id="name" name="name" placeholder="Daisy Kuipers" required>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@yourbusiness.com" required>
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Your company or hotel">
+          <label for="subject">What's this about?</label>
+          <select id="subject" name="subject">
+            <option value="">Select a topic</option>
+            <option value="strategy">Marketing strategy</option>
+            <option value="scan">Free AI & Marketing Scan</option>
+            <option value="ai">AI integration</option>
+            <option value="social">Social media & content</option>
+            <option value="branding">Branding & campaigns</option>
+            <option value="other">Something else</option>
+          </select>
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Tell us what's going on. What are you working on? What do you need?" required></textarea>
+          <button type="submit" class="black-button" style="width:100%;justify-content:center;font-size:17px;border:none;cursor:pointer;">Send it <span>↗</span></button>
+        </form>
+      </div>
+
+      <div id="formSuccess" style="display:none;text-align:center;padding:60px 20px;">
+        <p style="font-size:52px;margin-bottom:20px;">🐆</p>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;">We're on our way!</h3>
+        <p style="font-size:17px;color:rgba(8,4,3,0.62);line-height:1.6;">Message received. We'll be in touch soon.<br>Boring was never the plan.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <a href="/" class="footer-logo">FUNkiness!</a>
+      <p class="footer-tagline">AI, social media and marketing with personality. Based on Curaçao.</p>
+      <a href="mailto:sayhello@funkiness.ai" class="footer-email">sayhello@funkiness.ai</a>
+    </div>
+    <div>
+      <p class="footer-nav-title">Navigation</p>
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="scan.html">Free Scan</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <div>
+      <p class="footer-nav-title">Follow us</p>
+      <nav class="footer-nav">
+        <a href="https://instagram.com/funkiness.ai" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="https://tiktok.com/@funkiness.ai" target="_blank" rel="noopener">TikTok ↗</a>
+        <a href="https://linkedin.com/company/funkiness" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </nav>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 FUNkiness! Curaçao</p>
+    <p>Boring was never the plan.</p>
+  </div>
+
+  <script>
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          document.getElementById('formContent').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        }
+      } catch {
+        alert('Something went wrong. Please email us at sayhello@funkiness.ai');
+      }
+    }
+  </script>
+
+</body>
+</html>
