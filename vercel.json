@@ -1,12 +1,10 @@
 {
+  "cleanUrls": true,
   "functions": {
     "api/scan.js": { "maxDuration": 30 },
     "api/marketing-scan.js": { "maxDuration": 30 },
     "api/archetype-quiz.js": { "maxDuration": 30 }
   },
-  "rewrites": [
-    { "source": "/quiz", "destination": "/quiz.html" }
-  ],
   "headers": [
     {
       "source": "/api/(.*)",
