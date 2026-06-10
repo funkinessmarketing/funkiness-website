@@ -67,7 +67,7 @@ style.css is **mobile-first**. Base styles zijn voor mobiel. Breakpoints: `min-w
 **Blog post template:**
 Nieuwe blogposts volgen de structuur van bestaande posts (zie `blog-marketing-strategy-curacao.html`):
 - `<header class="blog-hero">` met kicker + h1 + `.script-word`
-- **GEEN wave-divider na `</header>`** — `.blog-hero::after` CSS regelt de organische overgang naar crème. Een extra HTML wave-divider veroorzaakt een dubbele golf.
+- Direct na `</header>`: een `<div class="wave-divider" style="background:var(--black)">` met crème SVG-golf
 - `<div class="blog-layout">` met `<aside class="blog-sidebar">` + `<article class="blog-post-body">`
 - Minimaal één `.blog-callout` en een `.blog-post-cta` afsluiter
 - Wave-divider (crème→zwart) WEL toevoegen vóór de footer

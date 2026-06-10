@@ -1395,16 +1395,6 @@ h1 span { color: var(--pink); }
   .blog-hero { padding: 72px 7vw 108px; }
 }
 
-.blog-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 72px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 72' preserveAspectRatio='none'%3E%3Cpath d='M0,72 L0,38 C110,12 225,54 370,32 C515,10 610,50 760,28 C910,6 1005,52 1150,30 C1295,8 1375,44 1440,24 L1440,72 Z' fill='%23f7efe7'/%3E%3C/svg%3E") no-repeat;
-  background-size: 100% 100%;
-}
 
 .blog-hero .kicker {
   color: var(--pink);
