@@ -1648,7 +1648,7 @@ h1 span { color: var(--pink); }
 /* ============================
    WAVE DIVIDERS
    ============================ */
-.wave-divider { line-height: 0; display: block; margin: 0; padding: 0; }
+.wave-divider { line-height: 0; display: block; margin: 0 0 -2px; padding: 0; }
 .wave-divider svg { width: 100%; display: block; }
 
 /* ============================
