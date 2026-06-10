@@ -191,7 +191,7 @@ a { color: inherit; }
   line-height: 0.72;
   margin-bottom: 18px;
   transform: rotate(-4deg);
-  display: inline-block;
+  display: block;
   font-family: 'Permanent Marker', cursive;
   font-style: normal;
   font-weight: 400;

@@ -16,7 +16,9 @@ We zitten in de opstartfase. Slogan: *Boring was never the plan.*
 
 FUNkiness! is een **fullservice marketingbureau**: strategie, AI-integratie, social media, content en campagnes.
 
-**AI & Marketingscan** - onze leadgenerator. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie. Scan knop op website linkt naar https://scan.funkiness.ai (apart in te stellen).
+**AI & Marketingscan** - leadgenerator #1. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie. Scan knop op website linkt naar https://scan.funkiness.ai (apart in te stellen). Vercel serverless: `api/marketing-scan.js`.
+
+**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?" — 8 vragen, 4 archetypes (Time Liberator, Content Machine, Growth Catalyst, Experience Architect). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
@@ -65,8 +67,10 @@ style.css is **mobile-first**. Base styles zijn voor mobiel. Breakpoints: `min-w
 **Blog post template:**
 Nieuwe blogposts volgen de structuur van bestaande posts (zie `blog-marketing-strategy-curacao.html`):
 - `<header class="blog-hero">` met kicker + h1 + `.script-word`
+- **GEEN wave-divider na `</header>`** — `.blog-hero::after` CSS regelt de organische overgang naar crème. Een extra HTML wave-divider veroorzaakt een dubbele golf.
 - `<div class="blog-layout">` met `<aside class="blog-sidebar">` + `<article class="blog-post-body">`
 - Minimaal één `.blog-callout` en een `.blog-post-cta` afsluiter
+- Wave-divider (crème→zwart) WEL toevoegen vóór de footer
 - Bestandsnaam: `blog-[onderwerp]-curacao.html`
 
 ## Kennisbestanden
