@@ -214,8 +214,8 @@ Output ONLY valid JSON:
         to: 'sayhello@funkiness.ai',
         subject: `Nieuwe scan: ${bedrijf}, score ${rapport.totaalscore}/100`,
         html: `
-          <h2 style="color:#f21b7a">Nieuwe Social Media Scan</h2>
-          <table style="border-collapse:collapse;width:100%;font-family:sans-serif">
+          <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe Social Media Scan</h2>
+          <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:24px">
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${bedrijf}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${sectorNaam}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${naam || 'niet opgegeven'}</td></tr>
@@ -224,19 +224,32 @@ Output ONLY valid JSON:
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${telefoon || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${telefoon_nl || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${instagram || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:18px;font-weight:bold;color:#f21b7a">${rapport.totaalscore}/100</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold;font-size:16px">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:22px;font-weight:bold;color:#f21b7a">${rapport.totaalscore}/100</td></tr>
           </table>
-          <h3 style="margin-top:20px">Bio</h3>
-          <p style="background:#f5f5f5;padding:12px;border-radius:8px;font-style:italic">${bio || 'niet ingevuld'}</p>
-          <h3>Scores</h3>
-          <ul>
-            <li>Platforms & Reach: ${rapport.platforms.score}/100</li>
-            <li>Instagram: ${rapport.instagram.score}/100</li>
-            <li>Engagement: ${rapport.engagement.score}/100</li>
-            <li>Content: ${rapport.content.score}/100</li>
-          </ul>
-          <h3>Top quick win</h3><p>${rapport.top_quickwin}</p>
-          <h3>Do today</h3><p>${rapport.do_today}</p>
+          <div style="font-family:sans-serif">
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Scores</h3>
+            <ul style="margin-bottom:20px">
+              <li>Platforms & Reach: <strong>${rapport.platforms.score}/100</strong> — ${rapport.platforms.feedback}</li>
+              <li>Instagram: <strong>${rapport.instagram.score}/100</strong> — ${rapport.instagram.feedback}</li>
+              <li>Engagement: <strong>${rapport.engagement.score}/100</strong> — ${rapport.engagement.feedback}</li>
+              <li>Content: <strong>${rapport.content.score}/100</strong> — ${rapport.content.feedback}</li>
+            </ul>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Intro (wat de klant ziet)</h3>
+            <p style="background:#f5f5f5;padding:12px;border-radius:8px;margin-bottom:16px">${rapport.intro}</p>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">What's working</h3>
+            <p style="margin-bottom:16px">${rapport.whats_working}</p>
+            ${bio ? `<h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Bio (ingevuld door klant)</h3><p style="background:#f5f5f5;padding:12px;border-radius:8px;font-style:italic;margin-bottom:8px">${bio}</p><p style="margin-bottom:16px">${rapport.bio_feedback || ''}</p>` : ''}
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Top quick win</h3>
+            <p style="margin-bottom:16px">${rapport.top_quickwin}</p>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Teaser wins</h3>
+            <p style="margin-bottom:16px">${rapport.teaser_wins}</p>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">FOMO</h3>
+            <p style="margin-bottom:16px">${rapport.fomo}</p>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Do today</h3>
+            <p style="margin-bottom:16px">${rapport.do_today}</p>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">CTA (dynamisch)</h3>
+            <p>${rapport.cta_dynamic}</p>
+          </div>
         `
       }).catch(err => console.error('Lead email error:', err.message));
     }

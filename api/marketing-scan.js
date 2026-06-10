@@ -220,15 +220,29 @@ Output ONLY valid JSON:
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${telefoon_nl || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:18px;font-weight:bold;color:#f21b7a">${rapport.totaalscore}/100</td></tr>
           </table>
-          <h3 style="margin-top:20px">Scores</h3>
-          <ul>
-            <li>Brand & Positioning: ${rapport.brand.score}/100</li>
-            <li>Audience & Market: ${rapport.audience.score}/100</li>
-            <li>Channels & Reach: ${rapport.channels.score}/100</li>
-            <li>Strategy & Execution: ${rapport.strategy.score}/100</li>
-          </ul>
-          <h3>Top quick win</h3><p>${rapport.top_quickwin}</p>
-          <h3>Do today</h3><p>${rapport.do_today}</p>
+          <div style="font-family:sans-serif">
+            <h3 style="color:#f21b7a;margin-top:24px;margin-bottom:8px;border-bottom:2px solid #f21b7a;padding-bottom:4px">Scores</h3>
+            <ul style="line-height:2">
+              <li>Brand & Positioning: <strong>${rapport.brand.score}/100</strong> — ${rapport.brand.feedback}</li>
+              <li>Audience & Market: <strong>${rapport.audience.score}/100</strong> — ${rapport.audience.feedback}</li>
+              <li>Channels & Reach: <strong>${rapport.channels.score}/100</strong> — ${rapport.channels.feedback}</li>
+              <li>Strategy & Execution: <strong>${rapport.strategy.score}/100</strong> — ${rapport.strategy.feedback}</li>
+            </ul>
+            <h3 style="color:#f21b7a;margin-top:20px">Intro</h3>
+            <p>${rapport.intro}</p>
+            <h3 style="color:#f21b7a;margin-top:20px">What's working</h3>
+            <p>${rapport.whats_working}</p>
+            <h3 style="color:#f21b7a;margin-top:20px">Top quick win</h3>
+            <p>${rapport.top_quickwin}</p>
+            <h3 style="color:#f21b7a;margin-top:20px">Teaser wins</h3>
+            <p>${rapport.teaser_wins}</p>
+            <h3 style="color:#f21b7a;margin-top:20px">FOMO</h3>
+            <p>${rapport.fomo}</p>
+            <h3 style="color:#f21b7a;margin-top:20px">Do today</h3>
+            <p>${rapport.do_today}</p>
+            <h3 style="color:#f21b7a;margin-top:20px">CTA</h3>
+            <p>${rapport.cta_dynamic}</p>
+          </div>
         `
       }).catch(err => console.error('Lead email error:', err.message));
     }
