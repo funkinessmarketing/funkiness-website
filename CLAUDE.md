@@ -22,7 +22,7 @@ FUNkiness! is een **fullservice marketingbureau**: strategie, AI-integratie, soc
 
 ## Doelgroep
 
-Alle bedrijven op Curaçao: hotels, resorts, makelaars, restaurants, Airbnb-verhuurders, banken en meer. Budget maakt niet uit: zowel grote bedrijven als kleine verhuurders zijn welkom. Geen vaste pakketten, altijd op maat.
+Alle bedrijven op Curaçao: hotels, resorts, makelaars, restaurants, vakantieverhuurders en vakantiewoningbeheerders (mensen die verhuren via platforms als Airbnb, Booking.com of Micazu), banken en meer. Budget maakt niet uit: zowel grote bedrijven als kleine verhuurders zijn welkom. Geen vaste pakketten, altijd op maat.
 
 ## Schrijfstijl
 
@@ -31,6 +31,43 @@ Casual, direct, bold, met humor. Altijd positief en vanuit eigen kracht. Kort en
 Verboden: emdash, woorden als 'premium' of 'luxury', negatieve vergelijkingen met anderen of de markt, onverifieerbare claims over concurrenten.
 
 Als een tekst saai klinkt, past hij niet bij FUNkiness!
+
+## Vormgeving & Designprincipes
+
+**Kernregel: organische vormen, geen rechte vlakken of harde hoeken.** Secties lopen vloeiend in elkaar over via SVG-golven of blob-vormen, niet via strakke rechthoekige blokken.
+
+**Kleuren:**
+- Roze: `#f21b7a` (primair, altijd FUNkiness! roze)
+- Zwart: `#080403`
+- Crème: `#f7efe7` (standaard achtergrond)
+- Crème licht: `#fbf6f1`
+
+**Typografie:**
+- Poppins 900 — alle headings (h1, h2, h3)
+- Permanent Marker — script/accent woorden (handgeschreven gevoel, roze)
+- Inter — broodtekst, navigatie, UI
+
+**Visuele elementen:**
+- Roze plusjes `✚` als separator in navigatie, ticker en tags
+- Kleine roze streep (4px, 54px breed) als sectie-accent
+- Roze pil-badges (zwart of roze, afgerond 999px) voor labels en categorieën
+- Cards: border-radius 24-34px, lichte witte achtergrond met subtiele border
+- Donkere secties (zwart) voor contrast — Why Us, footer, blog hero
+- Blob/plas-vormen in roze als decoratief element (zie homepage hero)
+- Jeep met panterprint is het centrale visuele merk-icoon
+
+**Aanpak bij nieuwe pagina-elementen:**
+Gebruik altijd organische overgangen (SVG-golf of blob) tussen secties met verschillende achtergrondkleuren. Nooit een harde rechte lijn tussen twee kleurvlakken.
+
+**CSS architectuur:**
+style.css is **mobile-first**. Base styles zijn voor mobiel. Breakpoints: `min-width: 600px`, `700px`, `900px`, `1100px`. Gebruik altijd `min-width`, nooit `max-width`.
+
+**Blog post template:**
+Nieuwe blogposts volgen de structuur van bestaande posts (zie `blog-marketing-strategy-curacao.html`):
+- `<header class="blog-hero">` met kicker + h1 + `.script-word`
+- `<div class="blog-layout">` met `<aside class="blog-sidebar">` + `<article class="blog-post-body">`
+- Minimaal één `.blog-callout` en een `.blog-post-cta` afsluiter
+- Bestandsnaam: `blog-[onderwerp]-curacao.html`
 
 ## Kennisbestanden
 
