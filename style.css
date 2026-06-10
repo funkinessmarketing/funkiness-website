@@ -278,9 +278,9 @@ h1 span { color: var(--pink); }
 
 .pink-blob {
   position: absolute;
-  width: 120%;
-  right: -15px;
-  bottom: -20px;
+  width: 100%;
+  right: -5px;
+  bottom: 10px;
   z-index: 1;
 }
 
