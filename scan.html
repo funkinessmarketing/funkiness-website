@@ -600,6 +600,69 @@
       background: var(--black);
       transform: translateY(-2px);
     }
+
+    .scan-type-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .scan-type-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .scan-type-card {
+      padding: 22px 20px;
+      border: 2px solid rgba(8,4,3,0.12);
+      border-radius: 18px;
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.18s ease;
+      font-family: "Inter", sans-serif;
+      color: var(--black);
+      width: 100%;
+    }
+
+    .scan-type-card:hover {
+      border-color: var(--pink);
+      background: rgba(242,27,122,0.04);
+    }
+
+    .scan-type-card.selected {
+      border-color: var(--pink);
+      background: var(--pink);
+      color: white;
+    }
+
+    .scan-type-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--pink);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .scan-type-card.selected .scan-type-label { color: rgba(255,255,255,0.75); }
+
+    .scan-type-card strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .scan-type-card p {
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0.65;
+      margin: 0;
+    }
+
+    .scan-type-card.selected p { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -640,9 +703,25 @@
     <!-- STEP 0: Intro + basic info -->
     <section class="scan-step active" data-step="0">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Free Social Media Scan</span>
-        <h1 class="scan-h1">Your socials.<br><span class="scan-pink">No filter.</span></h1>
-        <p class="scan-sub">Find out exactly where your social media stands on Curaçao. What's working, what's not, and what to do next. Takes 3 minutes. Zero fluff.</p>
+        <span class="scan-eyebrow">Free Scan</span>
+        <h1 class="scan-h1">Your business.<br><span class="scan-pink">No filter.</span></h1>
+        <p class="scan-sub">Two free scans, both built for businesses on Curaçao. Pick the one you need. Takes 3 minutes. Zero fluff.</p>
+
+        <div class="scan-form-group" style="margin-bottom:40px">
+          <label>Which scan do you want?</label>
+          <div class="scan-type-grid">
+            <button class="scan-type-card" data-scan-type="social">
+              <span class="scan-type-label">Social Media</span>
+              <strong>Social Media Scan</strong>
+              <p>Find out how your social presence holds up. Instagram, TikTok, Facebook, WhatsApp strategy.</p>
+            </button>
+            <button class="scan-type-card" data-scan-type="marketing">
+              <span class="scan-type-label">Marketing Strategy</span>
+              <strong>Marketing Strategy Scan</strong>
+              <p>See how your overall marketing measures up. Brand, audience, channels and execution.</p>
+            </button>
+          </div>
+        </div>
 
         <div class="scan-form-group">
           <label>Business name</label>
@@ -690,42 +769,74 @@
       </div>
     </section>
 
-    <!-- STEP 1: Platforms -->
+    <!-- STEP 1 -->
     <section class="scan-step" data-step="1">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 1: Your Channels</span>
-        <h2 class="scan-h2">Where are you<br><span class="scan-pink">showing up?</span></h2>
+        <span class="scan-eyebrow">Step 1</span>
+        <h2 class="scan-h2">Loading...</h2>
 
-        <div class="scan-question" data-category="platforms" data-key="main_platform" data-scores='{"Instagram":80,"Facebook":50,"TikTok":90,"Instagram + Facebook":70,"Instagram + TikTok":100,"Not really active":0}'>
-          <p class="scan-q-label">What is your main social media platform?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Instagram">Instagram</button>
-            <button class="scan-option-btn" data-value="Facebook">Facebook</button>
-            <button class="scan-option-btn" data-value="TikTok">TikTok</button>
-            <button class="scan-option-btn" data-value="Instagram + Facebook">Instagram + Facebook</button>
-            <button class="scan-option-btn" data-value="Instagram + TikTok">Instagram + TikTok</button>
-            <button class="scan-option-btn" data-value="Not really active">Not really active</button>
+        <!-- Social Media questions -->
+        <div class="scan-qs" data-scan-type="social">
+          <div class="scan-question" data-category="platforms" data-key="main_platform" data-scores='{"Instagram":80,"Facebook":50,"TikTok":90,"Instagram + Facebook":70,"Instagram + TikTok":100,"Not really active":0}'>
+            <p class="scan-q-label">What is your main social media platform?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Instagram">Instagram</button>
+              <button class="scan-option-btn" data-value="Facebook">Facebook</button>
+              <button class="scan-option-btn" data-value="TikTok">TikTok</button>
+              <button class="scan-option-btn" data-value="Instagram + Facebook">Instagram + Facebook</button>
+              <button class="scan-option-btn" data-value="Instagram + TikTok">Instagram + TikTok</button>
+              <button class="scan-option-btn" data-value="Not really active">Not really active</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="platforms" data-key="posting_freq" data-scores='{"Rarely or never":0,"1-2x per week":40,"3-4x per week":75,"Daily":100}'>
+            <p class="scan-q-label">How often do you post on your main platform?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Rarely or never">Rarely or never</button>
+              <button class="scan-option-btn" data-value="1-2x per week">1-2x per week</button>
+              <button class="scan-option-btn" data-value="3-4x per week">3-4x per week</button>
+              <button class="scan-option-btn" data-value="Daily">Daily or more</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="platforms" data-key="followers" data-scores='{"Under 500":10,"500-1,500":30,"1,500-5,000":60,"5,000-15,000":80,"15,000+":100}'>
+            <p class="scan-q-label">How many followers do you have on your main platform?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Under 500">Under 500</button>
+              <button class="scan-option-btn" data-value="500-1,500">500 – 1,500</button>
+              <button class="scan-option-btn" data-value="1,500-5,000">1,500 – 5,000</button>
+              <button class="scan-option-btn" data-value="5,000-15,000">5,000 – 15,000</button>
+              <button class="scan-option-btn" data-value="15,000+">15,000+</button>
+            </div>
           </div>
         </div>
 
-        <div class="scan-question" data-category="platforms" data-key="posting_freq" data-scores='{"Rarely or never":0,"1-2x per week":40,"3-4x per week":75,"Daily":100}'>
-          <p class="scan-q-label">How often do you post on your main platform?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Rarely or never">Rarely or never</button>
-            <button class="scan-option-btn" data-value="1-2x per week">1-2x per week</button>
-            <button class="scan-option-btn" data-value="3-4x per week">3-4x per week</button>
-            <button class="scan-option-btn" data-value="Daily">Daily or more</button>
+        <!-- Marketing Strategy questions -->
+        <div class="scan-qs" data-scan-type="marketing" style="display:none">
+          <div class="scan-question" data-category="brand" data-key="positioning" data-scores='{"Not at all":0,"In my head, not written down":25,"Yes, a positioning statement":70,"Yes, used consistently everywhere":100}'>
+            <p class="scan-q-label">Do you have a clear description of what makes your business different on Curaçao?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Not at all">Not at all</button>
+              <button class="scan-option-btn" data-value="In my head, not written down">In my head, not written down</button>
+              <button class="scan-option-btn" data-value="Yes, a positioning statement">Yes, a positioning statement</button>
+              <button class="scan-option-btn" data-value="Yes, used consistently everywhere">Yes, and used consistently everywhere</button>
+            </div>
           </div>
-        </div>
-
-        <div class="scan-question" data-category="platforms" data-key="followers" data-scores='{"Under 500":10,"500-1,500":30,"1,500-5,000":60,"5,000-15,000":80,"15,000+":100}'>
-          <p class="scan-q-label">How many followers do you have on your main platform?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Under 500">Under 500</button>
-            <button class="scan-option-btn" data-value="500-1,500">500 – 1,500</button>
-            <button class="scan-option-btn" data-value="1,500-5,000">1,500 – 5,000</button>
-            <button class="scan-option-btn" data-value="5,000-15,000">5,000 – 15,000</button>
-            <button class="scan-option-btn" data-value="15,000+">15,000+</button>
+          <div class="scan-question" data-category="brand" data-key="visual_consistency" data-scores='{"Very inconsistent":0,"Somewhat consistent":35,"Mostly consistent":70,"Fully consistent everywhere":100}'>
+            <p class="scan-q-label">How consistent is your visual identity (logo, colors, fonts) across all your channels?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Very inconsistent">Very inconsistent</button>
+              <button class="scan-option-btn" data-value="Somewhat consistent">Somewhat consistent</button>
+              <button class="scan-option-btn" data-value="Mostly consistent">Mostly consistent</button>
+              <button class="scan-option-btn" data-value="Fully consistent everywhere">Fully consistent everywhere</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="brand" data-key="clarity" data-scores='{"Not clear at all":0,"Somewhat clear":35,"Pretty clear":65,"Crystal clear, immediately":100}'>
+            <p class="scan-q-label">When someone finds your business, how quickly do they know what you do and who you're for?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Not clear at all">Not clear at all</button>
+              <button class="scan-option-btn" data-value="Somewhat clear">Somewhat clear</button>
+              <button class="scan-option-btn" data-value="Pretty clear">Pretty clear</button>
+              <button class="scan-option-btn" data-value="Crystal clear, immediately">Crystal clear, immediately</button>
+            </div>
           </div>
         </div>
 
@@ -733,39 +844,70 @@
       </div>
     </section>
 
-    <!-- STEP 2: Instagram -->
+    <!-- STEP 2 -->
     <section class="scan-step" data-step="2">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 2: Instagram</span>
-        <h2 class="scan-h2">Let's look at<br><span class="scan-pink">your Instagram.</span></h2>
+        <span class="scan-eyebrow">Step 2</span>
+        <h2 class="scan-h2">Loading...</h2>
 
-        <div class="scan-form-group">
-          <label>Your Instagram handle <span class="scan-hint">(optional but recommended)</span></label>
-          <input type="text" id="instagram" placeholder="@yourbusiness" />
-        </div>
-
-        <div class="scan-form-group">
-          <label>Paste your current Instagram bio here <span class="scan-hint">(copy it from your profile)</span></label>
-          <textarea id="bio" placeholder="Copy your bio here exactly as it appears on your profile..."></textarea>
-        </div>
-
-        <div class="scan-question" data-category="instagram" data-key="reels" data-scores='{"Never":0,"Sometimes":40,"Regularly":80,"It is our main format":100}'>
-          <p class="scan-q-label">Do you use Reels?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Never">Never</button>
-            <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
-            <button class="scan-option-btn" data-value="Regularly">Yes, regularly</button>
-            <button class="scan-option-btn" data-value="It is our main format">It's our main format</button>
+        <!-- Social Media questions -->
+        <div class="scan-qs" data-scan-type="social">
+          <div class="scan-form-group">
+            <label>Your Instagram handle <span class="scan-hint">(optional but recommended)</span></label>
+            <input type="text" id="instagram" placeholder="@yourbusiness" />
+          </div>
+          <div class="scan-form-group">
+            <label>Paste your current Instagram bio here <span class="scan-hint">(copy it from your profile)</span></label>
+            <textarea id="bio" placeholder="Copy your bio here exactly as it appears on your profile..."></textarea>
+          </div>
+          <div class="scan-question" data-category="instagram" data-key="reels" data-scores='{"Never":0,"Sometimes":40,"Regularly":80,"It is our main format":100}'>
+            <p class="scan-q-label">Do you use Reels?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Never">Never</button>
+              <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
+              <button class="scan-option-btn" data-value="Regularly">Yes, regularly</button>
+              <button class="scan-option-btn" data-value="It is our main format">It's our main format</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="instagram" data-key="stories" data-scores='{"Never":0,"Sometimes":30,"Weekly":60,"Daily":100}'>
+            <p class="scan-q-label">How often do you use Stories?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Never">Never</button>
+              <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
+              <button class="scan-option-btn" data-value="Weekly">A few times a week</button>
+              <button class="scan-option-btn" data-value="Daily">Daily</button>
+            </div>
           </div>
         </div>
 
-        <div class="scan-question" data-category="instagram" data-key="stories" data-scores='{"Never":0,"Sometimes":30,"Weekly":60,"Daily":100}'>
-          <p class="scan-q-label">How often do you use Stories?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Never">Never</button>
-            <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
-            <button class="scan-option-btn" data-value="Weekly">A few times a week</button>
-            <button class="scan-option-btn" data-value="Daily">Daily</button>
+        <!-- Marketing Strategy questions -->
+        <div class="scan-qs" data-scan-type="marketing" style="display:none">
+          <div class="scan-question" data-category="audience" data-key="ideal_customer" data-scores='{"I serve anyone who needs me":0,"I have a rough idea":30,"I have a clear customer description":70,"Detailed profiles backed by data":100}'>
+            <p class="scan-q-label">How well can you describe your ideal customer?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="I serve anyone who needs me">I serve anyone who needs me</button>
+              <button class="scan-option-btn" data-value="I have a rough idea">I have a rough idea</button>
+              <button class="scan-option-btn" data-value="I have a clear customer description">I have a clear customer description</button>
+              <button class="scan-option-btn" data-value="Detailed profiles backed by data">Detailed profiles backed by data</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="audience" data-key="feedback" data-scores='{"I do not collect it":0,"Occasionally when it comes up":30,"I actively ask after service":70,"Structured system and act on it":100}'>
+            <p class="scan-q-label">How do you collect customer reviews or feedback?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="I do not collect it">I don't collect it</button>
+              <button class="scan-option-btn" data-value="Occasionally when it comes up">Occasionally, when it comes up</button>
+              <button class="scan-option-btn" data-value="I actively ask after service">I actively ask after every service</button>
+              <button class="scan-option-btn" data-value="Structured system and act on it">Structured system and I act on it</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="audience" data-key="customer_source" data-scores='{"No idea":0,"A rough sense":35,"I track most sources":70,"Track all sources and use the data":100}'>
+            <p class="scan-q-label">Do you know where your customers come from?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No idea">No idea</button>
+              <button class="scan-option-btn" data-value="A rough sense">A rough sense</button>
+              <button class="scan-option-btn" data-value="I track most sources">I track most sources</button>
+              <button class="scan-option-btn" data-value="Track all sources and use the data">I track all sources and use the data</button>
+            </div>
           </div>
         </div>
 
@@ -773,40 +915,81 @@
       </div>
     </section>
 
-    <!-- STEP 3: Engagement -->
+    <!-- STEP 3 -->
     <section class="scan-step" data-step="3">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 3: Engagement</span>
-        <h2 class="scan-h2">Are people actually<br><span class="scan-pink">interacting?</span></h2>
+        <span class="scan-eyebrow">Step 3</span>
+        <h2 class="scan-h2">Loading...</h2>
 
-        <div class="scan-question" data-category="engagement" data-key="engagement_rate" data-scores='{"Under 1%":10,"1-3%":50,"3-6%":80,"Above 6%":100,"I have no idea":20}'>
-          <p class="scan-q-label">What is your average engagement rate? <span class="scan-hint">(likes + comments / followers)</span></p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="I have no idea">I have no idea</button>
-            <button class="scan-option-btn" data-value="Under 1%">Under 1%</button>
-            <button class="scan-option-btn" data-value="1-3%">1 – 3%</button>
-            <button class="scan-option-btn" data-value="3-6%">3 – 6%</button>
-            <button class="scan-option-btn" data-value="Above 6%">Above 6%</button>
+        <!-- Social Media questions -->
+        <div class="scan-qs" data-scan-type="social">
+          <div class="scan-question" data-category="engagement" data-key="engagement_rate" data-scores='{"Under 1%":10,"1-3%":50,"3-6%":80,"Above 6%":100,"I have no idea":20}'>
+            <p class="scan-q-label">What is your average engagement rate? <span class="scan-hint">(likes + comments / followers)</span></p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="I have no idea">I have no idea</button>
+              <button class="scan-option-btn" data-value="Under 1%">Under 1%</button>
+              <button class="scan-option-btn" data-value="1-3%">1 – 3%</button>
+              <button class="scan-option-btn" data-value="3-6%">3 – 6%</button>
+              <button class="scan-option-btn" data-value="Above 6%">Above 6%</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="engagement" data-key="reply_speed" data-scores='{"Never":0,"Eventually":20,"Within 24 hours":70,"Within 1 hour":100}'>
+            <p class="scan-q-label">How fast do you reply to comments and DMs?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Never">I don't really reply</button>
+              <button class="scan-option-btn" data-value="Eventually">Eventually</button>
+              <button class="scan-option-btn" data-value="Within 24 hours">Within 24 hours</button>
+              <button class="scan-option-btn" data-value="Within 1 hour">Within 1 hour</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="engagement" data-key="hashtags" data-scores='{"Never":10,"Sometimes, random":20,"Yes, researched":80,"Always, strategic":100}'>
+            <p class="scan-q-label">Do you use hashtags strategically?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Never">I don't use them</button>
+              <button class="scan-option-btn" data-value="Sometimes, random">Sometimes, random ones</button>
+              <button class="scan-option-btn" data-value="Yes, researched">Yes, I research them</button>
+              <button class="scan-option-btn" data-value="Always, strategic">Always, very strategic</button>
+            </div>
           </div>
         </div>
 
-        <div class="scan-question" data-category="engagement" data-key="reply_speed" data-scores='{"Never":0,"Eventually":20,"Within 24 hours":70,"Within 1 hour":100}'>
-          <p class="scan-q-label">How fast do you reply to comments and DMs?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Never">I don't really reply</button>
-            <button class="scan-option-btn" data-value="Eventually">Eventually</button>
-            <button class="scan-option-btn" data-value="Within 24 hours">Within 24 hours</button>
-            <button class="scan-option-btn" data-value="Within 1 hour">Within 1 hour</button>
+        <!-- Marketing Strategy questions -->
+        <div class="scan-qs" data-scan-type="marketing" style="display:none">
+          <div class="scan-question" data-category="channels" data-key="website" data-scores='{"No website":0,"Outdated or not mobile-friendly":20,"Basic, reasonably current":55,"Optimized and regularly updated":100}'>
+            <p class="scan-q-label">Do you have a mobile-friendly, up-to-date website?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No website">No website</button>
+              <button class="scan-option-btn" data-value="Outdated or not mobile-friendly">Yes but outdated or not mobile-friendly</button>
+              <button class="scan-option-btn" data-value="Basic, reasonably current">Basic website, reasonably current</button>
+              <button class="scan-option-btn" data-value="Optimized and regularly updated">Yes, optimized and regularly updated</button>
+            </div>
           </div>
-        </div>
-
-        <div class="scan-question" data-category="engagement" data-key="hashtags" data-scores='{"Never":10,"Sometimes, random":20,"Yes, researched":80,"Always, strategic":100}'>
-          <p class="scan-q-label">Do you use hashtags strategically?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Never">I don't use them</button>
-            <button class="scan-option-btn" data-value="Sometimes, random">Sometimes, random ones</button>
-            <button class="scan-option-btn" data-value="Yes, researched">Yes, I research them</button>
-            <button class="scan-option-btn" data-value="Always, strategic">Always, very strategic</button>
+          <div class="scan-question" data-category="channels" data-key="google_profile" data-scores='{"I do not have one":0,"Set up but not managed":30,"Active with photos and reviews":75,"Fully optimized with regular updates":100}'>
+            <p class="scan-q-label">Is your Google Business Profile active?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="I do not have one">I don't have one</button>
+              <button class="scan-option-btn" data-value="Set up but not managed">Set up but not actively managed</button>
+              <button class="scan-option-btn" data-value="Active with photos and reviews">Active, with photos and review responses</button>
+              <button class="scan-option-btn" data-value="Fully optimized with regular updates">Fully optimized with regular updates</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="channels" data-key="whatsapp_email" data-scores='{"Neither":0,"Occasionally":35,"Regularly for one":65,"Both actively":100}'>
+            <p class="scan-q-label">Do you use WhatsApp or email to stay in touch with existing customers?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Neither">Neither</button>
+              <button class="scan-option-btn" data-value="Occasionally">Occasionally</button>
+              <button class="scan-option-btn" data-value="Regularly for one">Regularly, for one of them</button>
+              <button class="scan-option-btn" data-value="Both actively">Both, actively</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="channels" data-key="paid_ads" data-scores='{"No":0,"Tried without a plan":25,"Yes with some targeting":60,"Yes with tracking and optimization":100}'>
+            <p class="scan-q-label">Do you run paid advertising?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No">No</button>
+              <button class="scan-option-btn" data-value="Tried without a plan">Tried it without a clear plan</button>
+              <button class="scan-option-btn" data-value="Yes with some targeting">Yes, with some targeting</button>
+              <button class="scan-option-btn" data-value="Yes with tracking and optimization">Yes, with tracking and optimization</button>
+            </div>
           </div>
         </div>
 
@@ -814,39 +997,80 @@
       </div>
     </section>
 
-    <!-- STEP 4: Content -->
+    <!-- STEP 4 -->
     <section class="scan-step" data-step="4">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 4: Content</span>
-        <h2 class="scan-h2">What does your<br><span class="scan-pink">content look like?</span></h2>
+        <span class="scan-eyebrow">Step 4</span>
+        <h2 class="scan-h2">Loading...</h2>
 
-        <div class="scan-question" data-category="content" data-key="content_type" data-scores='{"Stock photos or reposts":10,"Own photos only":40,"Mix of photos and video":70,"Professional video-first":100}'>
-          <p class="scan-q-label">What type of content do you mainly post?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Stock photos or reposts">Stock photos or reposts</button>
-            <button class="scan-option-btn" data-value="Own photos only">Our own photos only</button>
-            <button class="scan-option-btn" data-value="Mix of photos and video">Mix of photos and video</button>
-            <button class="scan-option-btn" data-value="Professional video-first">Professional, video-first</button>
+        <!-- Social Media questions -->
+        <div class="scan-qs" data-scan-type="social">
+          <div class="scan-question" data-category="content" data-key="content_type" data-scores='{"Stock photos or reposts":10,"Own photos only":40,"Mix of photos and video":70,"Professional video-first":100}'>
+            <p class="scan-q-label">What type of content do you mainly post?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Stock photos or reposts">Stock photos or reposts</button>
+              <button class="scan-option-btn" data-value="Own photos only">Our own photos only</button>
+              <button class="scan-option-btn" data-value="Mix of photos and video">Mix of photos and video</button>
+              <button class="scan-option-btn" data-value="Professional video-first">Professional, video-first</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="content" data-key="content_plan" data-scores='{"No plan":0,"Post when inspired":20,"Loose schedule":55,"Full content calendar":100}'>
+            <p class="scan-q-label">Do you work with a content plan?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No plan">No plan at all</button>
+              <button class="scan-option-btn" data-value="Post when inspired">I post when I feel like it</button>
+              <button class="scan-option-btn" data-value="Loose schedule">Loosely planned</button>
+              <button class="scan-option-btn" data-value="Full content calendar">Full content calendar</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="content" data-key="ads" data-scores='{"Never":0,"Tried it once":20,"Sometimes":50,"Regularly, with strategy":100}'>
+            <p class="scan-q-label">Do you run paid social media ads?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Never">Never</button>
+              <button class="scan-option-btn" data-value="Tried it once">Tried it once</button>
+              <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
+              <button class="scan-option-btn" data-value="Regularly, with strategy">Yes, with a clear strategy</button>
+            </div>
           </div>
         </div>
 
-        <div class="scan-question" data-category="content" data-key="content_plan" data-scores='{"No plan":0,"Post when inspired":20,"Loose schedule":55,"Full content calendar":100}'>
-          <p class="scan-q-label">Do you work with a content plan?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="No plan">No plan at all</button>
-            <button class="scan-option-btn" data-value="Post when inspired">I post when I feel like it</button>
-            <button class="scan-option-btn" data-value="Loose schedule">Loosely planned</button>
-            <button class="scan-option-btn" data-value="Full content calendar">Full content calendar</button>
+        <!-- Marketing Strategy questions -->
+        <div class="scan-qs" data-scan-type="marketing" style="display:none">
+          <div class="scan-question" data-category="strategy" data-key="marketing_plan" data-scores='{"No":0,"In my head not written":20,"Yes a basic plan":55,"Yes detailed with goals and timeline":100}'>
+            <p class="scan-q-label">Do you have a written marketing plan?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No">No</button>
+              <button class="scan-option-btn" data-value="In my head not written">In my head, not written down</button>
+              <button class="scan-option-btn" data-value="Yes a basic plan">Yes, a basic plan</button>
+              <button class="scan-option-btn" data-value="Yes detailed with goals and timeline">Yes, detailed with goals and timeline</button>
+            </div>
           </div>
-        </div>
-
-        <div class="scan-question" data-category="content" data-key="ads" data-scores='{"Never":0,"Tried it once":20,"Sometimes":50,"Regularly, with strategy":100}'>
-          <p class="scan-q-label">Do you run paid social media ads?</p>
-          <div class="scan-options-list">
-            <button class="scan-option-btn" data-value="Never">Never</button>
-            <button class="scan-option-btn" data-value="Tried it once">Tried it once</button>
-            <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
-            <button class="scan-option-btn" data-value="Regularly, with strategy">Yes, with a clear strategy</button>
+          <div class="scan-question" data-category="strategy" data-key="budget" data-scores='{"No budget":0,"Flexible depends on the month":25,"Yes a rough budget":55,"Clear budget with channel allocation":100}'>
+            <p class="scan-q-label">Do you have a dedicated marketing budget?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No budget">No budget</button>
+              <button class="scan-option-btn" data-value="Flexible depends on the month">Flexible, depends on the month</button>
+              <button class="scan-option-btn" data-value="Yes a rough budget">Yes, a rough budget</button>
+              <button class="scan-option-btn" data-value="Clear budget with channel allocation">Clear budget with allocation per channel</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="strategy" data-key="tracking" data-scores='{"Not at all":0,"Occasionally check social numbers":25,"Track some KPIs regularly":65,"Track all metrics and optimize":100}'>
+            <p class="scan-q-label">Do you actively track your marketing results?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Not at all">Not at all</button>
+              <button class="scan-option-btn" data-value="Occasionally check social numbers">Occasionally check social numbers</button>
+              <button class="scan-option-btn" data-value="Track some KPIs regularly">Track some KPIs regularly</button>
+              <button class="scan-option-btn" data-value="Track all metrics and optimize">Track all metrics and optimize based on data</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="strategy" data-key="marketing_time" data-scores='{"Rarely or never":0,"When I have time":25,"Planned at least weekly":65,"Daily its structured":100}'>
+            <p class="scan-q-label">How often do you actively work on your marketing?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Rarely or never">Rarely or never</button>
+              <button class="scan-option-btn" data-value="When I have time">When I have time</button>
+              <button class="scan-option-btn" data-value="Planned at least weekly">Planned, at least weekly</button>
+              <button class="scan-option-btn" data-value="Daily its structured">Daily — it's structured</button>
+            </div>
           </div>
         </div>
 
@@ -866,7 +1090,7 @@
     <!-- STEP 6: Report -->
     <section class="scan-step" data-step="6" id="reportStep">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Your Social Media Scan</span>
+        <span class="scan-eyebrow" id="reportEyebrow">Your Scan</span>
         <h2 class="scan-h2" id="reportTitle">Your socials.<br><span class="scan-pink">Exposed.</span></h2>
         <p class="scan-intro-text" id="reportIntro"></p>
         <p class="scan-email-note" id="reportEmailNote"></p>

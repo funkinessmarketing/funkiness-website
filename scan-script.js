@@ -2,6 +2,22 @@ const TOTAL_STEPS = 5;
 let currentStep = 0;
 const answers = {};
 const fieldSelections = {};
+let scanType = null;
+
+const STEP_HEADERS = {
+  social: {
+    1: { eyebrow: 'Step 1: Your Channels',  h2: 'Where are you<br><span class="scan-pink">showing up?</span>' },
+    2: { eyebrow: 'Step 2: Instagram',       h2: 'Let\'s look at<br><span class="scan-pink">your Instagram.</span>' },
+    3: { eyebrow: 'Step 3: Engagement',      h2: 'Are people actually<br><span class="scan-pink">interacting?</span>' },
+    4: { eyebrow: 'Step 4: Content',         h2: 'What does your<br><span class="scan-pink">content look like?</span>' },
+  },
+  marketing: {
+    1: { eyebrow: 'Step 1: Brand & Positioning',  h2: 'What makes you<br><span class="scan-pink">different?</span>' },
+    2: { eyebrow: 'Step 2: Audience & Market',    h2: 'Who are you<br><span class="scan-pink">talking to?</span>' },
+    3: { eyebrow: 'Step 3: Channels & Reach',     h2: 'How do people<br><span class="scan-pink">find you?</span>' },
+    4: { eyebrow: 'Step 4: Strategy & Execution', h2: 'Do you have<br><span class="scan-pink">a real plan?</span>' },
+  }
+};
 
 function showStep(n) {
   document.querySelectorAll('.scan-step').forEach(s => s.classList.remove('active'));
@@ -16,6 +32,19 @@ function showStep(n) {
   if (progressWrap) {
     progressWrap.style.display = (n === 0 || n === 6) ? 'none' : 'flex';
   }
+
+  if (n >= 1 && n <= 4 && scanType && target) {
+    const headers = STEP_HEADERS[scanType][n];
+    if (headers) {
+      const eyebrow = target.querySelector('.scan-eyebrow');
+      const h2 = target.querySelector('.scan-h2');
+      if (eyebrow) eyebrow.textContent = headers.eyebrow;
+      if (h2) h2.innerHTML = headers.h2;
+    }
+    target.querySelectorAll('.scan-qs').forEach(qs => {
+      qs.style.display = qs.dataset.scanType === scanType ? 'block' : 'none';
+    });
+  }
 }
 
 function updateProgress(step) {
@@ -24,7 +53,7 @@ function updateProgress(step) {
   if (!fill || !label) return;
   const pct = step >= TOTAL_STEPS ? 100 : Math.round((step / TOTAL_STEPS) * 100);
   fill.style.width = pct + '%';
-  label.textContent = step < TOTAL_STEPS ? `Step ${step + 1} of ${TOTAL_STEPS}` : 'Done!';
+  label.textContent = step < TOTAL_STEPS ? `Step ${step} of 4` : 'Done!';
 }
 
 function nextStep() {
@@ -35,6 +64,13 @@ function nextStep() {
 
 function validateStep(step) {
   if (step === 0) {
+    if (!scanType) {
+      document.querySelectorAll('.scan-type-card').forEach(c => {
+        c.classList.add('pulse');
+        setTimeout(() => c.classList.remove('pulse'), 600);
+      });
+      return false;
+    }
     const fields = ['bedrijf', 'naam', 'functie', 'email'];
     for (const id of fields) {
       const val = document.getElementById(id).value.trim();
@@ -52,7 +88,8 @@ function validateStep(step) {
   }
 
   const stepEl = document.querySelector(`.scan-step[data-step="${step}"]`);
-  const questions = stepEl.querySelectorAll('.scan-question');
+  const activeQs = stepEl.querySelector(`.scan-qs[data-scan-type="${scanType}"]`);
+  const questions = activeQs ? activeQs.querySelectorAll('.scan-question') : [];
   for (const q of questions) {
     if (!answers[q.dataset.key]) {
       const btn = q.querySelector('.scan-option-btn');
@@ -75,6 +112,15 @@ function shake(id) {
 }
 
 document.addEventListener('click', (e) => {
+  const typeCard = e.target.closest('.scan-type-card');
+  if (typeCard) {
+    document.querySelectorAll('.scan-type-card').forEach(c => c.classList.remove('selected'));
+    typeCard.classList.add('selected');
+    scanType = typeCard.dataset.scanType;
+    for (const key in answers) delete answers[key];
+    return;
+  }
+
   const btn = e.target.closest('.scan-option-btn');
   if (!btn) return;
   const group = btn.closest('[data-field]');
@@ -95,18 +141,21 @@ document.addEventListener('click', (e) => {
 });
 
 function calcScores() {
-  const cats = { platforms: [], instagram: [], engagement: [], content: [] };
+  const catKeys = scanType === 'social'
+    ? ['platforms', 'instagram', 'engagement', 'content']
+    : ['brand', 'audience', 'channels', 'strategy'];
+
+  const cats = {};
+  catKeys.forEach(k => cats[k] = []);
+
   for (const [, data] of Object.entries(answers)) {
     const score = data.scores[data.value] ?? 50;
-    if (cats[data.category]) cats[data.category].push(score);
+    if (cats[data.category] !== undefined) cats[data.category].push(score);
   }
   const avg = arr => arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
-  return {
-    platforms:  avg(cats.platforms),
-    instagram:  avg(cats.instagram),
-    engagement: avg(cats.engagement),
-    content:    avg(cats.content)
-  };
+  const result = {};
+  catKeys.forEach(k => result[k] = avg(cats[k]));
+  return result;
 }
 
 async function submitScan() {
@@ -120,8 +169,8 @@ async function submitScan() {
   const nl_input    = document.getElementById('telefoon_nl').value.trim();
   const telefoon    = cw_input ? `+599 ${cw_input}` : '';
   const telefoon_nl = nl_input ? `+31 ${nl_input}` : '';
-  const instagram   = document.getElementById('instagram').value.trim();
-  const bio         = document.getElementById('bio').value.trim();
+  const instagram   = document.getElementById('instagram')?.value.trim() || '';
+  const bio         = document.getElementById('bio')?.value.trim() || '';
   const sector      = fieldSelections['sector'];
   const scores      = calcScores();
   const honeypot    = document.getElementById('honeypot')?.value || '';
@@ -135,8 +184,10 @@ async function submitScan() {
     antwoorden[key] = data.value;
   }
 
+  const apiEndpoint = scanType === 'social' ? '/api/scan' : '/api/marketing-scan';
+
   try {
-    const res = await fetch('/api/scan', {
+    const res = await fetch(apiEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, antwoorden, scores, honeypot })
@@ -163,8 +214,16 @@ function escHtml(str) {
 }
 
 function renderReport(rapport, bedrijf, naam, functie, email) {
-  document.getElementById('reportTitle').innerHTML =
-    `${escHtml(bedrijf)}'s socials.<br><span class="scan-pink">Exposed.</span>`;
+  const isSocial = scanType === 'social';
+
+  document.getElementById('reportEyebrow').textContent = isSocial
+    ? 'Your Social Media Scan'
+    : 'Your Marketing Strategy Scan';
+
+  document.getElementById('reportTitle').innerHTML = isSocial
+    ? `${escHtml(bedrijf)}'s socials.<br><span class="scan-pink">Exposed.</span>`
+    : `${escHtml(bedrijf)}'s marketing.<br><span class="scan-pink">Exposed.</span>`;
+
   document.getElementById('reportIntro').textContent = rapport.intro;
   document.getElementById('totalScore').textContent = rapport.totaalscore;
   document.getElementById('whatsWorking').textContent = rapport.whats_working;
@@ -174,7 +233,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('reportEmailNote').textContent = `We also sent a copy to ${email}.`;
 
   const waMsg = encodeURIComponent(
-    `Hi FUNkiness! I just completed the Social Media Scan.\n\nName: ${naam}\nJob title: ${functie}\nBusiness: ${bedrijf}\nScore: ${rapport.totaalscore}/100\n\nI'd love to talk about what's possible!`
+    `Hi FUNkiness! I just completed the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan.\n\nName: ${naam}\nJob title: ${functie}\nBusiness: ${bedrijf}\nScore: ${rapport.totaalscore}/100\n\nI'd love to talk about what's possible!`
   );
   document.getElementById('btnWhatsApp').href = `https://wa.me/59996751737?text=${waMsg}`;
 
@@ -198,13 +257,24 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
       </div>
     </div>`;
 
+  const radarLabels = isSocial
+    ? ['Platforms', 'Instagram', 'Engagement', 'Content']
+    : ['Brand', 'Audience', 'Channels', 'Strategy'];
+
+  const radarData = isSocial
+    ? [rapport.platforms.score, rapport.instagram.score, rapport.engagement.score, rapport.content.score]
+    : [rapport.brand.score, rapport.audience.score, rapport.channels.score, rapport.strategy.score];
+
+  const existingChart = Chart.getChart('radarChart');
+  if (existingChart) existingChart.destroy();
+
   const ctx = document.getElementById('radarChart').getContext('2d');
   new Chart(ctx, {
     type: 'radar',
     data: {
-      labels: ['Platforms', 'Instagram', 'Engagement', 'Content'],
+      labels: radarLabels,
       datasets: [{
-        data: [rapport.platforms.score, rapport.instagram.score, rapport.engagement.score, rapport.content.score],
+        data: radarData,
         backgroundColor: 'rgba(242, 27, 122, 0.12)',
         borderColor: '#f21b7a',
         borderWidth: 2.5,
@@ -225,12 +295,20 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
     }
   });
 
-  const categories = [
-    { label: 'Platforms & Reach', data: rapport.platforms },
-    { label: 'Instagram',         data: rapport.instagram },
-    { label: 'Engagement',        data: rapport.engagement },
-    { label: 'Content',           data: rapport.content }
-  ];
+  const categories = isSocial
+    ? [
+        { label: 'Platforms & Reach', data: rapport.platforms },
+        { label: 'Instagram',         data: rapport.instagram },
+        { label: 'Engagement',        data: rapport.engagement },
+        { label: 'Content',           data: rapport.content }
+      ]
+    : [
+        { label: 'Brand & Positioning',  data: rapport.brand },
+        { label: 'Audience & Market',    data: rapport.audience },
+        { label: 'Channels & Reach',     data: rapport.channels },
+        { label: 'Strategy & Execution', data: rapport.strategy }
+      ];
+
   document.getElementById('categoryCards').innerHTML = categories.map(({ label, data }) => {
     const s = data.score;
     const pill = s >= 70 ? 'high' : s >= 40 ? 'mid' : 'low';
@@ -244,9 +322,14 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
     </div>`;
   }).join('');
 
-  if (rapport.bio_feedback) {
-    document.getElementById('bioWrap').style.display = 'block';
-    document.getElementById('bioFeedback').textContent = rapport.bio_feedback;
+  const bioWrap = document.getElementById('bioWrap');
+  if (bioWrap) {
+    if (isSocial && rapport.bio_feedback) {
+      bioWrap.style.display = 'block';
+      document.getElementById('bioFeedback').textContent = rapport.bio_feedback;
+    } else {
+      bioWrap.style.display = 'none';
+    }
   }
 
   document.getElementById('teaserWins').textContent = rapport.teaser_wins;
@@ -263,7 +346,7 @@ function downloadReport() {
   printWindow.document.write(`<!DOCTYPE html>
 <html><head>
   <meta charset="UTF-8"/>
-  <title>FUNkiness! Social Media Scan Report</title>
+  <title>FUNkiness! Scan Report</title>
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>
   <style>
@@ -279,7 +362,7 @@ function downloadReport() {
     .scan-score-badge{display:flex;flex-direction:column;align-items:center;background:#f21b7a;color:white;border-radius:50%;width:100px;height:100px;justify-content:center}
     .scan-score-num{font-size:2.2rem;font-weight:900;line-height:1}
     .scan-score-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;opacity:.9}
-    .scan-bench-wrap{background:white;border-radius:14px;padding:20px 24px;margin-bottom:24px;text-align:center}
+    .scan-bench-wrap{background:white;border-radius:14px;padding:20px 24px;margin-bottom:24px}
     .scan-bench-bars{display:flex;flex-direction:column;gap:8px}
     .scan-bench-row{display:flex;align-items:center;gap:10px;font-size:.82rem}
     .scan-bench-label{width:110px;text-align:right;color:#888;font-weight:600;flex-shrink:0}
@@ -310,7 +393,6 @@ function downloadReport() {
     .scan-fomo-wrap{background:white;border-radius:14px;padding:20px 24px;margin-bottom:24px;border-top:3px solid #f21b7a}
     .scan-fomo-wrap h3{color:#f21b7a;margin-bottom:8px}
     .scan-download-wrap,.scan-cta-wrap,.scan-email-note{display:none}
-    @media print{.scan-cta-wrap,.scan-download-wrap{display:none}}
   </style>
 </head><body>
   <div class="scan-step-inner">${content}</div>
