@@ -1,8 +1,8 @@
 {
   "functions": {
-    "api/scan.js": {
-      "maxDuration": 30
-    }
+    "api/scan.js": { "maxDuration": 30 },
+    "api/marketing-scan.js": { "maxDuration": 30 },
+    "api/archetype-quiz.js": { "maxDuration": 30 }
   },
   "headers": [
     {
