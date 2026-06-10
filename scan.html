@@ -697,31 +697,38 @@
       <div class="scan-progress-bar">
         <div class="scan-progress-fill" id="progressFill"></div>
       </div>
-      <span class="scan-progress-label" id="progressLabel">Step 1 of 5</span>
+      <span class="scan-progress-label" id="progressLabel">Your details</span>
     </div>
 
-    <!-- STEP 0: Intro + basic info -->
+    <!-- STEP 0: Choose scan type -->
     <section class="scan-step active" data-step="0">
       <div class="scan-step-inner">
         <span class="scan-eyebrow">Free Scan</span>
         <h1 class="scan-h1">Your business.<br><span class="scan-pink">No filter.</span></h1>
-        <p class="scan-sub">Two free scans, both built for businesses on Curaçao. Pick the one you need. Takes 3 minutes. Zero fluff.</p>
+        <p class="scan-sub">Two free scans, both built for businesses on Curaçao. Pick the one you need and get your personalized report in minutes.</p>
 
-        <div class="scan-form-group" style="margin-bottom:40px">
-          <label>Which scan do you want?</label>
-          <div class="scan-type-grid">
-            <button class="scan-type-card" data-scan-type="social">
-              <span class="scan-type-label">Social Media</span>
-              <strong>Social Media Scan</strong>
-              <p>Find out how your social presence holds up. Instagram, TikTok, Facebook, WhatsApp strategy.</p>
-            </button>
-            <button class="scan-type-card" data-scan-type="marketing">
-              <span class="scan-type-label">Marketing Strategy</span>
-              <strong>Marketing Strategy Scan</strong>
-              <p>See how your overall marketing measures up. Brand, audience, channels and execution.</p>
-            </button>
-          </div>
+        <div class="scan-type-grid" style="margin-bottom:40px">
+          <button class="scan-type-card" data-scan-type="social">
+            <span class="scan-type-label">Social Media</span>
+            <strong>Social Media Scan</strong>
+            <p>Find out how your social presence holds up. Instagram, TikTok, Facebook, WhatsApp strategy.</p>
+          </button>
+          <button class="scan-type-card" data-scan-type="marketing">
+            <span class="scan-type-label">Marketing Strategy</span>
+            <strong>Marketing Strategy Scan</strong>
+            <p>See how your overall marketing measures up. Brand, audience, channels and execution.</p>
+          </button>
         </div>
+
+        <button class="scan-btn-next" onclick="nextStep()">Continue <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 1: Contact info -->
+    <section class="scan-step" data-step="1">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow" id="step1Eyebrow">Free Scan</span>
+        <h2 class="scan-h2">Tell us about<br><span class="scan-pink">your business.</span></h2>
 
         <div class="scan-form-group">
           <label>Business name</label>
@@ -769,8 +776,8 @@
       </div>
     </section>
 
-    <!-- STEP 1 -->
-    <section class="scan-step" data-step="1">
+    <!-- STEP 2 -->
+    <section class="scan-step" data-step="2">
       <div class="scan-step-inner">
         <span class="scan-eyebrow">Step 1</span>
         <h2 class="scan-h2">Loading...</h2>
@@ -844,10 +851,10 @@
       </div>
     </section>
 
-    <!-- STEP 2 -->
-    <section class="scan-step" data-step="2">
+    <!-- STEP 3 -->
+    <section class="scan-step" data-step="3">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 2</span>
+        <span class="scan-eyebrow">Step 3</span>
         <h2 class="scan-h2">Loading...</h2>
 
         <!-- Social Media questions -->
@@ -915,10 +922,10 @@
       </div>
     </section>
 
-    <!-- STEP 3 -->
-    <section class="scan-step" data-step="3">
+    <!-- STEP 4 -->
+    <section class="scan-step" data-step="4">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 3</span>
+        <span class="scan-eyebrow">Step 4</span>
         <h2 class="scan-h2">Loading...</h2>
 
         <!-- Social Media questions -->
@@ -997,10 +1004,10 @@
       </div>
     </section>
 
-    <!-- STEP 4 -->
-    <section class="scan-step" data-step="4">
+    <!-- STEP 5 -->
+    <section class="scan-step" data-step="5">
       <div class="scan-step-inner">
-        <span class="scan-eyebrow">Step 4</span>
+        <span class="scan-eyebrow">Step 5</span>
         <h2 class="scan-h2">Loading...</h2>
 
         <!-- Social Media questions -->
@@ -1078,8 +1085,8 @@
       </div>
     </section>
 
-    <!-- STEP 5: Loading -->
-    <section class="scan-step" data-step="5" id="loadingStep">
+    <!-- STEP 6: Loading -->
+    <section class="scan-step" data-step="6" id="loadingStep">
       <div class="scan-step-inner center">
         <div class="scan-loader"></div>
         <h2 class="scan-h2">Scanning <span class="scan-pink" id="loadingName">your socials</span>...</h2>
@@ -1087,8 +1094,8 @@
       </div>
     </section>
 
-    <!-- STEP 6: Report -->
-    <section class="scan-step" data-step="6" id="reportStep">
+    <!-- STEP 7: Report -->
+    <section class="scan-step" data-step="7" id="reportStep">
       <div class="scan-step-inner">
         <span class="scan-eyebrow" id="reportEyebrow">Your Scan</span>
         <h2 class="scan-h2" id="reportTitle">Your socials.<br><span class="scan-pink">Exposed.</span></h2>

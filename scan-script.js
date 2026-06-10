@@ -6,16 +6,16 @@ let scanType = null;
 
 const STEP_HEADERS = {
   social: {
-    1: { eyebrow: 'Step 1: Your Channels',  h2: 'Where are you<br><span class="scan-pink">showing up?</span>' },
-    2: { eyebrow: 'Step 2: Instagram',       h2: 'Let\'s look at<br><span class="scan-pink">your Instagram.</span>' },
-    3: { eyebrow: 'Step 3: Engagement',      h2: 'Are people actually<br><span class="scan-pink">interacting?</span>' },
-    4: { eyebrow: 'Step 4: Content',         h2: 'What does your<br><span class="scan-pink">content look like?</span>' },
+    2: { eyebrow: 'Step 1: Your Channels',  h2: 'Where are you<br><span class="scan-pink">showing up?</span>' },
+    3: { eyebrow: 'Step 2: Instagram',       h2: 'Let\'s look at<br><span class="scan-pink">your Instagram.</span>' },
+    4: { eyebrow: 'Step 3: Engagement',      h2: 'Are people actually<br><span class="scan-pink">interacting?</span>' },
+    5: { eyebrow: 'Step 4: Content',         h2: 'What does your<br><span class="scan-pink">content look like?</span>' },
   },
   marketing: {
-    1: { eyebrow: 'Step 1: Brand & Positioning',  h2: 'What makes you<br><span class="scan-pink">different?</span>' },
-    2: { eyebrow: 'Step 2: Audience & Market',    h2: 'Who are you<br><span class="scan-pink">talking to?</span>' },
-    3: { eyebrow: 'Step 3: Channels & Reach',     h2: 'How do people<br><span class="scan-pink">find you?</span>' },
-    4: { eyebrow: 'Step 4: Strategy & Execution', h2: 'Do you have<br><span class="scan-pink">a real plan?</span>' },
+    2: { eyebrow: 'Step 1: Brand & Positioning',  h2: 'What makes you<br><span class="scan-pink">different?</span>' },
+    3: { eyebrow: 'Step 2: Audience & Market',    h2: 'Who are you<br><span class="scan-pink">talking to?</span>' },
+    4: { eyebrow: 'Step 3: Channels & Reach',     h2: 'How do people<br><span class="scan-pink">find you?</span>' },
+    5: { eyebrow: 'Step 4: Strategy & Execution', h2: 'Do you have<br><span class="scan-pink">a real plan?</span>' },
   }
 };
 
@@ -30,11 +30,17 @@ function showStep(n) {
 
   const progressWrap = document.getElementById('scanProgressWrap');
   if (progressWrap) {
-    progressWrap.style.display = (n === 0 || n === 6) ? 'none' : 'flex';
+    progressWrap.style.display = (n === 0 || n >= 6) ? 'none' : 'flex';
   }
 
-  if (n >= 1 && n <= 4 && scanType && target) {
+  if (n === 1 && scanType) {
+    const eyebrow = document.getElementById('step1Eyebrow');
+    if (eyebrow) eyebrow.textContent = scanType === 'social' ? 'Social Media Scan' : 'Marketing Strategy Scan';
+  }
+
+  if (n >= 2 && n <= 5 && scanType && target) {
     const headers = STEP_HEADERS[scanType][n];
+
     if (headers) {
       const eyebrow = target.querySelector('.scan-eyebrow');
       const h2 = target.querySelector('.scan-h2');
@@ -51,9 +57,13 @@ function updateProgress(step) {
   const fill = document.getElementById('progressFill');
   const label = document.getElementById('progressLabel');
   if (!fill || !label) return;
-  const pct = step >= TOTAL_STEPS ? 100 : Math.round((step / TOTAL_STEPS) * 100);
+  // steps 1-5 visible (1=contact, 2-5=questions), 5 total
+  const visibleStep = step; // step 1 = info, 2-5 = questions
+  const pct = visibleStep >= 5 ? 100 : Math.round((visibleStep / 5) * 100);
   fill.style.width = pct + '%';
-  label.textContent = step < TOTAL_STEPS ? `Step ${step} of 4` : 'Done!';
+  if (visibleStep === 1) label.textContent = 'Your details';
+  else if (visibleStep >= 2 && visibleStep <= 5) label.textContent = `Question ${visibleStep - 1} of 4`;
+  else label.textContent = 'Done!';
 }
 
 function nextStep() {
@@ -71,6 +81,10 @@ function validateStep(step) {
       });
       return false;
     }
+    return true;
+  }
+
+  if (step === 1) {
     const fields = ['bedrijf', 'naam', 'functie', 'email'];
     for (const id of fields) {
       const val = document.getElementById(id).value.trim();
@@ -159,7 +173,7 @@ function calcScores() {
 }
 
 async function submitScan() {
-  if (!validateStep(4)) return;
+  if (!validateStep(5)) return;
 
   const bedrijf     = document.getElementById('bedrijf').value.trim();
   const naam        = document.getElementById('naam').value.trim();
@@ -176,8 +190,8 @@ async function submitScan() {
   const honeypot    = document.getElementById('honeypot')?.value || '';
 
   document.getElementById('loadingName').textContent = bedrijf;
-  currentStep = 5;
-  showStep(5);
+  currentStep = 6;
+  showStep(6);
 
   const antwoorden = {};
   for (const [key, data] of Object.entries(answers)) {
@@ -196,12 +210,12 @@ async function submitScan() {
     if (!data.success) throw new Error(data.error);
 
     renderReport(data.rapport, data.bedrijf, data.naam, data.functie, email);
-    currentStep = 6;
-    showStep(6);
+    currentStep = 7;
+    showStep(7);
   } catch {
     alert('Something went wrong. Please try again.');
-    currentStep = 4;
-    showStep(4);
+    currentStep = 5;
+    showStep(5);
   }
 }
 
