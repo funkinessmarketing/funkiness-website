@@ -2,19 +2,605 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Free AI &amp; Marketing Scan | FUNkiness! Curaçao</title>
-  <meta name="description" content="Gratis AI & Marketing Scan voor je bedrijf op Curaçao. In 5 minuten een volledig strategisch rapport over je marketing en AI-readiness. Voor hotels, banken, makelaars, vakantieverhuurders en meer.">
+  <title>Free Social Media Scan | FUNkiness! Curaçao</title>
+  <meta name="description" content="Gratis social media scan voor bedrijven op Curaçao. Ontdek in 3 minuten hoe je social media ervoor staat en wat je moet doen om te groeien.">
+  <meta name="keywords" content="gratis marketing scan Curaçao, social media scan Curaçao, AI scan marketingbureau Curaçao, FUNkiness, marketingadvies Curaçao">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.funkiness.ai/scan.html">
 
-  <meta property="og:title" content="Free AI &amp; Marketing Scan | FUNkiness!">
-  <meta property="og:description" content="5 minutes. Full report. Honest insights about your marketing and AI readiness. No pitch, no catch.">
-  <meta property="og:image" content="https://www.funkiness.ai/ai-marketing-scan-lifestyle.png">
+  <meta property="og:title" content="Free Social Media Scan | FUNkiness! Curaçao">
+  <meta property="og:description" content="Find out exactly where your social media stands. 3 minutes. Personalized report. Zero fluff.">
+  <meta property="og:image" content="https://www.funkiness.ai/jeep3.png">
   <meta property="og:url" content="https://www.funkiness.ai/scan.html">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* ============================
+       SCAN PAGE STYLES
+       Scoped to #scanApp to avoid
+       conflicts with style.css
+       ============================ */
+    #scanApp {
+      font-family: "Inter", sans-serif;
+    }
+
+    .scan-progress-wrap {
+      display: none;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 5vw;
+      border-bottom: 1px solid rgba(8,4,3,0.08);
+      background: var(--cream);
+    }
+
+    @media (min-width: 600px) {
+      .scan-progress-wrap { padding: 14px 7vw; }
+    }
+
+    .scan-progress-bar {
+      flex: 1;
+      max-width: 320px;
+      height: 6px;
+      background: rgba(8,4,3,0.10);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .scan-progress-fill {
+      height: 100%;
+      background: var(--pink);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    .scan-progress-label {
+      font-size: 13px;
+      color: rgba(8,4,3,0.45);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .scan-step {
+      display: none;
+      padding: 48px 5vw 80px;
+      min-height: calc(100vh - 160px);
+    }
+
+    .scan-step.active { display: block; }
+
+    .scan-step-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .scan-step-inner.center {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 280px);
+      gap: 24px;
+    }
+
+    /* Scan typography scoped to #scanApp */
+    #scanApp .scan-eyebrow {
+      color: var(--pink);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    #scanApp .scan-h1 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 20px;
+      letter-spacing: 0;
+    }
+
+    #scanApp .scan-h2 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 20px;
+      letter-spacing: 0;
+    }
+
+    #scanApp .scan-h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .scan-pink { color: var(--pink); }
+
+    .scan-sub {
+      font-size: 17px;
+      color: rgba(8,4,3,0.62);
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    .scan-hint {
+      color: rgba(8,4,3,0.42);
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    /* Form fields */
+    .scan-form-group { margin-bottom: 28px; }
+
+    .scan-form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .scan-form-group input[type="text"],
+    .scan-form-group input[type="email"],
+    .scan-form-group input[type="tel"],
+    .scan-form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid rgba(8,4,3,0.12);
+      border-radius: 14px;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      background: white;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .scan-form-group input:focus,
+    .scan-form-group textarea:focus { border-color: var(--pink); }
+
+    .scan-form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
+    }
+
+    .scan-phone-row {
+      display: flex;
+      align-items: center;
+    }
+
+    .scan-phone-prefix {
+      background: var(--cream);
+      border: 2px solid rgba(8,4,3,0.12);
+      border-right: none;
+      border-radius: 14px 0 0 14px;
+      padding: 14px 14px;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .scan-phone-row input {
+      border-radius: 0 14px 14px 0 !important;
+      flex: 1;
+    }
+
+    /* Option buttons */
+    .scan-options-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .scan-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .scan-option-btn {
+      padding: 12px 20px;
+      border: 2px solid rgba(8,4,3,0.12);
+      border-radius: 14px;
+      background: white;
+      font-family: "Inter", sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-align: left;
+      color: var(--black);
+    }
+
+    .scan-option-btn:hover {
+      border-color: var(--pink);
+      background: rgba(242,27,122,0.05);
+    }
+
+    .scan-option-btn.selected {
+      border-color: var(--pink);
+      background: var(--pink);
+      color: white;
+    }
+
+    .scan-question { margin-bottom: 36px; }
+
+    .scan-q-label {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 14px;
+      line-height: 1.45;
+    }
+
+    /* Next button */
+    .scan-btn-next {
+      margin-top: 12px;
+      padding: 16px 32px;
+      background: var(--black);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scan-btn-next:hover {
+      background: var(--pink);
+      transform: translateY(-2px);
+    }
+
+    /* Loader */
+    .scan-loader {
+      width: 54px;
+      height: 54px;
+      border: 4px solid rgba(242,27,122,0.15);
+      border-top-color: var(--pink);
+      border-radius: 50%;
+      animation: scan-spin 0.8s linear infinite;
+    }
+
+    @keyframes scan-spin { to { transform: rotate(360deg); } }
+
+    @keyframes scan-shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .scan-shake { animation: scan-shake 0.4s ease; }
+
+    .pulse { animation: scan-pulse 0.3s ease; }
+    @keyframes scan-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* Report */
+    .scan-intro-text {
+      font-size: 17px;
+      line-height: 1.72;
+      color: rgba(8,4,3,0.72);
+      margin-bottom: 12px;
+      padding: 20px 24px;
+      background: white;
+      border-radius: 18px;
+      border-left: 4px solid var(--pink);
+    }
+
+    .scan-email-note {
+      font-size: 14px;
+      color: rgba(8,4,3,0.38);
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+
+    .scan-radar-wrap {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .scan-score-badge-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .scan-score-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--pink);
+      color: white;
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .scan-score-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .scan-score-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+
+    .scan-bench-wrap {
+      background: white;
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+
+    .scan-bench-wrap > p { font-size: 14px; color: rgba(8,4,3,0.55); margin-bottom: 14px; }
+
+    .scan-bench-bars { display: flex; flex-direction: column; gap: 10px; }
+
+    .scan-bench-row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+
+    .scan-bench-label {
+      width: 80px;
+      text-align: right;
+      color: rgba(8,4,3,0.45);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .scan-bench-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(8,4,3,0.07);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .scan-bench-fill { height: 100%; border-radius: 99px; }
+    .scan-bench-fill.avg { background: rgba(8,4,3,0.20); }
+    .scan-bench-fill.top { background: rgba(242,27,122,0.30); }
+    .scan-bench-fill.you { background: var(--pink); }
+
+    .scan-bench-val { width: 28px; font-weight: 700; font-size: 13px; }
+
+    .scan-working-wrap {
+      background: var(--black);
+      color: white;
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+    }
+
+    .scan-working-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--pink);
+      margin-bottom: 8px;
+    }
+
+    .scan-working-wrap p {
+      font-size: 15px;
+      line-height: 1.65;
+      opacity: 0.88;
+    }
+
+    .scan-category-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .scan-cat-card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px 24px;
+    }
+
+    .scan-cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .scan-cat-name {
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .scan-cat-pill {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .scan-cat-pill.high { background: #d4f0d4; color: #1a6b1a; }
+    .scan-cat-pill.mid  { background: #fff3cd; color: #856404; }
+    .scan-cat-pill.low  { background: #fde8f0; color: var(--pink); }
+
+    .scan-cat-bar {
+      height: 6px;
+      background: rgba(8,4,3,0.08);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .scan-cat-bar-fill {
+      height: 100%;
+      background: var(--pink);
+      border-radius: 99px;
+      transition: width 1s ease;
+    }
+
+    .scan-cat-feedback {
+      font-size: 14px;
+      color: rgba(8,4,3,0.62);
+      line-height: 1.6;
+    }
+
+    .scan-bio-wrap {
+      background: white;
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--black);
+      display: none;
+    }
+
+    .scan-kansen-wrap {
+      background: white;
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+    }
+
+    .scan-teaser-wins {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: var(--cream);
+      border-radius: 14px;
+      font-size: 14px;
+      color: rgba(8,4,3,0.58);
+      line-height: 1.65;
+      border-left: 3px solid var(--pink);
+    }
+
+    .scan-fomo-wrap {
+      background: white;
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      border-top: 3px solid var(--pink);
+    }
+
+    .scan-fomo-wrap p { font-size: 15px; line-height: 1.65; color: rgba(8,4,3,0.68); }
+
+    .scan-quickwin-wrap {
+      background: var(--pink);
+      color: white;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .scan-quickwin-wrap h3 {
+      font-family: "Poppins", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 10px;
+    }
+
+    .scan-quickwin-wrap p {
+      font-size: 16px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .scan-download-wrap {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .scan-btn-download {
+      padding: 14px 28px;
+      background: white;
+      color: var(--black);
+      border: 2px solid rgba(8,4,3,0.15);
+      border-radius: 999px;
+      font-family: "Poppins", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scan-btn-download:hover {
+      border-color: var(--black);
+      background: var(--black);
+      color: white;
+    }
+
+    .scan-cta-wrap {
+      text-align: center;
+      padding: 36px 0;
+      border-top: 1px solid rgba(8,4,3,0.08);
+      margin-top: 8px;
+    }
+
+    .scan-cta-hook {
+      font-family: "Poppins", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 20px;
+      line-height: 1.35;
+    }
+
+    .scan-btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 36px;
+      background: var(--pink);
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 12px 32px rgba(242,27,122,0.32);
+    }
+
+    .scan-btn-cta:hover {
+      background: var(--black);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
 
@@ -42,76 +628,299 @@
     <a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
   </div>
 
-  <section class="scan-hero-page">
-    <div>
-      <span class="kicker" style="color:var(--pink);font-size:14px;letter-spacing:4px;text-transform:uppercase;font-weight:800;margin-bottom:28px;display:block;">Free Marketing Scan</span>
-      <h1 style="font-family:'Poppins',sans-serif;font-weight:900;letter-spacing:-0.05em;font-size:clamp(52px,6vw,96px);line-height:0.9;">Find out what your<br>marketing is <span class="script-word">really</span><br>doing.</h1>
-      <div class="small-line" style="margin:36px 0 32px;"></div>
-      <p style="font-size:clamp(19px,1.7vw,24px);line-height:1.45;max-width:580px;color:rgba(8,4,3,0.72);margin-bottom:44px;">Fill in our free scan. It takes 5 minutes. You'll get a full strategic report on your marketing and AI readiness, written specifically for your business on Curaçao. Where you stand. Where the gaps are. What to do about it. Honest, practical, and no sales pitch attached.</p>
-      <a href="https://scan.funkiness.ai" class="pink-button" style="font-size:19px;padding:22px 50px;">Start your free scan ↗</a>
-      <p style="margin-top:20px;font-size:14px;color:rgba(8,4,3,0.45);font-weight:600;">Takes 5 minutes &nbsp;·&nbsp; 100% free &nbsp;·&nbsp; Report in your inbox</p>
-    </div>
-    <div class="scan-image-wrap">
-      <img src="ai-marketing-scan-lifestyle.png" alt="AI &amp; Marketing Scan by FUNkiness!" class="scan-image">
-    </div>
-  </section>
+  <div id="scanApp">
 
-  <section class="scan-deliverables">
-    <p class="section-kicker">What You Get</p>
-    <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(40px,4.2vw,68px);font-weight:900;letter-spacing:-0.05em;line-height:0.95;margin-top:20px;">A strategic report built<br>for <span class="script-word">your</span> business.</h2>
-    <div class="deliverables-grid">
-      <div class="deliverable-card">
-        <div class="deliverable-icon">📊</div>
-        <h3>Marketing Score</h3>
-        <p>A clear, honest score on where your marketing stands, with a breakdown of what's working, what's missing and where the opportunities are.</p>
+    <div class="scan-progress-wrap" id="scanProgressWrap">
+      <div class="scan-progress-bar">
+        <div class="scan-progress-fill" id="progressFill"></div>
       </div>
-      <div class="deliverable-card">
-        <div class="deliverable-icon">🤖</div>
-        <h3>AI Readiness</h3>
-        <p>A strategic assessment of how ready your business is for AI. Which specific applications would save time, cut costs or drive growth.</p>
-      </div>
-      <div class="deliverable-card">
-        <div class="deliverable-icon">🗺️</div>
-        <h3>Competitive Position</h3>
-        <p>Where you stand in the Curaçao market relative to your competitors. What it would take to own your space.</p>
-      </div>
-      <div class="deliverable-card">
-        <div class="deliverable-icon">🎯</div>
-        <h3>Strategic Quick Wins</h3>
-        <p>Concrete, prioritized recommendations you can act on immediately. Not vague advice. Specific next steps for your business, your sector, your situation.</p>
-      </div>
+      <span class="scan-progress-label" id="progressLabel">Step 1 of 5</span>
     </div>
-  </section>
 
-  <section class="steps-section">
-    <div class="steps-header">
-      <p class="section-kicker">How It Works</p>
-      <h2 style="font-family:'Poppins',sans-serif;font-size:clamp(40px,4.2vw,68px);font-weight:900;letter-spacing:-0.05em;line-height:0.95;margin-top:20px;">Three steps.<br><span class="script-word">That's it.</span></h2>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">01</div>
-        <h3>Fill in the scan</h3>
-        <p>Answer 10 questions about your business, your marketing and your current situation. Takes about 5 minutes. No tech knowledge needed.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">02</div>
-        <h3>Get your report</h3>
-        <p>Your personal report lands in your inbox within minutes. Built by AI, reviewed for quality, specific to your business, not a generic template.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">03</div>
-        <h3>Take action</h3>
-        <p>Use the insights to move forward on your own, or let's talk. We're here if you want to take it further. No obligation, no hard sell.</p>
-      </div>
-    </div>
-  </section>
+    <!-- STEP 0: Intro + basic info -->
+    <section class="scan-step active" data-step="0">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow">Free Social Media Scan</span>
+        <h1 class="scan-h1">Your socials.<br><span class="scan-pink">No filter.</span></h1>
+        <p class="scan-sub">Find out exactly where your social media stands on Curaçao. What's working, what's not, and what to do next. Takes 3 minutes. Zero fluff.</p>
 
-  <section class="cta-band">
-    <h2>Ready? <span class="script-word">Let's go.</span></h2>
-    <p>Free, fast, and actually useful. See what 5 minutes can tell you about your business.</p>
-    <a href="https://scan.funkiness.ai" class="pink-button">Start your free scan ↗</a>
-  </section>
+        <div class="scan-form-group">
+          <label>Business name</label>
+          <input type="text" id="bedrijf" placeholder="e.g. Blue Bay Resort" />
+        </div>
+        <div class="scan-form-group">
+          <label>Your sector</label>
+          <div class="scan-options-grid" data-field="sector">
+            <button class="scan-option-btn" data-value="hotel">Hotel / Resort</button>
+            <button class="scan-option-btn" data-value="restaurant">Restaurant / Café</button>
+            <button class="scan-option-btn" data-value="makelaar">Real Estate</button>
+            <button class="scan-option-btn" data-value="airbnb">Vacation Rental</button>
+            <button class="scan-option-btn" data-value="anders">Other</button>
+          </div>
+        </div>
+        <div class="scan-form-group">
+          <label>Your name</label>
+          <input type="text" id="naam" placeholder="e.g. Sarah" />
+        </div>
+        <div class="scan-form-group">
+          <label>Your job title</label>
+          <input type="text" id="functie" placeholder="e.g. Marketing Manager" />
+        </div>
+        <div class="scan-form-group">
+          <label>Your email <span class="scan-hint">(your report summary lands here)</span></label>
+          <input type="email" id="email" placeholder="you@yourbusiness.com" />
+        </div>
+        <div class="scan-form-group">
+          <label>Your phone number <span class="scan-hint">(fill in at least one)</span></label>
+          <div class="scan-phone-row">
+            <span class="scan-phone-prefix">+599</span>
+            <input type="tel" id="telefoon" placeholder="9 123 4567" />
+          </div>
+          <div class="scan-phone-row" style="margin-top:10px">
+            <span class="scan-phone-prefix">+31</span>
+            <input type="tel" id="telefoon_nl" placeholder="6 12 34 56 78" />
+          </div>
+        </div>
+        <!-- Honeypot: bots fill this in, humans don't see it -->
+        <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+          <input type="text" name="website" id="honeypot" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button class="scan-btn-next" onclick="nextStep()">Let's go <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 1: Platforms -->
+    <section class="scan-step" data-step="1">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow">Step 1: Your Channels</span>
+        <h2 class="scan-h2">Where are you<br><span class="scan-pink">showing up?</span></h2>
+
+        <div class="scan-question" data-category="platforms" data-key="main_platform" data-scores='{"Instagram":80,"Facebook":50,"TikTok":90,"Instagram + Facebook":70,"Instagram + TikTok":100,"Not really active":0}'>
+          <p class="scan-q-label">What is your main social media platform?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Instagram">Instagram</button>
+            <button class="scan-option-btn" data-value="Facebook">Facebook</button>
+            <button class="scan-option-btn" data-value="TikTok">TikTok</button>
+            <button class="scan-option-btn" data-value="Instagram + Facebook">Instagram + Facebook</button>
+            <button class="scan-option-btn" data-value="Instagram + TikTok">Instagram + TikTok</button>
+            <button class="scan-option-btn" data-value="Not really active">Not really active</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="platforms" data-key="posting_freq" data-scores='{"Rarely or never":0,"1-2x per week":40,"3-4x per week":75,"Daily":100}'>
+          <p class="scan-q-label">How often do you post on your main platform?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Rarely or never">Rarely or never</button>
+            <button class="scan-option-btn" data-value="1-2x per week">1-2x per week</button>
+            <button class="scan-option-btn" data-value="3-4x per week">3-4x per week</button>
+            <button class="scan-option-btn" data-value="Daily">Daily or more</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="platforms" data-key="followers" data-scores='{"Under 500":10,"500-1,500":30,"1,500-5,000":60,"5,000-15,000":80,"15,000+":100}'>
+          <p class="scan-q-label">How many followers do you have on your main platform?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Under 500">Under 500</button>
+            <button class="scan-option-btn" data-value="500-1,500">500 – 1,500</button>
+            <button class="scan-option-btn" data-value="1,500-5,000">1,500 – 5,000</button>
+            <button class="scan-option-btn" data-value="5,000-15,000">5,000 – 15,000</button>
+            <button class="scan-option-btn" data-value="15,000+">15,000+</button>
+          </div>
+        </div>
+
+        <button class="scan-btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Instagram -->
+    <section class="scan-step" data-step="2">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow">Step 2: Instagram</span>
+        <h2 class="scan-h2">Let's look at<br><span class="scan-pink">your Instagram.</span></h2>
+
+        <div class="scan-form-group">
+          <label>Your Instagram handle <span class="scan-hint">(optional but recommended)</span></label>
+          <input type="text" id="instagram" placeholder="@yourbusiness" />
+        </div>
+
+        <div class="scan-form-group">
+          <label>Paste your current Instagram bio here <span class="scan-hint">(copy it from your profile)</span></label>
+          <textarea id="bio" placeholder="Copy your bio here exactly as it appears on your profile..."></textarea>
+        </div>
+
+        <div class="scan-question" data-category="instagram" data-key="reels" data-scores='{"Never":0,"Sometimes":40,"Regularly":80,"It is our main format":100}'>
+          <p class="scan-q-label">Do you use Reels?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Never">Never</button>
+            <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="scan-option-btn" data-value="Regularly">Yes, regularly</button>
+            <button class="scan-option-btn" data-value="It is our main format">It's our main format</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="instagram" data-key="stories" data-scores='{"Never":0,"Sometimes":30,"Weekly":60,"Daily":100}'>
+          <p class="scan-q-label">How often do you use Stories?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Never">Never</button>
+            <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="scan-option-btn" data-value="Weekly">A few times a week</button>
+            <button class="scan-option-btn" data-value="Daily">Daily</button>
+          </div>
+        </div>
+
+        <button class="scan-btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Engagement -->
+    <section class="scan-step" data-step="3">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow">Step 3: Engagement</span>
+        <h2 class="scan-h2">Are people actually<br><span class="scan-pink">interacting?</span></h2>
+
+        <div class="scan-question" data-category="engagement" data-key="engagement_rate" data-scores='{"Under 1%":10,"1-3%":50,"3-6%":80,"Above 6%":100,"I have no idea":20}'>
+          <p class="scan-q-label">What is your average engagement rate? <span class="scan-hint">(likes + comments / followers)</span></p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="I have no idea">I have no idea</button>
+            <button class="scan-option-btn" data-value="Under 1%">Under 1%</button>
+            <button class="scan-option-btn" data-value="1-3%">1 – 3%</button>
+            <button class="scan-option-btn" data-value="3-6%">3 – 6%</button>
+            <button class="scan-option-btn" data-value="Above 6%">Above 6%</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="engagement" data-key="reply_speed" data-scores='{"Never":0,"Eventually":20,"Within 24 hours":70,"Within 1 hour":100}'>
+          <p class="scan-q-label">How fast do you reply to comments and DMs?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Never">I don't really reply</button>
+            <button class="scan-option-btn" data-value="Eventually">Eventually</button>
+            <button class="scan-option-btn" data-value="Within 24 hours">Within 24 hours</button>
+            <button class="scan-option-btn" data-value="Within 1 hour">Within 1 hour</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="engagement" data-key="hashtags" data-scores='{"Never":10,"Sometimes, random":20,"Yes, researched":80,"Always, strategic":100}'>
+          <p class="scan-q-label">Do you use hashtags strategically?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Never">I don't use them</button>
+            <button class="scan-option-btn" data-value="Sometimes, random">Sometimes, random ones</button>
+            <button class="scan-option-btn" data-value="Yes, researched">Yes, I research them</button>
+            <button class="scan-option-btn" data-value="Always, strategic">Always, very strategic</button>
+          </div>
+        </div>
+
+        <button class="scan-btn-next" onclick="nextStep()">Next <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 4: Content -->
+    <section class="scan-step" data-step="4">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow">Step 4: Content</span>
+        <h2 class="scan-h2">What does your<br><span class="scan-pink">content look like?</span></h2>
+
+        <div class="scan-question" data-category="content" data-key="content_type" data-scores='{"Stock photos or reposts":10,"Own photos only":40,"Mix of photos and video":70,"Professional video-first":100}'>
+          <p class="scan-q-label">What type of content do you mainly post?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Stock photos or reposts">Stock photos or reposts</button>
+            <button class="scan-option-btn" data-value="Own photos only">Our own photos only</button>
+            <button class="scan-option-btn" data-value="Mix of photos and video">Mix of photos and video</button>
+            <button class="scan-option-btn" data-value="Professional video-first">Professional, video-first</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="content" data-key="content_plan" data-scores='{"No plan":0,"Post when inspired":20,"Loose schedule":55,"Full content calendar":100}'>
+          <p class="scan-q-label">Do you work with a content plan?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="No plan">No plan at all</button>
+            <button class="scan-option-btn" data-value="Post when inspired">I post when I feel like it</button>
+            <button class="scan-option-btn" data-value="Loose schedule">Loosely planned</button>
+            <button class="scan-option-btn" data-value="Full content calendar">Full content calendar</button>
+          </div>
+        </div>
+
+        <div class="scan-question" data-category="content" data-key="ads" data-scores='{"Never":0,"Tried it once":20,"Sometimes":50,"Regularly, with strategy":100}'>
+          <p class="scan-q-label">Do you run paid social media ads?</p>
+          <div class="scan-options-list">
+            <button class="scan-option-btn" data-value="Never">Never</button>
+            <button class="scan-option-btn" data-value="Tried it once">Tried it once</button>
+            <button class="scan-option-btn" data-value="Sometimes">Sometimes</button>
+            <button class="scan-option-btn" data-value="Regularly, with strategy">Yes, with a clear strategy</button>
+          </div>
+        </div>
+
+        <button class="scan-btn-next" onclick="submitScan()">Get my scan report <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 5: Loading -->
+    <section class="scan-step" data-step="5" id="loadingStep">
+      <div class="scan-step-inner center">
+        <div class="scan-loader"></div>
+        <h2 class="scan-h2">Scanning <span class="scan-pink" id="loadingName">your socials</span>...</h2>
+        <p class="scan-sub">Buckle up. We're pulling zero punches.<br>Your report is being built right now.</p>
+      </div>
+    </section>
+
+    <!-- STEP 6: Report -->
+    <section class="scan-step" data-step="6" id="reportStep">
+      <div class="scan-step-inner">
+        <span class="scan-eyebrow">Your Social Media Scan</span>
+        <h2 class="scan-h2" id="reportTitle">Your socials.<br><span class="scan-pink">Exposed.</span></h2>
+        <p class="scan-intro-text" id="reportIntro"></p>
+        <p class="scan-email-note" id="reportEmailNote"></p>
+
+        <div class="scan-radar-wrap">
+          <canvas id="radarChart"></canvas>
+        </div>
+
+        <div class="scan-score-badge-wrap">
+          <div class="scan-score-badge">
+            <span class="scan-score-num" id="totalScore">0</span>
+            <span class="scan-score-label">Overall Score</span>
+          </div>
+        </div>
+
+        <div class="scan-bench-wrap" id="benchmarkWrap"></div>
+
+        <div class="scan-working-wrap">
+          <p class="scan-working-label">Already killing it here</p>
+          <p id="whatsWorking"></p>
+        </div>
+
+        <div class="scan-category-cards" id="categoryCards"></div>
+
+        <div class="scan-bio-wrap" id="bioWrap">
+          <h3 class="scan-h3">Your Instagram bio</h3>
+          <p id="bioFeedback"></p>
+        </div>
+
+        <div class="scan-kansen-wrap">
+          <h3 class="scan-h3">Your #1 quick win</h3>
+          <p id="topQuickwin"></p>
+          <div class="scan-teaser-wins" id="teaserWins"></div>
+        </div>
+
+        <div class="scan-fomo-wrap" id="fomoWrap"></div>
+
+        <div class="scan-quickwin-wrap">
+          <h3>Do this today</h3>
+          <p id="quickwinText"></p>
+        </div>
+
+        <div class="scan-download-wrap">
+          <button class="scan-btn-download" onclick="downloadReport()">Download your report <span>↓</span></button>
+        </div>
+
+        <div class="scan-cta-wrap">
+          <p class="scan-cta-hook" id="ctaHook"></p>
+          <a id="btnWhatsApp" href="https://wa.me/59996751737" class="scan-btn-cta" target="_blank" rel="noopener">Say hello on WhatsApp <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
   <footer class="site-footer">
     <div>
@@ -143,5 +952,6 @@
     <p>Boring was never the plan.</p>
   </div>
 
+  <script src="scan-script.js"></script>
 </body>
 </html>
