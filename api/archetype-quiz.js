@@ -127,6 +127,13 @@ Output ONLY valid JSON:
 
     const rapport = JSON.parse(jsonMatch[0]);
 
+    // Strip em dashes regardless of model output, rule is absolute
+    for (const key of Object.keys(rapport)) {
+      if (typeof rapport[key] === 'string') {
+        rapport[key] = rapport[key].replace(/—/g, ',').replace(/\s,/g, ',');
+      }
+    }
+
     // Email to user
     if (process.env.TITAN_PASSWORD) {
       mailer.sendMail({
