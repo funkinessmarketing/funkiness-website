@@ -199,7 +199,7 @@ Open Instagram → tik op **+** linksboven → kies de **stapel-foto** optie (me
 
 ---
 
-## Do 11 juni — POST 1
+## Za 13 juni — POST 1
 **Tijdstip:** 12:00 AST (= 17:00 Nederland)
 **Format:** A (talking head)
 **Locatie:** buiten in de schaduw, kleurrijke achtergrond — geen witte muur
@@ -279,8 +279,8 @@ Hi — I'm Daisy. AI & marketing agency, Curaçao. Follow along. ✚
 
 ---
 
-## Za 14 juni — POST 2
-**Tijdstip:** 10:00 AST (= 15:00 Nederland)
+## Di 16 juni — POST 2
+**Tijdstip:** 12:00 AST (= 17:00 Nederland)
 **Format:** A (talking head)
 **Locatie:** zelfde locatie als post 1 voor herkenning, of nieuwe kleurrijke buitenplek
 **Pillar:** You're doing it wrong
@@ -359,8 +359,8 @@ How many words is your current bio? Drop the number in the comments — I'll tel
 
 ---
 
-## Di 16 juni — POST 3
-**Tijdstip:** 12:00 AST (= 17:00 Nederland)
+## Do 18 juni — POST 3
+**Tijdstip:** 08:00 AST (= 13:00 Nederland)
 **Format:** B (schermopname + jij in hoekje)
 **Locatie:** bureau of tafel, laptop zichtbaar
 **Pillar:** AI, plain English
@@ -437,8 +437,8 @@ Drop your result in the comments. I'm reading every one. ✚
 
 ---
 
-## Do 18 juni — POST 4
-**Tijdstip:** 08:00 AST (= 13:00 Nederland)
+## Di 23 juni — POST 5
+**Tijdstip:** 12:00 AST (= 17:00 Nederland)
 **Format:** A (talking head, relaxter dan de andere posts)
 **Locatie:** buiten met mooie achtergrond — zo mooi mogelijk. Zee, palmen, kleurrijke straat.
 **Pillar:** Behind the scenes
@@ -513,12 +513,12 @@ So I moved to Curaçao, started a marketing agency, and now I'm romanticizing a 
 
 ---
 
-## Za 20 juni — POST 5 — CAROUSEL (geen filming nodig)
+## Za 20 juni — POST 4 — CAROUSEL (geen filming nodig)
 **Tijdstip:** 10:00 AST (= 15:00 Nederland)
-**Format:** D (Carousel in Canva)
+**Format:** D (Carousel — HTML bestand)
 **Pillar:** You're doing it wrong
 
-Dit maak je in Canva. Geen camera nodig. Volg de Canva-instructies uit Deel 2.
+**Open het bestand `docs/carousel-20juni.html` in Safari of Chrome. Maak een screenshot van elke dia (CMD+SHIFT+4). Geen Canva nodig.**
 
 ---
 
@@ -956,16 +956,16 @@ Script en volledige CapCut instructies volgen zodra de wrap klaar is en je ziet 
 
 | Datum | Post | Filmen? | Format | App |
 |-------|------|---------|--------|-----|
-| Do 11/6 | Intro: 47 accounts | Ja | A | CapCut |
-| Za 14/6 | 38-woorden caption roast | Ja | A | CapCut |
-| Di 16/6 | AI tip: bio prompt | Ja + scherm | B | CapCut |
-| Do 18/6 | Paradise desk: mango | Ja | A | CapCut |
-| Za 20/6 | Carousel: 5 caption fixes | **Nee** | D | Canva |
-| Di 23/6 | Client translation guide | Ja | A | CapCut |
-| Do 25/6 | AI tip: caption prompt | Ja + scherm | B | CapCut |
-| Za 27/6 | Jeep teaser | **Nee** | C | CapCut |
+| Za 13/6 | Intro: 47 accounts | Ja | A | CapCut |
+| Di 16/6 | 38-woorden caption roast | Ja | A | CapCut |
+| Do 18/6 | AI tip: bio prompt | Ja + scherm | B | CapCut |
+| Za 20/6 | Carousel: 5 caption fixes | **Nee** | D | HTML → screenshot |
+| Di 23/6 | Paradise desk: mango | Ja | A | CapCut |
+| Do 25/6 | Client translation guide | Ja | A | CapCut |
+| Za 27/6 | AI tip: caption prompt | Ja + scherm | B | CapCut |
 | Ma 29/6 | Waarom Curaçao | Ja | A | CapCut |
-| Di 1/7 | Jeep reveal | Ja | A+C | CapCut |
+| Di 30/6 | Jeep teaser | **Nee** | C | CapCut |
+| Wo 1/7 | **JEEP REVEAL** | Ja | A+C | CapCut |
 
 ---
 

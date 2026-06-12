@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUNkiness! Carousel — Za 20 juni</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #1a1a1a;
+  min-height: 100vh;
+  padding: 32px 20px 60px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ─── Instructies bovenaan ─── */
+.intro {
+  max-width: 560px;
+  margin: 0 auto 32px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 28px;
+}
+.intro h1 {
+  font-size: 17px;
+  font-weight: 900;
+  color: #080403;
+  margin-bottom: 12px;
+}
+.intro p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.intro code {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: monospace;
+  color: #e91e63;
+}
+.intro strong { color: #080403; }
+.intro .step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.intro .step-num {
+  background: #f21b7a;
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── Slide wrapper ─── */
+.slide-wrap {
+  max-width: 540px;
+  margin: 0 auto 28px;
+}
+.slide-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #777;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding: 0 2px;
+}
+.slide-label .arrow {
+  color: #f21b7a;
+  font-size: 13px;
+}
+
+/* ─── Slide basis ─── */
+.slide {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Navigatie stipjes ─── */
+.dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.2s;
+}
+.dot.active {
+  width: 18px;
+  border-radius: 3px;
+  background: #fff;
+}
+.slide-content .dot { background: rgba(0,0,0,0.15); }
+.slide-content .dot.active { background: #f21b7a; width: 18px; border-radius: 3px; }
+
+/* ════════════════════════════
+   DIA 1 — Cover (zwart)
+════════════════════════════ */
+.s1 {
+  background: #080403;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 52px 52px;
+}
+.s1 .plus-mark {
+  position: absolute;
+  top: 28px;
+  right: 34px;
+  color: #f21b7a;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+}
+.s1 .eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #f21b7a;
+  margin-bottom: 20px;
+}
+.s1 h2 {
+  font-size: 54px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.02;
+  margin-bottom: 16px;
+}
+.s1 h2 .pink { color: #f21b7a; }
+.s1 .subtitle {
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 0;
+}
+.s1 .handle {
+  position: absolute;
+  bottom: 56px;
+  left: 52px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ════════════════════════════
+   DIA 2-6 — Content (crème)
+════════════════════════════ */
+.slide-content {
+  background: #f7efe7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 52px;
+}
+.slide-num {
+  position: absolute;
+  top: 28px;
+  right: 34px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ccc;
+  letter-spacing: 1px;
+}
+.block-bad {
+  margin-bottom: 18px;
+}
+.lbl-bad {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #c0392b;
+  margin-bottom: 8px;
+}
+.txt-bad {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  color: #aaa;
+  line-height: 1.45;
+}
+.pink-line {
+  width: 46px;
+  height: 3px;
+  background: #f21b7a;
+  border-radius: 99px;
+  margin-bottom: 18px;
+}
+.block-good {}
+.lbl-good {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #1e8449;
+  margin-bottom: 8px;
+}
+.txt-good {
+  font-size: 23px;
+  font-weight: 900;
+  color: #080403;
+  line-height: 1.25;
+}
+
+/* ════════════════════════════
+   DIA 7 — CTA (roze)
+════════════════════════════ */
+.s7 {
+  background: #f21b7a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 52px 52px;
+}
+.s7 .plus-mark {
+  position: absolute;
+  top: 28px;
+  right: 34px;
+  color: rgba(255,255,255,0.35);
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+}
+.s7 h2 {
+  font-size: 48px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.08;
+  margin-bottom: 28px;
+}
+.s7 .white-line {
+  width: 52px;
+  height: 3px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 99px;
+  margin-bottom: 28px;
+}
+.s7 .contact {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  line-height: 2;
+  letter-spacing: 0.3px;
+}
+.s7 .dots .dot { background: rgba(255,255,255,0.3); }
+.s7 .dots .dot.active { background: #fff; }
+
+</style>
+</head>
+<body>
+
+<!-- ─── Instructies ─── -->
+<div class="intro">
+  <h1>FUNkiness! Carousel — Za 20 juni ✚</h1>
+  <p>Maak een screenshot van elke dia en upload ze in volgorde als carousel op Instagram en TikTok. Zeven dia's, klaar in 10 minuten.</p>
+  <br>
+  <div class="step">
+    <div class="step-num">1</div>
+    <p><strong>Zoom uit</strong> in je browser totdat één dia precies op je scherm past. Gebruik <code>CMD –</code> om uit te zoomen (herhaal tot de dia goed past).</p>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <p><strong>Screenshot</strong> elke dia: druk op <code>CMD + SHIFT + 4</code> → je cursor verandert in een kruisje → sleep precies over de dia → laat los. De screenshot staat in je Downloads.</p>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <p><strong>Herhaal</strong> voor dia 1 t/m 7. Geef de bestanden namen als <strong>dia1.png</strong> t/m <strong>dia7.png</strong> zodat je de volgorde niet kwijtraakt.</p>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <p><strong>Upload</strong> op Instagram → tik op <code>+</code> → selecteer meerdere foto's → kies alle 7 in volgorde. Op TikTok → <code>+</code> → kies foto-modus → upload alle 7.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 1 — Cover
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 1 van 7 — Cover</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide s1">
+    <div class="plus-mark">✚</div>
+    <div class="eyebrow">FUNkiness! · Curaçao</div>
+    <h2>5 captions<br>killing your<br>business<span class="pink">.</span></h2>
+    <div class="subtitle">(And the fix.)</div>
+    <div class="handle">@FUNKINESSAI</div>
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 2
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 2 van 7</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide slide-content">
+    <span class="slide-num">2 / 7</span>
+    <div class="block-bad">
+      <div class="lbl-bad">Killing it ✗</div>
+      <div class="txt-bad">"At [Business Name] we take pride in offering our valued guests an exceptional experience."</div>
+    </div>
+    <div class="pink-line"></div>
+    <div class="block-good">
+      <div class="lbl-good">The fix ✓</div>
+      <div class="txt-good">"You'll forget what day<br>it is. That's the point."</div>
+    </div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 3
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 3 van 7</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide slide-content">
+    <span class="slide-num">3 / 7</span>
+    <div class="block-bad">
+      <div class="lbl-bad">Killing it ✗</div>
+      <div class="txt-bad">"Book now! Limited availability! Don't miss out!"</div>
+    </div>
+    <div class="pink-line"></div>
+    <div class="block-good">
+      <div class="lbl-good">The fix ✓</div>
+      <div class="txt-good">"Three rooms left<br>for August.<br>Just saying."</div>
+    </div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 4
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 4 van 7</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide slide-content">
+    <span class="slide-num">4 / 7</span>
+    <div class="block-bad">
+      <div class="lbl-bad">Killing it ✗</div>
+      <div class="txt-bad">"We offer authentic Curaçaoan cuisine made with love and passion."</div>
+    </div>
+    <div class="pink-line"></div>
+    <div class="block-good">
+      <div class="lbl-good">The fix ✓</div>
+      <div class="txt-good">"The dish tourists never order —<br>and always regret missing."</div>
+    </div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 5
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 5 van 7</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide slide-content">
+    <span class="slide-num">5 / 7</span>
+    <div class="block-bad">
+      <div class="lbl-bad">Killing it ✗</div>
+      <div class="txt-bad">"Beautiful sunset views and amazing atmosphere!"</div>
+    </div>
+    <div class="pink-line"></div>
+    <div class="block-good">
+      <div class="lbl-good">The fix ✓</div>
+      <div class="txt-good">"The kind of sunset<br>that makes you reconsider<br>your whole life. We have those."</div>
+    </div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 6
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 6 van 7</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide slide-content">
+    <span class="slide-num">6 / 7</span>
+    <div class="block-bad">
+      <div class="lbl-bad">Killing it ✗</div>
+      <div class="txt-bad">"Follow us for more updates and exciting news from [Business Name]!"</div>
+    </div>
+    <div class="pink-line"></div>
+    <div class="block-good">
+      <div class="lbl-good">The fix ✓</div>
+      <div class="txt-good">"We post when we have<br>something worth showing you.<br>Follow if that sounds fair."</div>
+    </div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     DIA 7 — CTA
+════════════════════════════ -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Dia 7 van 7 — Afsluiter</span>
+    <span class="arrow">↑ Screenshot dit vlak</span>
+  </div>
+  <div class="slide s7">
+    <div class="plus-mark">✚</div>
+    <h2>Your captions<br>can do better.<br>We'll help.</h2>
+    <div class="white-line"></div>
+    <div class="contact">
+      @funkinessai<br>
+      funkiness.ai<br>
+      AI &amp; Marketing · Curaçao
+    </div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot active"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
