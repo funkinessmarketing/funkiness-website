@@ -15,24 +15,24 @@ const mailer = nodemailer.createTransport({
 
 const ARCHETYPE_CONTEXT = {
   T: {
-    name: 'The Time Liberator',
+    name: 'The Time Terminator',
     tagline: 'AI gives you back the one thing money can\'t buy.',
-    meaning: 'This person is overwhelmed by repetitive tasks and operational work. Their biggest AI opportunity is automation — freeing up time to focus on growth, strategy, and the things only they can do.'
+    meaning: 'This person is overwhelmed by repetitive tasks and operational work. Their biggest AI opportunity is automation, freeing up time to focus on growth, strategy, and the things only they can do.'
   },
   C: {
-    name: 'The Content Machine',
+    name: 'The Content Crusher',
     tagline: 'Your voice is your brand. AI makes sure it never goes quiet.',
     meaning: 'This person struggles with consistent content output. They have stories to tell but not enough time or bandwidth to tell them. Their biggest AI opportunity is content creation, repurposing, and scheduling at scale.'
   },
   G: {
-    name: 'The Growth Catalyst',
-    tagline: 'The next level isn\'t luck. It\'s leverage.',
-    meaning: 'This person is ambitious and growth-focused. They want more customers, more reach, more revenue. Their biggest AI opportunity is using data, smarter targeting, lead generation, and competitive insight to scale.'
+    name: 'The Growth Guru',
+    tagline: 'The next level is not luck. It\'s leverage.',
+    meaning: 'This person is ambitious and growth-focused. They want more customers, more reach, more revenue. Their biggest AI opportunity is smarter targeting, lead generation, and competitive insight to scale.'
   },
   E: {
-    name: 'The Experience Architect',
+    name: 'The Experience Engine',
     tagline: 'Great experiences don\'t happen by accident.',
-    meaning: 'This person lives for customer relationships and memorable experiences. Their biggest AI opportunity is personalization, smarter customer communication, and freeing up time from admin so they can focus on the moments that matter.'
+    meaning: 'This person lives for customer relationships and memorable experiences. Their biggest AI opportunity is automating the full customer journey, from first WhatsApp message to follow-up after purchase, so every touchpoint is consistent and personal.'
   }
 };
 
