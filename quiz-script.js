@@ -81,30 +81,30 @@ const ARCHETYPES = {
     aha: "You don't have a time problem. You have an automation problem.",
     quickWins: [
       {
-        action: "Set up WhatsApp Business quick replies",
-        detail: "Write down the 5 questions you get most often. Use ChatGPT to write a sharp answer for each. Set them up as quick replies in WhatsApp Business. Takes 30 minutes. Saves hours every week.",
+        action: "Set up 5 WhatsApp quick replies today",
+        detail: "Write down the 5 questions you get most on WhatsApp. For each one, open ChatGPT and type: \"Write a WhatsApp reply for this question: [paste the question]. Friendly, confident, max 3 sentences. Sign off as [your name].\" Then open WhatsApp Business, go to Business Tools, Quick Replies, and paste them in. 30 minutes of setup. Hours saved every week.",
         tool: "WhatsApp Business + ChatGPT"
       },
       {
-        action: "Let AI draft your standard messages",
-        detail: "Open Claude or ChatGPT. Give it your tone of voice and your most common outgoing messages. Ask it to rewrite them. Use those from now on.",
+        action: "Stop retyping messages you've sent a hundred times",
+        detail: "Think of messages you write over and over: booking confirmations, pricing info, directions, opening hours. For each one, give ChatGPT one example you've actually sent. Ask: \"Rewrite this sharper and shorter, same tone.\" Save every version. You now have a library. Never type them from scratch again.",
         tool: "Claude / ChatGPT"
       },
       {
-        action: "Pick one task you hate and hand it to AI",
-        detail: "Just one. Write the briefing, get the output, edit it once. See how much time you get back. Then pick the next one.",
+        action: "Hand AI the task sitting on your to-do list right now",
+        detail: "Pick the one thing you've been putting off because it costs too much mental energy: a price list, a product description, a contract paragraph, a follow-up you need to send. Open Claude, describe what you need, give the context. Get a first draft in 2 minutes. Edit once. Send it.",
         tool: "Claude / ChatGPT"
       }
     ],
     shortTerm: [
-      "Map your full week: write down every repetitive task you do. That list is your AI roadmap.",
-      "Use AI to plan and draft your social media posts for the week in one sitting. One session, seven days of content.",
-      "Set up a WhatsApp Business catalog to showcase your products or services without typing the same info over and over."
+      "Map your week in writing: every repetitive thing you do Monday to Friday, from booking confirmations to FAQ replies. That list is your AI roadmap. Start automating from the top, one task at a time.",
+      "Set your WhatsApp Business greeting and away messages using AI-written copy. Customers who message outside hours get an instant, warm, on-brand reply while you sleep.",
+      "Try AI for one admin task a day for two weeks. After 14 days, count how much time you saved. That number becomes your case for doing more."
     ],
     mediumTerm: [
-      "Look into ManyChat for WhatsApp automation: automated flows for FAQs, bookings, and follow-ups that run without you.",
-      "Build a simple weekly content system: one briefing to AI on Monday, AI drafts the week, you edit once, you schedule. Done.",
-      "Explore AI scheduling tools so planning and calendar management stops eating your time."
+      "Look into ManyChat for WhatsApp: automated reply flows for bookings, FAQs and follow-ups that run 24/7 without you touching your phone.",
+      "Build a weekly content routine: every Monday, give AI 5 bullet points about what happened that week. It writes the posts, you review in 10 minutes, you schedule. Seven days handled in one sitting.",
+      "Identify your single biggest time drain, the one task that eats the most hours. Build an AI workflow around it: what input does it need, what does good output look like. Brief AI once, use the template forever."
     ],
     tools: [
       { name: "WhatsApp Business", url: "https://business.whatsapp.com", note: "Free" },
@@ -121,30 +121,30 @@ const ARCHETYPES = {
     aha: "You have stories. AI just needs to help you tell them faster.",
     quickWins: [
       {
-        action: "Turn a real conversation into content",
-        detail: "Take a recent WhatsApp exchange with a customer, anonymized. Paste it into ChatGPT or Claude. Ask it to turn that into a social media post. Done. Real stories always perform better than made-up ones.",
+        action: "Teach AI your voice in one prompt",
+        detail: "Open Claude or ChatGPT. Type: \"Here are 3 texts I wrote that I like: [paste 3 captions, messages or emails you're proud of]. Describe my writing style in 5 words. From now on I'll say 'match my style' before every request.\" Save this as your opening message for every AI conversation. Your output gets 10x more you.",
+        tool: "Claude / ChatGPT"
+      },
+      {
+        action: "Turn this week's photos into captions right now",
+        detail: "Pick 3 photos sitting on your phone. For each one, write 2 sentences: what's happening, who it's for, what the mood is. Send all three to ChatGPT with this prompt: \"Write an Instagram caption for each. Max 120 characters. Bold and direct. No hashtags. Same tone across all three.\" Post the best one today. No planning needed.",
         tool: "ChatGPT / Claude"
       },
       {
-        action: "Generate 5 captions in one go",
-        detail: "Take 5 photos of your business. Describe what's happening in each one. Ask AI to write a caption for each. Post one a day. No more blank page moments.",
-        tool: "ChatGPT / Claude"
-      },
-      {
-        action: "Let AI write 3 versions of your key message",
-        detail: "Give AI your main message or offer. Get 3 different angles and hooks back. Pick the one that sounds most like you. Use it everywhere.",
+        action: "Get 5 scroll-stopping hooks in 2 minutes",
+        detail: "Open ChatGPT. Type: \"Write 5 opening lines for a 30-second Reel about [your topic]. Each line must make someone stop scrolling. No questions. No 'have you ever'. Just bold statements. My audience is [describe them in one sentence].\" Use the one that makes you slightly uncomfortable. That's usually the one that works.",
         tool: "ChatGPT / Claude"
       }
     ],
     shortTerm: [
-      "Create a brand voice document: paste 5 texts you've written that you like, ask AI to describe your tone. Use that as your briefing every single time.",
-      "Plan one full month of content in one session: 4 themes, 3 post ideas each. 12 posts in under an hour.",
-      "Try Canva AI to generate visuals that match your content without needing a designer or a full day of work."
+      "Block 90 minutes once this month for a content session. Input: 10 topics, 3 recent photos, your tone brief. Output: a full month of captions ready to copy-paste. Do it once, know exactly what you're posting for 30 days.",
+      "Ask AI to write a brand brief: your tone, what you never say, 3 words that describe your style. Save it as a note. Paste it at the start of every new AI conversation. Consistency becomes automatic.",
+      "Open Canva AI. Describe your vibe, pick your brand colors, let it generate 5 visuals. Takes 15 minutes. No designer, no full day of work."
     ],
     mediumTerm: [
-      "Build a weekly content system: 30 minutes of input every Monday, AI creates the week, you edit and schedule. Runs on autopilot.",
-      "Start repurposing: one video becomes 3 posts, one caption becomes a story, one idea becomes a week of content. AI does the converting.",
-      "Track what performs best. Let AI help you spot the patterns and double down on what actually works for your audience."
+      "Build a Monday routine: 30 minutes, 5 bullet points about what happened that week, AI turns it into a full week of posts. You review in 10 minutes, schedule, done. Seven days of content on autopilot.",
+      "Start a repurposing loop. Every video you post gets turned into 3 captions by AI. Every caption becomes a story. One idea feeds 7 days. Ask AI to do the converting every time.",
+      "After 4 weeks, paste your 5 best-performing posts into ChatGPT and ask: 'What do these have in common? What should I keep doing?' Let AI analyze the pattern so you stop guessing and start repeating what works."
     ],
     tools: [
       { name: "ChatGPT", url: "https://chatgpt.com", note: "Free / Plus" },
@@ -161,30 +161,30 @@ const ARCHETYPES = {
     aha: "You don't need more effort. You need smarter targeting.",
     quickWins: [
       {
-        action: "Build your ideal customer profile with AI",
-        detail: "Ask ChatGPT to describe your ideal customer in detail: who they are, what they want, what they worry about, how they decide. Use this as the foundation for all your marketing from here on.",
+        action: "Build your ideal customer profile in 15 minutes",
+        detail: "Open ChatGPT. Type: \"I run [describe your business] on Curaçao. My best customers are people who [describe in 2 sentences]. Build me a detailed profile: who they are, what they want, what they are afraid of, and how they decide to buy.\" Save this document. Paste it into every marketing prompt you write from now on. Everything gets sharper instantly.",
         tool: "ChatGPT / Claude"
       },
       {
-        action: "Analyze your 3 strongest competitors",
-        detail: "Ask AI what they are saying, what they are missing, and where the gap is in the market. That gap is your opportunity.",
+        action: "Find your market gap with one prompt",
+        detail: "Open ChatGPT. Type: \"Look at these 3 businesses that do what I do: [name them, describe briefly]. What are they saying in their marketing? What are they NOT saying that my customers actually care about? Where is the gap?\" The answer usually takes 30 seconds to read and years to see on your own.",
         tool: "ChatGPT / Claude"
       },
       {
-        action: "Write 3 versions of your core message",
-        detail: "Give AI your offer. Get 3 different angles back. The one that sounds different from everyone else is the one to run with.",
-        tool: "ChatGPT / Claude"
+        action: "Write your best ad in 10 minutes",
+        detail: "Open ChatGPT. Type: \"Write 3 Facebook ad headlines for my business. Each one targeting a different fear or desire my ideal customer has. My business: [2 lines]. My customer: [paste the profile from win 1]. Keep each headline under 8 words.\" Test the one that makes you slightly uncomfortable. That is usually the one that converts.",
+        tool: "ChatGPT / Meta Ads Manager"
       }
     ],
     shortTerm: [
-      "Run one small paid social media campaign with AI-written copy. Test 2 versions against each other. See what lands before spending more.",
-      "Build a WhatsApp lead follow-up flow: first contact message, follow-up, conversion message. Ask AI to write every step in your tone.",
-      "Ask AI to write your market position in one clear sentence. If it struggles, your positioning needs work before anything else."
+      "Run one small paid campaign with 2 AI-written ad variations. Budget: as low as 50 USD. Goal: find out which angle gets more clicks before you spend more. Data beats guessing every time.",
+      "Ask AI to write your market position in one sentence. Not your tagline. Your actual strategic position: what you do, for whom, and why them over everyone else. If AI struggles, your positioning needs work.",
+      "Build a 5-step WhatsApp follow-up sequence for new leads: first contact, value message, social proof, soft offer, final nudge. Ask AI to write every step in your exact tone."
     ],
     mediumTerm: [
-      "Build a full lead generation system: ad to landing page to WhatsApp flow to follow-up. AI writes the copy for every single step.",
-      "Use AI to analyze what is working across your marketing. Stop guessing, start knowing, and put your budget where it earns back.",
-      "Explore AI tools for market research: what are people in your category actually searching for, asking about, and responding to?"
+      "Build a full lead funnel: ad, landing page headline, WhatsApp first message, 5-step follow-up. AI writes every piece. You connect the steps. Run it for 30 days and track where people drop off.",
+      "Set up a monthly market check: ask AI to summarize what is trending in your industry, what people are searching for and what your competitors are pushing. Use it to adjust your strategy before you fall behind.",
+      "Use Meta Ads Manager to test 3 different customer segments with AI-written copy. Let data tell you who is actually buying, not who you assumed would."
     ],
     tools: [
       { name: "ChatGPT", url: "https://chatgpt.com", note: "Free / Plus" },
@@ -201,30 +201,30 @@ const ARCHETYPES = {
     aha: "The best customer experience is not a moment. It's a system.",
     quickWins: [
       {
-        action: "Map your full customer journey",
-        detail: "Write down every touchpoint a customer has with your business, from first WhatsApp message to long after the purchase. That map is where AI goes to work first.",
-        tool: "ChatGPT / Claude"
-      },
-      {
-        action: "Set up an automatic welcome message",
-        detail: "Use ChatGPT to write a warm, on-brand welcome message for new WhatsApp contacts. Set it up as an automatic reply in WhatsApp Business. Done in 20 minutes.",
+        action: "Write your perfect welcome message right now",
+        detail: "Open ChatGPT. Type: \"Write a WhatsApp welcome message for new customers of my [business type] on Curaçao. Warm, personal, max 4 sentences. Tell them what to expect, when they'll hear from us, and one thing that makes us different. Tone: [friendly / professional / relaxed].\" Copy it into WhatsApp Business under Business Tools, then Greeting Message. Live in 5 minutes.",
         tool: "WhatsApp Business + ChatGPT"
       },
       {
-        action: "Write 3 follow-up messages",
-        detail: "After a purchase or visit, what do you say? Ask AI to write 3 versions in your exact tone. Send them manually for now. Automate them later once you know what works.",
-        tool: "ChatGPT / Claude"
+        action: "Write 3 follow-up messages for after a visit or purchase",
+        detail: "Open Claude. Type: \"Write 3 different WhatsApp follow-up messages to send to a customer 24 hours after [their visit/purchase]. Each one: different angle, warm, max 3 sentences. Include one question that invites a reply. Business: [describe briefly].\" Send them manually this week. Save the one that gets responses. Automate it later.",
+        tool: "Claude / ChatGPT"
+      },
+      {
+        action: "Turn your top 10 questions into instant answers",
+        detail: "Write down the 10 questions you hear most before or during a sale. Paste them into ChatGPT: \"Write a clear, friendly answer for each of these questions. Max 2 sentences each. Tone: [your tone]. Business: [what you do].\" Add them to WhatsApp Business as quick replies. Every future customer gets the right answer in seconds, even when you're busy.",
+        tool: "WhatsApp Business + ChatGPT"
       }
     ],
     shortTerm: [
-      "Build a post-experience flow: thank you message, feedback question, reason to come back. AI writes it, WhatsApp Business or email sends it.",
-      "Create a FAQ document for your business. Turn it into quick replies in WhatsApp Business so every question gets a fast, consistent and on-brand answer.",
-      "Ask AI to review your current customer communication and identify where the experience drops off. Fix the biggest gap first, then move to the next."
+      "Build a 3-message post-experience flow: thank you, feedback question, reason to come back. AI writes every message, WhatsApp Business sends them automatically. Takes an afternoon to set up and runs forever.",
+      "Map every customer touchpoint in writing: first contact, during the experience, after. For each step, ask AI: 'Where does this feel impersonal or slow?' Fix the biggest gap first, then move to the next.",
+      "Write your customer promise in one paragraph using AI: what people can always expect, what you never do, and one thing that makes the experience with you different. Use it to align your whole team."
     ],
     mediumTerm: [
-      "Build a full customer journey automation: first contact, nurture, purchase confirmation, follow-up, re-engagement. Via WhatsApp and email together.",
-      "Use AI to analyze customer feedback and spot patterns. What do people always compliment? What do they wish was different? Let the data guide you.",
-      "Personalize at scale: use names, reference previous interactions, remember preferences. AI makes this possible without any extra time on your end."
+      "Automate the full journey: welcome on WhatsApp, booking confirmation, reminder before the visit, thank you after, re-engagement 30 days later. AI writes every message. ManyChat or email runs them without you.",
+      "Collect feedback systematically: after every purchase or visit, send one question via WhatsApp. Paste all replies into Claude monthly and ask: 'What are the most common compliments and complaints? What should I start, stop or change?' Let customers guide your improvement.",
+      "Personalize at scale: reference the customer's name, what they bought, when they visited. AI generates the message, you add the personal detail. Takes 30 extra seconds. Makes people feel remembered for years."
     ],
     tools: [
       { name: "WhatsApp Business", url: "https://business.whatsapp.com", note: "Free" },
