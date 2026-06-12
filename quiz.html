@@ -451,6 +451,24 @@
       cursor: pointer;
     }
 
+    /* AHA moment */
+    .result-aha {
+      background: var(--pink);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .result-aha p {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 26px);
+      color: white;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
     /* Result content sections */
     .result-section {
       background: #fff;
@@ -465,7 +483,7 @@
       letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--pink);
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       display: block;
     }
     .result-section p {
@@ -490,6 +508,137 @@
       color: var(--black);
       line-height: 1.35;
       margin-bottom: 12px;
+    }
+
+    /* Action items (quick wins) */
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .result-action-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .result-action-num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      color: var(--pink);
+      line-height: 1.1;
+      flex-shrink: 0;
+      width: 36px;
+    }
+    .result-action-body h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: var(--black);
+    }
+    .result-action-body p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(8,4,3,0.65);
+      margin-bottom: 10px;
+    }
+    .result-tool-badge {
+      display: inline-block;
+      background: var(--cream);
+      border: 1.5px solid rgba(242,27,122,0.2);
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    /* Checklist (short/medium term) */
+    .result-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .result-checklist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(8,4,3,0.75);
+    }
+    .result-checklist li::before {
+      content: '→';
+      color: var(--pink);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .result-checklist-dark li {
+      color: rgba(255,255,255,0.82);
+    }
+
+    /* Tools grid */
+    .result-tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .result-tool-link {
+      display: inline-flex;
+      flex-direction: column;
+      background: var(--cream-light);
+      border: 1.5px solid rgba(8,4,3,0.08);
+      border-radius: 14px;
+      padding: 12px 18px;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+      min-width: 110px;
+    }
+    .result-tool-link:hover {
+      border-color: var(--pink);
+      transform: translateY(-2px);
+    }
+    .result-tool-link-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+    .result-tool-link-note {
+      font-size: 11px;
+      color: rgba(8,4,3,0.4);
+      font-weight: 600;
+    }
+
+    /* Culture note */
+    .result-culture-note {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--pink);
+    }
+    .result-culture-note .culture-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+    .result-culture-note p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(8,4,3,0.7);
+      margin: 0;
+      font-style: italic;
     }
 
     /* Final CTA */
@@ -661,21 +810,46 @@
         <button class="btn-screenshot" onclick="showScreenshotTip()">📸 Screenshot the card</button>
       </div>
 
-      <!-- AI-generated content -->
+      <!-- AHA moment -->
+      <div class="result-aha">
+        <p id="resultAha"></p>
+      </div>
+
+      <!-- Personalized intro (AI) -->
       <div class="result-section">
         <span class="result-section-label">What this means for you</span>
         <p class="result-headline" id="resultHeadline"></p>
         <p id="resultDescription"></p>
       </div>
 
-      <div class="result-section result-section-dark">
-        <span class="result-section-label">Your #1 AI opportunity right now</span>
-        <p id="resultSuperpower"></p>
+      <!-- Quick wins -->
+      <div class="result-section">
+        <span class="result-section-label">Quick wins, start this week</span>
+        <div class="result-actions" id="resultQuickWins"></div>
       </div>
 
+      <!-- Short term -->
       <div class="result-section">
-        <span class="result-section-label">There's more where that came from</span>
-        <p id="resultTeaser"></p>
+        <span class="result-section-label">Next 4 weeks</span>
+        <ul class="result-checklist" id="resultShortTerm"></ul>
+      </div>
+
+      <!-- Medium term -->
+      <div class="result-section result-section-dark">
+        <span class="result-section-label">Building momentum, 1 to 3 months</span>
+        <ul class="result-checklist result-checklist-dark" id="resultMediumTerm"></ul>
+      </div>
+
+      <!-- Tools -->
+      <div class="result-section">
+        <span class="result-section-label">Your toolkit</span>
+        <div class="result-tools-grid" id="resultTools"></div>
+      </div>
+
+      <!-- Culture note -->
+      <div class="result-culture-note">
+        <span class="culture-icon">🌊</span>
+        <p id="resultCultureNote"></p>
       </div>
 
       <!-- Final CTA -->
