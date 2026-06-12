@@ -2,9 +2,15 @@
 
 Dit is het geheugen van mijn AI. Alles wat hier staat, leest Claude bij elke sessie. Gebruik deze informatie bij elk antwoord.
 
+## ABSOLUTE REGELS (nooit negeren)
+
+**EMDASH VERBOD:** Gebruik NOOIT een emdash (—) in welke output dan ook. Niet in teksten, HTML, emails, prompts, code comments, API calls of enig ander bestand. Vervang altijd door een komma, punt, koppelteken (-) of nieuwe zin. Dit geldt ook voor content die Claude genereert namens FUNkiness! via de API. Geen uitzonderingen. Daisy heeft dit tientallen keren gecorrigeerd.
+
+**GEEN ONVERIFIEERBARE CLAIMS:** Verzin geen tijdpaden, statistieken, marktposities of claims over concurrenten die Daisy niet zelf kan bevestigen.
+
 ## Mijn bedrijf
 
-Ik ben Daisy, en samen met Berdien run ik **FUNkiness! AI, Social Media & Marketing** op Curaçao. We zijn allebei ervaren marketeers uit Nederland die de stap naar het eiland hebben gemaakt. Marketing op Curaçao is nog heel traditioneel — iedereen doet hetzelfde, niemand springt eruit. FUNkiness! is ons antwoord daarop.
+Ik ben Daisy, en samen met Berdien run ik **FUNkiness! AI, Social Media & Marketing** op Curaçao. We zijn allebei ervaren marketeers uit Nederland die de stap naar het eiland hebben gemaakt. Marketing op Curaçao is nog heel traditioneel, iedereen doet hetzelfde, niemand springt eruit. FUNkiness! is ons antwoord daarop.
 
 Merkpositie: *FUNkiness! is wat er gebeurt als een luxury creative agency en een Miami poolparty samen een AI-baby krijgen, en dat kind opgroeide met Vogue lezen en algoritmes bouwen.*
 
@@ -18,7 +24,7 @@ FUNkiness! is een **fullservice marketingbureau**: strategie, AI-integratie, soc
 
 **AI & Marketingscan** - leadgenerator #1. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie. Scan knop op website linkt naar https://scan.funkiness.ai (apart in te stellen). Vercel serverless: `api/marketing-scan.js`.
 
-**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?" — 8 vragen, 4 archetypes (Time Liberator, Content Machine, Growth Catalyst, Experience Architect). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
+**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Liberator, Content Machine, Growth Catalyst, Experience Architect). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
@@ -45,16 +51,16 @@ Als een tekst saai klinkt, past hij niet bij FUNkiness!
 - Crème licht: `#fbf6f1`
 
 **Typografie:**
-- Poppins 900 — alle headings (h1, h2, h3)
-- Permanent Marker — script/accent woorden (handgeschreven gevoel, roze)
-- Inter — broodtekst, navigatie, UI
+- Poppins 900, alle headings (h1, h2, h3)
+- Permanent Marker, script/accent woorden (handgeschreven gevoel, roze)
+- Inter, broodtekst, navigatie, UI
 
 **Visuele elementen:**
 - Roze plusjes `✚` als separator in navigatie, ticker en tags
 - Kleine roze streep (4px, 54px breed) als sectie-accent
 - Roze pil-badges (zwart of roze, afgerond 999px) voor labels en categorieën
 - Cards: border-radius 24-34px, lichte witte achtergrond met subtiele border
-- Donkere secties (zwart) voor contrast — Why Us, footer, blog hero
+- Donkere secties (zwart) voor contrast, Why Us, footer, blog hero
 - Blob/plas-vormen in roze als decoratief element (zie homepage hero)
 - Jeep met panterprint is het centrale visuele merk-icoon
 
@@ -86,11 +92,11 @@ Lees deze bestanden voor meer detail:
 
 ## Tools en projecten
 
-**funkiness-scan/** — de AI & Marketing Scan webapp (leadgenerator). Multi-step form, gepersonaliseerd rapport via Claude API, radar chart. Draait op Node.js/Express, poort 3001. Start met `node server.js` vanuit de map. Beveiligd met rate limiting (IP + email) en email confirmation flow: rapport is alleen toegankelijk via unieke token-link in de email. Nodemailer via Titan SMTP (smtp.titan.email:587, sayhello@funkiness.ai).
+**funkiness-scan/**, de AI & Marketing Scan webapp (leadgenerator). Multi-step form, gepersonaliseerd rapport via Claude API, radar chart. Draait op Node.js/Express, poort 3001. Start met `node server.js` vanuit de map. Beveiligd met rate limiting (IP + email) en email confirmation flow: rapport is alleen toegankelijk via unieke token-link in de email. Nodemailer via Titan SMTP (smtp.titan.email:587, sayhello@funkiness.ai).
 
 ## Social media planning
 
-Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-juni-2026.md` — TikTok + Instagram, 10 posts, 11 juni t/m 1 juli 2026. Scripts, captions, CapCut-instructies en kalender staan erin.
+Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-juni-2026.md`, TikTok + Instagram, 10 posts, 11 juni t/m 1 juli 2026. Scripts, captions, CapCut-instructies en kalender staan erin.
 
 Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen roast-content of "hier is wat iedereen fout doet"-aanpak.
 

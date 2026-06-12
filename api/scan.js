@@ -229,10 +229,10 @@ Output ONLY valid JSON:
           <div style="font-family:sans-serif">
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Scores</h3>
             <ul style="margin-bottom:20px">
-              <li>Platforms & Reach: <strong>${rapport.platforms.score}/100</strong> — ${rapport.platforms.feedback}</li>
-              <li>Instagram: <strong>${rapport.instagram.score}/100</strong> — ${rapport.instagram.feedback}</li>
-              <li>Engagement: <strong>${rapport.engagement.score}/100</strong> — ${rapport.engagement.feedback}</li>
-              <li>Content: <strong>${rapport.content.score}/100</strong> — ${rapport.content.feedback}</li>
+              <li>Platforms & Reach: <strong>${rapport.platforms.score}/100</strong>, ${rapport.platforms.feedback}</li>
+              <li>Instagram: <strong>${rapport.instagram.score}/100</strong>, ${rapport.instagram.feedback}</li>
+              <li>Engagement: <strong>${rapport.engagement.score}/100</strong>, ${rapport.engagement.feedback}</li>
+              <li>Content: <strong>${rapport.content.score}/100</strong>, ${rapport.content.feedback}</li>
             </ul>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Intro (wat de klant ziet)</h3>
             <p style="background:#f5f5f5;padding:12px;border-radius:8px;margin-bottom:16px">${rapport.intro}</p>

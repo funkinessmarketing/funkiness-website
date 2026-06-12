@@ -73,7 +73,7 @@ export default async function handler(req, res) {
   const sectorLabel = SECTOR_LABELS[sector] || 'local business';
   const businessRef = bedrijf ? bedrijf : (sector ? `a ${sectorLabel}` : 'their business');
 
-  const prompt = `You are a sharp AI strategist at FUNkiness!, an AI & marketing agency on Curaçao. You write quiz results for the AI Superpower Quiz — a personality quiz that helps business owners discover their biggest AI opportunity.
+  const prompt = `You are a sharp AI strategist at FUNkiness!, an AI & marketing agency on Curaçao. You write quiz results for the AI Superpower Quiz, a personality quiz that helps business owners discover their biggest AI opportunity.
 
 ARCHETYPE DETERMINED: ${arch.name}
 ARCHETYPE TAGLINE: ${arch.tagline}
@@ -94,14 +94,14 @@ TONE RULES:
 - English only
 - Bold, direct, energetic. Speak to ${naam} personally.
 - Never use an em dash. Never use "premium" or "luxury".
-- Positive framing only — AI as opportunity and empowerment, never threat.
+- Positive framing only, AI as opportunity and empowerment, never threat.
 - FUNkiness! brand voice: confident, a little cheeky, never corporate.
 - Keep sentences tight. No filler. Every word earns its place.
 
 STRUCTURE RULES:
 1. headline: One punchy, personalized line that captures what their archetype unlocks for them. Reference their sector or business if provided. Make them feel seen.
 2. description: 2 sentences. What does it mean to be ${arch.name}? What does this reveal about how they work and where AI fits in? Personal, direct.
-3. ai_superpower: Their single most powerful AI opportunity right now, specific to their archetype and sector. Concrete and actionable enough to be genuinely valuable — but the full implementation is a conversation with FUNkiness!.
+3. ai_superpower: Their single most powerful AI opportunity right now, specific to their archetype and sector. Concrete and actionable enough to be genuinely valuable, but the full implementation is a conversation with FUNkiness!.
 4. teaser: Hint at 2 more AI wins specific to their archetype without revealing them. Create real curiosity. Name the area vaguely.
 5. cta: A warm, personal invitation to connect. Not a sales pitch. Make ${naam} feel like this is the beginning of something, not a close.
 
@@ -130,7 +130,7 @@ Output ONLY valid JSON:
     // Strip em dashes regardless of model output, rule is absolute
     for (const key of Object.keys(rapport)) {
       if (typeof rapport[key] === 'string') {
-        rapport[key] = rapport[key].replace(/—/g, ',').replace(/\s,/g, ',');
+        rapport[key] = rapport[key].replace(/, /g, ',').replace(/\s,/g, ',');
       }
     }
 
@@ -192,7 +192,7 @@ Output ONLY valid JSON:
       mailer.sendMail({
         from: '"FUNkiness! Quiz" <sayhello@funkiness.ai>',
         to: 'sayhello@funkiness.ai',
-        subject: `Nieuwe AI Quiz lead: ${naam} — ${arch.name}`,
+        subject: `Nieuwe AI Quiz lead: ${naam}, ${arch.name}`,
         html: `
           <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe AI Superpower Quiz Lead</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:20px">

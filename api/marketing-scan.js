@@ -26,14 +26,14 @@ DIGITAL BEHAVIOR ON CURAÇAO (structural, verified):
 - WhatsApp is the primary communication channel, used by an estimated 90%+ of the population (GSMA Mobile Economy Caribbean, 2024)
 - The majority of web and social traffic is mobile. Desktop usage is minimal
 - Word-of-mouth and WhatsApp referrals remain dominant lead sources for most local businesses
-- Google Business Profile is widely underused by local businesses — those who optimize it gain a clear visibility advantage
+- Google Business Profile is widely underused by local businesses, those who optimize it gain a clear visibility advantage
 
 VERIFIED MARKETING BEST PRACTICES:
 - Businesses with a documented strategy, even a basic one, are more consistent and waste less budget on reactive spending
 - Customer retention is typically more cost-effective than acquisition. Loyalty and follow-up communication are underused on Curaçao
 - A consistent visual brand identity builds faster recognition in a small, word-of-mouth driven market like Curaçao
 - Mobile-optimized websites are essential given the mobile-first behavior of both local and tourist audiences
-- Knowing your ideal customer is the foundation of every effective marketing decision — channel selection, messaging, and budget allocation all depend on it
+- Knowing your ideal customer is the foundation of every effective marketing decision, channel selection, messaging, and budget allocation all depend on it
 - Google Business Profile optimization directly impacts local search visibility and is a low-effort, high-impact action
 
 WHAT NOT TO CLAIM:
@@ -223,10 +223,10 @@ Output ONLY valid JSON:
           <div style="font-family:sans-serif">
             <h3 style="color:#f21b7a;margin-top:24px;margin-bottom:8px;border-bottom:2px solid #f21b7a;padding-bottom:4px">Scores</h3>
             <ul style="line-height:2">
-              <li>Brand & Positioning: <strong>${rapport.brand.score}/100</strong> — ${rapport.brand.feedback}</li>
-              <li>Audience & Market: <strong>${rapport.audience.score}/100</strong> — ${rapport.audience.feedback}</li>
-              <li>Channels & Reach: <strong>${rapport.channels.score}/100</strong> — ${rapport.channels.feedback}</li>
-              <li>Strategy & Execution: <strong>${rapport.strategy.score}/100</strong> — ${rapport.strategy.feedback}</li>
+              <li>Brand & Positioning: <strong>${rapport.brand.score}/100</strong>, ${rapport.brand.feedback}</li>
+              <li>Audience & Market: <strong>${rapport.audience.score}/100</strong>, ${rapport.audience.feedback}</li>
+              <li>Channels & Reach: <strong>${rapport.channels.score}/100</strong>, ${rapport.channels.feedback}</li>
+              <li>Strategy & Execution: <strong>${rapport.strategy.score}/100</strong>, ${rapport.strategy.feedback}</li>
             </ul>
             <h3 style="color:#f21b7a;margin-top:20px">Intro</h3>
             <p>${rapport.intro}</p>
