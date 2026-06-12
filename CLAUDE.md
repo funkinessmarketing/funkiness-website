@@ -20,11 +20,11 @@ We zitten in de opstartfase. Slogan: *Boring was never the plan.*
 
 ## Producten en diensten
 
-FUNkiness! is een **fullservice marketingbureau**: strategie, AI-integratie, social media, content en campagnes.
+FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie eerst, daarna content, campagnes en kanaalmanagement. Positionering is strategy + AI agency, niet social media bureau.
 
 **AI & Marketingscan** - leadgenerator #1. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie. Scan knop op website linkt naar https://scan.funkiness.ai (apart in te stellen). Vercel serverless: `api/marketing-scan.js`.
 
-**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Liberator, Content Machine, Growth Catalyst, Experience Architect). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
+**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Terminator, Content Crusher, Growth Guru, Experience Engine). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
