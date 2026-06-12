@@ -980,69 +980,172 @@ h1 span { color: var(--pink); }
 /* ============================
    HOW IT WORKS
    ============================ */
-.steps-section { padding: 72px 5vw 80px; background: var(--cream-light); }
-
-@media (min-width: 1100px) {
-  .steps-section { padding: 100px 7vw 120px; }
-}
-
-.steps-header { max-width: 680px; }
-
-.steps-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin-top: 48px;
-}
-
-@media (min-width: 700px) {
-  .steps-grid { grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 64px; }
+/* ============================
+   JOURNEY / HOW IT WORKS
+   ============================ */
+.journey-section {
+  padding: 72px 5vw 80px;
+  background: var(--cream-light);
+  overflow: hidden;
 }
 
 @media (min-width: 1100px) {
-  .steps-grid { grid-template-columns: repeat(3, 1fr); }
+  .journey-section { padding: 100px 7vw 120px; }
 }
 
-.step-card { padding: 36px 28px; border-radius: 28px; background: white; }
+.journey-header {
+  max-width: 680px;
+  margin-bottom: 56px;
+}
 
 @media (min-width: 900px) {
-  .step-card { padding: 44px 36px; }
+  .journey-header { margin-bottom: 72px; }
 }
 
-.step-number {
-  font-family: "Poppins", sans-serif;
-  font-size: 72px;
+/* === MOBILE: vertical timeline === */
+.journey-track {
+  display: flex;
+  flex-direction: column;
+}
+
+.journey-step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.journey-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.journey-dot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: white;
+  font-family: 'Poppins', sans-serif;
   font-weight: 900;
-  color: rgba(242,27,122,0.10);
-  line-height: 1;
-  margin-bottom: 16px;
-  letter-spacing: -4px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
 }
 
-@media (min-width: 900px) {
-  .step-number { font-size: 80px; margin-bottom: 20px; }
+.journey-node::after {
+  content: '';
+  width: 3px;
+  flex: 1;
+  min-height: 40px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--pink) 0px,
+    var(--pink) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  margin-top: 8px;
 }
 
-.step-card h3 {
-  font-family: "Poppins", sans-serif;
-  font-size: 22px;
+.journey-step:last-child .journey-node::after {
+  display: none;
+}
+
+.journey-content {
+  padding-top: 14px;
+  padding-bottom: 36px;
+}
+
+.journey-content h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-@media (min-width: 900px) {
-  .step-card h3 { font-size: 24px; margin-bottom: 14px; }
-}
-
-.step-card p {
-  font-size: 16px;
-  line-height: 1.55;
+.journey-content p {
+  font-size: 15px;
+  line-height: 1.6;
   color: rgba(8,4,3,0.7);
+  max-width: 380px;
 }
 
+@media (min-width: 600px) {
+  .journey-content h3 { font-size: 22px; }
+  .journey-content p { font-size: 16px; }
+}
+
+/* === DESKTOP: horizontal infographic === */
 @media (min-width: 900px) {
-  .step-card p { font-size: 17px; }
+  .journey-track {
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  /* Dashed line through all dot centers */
+  .journey-track::before {
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--pink) 0px,
+      var(--pink) 8px,
+      rgba(242,27,122,0.2) 8px,
+      rgba(242,27,122,0.2) 18px
+    );
+    z-index: 0;
+  }
+
+  .journey-step {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .journey-node {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .journey-node::after { display: none; }
+
+  .journey-content {
+    padding: 0 10px;
+    padding-bottom: 0;
+    text-align: center;
+  }
+
+  .journey-content h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .journey-content p {
+    font-size: 14px;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1100px) {
+  .journey-content h3 { font-size: 19px; }
+  .journey-content p { font-size: 15px; }
+  .journey-content { padding: 0 16px; }
 }
 
 /* ============================
