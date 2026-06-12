@@ -1150,6 +1150,122 @@ h1 span { color: var(--pink); }
 }
 
 /* ============================
+   FAQ ACCORDION
+   ============================ */
+.faq-section {
+  padding: 72px 5vw 80px;
+  background: var(--cream-light);
+}
+
+@media (min-width: 1100px) {
+  .faq-section { padding: 100px 7vw 120px; max-width: 900px; }
+}
+
+.faq-category {
+  margin-bottom: 60px;
+}
+
+.faq-category .section-kicker {
+  margin-bottom: 24px;
+  display: block;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+details.faq-item {
+  background: white;
+  border-radius: 20px;
+  border: 1.5px solid rgba(8,4,3,0.07);
+  overflow: hidden;
+  transition: border-color 200ms ease;
+}
+
+details.faq-item[open] {
+  border-color: rgba(242,27,122,0.25);
+}
+
+summary.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.3;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+summary.faq-question::-webkit-details-marker { display: none; }
+
+@media (min-width: 900px) {
+  summary.faq-question { padding: 24px 28px; font-size: 17px; }
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--pink);
+  transition: transform 250ms ease, background 250ms ease, color 250ms ease;
+}
+
+details[open] .faq-icon {
+  transform: rotate(45deg);
+  background: var(--pink);
+  color: white;
+}
+
+.faq-answer {
+  padding: 0 22px 22px;
+  animation: faqFadeIn 200ms ease;
+}
+
+@media (min-width: 900px) {
+  .faq-answer { padding: 0 28px 26px; }
+}
+
+.faq-answer p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(8,4,3,0.7);
+  margin-bottom: 10px;
+}
+
+.faq-answer p:last-child { margin-bottom: 0; }
+
+.faq-answer a {
+  color: var(--pink);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .faq-answer p { font-size: 16px; }
+}
+
+@keyframes faqFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
    CTA BAND
    ============================ */
 .cta-band {
