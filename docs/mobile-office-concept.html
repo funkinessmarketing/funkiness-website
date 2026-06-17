@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUNkiness! — Mobile Office Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Permanent+Marker&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0d0d0d;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 40px 20px; gap: 48px;
+  font-family: 'Inter', sans-serif;
+}
+
+.instructions {
+  background: #1a1a1a; color: #aaa;
+  border-radius: 12px; padding: 22px 26px;
+  max-width: 560px; width: 100%;
+  font-size: 13px; line-height: 1.8;
+}
+.instructions h2 { color: #f21b7a; font-family: 'Poppins', sans-serif; font-size: 14px; margin-bottom: 8px; }
+.instructions ol { padding-left: 18px; }
+.instructions code { background: #111; color: #f21b7a; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+.slide-label {
+  color: #333; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; text-align: center; margin-bottom: 4px;
+}
+
+.slide {
+  width: 540px; height: 540px;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SLIDE 1 — SETUP HERO
+   De mobile office AI-visualisatie met FUNkiness! branding.
+   ============================================================ */
+.s1 { background: #080403; }
+
+.s1-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 1;
+}
+.s1-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,4,3,0.22) 0%,
+    rgba(8,4,3,0.12) 30%,
+    rgba(8,4,3,0.72) 72%,
+    rgba(8,4,3,0.92) 100%
+  );
+  z-index: 2;
+}
+.s1-kicker {
+  position: absolute; top: 38px; left: 40px;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.55); letter-spacing: 0.22em; text-transform: uppercase;
+  z-index: 3;
+}
+.s1-badge {
+  position: absolute; top: 32px; right: 36px;
+  background: #f21b7a; color: #fff;
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 999px; z-index: 3;
+}
+.s1-headline {
+  position: absolute; bottom: 88px; left: 40px; right: 40px;
+  z-index: 3;
+}
+.s1-line1 {
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 46px; line-height: 0.95; letter-spacing: -2px;
+  color: #fff; display: block;
+}
+.s1-line2 {
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 46px; line-height: 0.95; letter-spacing: -2px;
+  color: #f21b7a; display: block;
+}
+.s1-sub {
+  position: absolute; bottom: 44px; left: 40px;
+  font-family: 'Permanent Marker', cursive; font-size: 18px;
+  color: rgba(255,255,255,0.55); z-index: 3;
+}
+.s1-handle {
+  position: absolute; bottom: 44px; right: 40px;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.16em; text-transform: uppercase;
+  z-index: 3;
+}
+
+
+/* ============================================================
+   SLIDE 2 — DE JEEP
+   Panterprint achtergrond. Jeep als centraal visueel.
+   ============================================================ */
+.s2 {
+  background-image: url('../panterprint.png');
+  background-size: cover; background-position: center;
+}
+.s2-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,4,3,0.55); z-index: 1;
+}
+.s2-jeep {
+  position: absolute;
+  width: 116%; left: -8%;
+  top: 50%; transform: translateY(-50%);
+  z-index: 2;
+}
+.s2-kicker {
+  position: absolute; top: 38px; left: 40px;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.22em; text-transform: uppercase;
+  z-index: 3;
+}
+.s2-claim {
+  position: absolute; bottom: 44px; left: 40px; right: 40px;
+  font-family: 'Permanent Marker', cursive; font-size: 22px;
+  color: rgba(255,255,255,0.5); z-index: 3; line-height: 1.3;
+}
+
+
+/* ============================================================
+   SLIDE 3 — TAGLINE SLUITER
+   Roze. Panterprint als textuur. Bold afsluiter.
+   ============================================================ */
+.s3 {
+  background-image: url('../panterprint.png');
+  background-size: cover; background-position: center;
+}
+.s3-overlay {
+  position: absolute; inset: 0;
+  background: rgba(242,27,122,0.82); z-index: 1;
+}
+.s3-ghost {
+  position: absolute; top: 50%; left: -20px; right: -20px;
+  transform: translateY(-50%);
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 200px; line-height: 0.9; letter-spacing: -10px;
+  color: #fff; text-align: center;
+  z-index: 2; opacity: 0.08;
+  white-space: nowrap;
+}
+.s3-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 52px 44px;
+  z-index: 3;
+}
+.s3-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.55); letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.s3-line1 {
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 56px; line-height: 0.95; letter-spacing: -2px;
+  color: #fff; margin-bottom: 6px;
+}
+.s3-line2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 32px; color: #080403;
+  line-height: 1.2; margin-bottom: 32px;
+}
+.s3-divider {
+  width: 54px; height: 4px;
+  background: rgba(255,255,255,0.4); border-radius: 2px;
+  margin-bottom: 28px;
+}
+.s3-handle {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,0.7); letter-spacing: 0.1em;
+}
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <h2>Screenshots maken</h2>
+  <ol>
+    <li>Open in Safari · zoom uit met <code>CMD + -</code> tot één slide goed op je scherm past</li>
+    <li><code>CMD + SHIFT + 4</code> · sleep precies over de slide · herhaal voor dia 1 t/m 3</li>
+    <li>Sla op als <code>office1.png</code> t/m <code>office3.png</code></li>
+  </ol>
+</div>
+
+
+<!-- ===================== SLIDE 1 ===================== -->
+<div class="slide-label">Dia 1 van 3 — De setup</div>
+<div class="slide s1">
+  <img class="s1-photo" src="../mobile-office-vision.JPG" alt="FUNkiness! Mobile Office">
+  <div class="s1-overlay"></div>
+  <div class="s1-kicker">FUNkiness! · Curaçao</div>
+  <div class="s1-badge">New</div>
+  <div class="s1-headline">
+    <span class="s1-line1">You pick</span>
+    <span class="s1-line1">the spot.</span>
+    <span class="s1-line2">We bring</span>
+    <span class="s1-line2">the office.</span>
+  </div>
+  <div class="s1-sub">Marketing, Curaçao-style.</div>
+  <div class="s1-handle">@funkiness.ai</div>
+</div>
+
+
+<!-- ===================== SLIDE 2 ===================== -->
+<div class="slide-label">Dia 2 van 3 — De Jeep</div>
+<div class="slide s2">
+  <div class="s2-overlay"></div>
+  <img class="s2-jeep" src="../jeep.png" alt="FUNkiness! Jeep">
+  <div class="s2-kicker">This is how we show up.</div>
+  <div class="s2-claim">Panther print jeep.<br>Open tailgate. Your meeting,<br>anywhere on the island.</div>
+</div>
+
+
+<!-- ===================== SLIDE 3 ===================== -->
+<div class="slide-label">Dia 3 van 3 — Tagline</div>
+<div class="slide s3">
+  <div class="s3-overlay"></div>
+  <div class="s3-ghost">FUN</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">The meeting room is wherever you are.</div>
+    <div class="s3-line1">Boring was</div>
+    <div class="s3-line1">never</div>
+    <div class="s3-line2">the plan.</div>
+    <div class="s3-divider"></div>
+    <div class="s3-handle">@funkiness.ai</div>
+  </div>
+</div>
+
+</body>
+</html>

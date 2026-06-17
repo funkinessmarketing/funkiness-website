@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — Mobile Office Sectie</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Permanent+Marker&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --pink: #f21b7a;
+  --black: #080403;
+  --cream: #f7efe7;
+}
+
+body { background: var(--cream); font-family: 'Inter', sans-serif; }
+
+.preview-note {
+  background: var(--pink); color: #fff;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+  text-align: center; padding: 12px; letter-spacing: 0.05em;
+}
+
+.fake-above {
+  background: var(--cream); height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  color: #ccc; letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+.wave-divider { line-height: 0; }
+
+/* ══════════════════════════════════════
+   SECTIE — mobile first
+══════════════════════════════════════ */
+.mobile-office {
+  background: var(--black);
+  padding: 52px 20px 0;
+}
+
+.mo-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Op mobiel: foto eerst */
+.mo-right { order: -1; }
+.mo-left  { order: 0; }
+
+/* ── Tekst ── */
+.mo-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 700;
+  color: var(--pink); letter-spacing: 0.22em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+
+.mo-headline {
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 44px;
+  line-height: 0.95; letter-spacing: -1.5px;
+  color: #fff; margin-bottom: 20px;
+}
+
+/* Roze tekst = altijd Permanent Marker */
+.mo-headline span {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--pink);
+  display: block;
+  font-size: 48px;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.mo-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px; line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+
+.mo-note {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 19px; color: rgba(255,255,255,0.2);
+  margin-bottom: 36px;
+}
+
+/* ── Formulier ── */
+.mo-form {
+  display: flex; flex-direction: column; gap: 14px;
+}
+
+.mo-form label {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.38); letter-spacing: 0.16em;
+  text-transform: uppercase; display: block; margin-bottom: 6px;
+}
+
+.mo-form input,
+.mo-form select,
+.mo-form textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif; font-size: 15px;
+  color: #fff; outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.mo-form input::placeholder,
+.mo-form textarea::placeholder { color: rgba(255,255,255,0.22); }
+.mo-form input:focus,
+.mo-form select:focus,
+.mo-form textarea:focus { border-color: var(--pink); }
+.mo-form select { color: rgba(255,255,255,0.55); cursor: pointer; }
+.mo-form select option { background: #1a1a1a; color: #fff; }
+.mo-form textarea { resize: none; height: 84px; }
+
+.form-row {
+  display: flex; flex-direction: column; gap: 14px;
+}
+
+.mo-form-note {
+  font-family: 'Inter', sans-serif; font-size: 12px;
+  color: rgba(255,255,255,0.2); line-height: 1.6;
+}
+
+.mo-submit {
+  width: 100%;
+  background: var(--pink); color: #fff;
+  font-family: 'Inter', sans-serif; font-weight: 700;
+  font-size: 15px; letter-spacing: 0.04em;
+  padding: 16px 36px; border-radius: 999px;
+  border: none; cursor: pointer; margin-top: 4px;
+  transition: opacity 0.2s;
+}
+.mo-submit:hover { opacity: 0.88; }
+
+/* ── Foto ── */
+.mo-img {
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+  display: block;
+  object-fit: cover;
+}
+
+/* ── Fake context eronder ── */
+.fake-below {
+  background: var(--cream); height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  color: #ccc; letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   TABLET (min-width: 700px)
+══════════════════════════════════════ */
+@media (min-width: 700px) {
+  .mobile-office { padding: 64px 32px 0; }
+  .mo-headline { font-size: 56px; }
+  .mo-headline span { font-size: 62px; }
+  .form-row { flex-direction: row; }
+  .form-row > div { flex: 1; }
+}
+
+/* ══════════════════════════════════════
+   DESKTOP (min-width: 1000px)
+══════════════════════════════════════ */
+@media (min-width: 1000px) {
+  .mobile-office { padding: 80px 40px 0; }
+
+  .mo-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 72px;
+    align-items: start;
+  }
+
+  /* Herstel natuurlijke volgorde op desktop */
+  .mo-left  { order: 0; }
+  .mo-right { order: 0; }
+
+  .mo-headline { font-size: 62px; }
+  .mo-headline span { font-size: 68px; }
+  .mo-sub { font-size: 17px; }
+
+  .mo-img {
+    border-radius: 24px 24px 0 0;
+    /* Foto loopt tot aan de onderkant van de sectie */
+    min-height: 620px;
+    object-position: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="preview-note">PREVIEW — nog niet live op de website</div>
+<div class="fake-above">bestaande sectie hierboven</div>
+
+<!-- Wave crème naar zwart (exact zoals op de site) -->
+<div class="wave-divider" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="64">
+    <path d="M0,16 C240,64 480,0 720,40 C960,72 1200,8 1440,36 L1440,64 L0,64 Z" fill="#080403"/>
+  </svg>
+</div>
+
+<section class="mobile-office">
+  <div class="mo-inner">
+
+    <!-- Linker kolom: tekst + formulier -->
+    <div class="mo-left">
+
+      <div class="mo-kicker">How we work · Curaçao</div>
+
+      <h2 class="mo-headline">
+        You pick the spot.
+        <span>We bring the office.</span>
+      </h2>
+
+      <p class="mo-sub">
+        No boardroom. No commute. Pick your area and we show up. Panther print Jeep, full setup, ready to work. Anywhere on the island.
+      </p>
+      <div class="mo-note">The Jeep finds you.</div>
+
+      <form class="mo-form" onsubmit="return false;">
+
+        <div class="form-row">
+          <div>
+            <label>Name</label>
+            <input type="text" placeholder="Your name">
+          </div>
+          <div>
+            <label>Email or phone</label>
+            <input type="text" placeholder="Contact details">
+          </div>
+        </div>
+
+        <div>
+          <label>Your area in Curaçao</label>
+          <select>
+            <option value="" disabled selected>Select a location</option>
+            <optgroup label="Willemstad">
+              <option>Punda</option>
+              <option>Otrobanda</option>
+              <option>Pietermaai</option>
+              <option>Scharloo</option>
+            </optgroup>
+            <optgroup label="East">
+              <option>Jan Thiel</option>
+              <option>Bapor / Mambo</option>
+              <option>Caracasbaai</option>
+              <option>Spaanse Water</option>
+              <option>Koraal Tabak</option>
+            </optgroup>
+            <optgroup label="West">
+              <option>Blue Bay</option>
+              <option>Coral Estate</option>
+              <option>Westpunt</option>
+              <option>Lagun</option>
+              <option>Sint Willibrordus</option>
+            </optgroup>
+            <option value="other">Somewhere else, see notes</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Notes (optional)</label>
+          <textarea placeholder="Specific spot, your business, or anything else useful to know..."></textarea>
+        </div>
+
+        <div class="mo-form-note">
+          We drive to your area and find a good spot nearby. Close to the beach? We park as close to the water as we can get.
+        </div>
+
+        <button type="submit" class="mo-submit">Book my spot</button>
+
+      </form>
+    </div>
+
+    <!-- Rechter kolom: foto -->
+    <div class="mo-right">
+      <img class="mo-img" src="../Office back.png" alt="FUNkiness! mobile office setup op Curaçao">
+    </div>
+
+  </div>
+</section>
+
+<!-- Wave zwart naar crème (exact zoals op de site) -->
+<div class="wave-divider" style="background:var(--black);margin-bottom:-2px">
+  <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="64">
+    <path d="M0,44 C320,4 720,64 1100,20 C1240,4 1360,48 1440,28 L1440,64 L0,64 Z" fill="#f7efe7"/>
+  </svg>
+</div>
+
+<div class="fake-below">bestaande sectie hieronder</div>
+
+</body>
+</html>

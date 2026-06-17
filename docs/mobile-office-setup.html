@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUNkiness! — Mobile Office Setup</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Permanent+Marker&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0d0d0d;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 40px 20px; gap: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── SCENE WRAPPER ─── */
+.scene {
+  width: 700px;
+  height: 480px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  /* Caribbean sky → sand */
+  background: linear-gradient(180deg,
+    #3DAED4 0%,
+    #6CC8E0 42%,
+    #C8AA6A 52%,
+    #B89450 100%
+  );
+}
+
+/* ─── PALM TREE (achtergrond sfeer) ─── */
+.palm {
+  position: absolute;
+  right: 280px; top: 0;
+  width: 3px; height: 160px;
+  background: #5C3D1E;
+  z-index: 1;
+  transform: rotate(6deg);
+  transform-origin: bottom center;
+}
+.palm::before {
+  content: '';
+  position: absolute; top: -8px; left: -40px;
+  width: 80px; height: 38px;
+  background: #2E7D32;
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(-30deg);
+}
+.palm::after {
+  content: '';
+  position: absolute; top: -12px; left: -10px;
+  width: 70px; height: 30px;
+  background: #388E3C;
+  border-radius: 50% 0 50% 50%;
+  transform: rotate(20deg);
+}
+
+.palm2 {
+  position: absolute;
+  right: 260px; top: 10px;
+  width: 3px; height: 130px;
+  background: #5C3D1E;
+  z-index: 1;
+  transform: rotate(-8deg);
+  transform-origin: bottom center;
+}
+.palm2::before {
+  content: '';
+  position: absolute; top: -6px; left: -50px;
+  width: 90px; height: 32px;
+  background: #2E7D32;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(25deg);
+}
+
+/* ─── JEEP — panterprint zij-aanzicht ─── */
+/*
+   Jeep deur gaat naar rechts open.
+   Aanzicht: we zien de achterkant van de jeep, deur is rechts opengeslagen.
+   De jeep staat rechts in beeld, wij links van de jeep met de setup.
+*/
+
+/* Jeep body */
+.jeep-body {
+  position: absolute;
+  right: 20px; bottom: 105px;
+  width: 310px; height: 150px;
+  background-image: url('../panterprint.png');
+  background-size: cover;
+  border-radius: 18px 18px 6px 6px;
+  z-index: 4;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+/* Ramen */
+.jeep-windows {
+  position: absolute;
+  top: 12px; left: 12px; right: 55px; height: 55px;
+  background: rgba(40,60,80,0.75);
+  border-radius: 10px 10px 4px 4px;
+  z-index: 5;
+}
+/* Achterlichten */
+.jeep-light-l {
+  position: absolute;
+  right: 300px; bottom: 125px;
+  width: 14px; height: 30px;
+  background: #e53935;
+  border-radius: 3px;
+  z-index: 5;
+  box-shadow: 0 0 8px rgba(229,57,53,0.6);
+}
+/* Achterklep opening (deur naar rechts open) */
+.jeep-door {
+  position: absolute;
+  right: 22px; bottom: 105px;
+  width: 70px; height: 148px;
+  background-image: url('../panterprint.png');
+  background-size: cover;
+  background-position: right center;
+  border-radius: 6px 18px 6px 6px;
+  z-index: 6;
+  transform-origin: right center;
+  transform: perspective(400px) rotateY(-55deg);
+  box-shadow: -4px 4px 16px rgba(0,0,0,0.35);
+}
+/* Kofferbak opening — laadruimte zichtbaar */
+.jeep-trunk {
+  position: absolute;
+  right: 88px; bottom: 107px;
+  width: 80px; height: 145px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 2px;
+  z-index: 3;
+  display: flex; align-items: center; justify-content: center;
+}
+.jeep-trunk-screen {
+  width: 62px; height: 42px;
+  background: #0d2d3d;
+  border-radius: 4px;
+  border: 2px solid #333;
+  display: flex; align-items: center; justify-content: center;
+}
+.jeep-trunk-screen span {
+  font-family: 'Poppins', sans-serif; font-weight: 700;
+  font-size: 7px; color: rgba(255,255,255,0.7);
+  text-align: center; line-height: 1.3;
+}
+/* Wielen */
+.wheel {
+  position: absolute;
+  bottom: 68px;
+  width: 52px; height: 52px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  z-index: 5;
+  box-shadow: inset 0 0 0 8px #333, inset 0 0 0 12px #1a1a1a;
+}
+.wheel-l { right: 262px; }
+.wheel-r { right: 30px; }
+/* Bumper */
+.jeep-bumper {
+  position: absolute;
+  right: 20px; bottom: 100px;
+  width: 312px; height: 10px;
+  background: #222;
+  border-radius: 0 0 4px 4px;
+  z-index: 5;
+}
+/* Nummerplaat tekst op bumper */
+.jeep-brand {
+  position: absolute;
+  right: 20px; bottom: 84px;
+  width: 310px;
+  text-align: center;
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: 9px; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.6);
+  z-index: 6;
+}
+
+/* FUNkiness! logo op jeep */
+.jeep-logo {
+  position: absolute;
+  right: 110px; bottom: 178px;
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 22px; letter-spacing: -1px;
+  color: #fff;
+  -webkit-text-stroke: 1.5px #f21b7a;
+  text-shadow: 3px 3px 0 #f21b7a;
+  z-index: 7;
+  white-space: nowrap;
+}
+
+/* ─── VLOERKLEED ─── */
+.rug {
+  position: absolute;
+  left: 28px; bottom: 78px;
+  width: 310px; height: 80px;
+  background: #1ABCBC;
+  border-radius: 10px;
+  z-index: 3;
+  /* Perspectief: rug iets smaller bovenaan, breder onderaan */
+  clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+/* Kleedpatroon strepen */
+.rug::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 6px;
+}
+.rug::after {
+  content: '';
+  position: absolute; top: 20px; left: 10px; right: 10px; height: 2px;
+  background: rgba(255,255,255,0.2);
+}
+
+/* ─── TAFEL ─── */
+.table {
+  position: absolute;
+  left: 128px; bottom: 120px;
+  width: 120px; height: 68px;
+  z-index: 5;
+}
+/* Tafelblad met magenta tafelkleed */
+.table-top {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 52px;
+  background: #f21b7a;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(242,27,122,0.35);
+}
+/* Tafelrand */
+.table-top::before {
+  content: '';
+  position: absolute; inset: 4px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+/* Tafelpoten */
+.table-leg-l, .table-leg-r {
+  position: absolute;
+  bottom: 0; width: 5px; height: 22px;
+  background: #bbb; border-radius: 2px;
+}
+.table-leg-l { left: 14px; }
+.table-leg-r { right: 14px; }
+
+/* Bloemen op tafel */
+.flower {
+  position: absolute;
+  top: 10px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  z-index: 6;
+}
+.flower-1 { left: 38px; background: #FF6B35; }
+.flower-2 { left: 54px; background: #f21b7a; }
+.flower-3 { left: 70px; background: #FF6B35; }
+
+/* Vaas */
+.vase {
+  position: absolute;
+  top: 4px; left: 48px;
+  width: 24px; height: 18px;
+  background: #f7efe7;
+  border-radius: 0 0 8px 8px;
+  z-index: 6;
+}
+
+/* ─── STOELEN (4 stuks) ─── */
+
+/* Stoel — basis styling */
+.chair {
+  position: absolute;
+  z-index: 5;
+}
+.chair-seat {
+  width: 32px; height: 32px;
+  background: #f7efe7;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+.chair-back {
+  position: absolute;
+  top: -14px; left: 2px; right: 2px;
+  height: 14px;
+  background: #f7efe7;
+  border: 2px solid #ccc;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}
+.chair-legs {
+  display: flex; justify-content: space-between;
+  padding: 0 4px; margin-top: 2px;
+}
+.chair-leg {
+  width: 3px; height: 12px;
+  background: #bbb; border-radius: 1px;
+}
+
+/* Links van tafel */
+.chair-left {
+  left: 86px; bottom: 128px;
+}
+/* Rechts van tafel */
+.chair-right {
+  left: 258px; bottom: 128px;
+}
+/* Voorkant links */
+.chair-front-l {
+  left: 125px; bottom: 84px;
+  transform: scale(0.85);
+  transform-origin: bottom center;
+}
+/* Voorkant rechts */
+.chair-front-r {
+  left: 210px; bottom: 84px;
+  transform: scale(0.85);
+  transform-origin: bottom center;
+}
+
+/* ─── PARASOL ─── */
+.parasol-pole {
+  position: absolute;
+  left: 75px; bottom: 155px;
+  width: 4px; height: 190px;
+  background: linear-gradient(180deg, #bbb 0%, #888 100%);
+  z-index: 4;
+  border-radius: 2px;
+}
+.parasol-top {
+  position: absolute;
+  left: 22px; bottom: 312px;
+  width: 110px; height: 60px;
+  background: conic-gradient(
+    #1ABCBC 0deg 45deg, #f7efe7 45deg 90deg,
+    #1ABCBC 90deg 135deg, #f7efe7 135deg 180deg,
+    #1ABCBC 180deg 225deg, #f7efe7 225deg 270deg,
+    #1ABCBC 270deg 315deg, #f7efe7 315deg 360deg
+  );
+  border-radius: 55px 55px 0 0;
+  z-index: 4;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.parasol-top::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 8px; height: 8px;
+  background: #888; border-radius: 50%;
+}
+
+/* ─── GROND / GRONDLIJN ─── */
+.ground-line {
+  position: absolute;
+  bottom: 78px; left: 0; right: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+  z-index: 2;
+}
+
+/* ─── BRANDING ─── */
+.branding {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 78px;
+  background: #080403;
+  z-index: 8;
+  display: flex; align-items: center;
+  padding: 0 28px;
+  justify-content: space-between;
+}
+.branding-headline {
+  font-family: 'Poppins', sans-serif; font-weight: 900;
+  font-size: 18px; letter-spacing: -0.5px;
+  color: #fff; line-height: 1.15;
+}
+.branding-headline span {
+  color: #f21b7a;
+}
+.branding-handle {
+  font-family: 'Inter', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── LABELS (optioneel, kun je weghalen) ─── */
+.label {
+  position: absolute;
+  font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  background: rgba(8,4,3,0.55);
+  padding: 3px 8px; border-radius: 999px;
+  z-index: 9;
+  white-space: nowrap;
+}
+.label-rug    { left: 58px;  bottom: 88px;  }
+.label-table  { left: 130px; bottom: 182px; }
+.label-parasol{ left: 10px;  bottom: 362px; }
+.label-jeep   { right: 22px; bottom: 240px; }
+</style>
+</head>
+<body>
+
+<div class="scene">
+
+  <!-- Palmbomen (sfeer) -->
+  <div class="palm"></div>
+  <div class="palm2"></div>
+
+  <!-- Grondlijn -->
+  <div class="ground-line"></div>
+
+  <!-- Jeep — achteraanzicht, deur open naar rechts -->
+  <div class="jeep-trunk">
+    <div class="jeep-trunk-screen">
+      <span>Welcome<br>to our<br>office.</span>
+    </div>
+  </div>
+  <div class="jeep-body">
+    <div class="jeep-windows"></div>
+  </div>
+  <div class="jeep-light-l"></div>
+  <div class="jeep-door"></div>
+  <div class="jeep-bumper"></div>
+  <div class="wheel wheel-l"></div>
+  <div class="wheel wheel-r"></div>
+  <div class="jeep-brand">WWW.FUNKINESS.AI</div>
+  <div class="jeep-logo">FUNkiness!</div>
+
+  <!-- Parasol -->
+  <div class="parasol-top"></div>
+  <div class="parasol-pole"></div>
+
+  <!-- Vloerkleed -->
+  <div class="rug"></div>
+
+  <!-- Tafel met magenta tafelkleed -->
+  <div class="table">
+    <div class="vase"></div>
+    <div class="flower flower-1"></div>
+    <div class="flower flower-2"></div>
+    <div class="flower flower-3"></div>
+    <div class="table-top"></div>
+    <div class="table-leg-l"></div>
+    <div class="table-leg-r"></div>
+  </div>
+
+  <!-- 4 Stoelen -->
+  <div class="chair chair-left">
+    <div class="chair-seat"><div class="chair-back"></div></div>
+    <div class="chair-legs"><div class="chair-leg"></div><div class="chair-leg"></div></div>
+  </div>
+  <div class="chair chair-right">
+    <div class="chair-seat"><div class="chair-back"></div></div>
+    <div class="chair-legs"><div class="chair-leg"></div><div class="chair-leg"></div></div>
+  </div>
+  <div class="chair chair-front-l">
+    <div class="chair-seat"><div class="chair-back"></div></div>
+    <div class="chair-legs"><div class="chair-leg"></div><div class="chair-leg"></div></div>
+  </div>
+  <div class="chair chair-front-r">
+    <div class="chair-seat"><div class="chair-back"></div></div>
+    <div class="chair-legs"><div class="chair-leg"></div><div class="chair-leg"></div></div>
+  </div>
+
+  <!-- Labels -->
+  <div class="label label-rug">Turquoise kleed</div>
+  <div class="label label-table">Magenta tafelkleed + bloemen</div>
+  <div class="label label-parasol">Turquoise parasol</div>
+  <div class="label label-jeep">Panterprint wrap · deur rechts open</div>
+
+  <!-- Branding -->
+  <div class="branding">
+    <div class="branding-headline">You pick the spot,<br><span>we bring the office.</span></div>
+    <div class="branding-handle">@funkiness.ai</div>
+  </div>
+
+</div>
+
+</body>
+</html>

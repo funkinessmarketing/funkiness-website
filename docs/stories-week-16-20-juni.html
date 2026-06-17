@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUNkiness! Stories — Di 16 · Do 18 · Za 20 juni</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:  #080403;
+  --pink:   #f21b7a;
+  --cream:  #f7efe7;
+  --cream2: #fbf6f1;
+  --grey:   #999;
+}
+
+body {
+  background: #1a1a1a;
+  padding: 32px 20px 80px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ─── Instructies ─── */
+.intro {
+  max-width: 560px;
+  margin: 0 auto 40px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 28px;
+}
+.intro h1 { font-size: 17px; font-weight: 900; color: var(--black); margin-bottom: 12px; }
+.intro p  { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 6px; }
+.intro code { background: #f0f0f0; padding: 2px 8px; border-radius: 5px; font-size: 12px; font-family: monospace; color: var(--pink); }
+.intro strong { color: var(--black); }
+.intro .tip { background: #fff8e1; border-left: 3px solid #f5a623; padding: 10px 14px; border-radius: 6px; margin-top: 12px; font-size: 12px; color: #555; line-height: 1.6; }
+
+/* ─── Dag-header ─── */
+.day-header {
+  max-width: 540px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.day-header .day-label {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.day-header .day-line {
+  flex: 1;
+  height: 1px;
+  background: #444;
+}
+.day-header .day-type {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--pink);
+  letter-spacing: 1px;
+}
+
+/* ─── Slide wrapper ─── */
+.slide-wrap {
+  max-width: 540px;
+  margin: 0 auto 24px;
+}
+.slide-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #777;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding: 0 2px;
+}
+.slide-label .arrow { color: var(--pink); font-size: 12px; }
+
+/* ─── Story slide base: 540 × 960 (retina = 1080 × 1920) ─── */
+.story {
+  width: 540px;
+  height: 960px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Branding balk boven ─── */
+.story-top {
+  padding: 52px 44px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.story-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+.story-plus {
+  font-size: 22px;
+  font-weight: 900;
+  opacity: 0.4;
+}
+
+/* ─── Branding balk onder ─── */
+.story-bottom {
+  padding: 0 44px 52px;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+.story-handle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.3;
+}
+
+/* ─── Content zone ─── */
+.story-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 44px;
+}
+
+/* ─── Sticker placeholder ─── */
+.sticker-zone {
+  border: 2px dashed rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 24px;
+}
+.sticker-zone p {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.sticker-zone.cream-zone {
+  border-color: rgba(0,0,0,0.12);
+}
+.sticker-zone.cream-zone p { color: rgba(0,0,0,0.25); }
+
+/* ─── Poll mockup ─── */
+.poll-mock {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.poll-opt {
+  border-radius: 12px;
+  padding: 18px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+
+
+/* ══════════════════════════════════
+   DI 16 — STORY 1: Slechte caption
+══════════════════════════════════ */
+.s-d16-1 { background: var(--black); }
+.s-d16-1 .story-tag  { color: #fff; }
+.s-d16-1 .story-plus { color: var(--pink); }
+.s-d16-1 .story-handle { color: #fff; }
+
+.s-d16-1 .kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 20px;
+}
+.s-d16-1 .headline {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 28px;
+}
+.s-d16-1 .bad-caption {
+  font-size: 17px;
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+  border-left: 3px solid var(--pink);
+  padding-left: 18px;
+  margin-bottom: 24px;
+}
+.s-d16-1 .note {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════
+   DI 16 — STORY 2: De rewrite
+══════════════════════════════════ */
+.s-d16-2 { background: var(--pink); }
+.s-d16-2 .story-tag  { color: #fff; }
+.s-d16-2 .story-plus { color: rgba(255,255,255,0.5); }
+.s-d16-2 .story-handle { color: #fff; }
+
+.s-d16-2 .kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+}
+.s-d16-2 .quote-bar {
+  width: 46px;
+  height: 3px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 99px;
+  margin-bottom: 28px;
+}
+.s-d16-2 .main-quote {
+  font-size: 36px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+.s-d16-2 .note {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════
+   DI 16 — STORY 3: Poll
+══════════════════════════════════ */
+.s-d16-3 { background: var(--black); }
+.s-d16-3 .story-tag  { color: #fff; }
+.s-d16-3 .story-plus { color: var(--pink); opacity: 0.5; }
+.s-d16-3 .story-handle { color: #fff; }
+
+.s-d16-3 .question {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.s-d16-3 .sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 36px;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════
+   DO 18 — STORY 1: Before bio
+══════════════════════════════════ */
+.s-d18-1 { background: var(--cream); }
+.s-d18-1 .story-tag  { color: var(--black); }
+.s-d18-1 .story-plus { color: var(--pink); }
+.s-d18-1 .story-handle { color: var(--black); }
+
+.s-d18-1 .label-before {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 16px;
+}
+.s-d18-1 .bad-bio {
+  font-size: 20px;
+  font-style: italic;
+  color: #bbb;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+.s-d18-1 .verdict {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--black);
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════
+   DO 18 — STORY 2: After bio
+══════════════════════════════════ */
+.s-d18-2 { background: var(--pink); }
+.s-d18-2 .story-tag  { color: #fff; }
+.s-d18-2 .story-plus { color: rgba(255,255,255,0.5); }
+.s-d18-2 .story-handle { color: #fff; }
+
+.s-d18-2 .label-after {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 14px;
+}
+.s-d18-2 .timer {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 32px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 24px;
+  line-height: 1;
+}
+.s-d18-2 .good-bio {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 28px;
+}
+.s-d18-2 .same-villa {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ══════════════════════════════════
+   DO 18 — STORY 3: Vraag sticker
+══════════════════════════════════ */
+.s-d18-3 { background: var(--black); }
+.s-d18-3 .story-tag  { color: #fff; }
+.s-d18-3 .story-plus { color: var(--pink); opacity: 0.5; }
+.s-d18-3 .story-handle { color: #fff; }
+
+.s-d18-3 .intro-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.s-d18-3 .main-q {
+  font-size: 34px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 36px;
+}
+
+/* ══════════════════════════════════
+   ZA 20 — STORY 1: Carousel teaser
+══════════════════════════════════ */
+.s-d20-1 { background: var(--black); }
+.s-d20-1 .story-tag  { color: #fff; }
+.s-d20-1 .story-plus { color: var(--pink); opacity: 0.5; }
+.s-d20-1 .story-handle { color: #fff; }
+
+.s-d20-1 .new-badge {
+  display: inline-block;
+  background: var(--pink);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 99px;
+  margin-bottom: 24px;
+}
+.s-d20-1 .main-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.s-d20-1 .main-title .accent { color: var(--pink); }
+.s-d20-1 .sting {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+.s-d20-1 .cta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.s-d20-1 .cta-arrow {
+  font-size: 28px;
+  color: var(--pink);
+  line-height: 1;
+}
+.s-d20-1 .cta-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════
+   ZA 20 — STORY 2: Sneak peek
+══════════════════════════════════ */
+.s-d20-2 { background: var(--cream2); }
+.s-d20-2 .story-tag  { color: var(--black); }
+.s-d20-2 .story-plus { color: var(--pink); }
+.s-d20-2 .story-handle { color: var(--black); }
+
+.s-d20-2 .peek-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 20px;
+}
+.s-d20-2 .example-block {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.s-d20-2 .lbl-bad {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c0392b;
+  margin-bottom: 8px;
+}
+.s-d20-2 .txt-bad {
+  font-size: 14px;
+  font-style: italic;
+  color: #bbb;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.s-d20-2 .pink-bar-sm {
+  width: 32px;
+  height: 2px;
+  background: var(--pink);
+  border-radius: 99px;
+  margin-bottom: 14px;
+}
+.s-d20-2 .lbl-good {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1e8449;
+  margin-bottom: 8px;
+}
+.s-d20-2 .txt-good {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1.25;
+}
+.s-d20-2 .more-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.3);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── Instructies ─── -->
+<div class="intro">
+  <h1>FUNkiness! Stories — Di 16 · Do 18 · Za 20 juni ✚</h1>
+  <p>Dit bestand bevat alle 8 Story-slides voor deze week. Open dit in Safari, maak een screenshot van elke slide, upload als Story op Instagram (en als slideshow op TikTok).</p>
+  <p style="margin-top:8px;"><strong>Screenshot:</strong> druk <code>CMD + SHIFT + 4</code> → sleep precies over de slide → laat los.</p>
+  <p style="margin-top:4px;"><strong>Zoom:</strong> gebruik <code>CMD –</code> om uit te zoomen totdat één slide goed op je scherm past.</p>
+  <div class="tip">
+    💡 <strong>Sticker-slides:</strong> Drie slides hebben een stippellijn-vak — dat is waar jij in Instagram een Poll of Vraag-sticker plaatst nadat je de screenshot hebt geüpload.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     DI 16 JUNI
+══════════════════════════════════════════════ -->
+
+<div class="day-header">
+  <span class="day-label">Di 16 juni</span>
+  <div class="day-line"></div>
+  <span class="day-type">Post om 12:00 · Caption roast</span>
+</div>
+
+<!-- DI 16 · Story 1 -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Di 16 · Story 1 van 3</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d16-1">
+    <div class="story-top">
+      <span class="story-tag">Di 16 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="kicker">Real caption. Real hotel. Real 2026.</div>
+      <div class="headline">I'm going to read<br>this out loud.<br>It's going to hurt.</div>
+      <div class="bad-caption">"At [hotel name] we take great pride in offering our valued guests a truly memorable stay in the heart of beautiful Curaçao, where tradition meets modernity and every detail is carefully crafted…"</div>
+      <div class="note">38 words. Zero information. Nobody finished that sentence.</div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- DI 16 · Story 2 -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Di 16 · Story 2 van 3</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d16-2">
+    <div class="story-top">
+      <span class="story-tag">Di 16 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="kicker">The rewrite. 8 words.</div>
+      <div class="quote-bar"></div>
+      <div class="main-quote">"You'll forget<br>what day it is.<br>That's the point."</div>
+      <div class="note">Same hotel. Completely different feeling. Save this.</div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- DI 16 · Story 3 (poll) -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Di 16 · Story 3 van 3 — voeg Poll-sticker toe in Instagram</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d16-3">
+    <div class="story-top">
+      <span class="story-tag">Di 16 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="question">Does your caption start with your business name?</div>
+      <div class="sub">Be honest. We won't judge. (We will absolutely judge.)</div>
+      <div class="poll-mock">
+        <div class="poll-opt">Ja — help me 🆘</div>
+        <div class="poll-opt">Nee — I'm safe ✅</div>
+      </div>
+      <div class="sticker-zone" style="margin-top: 20px;">
+        <p>← Vervang dit vlak door een echte Poll-sticker in Instagram</p>
+      </div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     DO 18 JUNI
+══════════════════════════════════════════════ -->
+
+<div class="day-header" style="margin-top: 16px;">
+  <span class="day-label">Do 18 juni</span>
+  <div class="day-line"></div>
+  <span class="day-type">Post om 08:00 · AI tip bio</span>
+</div>
+
+<!-- DO 18 · Story 1 -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Do 18 · Story 1 van 3</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d18-1">
+    <div class="story-top">
+      <span class="story-tag" style="color: var(--black);">Do 18 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="label-before">Before ↓</div>
+      <div class="bad-bio">"Beautiful villa with sea views and all amenities."</div>
+      <div class="verdict">Technically correct. Completely forgettable.<br>Here's what AI did to it in 90 seconds →</div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle" style="color: var(--black);">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- DO 18 · Story 2 -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Do 18 · Story 2 van 3</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d18-2">
+    <div class="story-top">
+      <span class="story-tag">Do 18 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="label-after">90 seconds later.</div>
+      <div class="timer">after:</div>
+      <div class="good-bio">"Mornings with a<br>sea view and zero<br>obligations.<br>That's the plan."</div>
+      <div class="same-villa">Same villa. Completely different feeling.</div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- DO 18 · Story 3 (question sticker) -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Do 18 · Story 3 van 3 — voeg Vraag-sticker toe in Instagram</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d18-3">
+    <div class="story-top">
+      <span class="story-tag">Do 18 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="intro-text">We're curious.</div>
+      <div class="main-q">What does your Instagram bio say right now?</div>
+      <div class="sticker-zone">
+        <p>Voeg hier een Vraag-sticker toe in Instagram<br>"Type je bio hier…"</p>
+      </div>
+      <div style="margin-top: 20px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.25); letter-spacing: 1px;">We'll rewrite the best ones.</div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     ZA 20 JUNI
+══════════════════════════════════════════════ -->
+
+<div class="day-header" style="margin-top: 16px;">
+  <span class="day-label">Za 20 juni</span>
+  <div class="day-line"></div>
+  <span class="day-type">Post om 10:00 · Carousel</span>
+</div>
+
+<!-- ZA 20 · Story 1 -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Za 20 · Story 1 van 2</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d20-1">
+    <div class="story-top">
+      <span class="story-tag">Za 20 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="new-badge">Nieuw ✚</div>
+      <div class="main-title">5 captions<br>killing your<br>business<span class="accent">.</span></div>
+      <div class="sting">Dia 3 and 5 will sting a little. 💀<br>And the fix is in every slide.</div>
+      <div class="cta-row">
+        <span class="cta-arrow">↑</span>
+        <span class="cta-text">Check our profile for the full carousel</span>
+      </div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ZA 20 · Story 2 -->
+<div class="slide-wrap">
+  <div class="slide-label">
+    <span>Za 20 · Story 2 van 2</span>
+    <span class="arrow">↑ Screenshot dit</span>
+  </div>
+  <div class="story s-d20-2">
+    <div class="story-top">
+      <span class="story-tag" style="color: var(--black);">Za 20 juni · @funkinessai</span>
+      <span class="story-plus">✚</span>
+    </div>
+    <div class="story-content">
+      <div class="peek-label">Sneak peek ✚</div>
+      <div class="example-block">
+        <div class="lbl-bad">Killing it ✗</div>
+        <div class="txt-bad">"At [Business Name] we take pride in offering our valued guests an exceptional experience."</div>
+        <div class="pink-bar-sm"></div>
+        <div class="lbl-good">The fix ✓</div>
+        <div class="txt-good">"You'll forget what<br>day it is.<br>That's the point."</div>
+      </div>
+      <div class="more-text">+ 4 more fixes on our profile →</div>
+    </div>
+    <div class="story-bottom">
+      <span class="story-handle" style="color: var(--black);">@funkinessai · funkiness.ai</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
