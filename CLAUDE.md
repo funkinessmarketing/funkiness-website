@@ -28,6 +28,8 @@ FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie ee
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
+**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 50 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Verdeeld in 6 categorieën: listing descriptions, review responses, social media captions, guest emails, WhatsApp messages, FAQ/host content. Bestand: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF). Referentiebestand: `docs/island-host-ai-prompt-kit.md`. Verkoop via Gumroad ($27). Upsell: Video Script Kit ($19, nog te bouwen). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+
 ## Doelgroep
 
 Alle bedrijven op Curaçao: hotels, resorts, makelaars, restaurants, vakantieverhuurders en vakantiewoningbeheerders (mensen die verhuren via platforms als Airbnb, Booking.com of Micazu), banken en meer. Budget maakt niet uit: zowel grote bedrijven als kleine verhuurders zijn welkom. Geen vaste pakketten, altijd op maat.
@@ -54,7 +56,7 @@ Als een tekst saai klinkt, past hij niet bij FUNkiness!
 
 **Typografie:**
 - Poppins 900, alle headings (h1, h2, h3)
-- Permanent Marker, script/accent woorden (handgeschreven gevoel, roze)
+- Permanent Marker, **alle roze tekst, altijd**. Elk element met `color: #f21b7a` krijgt ook `font-family: 'Permanent Marker', cursive`. Geen uitzonderingen.
 - Inter, broodtekst, navigatie, UI
 
 **Visuele elementen:**
