@@ -28,7 +28,9 @@ FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie ee
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
-**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 50 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Verdeeld in 6 categorieën: listing descriptions, review responses, social media captions, guest emails, WhatsApp messages, FAQ/host content. Bestand: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF). Referentiebestand: `docs/island-host-ai-prompt-kit.md`. Verkoop via Gumroad ($27). Upsell: Video Script Kit ($19, nog te bouwen). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 50 AI-prompts + 1 bonusprompt voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Verdeeld in 6 categorieën: listing descriptions, review responses, social media captions, guest emails, WhatsApp messages, FAQ/host content. Bestand: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF). Referentiebestand: `docs/island-host-ai-prompt-kit.md`. Verkoop via Gumroad ($27). Upsell: Video Script Kit ($19, nog te bouwen). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+
+Productstructuur: gebruiker vult Property Fact Sheet eenmalig in, kopieert naar ChatGPT/Claude, gebruikt dan prompts zonder property details opnieuw in te typen. Airbnb Prompt 01 heeft 5 aparte outputs: Dutch (in het Nederlands), American (Engels), Canadian (Engels, winter escape focus), Your Space Engels, Your Space Nederlands - want Airbnb laat per taal/land aparte tekst instellen. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal handmatig invoeren. VRBO heeft geen multi-taal support. Email- en WhatsApp-prompts hebben een Language-veld (Dutch/English naar gelang de gast).
 
 ## Doelgroep
 

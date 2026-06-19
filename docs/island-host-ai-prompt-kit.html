@@ -25,100 +25,134 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 /* ── COVER ── */
 .cover { background: var(--black); justify-content: space-between; }
 .cover-inner { padding: 20mm 18mm 0; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-.cover-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 15px; margin-bottom: 16px; }
+.cover-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 17px; margin-bottom: 16px; }
 .cover-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 52px; line-height: 1.05; color: var(--white); margin-bottom: 24px; }
 .cover-title em { font-family: 'Permanent Marker', cursive; color: var(--pink); font-style: normal; }
-.cover-sub { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 340px; margin-bottom: 32px; }
+.cover-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 340px; margin-bottom: 32px; }
 .cover-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.cover-tag { background: rgba(242,27,122,0.12); border: 1px solid rgba(242,27,122,0.35); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 11px; padding: 4px 13px; border-radius: 999px; }
+.cover-tag { background: rgba(242,27,122,0.12); border: 1px solid rgba(242,27,122,0.35); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 13px; padding: 4px 13px; border-radius: 999px; }
 .cover-visual { height: 170px; position: relative; overflow: hidden; }
 .blob { position: absolute; background: var(--pink); border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; opacity: 0.1; }
 .blob-1 { width: 340px; height: 340px; right: -80px; bottom: -80px; }
 .blob-2 { width: 160px; height: 160px; right: 60px; bottom: 30px; opacity: 0.15; }
 .cover-n { position: absolute; right: 16mm; top: 50%; transform: translateY(-50%); font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 160px; color: rgba(255,255,255,0.03); line-height: 1; }
 .cover-foot { padding: 13px 18mm; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; }
-.cover-brand { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 12px; color: rgba(255,255,255,0.45); }
+.cover-brand { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 14px; color: rgba(255,255,255,0.45); }
 .cover-brand em { font-family: 'Permanent Marker', cursive; color: var(--pink); font-style: normal; }
-.cover-url { font-size: 11px; color: rgba(255,255,255,0.25); }
+.cover-url { font-size: 13px; color: rgba(255,255,255,0.25); }
 
 /* ── FACT SHEET ── */
 .fact-page { padding: 14mm 18mm; }
-.section-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 13px; margin-bottom: 6px; }
-.section-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 32px; line-height: 1.1; color: var(--black); margin-bottom: 6px; }
-.section-desc { font-size: 12px; color: #777; line-height: 1.6; margin-bottom: 20px; }
+.section-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 15px; margin-bottom: 6px; }
+.section-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 34px; line-height: 1.1; color: var(--black); margin-bottom: 6px; }
+.section-desc { font-size: 14px; color: #777; line-height: 1.6; margin-bottom: 20px; }
 .fact-intro { background: var(--black); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; }
-.fact-intro p { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.fact-intro p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
 .fact-intro strong { color: var(--pink); font-family: 'Permanent Marker', cursive; font-weight: normal; }
 .fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 .fact-block { background: var(--white); border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.06); }
-.fact-block-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; color: var(--black); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--pink); display: inline-block; }
+.fact-block-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: var(--black); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--pink); display: inline-block; }
 .fact-field { margin-bottom: 8px; }
-.fact-label { font-size: 10px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px; }
-.fact-line { border: none; border-bottom: 1px solid rgba(0,0,0,0.12); width: 100%; background: transparent; font-size: 12px; font-family: 'Inter', sans-serif; color: var(--black); padding: 3px 0; outline: none; }
+.fact-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px; }
+.fact-line { border: none; border-bottom: 1px solid rgba(0,0,0,0.12); width: 100%; background: transparent; font-size: 13px; font-family: 'Inter', sans-serif; color: var(--black); padding: 3px 0; outline: none; }
 .fact-line::placeholder { color: #ccc; }
 .fact-checks { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.fact-check { font-size: 10px; color: #666; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.fact-check { font-size: 12px; color: #666; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
 .fact-check input { accent-color: var(--pink); width: 12px; height: 12px; }
 .fact-block-full { background: var(--white); border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.06); margin-bottom: 14px; }
+.fact-other { margin-top: 6px; }
 
 /* ── HOW TO USE ── */
 .how-page { padding: 14mm 18mm; }
 .how-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
 .how-step { display: flex; gap: 16px; align-items: flex-start; }
 .step-num { width: 36px; height: 36px; min-width: 36px; background: var(--pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Permanent Marker', cursive; font-size: 16px; color: var(--white); }
-.step-body h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
-.step-body p { font-size: 12px; color: #666; line-height: 1.6; }
+.step-body h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+.step-body p { font-size: 13px; color: #666; line-height: 1.6; }
 .how-tip { background: var(--black); border-radius: 14px; padding: 16px 20px; margin-bottom: 24px; }
-.how-tip strong { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 13px; display: block; margin-bottom: 6px; font-weight: normal; }
-.how-tip p { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.how-tip strong { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 15px; display: block; margin-bottom: 6px; font-weight: normal; }
+.how-tip p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
 .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .toc-item { background: var(--white); border-radius: 10px; padding: 12px 14px; border: 1px solid rgba(0,0,0,0.06); }
-.toc-num { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 26px; line-height: 1; margin-bottom: 3px; }
-.toc-label { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; color: var(--black); }
-.toc-sub { font-size: 10px; color: #999; margin-top: 2px; }
+.toc-num { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 28px; line-height: 1; margin-bottom: 3px; }
+.toc-label { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: var(--black); }
+.toc-sub { font-size: 11px; color: #999; margin-top: 2px; }
 
 /* ── CATEGORY HEADER ── */
 .cat-page { background: var(--black); padding: 18mm; position: relative; overflow: hidden; justify-content: center; }
 .cat-blob { position: absolute; right: -100px; top: -100px; width: 420px; height: 420px; background: var(--pink); border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; opacity: 0.07; }
 .cat-bg-num { position: absolute; right: 12mm; bottom: 8mm; font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 210px; color: rgba(255,255,255,0.025); line-height: 1; }
-.cat-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 14px; margin-bottom: 10px; position: relative; }
+.cat-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 16px; margin-bottom: 10px; position: relative; }
 .cat-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 50px; line-height: 1.05; color: var(--white); margin-bottom: 16px; position: relative; max-width: 400px; }
-.cat-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 380px; margin-bottom: 28px; position: relative; }
+.cat-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 380px; margin-bottom: 28px; position: relative; }
 .cat-list { display: flex; flex-direction: column; gap: 9px; position: relative; }
 .cat-item { display: flex; align-items: center; gap: 10px; }
 .cat-dot { width: 5px; height: 5px; min-width: 5px; background: var(--pink); border-radius: 50%; }
-.cat-item span { font-size: 12px; color: rgba(255,255,255,0.65); }
+.cat-item span { font-size: 13px; color: rgba(255,255,255,0.65); }
 
 /* ── PROMPTS PAGE ── */
 .prompts-page { padding: 13mm 18mm; }
 .page-bar { display: flex; align-items: center; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.08); }
-.page-bar-cat { font-family: 'Permanent Marker', cursive; font-size: 13px; color: var(--pink); }
-.page-bar-range { font-size: 10px; color: #bbb; margin-left: auto; }
+.page-bar-cat { font-family: 'Permanent Marker', cursive; font-size: 14px; color: var(--pink); }
+.page-bar-range { font-size: 12px; color: #bbb; margin-left: auto; }
 
 .prompt-card { background: var(--white); border-radius: 13px; padding: 16px 18px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.055); page-break-inside: avoid; }
 .prompt-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-.prompt-badge { background: var(--pink); color: var(--white); font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 10px; width: 24px; height: 24px; border-radius: 7px; display: flex; align-items: center; justify-content: center; min-width: 24px; }
-.prompt-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: var(--black); }
-.copy-btn { margin-left: auto; background: transparent; border: 1px solid var(--pink); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 10px; padding: 3px 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.prompt-badge { background: var(--pink); color: var(--white); font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 11px; width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; min-width: 26px; }
+.prompt-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: var(--black); }
+.copy-btn { margin-left: auto; background: transparent; border: 1px solid var(--pink); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 11px; padding: 3px 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
 .copy-btn:hover, .copy-btn.copied { background: var(--pink); color: var(--white); }
 
-.prompt-note { font-size: 10.5px; color: #999; font-style: italic; line-height: 1.5; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px dashed rgba(0,0,0,0.08); }
-.prompt-note strong { color: var(--pink); font-family: 'Permanent Marker', cursive; font-style: normal; font-weight: normal; font-size: 10.5px; }
+.prompt-note { font-size: 13px; color: #999; font-style: italic; line-height: 1.55; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px dashed rgba(0,0,0,0.08); }
+.prompt-note strong { color: var(--pink); font-family: 'Permanent Marker', cursive; font-style: normal; font-weight: normal; font-size: 12px; }
 
-.prompt-body { font-size: 11px; line-height: 1.8; color: #2a2a2a; background: #f9f5f1; border-radius: 8px; padding: 13px 15px; border-left: 3px solid var(--pink); white-space: pre-wrap; word-break: break-word; }
-.ph { color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 11px; }
+.prompt-body { font-size: 13px; line-height: 1.8; color: #2a2a2a; background: #f9f5f1; border-radius: 8px; padding: 13px 15px; border-left: 3px solid var(--pink); white-space: pre-wrap; word-break: break-word; }
+.ph { color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 13px; }
 
 /* ── BACK COVER ── */
 .back { background: var(--pink); justify-content: center; align-items: center; text-align: center; padding: 18mm; position: relative; overflow: hidden; }
 .back-b1 { position: absolute; left: -100px; top: -100px; width: 380px; height: 380px; background: rgba(255,255,255,0.1); border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; }
 .back-b2 { position: absolute; right: -80px; bottom: -80px; width: 280px; height: 280px; background: rgba(0,0,0,0.07); border-radius: 38% 62% 54% 46% / 44% 60% 40% 56%; }
-.back-tag { font-family: 'Permanent Marker', cursive; font-size: 20px; color: rgba(255,255,255,0.8); margin-bottom: 18px; position: relative; }
+.back-tag { font-family: 'Permanent Marker', cursive; font-size: 22px; color: rgba(255,255,255,0.8); margin-bottom: 18px; position: relative; }
 .back-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 40px; line-height: 1.1; color: var(--white); margin-bottom: 18px; position: relative; }
 .back-div { width: 48px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 2px; margin: 0 auto 24px; position: relative; }
-.back-body { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.7; max-width: 320px; margin-bottom: 32px; position: relative; }
-.back-brand { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 17px; color: var(--white); position: relative; }
+.back-body { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.7; max-width: 320px; margin-bottom: 32px; position: relative; }
+.back-brand { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 19px; color: var(--white); position: relative; }
 .back-brand em { font-family: 'Permanent Marker', cursive; font-style: normal; }
 .back-url { font-size: 12px; color: rgba(255,255,255,0.65); position: relative; margin-top: 4px; }
+
+.copy-facts-btn {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 20px;
+  background: var(--pink);
+  color: var(--white);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.copy-facts-btn:hover { opacity: 0.88; }
+.copy-facts-btn.copied { background: var(--black); }
+.facts-next-steps { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.facts-step { font-size: 12px; color: #666; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+.facts-step-num { background: var(--pink); color: var(--white); font-family: 'Permanent Marker', cursive; font-size: 11px; width: 18px; height: 18px; min-width: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.facts-step strong { color: var(--black); }
+.prompt-platform { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #bbb; padding: 10px 0 4px; border-top: 1px solid rgba(0,0,0,0.07); margin-bottom: 2px; }
+.prompt-platform:first-child { border-top: none; padding-top: 0; }
+.cat-platform { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.35); padding: 10px 0 2px; margin-top: 2px; }
+.page-num { position: absolute; bottom: 7mm; right: 18mm; font-size: 10px; font-family: 'Inter', sans-serif; color: rgba(0,0,0,0.2); letter-spacing: 0.5px; }
+.cat-page .page-num { color: rgba(255,255,255,0.2); }
+.output-section { margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.07); padding-top: 10px; }
+.output-section:first-of-type { margin-top: 8px; border-top: none; padding-top: 0; }
+.output-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.output-label { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.8px; }
+.copy-output-btn { background: transparent; border: 1px solid var(--pink); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 10px; padding: 2px 10px; border-radius: 999px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.copy-output-btn:hover, .copy-output-btn.copied { background: var(--pink); color: var(--white); }
+@media print { .copy-output-btn { display: none; } }
 
 @media print {
   body { background: none; }
@@ -126,6 +160,8 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .page:last-child { page-break-after: auto; }
   .prompt-card { page-break-inside: avoid; }
   .copy-btn { display: none; }
+  .copy-facts-btn { display: none; }
+  .facts-next-steps { display: none; }
 }
 @page { size: A4; margin: 0; }
 </style>
@@ -137,7 +173,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <div class="cover-inner">
     <div class="cover-eyebrow">50 copy-paste prompts for vacation rental owners</div>
     <h1 class="cover-title">The Island Host<br>AI <em>Prompt Kit</em></h1>
-    <p class="cover-sub">Stop writing from scratch. These prompts turn ChatGPT into a hospitality copywriter who knows Aruba, Bonaire and Curacao.</p>
+    <p class="cover-sub">Stop writing what every other host writes. These prompts turn ChatGPT or Claude into a hospitality copywriter who actually knows Aruba, Bonaire and Curaçao.</p>
     <div class="cover-tags">
       <span class="cover-tag">Airbnb</span>
       <span class="cover-tag">VRBO</span>
@@ -171,61 +207,118 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <div class="fact-grid">
     <div class="fact-block">
       <div class="fact-block-title">Your property</div>
-      <div class="fact-field"><span class="fact-label">Property name</span><input class="fact-line" type="text" placeholder="e.g. Villa Flamingo"></div>
-      <div class="fact-field"><span class="fact-label">Island</span><input class="fact-line" type="text" placeholder="Aruba / Bonaire / Curacao"></div>
-      <div class="fact-field"><span class="fact-label">Neighborhood / area</span><input class="fact-line" type="text" placeholder="e.g. Jan Thiel, Eagle Beach"></div>
-      <div class="fact-field"><span class="fact-label">Type</span><input class="fact-line" type="text" placeholder="Villa / Apartment / Guesthouse / Studio"></div>
-      <div class="fact-field"><span class="fact-label">Bedrooms / Bathrooms / Max guests</span><input class="fact-line" type="text" placeholder="e.g. 2 / 2 / 4"></div>
+      <div class="fact-field" data-label="Property name"><span class="fact-label">Property name</span><input class="fact-line" type="text" placeholder="e.g. Villa Flamingo"></div>
+      <div class="fact-field" data-label="Island"><span class="fact-label">Island</span><div class="fact-checks"><label class="fact-check"><input type="checkbox"> Aruba</label><label class="fact-check"><input type="checkbox"> Bonaire</label><label class="fact-check"><input type="checkbox"> Curaçao</label></div></div>
+      <div class="fact-field" data-label="Neighborhood / area"><span class="fact-label">Neighborhood / area</span><input class="fact-line" type="text" placeholder="e.g. Jan Thiel, Eagle Beach"></div>
+      <div class="fact-field" data-label="Type"><span class="fact-label">Type</span><div class="fact-checks"><label class="fact-check"><input type="checkbox"> Villa</label><label class="fact-check"><input type="checkbox"> Apartment</label><label class="fact-check"><input type="checkbox"> Guesthouse</label><label class="fact-check"><input type="checkbox"> Studio</label><label class="fact-check"><input type="checkbox"> B&amp;B</label></div></div>
+      <div class="fact-field" data-label="Bedrooms">
+        <span class="fact-label">Bedrooms</span>
+        <div class="fact-checks"><label class="fact-check"><input type="radio" name="bedrooms"> Studio</label><label class="fact-check"><input type="radio" name="bedrooms"> 1</label><label class="fact-check"><input type="radio" name="bedrooms"> 2</label><label class="fact-check"><input type="radio" name="bedrooms"> 3</label><label class="fact-check"><input type="radio" name="bedrooms"> 4</label><label class="fact-check"><input type="radio" name="bedrooms"> 5</label><label class="fact-check"><input type="radio" name="bedrooms"> 6+</label></div>
+      </div>
+      <div class="fact-field" data-label="Bathrooms">
+        <span class="fact-label">Bathrooms</span>
+        <div class="fact-checks"><label class="fact-check"><input type="radio" name="bathrooms"> 1</label><label class="fact-check"><input type="radio" name="bathrooms"> 2</label><label class="fact-check"><input type="radio" name="bathrooms"> 3</label><label class="fact-check"><input type="radio" name="bathrooms"> 4+</label></div>
+      </div>
+      <div class="fact-field" data-label="Max guests">
+        <span class="fact-label">Max guests</span>
+        <div class="fact-checks"><label class="fact-check"><input type="radio" name="maxguests"> 2</label><label class="fact-check"><input type="radio" name="maxguests"> 3</label><label class="fact-check"><input type="radio" name="maxguests"> 4</label><label class="fact-check"><input type="radio" name="maxguests"> 5</label><label class="fact-check"><input type="radio" name="maxguests"> 6</label><label class="fact-check"><input type="radio" name="maxguests"> 8</label><label class="fact-check"><input type="radio" name="maxguests"> 10</label><label class="fact-check"><input type="radio" name="maxguests"> 12+</label></div>
+      </div>
     </div>
     <div class="fact-block">
       <div class="fact-block-title">As a host</div>
-      <div class="fact-field"><span class="fact-label">Your name</span><input class="fact-line" type="text"></div>
-      <div class="fact-field"><span class="fact-label">Languages you speak</span><input class="fact-line" type="text" placeholder="e.g. Dutch, English, Spanish"></div>
-      <div class="fact-field"><span class="fact-label">How long hosting</span><input class="fact-line" type="text"></div>
-      <div class="fact-field"><span class="fact-label">Your background (optional)</span><input class="fact-line" type="text" placeholder="e.g. From the Netherlands, moved here in 2019"></div>
-      <div class="fact-field"><span class="fact-label">Your direct booking contact</span><input class="fact-line" type="text" placeholder="WhatsApp / email / website"></div>
+      <div class="fact-field" data-label="Host name"><span class="fact-label">Your name</span><input class="fact-line" type="text"></div>
+      <div class="fact-field" data-label="Languages">
+        <span class="fact-label">Languages you speak</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Dutch</label><label class="fact-check"><input type="checkbox"> English</label><label class="fact-check"><input type="checkbox"> Spanish</label><label class="fact-check"><input type="checkbox"> Papiamentu</label><label class="fact-check"><input type="checkbox"> German</label><label class="fact-check"><input type="checkbox"> French</label></div>
+        <input class="fact-line fact-other" type="text" placeholder="Other language">
+      </div>
+      <div class="fact-field" data-label="Hosting experience">
+        <span class="fact-label">How long hosting</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Under 1 year</label><label class="fact-check"><input type="checkbox"> 1-3 years</label><label class="fact-check"><input type="checkbox"> 3-5 years</label><label class="fact-check"><input type="checkbox"> 5+ years</label></div>
+      </div>
+      <div class="fact-field" data-label="Background"><span class="fact-label">Your background (optional)</span><input class="fact-line" type="text" placeholder="e.g. From the Netherlands, moved here in 2019"></div>
+      <div class="fact-field" data-label="Direct booking contact"><span class="fact-label">Direct booking contact</span><input class="fact-line" type="text" placeholder="WhatsApp / email / website"></div>
     </div>
   </div>
 
   <div class="fact-block-full">
     <div class="fact-block-title">Key features</div>
-    <div class="fact-checks">
+    <div class="fact-checks" id="keyFeatures">
       <label class="fact-check"><input type="checkbox"> Private pool</label>
       <label class="fact-check"><input type="checkbox"> Shared pool</label>
-      <label class="fact-check"><input type="checkbox"> Ocean view</label>
-      <label class="fact-check"><input type="checkbox"> Beachfront</label>
-      <label class="fact-check"><input type="checkbox"> Walk to beach</label>
-      <label class="fact-check"><input type="checkbox"> Garden</label>
+      <label class="fact-check"><input type="checkbox"> Children's pool</label>
+      <label class="fact-check"><input type="checkbox"> Hot tub / jacuzzi</label>
       <label class="fact-check"><input type="checkbox"> Outdoor shower</label>
+      <label class="fact-check"><input type="checkbox"> Beachfront</label>
+      <label class="fact-check"><input type="checkbox"> Ocean view</label>
+      <label class="fact-check"><input type="checkbox"> Sea view from bedroom</label>
+      <label class="fact-check"><input type="checkbox"> Walk to beach</label>
+      <label class="fact-check"><input type="checkbox"> Walk to restaurants</label>
+      <label class="fact-check"><input type="checkbox"> Garden</label>
+      <label class="fact-check"><input type="checkbox"> Rooftop terrace</label>
       <label class="fact-check"><input type="checkbox"> BBQ</label>
+      <label class="fact-check"><input type="checkbox"> Outdoor dining area</label>
+      <label class="fact-check"><input type="checkbox"> Outdoor gym</label>
+      <label class="fact-check"><input type="checkbox"> Indoor gym</label>
       <label class="fact-check"><input type="checkbox"> AC all rooms</label>
       <label class="fact-check"><input type="checkbox"> AC bedrooms only</label>
+      <label class="fact-check"><input type="checkbox"> Fully equipped kitchen</label>
+      <label class="fact-check"><input type="checkbox"> Dishwasher</label>
+      <label class="fact-check"><input type="checkbox"> Washing machine</label>
       <label class="fact-check"><input type="checkbox"> Fast WiFi</label>
+      <label class="fact-check"><input type="checkbox"> Remote work setup</label>
       <label class="fact-check"><input type="checkbox"> Parking</label>
       <label class="fact-check"><input type="checkbox"> Pet-friendly</label>
-      <label class="fact-check"><input type="checkbox"> Remote work setup</label>
       <label class="fact-check"><input type="checkbox"> Suitable for families</label>
+      <label class="fact-check"><input type="checkbox"> Children's play area</label>
+      <label class="fact-check"><input type="checkbox"> Baby equipment available</label>
+      <label class="fact-check"><input type="checkbox"> EV charger</label>
     </div>
+    <div class="fact-field" data-label="Other features" style="margin-top:8px"><span class="fact-label">Other features not listed above</span><input class="fact-line" type="text" placeholder="e.g. game room, wine cellar, treehouse"></div>
   </div>
 
   <div class="fact-grid">
     <div class="fact-block">
       <div class="fact-block-title">Location</div>
-      <div class="fact-field"><span class="fact-label">Walk to beach</span><input class="fact-line" type="text" placeholder="e.g. 5 min on foot"></div>
-      <div class="fact-field"><span class="fact-label">Nearest supermarket</span><input class="fact-line" type="text" placeholder="e.g. MCD 3 min by car"></div>
-      <div class="fact-field"><span class="fact-label">Airport distance</span><input class="fact-line" type="text"></div>
-      <div class="fact-field"><span class="fact-label">Your personal hidden gem nearby</span><input class="fact-line" type="text" placeholder="The thing tourists don't know about"></div>
+      <div class="fact-field" data-label="Beach distance">
+        <span class="fact-label">Distance to beach</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> On foot &lt;5 min</label><label class="fact-check"><input type="checkbox"> On foot 5-15 min</label><label class="fact-check"><input type="checkbox"> By car &lt;10 min</label><label class="fact-check"><input type="checkbox"> By car 10-20 min</label><label class="fact-check"><input type="checkbox"> Not near a beach</label></div>
+      </div>
+      <div class="fact-field" data-label="Nearest supermarket"><span class="fact-label">Nearest supermarket</span><input class="fact-line" type="text" placeholder="e.g. Van den Tweel, 3 min by car"></div>
+      <div class="fact-field" data-label="Airport distance">
+        <span class="fact-label">Airport distance</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Under 10 min</label><label class="fact-check"><input type="checkbox"> 10-20 min</label><label class="fact-check"><input type="checkbox"> 20-30 min</label><label class="fact-check"><input type="checkbox"> Over 30 min</label></div>
+      </div>
+      <div class="fact-field" data-label="Hidden gem nearby"><span class="fact-label">Your personal hidden gem nearby</span><input class="fact-line" type="text" placeholder="The thing tourists don't know about"></div>
     </div>
     <div class="fact-block">
       <div class="fact-block-title">Guest profile</div>
-      <div class="fact-field"><span class="fact-label">Typical guest</span><input class="fact-line" type="text" placeholder="e.g. Dutch couples, American families"></div>
-      <div class="fact-field"><span class="fact-label">What guests always mention in reviews</span><input class="fact-line" type="text"></div>
-      <div class="fact-field"><span class="fact-label">Top 3 things that make your property unique</span>
-        <input class="fact-line" type="text" placeholder="1.">
-        <input class="fact-line" type="text" placeholder="2." style="margin-top:4px">
-        <input class="fact-line" type="text" placeholder="3." style="margin-top:4px">
+      <div class="fact-field" data-label="Typical guest">
+        <span class="fact-label">Typical guest</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Dutch couples</label><label class="fact-check"><input type="checkbox"> Dutch families</label><label class="fact-check"><input type="checkbox"> American guests</label><label class="fact-check"><input type="checkbox"> Canadian guests</label><label class="fact-check"><input type="checkbox"> International mix</label><label class="fact-check"><input type="checkbox"> Divers</label><label class="fact-check"><input type="checkbox"> Digital nomads</label><label class="fact-check"><input type="checkbox"> Honeymooners</label><label class="fact-check"><input type="checkbox"> Groups of friends</label><label class="fact-check"><input type="checkbox"> Multi-gen families</label></div>
+        <input class="fact-line fact-other" type="text" placeholder="Other">
+      </div>
+      <div class="fact-field" data-label="What guests mention in reviews">
+        <span class="fact-label">What guests always mention</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Cleanliness</label><label class="fact-check"><input type="checkbox"> Location</label><label class="fact-check"><input type="checkbox"> Pool</label><label class="fact-check"><input type="checkbox"> Fully equipped</label><label class="fact-check"><input type="checkbox"> Beautiful interior</label><label class="fact-check"><input type="checkbox"> Host communication</label><label class="fact-check"><input type="checkbox"> Outdoor space</label><label class="fact-check"><input type="checkbox"> Value for money</label><label class="fact-check"><input type="checkbox"> Quiet &amp; private</label></div>
+        <input class="fact-line fact-other" type="text" placeholder="Other">
+      </div>
+      <div class="fact-field" data-label="What makes your property unique">
+        <span class="fact-label">Top things that make your property unique</span>
+        <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Hot tub</label><label class="fact-check"><input type="checkbox"> Indoor gym</label><label class="fact-check"><input type="checkbox"> Outdoor gym</label><label class="fact-check"><input type="checkbox"> Rooftop</label><label class="fact-check"><input type="checkbox"> Sea view from bedroom</label><label class="fact-check"><input type="checkbox"> Direct beach access</label><label class="fact-check"><input type="checkbox"> Walk to restaurants</label><label class="fact-check"><input type="checkbox"> Outdoor kitchen</label><label class="fact-check"><input type="checkbox"> Game room</label><label class="fact-check"><input type="checkbox"> Children's pool</label></div>
+        <input class="fact-line fact-other" type="text" placeholder="Other unique feature 1">
+        <input class="fact-line fact-other" type="text" placeholder="Other unique feature 2" style="margin-top:4px">
+        <input class="fact-line fact-other" type="text" placeholder="Other unique feature 3" style="margin-top:4px">
       </div>
     </div>
+  </div>
+
+  <button class="copy-facts-btn" id="copyFactsBtn" onclick="copyFactSheet()">Copy my property facts for ChatGPT or Claude</button>
+  <div class="facts-next-steps">
+    <div class="facts-step"><span class="facts-step-num">1</span> Click the button above to copy your property facts</div>
+    <div class="facts-step"><span class="facts-step-num">2</span> Go to <strong>chatgpt.com</strong> or <strong>claude.ai</strong> and start a new conversation</div>
+    <div class="facts-step"><span class="facts-step-num">3</span> Paste your facts as the very first message and press enter</div>
+    <div class="facts-step"><span class="facts-step-num">4</span> Use any prompt from this kit in that same conversation. Click "Copy prompt" on any card - it copies only the prompt text, not the grey expert notes. The pink [PLACEHOLDERS] are filled in automatically from your facts. No manual editing needed.</div>
   </div>
 </div>
 
@@ -270,6 +363,11 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
     <p>After getting a result you like, type: "Now give me 2 more variations with a different opening line." This gives you options to A/B test without any extra work. The best vacation rental hosts on Airbnb do this constantly.</p>
   </div>
 
+  <div class="how-tip">
+    <strong>The power user workflow</strong>
+    <p>Open one ChatGPT or Claude conversation. Paste your completed Fact Sheet as your very first message and say: "This is my property. I'll be using it as context for everything I ask next." Then use all 50 prompts in that same conversation - no placeholders to fill in, no details to retype. The AI already knows everything. This cuts your time per prompt from 5 minutes to 90 seconds.</p>
+  </div>
+
   <div class="toc-grid">
     <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Listing Descriptions</div><div class="toc-sub">Airbnb, VRBO, Micazu + title optimizer</div></div>
     <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Review Responses</div><div class="toc-sub">5-star, negative, Dutch, Papiamentu</div></div>
@@ -288,16 +386,20 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <h2 class="cat-title">Listing<br>Descriptions</h2>
   <p class="cat-desc">Your listing is your sales page. Guests on Airbnb, VRBO and Micazu decide within seconds whether to read further or scroll past. These prompts are built around how guests actually make booking decisions, not how hosts think they do.</p>
   <div class="cat-list">
+    <div class="cat-platform">Airbnb</div>
     <div class="cat-item"><div class="cat-dot"></div><span>01 - Airbnb Listing Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>02 - Listing Title Optimizer (all platforms)</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>02 - Seasonal Listing Update</span></div>
+    <div class="cat-platform">VRBO</div>
     <div class="cat-item"><div class="cat-dot"></div><span>03 - VRBO Description</span></div>
+    <div class="cat-platform">Micazu</div>
     <div class="cat-item"><div class="cat-dot"></div><span>04 - Micazu beschrijving (Nederlands)</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>05 - Short Teaser Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>06 - Rewrite Existing Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>07 - Unique Selling Points</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>08 - Pool and Outdoor Space</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>09 - Location Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>10 - Seasonal Listing Update</span></div>
+    <div class="cat-platform">All Platforms</div>
+    <div class="cat-item"><div class="cat-dot"></div><span>05 - Listing Title Optimizer</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>06 - Short Teaser Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>07 - Rewrite Existing Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>08 - Unique Selling Points</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>09 - Pool and Outdoor Space</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>10 - Location Description</span></div>
   </div>
 </div>
 
@@ -305,40 +407,118 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 <div class="page prompts-page">
   <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">01-03</span></div>
 
-  <div class="prompt-card">
+  <div class="prompt-platform">Airbnb</div>
+
+  <div class="prompt-card" data-multi-output="true">
     <div class="prompt-header"><div class="prompt-badge">01</div><div class="prompt-title">Airbnb Listing Description</div></div>
-    <div class="prompt-note">Airbnb shows your first 140 characters in search previews before a guest clicks through. This prompt leads with a scene, not a checklist, because guests book feelings, not features. The structure follows direct-response copywriting: hook, desire, proof, close.</div>
-    <div class="prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write a compelling Airbnb listing description for my property. Use vivid, sensory language that puts the reader on the island. Avoid every cliché in vacation rental copy: no "paradise," "gem," "home away from home," or "stunning."
+    <div class="prompt-note">Airbnb has an automatic translation feature - but it's generic and you have zero control over the result. Turn it off. Instead, go to your listing settings and manually add your own text per language. Dutch guests then see your Dutch version. American and Canadian guests see your English version. Both run on the same listing at the same time. This is what these outputs are for: copy each one separately and paste it into the right language field yourself. The "Your Space" / "Je accommodatie" field works the same way - Outputs 3 and 4 give you both languages for that field too. Most hosts never do this. That's why their listings read like a machine wrote them.</div>
 
-Property details:
-- Name: <span class="ph">[PROPERTY NAME]</span>
-- Location: <span class="ph">[NEIGHBORHOOD + ISLAND]</span>
-- Type: <span class="ph">[villa/apartment/guesthouse/studio]</span>
-- Bedrooms: <span class="ph">[#]</span> / Bathrooms: <span class="ph">[#]</span> / Max guests: <span class="ph">[#]</span>
-- Key features: <span class="ph">[LIST 4-6: e.g. private pool, 5-min walk to beach, ocean view from terrace]</span>
-- What makes this property genuinely different: <span class="ph">[BE SPECIFIC]</span>
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 1 - Dutch market (in Dutch) → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write an Airbnb listing description for my property for the Dutch market. Max 400 words. Write in Dutch (Nederlands). No clichés: no "paradijs," "parel," "home away from home," or "adembenemend."
 
-Structure:
-1. Opening hook: 2 sentences that put the reader in the property right now. No questions.
-2. The experience: what does a typical day feel like here?
-3. The space: 3-4 specific highlights only. Not a room-by-room tour.
-4. The location: what makes this exact spot on <span class="ph">[ISLAND]</span> worth choosing?
-5. Close: one line that creates desire without urgency or pressure.
+Nederlandse lezers prikken direct door overdreven marketing heen. Open niet met generieke eilandsfeer. Begin met wat specifiek en oprecht is aan mijn woning. Benadruk waarde, authenticiteit en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen "je zult verliefd worden." Schrijf voor iemand die vandaag al twintig listings heeft bekeken en meteen doorheeft wanneer iets klinkt als een template.</div>
+    </div>
 
-Under 500 words. Warm, confident, specific.</div>
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 2 - American market (in English) → upload as English (US) translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write an Airbnb listing description for my property for the American market. Max 500 words. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
+
+American readers respond to aspirational, experience-driven copy. Open with a scene that makes them feel the island. Build desire for the experience. Make a case for why this island over other Caribbean options - position it as the smarter, less crowded, more authentic alternative. Frame the property as the obvious choice for their trip. Use second person ("you'll wake up to..."). Aspirational but specific - vague luxury language loses them.</div>
+    </div>
+
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 3 - Canadian market (in English) → upload as English (Canada) translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write an Airbnb listing description for my property for the Canadian market. Max 500 words. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
+
+Canadian guests are escaping real winters. Canada's major cities - Toronto, Montreal, Calgary, Vancouver - experience months of cold, snow and grey skies. Lead with the contrast: what it actually feels like to step off a plane here when it's -20°C back home. Frame the island and this property as the antidote to a Canadian winter. This is the most concrete and emotionally resonant booking trigger for this market. Close with a direct call to action that makes booking feel like the obvious decision before winter hits.</div>
+    </div>
+
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 4 - Your Space in English → upload as English translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">Write the "Your Space" section for my Airbnb listing. This is a separate field specifically about the physical property. Max 300 words. Write in English.
+
+Describe each area briefly but vividly: living area, kitchen, bedrooms, bathrooms, outdoor space. Focus on what guests actually use and remember. Be specific about standout features. Warm and honest tone.</div>
+    </div>
+
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 5 - Je accommodatie in het Nederlands → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">Schrijf de "Je accommodatie" sectie voor mijn Airbnb listing. Dit is een apart veld specifiek over de fysieke woning. Max 300 woorden. Schrijf in het Nederlands.
+
+Beschrijf elke ruimte kort maar levendig: woonkamer, keuken, slaapkamers, badkamers, buitenruimte. Focus op wat gasten daadwerkelijk gebruiken en onthouden. Wees specifiek over opvallende kenmerken. Warme en eerlijke toon.</div>
+    </div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">02</div><div class="prompt-title">Listing Title Optimizer</div></div>
-    <div class="prompt-note">Your listing title is searchable on Airbnb and VRBO. Airbnb gives you 50 characters; VRBO gives you 80. Most hosts waste this space on the property name. Guests filter by keywords like "pool," "ocean view" and "beachfront." This prompt fills that space correctly.</div>
-    <div class="prompt-body">You are a vacation rental SEO and conversion specialist. Write optimized listing titles for my property on the ABC islands for multiple platforms.
+    <div class="prompt-header"><div class="prompt-badge">02</div><div class="prompt-title">Seasonal Listing Update</div></div>
+    <div class="prompt-note">Seasonal listing updates signal to Airbnb's algorithm that your listing is actively managed, which can lift your search ranking during competitive periods. Post them 3-4 weeks before the season starts to capture early bookers before the market fills up.</div>
+    <div class="prompt-body">Write a short listing update notice (max 100 words) to add to the top of my vacation rental description for <span class="ph">[SEASON/PERIOD]</span>. Make it feel exciting, not administrative.
 
-Property details:
-- Name: <span class="ph">[PROPERTY NAME]</span>
-- Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-- Top 3 searchable features: <span class="ph">[e.g. private pool, ocean view, walk to beach]</span>
-- Type: <span class="ph">[villa/apartment/studio/guesthouse]</span>
-- Max guests: <span class="ph">[#]</span>
+Details:
+- Period: <span class="ph">[e.g. Carnival season Curacao / dive season Bonaire / high season Aruba / December-January / Easter week]</span>
+- What makes this time of year special on <span class="ph">[ISLAND]</span>: <span class="ph">[BE SPECIFIC: events, weather, what guests can experience]</span>
+- Availability status: <span class="ph">[A FEW DATES LEFT / FILLING UP / FULLY BOOKED EXCEPT FOR X DATES]</span>
+
+Write for a guest who is still deciding whether to book this particular period. Make the season itself feel like something worth planning around. No "don't miss out" or "act fast." Urgency through specificity, not pressure.</div>
+  </div>
+
+  <div class="prompt-platform">VRBO</div>
+
+  <div class="prompt-card" data-multi-output="true">
+    <div class="prompt-header"><div class="prompt-badge">03</div><div class="prompt-title">VRBO Description</div></div>
+    <div class="prompt-note">VRBO allows up to 10,000 characters - far more room than Airbnb. Use it to be thorough, not to pad. Unlike Airbnb, VRBO does not support separate descriptions per language - your listing shows the same text to everyone. Choose the version that matches your primary audience: Output 1 (Dutch) if most of your guests are European, Output 2 (English) if you primarily target American or Canadian guests.</div>
+
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 1 - Dutch / European market (in Dutch)</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the Dutch and European market. Target 600-800 words. Write in Dutch (Nederlands). No clichés: no "paradijs," "parel," "adembenemend" or "home away from home."
+
+Nederlandse lezers vergelijken listings zorgvuldig en prikken meteen door een template heen. Begin met wat specifiek en oprecht is aan deze woning. Benadruk waarde, praktische kwaliteiten en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen inspirerende opening. Schrijf voor iemand die vandaag al twintig listings heeft bekeken en een reden zoekt om deze te vertrouwen. VRBO staat maximaal 10.000 tekens toe - gebruik die ruimte om grondig te zijn en elke vraag te beantwoorden, niet om de tekst op te vullen.</div>
+    </div>
+
+    <div class="output-section">
+      <div class="output-header"><span class="output-label">Output 2 - North American market (in English)</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-body prompt-body">You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the North American market. Target 600-800 words. Write in English. No clichés: no "paradise," "gem," "stunning" or "home away from home."
+
+North American readers respond to aspirational, experience-driven copy. Open with a scene-setting sentence (morning coffee by the pool, sunset on the terrace). Use second person throughout: "you'll wake up to..." Include one paragraph on why this island is worth choosing over other Caribbean options. Close with what makes this specific home worth booking over every other option they've seen today. Aspirational but specific - vague luxury language loses them. VRBO allows up to 10,000 characters - use the space to build a complete picture, not just list features.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 6: PROMPTS 04-06 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">04-06</span></div>
+
+  <div class="prompt-platform">Micazu</div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">04</div><div class="prompt-title">Micazu beschrijving</div></div>
+    <div class="prompt-note">Micazu staat maximaal 5000 tekens toe voor de beschrijving. Dat is ruimer dan Airbnb maar gebruik die ruimte niet om meer te zeggen, gebruik hem om beter te zeggen. Nederlandse gasten waarderen eerlijkheid en warmte boven perfecte marketing. Ze willen weten of het er gezellig is, of de woning klopt en of jij als host te vertrouwen bent.</div>
+    <div class="prompt-body">Jij bent een copywriter die gespecialiseerd is in de Nederlandse vakantieverhuurmarkt. Je hebt alle basisgegevens van mijn woning al. Schrijf nu een Micazu-beschrijving.
+
+Nog één aanvullende vraag voordat je begint: Wat maakt deze woning anders dan alle andere opties op dit eiland?
+<span class="ph">[WEES SPECIFIEK: het ene element waarmee jij je onderscheidt van andere verhuurders op het eiland]</span>
+
+Schrijf in het Nederlands. Toon: warm, eerlijk en persoonlijk, met een vleugje avontuur. Klinkt als een host die je kennis laat maken met het eiland, niet als een verhuurbureau.
+
+Structuur:
+1. Opening die de sfeer van de woning neerzet (geen vragen, geen superlatieven)
+2. De woning zelf (specifieke hoogtepunten, geen kamer-voor-kamer-rondleiding)
+3. De buitenruimte (als die er is)
+4. De locatie en wat er op loopafstand is
+5. Korte afsluiting die uitnodigt zonder te pushen
+
+Vermeld eilandspecifieke elementen die voor Nederlanders relevant zijn, zoals het weer, Nederlandstalige omgeving, nabijheid van populaire stranden of activiteiten. Alleen wat daadwerkelijk van toepassing is op deze woning. Micazu staat max 5000 tekens toe. Gebruik die ruimte goed maar vul ze niet op: een scherpe tekst van 3000 tekens converteert beter dan een opgeblazen tekst van 5000.</div>
+  </div>
+
+  <div class="prompt-platform">All Platforms</div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">05</div><div class="prompt-title">Listing Title Optimizer</div></div>
+    <div class="prompt-note">Your listing title is searchable on Airbnb and VRBO. Airbnb gives you 50 characters; VRBO gives you 80. Most hosts waste this space on the property name. Guests filter by keywords like "pool," "ocean view" and "beachfront." This prompt fills that space correctly.</div>
+    <div class="prompt-body">You are a vacation rental SEO and conversion specialist. Write optimized listing titles for my property on the ABC islands for multiple platforms. You already have my property details.
+
+One question: what are my top 3 most searchable features?
+<span class="ph">[e.g. private pool, ocean view, walk to beach - the things guests actually search for]</span>
 
 Write optimized titles for:
 
@@ -352,64 +532,14 @@ Give 2 variations per platform. Explain in one sentence which keyword you priori
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">03</div><div class="prompt-title">VRBO Description</div></div>
-    <div class="prompt-note">VRBO guests skew American (35-55, families or couples), book further in advance, and compare more listings before deciding. They want specific, reassuring information - not just inspiration. This prompt balances aspiration with the detail American travelers need to feel confident clicking "Book."</div>
-    <div class="prompt-body">You are a vacation home copywriter who understands the North American travel market. Write a VRBO listing description for my property on <span class="ph">[ISLAND]</span>.
-
-Property details:
-- Name: <span class="ph">[PROPERTY NAME]</span>
-- Type: <span class="ph">[PROPERTY TYPE]</span>
-- Sleeps: <span class="ph">[#]</span> / Bedrooms/bathrooms: <span class="ph">[#/#]</span>
-- Standout features: <span class="ph">[LIST 4-5]</span>
-- What to do nearby: <span class="ph">[3-4 ACTIVITIES OR ATTRACTIONS]</span>
-- Price positioning: <span class="ph">[budget / mid-range / luxury]</span>
-
-Open with a scene-setting sentence (morning coffee by the pool, sunset on the terrace). Use second person throughout: "you'll wake up to..." Give one paragraph specifically on why <span class="ph">[ISLAND]</span> is the right choice for their trip. Close with what makes this specific home worth booking over every other option they've seen today.
-
-Max 450 words. Confident, specific, no clichés.</div>
-  </div>
-</div>
-
-<!-- PAGE 6: PROMPTS 04-06 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">04-06</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">04</div><div class="prompt-title">Micazu beschrijving</div></div>
-    <div class="prompt-note">Micazu-gasten zijn Nederlanders. Ze kennen het eiland vaak al van eerdere bezoeken of familieverhalen. Ze willen geen glanzende reclamefolder. Ze willen weten of het er gezellig is, of de woning klopt en of jij als host te vertrouwen bent. Eerlijkheid en warmte winnen het hier van perfecte marketing.</div>
-    <div class="prompt-body">Jij bent een copywriter die gespecialiseerd is in de Nederlandse vakantieverhuurmarkt. Schrijf een Micazu-beschrijving voor mijn vakantiewoning op <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>.
-
-Gegevens van de woning:
-- Naam: <span class="ph">[NAAM VAN DE WONING]</span>
-- Locatie: <span class="ph">[BUURT/GEBIED]</span>
-- Type: <span class="ph">[VILLA/APPARTEMENT/GUESTHOUSE/STUDIO]</span>
-- Personen: <span class="ph">[AANTAL]</span>
-- Slaapkamers: <span class="ph">[#]</span> / Badkamers: <span class="ph">[#]</span>
-- Bijzonderheden: <span class="ph">[NOEM DE 4-6 BELANGRIJKSTE KENMERKEN]</span>
-- Wat maakt deze woning anders dan alle andere opties op <span class="ph">[EILAND]</span>: <span class="ph">[WEES SPECIFIEK]</span>
-
-Schrijf in het Nederlands. Toon: warm, eerlijk en persoonlijk, met een vleugje avontuur. Klinkt als een host die je kennis laat maken met het eiland, niet als een verhuurbureau.
-
-Structuur:
-1. Opening die de sfeer van de woning neerzet (geen vragen, geen superlatieven)
-2. De woning zelf (specifieke hoogtepunten, geen kamer-voor-kamer-rondleiding)
-3. De buitenruimte (als die er is)
-4. De locatie en wat er op loopafstand is
-5. Korte afsluiting die uitnodigt zonder te pushen
-
-Vermeld eilandspecifieke elementen die voor Nederlanders relevant zijn, zoals het weer, Nederlandstalige omgeving, nabijheid van populaire stranden of activiteiten. Alleen wat daadwerkelijk van toepassing is op deze woning. Max 350 woorden.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">05</div><div class="prompt-title">Short Teaser Description</div></div>
+    <div class="prompt-header"><div class="prompt-badge">06</div><div class="prompt-title">Short Teaser Description</div></div>
     <div class="prompt-note">Short descriptions appear in link previews, social media bios, email signatures and Google results. Most hosts paste their full listing description here and wonder why it doesn't convert. Two sharp sentences beat four paragraphs every time.</div>
-    <div class="prompt-body">Write 3 versions of a 2-sentence teaser description for my vacation rental on <span class="ph">[ISLAND]</span>. Each version takes a completely different angle. Sensory language only. No clichés. No questions. No exclamation marks. No "paradise."
+    <div class="prompt-body">Write 3 versions of a 2-sentence teaser description for my vacation rental. You already have my property details. Each version takes a completely different angle. Sensory language only. No clichés. No questions. No exclamation marks. No "paradise."
 
-Property: <span class="ph">[NAME]</span>
+To help you nail the tone, tell me:
 Strongest feature: <span class="ph">[e.g. private infinity pool facing west for sunsets]</span>
 Second feature: <span class="ph">[e.g. 4-minute walk to Klein Knip beach]</span>
 Vibe: <span class="ph">[e.g. relaxed and private / family-friendly / romantic / digital nomad]</span>
-Typical guest: <span class="ph">[DESCRIBE WHO STAYS HERE]</span>
 
 Version A: lead with the feeling of arriving here for the first time
 Version B: lead with the location and what surrounds the property
@@ -417,9 +547,14 @@ Version C: lead with the specific feature that no other rental nearby can match
 
 After the 3 versions, tell me in one sentence which one you'd recommend for an Airbnb link preview and why.</div>
   </div>
+</div>
+
+<!-- PAGE 7: PROMPTS 07-10 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">07-10</span></div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">06</div><div class="prompt-title">Rewrite Existing Description</div></div>
+    <div class="prompt-header"><div class="prompt-badge">07</div><div class="prompt-title">Rewrite Existing Description</div></div>
     <div class="prompt-note">A listing description written 18 months ago is probably costing you bookings. Writing styles shift, platforms change how they display text, and your own understanding of your guests deepens over time. This rewrite prompt removes everything that could describe any property anywhere.</div>
     <div class="prompt-body">You are a senior hospitality copywriter. Rewrite my vacation rental listing description. Remove every cliché, vague adjective and generic statement that could describe any property anywhere in the world. Every sentence must be specific to this property on <span class="ph">[ISLAND]</span>.
 
@@ -439,24 +574,16 @@ Rules for the rewrite:
 
 After the rewrite, list the 3 specific changes you made and why each one improves conversion.</div>
   </div>
-</div>
-
-<!-- PAGE 7: PROMPTS 07-10 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">07-10</span></div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">07</div><div class="prompt-title">Unique Selling Points</div></div>
+    <div class="prompt-header"><div class="prompt-badge">08</div><div class="prompt-title">Unique Selling Points</div></div>
     <div class="prompt-note">Most vacation rental listings describe the same things in the same order. Pool, beach distance, kitchen, WiFi. This prompt finds what is genuinely different about your property and turns it into language that sticks.</div>
-    <div class="prompt-body">I need help identifying and writing the unique selling points of my vacation rental on <span class="ph">[ISLAND]</span>. Be brutally honest: if it isn't actually unique, cut it.
+    <div class="prompt-body">I need help identifying and writing the unique selling points of my vacation rental. You already have my property details. Be brutally honest: if it isn't actually unique, cut it.
 
-Property details:
-- Location: <span class="ph">[NEIGHBORHOOD, distance to beach/restaurants/town]</span>
-- Type: <span class="ph">[VILLA/APARTMENT/STUDIO/GUESTHOUSE]</span>
-- Features most guests mention in reviews: <span class="ph">[WHAT DO THEY ALWAYS COMMENT ON?]</span>
-- Something about this property that surprises guests when they arrive: <span class="ph">[THE THING PHOTOS DON'T CAPTURE]</span>
-- Price compared to similar properties on <span class="ph">[ISLAND]</span>: <span class="ph">[CHEAPER / SIMILAR / MORE EXPENSIVE]</span>
-- What type of guest is this property not right for: <span class="ph">[BE HONEST]</span>
+Three things I want you to factor in that aren't in my property info:
+- Something that surprises guests when they arrive: <span class="ph">[THE THING PHOTOS DON'T CAPTURE]</span>
+- Price compared to similar properties here: <span class="ph">[CHEAPER / SIMILAR / MORE EXPENSIVE]</span>
+- Who this property is NOT right for: <span class="ph">[BE HONEST]</span>
 
 Deliver:
 1. Five bullet points, max 15 words each. Each one must survive this test: "Could another rental on this island say the exact same thing?" If yes, rewrite it.
@@ -465,7 +592,7 @@ Deliver:
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">08</div><div class="prompt-title">Pool and Outdoor Space</div></div>
+    <div class="prompt-header"><div class="prompt-badge">09</div><div class="prompt-title">Pool and Outdoor Space</div></div>
     <div class="prompt-note">On tropical islands, outdoor spaces sell rentals more than any interior feature. Yet most descriptions spend half their words on the living room. If your property has a private pool or terrace, this paragraph should appear early in your listing, not at the end.</div>
     <div class="prompt-body">Write a vivid, sensory paragraph (100-150 words) describing the outdoor space of my vacation rental on <span class="ph">[ISLAND]</span>. Make the reader feel like they're already there. No clichés. Specific details only.
 
@@ -480,7 +607,7 @@ Write in second person ("you"). Open with the exact moment the reader steps outs
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">09</div><div class="prompt-title">Location Description</div></div>
+    <div class="prompt-header"><div class="prompt-badge">10</div><div class="prompt-title">Location Description</div></div>
     <div class="prompt-note">Saying "5 minutes from the beach" is less persuasive than walking the reader through the neighborhood. Distance in minutes is data. A sense of place is desire. This prompt makes your location feel like a character, not a coordinate.</div>
     <div class="prompt-body">Write a location section for my vacation rental listing that makes <span class="ph">[NEIGHBORHOOD]</span> on <span class="ph">[ISLAND]</span> feel like a place worth choosing, not just a geographic fact.
 
@@ -492,19 +619,6 @@ Location details:
 - Who loves this location most: <span class="ph">[COUPLES / FAMILIES / DIVERS / REMOTE WORKERS / etc.]</span>
 
 Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood. Make it specific to <span class="ph">[ISLAND]</span>. Second: practical proximity with warmth. Never list distances like a real estate brochure. Describe what the walk or drive actually feels like.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">10</div><div class="prompt-title">Seasonal Listing Update</div></div>
-    <div class="prompt-note">Seasonal listing updates signal to Airbnb's algorithm that your listing is actively managed, which can lift your search ranking during competitive periods. Post them 3-4 weeks before the season starts to capture early bookers before the market fills up.</div>
-    <div class="prompt-body">Write a short listing update notice (max 100 words) to add to the top of my vacation rental description for <span class="ph">[SEASON/PERIOD]</span>. Make it feel exciting, not administrative.
-
-Details:
-- Period: <span class="ph">[e.g. Carnival season Curacao / dive season Bonaire / high season Aruba / December-January / Easter week]</span>
-- What makes this time of year special on <span class="ph">[ISLAND]</span>: <span class="ph">[BE SPECIFIC: events, weather, what guests can experience]</span>
-- Availability status: <span class="ph">[A FEW DATES LEFT / FILLING UP / FULLY BOOKED EXCEPT FOR X DATES]</span>
-
-Write for a guest who is still deciding whether to book this particular period. Make the season itself feel like something worth planning around. No "don't miss out" or "act fast." Urgency through specificity, not pressure.</div>
   </div>
 </div>
 
@@ -673,10 +787,10 @@ Tone: honest, accountable and solution-focused. Do not hedge or over-explain. Fu
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">19</div><div class="prompt-title">Asking a Guest to Update Their Review</div></div>
-    <div class="prompt-note">The window to ask for a review update is 48-72 hours after resolving the issue. Long enough to feel genuine, short enough that the stay is still vivid. Frame it as optional and earned, never as an expectation.</div>
+    <div class="prompt-note">The window to ask for a review update is 48-72 hours after resolving the issue. Long enough to feel genuine, short enough that the stay is still vivid. Frame it as optional and earned, never as an expectation. <strong>Important: do not use this on Airbnb.</strong> Airbnb explicitly prohibits asking guests to change or remove a review - it can result in an account warning or suspension, regardless of how friendly the message is. This prompt is for Booking.com, VRBO and direct bookings only.</div>
     <div class="prompt-body">A guest left a review after an issue arose, but we resolved it well and they seemed happy with how I handled it. Write a short, non-pushy private message asking if they'd consider updating their review.
 
-Platform: <span class="ph">[AIRBNB / BOOKING.COM / VRBO]</span>
+Platform: <span class="ph">[BOOKING.COM / VRBO / DIRECT BOOKING]</span>
 What the issue was and how you resolved it: <span class="ph">[DESCRIBE BOTH CLEARLY]</span>
 How the guest reacted when the issue was resolved: <span class="ph">[DID THEY THANK YOU? SEEM SATISFIED? SAY ANYTHING?]</span>
 My name: <span class="ph">[YOUR NAME]</span>
@@ -711,7 +825,7 @@ Version C: Caption-ready version. The quote formatted for an Instagram post, wit
   <div class="cat-bg-num">03</div>
   <div class="cat-eyebrow">Category 03</div>
   <h2 class="cat-title">Social Media<br>Captions</h2>
-  <p class="cat-desc">Instagram and TikTok are where your next guests discover you before they even know they're looking for a rental. The caption is the conversion tool. Most hosts write their captions like diary entries. These prompts write them like ads that don't feel like ads.</p>
+  <p class="cat-desc">Instagram and TikTok are where your next guests discover you before they even know they're looking for a rental. The caption is the conversion tool. Most hosts write their captions like diary entries. These prompts write them like ads that don't feel like ads.<br><br>Language note: write in Dutch if most of your followers and guests are Dutch. Write in English for international reach. You can add "Write in Dutch" or "Write in English" to any prompt to control this.</p>
   <div class="cat-list">
     <div class="cat-item"><div class="cat-dot"></div><span>21 - Instagram Property Photo Caption</span></div>
     <div class="cat-item"><div class="cat-dot"></div><span>22 - Sunset or View Photo Caption</span></div>
@@ -929,6 +1043,7 @@ Each post: 3-4 lines, line breaks, one question or clear CTA, 4-6 hashtags.</div
 Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 Check-in: <span class="ph">[DATE]</span> / Check-out: <span class="ph">[DATE]</span> / Number of guests: <span class="ph">[#]</span>
 My name: <span class="ph">[YOUR NAME]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 
 Include:
 - An opening that feels like a person writing, not a platform confirming (do not start with "Your booking is confirmed")
@@ -947,6 +1062,7 @@ Include:
 
 Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
 Check-in date and time: <span class="ph">[DATE + TIME]</span> / My name: <span class="ph">[YOUR NAME]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 
 My personal local recommendations to include:
 - Best restaurant nearby (and what to order): <span class="ph">[YOUR ACTUAL RECOMMENDATION]</span>
@@ -963,6 +1079,7 @@ Format these as personal tips ("My favourite spot for a cold Polar is..." or "Mo
     <div class="prompt-body">Write a check-in instructions email. Clear, easy to read on a phone screen, with the most critical information impossible to miss.
 
 Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Address: <span class="ph">[FULL ADDRESS ON ARUBA/BONAIRE/CURACAO]</span>
 Navigation tip: <span class="ph">[LANDMARK, GOOGLE MAPS NOTE, OR ANYTHING THAT HELPS]</span>
 Check-in time: <span class="ph">[TIME]</span>
@@ -984,6 +1101,7 @@ Structure: warm personal intro (2 lines max), then numbered steps for entry only
 Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
 Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span> / Day of stay: <span class="ph">[e.g. day 3 of 7]</span>
 My name: <span class="ph">[YOUR NAME]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 
 Rules:
 - Under 80 words
@@ -1005,6 +1123,7 @@ Rules:
     <div class="prompt-body">Write a check-out reminder email to send the evening before a guest's departure.
 
 Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Check-out time: <span class="ph">[TIME]</span>
 Key instructions: <span class="ph">[e.g. leave key in lockbox / lock up and drop key through letterbox / leave on kitchen counter]</span>
 Anything to do before leaving: <span class="ph">[e.g. run the dishwasher / take out trash / close pool gate / turn off AC]</span>
@@ -1020,6 +1139,7 @@ Make this feel easy and kind, not like a compliance list. 100-130 words max. The
     <div class="prompt-body">Write a post-stay email to send within 24 hours of check-out. Express genuine gratitude and invite them to leave a review - without making the review the obvious reason for the email.
 
 Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Something specific about their stay: <span class="ph">[e.g. "it was their honeymoon" / "they mentioned the snorkeling at Klein Curacao" / "they had three young kids with them" / "they stayed for 2 weeks"]</span>
 Review platform: <span class="ph">[AIRBNB / BOOKING.COM / VRBO / GOOGLE]</span>
 Review link: <span class="ph">[PASTE LINK]</span>
@@ -1035,6 +1155,7 @@ The review request should feel like an afterthought to genuine warmth, not the o
 
 Inquiry received: <span class="ph">[PASTE THEIR MESSAGE]</span>
 Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
 Dates available? <span class="ph">[YES / NO / PARTIALLY - specify]</span>
 Rate for their dates: <span class="ph">[AMOUNT]</span>
 Minimum stay: <span class="ph">[NIGHTS]</span>
@@ -1055,6 +1176,7 @@ Tone: fast, helpful, personal. Under 200 words. No hollow filler sentences.</div
 Guest name: <span class="ph">[GUEST NAME]</span>
 Occasion: <span class="ph">[HONEYMOON / ANNIVERSARY / BIRTHDAY / BABYMOON / FAMILY REUNION / OTHER: specify]</span>
 Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 What you've arranged as a welcome surprise (if anything): <span class="ph">[e.g. flowers and champagne on arrival / decorated bedroom / special towel art / nothing yet but you can suggest something]</span>
 My name: <span class="ph">[YOUR NAME]</span>
 
@@ -1071,6 +1193,7 @@ Reference the occasion naturally from the first line. Build anticipation for wha
     <div class="prompt-note">A complaint handled well during a stay often results in a better review than if no complaint happened at all. Guests remember how problems made them feel, not the problem itself. Speed and sincerity matter more than the solution.</div>
     <div class="prompt-body">A guest has contacted me with a complaint during their stay. Write a response that is immediate, empathetic and solution-focused.
 
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Guest complaint: <span class="ph">[PASTE THEIR EXACT MESSAGE]</span>
 Issue type: <span class="ph">[MAINTENANCE / NOISE / CLEANLINESS / MISSING ITEM / WIFI / AC / OTHER]</span>
 Can you fix it today? <span class="ph">[YES, I'll arrange X / NO, because X / PARTIALLY, I can do X]</span>
@@ -1091,6 +1214,7 @@ Rules:
     <div class="prompt-note">A graceful decline is a chance to build a future booking. Guests who feel respected after a "no" are far more likely to come back when dates open up or their situation changes. The tone here matters more than the information.</div>
     <div class="prompt-body">Write a polite, warm response to a vacation rental inquiry that I need to decline.
 
+Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
 Reason for declining: <span class="ph">[DATES NOT AVAILABLE / MINIMUM STAY NOT MET / PROPERTY NOT SUITABLE FOR THEIR GROUP / OTHER: specify]</span>
 Their inquiry: <span class="ph">[PASTE THEIR MESSAGE]</span>
 Alternative I can offer (if any): <span class="ph">[DIFFERENT DATES / DIFFERENT PROPERTY SUGGESTION / NOTHING]</span>
@@ -1138,6 +1262,7 @@ Rules:
 Guest first name: <span class="ph">[NAME]</span> / Check-in time: <span class="ph">[TIME]</span>
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 My name: <span class="ph">[YOUR NAME]</span> / My WhatsApp number: <span class="ph">[NUMBER]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 One thing that's special about today at the property: <span class="ph">[e.g. the pool was just cleaned / there are fresh flowers in the bedroom / sunset is at 6:47pm from the terrace]</span>
 
 Max 5 lines. Warm arrival energy. Remind them of check-in time. Give them your number for questions. End with one sentence that makes them look forward to arriving.</div>
@@ -1148,6 +1273,7 @@ Max 5 lines. Warm arrival energy. Remind them of check-in time. Give them your n
     <div class="prompt-note">Guests read check-in instructions on their phone while in a taxi or walking from the airport. One piece of information per line. Short sentences. Nothing that requires them to scroll more than twice. The entry code must be impossible to miss.</div>
     <div class="prompt-body">Write a WhatsApp check-in message. Designed to be read on a phone screen in a moving vehicle.
 
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Property address: <span class="ph">[ADDRESS]</span>
 Navigation tip: <span class="ph">[LANDMARK OR "LOOK FOR X WHEN YOU TURN INTO THE STREET"]</span>
 Entry method: <span class="ph">[KEY BOX / SMART LOCK / I WILL MEET YOU]</span>
@@ -1166,6 +1292,7 @@ Format: one item per line. Line breaks between sections. The entry code gets its
 
 Guest first name: <span class="ph">[NAME]</span> / Day of stay: <span class="ph">[e.g. day 2 of 7]</span>
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Something they mentioned they were planning to do: <span class="ph">[e.g. diving, visiting a specific beach, a day trip - or leave blank]</span>
 My name: <span class="ph">[YOUR NAME]</span>
 
@@ -1178,6 +1305,7 @@ My name: <span class="ph">[YOUR NAME]</span>
     <div class="prompt-body">Write a WhatsApp message asking a guest to leave a review after their stay. Personal, specific, and short.
 
 Guest first name: <span class="ph">[NAME]</span>
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Something specific from their stay: <span class="ph">[e.g. "loved that you mentioned the snorkeling at Klein Curacao" / "it was so great having your whole family there" / "hope the Carnival was everything you hoped for"]</span>
 Platform: <span class="ph">[AIRBNB / BOOKING.COM / GOOGLE / VRBO]</span>
 Review link: <span class="ph">[PASTE LINK - shorten it at bit.ly first if it's long]</span>
@@ -1191,6 +1319,7 @@ Max 5 lines. The specific reference to their stay comes first. The review link c
     <div class="prompt-note">The best WhatsApp replies answer the question and the follow-up question the guest hasn't asked yet. Hosts who do this consistently get described as "amazing" in reviews even when nothing extraordinary happened. Anticipation is the highest form of hospitality.</div>
     <div class="prompt-body">Write a WhatsApp reply to a common guest question. Clear, helpful, and human - not a FAQ page copy-paste.
 
+Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
 Guest question: <span class="ph">[PASTE THEIR EXACT QUESTION]</span>
 The actual answer: <span class="ph">[WHAT IS THE REAL, COMPLETE ANSWER]</span>
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
@@ -1288,7 +1417,33 @@ Write 2 paragraphs, no bullet points. First: the feel and personality of the nei
   </div>
 </div>
 
-<!-- PAGE 23: BACK COVER -->
+<!-- PAGE 23: BONUS PROMPT -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">Bonus</span><span class="page-bar-range">Direct Booking</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge" style="background:var(--black);font-size:9px;width:auto;padding:0 8px;border-radius:7px;">BONUS</div><div class="prompt-title">Instagram / WhatsApp Direct Booking Reply</div></div>
+    <div class="prompt-note">A guest who DMs you on Instagram or WhatsApp is already warm. They found you, they like what they see, they reached out. The only thing that can lose this booking is a slow or lukewarm reply. Every direct booking saves you 15-20% in platform commission. Answer fast, be clear, and make the next step impossible to miss. This prompt is different from a platform inquiry response - the guest is informal, there's no booking system behind you, and you need to build trust and close in a single message.</div>
+    <div class="prompt-body">Write a WhatsApp or Instagram DM response to someone who messaged me directly asking about my vacation rental.
+Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Their message: <span class="ph">[PASTE THEIR EXACT MESSAGE]</span>
+Dates they mentioned (if any): <span class="ph">[DATES / or: they didn't specify]</span>
+My availability: <span class="ph">[AVAILABLE / NOT AVAILABLE / PARTIALLY - specify]</span>
+My rate for those dates: <span class="ph">[AMOUNT PER NIGHT]</span> / Minimum stay: <span class="ph">[NIGHTS]</span>
+One benefit of booking direct: <span class="ph">[e.g. better rate than Airbnb / more flexible cancellation / direct contact with me throughout]</span>
+My name: <span class="ph">[YOUR NAME]</span>
+
+Rules:
+- Match their tone: casual if they're casual, more formal if they are
+- Answer what they asked in the first sentence - do not make them read to the end to find out if you're available
+- If available: confirm dates, give the rate, tell them exactly what happens next (payment link / reply here / send a booking request via platform)
+- If not available: decline clearly, offer the next open window if you have one, keep the door open
+- Mention one reason to book direct as a benefit to them, not as a sales pitch
+- Max 120 words. No filler. Move toward the booking.</div>
+  </div>
+</div>
+
+<!-- PAGE 24: BACK COVER -->
 <div class="page back">
   <div class="back-b1"></div>
   <div class="back-b2"></div>
@@ -1302,12 +1457,50 @@ Write 2 paragraphs, no bullet points. First: the feel and personality of the nei
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  var pageNum = 0;
+  document.querySelectorAll('.page').forEach(function(page) {
+    if (page.classList.contains('cover') || page.classList.contains('back')) return;
+    pageNum++;
+    var num = document.createElement('div');
+    num.className = 'page-num';
+    num.textContent = pageNum;
+    page.appendChild(num);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.copy-output-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var section = btn.closest('.output-section');
+      var body = section.querySelector('.output-body');
+      var text = body.innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      }).catch(function () {
+        var range = document.createRange();
+        range.selectNode(body);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.prompt-header').forEach(function (header) {
+    var card = header.closest('.prompt-card');
+    if (card && card.dataset.multiOutput) return;
     var btn = document.createElement('button');
     btn.className = 'copy-btn';
     btn.textContent = 'Copy prompt';
     btn.addEventListener('click', function () {
-      var card = this.closest('.prompt-card');
       var body = card.querySelector('.prompt-body');
       var text = body.innerText;
       navigator.clipboard.writeText(text).then(function () {
@@ -1335,6 +1528,74 @@ document.addEventListener('DOMContentLoaded', function () {
     header.appendChild(btn);
   });
 });
+</script>
+
+<script>
+function copyFactSheet() {
+  var lines = [];
+  lines.push('Here is my vacation rental property information. Use this as context for everything I ask you next.\n');
+
+  // Key features (special case: fact-block-full with no data-label per field)
+  var keyFeatures = [];
+  var kf = document.getElementById('keyFeatures');
+  if (kf) {
+    kf.querySelectorAll('input[type="checkbox"]:checked').forEach(function(cb) {
+      keyFeatures.push(cb.parentElement.textContent.trim());
+    });
+  }
+  var otherFeatures = '';
+  var ofField = document.querySelector('[data-label="Other features"] input[type="text"]');
+  if (ofField && ofField.value.trim()) otherFeatures = ofField.value.trim();
+
+  // Loop through all fact-fields with data-label
+  document.querySelectorAll('.fact-page [data-label]').forEach(function(field) {
+    var label = field.getAttribute('data-label');
+    if (label === 'Other features') return; // handled separately
+
+    var parts = [];
+
+    // Checked checkboxes and radio buttons
+    field.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked').forEach(function(cb) {
+      parts.push(cb.parentElement.textContent.trim());
+    });
+
+    // Text inputs (including fact-other)
+    field.querySelectorAll('input[type="text"]').forEach(function(input) {
+      if (input.value.trim()) parts.push(input.value.trim());
+    });
+
+    if (parts.length) lines.push(label + ': ' + parts.join(', '));
+  });
+
+  // Add key features after property block
+  if (keyFeatures.length || otherFeatures) {
+    var kfLine = keyFeatures.join(', ');
+    if (otherFeatures) kfLine += (kfLine ? ', ' : '') + otherFeatures;
+    lines.splice(6, 0, 'Key features: ' + kfLine);
+  }
+
+  var text = lines.join('\n');
+  var btn = document.getElementById('copyFactsBtn');
+
+  function showCopied() {
+    btn.textContent = 'Copied! Now paste this into ChatGPT or Claude.';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy my property facts for ChatGPT or Claude';
+      btn.classList.remove('copied');
+    }, 3000);
+  }
+
+  navigator.clipboard.writeText(text).then(showCopied).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied();
+  });
+}
 </script>
 </body>
 </html>
