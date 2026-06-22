@@ -99,6 +99,8 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .prompt-card { background: var(--white); border-radius: 13px; padding: 16px 18px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.055); page-break-inside: avoid; }
 .prompt-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
 .prompt-badge { background: var(--pink); color: var(--white); font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 11px; width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; min-width: 26px; }
+.setup-badge { background: var(--black); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 11px; padding: 4px 14px; border-radius: 999px; border: 1.5px solid var(--pink); display: inline-flex; align-items: center; white-space: nowrap; }
+.setup-card { border-color: var(--pink); }
 .prompt-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: var(--black); }
 .copy-btn { margin-left: auto; background: transparent; border: 1px solid var(--pink); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 11px; padding: 3px 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
 .copy-btn:hover, .copy-btn.copied { background: var(--pink); color: var(--white); }
@@ -171,7 +173,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 <!-- PAGE 1: COVER -->
 <div class="page cover">
   <div class="cover-inner">
-    <div class="cover-eyebrow">50 copy-paste prompts for vacation rental owners</div>
+    <div class="cover-eyebrow">35 copy-paste prompts for vacation rental owners</div>
     <h1 class="cover-title">The Island Host<br>AI <em>Prompt Kit</em></h1>
     <p class="cover-sub">Stop writing what every other host writes. These prompts turn ChatGPT or Claude into a hospitality copywriter who actually knows Aruba, Bonaire and Curaçao.</p>
     <div class="cover-tags">
@@ -179,14 +181,14 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
       <span class="cover-tag">VRBO</span>
       <span class="cover-tag">Micazu</span>
       <span class="cover-tag">Instagram</span>
-      <span class="cover-tag">WhatsApp</span>
-      <span class="cover-tag">Guest emails</span>
+      <span class="cover-tag">More Bookings</span>
+      <span class="cover-tag">Host Profile</span>
     </div>
   </div>
   <div class="cover-visual">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="cover-n">50</div>
+    <div class="cover-n">35</div>
   </div>
   <div class="cover-foot">
     <div class="cover-brand">FUN<em>kiness!</em></div>
@@ -318,7 +320,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
     <div class="facts-step"><span class="facts-step-num">1</span> Click the button above to copy your property facts</div>
     <div class="facts-step"><span class="facts-step-num">2</span> Go to <strong>chatgpt.com</strong> or <strong>claude.ai</strong> and start a new conversation</div>
     <div class="facts-step"><span class="facts-step-num">3</span> Paste your facts as the very first message and press enter</div>
-    <div class="facts-step"><span class="facts-step-num">4</span> Use any prompt from this kit in that same conversation. Click "Copy prompt" on any card - it copies only the prompt text, not the grey expert notes. The pink [PLACEHOLDERS] are filled in automatically from your facts. No manual editing needed.</div>
+    <div class="facts-step"><span class="facts-step-num">4</span> Use any prompt from this kit in that same conversation. Click "Copy prompt" on any card. It copies only the prompt text, not the grey expert notes. Replace any pink [PLACEHOLDER] with your own details. The AI already has your property context from step 3, so most fields are fast to fill.</div>
   </div>
 </div>
 
@@ -365,84 +367,83 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 
   <div class="how-tip">
     <strong>The power user workflow</strong>
-    <p>Open one ChatGPT or Claude conversation. Paste your completed Fact Sheet as your very first message and say: "This is my property. I'll be using it as context for everything I ask next." Then use all 50 prompts in that same conversation - no placeholders to fill in, no details to retype. The AI already knows everything. This cuts your time per prompt from 5 minutes to 90 seconds.</p>
+    <p>Open one ChatGPT or Claude conversation. Paste your completed Fact Sheet as your very first message and say: "This is my property. I'll be using it as context for everything I ask next." Then use all 35 prompts in that same conversation. No placeholders to fill in, no details to retype. The AI already knows everything. This cuts your time per prompt from 5 minutes to 90 seconds.</p>
+  </div>
+
+  <div class="how-tip">
+    <strong>Island briefing: paste before your Fact Sheet</strong>
+    <p>Copy the paragraph for your island and paste it into your AI chat before your Fact Sheet. This gives the AI real context about where your property is, so the output sounds specific instead of generic.</p>
+    <p style="margin-bottom:6px"><span style="font-weight:600;color:rgba(255,255,255,0.9)">Curaçao:</span> Autonomous Caribbean island, approximately 65km north of the Venezuelan coast. Outside the hurricane belt. Year-round sun, avg. 29°C. Willemstad is a UNESCO World Heritage city. Dutch is widely spoken. Known for diving, snorkeling, coral reefs and a cosmopolitan local culture with Dutch, Spanish and Papiamentu influences.</p>
+    <p style="margin-bottom:6px"><span style="font-weight:600;color:rgba(255,255,255,0.9)">Aruba:</span> Approximately 27km north of Venezuela's Paraguaná peninsula. The driest island in the Caribbean, nearly zero hurricane risk, sun 365 days a year. Eagle Beach is consistently ranked among the world's best beaches. Constant trade winds keep temperatures comfortable. Primarily North American tourist market (strong US and Canadian visitor base).</p>
+    <p><span style="font-weight:600;color:rgba(255,255,255,0.9)">Bonaire:</span> Surrounded by a national marine park since 1979. Shore diving available 24/7 directly from most properties. No boat needed. No mass tourism. Flamingos visible in the wild near the salt flats. Core audience: divers, snorkelers and eco-conscious travelers.</p>
   </div>
 
   <div class="toc-grid">
-    <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Listing Descriptions</div><div class="toc-sub">Airbnb, VRBO, Micazu + title optimizer</div></div>
-    <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Review Responses</div><div class="toc-sub">5-star, negative, Dutch, Papiamentu</div></div>
+    <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Listing Descriptions</div><div class="toc-sub">Airbnb, VRBO, Micazu + universal tools</div></div>
     <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Social Media</div><div class="toc-sub">Instagram, Reels, TikTok, last-minute</div></div>
-    <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">Guest Emails</div><div class="toc-sub">Booking to check-out and beyond</div></div>
-    <div class="toc-item"><div class="toc-num">5</div><div class="toc-label">WhatsApp Messages</div><div class="toc-sub">Arrival, mid-stay, review request</div></div>
-    <div class="toc-item"><div class="toc-num">5</div><div class="toc-label">Host Content</div><div class="toc-sub">FAQ, house rules, bio, local tips</div></div>
+    <div class="toc-item"><div class="toc-num">10</div><div class="toc-label">More Bookings</div><div class="toc-sub">Algorithm, photos, reviews, Superhost</div></div>
+    
+    <div class="toc-item"><div class="toc-num">5</div><div class="toc-label">Host Profile</div><div class="toc-sub">FAQ, house rules, bio, local tips</div></div>
   </div>
 </div>
 
-<!-- PAGE 4: CAT 1 HEADER -->
+<!-- AIRBNB INTRO PAGE -->
 <div class="page cat-page">
   <div class="cat-blob"></div>
-  <div class="cat-bg-num">01</div>
-  <div class="cat-eyebrow">Category 01</div>
-  <h2 class="cat-title">Listing<br>Descriptions</h2>
-  <p class="cat-desc">Your listing is your sales page. Guests on Airbnb, VRBO and Micazu decide within seconds whether to read further or scroll past. These prompts are built around how guests actually make booking decisions, not how hosts think they do.</p>
+  <div class="cat-bg-num">AB</div>
+  <div class="cat-eyebrow">Platform 01</div>
+  <h2 class="cat-title">Airbnb</h2>
+  <p class="cat-desc">The largest vacation rental platform globally. On the ABC islands it drives the majority of international bookings. The first 140 characters of your description appear in search results before a guest clicks. Airbnb rewards active listings: fast response rate, regular updates and a completed profile all lift your ranking. Turn off auto-translation and set your own text per language to reach Dutch, American and Canadian guests in their own language.</p>
   <div class="cat-list">
-    <div class="cat-platform">Airbnb</div>
-    <div class="cat-item"><div class="cat-dot"></div><span>01 - Airbnb Listing Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>02 - Seasonal Listing Update</span></div>
-    <div class="cat-platform">VRBO</div>
-    <div class="cat-item"><div class="cat-dot"></div><span>03 - VRBO Description</span></div>
-    <div class="cat-platform">Micazu</div>
-    <div class="cat-item"><div class="cat-dot"></div><span>04 - Micazu beschrijving (Nederlands)</span></div>
-    <div class="cat-platform">All Platforms</div>
-    <div class="cat-item"><div class="cat-dot"></div><span>05 - Listing Title Optimizer</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>06 - Short Teaser Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>07 - Rewrite Existing Description</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>08 - Unique Selling Points</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>09 - Pool and Outdoor Space</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>10 - Location Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>01: Airbnb Listing Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>02: Seasonal Listing Update</span></div>
   </div>
 </div>
 
-<!-- PAGE 5: PROMPTS 01-03 -->
+<!-- AIRBNB PROMPTS: 01-02 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">01-03</span></div>
-
-  <div class="prompt-platform">Airbnb</div>
+  <div class="page-bar"><span class="page-bar-cat">Airbnb</span><span class="page-bar-range">01-02</span></div>
 
   <div class="prompt-card" data-multi-output="true">
     <div class="prompt-header"><div class="prompt-badge">01</div><div class="prompt-title">Airbnb Listing Description</div></div>
-    <div class="prompt-note">Airbnb has an automatic translation feature - but it's generic and you have zero control over the result. Turn it off. Instead, go to your listing settings and manually add your own text per language. Dutch guests then see your Dutch version. American and Canadian guests see your English version. Both run on the same listing at the same time. This is what these outputs are for: copy each one separately and paste it into the right language field yourself. The "Your Space" / "Je accommodatie" field works the same way - Outputs 3 and 4 give you both languages for that field too. Most hosts never do this. That's why their listings read like a machine wrote them.</div>
+    <div class="prompt-note">Airbnb has an automatic translation feature, but it's generic and you have zero control over the result. Turn it off. Instead: go to Airbnb > Listings > select your listing > Listing details > Description > Translated descriptions, click 'Add a translation', and paste each output into the right language field. Dutch guests then see your Dutch version. American and Canadian guests see your English version. Both run on the same listing at the same time. This is what these outputs are for: copy each one separately and paste it into the right language field yourself. The "Your Space" / "Je accommodatie" field works the same way. Outputs 3 and 4 give you both languages for that field too. Most hosts never do this. That's why their listings read like a machine wrote them.</div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 1 - Dutch market (in Dutch) → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 1: Dutch market (in Dutch) → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write an Airbnb listing description for my property for the Dutch market. Max 400 words. Write in Dutch (Nederlands). No clichés: no "paradijs," "parel," "home away from home," or "adembenemend."
 
-Nederlandse lezers prikken direct door overdreven marketing heen. Open niet met generieke eilandsfeer. Begin met wat specifiek en oprecht is aan mijn woning. Benadruk waarde, authenticiteit en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen "je zult verliefd worden." Schrijf voor iemand die vandaag al twintig listings heeft bekeken en meteen doorheeft wanneer iets klinkt als een template.</div>
+Nederlandse lezers prikken direct door overdreven marketing heen. Open niet met generieke eilandsfeer. Begin met wat specifiek en oprecht is aan mijn woning. Benadruk waarde, authenticiteit en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen "je zult verliefd worden." Schrijf voor iemand die vandaag al twintig listings heeft bekeken en meteen doorheeft wanneer iets klinkt als een template.
+
+Verwerk vanzelfsprekend als zoektermen in de tekst: de eilandnaam, het type woning en 1-2 topkenmerken (zoals privézwembad, zeezicht of strandzijde). Schrijf voor de gast eerst, het algoritme tweede.</div>
     </div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 2 - American market (in English) → upload as English (US) translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 2: American market (in English) → upload as English (US) translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write an Airbnb listing description for my property for the American market. Max 500 words. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
 
-American readers respond to aspirational, experience-driven copy. Open with a scene that makes them feel the island. Build desire for the experience. Make a case for why this island over other Caribbean options - position it as the smarter, less crowded, more authentic alternative. Frame the property as the obvious choice for their trip. Use second person ("you'll wake up to..."). Aspirational but specific - vague luxury language loses them.</div>
+American readers respond to aspirational, experience-driven copy. Open with a scene that makes them feel the island. Build desire for the experience. Make a case for why this island over other Caribbean options: position it as the smarter, less crowded, more authentic alternative. Frame the property as the obvious choice for their trip. Use second person ("you'll wake up to..."). Aspirational but specific. Vague luxury language loses them.
+
+Naturally include these as search terms: island name, property type, and 1-2 top amenities (e.g. private pool, ocean view, beachfront). Write for the guest first, the algorithm second.</div>
     </div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 3 - Canadian market (in English) → upload as English (Canada) translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 3: Canadian market (in English) → upload as English (Canada) translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">You are a top-tier hospitality copywriter specializing in Caribbean vacation rentals. Write an Airbnb listing description for my property for the Canadian market. Max 500 words. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
 
-Canadian guests are escaping real winters. Canada's major cities - Toronto, Montreal, Calgary, Vancouver - experience months of cold, snow and grey skies. Lead with the contrast: what it actually feels like to step off a plane here when it's -20°C back home. Frame the island and this property as the antidote to a Canadian winter. This is the most concrete and emotionally resonant booking trigger for this market. Close with a direct call to action that makes booking feel like the obvious decision before winter hits.</div>
+Canadian guests are escaping real winters. Canada's major cities (Toronto, Montreal, Calgary, Vancouver) experience months of cold, snow and grey skies. Lead with the contrast: what it actually feels like to step off a plane here when it's -20°C back home. Frame the island and this property as the antidote to a Canadian winter. This is the most concrete and emotionally resonant booking trigger for this market. Close with a direct call to action that makes booking feel like the obvious decision before winter hits.
+
+Naturally include these as search terms: island name, property type, and 1-2 top amenities (e.g. private pool, ocean view, beachfront). Write for the guest first, the algorithm second.</div>
     </div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 4 - Your Space in English → upload as English translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 4: Your Space in English → upload as English translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">Write the "Your Space" section for my Airbnb listing. This is a separate field specifically about the physical property. Max 300 words. Write in English.
 
 Describe each area briefly but vividly: living area, kitchen, bedrooms, bathrooms, outdoor space. Focus on what guests actually use and remember. Be specific about standout features. Warm and honest tone.</div>
     </div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 5 - Je accommodatie in het Nederlands → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 5: Je accommodatie in het Nederlands → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">Schrijf de "Je accommodatie" sectie voor mijn Airbnb listing. Dit is een apart veld specifiek over de fysieke woning. Max 300 woorden. Schrijf in het Nederlands.
 
 Beschrijf elke ruimte kort maar levendig: woonkamer, keuken, slaapkamers, badkamers, buitenruimte. Focus op wat gasten daadwerkelijk gebruiken en onthouden. Wees specifiek over opvallende kenmerken. Warme en eerlijke toon.</div>
@@ -461,34 +462,63 @@ Details:
 
 Write for a guest who is still deciding whether to book this particular period. Make the season itself feel like something worth planning around. No "don't miss out" or "act fast." Urgency through specificity, not pressure.</div>
   </div>
+</div>
 
-  <div class="prompt-platform">VRBO</div>
+<!-- VRBO INTRO PAGE -->
+<div class="page cat-page">
+  <div class="cat-blob"></div>
+  <div class="cat-bg-num">VR</div>
+  <div class="cat-eyebrow">Platform 02</div>
+  <h2 class="cat-title">VRBO</h2>
+  <p class="cat-desc">VRBO reaches primarily North American families and groups looking for full-home rentals. The platform gives you up to 10,000 characters for your description, far more than Airbnb. Unlike Airbnb, VRBO shows one listing to all guests regardless of language, so choose the version that fits your primary audience. VRBO guests tend to book longer stays and read listings more carefully than on other platforms.</p>
+  <div class="cat-list">
+    <div class="cat-item"><div class="cat-dot"></div><span>03: VRBO Description</span></div>
+  </div>
+</div>
+
+<!-- VRBO PROMPTS: 03 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">VRBO</span><span class="page-bar-range">03</span></div>
 
   <div class="prompt-card" data-multi-output="true">
     <div class="prompt-header"><div class="prompt-badge">03</div><div class="prompt-title">VRBO Description</div></div>
-    <div class="prompt-note">VRBO allows up to 10,000 characters - far more room than Airbnb. Use it to be thorough, not to pad. Unlike Airbnb, VRBO does not support separate descriptions per language - your listing shows the same text to everyone. Choose the version that matches your primary audience: Output 1 (Dutch) if most of your guests are European, Output 2 (English) if you primarily target American or Canadian guests.</div>
+    <div class="prompt-note">VRBO allows up to 10,000 characters, far more room than Airbnb. Use it to be thorough, not to pad. Unlike Airbnb, VRBO does not support separate descriptions per language, meaning your listing shows the same text to everyone. Choose the version that matches your primary audience: Output 1 (Dutch) if most of your guests are European, Output 2 (English) if you primarily target American or Canadian guests.</div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 1 - Dutch / European market (in Dutch)</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 1: Dutch / European market (in Dutch)</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the Dutch and European market. Target 600-800 words. Write in Dutch (Nederlands). No clichés: no "paradijs," "parel," "adembenemend" or "home away from home."
 
-Nederlandse lezers vergelijken listings zorgvuldig en prikken meteen door een template heen. Begin met wat specifiek en oprecht is aan deze woning. Benadruk waarde, praktische kwaliteiten en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen inspirerende opening. Schrijf voor iemand die vandaag al twintig listings heeft bekeken en een reden zoekt om deze te vertrouwen. VRBO staat maximaal 10.000 tekens toe - gebruik die ruimte om grondig te zijn en elke vraag te beantwoorden, niet om de tekst op te vullen.</div>
+Nederlandse lezers vergelijken listings zorgvuldig en prikken meteen door een template heen. Begin met wat specifiek en oprecht is aan deze woning. Benadruk waarde, praktische kwaliteiten en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen inspirerende opening. Schrijf voor iemand die vandaag al twintig listings heeft bekeken en een reden zoekt om deze te vertrouwen. VRBO staat maximaal 10.000 tekens toe. Gebruik die ruimte om grondig te zijn en elke vraag te beantwoorden, niet om de tekst op te vullen.
+
+Verwerk vanzelfsprekend als zoektermen in de tekst: de eilandnaam, het type woning en 1-2 topkenmerken (zoals privézwembad, zeezicht of strandzijde). Schrijf voor de gast eerst, het algoritme tweede.</div>
     </div>
 
     <div class="output-section">
-      <div class="output-header"><span class="output-label">Output 2 - North American market (in English)</span><button class="copy-output-btn">Copy</button></div>
+      <div class="output-header"><span class="output-label">Output 2: North American market (in English)</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the North American market. Target 600-800 words. Write in English. No clichés: no "paradise," "gem," "stunning" or "home away from home."
 
-North American readers respond to aspirational, experience-driven copy. Open with a scene-setting sentence (morning coffee by the pool, sunset on the terrace). Use second person throughout: "you'll wake up to..." Include one paragraph on why this island is worth choosing over other Caribbean options. Close with what makes this specific home worth booking over every other option they've seen today. Aspirational but specific - vague luxury language loses them. VRBO allows up to 10,000 characters - use the space to build a complete picture, not just list features.</div>
+North American readers respond to aspirational, experience-driven copy. Open with a scene-setting sentence (morning coffee by the pool, sunset on the terrace). Use second person throughout: "you'll wake up to..." Include one paragraph on why this island is worth choosing over other Caribbean options. Close with what makes this specific home worth booking over every other option they've seen today. Aspirational but specific. Vague luxury language loses them. VRBO allows up to 10,000 characters. Use the space to build a complete picture, not just list features.
+
+Naturally include these as search terms: island name, property type, and 1-2 top amenities (e.g. private pool, ocean view, beachfront). Write for the guest first, the algorithm second.</div>
     </div>
   </div>
 </div>
 
-<!-- PAGE 6: PROMPTS 04-06 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">04-06</span></div>
+<!-- MICAZU INTRO PAGE -->
+<div class="page cat-page">
+  <div class="cat-blob"></div>
+  <div class="cat-bg-num">MZ</div>
+  <div class="cat-eyebrow">Platform 03</div>
+  <h2 class="cat-title">Micazu</h2>
+  <p class="cat-desc">Micazu is a Dutch vacation rental platform with strong coverage on Curaçao, Aruba and Bonaire. Almost all guests are Dutch-speaking. They compare listings carefully, read descriptions in full and want to feel they can trust the host before they book. Maximum 5,000 characters. Always write in Dutch. A sharp 3,000-character description converts better than a padded 5,000-character one.</p>
+  <div class="cat-list">
+    <div class="cat-item"><div class="cat-dot"></div><span>04: Micazu beschrijving (Nederlands)</span></div>
+  </div>
+</div>
 
-  <div class="prompt-platform">Micazu</div>
+<!-- MICAZU PROMPTS: 04 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">Micazu</span><span class="page-bar-range">04</span></div>
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">04</div><div class="prompt-title">Micazu beschrijving</div></div>
@@ -507,10 +537,32 @@ Structuur:
 4. De locatie en wat er op loopafstand is
 5. Korte afsluiting die uitnodigt zonder te pushen
 
-Vermeld eilandspecifieke elementen die voor Nederlanders relevant zijn, zoals het weer, Nederlandstalige omgeving, nabijheid van populaire stranden of activiteiten. Alleen wat daadwerkelijk van toepassing is op deze woning. Micazu staat max 5000 tekens toe. Gebruik die ruimte goed maar vul ze niet op: een scherpe tekst van 3000 tekens converteert beter dan een opgeblazen tekst van 5000.</div>
-  </div>
+Vermeld eilandspecifieke elementen die voor Nederlanders relevant zijn, zoals het weer, Nederlandstalige omgeving, nabijheid van populaire stranden of activiteiten. Alleen wat daadwerkelijk van toepassing is op deze woning. Micazu staat max 5000 tekens toe. Gebruik die ruimte goed maar vul ze niet op: een scherpe tekst van 3000 tekens converteert beter dan een opgeblazen tekst van 5000.
 
-  <div class="prompt-platform">All Platforms</div>
+Verwerk vanzelfsprekend als zoektermen in de tekst: de eilandnaam, het type woning en de 1-2 kenmerken die jou onderscheiden. Schrijf voor de gast eerst, het algoritme tweede.</div>
+  </div>
+</div>
+
+<!-- ALL PLATFORMS INTRO PAGE -->
+<div class="page cat-page">
+  <div class="cat-blob"></div>
+  <div class="cat-bg-num">AP</div>
+  <div class="cat-eyebrow">All Platforms</div>
+  <h2 class="cat-title">Universal<br>Listing Tools</h2>
+  <p class="cat-desc">These prompts work across Airbnb, VRBO, Micazu and your own direct booking website. Use them to sharpen your title, write a teaser, rewrite an existing description and define what makes your property genuinely stand out from every other rental on the island.</p>
+  <div class="cat-list">
+    <div class="cat-item"><div class="cat-dot"></div><span>05: Listing Title Optimizer</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>06: Short Teaser Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>07: Rewrite Existing Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>08: Unique Selling Points</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>09: Pool and Outdoor Space</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>10: Location Description</span></div>
+  </div>
+</div>
+
+<!-- ALL PLATFORMS PROMPTS: 05-07 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">All Platforms</span><span class="page-bar-range">05-07</span></div>
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">05</div><div class="prompt-title">Listing Title Optimizer</div></div>
@@ -518,7 +570,7 @@ Vermeld eilandspecifieke elementen die voor Nederlanders relevant zijn, zoals he
     <div class="prompt-body">You are a vacation rental SEO and conversion specialist. Write optimized listing titles for my property on the ABC islands for multiple platforms. You already have my property details.
 
 One question: what are my top 3 most searchable features?
-<span class="ph">[e.g. private pool, ocean view, walk to beach - the things guests actually search for]</span>
+<span class="ph">[e.g. private pool, ocean view, walk to beach. These are the things guests actually search for.]</span>
 
 Write optimized titles for:
 
@@ -547,11 +599,6 @@ Version C: lead with the specific feature that no other rental nearby can match
 
 After the 3 versions, tell me in one sentence which one you'd recommend for an Airbnb link preview and why.</div>
   </div>
-</div>
-
-<!-- PAGE 7: PROMPTS 07-10 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 01 - Listing Descriptions</span><span class="page-bar-range">07-10</span></div>
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">07</div><div class="prompt-title">Rewrite Existing Description</div></div>
@@ -574,6 +621,11 @@ Rules for the rewrite:
 
 After the rewrite, list the 3 specific changes you made and why each one improves conversion.</div>
   </div>
+</div>
+
+<!-- ALL PLATFORMS PROMPTS: 08-10 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">All Platforms</span><span class="page-bar-range">08-10</span></div>
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">08</div><div class="prompt-title">Unique Selling Points</div></div>
@@ -622,237 +674,63 @@ Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood
   </div>
 </div>
 
-<!-- PAGE 8: CAT 2 HEADER -->
+<!-- PAGE 8: CAT 2 HEADER (Social Media) -->
 <div class="page cat-page">
   <div class="cat-blob"></div>
   <div class="cat-bg-num">02</div>
   <div class="cat-eyebrow">Category 02</div>
-  <h2 class="cat-title">Guest Review<br>Responses</h2>
-  <p class="cat-desc">Your review responses are read by 10x more potential guests than the original review. Most hosts write them for the reviewer. The smart move is to write them for the next hundred people who haven't booked yet.</p>
-  <div class="cat-list">
-    <div class="cat-item"><div class="cat-dot"></div><span>11 - 5-Star Review Response</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>12 - Positive Review With Minor Complaint</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>13 - Neutral 3-Star Review</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>14 - Unfair or Exaggerated Negative Review</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>15 - Review Response in Dutch</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>16 - Review Response in Spanish or Papiamentu</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>17 - Returning Guest Review Response</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>18 - Review Mentioning a Specific Issue</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>19 - Asking a Guest to Update Their Review</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>20 - Turn a Rave Review Into a Marketing Quote</span></div>
-  </div>
-</div>
-
-<!-- PAGE 9: PROMPTS 11-14 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 02 - Review Responses</span><span class="page-bar-range">11-14</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">11</div><div class="prompt-title">5-Star Review Response</div></div>
-    <div class="prompt-note">Never open with "Thank you for your wonderful review." Future guests have read that 200 times and it tells them nothing. A response that references what the guest actually said signals that you pay attention, which is exactly what future guests want to know.</div>
-    <div class="prompt-body">Write a response to this 5-star guest review. The tone should feel personal and specific, not templated. Future guests reading this response should feel that this host genuinely cares.
-
-My name: <span class="ph">[YOUR NAME]</span>
-Property: <span class="ph">[PROPERTY NAME]</span> on <span class="ph">[ISLAND]</span>
-
-Guest review:
-<span class="ph">[PASTE THE FULL REVIEW HERE]</span>
-
-Rules:
-- Do not open with "Thank you for your wonderful review" or any variation of it
-- Reference at least 2 specific things the guest mentioned
-- Add one sentence about what made their visit particularly memorable to you as a host
-- Invite them back with one specific reason to return (a season, an event, something new you've added)
-- Max 100 words
-- The last sentence should not be "We hope to see you again soon"</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">12</div><div class="prompt-title">Positive Review With Minor Complaint</div></div>
-    <div class="prompt-note">How you handle small criticism tells future guests more about you as a host than a perfect 5-star response ever could. Acknowledge it directly, show what you did about it, and move on. Over-apologizing makes it feel bigger than it is.</div>
-    <div class="prompt-body">A guest left a positive review but mentioned one minor issue. Write a response that acknowledges it without amplifying it, while reinforcing the overall positive experience.
-
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Guest review: <span class="ph">[PASTE REVIEW]</span>
-The issue mentioned: <span class="ph">[DESCRIBE IT]</span>
-What you've done about it since: <span class="ph">[e.g. fixed the AC unit / added an extra fan / improved the WiFi router / repainted the gate]</span>
-
-Tone: confident, warm, and solution-focused. Never defensive. The response should leave a future guest thinking "good host" not "I wonder if that issue is still there." Max 120 words.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">13</div><div class="prompt-title">Neutral 3-Star Review</div></div>
-    <div class="prompt-note">A 3-star response is read more carefully by future guests than a 5-star response. They are specifically looking for how you react to criticism. Write it as a reassurance letter to the next person reading it, not as a reply to the reviewer.</div>
-    <div class="prompt-body">A guest left a 3-star review. Write a calm, professional response that shows I take feedback seriously, addresses the specific points raised, and reassures future guests.
-
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Guest review: <span class="ph">[PASTE REVIEW]</span>
-
-Context to inform tone (do not include this directly in the response):
-<span class="ph">[WAS THE COMPLAINT FAIR? WAS THERE MISCOMMUNICATION? WHAT REALLY HAPPENED?]</span>
-
-Rules:
-- Acknowledge the experience without dismissing it
-- Address each point raised with one clear sentence
-- Do not over-apologize or justify at length
-- Close by welcoming future guests who value what this property genuinely offers
-- Max 130 words
-- Write for the next 1,000 people who will read this, not for the guest who left it</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">14</div><div class="prompt-title">Unfair or Exaggerated Negative Review</div></div>
-    <div class="prompt-note">Write this for the 97% of future guests who read it, not for the 3% who leave unfair reviews. Staying calm and factual does more for your reputation than any rebuttal. The goal is to reassure the reader, not to win an argument.</div>
-    <div class="prompt-body">A guest left an unfair or inaccurate review. Write a calm, professional response that gently corrects the record without sounding defensive or emotional.
-
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Guest review: <span class="ph">[PASTE REVIEW]</span>
-What actually happened (use this to inform the response, not to copy verbatim): <span class="ph">[EXPLAIN THE REAL SITUATION AS CALMLY AS POSSIBLE]</span>
-
-Rules:
-- Stay 100% professional throughout
-- Present the facts clearly without attacking the guest
-- Acknowledge any kernel of truth, even if small
-- Never mention refunds, disputes, platform policies or threats
-- The final sentence should make a future guest feel confident booking
-- Max 150 words</div>
-  </div>
-</div>
-
-<!-- PAGE 10: PROMPTS 15-18 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 02 - Review Responses</span><span class="page-bar-range">15-18</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">15</div><div class="prompt-title">Review Response in Dutch</div></div>
-    <div class="prompt-note">Dutch guests expect directness and sincerity. Over-apologizing or using formal corporate language sounds insincere to a Dutch reader. Match their tone: if they were warm, be warm. If they were straightforward, be straightforward.</div>
-    <div class="prompt-body">Schrijf een reactie op deze Nederlandse gastbeoordeling voor mijn vakantiewoning op <span class="ph">[EILAND]</span>. De toon moet warm en persoonlijk zijn, passend bij de energie van de gast.
-
-Mijn naam: <span class="ph">[JOUW NAAM]</span> / Woning: <span class="ph">[NAAM VAN JE WONING]</span>
-Gastbeoordeling: <span class="ph">[PLAK DE BEOORDELING HIER]</span>
-
-Regels:
-- Schrijf in het Nederlands
-- Verwijs naar minimaal 1-2 specifieke dingen die de gast noemt
-- Begin niet met "Dank je voor je geweldige recensie" of een variant daarvan
-- Klink als een echte persoon, niet als een boekingsplatform
-- Als er iets negatiefs in de beoordeling staat, erken het kort en geef aan wat je eraan hebt gedaan
-- Max 100 woorden</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">16</div><div class="prompt-title">Review Response in Spanish or Papiamentu</div></div>
-    <div class="prompt-note">Responding in a guest's language is one of the highest-return gestures in hospitality. It signals respect and dramatically increases the likelihood they return, refer friends, or leave an even better review on their next stay.</div>
-    <div class="prompt-body">Write a response to this guest review in <span class="ph">[SPANISH / PAPIAMENTU]</span> for my vacation rental on <span class="ph">[ISLAND]</span>.
-
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Guest review: <span class="ph">[PASTE REVIEW]</span>
-Language: <span class="ph">[SPANISH / PAPIAMENTU]</span>
-
-If writing in Papiamentu: use <span class="ph">[CURACAO / ARUBA / BONAIRE]</span> spelling conventions. Keep it natural and local. Avoid overly formal or textbook phrasing. It should sound like a real person on the island wrote it, not a translation tool.
-
-Reference at least one specific thing the guest mentioned. Max 100 words.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">17</div><div class="prompt-title">Returning Guest Review Response</div></div>
-    <div class="prompt-note">A returning guest is your most powerful social proof. Their review says something no first-timer can say: "I came back." A personalized response to that fact works as free marketing that sits on your listing for years.</div>
-    <div class="prompt-body">A guest who has stayed at my property before left a review mentioning they returned. Write a response that makes them feel like part of the story of this property.
-
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-How many times have they stayed: <span class="ph">[NUMBER]</span>
-Guest review: <span class="ph">[PASTE REVIEW]</span>
-Anything specific you remember about their previous stays (optional): <span class="ph">[ADD IF RELEVANT]</span>
-
-The response should acknowledge their loyalty in a way that feels genuine, not like a hotel loyalty program. Make them feel like they have a place here. Invite them back with a specific reason. Max 100 words.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">18</div><div class="prompt-title">Review Mentioning a Specific Issue</div></div>
-    <div class="prompt-note">Address the issue directly and early. Vagueness invites future guests to imagine the worst. One clear sentence explaining what you did about it is more reassuring than three sentences of general apology.</div>
-    <div class="prompt-body">A guest mentioned a specific issue in their review. Write a response that addresses it clearly, shows what's been done, and reassures future guests without over-explaining.
-
-Issue type: <span class="ph">[NOISE / CLEANLINESS / WIFI / AC / PARKING / MAINTENANCE / OTHER: specify]</span>
-What you've done: <span class="ph">[SPECIFIC FIX: e.g. "replaced the AC unit in July" / "added a second WiFi router" / "hired a new cleaning team" - or honest context if ongoing]</span>
-Guest review: <span class="ph">[PASTE REVIEW]</span>
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-
-Tone: honest, accountable and solution-focused. Do not hedge or over-explain. Future guests reading this should finish it feeling reassured, not uncertain. Max 130 words.</div>
-  </div>
-</div>
-
-<!-- PAGE 11: PROMPTS 19-20 + CAT 3 INTRO -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 02 - Review Responses</span><span class="page-bar-range">19-20</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">19</div><div class="prompt-title">Asking a Guest to Update Their Review</div></div>
-    <div class="prompt-note">The window to ask for a review update is 48-72 hours after resolving the issue. Long enough to feel genuine, short enough that the stay is still vivid. Frame it as optional and earned, never as an expectation. <strong>Important: do not use this on Airbnb.</strong> Airbnb explicitly prohibits asking guests to change or remove a review - it can result in an account warning or suspension, regardless of how friendly the message is. This prompt is for Booking.com, VRBO and direct bookings only.</div>
-    <div class="prompt-body">A guest left a review after an issue arose, but we resolved it well and they seemed happy with how I handled it. Write a short, non-pushy private message asking if they'd consider updating their review.
-
-Platform: <span class="ph">[BOOKING.COM / VRBO / DIRECT BOOKING]</span>
-What the issue was and how you resolved it: <span class="ph">[DESCRIBE BOTH CLEARLY]</span>
-How the guest reacted when the issue was resolved: <span class="ph">[DID THEY THANK YOU? SEEM SATISFIED? SAY ANYTHING?]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-Rules:
-- Never pressure, bribe or imply you are owed an update
-- Frame it as entirely optional - mean it
-- Keep it short: the shorter it is, the more genuine it sounds
-- Max 80 words</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">20</div><div class="prompt-title">Turn a Rave Review Into a Marketing Quote</div></div>
-    <div class="prompt-note">Your best reviews are your best marketing copy. Most hosts leave them sitting on the booking platform when they should be on their Instagram bio, website homepage and email signature. This prompt turns raw guest language into polished, usable quotes.</div>
-    <div class="prompt-body">A guest left me a great review and I want to repurpose it as marketing copy. Edit it into 3 polished versions for different uses.
-
-Original review: <span class="ph">[PASTE FULL REVIEW]</span>
-Guest's first name or initials: <span class="ph">[NAME / INITIALS]</span>
-Where they're from (if you know): <span class="ph">[COUNTRY]</span>
-
-Version A: Full testimonial quote (max 40 words). Formatted for a website or listing homepage. Tighten the original without changing the meaning.
-
-Version B: Short pull-quote (max 15 words). One punchy sentence for an Instagram caption, story, or highlight cover.
-
-Version C: Caption-ready version. The quote formatted for an Instagram post, with a suggested 1-line intro before the quote and 5 relevant hashtags for a vacation rental on <span class="ph">[ISLAND]</span> at the end.</div>
-  </div>
-</div>
-
-<!-- PAGE 12: CAT 3 HEADER -->
-<div class="page cat-page">
-  <div class="cat-blob"></div>
-  <div class="cat-bg-num">03</div>
-  <div class="cat-eyebrow">Category 03</div>
   <h2 class="cat-title">Social Media<br>Captions</h2>
-  <p class="cat-desc">Instagram and TikTok are where your next guests discover you before they even know they're looking for a rental. The caption is the conversion tool. Most hosts write their captions like diary entries. These prompts write them like ads that don't feel like ads.<br><br>Language note: write in Dutch if most of your followers and guests are Dutch. Write in English for international reach. You can add "Write in Dutch" or "Write in English" to any prompt to control this.</p>
+  <p class="cat-desc">Instagram and TikTok are where your next guests discover you before they even know they're looking for a rental. Start with the SETUP prompt to teach the AI your personal writing style. Then use prompts 11-20. Every caption will sound like you, not like every other host using the same tool.<br><br>Language note: write in Dutch if most of your followers and guests are Dutch. Write in English for international reach. You can add "Write in Dutch" or "Write in English" to any prompt to control this.</p>
   <div class="cat-list">
-    <div class="cat-item"><div class="cat-dot"></div><span>21 - Instagram Property Photo Caption</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>22 - Sunset or View Photo Caption</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>23 - Instagram Reel or TikTok Caption</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>24 - Last-Minute Availability Post</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>25 - Guest Testimonial Post</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>26 - "Why Stay Here" Carousel Caption</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>27 - Behind the Scenes Host Post</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>28 - Holiday or Seasonal Post</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>29 - Direct Booking Incentive Post</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>30 - Engagement Post</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>SETUP: Capture Your Voice</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>11: Instagram Property Photo Caption</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>12: Sunset or View Photo Caption</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>13: Instagram Reel or TikTok Caption</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>14: Last-Minute Availability Post</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>15: Guest Testimonial Post</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>16: "Why Stay Here" Carousel Caption</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>17: Behind the Scenes Host Post</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>18: Holiday or Seasonal Post</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>19: Direct Booking Incentive Post</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>20: Engagement Post</span></div>
   </div>
 </div>
 
-<!-- PAGE 13: PROMPTS 21-24 -->
+<!-- PAGE 13: PROMPTS 11-14 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 03 - Social Media</span><span class="page-bar-range">21-24</span></div>
+  <div class="page-bar"><span class="page-bar-cat">Category 02: Social Media</span><span class="page-bar-range">11-14</span></div>
+
+  <div class="prompt-card setup-card">
+    <div class="prompt-header"><div class="setup-badge">SETUP</div><div class="prompt-title">Capture Your Voice</div></div>
+    <div class="prompt-note">Run this once at the start of any social media session. Every caption that follows will sound like you, not like every other rental on the island using the same AI tool. Takes 3 minutes.</div>
+    <div class="prompt-body">Before I use any social media prompts, I want you to learn how I write.
+
+Here are 3-5 sentences I have actually written about my property or this island. They can be from an old caption, a message to a guest, a review response or anything I wrote myself.
+
+[YOUR OWN WORDS: paste 3-5 sentences you actually wrote here]
+
+Analyze these sentences for:
+1. Tone (formal or casual, warm or direct, serious or playful)
+2. Sentence rhythm and average length
+3. Specific words, phrases or personality markers I use
+4. How I use humor, if at all
+5. What emotion I lead with
+
+Write back a summary in exactly 3 sentences: "Your writing style is [X]. You tend to [Y]. The feeling you naturally create is [Z]."
+
+Then confirm: "I will use this as your voice template for every caption I write in this conversation."</div>
+  </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">21</div><div class="prompt-title">Instagram Property Photo Caption</div></div>
+    <div class="prompt-header"><div class="prompt-badge">11</div><div class="prompt-title">Instagram Property Photo Caption</div></div>
     <div class="prompt-note">Instagram shows the first line of your caption before the "more" button. If that line doesn't stop the scroll, nothing else matters. These 3 variations give you angles to test: feeling, detail and counter-intuitive hook.</div>
     <div class="prompt-body">Write 3 Instagram captions for a photo of my vacation rental on <span class="ph">[ISLAND]</span>. Each takes a completely different angle. No travel clichés. No "paradise." No "stunning."
 
 Photo description: <span class="ph">[DESCRIBE EXACTLY WHAT'S IN THE PHOTO: light, angle, what's visible, time of day]</span>
 Property: <span class="ph">[NAME]</span> / Target guest: <span class="ph">[couples / families / divers / remote workers / etc.]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
-Caption A: open with the emotion or feeling this photo creates. Not what it shows - what it makes you feel.
+Caption A: open with the emotion or feeling this photo creates. Not what it shows, but what it makes you feel.
 Caption B: open with one hyper-specific detail in the photo that most people scroll past.
 Caption C: open with a line that surprises or challenges a common assumption about vacationing on <span class="ph">[ISLAND]</span>.
 
@@ -860,28 +738,30 @@ Format for each: 3-5 lines, line breaks between sentences, 5-8 hashtags. End wit
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">22</div><div class="prompt-title">Sunset or View Photo Caption</div></div>
+    <div class="prompt-header"><div class="prompt-badge">12</div><div class="prompt-title">Sunset or View Photo Caption</div></div>
     <div class="prompt-note">Sunset photos are the most-posted content in Caribbean travel. Your caption is the only thing that makes yours different from the other 400 posted that same evening. Don't describe the sunset. Describe what it's like to watch it from your property.</div>
     <div class="prompt-body">Write an Instagram caption for a sunset or view photo from my vacation rental on <span class="ph">[ISLAND]</span>. The caption should not describe the sky colors. It should make the viewer feel something, or make them think about booking.
 
 What's in the photo: <span class="ph">[DESCRIBE: viewpoint, what's visible, any people, furniture, drinks, etc.]</span>
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 Orientation: <span class="ph">[e.g. west-facing terrace, rooftop, poolside, beachfront]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Open with a line that stops the scroll. Make the second line about the feeling of being there, not the view itself. Third line: something that creates desire to experience this. Close with a soft CTA. 4-6 lines, line breaks, 6-8 hashtags including island-specific ones.</div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">23</div><div class="prompt-title">Instagram Reel or TikTok Caption</div></div>
-    <div class="prompt-note">Reels and TikToks are the highest-reach format available to vacation rental hosts right now. A single well-structured video can reach 10 times your follower count. The caption is short - but the hook line is everything.</div>
+    <div class="prompt-header"><div class="prompt-badge">13</div><div class="prompt-title">Instagram Reel or TikTok Caption</div></div>
+    <div class="prompt-note">Reels and TikToks are the highest-reach format available to vacation rental hosts right now. A single well-structured video can reach 10 times your follower count. The caption is short. But the hook line is everything.</div>
     <div class="prompt-body">Write a caption for an Instagram Reel or TikTok video of my vacation rental on <span class="ph">[ISLAND]</span>.
 
 Video content: <span class="ph">[DESCRIBE WHAT'S IN THE VIDEO: sequence of shots, what happens, duration]</span>
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 Mood of the video: <span class="ph">[e.g. cinematic and slow / fun and energetic / satisfying tour / day-in-the-life]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Rules:
-- First line is the hook - it shows before "more" and must make someone stop mid-scroll
+- First line is the hook. It shows before "more" and must make someone stop mid-scroll
 - Total caption: 3-5 lines max
 - Include one direct CTA (link in bio / DM the word BOOK / drop your travel date below)
 - 5-7 hashtags, mix of niche rental hashtags and island-specific location tags
@@ -891,7 +771,7 @@ Give 2 versions: one that speaks to couples, one that speaks to families.</div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">24</div><div class="prompt-title">Last-Minute Availability Post</div></div>
+    <div class="prompt-header"><div class="prompt-badge">14</div><div class="prompt-title">Last-Minute Availability Post</div></div>
     <div class="prompt-note">Last-minute availability posts work best when they feel like a tip from a friend, not a hotel discount announcement. The goal is to make the open dates feel like a fortunate window, not a sign that the property is unpopular.</div>
     <div class="prompt-body">Write an Instagram post announcing last-minute availability at my vacation rental on <span class="ph">[ISLAND]</span>. Make it feel like an opportunity someone would be glad to hear about.
 
@@ -900,17 +780,18 @@ Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAI
 Why these dates are actually a great time to visit: <span class="ph">[WEATHER, LOCAL EVENTS, QUIETER PERIOD, SOMETHING HAPPENING ON THE ISLAND]</span>
 Discount (if any): <span class="ph">[X% off / no discount, just limited availability]</span>
 How to book: <span class="ph">[DM / LINK IN BIO / PLATFORM]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Tone: casual and confident, like a local telling a friend about an opening. No "Don't miss out!" No "Act fast!" No countdown pressure. Urgency through scarcity and specificity, not manufactured panic. Caption + 5-7 hashtags.</div>
   </div>
 </div>
 
-<!-- PAGE 14: PROMPTS 25-28 -->
+<!-- PAGE 14: PROMPTS 15-18 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 03 - Social Media</span><span class="page-bar-range">25-28</span></div>
+  <div class="page-bar"><span class="page-bar-cat">Category 02: Social Media</span><span class="page-bar-range">15-18</span></div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">25</div><div class="prompt-title">Guest Testimonial Post</div></div>
+    <div class="prompt-header"><div class="prompt-badge">15</div><div class="prompt-title">Guest Testimonial Post</div></div>
     <div class="prompt-note">A repurposed guest review converts better than any ad because it comes from someone who is not you. The key is making it feel like a real moment, not a brand communication. The intro line before the quote does most of the work.</div>
     <div class="prompt-body">Turn this guest review into an Instagram post that feels like a genuine testimonial, not a marketing slide.
 
@@ -918,10 +799,11 @@ Guest review: <span class="ph">[PASTE THE REVIEW OR THE KEY QUOTE FROM IT]</span
 Guest's first name (or "A guest from [COUNTRY]"): <span class="ph">[NAME]</span>
 Photo to accompany the post: <span class="ph">[DESCRIBE THE PHOTO: pool, living room, terrace, exterior, etc.]</span>
 Property: <span class="ph">[NAME]</span> on <span class="ph">[ISLAND]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Deliver:
 1. A 1-line intro that sets up the quote naturally (does not start with "We love hearing this")
-2. The formatted quote itself - tightened and cleaned up without changing the guest's voice
+2. The formatted quote itself, tightened and cleaned up without changing the guest's voice
 3. A closing line that invites the reader to experience the same
 4. 5-7 hashtags
 
@@ -929,16 +811,17 @@ Total length: 6-10 lines.</div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">26</div><div class="prompt-title">"Why Stay Here" Carousel</div></div>
+    <div class="prompt-header"><div class="prompt-badge">16</div><div class="prompt-title">"Why Stay Here" Carousel</div></div>
     <div class="prompt-note">Carousel posts on Instagram have 3x the average reach of single-image posts. A "why stay here" carousel is one of the highest-converting formats for direct bookings because it moves the guest from discovery to decision in one swipe sequence.</div>
     <div class="prompt-body">Write an Instagram carousel caption for a "Why stay at <span class="ph">[PROPERTY NAME]</span>" post. This is not a reasons-to-visit-<span class="ph">[ISLAND]</span> post. It is specifically about why this property over every other option on the island.
 
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 4 reasons this property genuinely stands out:
-1. <span class="ph">[REASON 1 - be specific, not generic]</span>
+1. <span class="ph">[REASON 1: be specific, not generic]</span>
 2. <span class="ph">[REASON 2]</span>
 3. <span class="ph">[REASON 3]</span>
 4. <span class="ph">[REASON 4]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Format:
 - Slide 1 hook (goes in the caption, first line before "more"): make it a statement that challenges or surprises
@@ -950,19 +833,20 @@ Max 220 words total. Every reason must survive this test: could another rental o
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">27</div><div class="prompt-title">Behind the Scenes Host Post</div></div>
+    <div class="prompt-header"><div class="prompt-badge">17</div><div class="prompt-title">Behind the Scenes Host Post</div></div>
     <div class="prompt-note">Host personality is the biggest differentiator in the vacation rental market. Guests choose people they like and trust. Behind-the-scenes posts build that trust faster than any property photo. The trick is sounding like a person, not a brand doing "authenticity."</div>
     <div class="prompt-body">Write an authentic Instagram caption from my perspective as the host. This should show the human side of running a vacation rental on <span class="ph">[ISLAND]</span>.
 
 Situation: <span class="ph">[DESCRIBE WHAT'S HAPPENING: e.g. "Getting the villa ready before guests arrive tomorrow and found the most beautiful local flowers at the market." or "Just fixed the outdoor shower myself after the plumber cancelled. The guests arrive in 4 hours." or "Got a message from guests who said it was the best holiday of their lives."]</span>
 My name (optional): <span class="ph">[YOUR NAME]</span>
 Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Tone: real, warm and a little story-driven. Not polished. Not branded. This should read like someone talking, not a business posting. A little vulnerability is good. A little humor is good. 5-7 lines + 4-6 hashtags.</div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">28</div><div class="prompt-title">Holiday or Seasonal Post</div></div>
+    <div class="prompt-header"><div class="prompt-badge">18</div><div class="prompt-title">Holiday or Seasonal Post</div></div>
     <div class="prompt-note">Post seasonal content 3-4 weeks before the season begins to capture early bookers. Most hosts post during the season when competition for attention is highest. Being early is the competitive advantage that costs nothing.</div>
     <div class="prompt-body">Write an Instagram post for my vacation rental on <span class="ph">[ISLAND]</span> around <span class="ph">[HOLIDAY / EVENT]</span>.
 
@@ -970,35 +854,38 @@ Holiday or event: <span class="ph">[e.g. Carnival Curacao / New Year / Aruba Hi-
 Property: <span class="ph">[NAME]</span>
 What makes this time of year special at this specific property: <span class="ph">[WHAT CAN GUESTS EXPERIENCE FROM YOUR LOCATION DURING THIS PERIOD?]</span>
 Availability: <span class="ph">[SPOTS LEFT / FULLY BOOKED / NEXT YEAR NOW OPEN]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Make the post feel festive and specific to <span class="ph">[ISLAND]</span>. Connect the event or season to the actual experience of staying at this property during that time. Not generic island promotion. Caption + 5-7 hashtags.</div>
   </div>
 </div>
 
-<!-- PAGE 15: PROMPTS 29-30 -->
+<!-- PAGE 15: PROMPTS 19-20 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 03 - Social Media</span><span class="page-bar-range">29-30</span></div>
+  <div class="page-bar"><span class="page-bar-cat">Category 02: Social Media</span><span class="page-bar-range">19-20</span></div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">29</div><div class="prompt-title">Direct Booking Incentive Post</div></div>
+    <div class="prompt-header"><div class="prompt-badge">19</div><div class="prompt-title">Direct Booking Incentive Post</div></div>
     <div class="prompt-note">Every direct booking saves you 15-20% in platform fees. One Instagram post promoting your direct booking option pays for itself the first time someone uses it. Position it as a benefit for the guest, because it genuinely is.</div>
     <div class="prompt-body">Write an Instagram post encouraging guests to book directly with me instead of through Airbnb or Booking.com.
 
 My direct booking method: <span class="ph">[WEBSITE / WHATSAPP NUMBER / EMAIL]</span>
 What guests get by booking direct: <span class="ph">[e.g. better rate / more flexible cancellation / personal welcome / early check-in / direct communication with me]</span>
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Tone: friendly and matter-of-fact. This is not a complaint about platforms. This is a genuine tip for guests that also happens to benefit you. Position every benefit from the guest's perspective, not yours. 5-7 lines + 5 hashtags. End with a clear next step.</div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">30</div><div class="prompt-title">Engagement Post</div></div>
+    <div class="prompt-header"><div class="prompt-badge">20</div><div class="prompt-title">Engagement Post</div></div>
     <div class="prompt-note">The Instagram algorithm rewards saves and comments over likes. Posts that ask smart questions or share genuinely useful local knowledge generate more reach than promotional content. These are the posts that grow your account while you sleep.</div>
     <div class="prompt-body">Write 3 Instagram engagement captions related to my vacation rental on <span class="ph">[ISLAND]</span>. The goal is conversation and reach, not direct sales.
 
 Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 My property type: <span class="ph">[VILLA/APARTMENT/GUESTHOUSE/STUDIO]</span>
 Typical guest: <span class="ph">[WHO USUALLY STAYS WITH YOU]</span>
+The detail only I can say: <span class="ph">[ONE OBSERVATION, MOMENT OR SPECIFIC DETAIL ABOUT YOUR PROPERTY OR ISLAND THAT NO OTHER HOST COULD WRITE. THE MORE UNEXPECTED, THE BETTER.]</span>
 
 Post A: A "this or that" question about Caribbean travel preferences that also subtly highlights your property type or location. (e.g. "Morning coffee by the pool or sunset cocktails on the terrace?")
 
@@ -1010,331 +897,241 @@ Each post: 3-4 lines, line breaks, one question or clear CTA, 4-6 hashtags.</div
   </div>
 </div>
 
-<!-- PAGE 16: CAT 4 HEADER -->
+<!-- ALGORITHM & VISIBILITY INTRO PAGE -->
+<div class="page cat-page">
+  <div class="cat-blob"></div>
+  <div class="cat-bg-num">03</div>
+  <div class="cat-eyebrow">Category 03</div>
+  <h2 class="cat-title">More<br>Bookings</h2>
+  <p class="cat-desc">Great listing copy is the start, not the finish. The platforms reward hosts who understand how the algorithm works: response speed, listing completeness, photo count, amenities, review velocity, Instant Book and Superhost status. These 10 prompts help you take action on every factor that drives your ranking and turns browsers into confirmed bookings.</p>
+  <div class="cat-list">
+    <div class="cat-item"><div class="cat-dot"></div><span>21: Airbnb Algorithm Audit</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>22: Amenities Maximizer</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>23: Listing Photo Brief</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>24: Inquiry Conversion Reply</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>25: Review Velocity Strategy</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>26: Calendar Gap Campaign</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>27: Price Negotiation Response</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>28: Instant Book Setup</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>29: Superhost Action Plan</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>30: Platform Focus Strategy</span></div>
+  </div>
+</div>
+
+<!-- ALGORITHM PROMPTS: 21-23 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">More Bookings</span><span class="page-bar-range">21-23</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">21</div><div class="prompt-title">Airbnb Algorithm Audit</div></div>
+    <div class="prompt-note">Airbnb's search ranking is determined by more than 14 factors beyond your listing text. Response rate, listing completeness, photo quantity, amenities listed, Instant Book status, review velocity and calendar activity all feed the algorithm directly. Most hosts write a great description and stop there. This prompt audits what else needs attention.</div>
+    <div class="prompt-body">You are an Airbnb optimization expert. Audit my listing against Airbnb's known ranking factors. Use my property details as context.
+
+Evaluate each factor as strong / needs work / unknown:
+1. Listing completeness: every field filled in?
+2. Photo quantity: at or above 20 photos?
+3. Amenities: likely amenities I have but haven't listed?
+4. Instant Book: enabled or not?
+5. Response rate and speed: hitting the targets?
+6. Review count and recency: is my review velocity healthy?
+7. Pricing: competitive for my market and dates?
+8. Calendar: updated regularly to signal active management?
+
+After the audit, give me a numbered action list ranked by expected impact on bookings. Be specific. No vague advice.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">22</div><div class="prompt-title">Amenities Maximizer</div></div>
+    <div class="prompt-note">Every amenity you have but haven't listed makes you invisible in filtered searches. A guest filtering for 'pool + beachfront + high chair + AC' only sees hosts who have checked all four. Airbnb and VRBO both weight amenity filters heavily. If you have it, list it.</div>
+    <div class="prompt-body">Based on my property details, help me build a complete amenities list.
+
+Step 1: Generate a comprehensive amenities list based on everything I've described.
+
+Step 2: Flag the amenities most commonly overlooked by ABC island hosts, including: beach chairs, beach umbrella, snorkeling gear, outdoor shower, portable fan, iron and board, beach towels, hair dryer, portable crib, high chair, BBQ or grill, outdoor dining table, sun loungers, smart TV, streaming services, coffee grinder, water purifier, ceiling fans, blackout curtains, luggage storage, first aid kit.
+
+For each overlooked item: ask me if I have it. After I confirm, add it to my list.
+
+Deliver the final formatted amenities list ready to copy into my platform settings.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">23</div><div class="prompt-title">Listing Photo Brief</div></div>
+    <div class="prompt-note">Photos are the #1 conversion factor on every rental platform. Guests decide in under 3 seconds whether to click. Your first photo is your billboard in search results. Airbnb recommends 20 or more photos. Most hosts upload 10-12. Every additional photo adds to your completeness score.</div>
+    <div class="prompt-body">Create a photo shoot brief for my vacation rental on <span class="ph">[ISLAND]</span>. A photographer or I should be able to follow this as a shot list.
+
+Property: <span class="ph">[NAME]</span> / Type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Stand-out feature: <span class="ph">[THE ONE THING THAT LOOKS BEST IN A PHOTO]</span>
+
+Deliver:
+1. The hero shot (photo 1): what to show, time of day, angle, and why this works as my search result thumbnail
+2. Photo sequence 1-20: each room or outdoor space, in recommended upload order, with notes on framing and best time of day to shoot
+3. Three shots most hosts forget but guests always look for
+4. Scene-setting shots that sell the island experience, not just the interior
+
+End with: 3 things to avoid in vacation rental photography on the ABC islands.</div>
+  </div>
+</div>
+
+<!-- ALGORITHM PROMPTS: 24-26 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">More Bookings</span><span class="page-bar-range">24-26</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">24</div><div class="prompt-title">Inquiry Conversion Reply</div></div>
+    <div class="prompt-note">Inquiry response speed is a direct ranking factor on Airbnb. Under 1 hour improves your position. Under 24 hours is the baseline for Superhost status. But speed alone does not convert: a reply that is warm, specific and clear about the next step closes more bookings than a template that just says 'thanks for your interest.'</div>
+    <div class="prompt-body">Write an inquiry reply I can send within 5 minutes. It should feel personal but work for most standard inquiries.
+
+Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
+Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Inquiry type: <span class="ph">[DATES REQUEST / GENERAL QUESTION / PRICE QUESTION / GROUP SIZE QUESTION]</span>
+Their message: <span class="ph">[PASTE THEIR ACTUAL MESSAGE]</span>
+
+The reply must:
+- Confirm availability or answer their question in the first sentence
+- Reference one specific thing from their message so it does not feel automated
+- Give them one clear, frictionless next step
+- End with something that makes saying yes feel natural
+
+Max 100 words. Warm and direct.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">25</div><div class="prompt-title">Review Velocity Strategy</div></div>
+    <div class="prompt-note">Your average rating matters less than you think. A 4.7 with 30 recent reviews outranks a 4.9 with 8 old ones on Airbnb. Review velocity (how recently and frequently guests review you) is a heavier ranking signal than average rating. The fastest way to lift your search position is to get more reviews, faster, after every stay.</div>
+    <div class="prompt-body">Help me build a review strategy that maximizes review frequency.
+
+My current situation:
+Platform(s): <span class="ph">[AIRBNB / VRBO / BOOKING.COM]</span>
+Reviews in the last 3 months: <span class="ph">[NUMBER]</span>
+Current rating: <span class="ph">[RATING]</span>
+How I currently ask: <span class="ph">[NOTHING / AIRBNB MESSAGE / WHATSAPP / EMAIL]</span>
+
+Give me:
+1. The ideal post-stay timing for a review request on each platform
+2. Three review request messages in different styles (warm, brief, personal) for WhatsApp or direct message
+3. One technique that increases review quality, not just quantity
+4. What to do when a guest has not reviewed after 5 days</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">26</div><div class="prompt-title">Calendar Gap Campaign</div></div>
+    <div class="prompt-note">A gap of 2-5 nights between existing bookings is the most common lost revenue for ABC island hosts. Platform search algorithms surface your listing for those dates, but short gaps often fall below minimum stay settings. Two fixes: lower your minimum stay for last-minute windows, and proactively reach out to previous guests who might be planning a return.</div>
+    <div class="prompt-body">Help me fill a gap in my calendar.
+
+Available dates: <span class="ph">[DATES]</span>
+Gap length: <span class="ph">[NUMBER OF NIGHTS]</span>
+My current minimum stay setting: <span class="ph">[NIGHTS]</span>
+Do I have previous guests I can contact? <span class="ph">[YES / NO]</span>
+Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
+
+Generate:
+1. A short message (max 5 lines) to send to previous guests who might want to rebook. Warm and specific, not desperate.
+2. An Instagram post announcing the open dates that makes this feel like a fortunate window, not a slow period.
+3. A recommendation on whether to lower my minimum stay for this gap, and to exactly what number of nights.</div>
+  </div>
+</div>
+
+<!-- ALGORITHM PROMPTS: 27-30 -->
+<div class="page prompts-page">
+  <div class="page-bar"><span class="page-bar-cat">More Bookings</span><span class="page-bar-range">27-30</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">27</div><div class="prompt-title">Price Negotiation Response</div></div>
+    <div class="prompt-note">When a guest asks 'can you do better on the price?' most hosts either hold firm and lose the booking, or discount without logic. A confident answer that explains your value without apologizing converts more than reflexive discounting. Guests who ask about price are already interested. The goal is to keep them moving toward a yes.</div>
+    <div class="prompt-body">Write a response to a guest asking if I can lower the price.
+
+Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
+Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Their requested discount: <span class="ph">[AMOUNT OR PERCENTAGE / they did not specify]</span>
+Am I open to adjusting? <span class="ph">[YES, slightly / NO / ONLY IF THEY EXTEND THE STAY]</span>
+What makes my price fair: <span class="ph">[NAME 2-3 SPECIFIC THINGS]</span>
+
+The response must:
+- Acknowledge their question without sounding defensive
+- Make a clear, specific case for the value of what they're getting
+- Offer one of: hold the price with confidence / small concession / value add instead of discount
+- End with a natural invitation to confirm the booking
+
+Max 100 words. Confident, not apologetic.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">28</div><div class="prompt-title">Instant Book Setup</div></div>
+    <div class="prompt-note">Listings with Instant Book enabled rank higher on Airbnb because they convert more immediately. Most hosts hesitate because they fear unscreened guests. But Airbnb's IB settings let you require government-verified ID, positive reviews and no prior cancellation history before anyone can book instantly. You can have Instant Book on and still control who stays.</div>
+    <div class="prompt-body">Help me set up Instant Book on Airbnb in a way that protects me from bad-fit guests while maximizing the ranking benefit.
+
+Property type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Max guests: <span class="ph">[NUMBER]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
+My biggest concern about IB: <span class="ph">[PARTIES / UNVERIFIED GUESTS / LAST-MINUTE CHAOS / GROUPS MISREPRESENTING SIZE]</span>
+Am I on-island or remote? <span class="ph">[ON-ISLAND / REMOTE]</span>
+
+Give me:
+1. The specific IB screening requirements I should enable for my situation
+2. My pre-booking message: the automatic message Airbnb sends when a guest triggers IB
+3. Two or three questions for my custom check-in form to catch problems before arrival</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">29</div><div class="prompt-title">Superhost Action Plan</div></div>
+    <div class="prompt-note">Airbnb Superhost status adds a badge that increases click-through rate and lifts your search position. Superhost listings appear when guests use the Superhost filter, which high-intent bookers specifically use. Requirements: 4.8 or higher average rating, 10 completed stays or 100 nights per year, under 1% cancellation rate, 90% response rate within 24 hours.</div>
+    <div class="prompt-body">Create a personalized action plan for achieving or maintaining Superhost status on Airbnb or Premier Host on VRBO.
+
+Platform: <span class="ph">[AIRBNB / VRBO / BOTH]</span>
+Current rating: <span class="ph">[X.X]</span> / Reviews in the last 12 months: <span class="ph">[NUMBER]</span>
+Response rate: <span class="ph">[PERCENTAGE OR ESTIMATE]</span>
+Cancellations in the last 12 months: <span class="ph">[NUMBER]</span>
+Where I am struggling most: <span class="ph">[RATING / RESPONSE RATE / REVIEW VOLUME / CANCELLATIONS / I DO NOT KNOW]</span>
+
+Give me:
+1. My current status: am I Superhost-eligible based on this information?
+2. The single biggest gap between where I am and the requirement
+3. A 30-day action plan with specific, concrete steps
+4. Two things I can do this week with the most immediate impact</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">30</div><div class="prompt-title">Platform Focus Strategy</div></div>
+    <div class="prompt-note">Hosts on 4 platforms with half-completed profiles and slow response rates get fewer bookings than hosts who own one platform completely. Before adding a new platform, make your primary one work at full capacity: complete listing, 20 or more photos, all amenities listed, Instant Book on, competitive pricing and growing review velocity.</div>
+    <div class="prompt-body">Help me decide where to focus my platform energy for maximum bookings.
+
+Property type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
+Primary target market: <span class="ph">[DUTCH / NORTH AMERICAN / MIXED]</span>
+Platforms I am currently on: <span class="ph">[LIST THEM]</span>
+Platform where I get most bookings: <span class="ph">[PLATFORM]</span>
+Platform where I get fewest: <span class="ph">[PLATFORM]</span>
+Available time for platform management per week: <span class="ph">[HOURS]</span>
+
+Give me:
+1. Your recommended primary platform for my specific situation and why
+2. Which secondary platform is worth the investment for my target market
+3. What to do with underperforming platforms
+4. Three things to do on my primary platform this week that will directly impact bookings</div>
+  </div>
+</div>
+
+<!-- HOST PROFILE INTRO PAGE -->
 <div class="page cat-page">
   <div class="cat-blob"></div>
   <div class="cat-bg-num">04</div>
   <div class="cat-eyebrow">Category 04</div>
-  <h2 class="cat-title">Guest<br>Emails</h2>
-  <p class="cat-desc">The emails you send before, during and after a stay determine whether guests leave a 5-star review and come back. Most guest communication sounds automated. These prompts sound like a real person who actually cares about the guest's experience.</p>
+  <h2 class="cat-title">Host<br>Profile</h2>
+  <p class="cat-desc">Guests book people, not just properties. Your FAQ, house rules, host bio and local recommendations appear on your listing and influence the booking decision before a guest ever contacts you. These prompts make that content work: increasing booking confidence, reducing pre-stay questions and building the trust that turns a browser into a confirmed guest.</p>
   <div class="cat-list">
-    <div class="cat-item"><div class="cat-dot"></div><span>31 - Booking Confirmation Email</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>32 - Pre-Arrival Email (1 week before)</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>33 - Check-In Instructions Email</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>34 - Mid-Stay Check-In Email</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>35 - Check-Out Reminder Email</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>36 - Post-Stay Thank You + Review Request</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>37 - Response to Booking Inquiry</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>38 - Special Occasion Email</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>39 - Handling a Complaint During a Stay</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>40 - Politely Declining an Inquiry</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>31: Full FAQ Page</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>32: House Rules in a Friendly Tone</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>33: "About Your Host" Bio</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>34: Local Tips and Recommendations</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>35: Neighborhood Description</span></div>
   </div>
 </div>
 
-<!-- PAGE 17: PROMPTS 31-34 -->
+<!-- HOST PROFILE PROMPTS: 31-35 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 04 - Guest Emails</span><span class="page-bar-range">31-34</span></div>
+  <div class="page-bar"><span class="page-bar-cat">Host Profile</span><span class="page-bar-range">31-35</span></div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">31</div><div class="prompt-title">Booking Confirmation Email</div></div>
-    <div class="prompt-note">Most booking confirmations are automated and ignored. A personal one from you, sent within an hour of booking, sets the entire tone of the relationship. This is the cheapest and most effective guest experience investment you can make.</div>
-    <div class="prompt-body">Write a booking confirmation email that feels personal and warm, not like a system notification.
-
-Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-Check-in: <span class="ph">[DATE]</span> / Check-out: <span class="ph">[DATE]</span> / Number of guests: <span class="ph">[#]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-
-Include:
-- An opening that feels like a person writing, not a platform confirming (do not start with "Your booking is confirmed")
-- A one-sentence teaser of what they have to look forward to - specific to this property and this island
-- Confirmation of dates, guests and what happens next
-- Your preferred contact method and when you're available
-- A closing line that builds genuine anticipation
-
-200-250 words. Tone: warm host, not corporate property manager.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">32</div><div class="prompt-title">Pre-Arrival Email (1 Week Before)</div></div>
-    <div class="prompt-note">The pre-arrival email prevents the most common complaints before they happen. Guests who feel well-prepared have better stays. Include local recommendations written as personal tips, not a tourist brochure - this is what guests share with each other and remember.</div>
-    <div class="prompt-body">Write a pre-arrival email to send one week before a guest's stay at my vacation rental on <span class="ph">[ISLAND]</span>.
-
-Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Check-in date and time: <span class="ph">[DATE + TIME]</span> / My name: <span class="ph">[YOUR NAME]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-
-My personal local recommendations to include:
-- Best restaurant nearby (and what to order): <span class="ph">[YOUR ACTUAL RECOMMENDATION]</span>
-- Best beach within 15 minutes: <span class="ph">[NAME + WHY YOU LOVE IT]</span>
-- One thing tourists almost always miss: <span class="ph">[YOUR INSIDER TIP]</span>
-- Practical tip most guests wish they'd known: <span class="ph">[e.g. which supermarket is best, where to get local food, when to avoid a certain road]</span>
-
-Format these as personal tips ("My favourite spot for a cold Polar is..." or "Most tourists go to X but locals know that Y...") not as a numbered list of attractions. 250-300 words. Tone: an excited friend who lives on the island.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">33</div><div class="prompt-title">Check-In Instructions Email</div></div>
-    <div class="prompt-note">On arrival day, guests are traveling. They're in a taxi or standing at the airport. Every check-in email should be designed to reduce friction in 30 seconds of reading, not to impress with thoroughness. Critical info must be impossible to miss.</div>
-    <div class="prompt-body">Write a check-in instructions email. Clear, easy to read on a phone screen, with the most critical information impossible to miss.
-
-Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Address: <span class="ph">[FULL ADDRESS ON ARUBA/BONAIRE/CURACAO]</span>
-Navigation tip: <span class="ph">[LANDMARK, GOOGLE MAPS NOTE, OR ANYTHING THAT HELPS]</span>
-Check-in time: <span class="ph">[TIME]</span>
-Entry method: <span class="ph">[KEY BOX / SMART LOCK / KEY HANDOFF / etc.]</span>
-Code or details: <span class="ph">[EXACT CODE OR INSTRUCTIONS]</span>
-Parking: <span class="ph">[WHERE AND HOW]</span>
-WiFi network: <span class="ph">[NETWORK NAME]</span> / Password: <span class="ph">[PASSWORD]</span>
-My emergency number: <span class="ph">[NUMBER]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-Structure: warm personal intro (2 lines max), then numbered steps for entry only, then WiFi and parking on their own lines. Close warmly. 200-250 words total. Bold or capitalize the entry code so it cannot be missed.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">34</div><div class="prompt-title">Mid-Stay Check-In Email</div></div>
-    <div class="prompt-note">Guests who receive a mid-stay check-in are significantly less likely to leave a complaint in their review. You are giving them a channel to raise concerns while you can still fix them, rather than after they've left and the only outlet is a public review.</div>
-    <div class="prompt-body">Write a short mid-stay check-in email to send to guests on day 3 or 4 of their stay.
-
-Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span> / Day of stay: <span class="ph">[e.g. day 3 of 7]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-
-Rules:
-- Under 80 words
-- One question about their experience - open enough that they can actually answer it
-- Do not list everything you can help with - just offer
-- Do not mention reviews or upcoming checkout
-- Tone: genuinely curious, not a customer service script
-- Should feel like a text message they're happy to receive, not an email they need to act on</div>
-  </div>
-</div>
-
-<!-- PAGE 18: PROMPTS 35-38 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 04 - Guest Emails</span><span class="page-bar-range">35-38</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">35</div><div class="prompt-title">Check-Out Reminder Email</div></div>
-    <div class="prompt-note">Send the check-out reminder the evening before, not the morning of. Guests who feel rushed on checkout day leave worse reviews. Giving them 12 hours to mentally prepare makes the departure feel organized rather than abrupt.</div>
-    <div class="prompt-body">Write a check-out reminder email to send the evening before a guest's departure.
-
-Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Check-out time: <span class="ph">[TIME]</span>
-Key instructions: <span class="ph">[e.g. leave key in lockbox / lock up and drop key through letterbox / leave on kitchen counter]</span>
-Anything to do before leaving: <span class="ph">[e.g. run the dishwasher / take out trash / close pool gate / turn off AC]</span>
-Late check-out available? <span class="ph">[YES at extra cost / NO / DEPENDS, DM me]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-Make this feel easy and kind, not like a compliance list. 100-130 words max. The tone should leave a guest feeling cared for on their last evening, not reminded they're leaving.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">36</div><div class="prompt-title">Post-Stay Thank You + Review Request</div></div>
-    <div class="prompt-note">The review ask converts best when it is not the opening line - or even the second line. Build the gratitude first. Make the guest feel that this email was worth reading even without the request. Then ask. The difference in response rate is significant.</div>
-    <div class="prompt-body">Write a post-stay email to send within 24 hours of check-out. Express genuine gratitude and invite them to leave a review - without making the review the obvious reason for the email.
-
-Guest name: <span class="ph">[GUEST NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Something specific about their stay: <span class="ph">[e.g. "it was their honeymoon" / "they mentioned the snorkeling at Klein Curacao" / "they had three young kids with them" / "they stayed for 2 weeks"]</span>
-Review platform: <span class="ph">[AIRBNB / BOOKING.COM / VRBO / GOOGLE]</span>
-Review link: <span class="ph">[PASTE LINK]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-The review request should feel like an afterthought to genuine warmth, not the other way around. 180-220 words.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">37</div><div class="prompt-title">Response to Booking Inquiry</div></div>
-    <div class="prompt-note">Hosts who respond to inquiries within one hour convert at a significantly higher rate than those who wait until the next day. The guest is actively comparing options when they send that message. Be the host who feels most present and most trustworthy.</div>
-    <div class="prompt-body">Write a response to this vacation rental booking inquiry. Make the potential guest feel like they've already found the right place.
-
-Inquiry received: <span class="ph">[PASTE THEIR MESSAGE]</span>
-Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
-Dates available? <span class="ph">[YES / NO / PARTIALLY - specify]</span>
-Rate for their dates: <span class="ph">[AMOUNT]</span>
-Minimum stay: <span class="ph">[NIGHTS]</span>
-Anything relevant they should know: <span class="ph">[NOTES]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-If dates ARE available: answer every question they asked, confirm availability warmly, give a clear next step to book.
-If dates are NOT available: decline gracefully, offer alternative dates if possible, leave the door genuinely open.
-
-Tone: fast, helpful, personal. Under 200 words. No hollow filler sentences.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">38</div><div class="prompt-title">Special Occasion Email</div></div>
-    <div class="prompt-note">Guests celebrating a special occasion are your most likely source of word-of-mouth referrals and social media posts. A personal welcome email that acknowledges their occasion - before they arrive - starts that relationship at the highest possible note.</div>
-    <div class="prompt-body">Write a personalized welcome email for guests celebrating a special occasion during their stay.
-
-Guest name: <span class="ph">[GUEST NAME]</span>
-Occasion: <span class="ph">[HONEYMOON / ANNIVERSARY / BIRTHDAY / BABYMOON / FAMILY REUNION / OTHER: specify]</span>
-Property: <span class="ph">[PROPERTY NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-What you've arranged as a welcome surprise (if anything): <span class="ph">[e.g. flowers and champagne on arrival / decorated bedroom / special towel art / nothing yet but you can suggest something]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-Reference the occasion naturally from the first line. Build anticipation for what they will find when they arrive. If you haven't arranged anything, suggest one low-effort but high-impact gesture they can find locally on <span class="ph">[ISLAND]</span>. 150-200 words. This email should feel like it was written specifically for them, not adapted from a template.</div>
-  </div>
-</div>
-
-<!-- PAGE 19: PROMPTS 39-40 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 04 - Guest Emails</span><span class="page-bar-range">39-40</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">39</div><div class="prompt-title">Handling a Complaint During a Stay</div></div>
-    <div class="prompt-note">A complaint handled well during a stay often results in a better review than if no complaint happened at all. Guests remember how problems made them feel, not the problem itself. Speed and sincerity matter more than the solution.</div>
-    <div class="prompt-body">A guest has contacted me with a complaint during their stay. Write a response that is immediate, empathetic and solution-focused.
-
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Guest complaint: <span class="ph">[PASTE THEIR EXACT MESSAGE]</span>
-Issue type: <span class="ph">[MAINTENANCE / NOISE / CLEANLINESS / MISSING ITEM / WIFI / AC / OTHER]</span>
-Can you fix it today? <span class="ph">[YES, I'll arrange X / NO, because X / PARTIALLY, I can do X]</span>
-Your action plan: <span class="ph">[WHAT ARE YOU ACTUALLY GOING TO DO AND WHEN]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-Rules:
-- Acknowledge the issue in the first sentence. Not the second. The first.
-- Do not blame weather, the previous guest, a supplier or circumstances
-- State clearly what you will do and exactly when
-- If appropriate, offer one small goodwill gesture (a late check-out, a local restaurant recommendation, a partial credit) - only if genuinely warranted
-- Max 150 words
-- Respond within 30 minutes in real life. This is the most important rule of all.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">40</div><div class="prompt-title">Politely Declining an Inquiry</div></div>
-    <div class="prompt-note">A graceful decline is a chance to build a future booking. Guests who feel respected after a "no" are far more likely to come back when dates open up or their situation changes. The tone here matters more than the information.</div>
-    <div class="prompt-body">Write a polite, warm response to a vacation rental inquiry that I need to decline.
-
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
-Reason for declining: <span class="ph">[DATES NOT AVAILABLE / MINIMUM STAY NOT MET / PROPERTY NOT SUITABLE FOR THEIR GROUP / OTHER: specify]</span>
-Their inquiry: <span class="ph">[PASTE THEIR MESSAGE]</span>
-Alternative I can offer (if any): <span class="ph">[DIFFERENT DATES / DIFFERENT PROPERTY SUGGESTION / NOTHING]</span>
-My name: <span class="ph">[YOUR NAME]</span> / Property: <span class="ph">[PROPERTY NAME]</span>
-
-Rules:
-- Be direct: put the "no" in the first or second sentence, not buried at the end
-- Give one clear, honest reason without over-explaining
-- If you can suggest an alternative, do it specifically - not vaguely
-- Leave the door genuinely open if there's a real reason to
-- Max 100 words. Short and warm beats long and apologetic.</div>
-  </div>
-</div>
-
-<!-- PAGE 20: CAT 5+6 HEADER -->
-<div class="page cat-page">
-  <div class="cat-blob"></div>
-  <div class="cat-bg-num">05</div>
-  <div class="cat-eyebrow">Categories 05 + 06</div>
-  <h2 class="cat-title">WhatsApp +<br>Host Content</h2>
-  <p class="cat-desc">WhatsApp open rates on the ABC islands are above 90%. A message you send via WhatsApp gets read. An email might not. And your FAQ page, house rules and host bio are read by every guest before they arrive - most hosts treat them as an afterthought.</p>
-  <div class="cat-list">
-    <div class="cat-item"><div class="cat-dot"></div><span>41 - Welcome Message on Arrival Day</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>42 - Check-In Instructions via WhatsApp</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>43 - Mid-Stay Check-In via WhatsApp</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>44 - Review Request via WhatsApp</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>45 - Answering a Common Guest Question</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>46 - Full FAQ Page</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>47 - House Rules in a Friendly Tone</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>48 - "About Your Host" Bio</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>49 - Local Tips and Recommendations</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>50 - Neighborhood Description</span></div>
-  </div>
-</div>
-
-<!-- PAGE 21: PROMPTS 41-45 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 05 - WhatsApp Messages</span><span class="page-bar-range">41-45</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">41</div><div class="prompt-title">Welcome Message on Arrival Day</div></div>
-    <div class="prompt-note">Your arrival day WhatsApp message is almost guaranteed to be read. Keep it short - your guest is traveling and does not want to read an essay. The goal is to make them feel expected and excited, in 5 lines or fewer.</div>
-    <div class="prompt-body">Write a WhatsApp message to send on the morning of my guest's arrival day.
-
-Guest first name: <span class="ph">[NAME]</span> / Check-in time: <span class="ph">[TIME]</span>
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-My name: <span class="ph">[YOUR NAME]</span> / My WhatsApp number: <span class="ph">[NUMBER]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-One thing that's special about today at the property: <span class="ph">[e.g. the pool was just cleaned / there are fresh flowers in the bedroom / sunset is at 6:47pm from the terrace]</span>
-
-Max 5 lines. Warm arrival energy. Remind them of check-in time. Give them your number for questions. End with one sentence that makes them look forward to arriving.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">42</div><div class="prompt-title">Check-In Instructions via WhatsApp</div></div>
-    <div class="prompt-note">Guests read check-in instructions on their phone while in a taxi or walking from the airport. One piece of information per line. Short sentences. Nothing that requires them to scroll more than twice. The entry code must be impossible to miss.</div>
-    <div class="prompt-body">Write a WhatsApp check-in message. Designed to be read on a phone screen in a moving vehicle.
-
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Property address: <span class="ph">[ADDRESS]</span>
-Navigation tip: <span class="ph">[LANDMARK OR "LOOK FOR X WHEN YOU TURN INTO THE STREET"]</span>
-Entry method: <span class="ph">[KEY BOX / SMART LOCK / I WILL MEET YOU]</span>
-Code or details: <span class="ph">[EXACT INSTRUCTIONS]</span>
-Parking: <span class="ph">[WHERE AND HOW]</span>
-WiFi: <span class="ph">[NETWORK + PASSWORD]</span>
-My number if anything goes wrong: <span class="ph">[NUMBER]</span>
-
-Format: one item per line. Line breaks between sections. The entry code gets its own line and is in ALL CAPS or clearly highlighted. Max 120 words. Start with one warm line. End with "Enjoy every second."</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">43</div><div class="prompt-title">Mid-Stay Check-In via WhatsApp</div></div>
-    <div class="prompt-note">A mid-stay WhatsApp should feel like a friend checking in, not a host managing an asset. Three lines maximum. One question. The goal is to open a channel, not to demonstrate service standards.</div>
-    <div class="prompt-body">Write a casual WhatsApp mid-stay check-in message for a guest currently at my vacation rental.
-
-Guest first name: <span class="ph">[NAME]</span> / Day of stay: <span class="ph">[e.g. day 2 of 7]</span>
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Something they mentioned they were planning to do: <span class="ph">[e.g. diving, visiting a specific beach, a day trip - or leave blank]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-3-4 lines absolute maximum. If they mentioned plans, reference them briefly. Ask one simple question. Do not list everything you can help with. Do not mention checkout. Should feel like getting a message from a local friend who happens to own the place.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">44</div><div class="prompt-title">Review Request via WhatsApp</div></div>
-    <div class="prompt-note">The best time to send a WhatsApp review request is 24-48 hours after check-out. The experience is still vivid but the stress of travel home has eased. A reference to something specific from their stay makes it feel personal, not automated.</div>
-    <div class="prompt-body">Write a WhatsApp message asking a guest to leave a review after their stay. Personal, specific, and short.
-
-Guest first name: <span class="ph">[NAME]</span>
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Something specific from their stay: <span class="ph">[e.g. "loved that you mentioned the snorkeling at Klein Curacao" / "it was so great having your whole family there" / "hope the Carnival was everything you hoped for"]</span>
-Platform: <span class="ph">[AIRBNB / BOOKING.COM / GOOGLE / VRBO]</span>
-Review link: <span class="ph">[PASTE LINK - shorten it at bit.ly first if it's long]</span>
-My name: <span class="ph">[YOUR NAME]</span>
-
-Max 5 lines. The specific reference to their stay comes first. The review link comes at the end, not the beginning. No "it would mean the world to us." Just a genuine human ask.</div>
-  </div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">45</div><div class="prompt-title">Answering a Common Guest Question</div></div>
-    <div class="prompt-note">The best WhatsApp replies answer the question and the follow-up question the guest hasn't asked yet. Hosts who do this consistently get described as "amazing" in reviews even when nothing extraordinary happened. Anticipation is the highest form of hospitality.</div>
-    <div class="prompt-body">Write a WhatsApp reply to a common guest question. Clear, helpful, and human - not a FAQ page copy-paste.
-
-Language: <span class="ph">[DUTCH if guest communicated in Dutch / ENGLISH for all other guests]</span>
-Guest question: <span class="ph">[PASTE THEIR EXACT QUESTION]</span>
-The actual answer: <span class="ph">[WHAT IS THE REAL, COMPLETE ANSWER]</span>
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-The follow-up question they might have next: <span class="ph">[WHAT DO GUESTS USUALLY ASK AFTER THIS?]</span>
-
-Answer the question directly in the first sentence. Then answer the follow-up question proactively in the second or third sentence. Conversational, short. Max 6 lines. Close with one line that makes them feel taken care of.</div>
-  </div>
-</div>
-
-<!-- PAGE 22: PROMPTS 46-50 -->
-<div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">Category 06 - Host Content</span><span class="page-bar-range">46-50</span></div>
-
-  <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">46</div><div class="prompt-title">Full FAQ Page</div></div>
+    <div class="prompt-header"><div class="prompt-badge">31</div><div class="prompt-title">Full FAQ Page</div></div>
     <div class="prompt-note">A well-written FAQ page reduces your message inbox significantly and increases booking conversion. Guests who find answers immediately feel more confident booking. Write for the questions guests actually have, not the questions you wish they'd ask.</div>
     <div class="prompt-body">Write a full FAQ page for my vacation rental on <span class="ph">[ISLAND]</span>. Every answer should sound like a knowledgeable local friend, not a terms and conditions page.
 
@@ -1351,9 +1148,9 @@ Generate 12-15 real Q&As grouped into 3 sections: Before you book / During your 
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">47</div><div class="prompt-title">House Rules in a Friendly Tone</div></div>
-    <div class="prompt-note">House rules written as rules get skimmed and ignored. House rules written as friendly guidance from a host who trusts their guests get read and followed. The difference in compliance is significant - and so is the effect on how guests feel when they arrive.</div>
-    <div class="prompt-body">Rewrite my house rules in a tone that is clear, respectful and friendly - without softening them to the point of being vague.
+    <div class="prompt-header"><div class="prompt-badge">32</div><div class="prompt-title">House Rules in a Friendly Tone</div></div>
+    <div class="prompt-note">House rules written as rules get skimmed and ignored. House rules written as friendly guidance from a host who trusts their guests get read and followed. The difference in compliance is significant, and so is the effect on how guests feel when they arrive.</div>
+    <div class="prompt-body">Rewrite my house rules in a tone that is clear, respectful and friendly, without softening them to the point of being vague.
 
 My current rules (or what I want to cover):
 <span class="ph">[PASTE YOUR EXISTING RULES OR LIST THE THINGS YOU WANT TO ADDRESS: noise, parties, smoking, pool safety, parking, pets, trash, checkout time, maximum guests, etc.]</span>
@@ -1361,22 +1158,22 @@ My current rules (or what I want to cover):
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 
 Rules for the rewrite:
-- Keep every rule complete - don't trade clarity for warmth
+- Keep every rule complete. Don't trade clarity for warmth
 - Write as if speaking to a guest you already trust, not protecting yourself from someone you suspect
 - Group rules logically (Outdoor / Noise / Checkout / etc.)
-- If a rule has a reason, include it briefly - guests follow rules better when they understand why
+- If a rule has a reason, include it briefly. Guests follow rules better when they understand why
 - Max 320 words</div>
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">48</div><div class="prompt-title">"About Your Host" Bio</div></div>
+    <div class="prompt-header"><div class="prompt-badge">33</div><div class="prompt-title">"About Your Host" Bio</div></div>
     <div class="prompt-note">Guests book people, not properties. A host bio that shows personality and local knowledge converts better than one that lists credentials. The best host bios make someone feel like they're about to stay with a person, not check into an asset.</div>
     <div class="prompt-body">Write an "About your host" bio that makes me sound like a real, interesting person a guest would want to stay with.
 
 My name: <span class="ph">[YOUR NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
 How long I've been hosting: <span class="ph">[TIME]</span>
 Where I'm from originally: <span class="ph">[CITY/COUNTRY]</span>
-How I ended up on <span class="ph">[ISLAND]</span>: <span class="ph">[YOUR STORY IN 2-3 SENTENCES - the more specific the better]</span>
+How I ended up on <span class="ph">[ISLAND]</span>: <span class="ph">[YOUR STORY IN 2-3 SENTENCES, the more specific the better]</span>
 What I love most about living here: <span class="ph">[BE SPECIFIC: a beach, a neighborhood, a food, a tradition]</span>
 My hosting philosophy in one sentence: <span class="ph">[WHAT DO YOU WANT EVERY GUEST TO FEEL?]</span>
 Languages I speak: <span class="ph">[LIST]</span>
@@ -1385,8 +1182,8 @@ First person. 150-200 words. Warm, specific, memorable. No credentials, no corpo
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">49</div><div class="prompt-title">Local Tips and Recommendations</div></div>
-    <div class="prompt-note">Generic local tips feel like a Google search result. Personal recommendations with a "why" feel like a local friend - and that feeling is irreplaceable, uncopyable, and exactly what guests come back for and tell their friends about.</div>
+    <div class="prompt-header"><div class="prompt-badge">34</div><div class="prompt-title">Local Tips and Recommendations</div></div>
+    <div class="prompt-note">Generic local tips feel like a Google search result. Personal recommendations with a "why" feel like a local friend. That feeling is irreplaceable, uncopyable, and exactly what guests come back for and tell their friends about.</div>
     <div class="prompt-body">Write a local recommendations section for my vacation rental guest guide on <span class="ph">[ISLAND]</span>. Insider tips from someone who actually lives here, not a tourism website.
 
 My area / neighborhood: <span class="ph">[WHERE YOUR PROPERTY IS]</span>
@@ -1402,7 +1199,7 @@ Organize by category with short headers. Each recommendation: 1-2 sentences maxi
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">50</div><div class="prompt-title">Neighborhood Description</div></div>
+    <div class="prompt-header"><div class="prompt-badge">35</div><div class="prompt-title">Neighborhood Description</div></div>
     <div class="prompt-note">Your neighborhood is part of your product. Guests who understand what surrounds them feel more confident and more connected to the island. Most hosts describe location in one dry sentence. A neighborhood described with personality becomes a reason to choose your property over a competitor.</div>
     <div class="prompt-body">Write a "Your neighborhood" section for my guest guide that makes <span class="ph">[NEIGHBORHOOD]</span> on <span class="ph">[ISLAND]</span> feel like somewhere worth arriving to.
 
@@ -1413,7 +1210,7 @@ Who feels most at home here: <span class="ph">[TYPE OF GUEST]</span>
 Walking distance highlights: <span class="ph">[LIST 2-4]</span>
 5-10 minute drive: <span class="ph">[LIST 2-4]</span>
 
-Write 2 paragraphs, no bullet points. First: the feel and personality of the neighborhood - make it specific to <span class="ph">[ISLAND]</span>, not generic Caribbean. Second: practical access with warmth. 150-200 words total.</div>
+Write 2 paragraphs, no bullet points. First: the feel and personality of the neighborhood. Make it specific to <span class="ph">[ISLAND]</span>, not generic Caribbean. Second: practical access with warmth. 150-200 words total.</div>
   </div>
 </div>
 
@@ -1423,19 +1220,19 @@ Write 2 paragraphs, no bullet points. First: the feel and personality of the nei
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge" style="background:var(--black);font-size:9px;width:auto;padding:0 8px;border-radius:7px;">BONUS</div><div class="prompt-title">Instagram / WhatsApp Direct Booking Reply</div></div>
-    <div class="prompt-note">A guest who DMs you on Instagram or WhatsApp is already warm. They found you, they like what they see, they reached out. The only thing that can lose this booking is a slow or lukewarm reply. Every direct booking saves you 15-20% in platform commission. Answer fast, be clear, and make the next step impossible to miss. This prompt is different from a platform inquiry response - the guest is informal, there's no booking system behind you, and you need to build trust and close in a single message.</div>
+    <div class="prompt-note">A guest who DMs you on Instagram or WhatsApp is already warm. They found you, they like what they see, they reached out. The only thing that can lose this booking is a slow or lukewarm reply. Every direct booking saves you 15-20% in platform commission. Answer fast, be clear, and make the next step impossible to miss. This prompt is different from a platform inquiry response. The guest is informal, there's no booking system behind you, and you need to build trust and close in a single message.</div>
     <div class="prompt-body">Write a WhatsApp or Instagram DM response to someone who messaged me directly asking about my vacation rental.
 Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
 Their message: <span class="ph">[PASTE THEIR EXACT MESSAGE]</span>
 Dates they mentioned (if any): <span class="ph">[DATES / or: they didn't specify]</span>
-My availability: <span class="ph">[AVAILABLE / NOT AVAILABLE / PARTIALLY - specify]</span>
+My availability: <span class="ph">[AVAILABLE / NOT AVAILABLE / PARTIALLY: specify]</span>
 My rate for those dates: <span class="ph">[AMOUNT PER NIGHT]</span> / Minimum stay: <span class="ph">[NIGHTS]</span>
 One benefit of booking direct: <span class="ph">[e.g. better rate than Airbnb / more flexible cancellation / direct contact with me throughout]</span>
 My name: <span class="ph">[YOUR NAME]</span>
 
 Rules:
 - Match their tone: casual if they're casual, more formal if they are
-- Answer what they asked in the first sentence - do not make them read to the end to find out if you're available
+- Answer what they asked in the first sentence. Do not make them read to the end to find out if you're available
 - If available: confirm dates, give the rate, tell them exactly what happens next (payment link / reply here / send a booking request via platform)
 - If not available: decline clearly, offer the next open window if you have one, keep the door open
 - Mention one reason to book direct as a benefit to them, not as a sales pitch

@@ -6,6 +6,8 @@ Dit is het geheugen van mijn AI. Alles wat hier staat, leest Claude bij elke ses
 
 **EMDASH VERBOD:** Gebruik NOOIT een emdash (—) in welke output dan ook. Niet in teksten, HTML, emails, prompts, code comments, API calls of enig ander bestand. Vervang altijd door een komma, punt, koppelteken (-) of nieuwe zin. Dit geldt ook voor content die Claude genereert namens FUNkiness! via de API. Geen uitzonderingen. Daisy heeft dit tientallen keren gecorrigeerd.
 
+**SEPARATOR VERBOD:** Gebruik NOOIT " - " (spatie-koppelteken-spatie) als separator in labels, titels of output. Vervang door een dubbele punt (": "), komma of nieuwe zin.
+
 **GEEN ONVERIFIEERBARE CLAIMS:** Verzin geen tijdpaden, statistieken, marktposities of claims over concurrenten die Daisy niet zelf kan bevestigen.
 
 ## Mijn bedrijf
@@ -28,9 +30,9 @@ FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie ee
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
-**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 50 AI-prompts + 1 bonusprompt voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Verdeeld in 6 categorieën: listing descriptions, review responses, social media captions, guest emails, WhatsApp messages, FAQ/host content. Bestand: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF). Referentiebestand: `docs/island-host-ai-prompt-kit.md`. Verkoop via Gumroad ($27). Upsell: Video Script Kit ($19, nog te bouwen). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 35 AI-prompts + 1 bonusprompt voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen binnenhalen. Verdeeld in 4 categorieën: Listing Descriptions (01-10, per platform), Social Media (11-20), More Bookings/Algorithm (21-30), Host Profile (31-35). Plus 1 bonus: direct booking reply via Instagram DM of WhatsApp. Bestand: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF). Referentiebestand: `docs/island-host-ai-prompt-kit.md`. Verkoop via Gumroad ($27). Upsell: Video Script Kit ($19, nog te bouwen). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
 
-Productstructuur: gebruiker vult Property Fact Sheet eenmalig in, kopieert naar ChatGPT/Claude, gebruikt dan prompts zonder property details opnieuw in te typen. Airbnb Prompt 01 heeft 5 aparte outputs: Dutch (in het Nederlands), American (Engels), Canadian (Engels, winter escape focus), Your Space Engels, Your Space Nederlands - want Airbnb laat per taal/land aparte tekst instellen. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal handmatig invoeren. VRBO heeft geen multi-taal support. Email- en WhatsApp-prompts hebben een Language-veld (Dutch/English naar gelang de gast).
+Productstructuur: gebruiker vult Property Fact Sheet eenmalig in, kopieert naar ChatGPT/Claude, gebruikt dan prompts zonder property details opnieuw in te typen. Listing Descriptions zijn per platform georganiseerd: Airbnb (01-02), VRBO (03), Micazu (04), Universal tools (05-10). Airbnb Prompt 01 heeft 5 aparte outputs: Dutch (in het Nederlands), American (Engels), Canadian (Engels, winter escape focus), Your Space Engels, Your Space Nederlands. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal handmatig invoeren. VRBO heeft geen multi-taal support. Social media heeft SETUP voice-training prompt + verplicht "only I can say" veld per prompt voor differentiatie. More Bookings sectie dekt algoritme, foto's, reviews en Superhost strategie. Guest emails en WhatsApp zijn niet opgenomen, focus ligt puur op zichtbaarheid en conversie.
 
 ## Doelgroep
 
