@@ -403,7 +403,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 
   <div class="prompt-card" data-multi-output="true">
     <div class="prompt-header"><div class="prompt-badge">01</div><div class="prompt-title">Airbnb Listing Description</div></div>
-    <div class="prompt-note">Airbnb has an automatic translation feature, but it's generic and you have zero control over the result. Turn it off. Instead: go to Airbnb > Listings > select your listing > Listing details > Description > Translated descriptions, click 'Add a translation', and paste each output into the right language field. Dutch guests then see your Dutch version. American and Canadian guests see your English version. Both run on the same listing at the same time. This is what these outputs are for: copy each one separately and paste it into the right language field yourself. The "Your Space" / "Je accommodatie" field works the same way. Outputs 3 and 4 give you both languages for that field too. Most hosts never do this. That's why their listings read like a machine wrote them.</div>
+    <div class="prompt-note">Airbnb has an automatic translation feature, but it's generic and you have zero control over the result. Turn it off. Instead: go to Airbnb > Listings > select your listing > Listing details > Description > Translated descriptions, click 'Add a translation', and paste each output into the right language field. Dutch guests then see your Dutch version. American and Canadian guests see your English version. Both run on the same listing at the same time. This is what these outputs are for: copy each one separately and paste it into the right language field yourself. The "Your Space" / "Je accommodatie" field works the same way. Outputs 4 and 5 give you both languages for that field too. Most hosts never do this. That's why their listings read like a machine wrote them.</div>
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 1: Dutch market (in Dutch) → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
@@ -740,7 +740,7 @@ Deliver the final formatted amenities list ready to copy into my platform settin
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">13</div><div class="prompt-title">Listing Photo Brief</div></div>
-    <div class="prompt-note">Photos are the #1 conversion factor on every rental platform. Guests decide in under 3 seconds whether to click. Your first photo is your billboard in search results. Airbnb recommends 20 or more photos. Most hosts upload 10-12. Every additional photo adds to your completeness score.</div>
+    <div class="prompt-note">Photos are the #1 conversion factor on every rental platform. Guests decide in under 3 seconds whether to click. Your first photo is your billboard in search results. Airbnb recommends 20 or more photos. Most hosts upload 10-12. Every additional photo adds to your completeness score. Airbnb also supports a caption on each photo, visible when guests click through the gallery. Almost no one uses this. It is free copy space directly in front of a guest who is already considering your property.</div>
     <div class="prompt-body">Create a photo shoot brief for my vacation rental on <span class="ph">[ISLAND]</span>. A photographer or I should be able to follow this as a shot list.
 
 Property: <span class="ph">[NAME]</span> / Type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
@@ -751,6 +751,7 @@ Deliver:
 2. Photo sequence 1-20: each room or outdoor space, in recommended upload order, with notes on framing and best time of day to shoot
 3. Three shots most hosts forget but guests always look for
 4. Scene-setting shots that sell the island experience, not just the interior
+5. Airbnb photo captions: write one caption (max 20 words) for the 6 most important photos. Each caption adds one specific detail the photo cannot show on its own.
 
 End with: 3 things to avoid in vacation rental photography on the ABC islands.</div>
   </div>
@@ -766,7 +767,7 @@ End with: 3 things to avoid in vacation rental photography on the ABC islands.</
     <div class="prompt-body">Write an inquiry reply I can send within 5 minutes. It should feel personal but work for most standard inquiries.
 
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Language: <span class="ph">[DUTCH if they wrote in Dutch / SPANISH if they wrote in Spanish / ENGLISH for all other guests]</span>
 Inquiry type: <span class="ph">[DATES REQUEST / GENERAL QUESTION / PRICE QUESTION / GROUP SIZE QUESTION]</span>
 Their message: <span class="ph">[PASTE THEIR ACTUAL MESSAGE]</span>
 
@@ -825,7 +826,7 @@ Generate:
     <div class="prompt-body">Write a response to a guest asking if I can lower the price.
 
 Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Language: <span class="ph">[DUTCH if they wrote in Dutch / SPANISH if they wrote in Spanish / ENGLISH for all other guests]</span>
 Their requested discount: <span class="ph">[AMOUNT OR PERCENTAGE / they did not specify]</span>
 Am I open to adjusting? <span class="ph">[YES, slightly / NO / ONLY IF THEY EXTEND THE STAY]</span>
 What makes my price fair: <span class="ph">[NAME 2-3 SPECIFIC THINGS]</span>
@@ -906,7 +907,7 @@ Give me:
     <div class="cat-item"><div class="cat-dot"></div><span>22: House Rules in a Friendly Tone</span></div>
     <div class="cat-item"><div class="cat-dot"></div><span>23: "About Your Host" Bio</span></div>
     <div class="cat-item"><div class="cat-dot"></div><span>24: Local Tips and Recommendations</span></div>
-    <div class="cat-item"><div class="cat-dot"></div><span>25: Neighborhood Description</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>25: Review Response</span></div>
   </div>
 </div>
 
@@ -983,18 +984,23 @@ Organize by category with short headers. Each recommendation: 1-2 sentences maxi
   </div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">25</div><div class="prompt-title">Neighborhood Description</div></div>
-    <div class="prompt-note">Your neighborhood is part of your product. Guests who understand what surrounds them feel more confident and more connected to the island. Most hosts describe location in one dry sentence. A neighborhood described with personality becomes a reason to choose your property over a competitor.</div>
-    <div class="prompt-body">Write a "Your neighborhood" section for my guest guide that makes <span class="ph">[NEIGHBORHOOD]</span> on <span class="ph">[ISLAND]</span> feel like somewhere worth arriving to.
+    <div class="prompt-header"><div class="prompt-badge">25</div><div class="prompt-title">Review Response</div></div>
+    <div class="prompt-note">Every response you write to a review is read by future guests before they book. A warm reply to a positive review signals an engaged host. A calm, professional reply to a critical review is often more persuasive than the review itself. Airbnb also uses review response rate as a ranking signal: hosts who respond to all reviews consistently appear higher in search. Most hosts only respond to negative ones. That is a missed opportunity on every single five-star review.</div>
+    <div class="prompt-body">Write a response to a guest review of my vacation rental.
 
-Neighborhood: <span class="ph">[NAME AND ISLAND]</span>
-Character: <span class="ph">[e.g. quiet and residential with local families / tourist-facing with restaurants and bars / authentically local and off the beaten track / up-and-coming / remote and peaceful]</span>
-What makes it specific to <span class="ph">[ISLAND]</span>: <span class="ph">[A LOCAL DETAIL THAT ONLY SOMEONE WHO LIVES THERE WOULD KNOW]</span>
-Who feels most at home here: <span class="ph">[TYPE OF GUEST]</span>
-Walking distance highlights: <span class="ph">[LIST 2-4]</span>
-5-10 minute drive: <span class="ph">[LIST 2-4]</span>
+Platform: <span class="ph">[AIRBNB / VRBO / BOOKING.COM / MICAZU]</span>
+Language: <span class="ph">[DUTCH if they wrote in Dutch / SPANISH if they wrote in Spanish / ENGLISH for all others]</span>
+Review type: <span class="ph">[5-star positive / 4-star with minor criticism / 3-star or below / negative and unfair]</span>
+The review: <span class="ph">[PASTE THE FULL REVIEW OR THE KEY SENTENCES]</span>
+My name / property name: <span class="ph">[NAME]</span>
+If critical: what actually happened or what I have changed: <span class="ph">[YOUR SIDE, BRIEFLY]</span>
 
-Write 2 paragraphs, no bullet points. First: the feel and personality of the neighborhood. Make it specific to <span class="ph">[ISLAND]</span>, not generic Caribbean. Second: practical access with warmth. 150-200 words total.</div>
+Rules:
+- For positive reviews: warm, specific, brief (3-4 sentences). Reference something they actually mentioned. End with an open invitation to return.
+- For reviews with minor criticism: thank them for the honest feedback, acknowledge the specific point, mention what you have done or will do. Do not over-explain.
+- For unfair or inaccurate reviews: stay completely calm. State the facts once, clearly, without arguing. Future guests are reading this to see how you handle problems, not to judge who was right.
+
+Max 80 words for positive reviews. Max 120 words for critical ones. Never start with "Thank you for your review."</div>
   </div>
 </div>
 
