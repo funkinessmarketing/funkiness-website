@@ -137,6 +137,16 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .upsell-cta { background: var(--pink); color: var(--white); font-family: 'Permanent Marker', cursive; font-size: 15px; padding: 10px 22px; border-radius: 999px; white-space: nowrap; text-align: center; flex-shrink: 0; }
 .upsell-price { font-size: 11px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 4px; font-family: 'Inter', sans-serif; }
 
+/* ── PROMPT SELECTORS (interactive quick fill) ── */
+.prompt-selectors { background: #f8f3ee; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 7px; }
+.sel-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sel-label { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.06em; min-width: 64px; }
+.sel-opt { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+.sel-opt input[type="radio"] { accent-color: #f21b7a; width: 13px; height: 13px; cursor: pointer; margin: 0; }
+.sel-opt span { font-size: 12px; font-family: 'Inter', sans-serif; color: var(--black); }
+.ph.filled { color: #f21b7a; background: rgba(242,27,122,0.08); border-radius: 3px; padding: 0 2px; }
+@media print { .prompt-selectors { display: none !important; } .ph.filled { background: none !important; color: inherit !important; padding: 0 !important; } }
+
 .copy-facts-btn {
   display: block;
   width: 100%;
@@ -1042,27 +1052,84 @@ Rules:
 <div class="page teaser-page">
   <div class="teaser-eyebrow">Preview: Social Media Kit</div>
   <h2 class="teaser-heading">Turn a cancellation<br>into your next booking.</h2>
-  <p class="teaser-sub">Someone just cancelled. Instead of staring at an empty calendar, you post something so good that the next guest finds you before you even update your availability. This is one prompt from the Social Media Kit.</p>
+  <p class="teaser-sub">Two prompts. Two markets. One empty slot filled. Dutch guests book on practical certainty. American guests book on a feeling. The Social Media Kit has both.</p>
 
-  <div class="prompt-card preview-card">
-    <div class="prompt-header"><div class="preview-badge">PREVIEW</div><div class="prompt-title">Cancellation or Slow Period Post</div></div>
-    <div class="prompt-note">The worst thing you can do with a cancellation is post "just got a last-minute opening!" It sounds desperate and it converts poorly. The best thing you can do is turn it into content that makes your property look so good, guests feel lucky to have found it. Same goes for a slow period: don't announce you're quiet, announce what's available.</div>
-    <div class="prompt-body">Write an Instagram and Facebook post for my vacation rental on <span class="ph">[ISLAND]</span>.
+  <div class="prompt-card preview-card" style="margin-bottom:10px;">
+    <div class="prompt-header"><div class="preview-badge">NL</div><div class="prompt-title">Post: Annulering of Rustige Periode</div></div>
+    <div class="prompt-selectors">
+      <div class="sel-row">
+        <span class="sel-label">Situatie</span>
+        <label class="sel-opt"><input type="radio" name="nl-sit" data-ph="nl-sit" data-val="ANNULERING: er zijn datums vrijgekomen"><span>Annulering</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-sit" data-ph="nl-sit" data-val="RUSTIGE PERIODE: ik heb beschikbaarheid die ik wil vullen"><span>Rustige periode</span></label>
+      </div>
+      <div class="sel-row">
+        <span class="sel-label">Eiland</span>
+        <label class="sel-opt"><input type="radio" name="nl-isl" data-ph="nl-isl" data-val="Aruba"><span>Aruba</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-isl" data-ph="nl-isl" data-val="Bonaire"><span>Bonaire</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-isl" data-ph="nl-isl" data-val="Curaçao"><span>Curaçao</span></label>
+      </div>
+      <div class="sel-row">
+        <span class="sel-label">Kenmerk</span>
+        <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="eigen zwembad, geen gedeeld bad, kinderen claimen het de hele dag"><span>Eigen zwembad</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="directe strandtoegang, geen auto nodig"><span>Strandtoegang</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="buitenkeuken, elke avond buiten eten zonder restaurant"><span>Buitenkeuken</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="dakterras met zeezicht"><span>Dakterras</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="volledige privacy, geen resort, geen gedeelde ruimtes"><span>Privacy</span></label>
+      </div>
+    </div>
+    <div class="prompt-body">Schrijf een Instagram- en Facebookpost voor mijn vakantieverhuur op <span class="ph" data-ph="nl-isl">[EILAND]</span>.
 
-Situation: <span class="ph">[CANCELLATION: dates just opened up / SLOW PERIOD: I have availability I want to fill]</span>
+Situatie: <span class="ph" data-ph="nl-sit">[ANNULERING: er zijn datums vrijgekomen / RUSTIGE PERIODE: ik heb beschikbaarheid die ik wil vullen]</span>
+Beschikbare datums: <span class="ph">[DATUMS]</span>
+Naam van de woning: <span class="ph">[NAAM]</span> / Eiland: <span class="ph" data-ph="nl-isl">[EILAND]</span>
+Wat gasten hier altijd het meest op reageren (beschrijf wat het gezin er concreet doet, niet alleen wat het is): <span class="ph" data-ph="nl-feat">[REQUIRED: bijv. "eigen zwembad, geen gedeeld bad, kinderen claimen het de hele dag" of "buitenkeuken, elke avond buiten eten zonder restaurant"]</span>
+Waarom zijn juist deze datums de moeite waard: <span class="ph">[REQUIRED: een echte reden. Bijv. lokaal festival, beste duikweer, rustigste week van het jaar, Carnaval]</span>
+
+Regels:
+- De eerste zin beschrijft iets wat het gezin hier concreet doet. Niet over het eiland, niet over het weer.
+- Verwerk praktische zekerheid vanzelfsprekend: privacy, hoeveel personen, strand op afstand, parkeergelegenheid.
+- Nooit "annulering," "last-minute," "luxe," "paradijs" of "adembenemend" gebruiken.
+- Eindig met één CTA: DM voor info, link in bio of directe boekingslink.
+- 5-7 regels. 3-5 gerichte hashtags. Schrijf in het Nederlands.</div>
+  </div>
+
+  <div class="prompt-card preview-card" style="margin-bottom:10px;">
+    <div class="prompt-header"><div class="preview-badge">EN</div><div class="prompt-title">Cancellation or Slow Period Post</div></div>
+    <div class="prompt-selectors">
+      <div class="sel-row">
+        <span class="sel-label">Situation</span>
+        <label class="sel-opt"><input type="radio" name="en-sit" data-ph="en-sit" data-val="CANCELLATION: dates just opened up"><span>Cancellation</span></label>
+        <label class="sel-opt"><input type="radio" name="en-sit" data-ph="en-sit" data-val="SLOW PERIOD: I have availability I want to fill"><span>Slow period</span></label>
+      </div>
+      <div class="sel-row">
+        <span class="sel-label">Island</span>
+        <label class="sel-opt"><input type="radio" name="en-isl" data-ph="en-isl" data-val="Aruba"><span>Aruba</span></label>
+        <label class="sel-opt"><input type="radio" name="en-isl" data-ph="en-isl" data-val="Bonaire"><span>Bonaire</span></label>
+        <label class="sel-opt"><input type="radio" name="en-isl" data-ph="en-isl" data-val="Curaçao"><span>Curaçao</span></label>
+      </div>
+      <div class="sel-row">
+        <span class="sel-label">Feature</span>
+        <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="private pool, no sharing, kids claim it all day"><span>Private pool</span></label>
+        <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="direct beach access, no car needed"><span>Beach access</span></label>
+        <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="outdoor kitchen, family dinners outside every night"><span>Outdoor kitchen</span></label>
+        <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="rooftop terrace with sea view"><span>Rooftop</span></label>
+        <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="complete privacy, no resort, no shared spaces"><span>Privacy</span></label>
+      </div>
+    </div>
+    <div class="prompt-body">Write an Instagram and Facebook post for my vacation rental on <span class="ph" data-ph="en-isl">[ISLAND]</span>.
+
+Situation: <span class="ph" data-ph="en-sit">[CANCELLATION: dates just opened up / SLOW PERIOD: I have availability I want to fill]</span>
 Available dates: <span class="ph">[DATES]</span>
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-The one feature guests always react to most: <span class="ph">[REQUIRED: the specific thing about this property that makes people stop scrolling. Pool with a view? Outdoor kitchen? Direct beach access? Be precise.]</span>
-What makes these specific dates worth booking: <span class="ph">[REQUIRED: a real reason. Not "the weather is nice." E.g. Carnival is on, diving conditions are peak, it is the quietest week of the year, there is a local festival, it is the best sunset month]</span>
-Language: <span class="ph">[DUTCH / ENGLISH]</span>
+Property: <span class="ph">[NAME]</span> / Island: <span class="ph" data-ph="en-isl">[ARUBA / BONAIRE / CURACAO]</span>
+The one thing guests always react to most (what the guest actually does there, not just what it is): <span class="ph" data-ph="en-feat">[REQUIRED: e.g. "private pool, no sharing, kids claim it all day" / "outdoor kitchen, family dinners outside every night" / "direct beach access, no car needed"]</span>
+What makes these specific dates worth booking: <span class="ph">[REQUIRED: a real reason. E.g. carnival season, peak diving conditions, quietest week of the year, local festival, best sunset month]</span>
 
 Rules:
-- The first sentence must be specific to this property. Not to the island. Not to the season. If you could swap the property name for any other villa and the sentence still works, rewrite it.
-- Do not open with atmosphere or scenery. Open with something the guest can picture themselves doing at THIS property on THESE dates.
-- Do not use the word "cancellation," "last-minute," "comfortable," "stunning," "escape" or "base."
-- No generic Caribbean copy. Every sentence must be specific enough that it could only be about this property.
-- End with one clear, frictionless CTA: DM for info, link in bio, or direct booking link.
-- 5-7 lines. 3-5 targeted hashtags. No hashtag wall.</div>
+- The first sentence is something the guest pictures themselves doing at THIS property. Not the island. Not the season.
+- Translate every feature into what the guest does or feels there. Not "private pool" — what they actually do at that pool.
+- Never use "cancellation," "last-minute," "stunning," "escape," "comfortable," or "paradise."
+- End with one clear CTA: DM for info, link in bio, or direct booking link.
+- 5-7 lines. 3-5 targeted hashtags. No hashtag wall. Write in English.</div>
   </div>
 
   <div class="upsell-box">
@@ -1160,6 +1227,20 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
     header.appendChild(btn);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.prompt-selectors input[type="radio"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      var card = radio.closest('.prompt-card');
+      var phKey = radio.getAttribute('data-ph');
+      var val = radio.getAttribute('data-val');
+      card.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
+        span.textContent = val;
+        span.classList.add('filled');
+      });
+    });
   });
 });
 </script>
