@@ -10,6 +10,10 @@ Dit is het geheugen van mijn AI. Alles wat hier staat, leest Claude bij elke ses
 
 **GEEN ONVERIFIEERBARE CLAIMS:** Verzin geen tijdpaden, statistieken, marktposities of claims over concurrenten die Daisy niet zelf kan bevestigen.
 
+**WEBSITE LEIDRAAD: MOBILE FIRST + SEO + GEO.** Bij elke wijziging aan websitecopy of HTML: (1) mobile-first CSS, altijd `min-width` breakpoints, nooit `max-width`. (2) SEO: behoud locatie-keywords (Curaçao, Aruba, Bonaire) en dienst-keywords in de tekst, ook na herschrijven. (3) GEO: schrijf voor AI-zoekmachines met locatie + dienst + autoriteit in de copy. Nooit een "on Curaçao" of eilandvermelding weghalen bij herschrijven.
+
+**BERDIEN WOONT NOG NIET OP CURAÇAO.** Berdien sluit eind oktober 2026 aan. Schrijf nooit "we live here", "we are based here" of vergelijkbare formuleringen die impliceren dat beiden op het eiland wonen. Daisy woont er wel. Gebruik "FUNkiness! is based on Curaçao" of "Daisy is based on Curaçao" maar nooit "we" in die context.
+
 ## Mijn bedrijf
 
 Ik ben Daisy, en samen met Berdien run ik **FUNkiness! AI, Social Media & Marketing** op Curaçao. We zijn allebei ervaren marketeers uit Nederland die de stap naar het eiland hebben gemaakt. Marketing op Curaçao is nog heel traditioneel, iedereen doet hetzelfde, niemand springt eruit. FUNkiness! is ons antwoord daarop.
