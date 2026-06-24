@@ -215,6 +215,158 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .quick-fill-page { display: none !important; }
   .global-panel { display: none !important; }
 }
+
+/* ══════════════════════════════════════════
+   SCREEN STYLES (mobile-first)
+   Base .page uses mm/A4 for print.
+   These overrides make it work on screen.
+   ══════════════════════════════════════════ */
+
+@media screen {
+  body { background: #e8e0d8; }
+
+  /* Reset A4 page to natural flow */
+  .page {
+    width: 100%;
+    min-height: unset;
+    margin: 0 0 10px;
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  /* Convert mm paddings to px */
+  .cover-inner        { padding: 32px 20px 0; }
+  .cover-foot         { padding: 12px 20px; }
+  .fact-page          { padding: 24px 18px; }
+  .how-page           { padding: 24px 18px; }
+  .cat-page           { padding: 40px 20px; }
+  .prompts-page       { padding: 18px 14px; }
+  .quick-fill-page    { padding: 24px 18px; }
+  .teaser-page        { padding: 24px 18px; }
+  .back               { padding: 48px 24px; }
+
+  /* Page numbers are print-only */
+  .page-num { display: none; }
+
+  /* ── Typography: readable on screen ── */
+  .cover-title        { font-size: 36px; }
+  .cat-title          { font-size: 34px; }
+  .cat-bg-num         { font-size: 120px; }
+  .back-title         { font-size: 30px; }
+  .section-title      { font-size: 26px; }
+  .qf-title           { font-size: 26px; }
+  .prompt-title       { font-size: 15px; }
+  .prompt-note        { font-size: 14px; line-height: 1.6; }
+  .prompt-body        { font-size: 15px; line-height: 1.85; padding: 14px 16px; }
+  .ph                 { font-size: 15px; }
+
+  /* ── Inputs: 16px prevents iOS auto-zoom ── */
+  .sel-text {
+    font-size: 16px;
+    padding: 10px 12px;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  .sel-textarea {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+  .fact-line {
+    font-size: 16px;
+    padding: 8px 0;
+  }
+
+  /* ── Touch targets: radio + checkbox ── */
+  .sel-opt {
+    padding: 7px 6px;
+    min-height: 40px;
+    align-items: center;
+  }
+  .sel-opt input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+  }
+  .sel-opt span { font-size: 14px; }
+
+  .sel-check-opt {
+    padding: 7px 6px;
+    min-height: 40px;
+    align-items: center;
+  }
+  .sel-check-opt input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+  }
+  .sel-check-opt span { font-size: 14px; }
+
+  /* ── Selector layout ── */
+  .prompt-selectors   { padding: 14px 14px; gap: 10px; }
+  .global-panel       { padding: 16px 14px; gap: 12px; }
+  .sel-row            { gap: 10px; align-items: flex-start; }
+  .sel-label          { min-width: 76px; font-size: 11px; padding-top: 3px; }
+  .sel-check-grid     { gap: 6px; }
+
+  /* ── Buttons: tap-friendly ── */
+  .copy-btn {
+    padding: 7px 16px;
+    font-size: 12px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+  }
+  .copy-output-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    min-height: 34px;
+  }
+  .copy-facts-btn { font-size: 16px; padding: 15px 20px; }
+  .upsell-cta     { font-size: 16px; padding: 12px 24px; }
+
+  /* ── Layouts that collapse on mobile ── */
+  .fact-grid  { grid-template-columns: 1fr; }
+  .toc-grid   { grid-template-columns: 1fr; }
+  .upsell-box { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Tablet and up: centered, slightly larger ── */
+@media screen and (min-width: 680px) {
+  .page {
+    max-width: 680px;
+    margin: 0 auto 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+  .prompts-page       { padding: 24px 28px; }
+  .fact-page          { padding: 28px 28px; }
+  .how-page           { padding: 28px 28px; }
+  .cover-inner        { padding: 36px 32px 0; }
+  .cover-foot         { padding: 14px 32px; }
+  .cat-page           { padding: 48px 32px; }
+  .teaser-page        { padding: 28px 32px; }
+  .quick-fill-page    { padding: 28px 32px; }
+  .back               { padding: 56px 32px; }
+
+  .prompt-body  { font-size: 14px; }
+  .ph           { font-size: 14px; }
+  .prompt-note  { font-size: 13px; }
+  .sel-text     { font-size: 14px; }
+  .sel-textarea { font-size: 14px; }
+  .fact-line    { font-size: 14px; }
+  .sel-opt span           { font-size: 13px; }
+  .sel-check-opt span     { font-size: 13px; }
+
+  .fact-grid  { grid-template-columns: 1fr 1fr; }
+  .toc-grid   { grid-template-columns: 1fr 1fr; }
+  .upsell-box { flex-direction: row; align-items: center; }
+
+  .cover-title { font-size: 44px; }
+  .cat-title   { font-size: 44px; }
+  .back-title  { font-size: 36px; }
+  .section-title { font-size: 30px; }
+  .qf-title    { font-size: 30px; }
+}
 </style>
 </head>
 <body>
