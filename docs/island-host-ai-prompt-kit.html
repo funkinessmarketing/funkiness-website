@@ -144,6 +144,8 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .sel-opt { display: flex; align-items: center; gap: 4px; cursor: pointer; }
 .sel-opt input[type="radio"] { accent-color: #f21b7a; width: 13px; height: 13px; cursor: pointer; margin: 0; }
 .sel-opt span { font-size: 12px; font-family: 'Inter', sans-serif; color: var(--black); }
+.sel-text { font-size: 12px; font-family: 'Inter', sans-serif; border: 1px solid #e0dbd5; border-radius: 6px; padding: 4px 8px; color: var(--black); background: white; outline: none; flex: 1; max-width: 200px; }
+.sel-text:focus { border-color: #f21b7a; }
 .ph.filled { color: #f21b7a; background: rgba(242,27,122,0.08); border-radius: 3px; padding: 0 2px; }
 @media print { .prompt-selectors { display: none !important; } .ph.filled { background: none !important; color: inherit !important; padding: 0 !important; } }
 
@@ -1069,6 +1071,14 @@ Rules:
         <label class="sel-opt"><input type="radio" name="nl-isl" data-ph="nl-isl" data-val="Curaçao"><span>Curaçao</span></label>
       </div>
       <div class="sel-row">
+        <span class="sel-label">Datums</span>
+        <input type="text" class="sel-text" data-ph="nl-datums" placeholder="bijv. 12-19 juli">
+      </div>
+      <div class="sel-row">
+        <span class="sel-label">Naam</span>
+        <input type="text" class="sel-text" data-ph="nl-naam" placeholder="naam van de woning">
+      </div>
+      <div class="sel-row">
         <span class="sel-label">Kenmerk</span>
         <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="eigen zwembad, geen gedeeld bad, kinderen claimen het de hele dag"><span>Eigen zwembad</span></label>
         <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="directe strandtoegang, geen auto nodig"><span>Strandtoegang</span></label>
@@ -1076,14 +1086,22 @@ Rules:
         <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="dakterras met zeezicht"><span>Dakterras</span></label>
         <label class="sel-opt"><input type="radio" name="nl-feat" data-ph="nl-feat" data-val="volledige privacy, geen resort, geen gedeelde ruimtes"><span>Privacy</span></label>
       </div>
+      <div class="sel-row">
+        <span class="sel-label">Reden</span>
+        <label class="sel-opt"><input type="radio" name="nl-reden" data-ph="nl-reden" data-val="Carnaval"><span>Carnaval</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-reden" data-ph="nl-reden" data-val="lokaal festival"><span>Festival</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-reden" data-ph="nl-reden" data-val="beste duikweer van het jaar"><span>Duikweer</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-reden" data-ph="nl-reden" data-val="rustigste week van het jaar, minder toeristen"><span>Rustige week</span></label>
+        <label class="sel-opt"><input type="radio" name="nl-reden" data-ph="nl-reden" data-val="buiten het hoogseizoen"><span>Laagseizoen</span></label>
+      </div>
     </div>
     <div class="prompt-body">Schrijf een Instagram- en Facebookpost voor mijn vakantieverhuur op <span class="ph" data-ph="nl-isl">[EILAND]</span>.
 
 Situatie: <span class="ph" data-ph="nl-sit">[ANNULERING: er zijn datums vrijgekomen / RUSTIGE PERIODE: ik heb beschikbaarheid die ik wil vullen]</span>
-Beschikbare datums: <span class="ph">[DATUMS]</span>
-Naam van de woning: <span class="ph">[NAAM]</span> / Eiland: <span class="ph" data-ph="nl-isl">[EILAND]</span>
+Beschikbare datums: <span class="ph" data-ph="nl-datums" data-default="[DATUMS]">[DATUMS]</span>
+Naam van de woning: <span class="ph" data-ph="nl-naam" data-default="[NAAM]">[NAAM]</span> / Eiland: <span class="ph" data-ph="nl-isl">[EILAND]</span>
 Wat gasten hier altijd het meest op reageren (beschrijf wat het gezin er concreet doet, niet alleen wat het is): <span class="ph" data-ph="nl-feat">[REQUIRED: bijv. "eigen zwembad, geen gedeeld bad, kinderen claimen het de hele dag" of "buitenkeuken, elke avond buiten eten zonder restaurant"]</span>
-Waarom zijn juist deze datums de moeite waard: <span class="ph">[REQUIRED: een echte reden. Bijv. lokaal festival, beste duikweer, rustigste week van het jaar, Carnaval]</span>
+Waarom zijn juist deze datums de moeite waard: <span class="ph" data-ph="nl-reden">[REQUIRED: een echte reden. Bijv. lokaal festival, beste duikweer, rustigste week van het jaar, Carnaval]</span>
 
 Regels:
 - De eerste zin beschrijft iets wat het gezin hier concreet doet. Niet over het eiland, niet over het weer.
@@ -1108,6 +1126,14 @@ Regels:
         <label class="sel-opt"><input type="radio" name="en-isl" data-ph="en-isl" data-val="Curaçao"><span>Curaçao</span></label>
       </div>
       <div class="sel-row">
+        <span class="sel-label">Dates</span>
+        <input type="text" class="sel-text" data-ph="en-dates" placeholder="e.g. July 12-19">
+      </div>
+      <div class="sel-row">
+        <span class="sel-label">Name</span>
+        <input type="text" class="sel-text" data-ph="en-name" placeholder="property name">
+      </div>
+      <div class="sel-row">
         <span class="sel-label">Feature</span>
         <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="private pool, no sharing, kids claim it all day"><span>Private pool</span></label>
         <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="direct beach access, no car needed"><span>Beach access</span></label>
@@ -1115,14 +1141,22 @@ Regels:
         <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="rooftop terrace with sea view"><span>Rooftop</span></label>
         <label class="sel-opt"><input type="radio" name="en-feat" data-ph="en-feat" data-val="complete privacy, no resort, no shared spaces"><span>Privacy</span></label>
       </div>
+      <div class="sel-row">
+        <span class="sel-label">Reason</span>
+        <label class="sel-opt"><input type="radio" name="en-reden" data-ph="en-reden" data-val="carnival season"><span>Carnival</span></label>
+        <label class="sel-opt"><input type="radio" name="en-reden" data-ph="en-reden" data-val="local festival"><span>Festival</span></label>
+        <label class="sel-opt"><input type="radio" name="en-reden" data-ph="en-reden" data-val="peak diving conditions"><span>Diving</span></label>
+        <label class="sel-opt"><input type="radio" name="en-reden" data-ph="en-reden" data-val="quietest week of the year, fewer tourists"><span>Quiet week</span></label>
+        <label class="sel-opt"><input type="radio" name="en-reden" data-ph="en-reden" data-val="low season, better rates"><span>Low season</span></label>
+      </div>
     </div>
     <div class="prompt-body">Write an Instagram and Facebook post for my vacation rental on <span class="ph" data-ph="en-isl">[ISLAND]</span>.
 
 Situation: <span class="ph" data-ph="en-sit">[CANCELLATION: dates just opened up / SLOW PERIOD: I have availability I want to fill]</span>
-Available dates: <span class="ph">[DATES]</span>
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph" data-ph="en-isl">[ARUBA / BONAIRE / CURACAO]</span>
+Available dates: <span class="ph" data-ph="en-dates" data-default="[DATES]">[DATES]</span>
+Property: <span class="ph" data-ph="en-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="en-isl">[ARUBA / BONAIRE / CURACAO]</span>
 The one thing guests always react to most (what the guest actually does there, not just what it is): <span class="ph" data-ph="en-feat">[REQUIRED: e.g. "private pool, no sharing, kids claim it all day" / "outdoor kitchen, family dinners outside every night" / "direct beach access, no car needed"]</span>
-What makes these specific dates worth booking: <span class="ph">[REQUIRED: a real reason. E.g. carnival season, peak diving conditions, quietest week of the year, local festival, best sunset month]</span>
+What makes these specific dates worth booking: <span class="ph" data-ph="en-reden">[REQUIRED: a real reason. E.g. carnival season, peak diving conditions, quietest week of the year, local festival, best sunset month]</span>
 
 Rules:
 - The first sentence is something the guest pictures themselves doing at THIS property. Not the island. Not the season.
@@ -1239,6 +1273,22 @@ document.addEventListener('DOMContentLoaded', function () {
       card.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
         span.textContent = val;
         span.classList.add('filled');
+      });
+    });
+  });
+
+  document.querySelectorAll('.prompt-selectors input[type="text"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+      var card = input.closest('.prompt-card');
+      var phKey = input.getAttribute('data-ph');
+      card.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
+        if (input.value.trim()) {
+          span.textContent = input.value.trim();
+          span.classList.add('filled');
+        } else {
+          span.textContent = span.getAttribute('data-default') || '[' + phKey + ']';
+          span.classList.remove('filled');
+        }
       });
     });
   });
