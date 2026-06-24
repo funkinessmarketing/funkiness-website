@@ -147,7 +147,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .sel-text { font-size: 12px; font-family: 'Inter', sans-serif; border: 1px solid #e0dbd5; border-radius: 6px; padding: 4px 8px; color: var(--black); background: white; outline: none; flex: 1; max-width: 200px; }
 .sel-text:focus { border-color: #f21b7a; }
 .ph.filled { color: #f21b7a; background: rgba(242,27,122,0.08); border-radius: 3px; padding: 0 2px; }
-@media print { .prompt-selectors { display: none !important; } .ph.filled { background: none !important; color: inherit !important; padding: 0 !important; } }
+@media print { .prompt-selectors { display: none !important; } .quick-fill-page { display: none !important; } .global-panel { display: none !important; } .ph.filled { background: none !important; color: inherit !important; padding: 0 !important; } }
 
 .copy-facts-btn {
   display: block;
@@ -192,6 +192,29 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .facts-next-steps { display: none; }
 }
 @page { size: A4; margin: 0; }
+
+/* ── QUICK FILL PAGE ── */
+.quick-fill-page { padding: 14mm 18mm; display: flex; flex-direction: column; }
+.qf-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 14px; margin-bottom: 6px; }
+.qf-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 32px; color: var(--black); margin-bottom: 8px; line-height: 1.1; }
+.qf-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 22px; max-width: 460px; }
+.qf-hint { font-size: 12px; color: #aaa; margin-top: 20px; }
+.global-panel { background: #f8f3ee; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 9px; }
+
+/* ── TEXTAREA SELECTOR ── */
+.sel-textarea { font-size: 12px; font-family: 'Inter', sans-serif; border: 1px solid #e0dbd5; border-radius: 8px; padding: 7px 10px; color: var(--black); background: white; outline: none; width: 100%; resize: vertical; line-height: 1.5; }
+.sel-textarea:focus { border-color: #f21b7a; }
+
+/* ── CHECKBOX GRID SELECTOR ── */
+.sel-check-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+.sel-check-opt { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+.sel-check-opt input[type="checkbox"] { accent-color: #f21b7a; width: 13px; height: 13px; cursor: pointer; margin: 0; }
+.sel-check-opt span { font-size: 12px; font-family: 'Inter', sans-serif; color: var(--black); }
+
+@media print {
+  .quick-fill-page { display: none !important; }
+  .global-panel { display: none !important; }
+}
 </style>
 </head>
 <body>
@@ -410,6 +433,43 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   </div>
 </div>
 
+
+<!-- QUICK FILL PANEL -->
+<div class="page quick-fill-page">
+  <div class="qf-eyebrow">Stap 0 van 25</div>
+  <h2 class="qf-title">Quick Fill</h2>
+  <p class="qf-desc">Vul dit eenmalig in. Je antwoorden verschijnen automatisch in alle 25 prompts zodra je door de kit scrolt.</p>
+  <div class="global-panel">
+    <div class="sel-row">
+      <span class="sel-label">Eiland</span>
+      <label class="sel-opt"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Aruba"><span>Aruba</span></label>
+      <label class="sel-opt"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Bonaire"><span>Bonaire</span></label>
+      <label class="sel-opt"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Curaçao"><span>Curaçao</span></label>
+    </div>
+    <div class="sel-row">
+      <span class="sel-label">Naam woning</span>
+      <input type="text" class="sel-text" data-ph="g-name" placeholder="bijv. Villa Sunset">
+    </div>
+    <div class="sel-row">
+      <span class="sel-label">Type woning</span>
+      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="villa"><span>Villa</span></label>
+      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="apartment"><span>Appartement</span></label>
+      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="guesthouse"><span>Guesthouse</span></label>
+      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="studio"><span>Studio</span></label>
+    </div>
+    <div class="sel-row">
+      <span class="sel-label">Jouw naam</span>
+      <input type="text" class="sel-text" data-ph="g-hname" placeholder="bijv. Daisy">
+    </div>
+    <div class="sel-row">
+      <span class="sel-label">Aanspreekvorm</span>
+      <label class="sel-opt"><input type="radio" name="g-aansp" data-ph="g-aansp" data-val="je/jij (informeel)"><span>je/jij (informeel)</span></label>
+      <label class="sel-opt"><input type="radio" name="g-aansp" data-ph="g-aansp" data-val="u (formeel)"><span>u (formeel)</span></label>
+    </div>
+  </div>
+  <p class="qf-hint">Klaar? Scroll naar een prompt, kopieer hem en plak hem in ChatGPT of Claude.</p>
+</div>
+
 <!-- AIRBNB INTRO PAGE -->
 <div class="page cat-page">
   <div class="cat-blob"></div>
@@ -435,7 +495,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
       <div class="output-header"><span class="output-label">Output 1: Dutch market (in Dutch) → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">Schrijf een Airbnb-advertentiebeschrijving voor mijn vakantiewoning voor de Nederlandse markt. Max 500 tekens. Schrijf in het Nederlands. Geen clichés: geen "paradijs," "parel," "home away from home" of "adembenemend."
 
-Aanspreekvorm: <span class="ph">[je/jij (informeel, meeste verhuurders) OF u (formeel, bijv. voor luxe of zakelijk publiek)]</span>
+Aanspreekvorm: <span class="ph" data-ph="g-aansp" data-default="[je/jij (informeel, meeste verhuurders) OF u (formeel, bijv. voor luxe of zakelijk publiek)]">[je/jij (informeel, meeste verhuurders) OF u (formeel, bijv. voor luxe of zakelijk publiek)]</span>
 
 500 tekens is weinig. Gebruik ze goed. Begin direct met het sterkste punt van de woning, geen inleiding. Nederlandse lezers prikken door een template heen: schrijf wat concreet en oprecht is aan deze woning. Geen superlatieven. Eindig met één regel die de gast wil doen klikken. Verwerk de eilandnaam en 1-2 topkenmerken als zoektermen. Schrijf voor de gast eerst, het algoritme tweede.</div>
     </div>
@@ -465,7 +525,7 @@ Don't try to describe every room. Pick the 2-3 spaces guests will actually remem
       <div class="output-header"><span class="output-label">Output 5: Je accommodatie in het Nederlands → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">Schrijf de "Je accommodatie" sectie voor mijn Airbnb listing. Dit is een apart veld specifiek over de fysieke woning. Max 500 tekens. Schrijf in het Nederlands.
 
-Aanspreekvorm: <span class="ph">[je/jij (informeel) OF u (formeel)]</span>
+Aanspreekvorm: <span class="ph" data-ph="g-aansp" data-default="[je/jij (informeel) OF u (formeel)]">[je/jij (informeel) OF u (formeel)]</span>
 
 Beschrijf niet elke ruimte: kies de 2-3 plekken die een gast zich herinnert. Waarschijnlijk de buitenruimte, de slaapkamer en één ander hoogtepunt. Wees concreet: "een privézwembad met uitzicht op zee en westkant voor de zonsondergang" slaat beter aan dan "een mooie buitenruimte." Warme en eerlijke toon, geen vulzinnen.</div>
     </div>
@@ -474,12 +534,18 @@ Beschrijf niet elke ruimte: kies de 2-3 plekken die een gast zich herinnert. Waa
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">02</div><div class="prompt-title">Seasonal Listing Update</div></div>
     <div class="prompt-note">Updating your listing description seasonally signals to Airbnb's algorithm that your listing is actively managed, which lifts your search ranking during competitive periods. Because the description field is only 500 characters, there is no room to add a seasonal intro on top of your existing text. Instead, swap in a full seasonal version 3-4 weeks before the season starts, then revert to your standard version after. Keep your standard description saved so you can restore it quickly.</div>
-    <div class="prompt-body">Write a seasonal version of my Airbnb listing description for <span class="ph">[SEASON/PERIOD]</span>. Max 500 characters. This will temporarily replace my standard description.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Season</span><label class="sel-opt"><input type="radio" name="p02-sea" data-ph="p02-sea" data-val="Carnival season"><span>Carnival / Carnaval</span></label><label class="sel-opt"><input type="radio" name="p02-sea" data-ph="p02-sea" data-val="dive season Bonaire"><span>Dive season</span></label><label class="sel-opt"><input type="radio" name="p02-sea" data-ph="p02-sea" data-val="high season"><span>High season</span></label><label class="sel-opt"><input type="radio" name="p02-sea" data-ph="p02-sea" data-val="December-January"><span>December-January</span></label><label class="sel-opt"><input type="radio" name="p02-sea" data-ph="p02-sea" data-val="Easter week"><span>Easter week</span></label></div>
+      <div class="sel-row"><span class="sel-label">Availability</span><label class="sel-opt"><input type="radio" name="p02-avail" data-ph="p02-avail" data-val="A FEW DATES LEFT"><span>A few dates left</span></label><label class="sel-opt"><input type="radio" name="p02-avail" data-ph="p02-avail" data-val="FILLING UP"><span>Filling up</span></label><label class="sel-opt"><input type="radio" name="p02-avail" data-ph="p02-avail" data-val="OPEN"><span>Open</span></label></div>
+      <div class="sel-row"><span class="sel-label">Language</span><label class="sel-opt"><input type="radio" name="p02-lng" data-ph="p02-lng" data-val="DUTCH"><span>Dutch</span></label><label class="sel-opt"><input type="radio" name="p02-lng" data-ph="p02-lng" data-val="ENGLISH"><span>English</span></label></div>
+      <div class="sel-row"><span class="sel-label">Wat bijzonder is</span><input type="text" class="sel-text" data-ph="p02-special" placeholder="Bijv. Carnaval begint, duikweer op z'n best, minder toeristen..." style="max-width:340px"></div>
+    </div>
+<div class="prompt-body">Write a seasonal version of my Airbnb listing description for <span class="ph" data-ph="p02-sea" data-default="[SEASON/PERIOD]">[SEASON/PERIOD]</span>. Max 500 characters. This will temporarily replace my standard description.
 
-Period: <span class="ph">[e.g. Carnival season Curaçao / dive season Bonaire / high season Aruba / December-January / Easter week]</span>
-What makes this time of year special on <span class="ph">[ISLAND]</span>: <span class="ph">[BE SPECIFIC: events, weather, what guests can experience that they cannot at other times]</span>
-Availability: <span class="ph">[A FEW DATES LEFT / FILLING UP / OPEN]</span>
-Language: <span class="ph">[DUTCH / ENGLISH]</span>
+Period: <span class="ph" data-ph="p02-sea" data-default="[e.g. Carnival season Curaçao / dive season Bonaire / high season Aruba / December-January / Easter week]">[e.g. Carnival season Curaçao / dive season Bonaire / high season Aruba / December-January / Easter week]</span>
+What makes this time of year special on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>: <span class="ph" data-ph="p02-special" data-default="[BE SPECIFIC: events, weather, what guests can experience that they cannot at other times]">[BE SPECIFIC: events, weather, what guests can experience that they cannot at other times]</span>
+Availability: <span class="ph" data-ph="p02-avail" data-default="[A FEW DATES LEFT / FILLING UP / OPEN]">[A FEW DATES LEFT / FILLING UP / OPEN]</span>
+Language: <span class="ph" data-ph="p02-lng" data-default="[DUTCH / ENGLISH]">[DUTCH / ENGLISH]</span>
 
 Lead with the season itself as the reason to book now. Make it feel like a specific window worth planning around, not a generic description with a date added. No "don't miss out." Urgency through specificity, not pressure. Max 500 characters.</div>
   </div>
@@ -509,7 +575,7 @@ Lead with the season itself as the reason to book now. Make it feel like a speci
       <div class="output-header"><span class="output-label">Output 1: Dutch / European market (in Dutch)</span><button class="copy-output-btn">Copy</button></div>
       <div class="output-body prompt-body">You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the Dutch and European market. Target 600-800 words. Write in Dutch (Nederlands). No clichés: no "paradijs," "parel," "adembenemend" or "home away from home."
 
-Aanspreekvorm: <span class="ph">[je/jij (informeel) OF u (formeel)]</span>
+Aanspreekvorm: <span class="ph" data-ph="g-aansp" data-default="[je/jij (informeel) OF u (formeel)]">[je/jij (informeel) OF u (formeel)]</span>
 
 Nederlandse lezers vergelijken listings zorgvuldig en prikken meteen door een template heen. Begin met wat specifiek en oprecht is aan deze woning. Benadruk waarde, praktische kwaliteiten en hoe een verblijf hier dag-tot-dag aanvoelt. Geen superlatieven. Geen inspirerende opening. Schrijf voor iemand die vandaag al twintig listings heeft bekeken en een reden zoekt om deze te vertrouwen. VRBO staat maximaal 10.000 tekens toe. Gebruik die ruimte om grondig te zijn en elke vraag te beantwoorden, niet om de tekst op te vullen.
 
@@ -546,12 +612,15 @@ Naturally include these as search terms: island name, property type, and 1-2 top
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">04</div><div class="prompt-title">Micazu beschrijving</div></div>
     <div class="prompt-note">Micazu staat maximaal 5000 tekens toe voor de beschrijving. Dat is ruimer dan Airbnb maar gebruik die ruimte niet om meer te zeggen, gebruik hem om beter te zeggen. Nederlandse gasten waarderen eerlijkheid en warmte boven perfecte marketing. Ze willen weten of het er gezellig is, of de woning klopt en of jij als host te vertrouwen bent.</div>
-    <div class="prompt-body">Jij bent een copywriter die gespecialiseerd is in de Nederlandse vakantieverhuurmarkt. Je hebt alle basisgegevens van mijn woning al. Schrijf nu een Micazu-beschrijving.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Onderscheidend kenmerk</span><textarea class="sel-textarea" data-ph="p04-onderscheid" placeholder="Bijv. panoramisch zeezicht, privézwembad op het dak, directe strandtoegang..." rows="2"></textarea></div>
+    </div>
+<div class="prompt-body">Jij bent een copywriter die gespecialiseerd is in de Nederlandse vakantieverhuurmarkt. Je hebt alle basisgegevens van mijn woning al. Schrijf nu een Micazu-beschrijving.
 
 Nog één aanvullende vraag voordat je begint: Wat maakt deze woning anders dan alle andere opties op dit eiland?
-<span class="ph">[WEES SPECIFIEK: het ene element waarmee jij je onderscheidt van andere verhuurders op het eiland]</span>
+<span class="ph" data-ph="p04-onderscheid" data-default="[WEES SPECIFIEK: het ene element waarmee jij je onderscheidt van andere verhuurders op het eiland]">[WEES SPECIFIEK: het ene element waarmee jij je onderscheidt van andere verhuurders op het eiland]</span>
 
-Aanspreekvorm: <span class="ph">[je/jij (informeel, meest gebruikt) OF u (formeel, bijv. voor luxe of zakelijk publiek)]</span>
+Aanspreekvorm: <span class="ph" data-ph="g-aansp" data-default="[je/jij (informeel, meest gebruikt) OF u (formeel, bijv. voor luxe of zakelijk publiek)]">[je/jij (informeel, meest gebruikt) OF u (formeel, bijv. voor luxe of zakelijk publiek)]</span>
 
 Schrijf in het Nederlands. Toon: warm, eerlijk en persoonlijk, met een vleugje avontuur. Klinkt als een host die je kennis laat maken met het eiland, niet als een verhuurbureau.
 
@@ -592,10 +661,13 @@ Verwerk vanzelfsprekend als zoektermen in de tekst: de eilandnaam, het type woni
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">05</div><div class="prompt-title">Listing Title Optimizer</div></div>
     <div class="prompt-note">Your listing title is searchable on Airbnb and VRBO. Airbnb gives you 50 characters; VRBO gives you 80. Most hosts waste this space on the property name. Guests filter by keywords like "pool," "ocean view" and "beachfront." This prompt fills that space correctly.</div>
-    <div class="prompt-body">You are a vacation rental SEO and conversion specialist. Write optimized listing titles for my property on the ABC islands for multiple platforms. You already have my property details.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Top features</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="private pool"><span>Private pool</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="ocean view"><span>Ocean view</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="walk to beach"><span>Walk to beach</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="sea view"><span>Sea view</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="outdoor kitchen"><span>Outdoor kitchen</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="beachfront"><span>Beachfront</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="near dive spot"><span>Dive spot</span></label><label class="sel-check-opt"><input type="checkbox" name="p05-feat" data-ph="p05-feat" data-val="private garden"><span>Private garden</span></label></div></div>
+    </div>
+<div class="prompt-body">You are a vacation rental SEO and conversion specialist. Write optimized listing titles for my property on the ABC islands for multiple platforms. You already have my property details.
 
 One question: what are my top 3 most searchable features?
-<span class="ph">[e.g. private pool, ocean view, walk to beach. These are the things guests actually search for.]</span>
+<span class="ph" data-ph="p05-feat" data-default="[e.g. private pool, ocean view, walk to beach. These are the things guests actually search for.]">[e.g. private pool, ocean view, walk to beach. These are the things guests actually search for.]</span>
 
 Write optimized titles for:
 
@@ -603,7 +675,7 @@ Airbnb (max 50 characters): lead with the most searchable feature, not the prope
 
 VRBO (max 80 characters): more room to add a second benefit or the location.
 
-Direct website / Google: no character limit. Write for a guest who just searched "vacation rental <span class="ph">[ISLAND]</span> with pool."
+Direct website / Google: no character limit. Write for a guest who just searched "vacation rental <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span> with pool."
 
 Give 2 variations per platform. Explain in one sentence which keyword you prioritized for each and why.</div>
   </div>
@@ -611,12 +683,17 @@ Give 2 variations per platform. Explain in one sentence which keyword you priori
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">06</div><div class="prompt-title">Short Teaser Description</div></div>
     <div class="prompt-note">Short descriptions appear in link previews, social media bios, email signatures and Google results. Most hosts paste their full listing description here and wonder why it doesn't convert. Two sharp sentences beat four paragraphs every time.</div>
-    <div class="prompt-body">Write 3 versions of a 2-sentence teaser description for my vacation rental. You already have my property details. Each version takes a completely different angle. Sensory language only. No clichés. No questions. No exclamation marks. No "paradise."
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Strongest feature</span><input type="text" class="sel-text" data-ph="p06-feat1" placeholder="bijv. private infinity pool facing west for sunsets"></div>
+      <div class="sel-row"><span class="sel-label">Second feature</span><input type="text" class="sel-text" data-ph="p06-feat2" placeholder="bijv. 4-minute walk to Klein Knip beach"></div>
+      <div class="sel-row"><span class="sel-label">Vibe</span><label class="sel-opt"><input type="radio" name="p06-vibe" data-ph="p06-vibe" data-val="relaxed and private"><span>Relaxed and private</span></label><label class="sel-opt"><input type="radio" name="p06-vibe" data-ph="p06-vibe" data-val="family-friendly"><span>Family-friendly</span></label><label class="sel-opt"><input type="radio" name="p06-vibe" data-ph="p06-vibe" data-val="romantic"><span>Romantic</span></label><label class="sel-opt"><input type="radio" name="p06-vibe" data-ph="p06-vibe" data-val="digital nomad"><span>Digital nomad</span></label></div>
+    </div>
+<div class="prompt-body">Write 3 versions of a 2-sentence teaser description for my vacation rental. You already have my property details. Each version takes a completely different angle. Sensory language only. No clichés. No questions. No exclamation marks. No "paradise."
 
 To help you nail the tone, tell me:
-Strongest feature: <span class="ph">[e.g. private infinity pool facing west for sunsets]</span>
-Second feature: <span class="ph">[e.g. 4-minute walk to Klein Knip beach]</span>
-Vibe: <span class="ph">[e.g. relaxed and private / family-friendly / romantic / digital nomad]</span>
+Strongest feature: <span class="ph" data-ph="p06-feat1" data-default="[e.g. private infinity pool facing west for sunsets]">[e.g. private infinity pool facing west for sunsets]</span>
+Second feature: <span class="ph" data-ph="p06-feat2" data-default="[e.g. 4-minute walk to Klein Knip beach]">[e.g. 4-minute walk to Klein Knip beach]</span>
+Vibe: <span class="ph" data-ph="p06-vibe" data-default="[e.g. relaxed and private / family-friendly / romantic / digital nomad]">[e.g. relaxed and private / family-friendly / romantic / digital nomad]</span>
 
 Version A: lead with the feeling of arriving here for the first time
 Version B: lead with the location and what surrounds the property
@@ -628,15 +705,20 @@ After the 3 versions, tell me in one sentence which one you'd recommend for an A
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">07</div><div class="prompt-title">Rewrite Existing Description</div></div>
     <div class="prompt-note">A listing description written 18 months ago is probably costing you bookings. Writing styles shift, platforms change how they display text, and your own understanding of your guests deepens over time. This rewrite prompt removes everything that could describe any property anywhere.</div>
-    <div class="prompt-body">You are a senior hospitality copywriter. Rewrite my vacation rental listing description. Remove every cliché, vague adjective and generic statement that could describe any property anywhere in the world. Every sentence must be specific to this property on <span class="ph">[ISLAND]</span>.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Huidige beschrijving</span><textarea class="sel-textarea" data-ph="p07-desc" placeholder="Plak hier je huidige advertentietekst..." rows="4"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Wat ontbreekt</span><textarea class="sel-textarea" data-ph="p07-add" placeholder="Bijv. specifiek zeezicht, lokale accenten, wat gasten altijd benoemen..." rows="2"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Platform</span><label class="sel-opt"><input type="radio" name="p07-plat" data-ph="p07-plat" data-val="AIRBNB"><span>Airbnb</span></label><label class="sel-opt"><input type="radio" name="p07-plat" data-ph="p07-plat" data-val="VRBO"><span>VRBO</span></label><label class="sel-opt"><input type="radio" name="p07-plat" data-ph="p07-plat" data-val="MICAZU"><span>Micazu</span></label><label class="sel-opt"><input type="radio" name="p07-plat" data-ph="p07-plat" data-val="DIRECT WEBSITE"><span>Direct website</span></label></div>
+    </div>
+<div class="prompt-body">You are a senior hospitality copywriter. Rewrite my vacation rental listing description. Remove every cliché, vague adjective and generic statement that could describe any property anywhere in the world. Every sentence must be specific to this property on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>.
 
 My current description:
-<span class="ph">[PASTE YOUR CURRENT DESCRIPTION HERE]</span>
+<span class="ph" data-ph="p07-desc" data-default="[PASTE YOUR CURRENT DESCRIPTION HERE]">[PASTE YOUR CURRENT DESCRIPTION HERE]</span>
 
 Things I should have included but didn't:
-<span class="ph">[ADD DETAILS: specific views, local touches, things guests always comment on, unique features you take for granted]</span>
+<span class="ph" data-ph="p07-add" data-default="[ADD DETAILS: specific views, local touches, things guests always comment on, unique features you take for granted]">[ADD DETAILS: specific views, local touches, things guests always comment on, unique features you take for granted]</span>
 
-Platform this is for: <span class="ph">[AIRBNB / VRBO / MICAZU / DIRECT WEBSITE]</span>
+Platform this is for: <span class="ph" data-ph="p07-plat" data-default="[AIRBNB / VRBO / MICAZU / DIRECT WEBSITE]">[AIRBNB / VRBO / MICAZU / DIRECT WEBSITE]</span>
 
 Rules for the rewrite:
 - Show, don't tell. Replace "beautiful view" with what makes it beautiful.
@@ -655,12 +737,17 @@ After the rewrite, list the 3 specific changes you made and why each one improve
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">08</div><div class="prompt-title">Unique Selling Points</div></div>
     <div class="prompt-note">Most vacation rental listings describe the same things in the same order. Pool, beach distance, kitchen, WiFi. This prompt finds what is genuinely different about your property and turns it into language that sticks.</div>
-    <div class="prompt-body">I need help identifying and writing the unique selling points of my vacation rental. You already have my property details. Be brutally honest: if it isn't actually unique, cut it.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Verrast gasten bij aankomst</span><input type="text" class="sel-text" data-ph="p08-surprise" placeholder="Wat zien foto's niet? Bijv. de geur van bloemen, het geluid van de zee..."></div>
+      <div class="sel-row"><span class="sel-label">Prijs vs. vergelijkbaar</span><label class="sel-opt"><input type="radio" name="p08-price" data-ph="p08-price" data-val="CHEAPER"><span>Goedkoper</span></label><label class="sel-opt"><input type="radio" name="p08-price" data-ph="p08-price" data-val="SIMILAR"><span>Vergelijkbaar</span></label><label class="sel-opt"><input type="radio" name="p08-price" data-ph="p08-price" data-val="MORE EXPENSIVE"><span>Duurder</span></label></div>
+      <div class="sel-row"><span class="sel-label">Niet geschikt voor</span><input type="text" class="sel-text" data-ph="p08-notfor" placeholder="Bijv. niet geschikt voor feesten, kleine kinderen, backpackers..."></div>
+    </div>
+<div class="prompt-body">I need help identifying and writing the unique selling points of my vacation rental. You already have my property details. Be brutally honest: if it isn't actually unique, cut it.
 
 Three things I want you to factor in that aren't in my property info:
-- Something that surprises guests when they arrive: <span class="ph">[THE THING PHOTOS DON'T CAPTURE]</span>
-- Price compared to similar properties here: <span class="ph">[CHEAPER / SIMILAR / MORE EXPENSIVE]</span>
-- Who this property is NOT right for: <span class="ph">[BE HONEST]</span>
+- Something that surprises guests when they arrive: <span class="ph" data-ph="p08-surprise" data-default="[THE THING PHOTOS DON'T CAPTURE]">[THE THING PHOTOS DON'T CAPTURE]</span>
+- Price compared to similar properties here: <span class="ph" data-ph="p08-price" data-default="[CHEAPER / SIMILAR / MORE EXPENSIVE]">[CHEAPER / SIMILAR / MORE EXPENSIVE]</span>
+- Who this property is NOT right for: <span class="ph" data-ph="p08-notfor" data-default="[BE HONEST]">[BE HONEST]</span>
 
 Deliver:
 1. Five bullet points, max 15 words each. Each one must survive this test: "Could another rental on this island say the exact same thing?" If yes, rewrite it.
@@ -671,14 +758,20 @@ Deliver:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">09</div><div class="prompt-title">Pool and Outdoor Space</div></div>
     <div class="prompt-note">On tropical islands, outdoor spaces sell rentals more than any interior feature. Yet most descriptions spend half their words on the living room. If your property has a private pool or terrace, this paragraph should appear early in your listing, not at the end.</div>
-    <div class="prompt-body">Write a vivid, sensory paragraph (100-150 words) describing the outdoor space of my vacation rental on <span class="ph">[ISLAND]</span>. Make the reader feel like they're already there. No clichés. Specific details only.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Buitenruimte bevat</span><textarea class="sel-textarea" data-ph="p09-elems" placeholder="Bijv. privézwembad, loungestoelen, buitendouche, BBQ, terras, zeezicht, palmbomen, hangmat, buiteneethoek..." rows="2"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Oriëntatie</span><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="faces east, morning sun"><span>Oost (ochtendzon)</span></label><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="faces west, sunset view"><span>West (zonsondergang)</span></label><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="faces south"><span>Zuid</span></label><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="afternoon shade"><span>Middagschaduw</span></label></div>
+      <div class="sel-row"><span class="sel-label">Sfeer</span><label class="sel-opt"><input type="radio" name="p09-feel" data-ph="p09-feel" data-val="compact and intimate"><span>Compact en intiem</span></label><label class="sel-opt"><input type="radio" name="p09-feel" data-ph="p09-feel" data-val="spacious"><span>Ruim</span></label><label class="sel-opt"><input type="radio" name="p09-feel" data-ph="p09-feel" data-val="private and hidden"><span>Privé en verborgen</span></label><label class="sel-opt"><input type="radio" name="p09-feel" data-ph="p09-feel" data-val="open and social"><span>Open en sociaal</span></label></div>
+      <div class="sel-row"><span class="sel-label">Wat gasten altijd noemen</span><input type="text" class="sel-text" data-ph="p09-comment" placeholder="Bijv. het zwembad is enorm, de zonsondergang is spectaculair..."></div>
+    </div>
+<div class="prompt-body">Write a vivid, sensory paragraph (100-150 words) describing the outdoor space of my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. Make the reader feel like they're already there. No clichés. Specific details only.
 
 What my outdoor space includes:
-<span class="ph">[LIST EVERYTHING: pool, sun loungers, outdoor shower, BBQ, terrace, garden, sea view, palm trees, hammock, outdoor dining table]</span>
+<span class="ph" data-ph="p09-elems" data-default="[LIST EVERYTHING: pool, sun loungers, outdoor shower, BBQ, terrace, garden, sea view, palm trees, hammock, outdoor dining table]">[LIST EVERYTHING: pool, sun loungers, outdoor shower, BBQ, terrace, garden, sea view, palm trees, hammock, outdoor dining table]</span>
 
-Orientation: <span class="ph">[faces east/west/south / morning sun / afternoon shade / sunset view]</span>
-Size and feel: <span class="ph">[compact and intimate / spacious / sprawling / private and hidden / open and social]</span>
-The detail guests always comment on: <span class="ph">[WHAT DO PEOPLE ALWAYS MENTION ABOUT THE OUTDOOR SPACE?]</span>
+Orientation: <span class="ph" data-ph="p09-orient" data-default="[faces east/west/south / morning sun / afternoon shade / sunset view]">[faces east/west/south / morning sun / afternoon shade / sunset view]</span>
+Size and feel: <span class="ph" data-ph="p09-feel" data-default="[compact and intimate / spacious / sprawling / private and hidden / open and social]">[compact and intimate / spacious / sprawling / private and hidden / open and social]</span>
+The detail guests always comment on: <span class="ph" data-ph="p09-comment" data-default="[WHAT DO PEOPLE ALWAYS MENTION ABOUT THE OUTDOOR SPACE?]">[WHAT DO PEOPLE ALWAYS MENTION ABOUT THE OUTDOOR SPACE?]</span>
 
 Write in second person ("you"). Open with the exact moment the reader steps outside. End with the thing they will not want to leave. Do not describe the pool dimensions. Describe the feeling of being in it.</div>
   </div>
@@ -686,16 +779,23 @@ Write in second person ("you"). Open with the exact moment the reader steps outs
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">10</div><div class="prompt-title">Location Description</div></div>
     <div class="prompt-note">Saying "5 minutes from the beach" is less persuasive than walking the reader through the neighborhood. Distance in minutes is data. A sense of place is desire. This prompt makes your location feel like a character, not a coordinate.</div>
-    <div class="prompt-body">Write a location section for my vacation rental listing that makes <span class="ph">[NEIGHBORHOOD]</span> on <span class="ph">[ISLAND]</span> feel like a place worth choosing, not just a geographic fact.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Buurt</span><input type="text" class="sel-text" data-ph="p10-hood" placeholder="Bijv. Jan Thiel, rustig en residentieel met kleine jachthaven"></div>
+      <div class="sel-row"><span class="sel-label">Op loopafstand</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="beach"><span>Strand</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="restaurants"><span>Restaurants</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="supermarket"><span>Supermarkt</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="town center"><span>Centrum</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="cafes"><span>Cafés</span></label></div></div>
+      <div class="sel-row"><span class="sel-label">Binnen 10 min rijden</span><textarea class="sel-textarea" data-ph="p10-car" placeholder="Bijv. Jan Thiel Beach (zeilen en snorkelen), Willemstad centrum, Blue Bay Beach..." rows="2"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Insidertip</span><input type="text" class="sel-text" data-ph="p10-tip" placeholder="Jouw echte lokale aanrader die toeristen bijna nooit vinden"></div>
+      <div class="sel-row"><span class="sel-label">Geliefd bij</span><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="COUPLES"><span>Stellen</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="FAMILIES"><span>Gezinnen</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="DIVERS"><span>Duikers</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="REMOTE WORKERS"><span>Remote workers</span></label></div>
+    </div>
+<div class="prompt-body">Write a location section for my vacation rental listing that makes <span class="ph" data-ph="p10-hood" data-default="[NEIGHBORHOOD]">[NEIGHBORHOOD]</span> on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span> feel like a place worth choosing, not just a geographic fact.
 
 Location details:
-- Neighborhood name and character: <span class="ph">[e.g. "Jan Thiel, quiet and residential with a small marina nearby"]</span>
-- What you can reach on foot: <span class="ph">[BEACH / RESTAURANTS / SUPERMARKET / TOWN / LIST THEM]</span>
-- What's within 10 minutes by car: <span class="ph">[LIST 3-4 PLACES WITH WHAT MAKES EACH WORTH VISITING]</span>
-- The local spot most tourists never find: <span class="ph">[YOUR ACTUAL INSIDER RECOMMENDATION]</span>
-- Who loves this location most: <span class="ph">[COUPLES / FAMILIES / DIVERS / REMOTE WORKERS / etc.]</span>
+- Neighborhood name and character: <span class="ph" data-ph="p10-hood" data-default="[e.g. "Jan Thiel, quiet and residential with a small marina nearby"]">[e.g. "Jan Thiel, quiet and residential with a small marina nearby"]</span>
+- What you can reach on foot: <span class="ph" data-ph="p10-walk" data-default="[BEACH / RESTAURANTS / SUPERMARKET / TOWN / LIST THEM]">[BEACH / RESTAURANTS / SUPERMARKET / TOWN / LIST THEM]</span>
+- What's within 10 minutes by car: <span class="ph" data-ph="p10-car" data-default="[LIST 3-4 PLACES WITH WHAT MAKES EACH WORTH VISITING]">[LIST 3-4 PLACES WITH WHAT MAKES EACH WORTH VISITING]</span>
+- The local spot most tourists never find: <span class="ph" data-ph="p10-tip" data-default="[YOUR ACTUAL INSIDER RECOMMENDATION]">[YOUR ACTUAL INSIDER RECOMMENDATION]</span>
+- Who loves this location most: <span class="ph" data-ph="p10-who" data-default="[COUPLES / FAMILIES / DIVERS / REMOTE WORKERS / etc.]">[COUPLES / FAMILIES / DIVERS / REMOTE WORKERS / etc.]</span>
 
-Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood. Make it specific to <span class="ph">[ISLAND]</span>. Second: practical proximity with warmth. Never list distances like a real estate brochure. Describe what the walk or drive actually feels like.</div>
+Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood. Make it specific to <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. Second: practical proximity with warmth. Never list distances like a real estate brochure. Describe what the walk or drive actually feels like.</div>
   </div>
 </div>
 
@@ -761,10 +861,13 @@ Deliver the final formatted amenities list ready to copy into my platform settin
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">13</div><div class="prompt-title">Listing Photo Brief</div></div>
     <div class="prompt-note">Photos are the #1 conversion factor on every rental platform. Guests decide in under 3 seconds whether to click. Your first photo is your billboard in search results. Airbnb recommends 20 or more photos. Most hosts upload 10-12. Every additional photo adds to your completeness score. Airbnb also supports a caption on each photo, visible when guests click through the gallery. Almost no one uses this. It is free copy space directly in front of a guest who is already considering your property.</div>
-    <div class="prompt-body">Create a photo shoot brief for my vacation rental on <span class="ph">[ISLAND]</span>. A photographer or I should be able to follow this as a shot list.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Beste fotokenmerk</span><input type="text" class="sel-text" data-ph="p13-standout" placeholder="Bijv. het zwembad bij zonsondergang, het panoramische terras, de open keuken..."></div>
+    </div>
+<div class="prompt-body">Create a photo shoot brief for my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. A photographer or I should be able to follow this as a shot list.
 
-Property: <span class="ph">[NAME]</span> / Type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
-Stand-out feature: <span class="ph">[THE ONE THING THAT LOOKS BEST IN A PHOTO]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Type: <span class="ph" data-ph="g-type" data-default="[VILLA / APARTMENT / GUESTHOUSE / STUDIO]">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Stand-out feature: <span class="ph" data-ph="p13-standout" data-default="[THE ONE THING THAT LOOKS BEST IN A PHOTO]">[THE ONE THING THAT LOOKS BEST IN A PHOTO]</span>
 
 Deliver:
 1. The hero shot (photo 1): what to show, time of day, angle, and why this works as my search result thumbnail
@@ -784,12 +887,17 @@ End with: 3 things to avoid in vacation rental photography on the ABC islands.</
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">14</div><div class="prompt-title">Inquiry Conversion Reply</div></div>
     <div class="prompt-note">Inquiry response speed is a direct ranking factor on Airbnb. Under 1 hour improves your position. Under 24 hours is the baseline for Superhost status. But speed alone does not convert: a reply that is warm, specific and clear about the next step closes more bookings than a template that just says 'thanks for your interest.'</div>
-    <div class="prompt-body">Write an inquiry reply I can send within 5 minutes. It should feel personal but work for most standard inquiries.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Taal gast</span><label class="sel-opt"><input type="radio" name="p14-lng" data-ph="p14-lng" data-val="DUTCH"><span>Nederlands</span></label><label class="sel-opt"><input type="radio" name="p14-lng" data-ph="p14-lng" data-val="ENGLISH"><span>Engels</span></label></div>
+      <div class="sel-row"><span class="sel-label">Soort vraag</span><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="DATES REQUEST"><span>Datumvraag</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="GENERAL QUESTION"><span>Algemeen</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="PRICE QUESTION"><span>Prijsvraag</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="GROUP SIZE QUESTION"><span>Groepsgrootte</span></label></div>
+      <div class="sel-row"><span class="sel-label">Bericht van gast</span><textarea class="sel-textarea" data-ph="p14-msg" placeholder="Plak hier het exacte bericht van de gast..." rows="3"></textarea></div>
+    </div>
+<div class="prompt-body">Write an inquiry reply I can send within 5 minutes. It should feel personal but work for most standard inquiries.
 
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
-Inquiry type: <span class="ph">[DATES REQUEST / GENERAL QUESTION / PRICE QUESTION / GROUP SIZE QUESTION]</span>
-Their message: <span class="ph">[PASTE THEIR ACTUAL MESSAGE]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA / BONAIRE / CURACAO]">[ARUBA / BONAIRE / CURACAO]</span>
+Language: <span class="ph" data-ph="p14-lng" data-default="[DUTCH if they wrote in Dutch / ENGLISH for all other guests]">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Inquiry type: <span class="ph" data-ph="p14-type" data-default="[DATES REQUEST / GENERAL QUESTION / PRICE QUESTION / GROUP SIZE QUESTION]">[DATES REQUEST / GENERAL QUESTION / PRICE QUESTION / GROUP SIZE QUESTION]</span>
+Their message: <span class="ph" data-ph="p14-msg" data-default="[PASTE THEIR ACTUAL MESSAGE]">[PASTE THEIR ACTUAL MESSAGE]</span>
 
 The reply must:
 - Confirm availability or answer their question in the first sentence
@@ -803,13 +911,19 @@ Max 100 words. Warm and direct.</div>
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">15</div><div class="prompt-title">Review Velocity Strategy</div></div>
     <div class="prompt-note">Your average rating matters less than you think. A 4.7 with 30 recent reviews outranks a 4.9 with 8 old ones on Airbnb. Review velocity (how recently and frequently guests review you) is a heavier ranking signal than average rating. The fastest way to lift your search position is to get more reviews, faster, after every stay.</div>
-    <div class="prompt-body">Help me build a review strategy that maximizes review frequency.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Platform</span><label class="sel-opt"><input type="radio" name="p15-plat" data-ph="p15-plat" data-val="AIRBNB"><span>Airbnb</span></label><label class="sel-opt"><input type="radio" name="p15-plat" data-ph="p15-plat" data-val="VRBO"><span>VRBO</span></label><label class="sel-opt"><input type="radio" name="p15-plat" data-ph="p15-plat" data-val="BOOKING.COM"><span>Booking.com</span></label><label class="sel-opt"><input type="radio" name="p15-plat" data-ph="p15-plat" data-val="AIRBNB / VRBO / BOOKING.COM"><span>Meerdere</span></label></div>
+      <div class="sel-row"><span class="sel-label">Reviews (3 mnd)</span><input type="number" class="sel-text" data-ph="p15-revnum" placeholder="Bijv. 4"></div>
+      <div class="sel-row"><span class="sel-label">Huidige score</span><input type="text" class="sel-text" data-ph="p15-rating" placeholder="Bijv. 4.7"></div>
+      <div class="sel-row"><span class="sel-label">Hoe ik vraag</span><label class="sel-opt"><input type="radio" name="p15-ask" data-ph="p15-ask" data-val="NOTHING"><span>Nog niets</span></label><label class="sel-opt"><input type="radio" name="p15-ask" data-ph="p15-ask" data-val="AIRBNB MESSAGE"><span>Airbnb bericht</span></label><label class="sel-opt"><input type="radio" name="p15-ask" data-ph="p15-ask" data-val="WHATSAPP"><span>WhatsApp</span></label><label class="sel-opt"><input type="radio" name="p15-ask" data-ph="p15-ask" data-val="EMAIL"><span>Email</span></label></div>
+    </div>
+<div class="prompt-body">Help me build a review strategy that maximizes review frequency.
 
 My current situation:
-Platform(s): <span class="ph">[AIRBNB / VRBO / BOOKING.COM]</span>
-Reviews in the last 3 months: <span class="ph">[NUMBER]</span>
-Current rating: <span class="ph">[RATING]</span>
-How I currently ask: <span class="ph">[NOTHING / AIRBNB MESSAGE / WHATSAPP / EMAIL]</span>
+Platform(s): <span class="ph" data-ph="p15-plat" data-default="[AIRBNB / VRBO / BOOKING.COM]">[AIRBNB / VRBO / BOOKING.COM]</span>
+Reviews in the last 3 months: <span class="ph" data-ph="p15-revnum" data-default="[NUMBER]">[NUMBER]</span>
+Current rating: <span class="ph" data-ph="p15-rating" data-default="[RATING]">[RATING]</span>
+How I currently ask: <span class="ph" data-ph="p15-ask" data-default="[NOTHING / AIRBNB MESSAGE / WHATSAPP / EMAIL]">[NOTHING / AIRBNB MESSAGE / WHATSAPP / EMAIL]</span>
 
 Give me:
 1. The ideal post-stay timing for a review request on each platform
@@ -821,13 +935,19 @@ Give me:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">16</div><div class="prompt-title">Calendar Gap Campaign</div></div>
     <div class="prompt-note">A gap of 2-5 nights between existing bookings is the most common lost revenue for ABC island hosts. Platform search algorithms surface your listing for those dates, but short gaps often fall below minimum stay settings. Two fixes: lower your minimum stay for last-minute windows, and proactively reach out to previous guests who might be planning a return.</div>
-    <div class="prompt-body">Help me fill a gap in my calendar.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Beschikbare datums</span><input type="text" class="sel-text" data-ph="p16-dates" placeholder="Bijv. 14-19 augustus"></div>
+      <div class="sel-row"><span class="sel-label">Aantal nachten</span><input type="number" class="sel-text" data-ph="p16-gap" placeholder="Bijv. 5"></div>
+      <div class="sel-row"><span class="sel-label">Min. verblijf nu</span><input type="text" class="sel-text" data-ph="p16-minstay" placeholder="Bijv. 3 nachten"></div>
+      <div class="sel-row"><span class="sel-label">Vorige gasten</span><label class="sel-opt"><input type="radio" name="p16-prevg" data-ph="p16-prevg" data-val="YES"><span>Ja</span></label><label class="sel-opt"><input type="radio" name="p16-prevg" data-ph="p16-prevg" data-val="NO"><span>Nee</span></label></div>
+    </div>
+<div class="prompt-body">Help me fill a gap in my calendar.
 
-Available dates: <span class="ph">[DATES]</span>
-Gap length: <span class="ph">[NUMBER OF NIGHTS]</span>
-My current minimum stay setting: <span class="ph">[NIGHTS]</span>
-Do I have previous guests I can contact? <span class="ph">[YES / NO]</span>
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
+Available dates: <span class="ph" data-ph="p16-dates" data-default="[DATES]">[DATES]</span>
+Gap length: <span class="ph" data-ph="p16-gap" data-default="[NUMBER OF NIGHTS]">[NUMBER OF NIGHTS]</span>
+My current minimum stay setting: <span class="ph" data-ph="p16-minstay" data-default="[NIGHTS]">[NIGHTS]</span>
+Do I have previous guests I can contact? <span class="ph" data-ph="p16-prevg" data-default="[YES / NO]">[YES / NO]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA / BONAIRE / CURACAO]">[ARUBA / BONAIRE / CURACAO]</span>
 
 Generate:
 1. A short message (max 5 lines) to send to previous guests who might want to rebook. Warm and specific, not desperate.
@@ -843,13 +963,19 @@ Generate:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">17</div><div class="prompt-title">Price Negotiation Response</div></div>
     <div class="prompt-note">When a guest asks 'can you do better on the price?' most hosts either hold firm and lose the booking, or discount without logic. A confident answer that explains your value without apologizing converts more than reflexive discounting. Guests who ask about price are already interested. The goal is to keep them moving toward a yes.</div>
-    <div class="prompt-body">Write a response to a guest asking if I can lower the price.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Taal gast</span><label class="sel-opt"><input type="radio" name="p17-lng" data-ph="p17-lng" data-val="DUTCH"><span>Nederlands</span></label><label class="sel-opt"><input type="radio" name="p17-lng" data-ph="p17-lng" data-val="ENGLISH"><span>Engels</span></label></div>
+      <div class="sel-row"><span class="sel-label">Gevraagde korting</span><input type="text" class="sel-text" data-ph="p17-disc" placeholder="Bijv. $50 per nacht / 10% / niet gespecificeerd"></div>
+      <div class="sel-row"><span class="sel-label">Ben ik flexibel</span><label class="sel-opt"><input type="radio" name="p17-open" data-ph="p17-open" data-val="YES, slightly"><span>Ja, een beetje</span></label><label class="sel-opt"><input type="radio" name="p17-open" data-ph="p17-open" data-val="NO"><span>Nee</span></label><label class="sel-opt"><input type="radio" name="p17-open" data-ph="p17-open" data-val="ONLY IF THEY EXTEND THE STAY"><span>Alleen bij langere boeking</span></label></div>
+      <div class="sel-row"><span class="sel-label">Waarom prijs klopt</span><input type="text" class="sel-text" data-ph="p17-fair" placeholder="Bijv. eigen zwembad inbegrepen, nieuwe renovatie, Jan Thiel op 5 min..."></div>
+    </div>
+<div class="prompt-body">Write a response to a guest asking if I can lower the price.
 
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
-Their requested discount: <span class="ph">[AMOUNT OR PERCENTAGE / they did not specify]</span>
-Am I open to adjusting? <span class="ph">[YES, slightly / NO / ONLY IF THEY EXTEND THE STAY]</span>
-What makes my price fair: <span class="ph">[NAME 2-3 SPECIFIC THINGS]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA / BONAIRE / CURACAO]">[ARUBA / BONAIRE / CURACAO]</span>
+Language: <span class="ph" data-ph="p17-lng" data-default="[DUTCH if they wrote in Dutch / ENGLISH for all other guests]">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Their requested discount: <span class="ph" data-ph="p17-disc" data-default="[AMOUNT OR PERCENTAGE / they did not specify]">[AMOUNT OR PERCENTAGE / they did not specify]</span>
+Am I open to adjusting? <span class="ph" data-ph="p17-open" data-default="[YES, slightly / NO / ONLY IF THEY EXTEND THE STAY]">[YES, slightly / NO / ONLY IF THEY EXTEND THE STAY]</span>
+What makes my price fair: <span class="ph" data-ph="p17-fair" data-default="[NAME 2-3 SPECIFIC THINGS]">[NAME 2-3 SPECIFIC THINGS]</span>
 
 The response must:
 - Acknowledge their question without sounding defensive
@@ -863,12 +989,17 @@ Max 100 words. Confident, not apologetic.</div>
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">18</div><div class="prompt-title">Instant Book Setup</div></div>
     <div class="prompt-note">Listings with Instant Book enabled rank higher on Airbnb because they convert more immediately. Most hosts hesitate because they fear unscreened guests. But Airbnb's IB settings let you require government-verified ID, positive reviews and no prior cancellation history before anyone can book instantly. You can have Instant Book on and still control who stays.</div>
-    <div class="prompt-body">Help me set up Instant Book on Airbnb in a way that protects me from bad-fit guests while maximizing the ranking benefit.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Max gasten</span><input type="number" class="sel-text" data-ph="p18-guests" placeholder="Bijv. 6"></div>
+      <div class="sel-row"><span class="sel-label">Grootste zorg</span><label class="sel-opt"><input type="radio" name="p18-concern" data-ph="p18-concern" data-val="PARTIES"><span>Feesten</span></label><label class="sel-opt"><input type="radio" name="p18-concern" data-ph="p18-concern" data-val="UNVERIFIED GUESTS"><span>Onbekende gasten</span></label><label class="sel-opt"><input type="radio" name="p18-concern" data-ph="p18-concern" data-val="LAST-MINUTE CHAOS"><span>Last-minute chaos</span></label><label class="sel-opt"><input type="radio" name="p18-concern" data-ph="p18-concern" data-val="GROUPS MISREPRESENTING SIZE"><span>Groep onderschat</span></label></div>
+      <div class="sel-row"><span class="sel-label">Locatie host</span><label class="sel-opt"><input type="radio" name="p18-loc" data-ph="p18-loc" data-val="ON-ISLAND"><span>Op het eiland</span></label><label class="sel-opt"><input type="radio" name="p18-loc" data-ph="p18-loc" data-val="REMOTE"><span>Remote</span></label></div>
+    </div>
+<div class="prompt-body">Help me set up Instant Book on Airbnb in a way that protects me from bad-fit guests while maximizing the ranking benefit.
 
-Property type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
-Max guests: <span class="ph">[NUMBER]</span> / Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-My biggest concern about IB: <span class="ph">[PARTIES / UNVERIFIED GUESTS / LAST-MINUTE CHAOS / GROUPS MISREPRESENTING SIZE]</span>
-Am I on-island or remote? <span class="ph">[ON-ISLAND / REMOTE]</span>
+Property type: <span class="ph" data-ph="g-type" data-default="[VILLA / APARTMENT / GUESTHOUSE / STUDIO]">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Max guests: <span class="ph" data-ph="p18-guests" data-default="[NUMBER]">[NUMBER]</span> / Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA / BONAIRE / CURACAO]">[ARUBA / BONAIRE / CURACAO]</span>
+My biggest concern about IB: <span class="ph" data-ph="p18-concern" data-default="[PARTIES / UNVERIFIED GUESTS / LAST-MINUTE CHAOS / GROUPS MISREPRESENTING SIZE]">[PARTIES / UNVERIFIED GUESTS / LAST-MINUTE CHAOS / GROUPS MISREPRESENTING SIZE]</span>
+Am I on-island or remote? <span class="ph" data-ph="p18-loc" data-default="[ON-ISLAND / REMOTE]">[ON-ISLAND / REMOTE]</span>
 
 Give me:
 1. The specific IB screening requirements I should enable for my situation
@@ -879,13 +1010,21 @@ Give me:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">19</div><div class="prompt-title">Superhost Action Plan</div></div>
     <div class="prompt-note">Airbnb Superhost status adds a badge that increases click-through rate and lifts your search position. Superhost listings appear when guests use the Superhost filter, which high-intent bookers specifically use. Requirements: 4.8 or higher average rating, 10 completed stays or 100 nights per year, under 1% cancellation rate, 90% response rate within 24 hours.</div>
-    <div class="prompt-body">Create a personalized action plan for achieving or maintaining Superhost status on Airbnb or Premier Host on VRBO.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Platform</span><label class="sel-opt"><input type="radio" name="p19-plat" data-ph="p19-plat" data-val="AIRBNB"><span>Airbnb</span></label><label class="sel-opt"><input type="radio" name="p19-plat" data-ph="p19-plat" data-val="VRBO"><span>VRBO</span></label><label class="sel-opt"><input type="radio" name="p19-plat" data-ph="p19-plat" data-val="BOTH"><span>Beide</span></label></div>
+      <div class="sel-row"><span class="sel-label">Huidige score</span><input type="text" class="sel-text" data-ph="p19-rating" placeholder="Bijv. 4.7"></div>
+      <div class="sel-row"><span class="sel-label">Reviews (12 mnd)</span><input type="number" class="sel-text" data-ph="p19-revnum" placeholder="Bijv. 12"></div>
+      <div class="sel-row"><span class="sel-label">Responspercentage</span><input type="text" class="sel-text" data-ph="p19-rr" placeholder="Bijv. 88%"></div>
+      <div class="sel-row"><span class="sel-label">Annuleringen</span><input type="number" class="sel-text" data-ph="p19-canc" placeholder="Bijv. 1"></div>
+      <div class="sel-row"><span class="sel-label">Grootste knelpunt</span><label class="sel-opt"><input type="radio" name="p19-struggle" data-ph="p19-struggle" data-val="RATING"><span>Beoordeling</span></label><label class="sel-opt"><input type="radio" name="p19-struggle" data-ph="p19-struggle" data-val="RESPONSE RATE"><span>Responspercentage</span></label><label class="sel-opt"><input type="radio" name="p19-struggle" data-ph="p19-struggle" data-val="REVIEW VOLUME"><span>Aantal reviews</span></label><label class="sel-opt"><input type="radio" name="p19-struggle" data-ph="p19-struggle" data-val="CANCELLATIONS"><span>Annuleringen</span></label><label class="sel-opt"><input type="radio" name="p19-struggle" data-ph="p19-struggle" data-val="I DO NOT KNOW"><span>Weet ik niet</span></label></div>
+    </div>
+<div class="prompt-body">Create a personalized action plan for achieving or maintaining Superhost status on Airbnb or Premier Host on VRBO.
 
-Platform: <span class="ph">[AIRBNB / VRBO / BOTH]</span>
-Current rating: <span class="ph">[X.X]</span> / Reviews in the last 12 months: <span class="ph">[NUMBER]</span>
-Response rate: <span class="ph">[PERCENTAGE OR ESTIMATE]</span>
-Cancellations in the last 12 months: <span class="ph">[NUMBER]</span>
-Where I am struggling most: <span class="ph">[RATING / RESPONSE RATE / REVIEW VOLUME / CANCELLATIONS / I DO NOT KNOW]</span>
+Platform: <span class="ph" data-ph="p19-plat" data-default="[AIRBNB / VRBO / BOTH]">[AIRBNB / VRBO / BOTH]</span>
+Current rating: <span class="ph" data-ph="p19-rating" data-default="[X.X]">[X.X]</span> / Reviews in the last 12 months: <span class="ph" data-ph="p19-revnum" data-default="[NUMBER]">[NUMBER]</span>
+Response rate: <span class="ph" data-ph="p19-rr" data-default="[PERCENTAGE OR ESTIMATE]">[PERCENTAGE OR ESTIMATE]</span>
+Cancellations in the last 12 months: <span class="ph" data-ph="p19-canc" data-default="[NUMBER]">[NUMBER]</span>
+Where I am struggling most: <span class="ph" data-ph="p19-struggle" data-default="[RATING / RESPONSE RATE / REVIEW VOLUME / CANCELLATIONS / I DO NOT KNOW]">[RATING / RESPONSE RATE / REVIEW VOLUME / CANCELLATIONS / I DO NOT KNOW]</span>
 
 Give me:
 1. My current status: am I Superhost-eligible based on this information?
@@ -897,15 +1036,22 @@ Give me:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">20</div><div class="prompt-title">Platform Focus Strategy</div></div>
     <div class="prompt-note">Hosts on 4 platforms with half-completed profiles and slow response rates get fewer bookings than hosts who own one platform completely. Before adding a new platform, make your primary one work at full capacity: complete listing, 20 or more photos, all amenities listed, Instant Book on, competitive pricing and growing review velocity.</div>
-    <div class="prompt-body">Help me decide where to focus my platform energy for maximum bookings.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Doelmarkt</span><label class="sel-opt"><input type="radio" name="p20-market" data-ph="p20-market" data-val="DUTCH"><span>Nederlands</span></label><label class="sel-opt"><input type="radio" name="p20-market" data-ph="p20-market" data-val="NORTH AMERICAN"><span>Noord-Amerikaans</span></label><label class="sel-opt"><input type="radio" name="p20-market" data-ph="p20-market" data-val="MIXED"><span>Gemengd</span></label></div>
+      <div class="sel-row"><span class="sel-label">Actief op</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p20-plats" data-ph="p20-plats" data-val="Airbnb"><span>Airbnb</span></label><label class="sel-check-opt"><input type="checkbox" name="p20-plats" data-ph="p20-plats" data-val="VRBO"><span>VRBO</span></label><label class="sel-check-opt"><input type="checkbox" name="p20-plats" data-ph="p20-plats" data-val="Booking.com"><span>Booking.com</span></label><label class="sel-check-opt"><input type="checkbox" name="p20-plats" data-ph="p20-plats" data-val="Micazu"><span>Micazu</span></label><label class="sel-check-opt"><input type="checkbox" name="p20-plats" data-ph="p20-plats" data-val="direct website"><span>Direct</span></label></div></div>
+      <div class="sel-row"><span class="sel-label">Meeste boekingen</span><label class="sel-opt"><input type="radio" name="p20-most" data-ph="p20-most" data-val="Airbnb"><span>Airbnb</span></label><label class="sel-opt"><input type="radio" name="p20-most" data-ph="p20-most" data-val="VRBO"><span>VRBO</span></label><label class="sel-opt"><input type="radio" name="p20-most" data-ph="p20-most" data-val="Booking.com"><span>Booking.com</span></label><label class="sel-opt"><input type="radio" name="p20-most" data-ph="p20-most" data-val="Micazu"><span>Micazu</span></label><label class="sel-opt"><input type="radio" name="p20-most" data-ph="p20-most" data-val="direct website"><span>Direct</span></label></div>
+      <div class="sel-row"><span class="sel-label">Minste boekingen</span><label class="sel-opt"><input type="radio" name="p20-fewest" data-ph="p20-fewest" data-val="Airbnb"><span>Airbnb</span></label><label class="sel-opt"><input type="radio" name="p20-fewest" data-ph="p20-fewest" data-val="VRBO"><span>VRBO</span></label><label class="sel-opt"><input type="radio" name="p20-fewest" data-ph="p20-fewest" data-val="Booking.com"><span>Booking.com</span></label><label class="sel-opt"><input type="radio" name="p20-fewest" data-ph="p20-fewest" data-val="Micazu"><span>Micazu</span></label><label class="sel-opt"><input type="radio" name="p20-fewest" data-ph="p20-fewest" data-val="direct website"><span>Direct</span></label></div>
+      <div class="sel-row"><span class="sel-label">Tijd per week</span><label class="sel-opt"><input type="radio" name="p20-time" data-ph="p20-time" data-val="1 hour"><span>1 uur</span></label><label class="sel-opt"><input type="radio" name="p20-time" data-ph="p20-time" data-val="2-3 hours"><span>2-3 uur</span></label><label class="sel-opt"><input type="radio" name="p20-time" data-ph="p20-time" data-val="5+ hours"><span>5+ uur</span></label></div>
+    </div>
+<div class="prompt-body">Help me decide where to focus my platform energy for maximum bookings.
 
-Property type: <span class="ph">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
-Island: <span class="ph">[ARUBA / BONAIRE / CURACAO]</span>
-Primary target market: <span class="ph">[DUTCH / NORTH AMERICAN / MIXED]</span>
-Platforms I am currently on: <span class="ph">[LIST THEM]</span>
-Platform where I get most bookings: <span class="ph">[PLATFORM]</span>
-Platform where I get fewest: <span class="ph">[PLATFORM]</span>
-Available time for platform management per week: <span class="ph">[HOURS]</span>
+Property type: <span class="ph" data-ph="g-type" data-default="[VILLA / APARTMENT / GUESTHOUSE / STUDIO]">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA / BONAIRE / CURACAO]">[ARUBA / BONAIRE / CURACAO]</span>
+Primary target market: <span class="ph" data-ph="p20-market" data-default="[DUTCH / NORTH AMERICAN / MIXED]">[DUTCH / NORTH AMERICAN / MIXED]</span>
+Platforms I am currently on: <span class="ph" data-ph="p20-plats" data-default="[LIST THEM]">[LIST THEM]</span>
+Platform where I get most bookings: <span class="ph" data-ph="p20-most" data-default="[PLATFORM]">[PLATFORM]</span>
+Platform where I get fewest: <span class="ph" data-ph="p20-most" data-default="[PLATFORM]">[PLATFORM]</span>
+Available time for platform management per week: <span class="ph" data-ph="p20-time" data-default="[HOURS]">[HOURS]</span>
 
 Give me:
 1. Your recommended primary platform for my specific situation and why
@@ -938,16 +1084,30 @@ Give me:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">21</div><div class="prompt-title">Full FAQ Page</div></div>
     <div class="prompt-note">A well-written FAQ page reduces your message inbox significantly and increases booking conversion. Guests who find answers immediately feel more confident booking. Write for the questions guests actually have, not the questions you wish they'd ask.</div>
-    <div class="prompt-body">Write a full FAQ page for my vacation rental on <span class="ph">[ISLAND]</span>. Every answer should sound like a knowledgeable local friend, not a terms and conditions page.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Check-in</span><input type="text" class="sel-text" data-ph="p21-checkin" placeholder="Bijv. 15:00"></div>
+      <div class="sel-row"><span class="sel-label">Check-out</span><input type="text" class="sel-text" data-ph="p21-checkout" placeholder="Bijv. 11:00"></div>
+      <div class="sel-row"><span class="sel-label">Min. verblijf</span><input type="text" class="sel-text" data-ph="p21-minstay" placeholder="Bijv. 3 nachten"></div>
+      <div class="sel-row"><span class="sel-label">Huisdieren</span><label class="sel-opt"><input type="radio" name="p21-pets" data-ph="p21-pets" data-val="YES"><span>Ja</span></label><label class="sel-opt"><input type="radio" name="p21-pets" data-ph="p21-pets" data-val="NO"><span>Nee</span></label><label class="sel-opt"><input type="radio" name="p21-pets" data-ph="p21-pets" data-val="DEPENDS"><span>In overleg</span></label></div>
+      <div class="sel-row"><span class="sel-label">Parkeren</span><input type="text" class="sel-text" data-ph="p21-parking" placeholder="Bijv. privéparkeerplaats voor de deur"></div>
+      <div class="sel-row"><span class="sel-label">Strand</span><input type="text" class="sel-text" data-ph="p21-beach" placeholder="Bijv. 5 min rijden"></div>
+      <div class="sel-row"><span class="sel-label">Supermarkt</span><input type="text" class="sel-text" data-ph="p21-super" placeholder="Bijv. 3 min rijden"></div>
+      <div class="sel-row"><span class="sel-label">Luchthaven</span><input type="text" class="sel-text" data-ph="p21-airport" placeholder="Bijv. 15 min rijden"></div>
+      <div class="sel-row"><span class="sel-label">Airco</span><label class="sel-opt"><input type="radio" name="p21-ac" data-ph="p21-ac" data-val="ALL ROOMS"><span>Alle ruimtes</span></label><label class="sel-opt"><input type="radio" name="p21-ac" data-ph="p21-ac" data-val="BEDROOMS ONLY"><span>Alleen slaapkamers</span></label></div>
+      <div class="sel-row"><span class="sel-label">WiFi</span><label class="sel-opt"><input type="radio" name="p21-wifi" data-ph="p21-wifi" data-val="FAST"><span>Snel (50+ Mbps)</span></label><label class="sel-opt"><input type="radio" name="p21-wifi" data-ph="p21-wifi" data-val="AVERAGE"><span>Gemiddeld</span></label><label class="sel-opt"><input type="radio" name="p21-wifi" data-ph="p21-wifi" data-val="BASIC"><span>Basis</span></label></div>
+      <div class="sel-row"><span class="sel-label">Kinderen</span><label class="sel-opt"><input type="radio" name="p21-kids" data-ph="p21-kids" data-val="YES"><span>Ja</span></label><label class="sel-opt"><input type="radio" name="p21-kids" data-ph="p21-kids" data-val="WITH SUPERVISION"><span>Onder toezicht</span></label><label class="sel-opt"><input type="radio" name="p21-kids" data-ph="p21-kids" data-val="NOT IDEAL"><span>Niet ideaal</span></label></div>
+      <div class="sel-row"><span class="sel-label">Late check-out</span><label class="sel-opt"><input type="radio" name="p21-late" data-ph="p21-late" data-val="YES"><span>Ja</span></label><label class="sel-opt"><input type="radio" name="p21-late" data-ph="p21-late" data-val="ON REQUEST"><span>Op aanvraag</span></label><label class="sel-opt"><input type="radio" name="p21-late" data-ph="p21-late" data-val="NO"><span>Nee</span></label></div>
+    </div>
+<div class="prompt-body">Write a full FAQ page for my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. Every answer should sound like a knowledgeable local friend, not a terms and conditions page.
 
-Property: <span class="ph">[NAME]</span> / Type: <span class="ph">[VILLA/APARTMENT/GUESTHOUSE]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Type: <span class="ph" data-ph="g-type" data-default="[VILLA/APARTMENT/GUESTHOUSE]">[VILLA/APARTMENT/GUESTHOUSE]</span>
 Key details:
-- Check-in / check-out: <span class="ph">[TIMES]</span> / Minimum stay: <span class="ph">[NIGHTS]</span>
-- Pets: <span class="ph">[YES/NO/DEPENDS]</span> / Parking: <span class="ph">[DESCRIBE]</span>
-- Beach: <span class="ph">[X MIN ON FOOT/BY CAR]</span> / Supermarket: <span class="ph">[X MIN]</span> / Airport: <span class="ph">[X MIN]</span>
-- AC: <span class="ph">[ALL ROOMS / BEDROOMS ONLY]</span> / WiFi: <span class="ph">[FAST/AVERAGE/BASIC]</span>
-- Suitable for children: <span class="ph">[YES / WITH SUPERVISION / NOT IDEAL]</span>
-- Late check-out available: <span class="ph">[YES / ON REQUEST / NO]</span>
+- Check-in / check-out: <span class="ph" data-ph="p21-checkin" data-default="[TIMES]">[TIMES]</span> / <span class="ph" data-ph="p21-checkout" data-default="[TIMES]">[TIMES]</span> / Minimum stay: <span class="ph" data-ph="p21-minstay" data-default="[NIGHTS]">[NIGHTS]</span>
+- Pets: <span class="ph" data-ph="p21-pets" data-default="[YES/NO/DEPENDS]">[YES/NO/DEPENDS]</span> / Parking: <span class="ph" data-ph="p21-parking" data-default="[DESCRIBE]">[DESCRIBE]</span>
+- Beach: <span class="ph" data-ph="p21-beach" data-default="[X MIN ON FOOT/BY CAR]">[X MIN ON FOOT/BY CAR]</span> / Supermarket: <span class="ph" data-ph="p21-super" data-default="[X MIN]">[X MIN]</span> / Airport: <span class="ph" data-ph="p21-airport" data-default="[X MIN]">[X MIN]</span>
+- AC: <span class="ph" data-ph="p21-ac" data-default="[ALL ROOMS / BEDROOMS ONLY]">[ALL ROOMS / BEDROOMS ONLY]</span> / WiFi: <span class="ph" data-ph="p21-wifi" data-default="[FAST/AVERAGE/BASIC]">[FAST/AVERAGE/BASIC]</span>
+- Suitable for children: <span class="ph" data-ph="p21-kids" data-default="[YES / WITH SUPERVISION / NOT IDEAL]">[YES / WITH SUPERVISION / NOT IDEAL]</span>
+- Late check-out available: <span class="ph" data-ph="p21-late" data-default="[YES / ON REQUEST / NO]">[YES / ON REQUEST / NO]</span>
 
 Generate 12-15 real Q&As grouped into 3 sections: Before you book / During your stay / Practical info. Write each answer as if a guest just texted you and you replied immediately.</div>
   </div>
@@ -955,12 +1115,15 @@ Generate 12-15 real Q&As grouped into 3 sections: Before you book / During your 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">22</div><div class="prompt-title">House Rules in a Friendly Tone</div></div>
     <div class="prompt-note">House rules written as rules get skimmed and ignored. House rules written as friendly guidance from a host who trusts their guests get read and followed. The difference in compliance is significant, and so is the effect on how guests feel when they arrive.</div>
-    <div class="prompt-body">Rewrite my house rules in a tone that is clear, respectful and friendly, without softening them to the point of being vague.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Mijn regels</span><textarea class="sel-textarea" data-ph="p22-rules" placeholder="Plak bestaande regels of noem wat je wilt aanpakken: geluid, feesten, roken, zwembadveiligheid, parkeren, huisdieren, afval, uitchecktijd, max gasten..." rows="4"></textarea></div>
+    </div>
+<div class="prompt-body">Rewrite my house rules in a tone that is clear, respectful and friendly, without softening them to the point of being vague.
 
 My current rules (or what I want to cover):
-<span class="ph">[PASTE YOUR EXISTING RULES OR LIST THE THINGS YOU WANT TO ADDRESS: noise, parties, smoking, pool safety, parking, pets, trash, checkout time, maximum guests, etc.]</span>
+<span class="ph" data-ph="p22-rules" data-default="[PASTE YOUR EXISTING RULES OR LIST THE THINGS YOU WANT TO ADDRESS: noise, parties, smoking, pool safety, parking, pets, trash, checkout time, maximum guests, etc.]">[PASTE YOUR EXISTING RULES OR LIST THE THINGS YOU WANT TO ADDRESS: noise, parties, smoking, pool safety, parking, pets, trash, checkout time, maximum guests, etc.]</span>
 
-Property: <span class="ph">[NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA/BONAIRE/CURACAO]">[ARUBA/BONAIRE/CURACAO]</span>
 
 Rules for the rewrite:
 - Keep every rule complete. Don't trade clarity for warmth
@@ -973,15 +1136,23 @@ Rules for the rewrite:
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">23</div><div class="prompt-title">"About Your Host" Bio</div></div>
     <div class="prompt-note">Guests book people, not properties. A host bio that shows personality and local knowledge converts better than one that lists credentials. The best host bios make someone feel like they're about to stay with a person, not check into an asset.</div>
-    <div class="prompt-body">Write an "About your host" bio that makes me sound like a real, interesting person a guest would want to stay with.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Hoe lang host</span><input type="text" class="sel-text" data-ph="p23-dur" placeholder="Bijv. 3 jaar"></div>
+      <div class="sel-row"><span class="sel-label">Afkomstig uit</span><input type="text" class="sel-text" data-ph="p23-from" placeholder="Bijv. Amsterdam, Nederland"></div>
+      <div class="sel-row"><span class="sel-label">Hoe ik hier terechtkwam</span><textarea class="sel-textarea" data-ph="p23-story" placeholder="Bijv. na een vakantie in 2019 besloten we te blijven. We verkochten ons huis in..." rows="2"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Wat ik het mooiste vind</span><input type="text" class="sel-text" data-ph="p23-love" placeholder="Bijv. de zonsondergangen bij Westpunt, de lokale markt op vrijdag..."></div>
+      <div class="sel-row"><span class="sel-label">Mijn hostfilosofie</span><input type="text" class="sel-text" data-ph="p23-phil" placeholder="Bijv. elk gast moet zich voelen alsof ze bij vrienden zijn..."></div>
+      <div class="sel-row"><span class="sel-label">Talen</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p23-langs" data-ph="p23-langs" data-val="Dutch"><span>Nederlands</span></label><label class="sel-check-opt"><input type="checkbox" name="p23-langs" data-ph="p23-langs" data-val="English"><span>Engels</span></label><label class="sel-check-opt"><input type="checkbox" name="p23-langs" data-ph="p23-langs" data-val="Papiamentu"><span>Papiamentu</span></label><label class="sel-check-opt"><input type="checkbox" name="p23-langs" data-ph="p23-langs" data-val="Spanish"><span>Spaans</span></label><label class="sel-check-opt"><input type="checkbox" name="p23-langs" data-ph="p23-langs" data-val="German"><span>Duits</span></label><label class="sel-check-opt"><input type="checkbox" name="p23-langs" data-ph="p23-langs" data-val="French"><span>Frans</span></label></div></div>
+    </div>
+<div class="prompt-body">Write an "About your host" bio that makes me sound like a real, interesting person a guest would want to stay with.
 
-My name: <span class="ph">[YOUR NAME]</span> / Island: <span class="ph">[ARUBA/BONAIRE/CURACAO]</span>
-How long I've been hosting: <span class="ph">[TIME]</span>
-Where I'm from originally: <span class="ph">[CITY/COUNTRY]</span>
-How I ended up on <span class="ph">[ISLAND]</span>: <span class="ph">[YOUR STORY IN 2-3 SENTENCES, the more specific the better]</span>
-What I love most about living here: <span class="ph">[BE SPECIFIC: a beach, a neighborhood, a food, a tradition]</span>
-My hosting philosophy in one sentence: <span class="ph">[WHAT DO YOU WANT EVERY GUEST TO FEEL?]</span>
-Languages I speak: <span class="ph">[LIST]</span>
+My name: <span class="ph" data-ph="g-hname" data-default="[YOUR NAME]">[YOUR NAME]</span> / Island: <span class="ph" data-ph="g-isl" data-default="[ARUBA/BONAIRE/CURACAO]">[ARUBA/BONAIRE/CURACAO]</span>
+How long I've been hosting: <span class="ph" data-ph="p23-dur" data-default="[TIME]">[TIME]</span>
+Where I'm from originally: <span class="ph" data-ph="p23-from" data-default="[CITY/COUNTRY]">[CITY/COUNTRY]</span>
+How I ended up on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>: <span class="ph" data-ph="p23-story" data-default="[YOUR STORY IN 2-3 SENTENCES, the more specific the better]">[YOUR STORY IN 2-3 SENTENCES, the more specific the better]</span>
+What I love most about living here: <span class="ph" data-ph="p23-love" data-default="[BE SPECIFIC: a beach, a neighborhood, a food, a tradition]">[BE SPECIFIC: a beach, a neighborhood, a food, a tradition]</span>
+My hosting philosophy in one sentence: <span class="ph" data-ph="p23-phil" data-default="[WHAT DO YOU WANT EVERY GUEST TO FEEL?]">[WHAT DO YOU WANT EVERY GUEST TO FEEL?]</span>
+Languages I speak: <span class="ph" data-ph="p23-langs" data-default="[LIST]">[LIST]</span>
 
 First person. 150-200 words. Warm, specific, memorable. No credentials, no corporate language. The bio should make someone read it twice.</div>
   </div>
@@ -989,16 +1160,25 @@ First person. 150-200 words. Warm, specific, memorable. No credentials, no corpo
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">24</div><div class="prompt-title">Local Tips and Recommendations</div></div>
     <div class="prompt-note">Generic local tips feel like a Google search result. Personal recommendations with a "why" feel like a local friend. That feeling is irreplaceable, uncopyable, and exactly what guests come back for and tell their friends about.</div>
-    <div class="prompt-body">Write a local recommendations section for my vacation rental guest guide on <span class="ph">[ISLAND]</span>. Insider tips from someone who actually lives here, not a tourism website.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Buurt</span><input type="text" class="sel-text" data-ph="p24-area" placeholder="Bijv. Jan Thiel, Mambo Beach, Westpunt..."></div>
+      <div class="sel-row"><span class="sel-label">Mijn favoriete restaurant</span><input type="text" class="sel-text" data-ph="p24-rest" placeholder="Bijv. Seru Lobi, bestel de keshi yena..."></div>
+      <div class="sel-row"><span class="sel-label">Beste strand</span><input type="text" class="sel-text" data-ph="p24-beach" placeholder="Bijv. Klein Knip, rustig, kleurrijke kliffen, goed snorkelen..."></div>
+      <div class="sel-row"><span class="sel-label">Insidertip</span><input type="text" class="sel-text" data-ph="p24-tip" placeholder="Bijv. de lokale vismarkt op zaterdag vroeg in de ochtend..."></div>
+      <div class="sel-row"><span class="sel-label">Eten als local</span><input type="text" class="sel-text" data-ph="p24-local" placeholder="Bijv. Gouverneur de Rouvilleweg, zaterdagmarkt Marshe Bieu..."></div>
+      <div class="sel-row"><span class="sel-label">Praktisch</span><input type="text" class="sel-text" data-ph="p24-prac" placeholder="Bijv. Tera Cora supermarkt, ING-geldautomaat op Maduro Plaza..."></div>
+      <div class="sel-row"><span class="sel-label">Activiteiten</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="diving"><span>Duiken</span></label><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="snorkeling"><span>Snorkelen</span></label><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="hiking"><span>Wandelen</span></label><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="kitesurfing"><span>Kitesurfen</span></label><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="sailing"><span>Zeilen</span></label><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="cycling"><span>Fietsen</span></label><label class="sel-check-opt"><input type="checkbox" name="p24-acts" data-ph="p24-acts" data-val="cultural tours"><span>Cultuur</span></label></div></div>
+    </div>
+<div class="prompt-body">Write a local recommendations section for my vacation rental guest guide on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. Insider tips from someone who actually lives here, not a tourism website.
 
-My area / neighborhood: <span class="ph">[WHERE YOUR PROPERTY IS]</span>
+My area / neighborhood: <span class="ph" data-ph="p24-area" data-default="[WHERE YOUR PROPERTY IS]">[WHERE YOUR PROPERTY IS]</span>
 My actual favorites to include:
-- Restaurant I always take guests to, and what to order: <span class="ph">[BE SPECIFIC]</span>
-- Best beach and what makes it different from the others: <span class="ph">[SPECIFIC BEACH NAME + WHY]</span>
-- The thing tourists almost never find but should: <span class="ph">[YOUR ACTUAL INSIDER TIP]</span>
-- Where locals actually eat (not the tourist strip): <span class="ph">[REAL LOCAL SPOT]</span>
-- Practical things guests always ask about: <span class="ph">[BEST SUPERMARKET, PHARMACY, ATM, FUEL]</span>
-- Activities near the property worth knowing: <span class="ph">[DIVING, SNORKELING, HIKING, TOURS, etc.]</span>
+- Restaurant I always take guests to, and what to order: <span class="ph" data-ph="p24-rest" data-default="[BE SPECIFIC]">[BE SPECIFIC]</span>
+- Best beach and what makes it different from the others: <span class="ph" data-ph="p24-beach" data-default="[SPECIFIC BEACH NAME + WHY]">[SPECIFIC BEACH NAME + WHY]</span>
+- The thing tourists almost never find but should: <span class="ph" data-ph="p24-tip" data-default="[YOUR ACTUAL INSIDER TIP]">[YOUR ACTUAL INSIDER TIP]</span>
+- Where locals actually eat (not the tourist strip): <span class="ph" data-ph="p24-local" data-default="[REAL LOCAL SPOT]">[REAL LOCAL SPOT]</span>
+- Practical things guests always ask about: <span class="ph" data-ph="p24-prac" data-default="[BEST SUPERMARKET, PHARMACY, ATM, FUEL]">[BEST SUPERMARKET, PHARMACY, ATM, FUEL]</span>
+- Activities near the property worth knowing: <span class="ph" data-ph="p24-acts" data-default="[DIVING, SNORKELING, HIKING, TOURS, etc.]">[DIVING, SNORKELING, HIKING, TOURS, etc.]</span>
 
 Organize by category with short headers. Each recommendation: 1-2 sentences maximum explaining WHY, not just WHAT. First person. Sounds like a text from a friend who lives there.</div>
   </div>
@@ -1006,14 +1186,21 @@ Organize by category with short headers. Each recommendation: 1-2 sentences maxi
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">25</div><div class="prompt-title">Review Response</div></div>
     <div class="prompt-note">Every response you write to a review is read by future guests before they book. A warm reply to a positive review signals an engaged host. A calm, professional reply to a critical review is often more persuasive than the review itself. Airbnb also uses review response rate as a ranking signal: hosts who respond to all reviews consistently appear higher in search. Most hosts only respond to negative ones. That is a missed opportunity on every single five-star review.</div>
-    <div class="prompt-body">Write a response to a guest review of my vacation rental.
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Platform</span><label class="sel-opt"><input type="radio" name="p25-plat" data-ph="p25-plat" data-val="AIRBNB"><span>Airbnb</span></label><label class="sel-opt"><input type="radio" name="p25-plat" data-ph="p25-plat" data-val="VRBO"><span>VRBO</span></label><label class="sel-opt"><input type="radio" name="p25-plat" data-ph="p25-plat" data-val="BOOKING.COM"><span>Booking.com</span></label><label class="sel-opt"><input type="radio" name="p25-plat" data-ph="p25-plat" data-val="MICAZU"><span>Micazu</span></label></div>
+      <div class="sel-row"><span class="sel-label">Taal review</span><label class="sel-opt"><input type="radio" name="p25-lng" data-ph="p25-lng" data-val="DUTCH"><span>Nederlands</span></label><label class="sel-opt"><input type="radio" name="p25-lng" data-ph="p25-lng" data-val="ENGLISH"><span>Engels</span></label></div>
+      <div class="sel-row"><span class="sel-label">Soort review</span><label class="sel-opt"><input type="radio" name="p25-type" data-ph="p25-type" data-val="5-star positive"><span>5 sterren positief</span></label><label class="sel-opt"><input type="radio" name="p25-type" data-ph="p25-type" data-val="4-star with minor criticism"><span>4 sterren, kleine kritiek</span></label><label class="sel-opt"><input type="radio" name="p25-type" data-ph="p25-type" data-val="3-star or below"><span>3 sterren of lager</span></label><label class="sel-opt"><input type="radio" name="p25-type" data-ph="p25-type" data-val="negative and unfair"><span>Negatief en onterecht</span></label></div>
+      <div class="sel-row"><span class="sel-label">De review</span><textarea class="sel-textarea" data-ph="p25-review" placeholder="Plak hier de volledige review of de kernzinnen..." rows="3"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Indien kritisch: wat is er echt gebeurd</span><textarea class="sel-textarea" data-ph="p25-crit" placeholder="Bijv. het zwembad was 2 uur offline door een technisch probleem, dat hebben we die dag opgelost..." rows="2"></textarea></div>
+    </div>
+<div class="prompt-body">Write a response to a guest review of my vacation rental.
 
-Platform: <span class="ph">[AIRBNB / VRBO / BOOKING.COM / MICAZU]</span>
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
-Review type: <span class="ph">[5-star positive / 4-star with minor criticism / 3-star or below / negative and unfair]</span>
-The review: <span class="ph">[PASTE THE FULL REVIEW OR THE KEY SENTENCES]</span>
-My name / property name: <span class="ph">[NAME]</span>
-If critical: what actually happened or what I have changed: <span class="ph">[YOUR SIDE, BRIEFLY]</span>
+Platform: <span class="ph" data-ph="p25-plat" data-default="[AIRBNB / VRBO / BOOKING.COM / MICAZU]">[AIRBNB / VRBO / BOOKING.COM / MICAZU]</span>
+Language: <span class="ph" data-ph="p25-lng" data-default="[DUTCH if they wrote in Dutch / ENGLISH for all other guests]">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Review type: <span class="ph" data-ph="p25-type" data-default="[5-star positive / 4-star with minor criticism / 3-star or below / negative and unfair]">[5-star positive / 4-star with minor criticism / 3-star or below / negative and unfair]</span>
+The review: <span class="ph" data-ph="p25-review" data-default="[PASTE THE FULL REVIEW OR THE KEY SENTENCES]">[PASTE THE FULL REVIEW OR THE KEY SENTENCES]</span>
+My name / property name: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span>
+If critical: what actually happened or what I have changed: <span class="ph" data-ph="p25-crit" data-default="[YOUR SIDE, BRIEFLY]">[YOUR SIDE, BRIEFLY]</span>
 
 Rules:
 - For positive reviews: warm, specific, brief (3-4 sentences). Reference something they actually mentioned. End with an open invitation to return.
@@ -1031,14 +1218,23 @@ Max 80 words for positive reviews. Max 120 words for critical ones. Never start 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge" style="background:var(--black);font-size:9px;width:auto;padding:0 8px;border-radius:7px;">BONUS</div><div class="prompt-title">Instagram / WhatsApp Direct Booking Reply</div></div>
     <div class="prompt-note">A guest who DMs you on Instagram or WhatsApp is already warm. They found you, they like what they see, they reached out. The only thing that can lose this booking is a slow or lukewarm reply. Every direct booking saves you 15-20% in platform commission. Answer fast, be clear, and make the next step impossible to miss. This prompt is different from a platform inquiry response. The guest is informal, there's no booking system behind you, and you need to build trust and close in a single message.</div>
+    <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Taal gast</span><label class="sel-opt"><input type="radio" name="pb-lng" data-ph="pb-lng" data-val="DUTCH"><span>Nederlands</span></label><label class="sel-opt"><input type="radio" name="pb-lng" data-ph="pb-lng" data-val="ENGLISH"><span>Engels</span></label></div>
+      <div class="sel-row"><span class="sel-label">Bericht gast</span><textarea class="sel-textarea" data-ph="pb-msg" placeholder="Plak hier het exacte bericht van Instagram of WhatsApp..." rows="3"></textarea></div>
+      <div class="sel-row"><span class="sel-label">Genoemde datums</span><input type="text" class="sel-text" data-ph="pb-dates" placeholder="Bijv. 20-27 augustus / niet gespecificeerd"></div>
+      <div class="sel-row"><span class="sel-label">Beschikbaarheid</span><label class="sel-opt"><input type="radio" name="pb-avail" data-ph="pb-avail" data-val="AVAILABLE"><span>Beschikbaar</span></label><label class="sel-opt"><input type="radio" name="pb-avail" data-ph="pb-avail" data-val="NOT AVAILABLE"><span>Niet beschikbaar</span></label><label class="sel-opt"><input type="radio" name="pb-avail" data-ph="pb-avail" data-val="PARTIALLY: specify"><span>Gedeeltelijk</span></label></div>
+      <div class="sel-row"><span class="sel-label">Tarief per nacht</span><input type="text" class="sel-text" data-ph="pb-rate" placeholder="Bijv. $180 per nacht"></div>
+      <div class="sel-row"><span class="sel-label">Min. verblijf</span><input type="text" class="sel-text" data-ph="pb-minstay" placeholder="Bijv. 5 nachten"></div>
+      <div class="sel-row"><span class="sel-label">Voordeel direct</span><label class="sel-opt"><input type="radio" name="pb-benefit" data-ph="pb-benefit" data-val="better rate than Airbnb"><span>Beter tarief</span></label><label class="sel-opt"><input type="radio" name="pb-benefit" data-ph="pb-benefit" data-val="more flexible cancellation"><span>Flexibelere annulering</span></label><label class="sel-opt"><input type="radio" name="pb-benefit" data-ph="pb-benefit" data-val="direct contact with me throughout"><span>Direct contact</span></label></div>
+    </div>
     <div class="prompt-body">Write a WhatsApp or Instagram DM response to someone who messaged me directly asking about my vacation rental.
-Language: <span class="ph">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
-Their message: <span class="ph">[PASTE THEIR EXACT MESSAGE]</span>
-Dates they mentioned (if any): <span class="ph">[DATES / or: they didn't specify]</span>
-My availability: <span class="ph">[AVAILABLE / NOT AVAILABLE / PARTIALLY: specify]</span>
-My rate for those dates: <span class="ph">[AMOUNT PER NIGHT]</span> / Minimum stay: <span class="ph">[NIGHTS]</span>
-One benefit of booking direct: <span class="ph">[e.g. better rate than Airbnb / more flexible cancellation / direct contact with me throughout]</span>
-My name: <span class="ph">[YOUR NAME]</span>
+Language: <span class="ph" data-ph="pb-lng" data-default="[DUTCH if they wrote in Dutch / ENGLISH for all other guests]">[DUTCH if they wrote in Dutch / ENGLISH for all other guests]</span>
+Their message: <span class="ph" data-ph="pb-msg" data-default="[PASTE THEIR EXACT MESSAGE]">[PASTE THEIR EXACT MESSAGE]</span>
+Dates they mentioned (if any): <span class="ph" data-ph="pb-dates" data-default="[DATES / or: they didn't specify]">[DATES / or: they didn't specify]</span>
+My availability: <span class="ph" data-ph="pb-avail" data-default="[AVAILABLE / NOT AVAILABLE / PARTIALLY: specify]">[AVAILABLE / NOT AVAILABLE / PARTIALLY: specify]</span>
+My rate for those dates: <span class="ph" data-ph="pb-rate" data-default="[AMOUNT PER NIGHT]">[AMOUNT PER NIGHT]</span> / Minimum stay: <span class="ph" data-ph="pb-minstay" data-default="[NIGHTS]">[NIGHTS]</span>
+One benefit of booking direct: <span class="ph" data-ph="pb-benefit" data-default="[e.g. better rate than Airbnb / more flexible cancellation / direct contact with me throughout]">[e.g. better rate than Airbnb / more flexible cancellation / direct contact with me throughout]</span>
+My name: <span class="ph" data-ph="g-hname" data-default="[YOUR NAME]">[YOUR NAME]</span>
 
 Rules:
 - Match their tone: casual if they're casual, more formal if they are
@@ -1284,6 +1480,78 @@ document.addEventListener('DOMContentLoaded', function () {
       card.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
         if (input.value.trim()) {
           span.textContent = input.value.trim();
+          span.classList.add('filled');
+        } else {
+          span.textContent = span.getAttribute('data-default') || '[' + phKey + ']';
+          span.classList.remove('filled');
+        }
+      });
+    });
+  });
+});
+
+// ── GLOBAL PANEL: updates ALL matching spans document-wide ──
+document.addEventListener('DOMContentLoaded', function () {
+  var gPanel = document.querySelector('.global-panel');
+  if (!gPanel) return;
+
+  function applyGlobal(phKey, val) {
+    document.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
+      if (val && val.trim()) {
+        span.textContent = val;
+        span.classList.add('filled');
+      } else {
+        span.textContent = span.getAttribute('data-default') || span.textContent;
+        span.classList.remove('filled');
+      }
+    });
+  }
+
+  gPanel.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      applyGlobal(radio.getAttribute('data-ph'), radio.getAttribute('data-val'));
+    });
+  });
+
+  gPanel.querySelectorAll('input[type="text"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+      applyGlobal(input.getAttribute('data-ph'), input.value);
+    });
+  });
+});
+
+// ── PER-CARD: textarea handler ──
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.prompt-selectors textarea').forEach(function (ta) {
+    ta.addEventListener('input', function () {
+      var card = ta.closest('.prompt-card');
+      var phKey = ta.getAttribute('data-ph');
+      card.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
+        if (ta.value.trim()) {
+          span.textContent = ta.value.trim();
+          span.classList.add('filled');
+        } else {
+          span.textContent = span.getAttribute('data-default') || '[' + phKey + ']';
+          span.classList.remove('filled');
+        }
+      });
+    });
+  });
+});
+
+// ── PER-CARD: checkbox handler (joins checked values with comma) ──
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.prompt-selectors input[type="checkbox"]').forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      var card = cb.closest('.prompt-card');
+      var phKey = cb.getAttribute('data-ph');
+      var checked = [];
+      card.querySelectorAll('input[type="checkbox"][data-ph="' + phKey + '"]:checked').forEach(function (c) {
+        checked.push(c.getAttribute('data-val'));
+      });
+      card.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
+        if (checked.length > 0) {
+          span.textContent = checked.join(', ');
           span.classList.add('filled');
         } else {
           span.textContent = span.getAttribute('data-default') || '[' + phKey + ']';
