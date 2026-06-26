@@ -34,9 +34,9 @@ FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie ee
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
-**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 25 AI-prompts + 1 bonusprompt voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen binnenhalen via de platforms. Verdeeld in 3 categorieën: Listing Descriptions (01-10, per platform), More Bookings/Algorithm (11-20), Host Profile (21-25). Plus 1 bonus: direct booking reply via Instagram DM of WhatsApp. Social Media is een aparte upsell (nog te bouwen). Bestand: `island-host-ai-prompt-kit.html` (in root, in browser openen, via Cmd+P opslaan als PDF). Online op `https://www.funkiness.ai/island-host-ai-prompt-kit`. Referentiebestand: `docs/island-host-ai-prompt-kit.md`. Verkoop via Gumroad ($27). Upsell: Social Media Prompt Kit + Video Script Kit (nog te bouwen). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 12 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen via de platforms. Verdeeld in 3 categorieën: Platform Descriptions (01-03: Airbnb, VRBO, Micazu), Universal Listing Tools (04-09: titels, teasers, rewrite, USP, outdoor, locatie), Algorithm Tips (10-12: audit, amenities, foto brief). Social Media is een aparte upsell (nog te bouwen). Bestanden: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF) en `docs/island-host-ai-prompt-kit.md` (referentie). Online op `https://www.funkiness.ai/island-host-ai-prompt-kit`. Verkoop via Gumroad ($27). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
 
-Productstructuur: gebruiker vult Property Fact Sheet eenmalig in, kopieert naar ChatGPT/Claude, gebruikt dan prompts zonder property details opnieuw in te typen. Listing Descriptions zijn per platform georganiseerd: Airbnb (01-02), VRBO (03), Micazu (04), Universal tools (05-10). Airbnb Prompt 01 heeft 5 aparte outputs: Dutch (in het Nederlands), American (Engels), Canadian (Engels, winter escape focus), Your Space Engels, Your Space Nederlands. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal handmatig invoeren. VRBO heeft geen multi-taal support. More Bookings sectie (11-20) dekt algoritme, foto's, reviews en Superhost strategie. Host Profile (21-25): FAQ, huisregels, bio, lokale tips, review responses. Guest emails, WhatsApp en Social Media zijn niet opgenomen in dit product.
+Productstructuur: gebruiker vult Property Fact Sheet eenmalig in en selecteert eiland in Quick Fill. Eiland context (Aruba/Bonaire/Curaçao briefing) wordt automatisch ingevuld in alle platform-prompts. Airbnb Prompt 01 heeft 5 aparte outputs: Dutch, American, Canadian, Your Space EN, Your Space NL. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal invoeren. VRBO heeft geen multi-taal support. Guest emails, WhatsApp, Social Media en Host Profile zijn niet opgenomen in dit product.
 
 ## Doelgroep
 
@@ -117,3 +117,5 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 ## Sessie logs
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
+
+- 2026-06-26: Mobile office preview updates — docs/logs/2026-06-26/01-mobile-office-preview-updates.md
