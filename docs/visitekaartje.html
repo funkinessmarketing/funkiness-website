@@ -11,9 +11,7 @@
       --black: #080403;
       --cream: #f7efe7;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       background: #b0b0b0;
       padding: 48px 40px;
@@ -23,7 +21,6 @@
       gap: 48px;
       align-items: center;
     }
-
     .label {
       font-size: 11px;
       font-weight: 700;
@@ -33,7 +30,6 @@
       letter-spacing: 3px;
       text-transform: uppercase;
     }
-
     .card {
       width: 85mm;
       height: 55mm;
@@ -43,18 +39,15 @@
       box-shadow: 0 12px 48px rgba(0,0,0,0.3);
     }
 
-    /* ========================
-       VOORKANT
-    ======================== */
+    /* VOORKANT */
     .card-front {
       background: var(--black);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 5mm 8mm 14mm;
+      padding: 5mm 8mm 13mm;
     }
-
     .card-front .logo-img {
       width: 50mm;
       height: auto;
@@ -62,7 +55,6 @@
       position: relative;
       z-index: 2;
     }
-
     .card-front .service-line {
       font-family: 'Inter', sans-serif;
       font-size: 5pt;
@@ -74,7 +66,6 @@
       position: relative;
       z-index: 2;
     }
-
     .card-front .tagline {
       font-family: 'Permanent Marker', cursive;
       color: var(--pink);
@@ -83,7 +74,6 @@
       position: relative;
       z-index: 2;
     }
-
     .card-front .names-line {
       font-family: 'Inter', sans-serif;
       font-size: 5.5pt;
@@ -97,96 +87,47 @@
       opacity: 0.65;
     }
 
-    /* Panterprint strook onderaan */
-    .panter-strip {
+    /* SVG panterprint wave onderaan voorkant */
+    .panter-svg-bottom {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 11mm;
-      background-image: url('../panterprint.png');
-      background-size: auto 100%;
-      background-repeat: repeat-x;
-      background-position: center;
+      height: 14mm;
       z-index: 1;
     }
 
-    /* SVG golf over de panterprint strook — maakt de bovenrand golvend */
-    .panter-wave {
-      position: absolute;
-      bottom: 8.5mm;
-      left: 0;
-      width: 100%;
-      z-index: 2;
-      line-height: 0;
-    }
-
-    .panter-wave svg {
-      display: block;
-      width: 100%;
-      height: 6mm;
-    }
-
-    /* ========================
-       ACHTERKANT
-    ======================== */
+    /* ACHTERKANT */
     .card-back {
       background: var(--cream);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10mm 8mm 6mm;
+      padding: 11mm 8mm 5mm;
       gap: 0;
     }
 
-    /* Panterprint golf bovenaan achterkant */
-    .panter-wave-top {
+    /* SVG panterprint wave bovenaan achterkant */
+    .panter-svg-top {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
+      height: 12mm;
       z-index: 1;
     }
 
-    .panter-wave-top .strip-top {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 8mm;
-      background-image: url('../panterprint.png');
-      background-size: auto 100%;
-      background-repeat: repeat-x;
-      background-position: center;
-    }
-
-    .panter-wave-top svg {
-      display: block;
-      width: 100%;
-      height: 5mm;
-      position: absolute;
-      top: 6mm;
-      left: 0;
-    }
-
-    .nfc-icon {
-      margin-bottom: 2mm;
-      position: relative;
-      z-index: 2;
-    }
-
+    .nfc-icon { margin-bottom: 2mm; position: relative; z-index: 2; }
     .tap-text {
       font-family: 'Poppins', sans-serif;
       font-weight: 900;
       font-size: 8.5pt;
       color: var(--black);
-      letter-spacing: 0.5px;
       margin-bottom: 0.8mm;
       position: relative;
       z-index: 2;
     }
-
     .tap-sub {
       font-family: 'Inter', sans-serif;
       font-size: 5.5pt;
@@ -196,7 +137,6 @@
       position: relative;
       z-index: 2;
     }
-
     .divider-line {
       width: 18mm;
       height: 1px;
@@ -205,7 +145,6 @@
       position: relative;
       z-index: 2;
     }
-
     .contact-grid {
       display: flex;
       flex-direction: column;
@@ -214,7 +153,6 @@
       position: relative;
       z-index: 2;
     }
-
     .contact-row {
       font-family: 'Inter', sans-serif;
       font-size: 6pt;
@@ -223,12 +161,7 @@
       align-items: center;
       gap: 1.5mm;
     }
-
-    .contact-row strong {
-      color: var(--black);
-      font-weight: 700;
-    }
-
+    .contact-row strong { color: var(--black); font-weight: 700; }
     .pink-dot {
       width: 1.5mm;
       height: 1.5mm;
@@ -256,13 +189,17 @@
       <p class="tagline">Boring was never the plan.</p>
       <p class="names-line">Daisy &amp; Berdien</p>
 
-      <!-- Panterprint strook met golvende bovenrand -->
-      <div class="panter-strip"></div>
-      <div class="panter-wave">
-        <svg viewBox="0 0 340 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,12 C40,24 80,0 120,14 C160,28 200,4 240,16 C280,28 310,8 340,14 L340,24 L0,24 Z" fill="#080403"/>
-        </svg>
-      </div>
+      <!-- Panterprint met golvende bovenrand via SVG clipPath -->
+      <svg class="panter-svg-bottom" viewBox="0 0 850 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="waveBottom">
+            <path d="M0,38 C70,8 155,68 240,32 C325,-4 410,62 495,28 C580,-6 665,58 750,24 C800,8 830,22 850,16 L850,140 L0,140 Z"/>
+          </clipPath>
+        </defs>
+        <image href="../panterprint.png" x="0" y="0" width="850" height="140"
+               preserveAspectRatio="xMidYMid slice"
+               clip-path="url(#waveBottom)"/>
+      </svg>
     </div>
   </div>
 
@@ -270,13 +207,17 @@
     <p class="label">Achterkant</p>
     <div class="card card-back">
 
-      <!-- Panterprint golf bovenaan -->
-      <div class="panter-wave-top">
-        <div class="strip-top"></div>
-        <svg viewBox="0 0 340 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,8 C50,20 100,2 160,12 C220,22 280,4 340,10 L340,20 L0,20 Z" fill="#f7efe7"/>
-        </svg>
-      </div>
+      <!-- Panterprint met golvende onderrand bovenaan -->
+      <svg class="panter-svg-top" viewBox="0 0 850 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="waveTop">
+            <path d="M0,0 L850,0 L850,90 C780,120 695,60 610,96 C525,130 440,66 355,100 C270,132 185,68 100,102 C60,116 28,104 0,110 Z"/>
+          </clipPath>
+        </defs>
+        <image href="../panterprint.png" x="0" y="0" width="850" height="120"
+               preserveAspectRatio="xMidYMid slice"
+               clip-path="url(#waveTop)"/>
+      </svg>
 
       <svg class="nfc-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 12C20 16.418 16.418 20 12 20M16 12C16 14.209 14.209 16 12 16M20 12C20 7.582 16.418 4 12 4M16 12C16 9.791 14.209 8 12 8" stroke="#f21b7a" stroke-width="1.8" stroke-linecap="round"/>
@@ -285,9 +226,7 @@
 
       <p class="tap-text">Tap to connect</p>
       <p class="tap-sub">Hold your phone to this card</p>
-
       <div class="divider-line"></div>
-
       <div class="contact-grid">
         <div class="contact-row">
           <span class="pink-dot"></span>
@@ -302,7 +241,6 @@
           <span>@funkiness.ai</span>
         </div>
       </div>
-
     </div>
   </div>
 
