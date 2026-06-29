@@ -47,13 +47,13 @@ a { color: inherit; }
 }
 
 .logo-img {
-  height: 44px;
+  height: 64px;
   width: auto;
   display: block;
 }
 
 @media (min-width: 1100px) {
-  .logo-img { height: 56px; }
+  .logo-img { height: 80px; }
 }
 
 .menu {
