@@ -50,13 +50,13 @@
       background: var(--black);
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      padding: 7mm 8mm 7mm 8mm;
+      padding: 5mm 8mm 14mm;
     }
 
     .card-front .logo-img {
-      width: 46mm;
+      width: 50mm;
       height: auto;
       margin-bottom: 2mm;
       position: relative;
@@ -65,12 +65,12 @@
 
     .card-front .service-line {
       font-family: 'Inter', sans-serif;
-      font-size: 5.5pt;
-      font-weight: 600;
-      color: rgba(255,255,255,0.4);
+      font-size: 5pt;
+      font-weight: 700;
+      color: rgba(255,255,255,0.38);
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 3mm;
+      margin-bottom: 2mm;
       position: relative;
       z-index: 2;
     }
@@ -86,43 +86,45 @@
 
     .card-front .names-line {
       font-family: 'Inter', sans-serif;
-      font-size: 6pt;
+      font-size: 5.5pt;
       font-weight: 700;
       color: var(--cream);
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      margin-top: 3mm;
+      margin-top: 2.5mm;
       position: relative;
       z-index: 2;
-      opacity: 0.7;
+      opacity: 0.65;
     }
 
-    /* Panterprint blob rechtsonder */
-    .panter-blob-front {
+    /* Panterprint strook onderaan */
+    .panter-strip {
       position: absolute;
-      bottom: -8mm;
-      right: -8mm;
-      width: 38mm;
-      height: 32mm;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 11mm;
       background-image: url('../panterprint.png');
-      background-size: cover;
+      background-size: auto 100%;
+      background-repeat: repeat-x;
       background-position: center;
-      border-radius: 62% 38% 46% 54% / 44% 58% 42% 56%;
-      opacity: 0.55;
       z-index: 1;
     }
 
-    /* Kleine roze accentblob */
-    .pink-accent {
+    /* SVG golf over de panterprint strook — maakt de bovenrand golvend */
+    .panter-wave {
       position: absolute;
-      top: -6mm;
-      right: 14mm;
-      width: 18mm;
-      height: 14mm;
-      background: var(--pink);
-      border-radius: 50% 30% 60% 40% / 40% 60% 30% 55%;
-      opacity: 0.18;
-      z-index: 1;
+      bottom: 8.5mm;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      line-height: 0;
+    }
+
+    .panter-wave svg {
+      display: block;
+      width: 100%;
+      height: 6mm;
     }
 
     /* ========================
@@ -134,38 +136,38 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 6mm 8mm 6mm;
+      padding: 10mm 8mm 6mm;
       gap: 0;
     }
 
-    /* Panterprint blob linksboven */
-    .panter-blob-back {
+    /* Panterprint golf bovenaan achterkant */
+    .panter-wave-top {
       position: absolute;
-      top: -6mm;
-      left: -6mm;
-      width: 30mm;
-      height: 24mm;
-      background-image: url('../panterprint.png');
-      background-size: cover;
-      background-position: center;
-      border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
-      opacity: 0.45;
+      top: 0;
+      left: 0;
+      width: 100%;
       z-index: 1;
     }
 
-    /* Panterprint blob rechtsonder achterkant */
-    .panter-blob-back-2 {
+    .panter-wave-top .strip-top {
       position: absolute;
-      bottom: -5mm;
-      right: -5mm;
-      width: 22mm;
-      height: 18mm;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8mm;
       background-image: url('../panterprint.png');
-      background-size: cover;
+      background-size: auto 100%;
+      background-repeat: repeat-x;
       background-position: center;
-      border-radius: 55% 45% 40% 60% / 45% 55% 40% 60%;
-      opacity: 0.35;
-      z-index: 1;
+    }
+
+    .panter-wave-top svg {
+      display: block;
+      width: 100%;
+      height: 5mm;
+      position: absolute;
+      top: 6mm;
+      left: 0;
     }
 
     .nfc-icon {
@@ -249,20 +251,32 @@
   <div>
     <p class="label">Voorkant</p>
     <div class="card card-front">
-      <div class="panter-blob-front"></div>
-      <div class="pink-accent"></div>
       <img src="../funkiness-logo.png" alt="FUNkiness!" class="logo-img">
-      <p class="service-line">AI, Social Media &amp; Marketing</p>
+      <p class="service-line">AI, Social Media &amp; Marketing · Curaçao</p>
       <p class="tagline">Boring was never the plan.</p>
-      <p class="names-line">Daisy &amp; Berdien · Curaçao</p>
+      <p class="names-line">Daisy &amp; Berdien</p>
+
+      <!-- Panterprint strook met golvende bovenrand -->
+      <div class="panter-strip"></div>
+      <div class="panter-wave">
+        <svg viewBox="0 0 340 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,12 C40,24 80,0 120,14 C160,28 200,4 240,16 C280,28 310,8 340,14 L340,24 L0,24 Z" fill="#080403"/>
+        </svg>
+      </div>
     </div>
   </div>
 
   <div>
     <p class="label">Achterkant</p>
     <div class="card card-back">
-      <div class="panter-blob-back"></div>
-      <div class="panter-blob-back-2"></div>
+
+      <!-- Panterprint golf bovenaan -->
+      <div class="panter-wave-top">
+        <div class="strip-top"></div>
+        <svg viewBox="0 0 340 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,8 C50,20 100,2 160,12 C220,22 280,4 340,10 L340,20 L0,20 Z" fill="#f7efe7"/>
+        </svg>
+      </div>
 
       <svg class="nfc-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 12C20 16.418 16.418 20 12 20M16 12C16 14.209 14.209 16 12 16M20 12C20 7.582 16.418 4 12 4M16 12C16 9.791 14.209 8 12 8" stroke="#f21b7a" stroke-width="1.8" stroke-linecap="round"/>
@@ -288,6 +302,7 @@
           <span>@funkiness.ai</span>
         </div>
       </div>
+
     </div>
   </div>
 
