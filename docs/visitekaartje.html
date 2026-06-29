@@ -15,110 +15,163 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #ccc;
-      padding: 40px;
+      background: #b0b0b0;
+      padding: 48px 40px;
       font-family: 'Inter', sans-serif;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 48px;
       align-items: center;
     }
 
     .label {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       color: #555;
       text-align: center;
-      margin-bottom: 8px;
-      letter-spacing: 2px;
+      margin-bottom: 10px;
+      letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    /* ==============================
-       KAART: 85mm x 55mm
-       3mm bleed aan alle kanten
-       Drukklaar: 91mm x 61mm
-    ============================== */
     .card {
       width: 85mm;
       height: 55mm;
       position: relative;
       overflow: hidden;
-      border-radius: 3mm;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+      border-radius: 3.5mm;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.3);
     }
 
-    /* VOORKANT */
+    /* ========================
+       VOORKANT
+    ======================== */
     .card-front {
       background: var(--black);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      gap: 0;
-      padding: 5mm 8mm 13mm;
+      padding: 7mm 8mm 7mm 8mm;
     }
 
     .card-front .logo-img {
-      width: 52mm;
+      width: 46mm;
       height: auto;
+      margin-bottom: 2mm;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-front .service-line {
+      font-family: 'Inter', sans-serif;
+      font-size: 5.5pt;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-bottom: 3mm;
+      position: relative;
+      z-index: 2;
     }
 
     .card-front .tagline {
       font-family: 'Permanent Marker', cursive;
       color: var(--pink);
-      font-size: 9pt;
-      text-align: center;
+      font-size: 8.5pt;
       line-height: 1.2;
+      position: relative;
+      z-index: 2;
     }
 
     .card-front .names-line {
       font-family: 'Inter', sans-serif;
       font-size: 6pt;
       font-weight: 700;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 3px;
+      color: var(--cream);
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      margin-top: 2.5mm;
+      margin-top: 3mm;
+      position: relative;
+      z-index: 2;
+      opacity: 0.7;
     }
 
-    .panter-strip-bottom {
+    /* Panterprint blob rechtsonder */
+    .panter-blob-front {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 9mm;
+      bottom: -8mm;
+      right: -8mm;
+      width: 38mm;
+      height: 32mm;
       background-image: url('../panterprint.png');
-      background-size: auto 100%;
-      background-repeat: repeat-x;
+      background-size: cover;
+      background-position: center;
+      border-radius: 62% 38% 46% 54% / 44% 58% 42% 56%;
+      opacity: 0.55;
+      z-index: 1;
     }
 
-    .panter-strip-top {
+    /* Kleine roze accentblob */
+    .pink-accent {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5mm;
-      background-image: url('../panterprint.png');
-      background-size: auto 100%;
-      background-repeat: repeat-x;
+      top: -6mm;
+      right: 14mm;
+      width: 18mm;
+      height: 14mm;
+      background: var(--pink);
+      border-radius: 50% 30% 60% 40% / 40% 60% 30% 55%;
+      opacity: 0.18;
+      z-index: 1;
     }
 
-    /* ACHTERKANT */
+    /* ========================
+       ACHTERKANT
+    ======================== */
     .card-back {
       background: var(--cream);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10mm 8mm 6mm;
+      padding: 6mm 8mm 6mm;
       gap: 0;
     }
 
+    /* Panterprint blob linksboven */
+    .panter-blob-back {
+      position: absolute;
+      top: -6mm;
+      left: -6mm;
+      width: 30mm;
+      height: 24mm;
+      background-image: url('../panterprint.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+      opacity: 0.45;
+      z-index: 1;
+    }
+
+    /* Panterprint blob rechtsonder achterkant */
+    .panter-blob-back-2 {
+      position: absolute;
+      bottom: -5mm;
+      right: -5mm;
+      width: 22mm;
+      height: 18mm;
+      background-image: url('../panterprint.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 55% 45% 40% 60% / 45% 55% 40% 60%;
+      opacity: 0.35;
+      z-index: 1;
+    }
+
     .nfc-icon {
-      margin-bottom: 2.5mm;
+      margin-bottom: 2mm;
+      position: relative;
+      z-index: 2;
     }
 
     .tap-text {
@@ -127,22 +180,28 @@
       font-size: 8.5pt;
       color: var(--black);
       letter-spacing: 0.5px;
-      margin-bottom: 1mm;
+      margin-bottom: 0.8mm;
+      position: relative;
+      z-index: 2;
     }
 
     .tap-sub {
       font-family: 'Inter', sans-serif;
-      font-size: 6pt;
-      color: rgba(8,4,3,0.45);
-      margin-bottom: 4mm;
+      font-size: 5.5pt;
+      color: rgba(8,4,3,0.4);
+      margin-bottom: 3.5mm;
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     .divider-line {
-      width: 20mm;
+      width: 18mm;
       height: 1px;
-      background: rgba(8,4,3,0.12);
-      margin-bottom: 4mm;
+      background: rgba(8,4,3,0.1);
+      margin-bottom: 3.5mm;
+      position: relative;
+      z-index: 2;
     }
 
     .contact-grid {
@@ -150,6 +209,8 @@
       flex-direction: column;
       align-items: center;
       gap: 1mm;
+      position: relative;
+      z-index: 2;
     }
 
     .contact-row {
@@ -176,20 +237,10 @@
     }
 
     @media print {
-      body {
-        background: white;
-        padding: 10mm;
-      }
+      body { background: white; padding: 10mm; }
       .label { display: none; }
-      .card {
-        border-radius: 3mm;
-        box-shadow: none;
-        border: 0.2mm solid #ddd;
-      }
-      @page {
-        size: A4;
-        margin: 10mm;
-      }
+      .card { box-shadow: none; border: 0.2mm solid #ddd; }
+      @page { size: A4; margin: 10mm; }
     }
   </style>
 </head>
@@ -198,20 +249,22 @@
   <div>
     <p class="label">Voorkant</p>
     <div class="card card-front">
+      <div class="panter-blob-front"></div>
+      <div class="pink-accent"></div>
       <img src="../funkiness-logo.png" alt="FUNkiness!" class="logo-img">
+      <p class="service-line">AI, Social Media &amp; Marketing</p>
       <p class="tagline">Boring was never the plan.</p>
-      <p class="names-line">Daisy &amp; Berdien</p>
-      <div class="panter-strip-bottom"></div>
+      <p class="names-line">Daisy &amp; Berdien · Curaçao</p>
     </div>
   </div>
 
   <div>
     <p class="label">Achterkant</p>
     <div class="card card-back">
-      <div class="panter-strip-top"></div>
+      <div class="panter-blob-back"></div>
+      <div class="panter-blob-back-2"></div>
 
-      <!-- NFC icon -->
-      <svg class="nfc-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="nfc-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 12C20 16.418 16.418 20 12 20M16 12C16 14.209 14.209 16 12 16M20 12C20 7.582 16.418 4 12 4M16 12C16 9.791 14.209 8 12 8" stroke="#f21b7a" stroke-width="1.8" stroke-linecap="round"/>
         <circle cx="12" cy="12" r="1.5" fill="#f21b7a"/>
       </svg>
@@ -235,7 +288,6 @@
           <span>@funkiness.ai</span>
         </div>
       </div>
-
     </div>
   </div>
 
