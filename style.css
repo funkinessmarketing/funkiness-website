@@ -661,6 +661,35 @@ h1 span { color: var(--pink); }
   color: rgba(8, 4, 3, 0.75);
 }
 
+.scan-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.scan-option {
+  border-left: 4px solid var(--pink);
+  padding: 14px 18px;
+  background: white;
+  border-radius: 0 12px 12px 0;
+}
+
+.scan-option-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  color: var(--black);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.scan-option p {
+  font-size: 15px !important;
+  margin-bottom: 0 !important;
+  color: rgba(8,4,3,0.65) !important;
+}
+
 /* ============================
    CONTACT SECTION (homepage)
    ============================ */
