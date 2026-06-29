@@ -28,7 +28,10 @@ We zitten in de opstartfase. Slogan: *Boring was never the plan.*
 
 FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie eerst, daarna content, campagnes en kanaalmanagement. Positionering is fullservice marketingbureau, NIET 'AI agency' (boring en te beperkt) en NIET social media bureau. Ze zetten AI in als onderdeel van strategie en uitvoering, maar het gaat om marketing in de breedste zin van het woord. Noem FUNkiness! nooit een "AI agency."
 
-**AI & Marketingscan** - leadgenerator #1. Bedrijven vullen online een scan in en ontvangen een uitgebreide rapportage over hun marketing- en AI-situatie. Scan knop op website linkt naar https://scan.funkiness.ai (apart in te stellen). Vercel serverless: `api/marketing-scan.js`.
+**Twee gratis scans** via `scan.html` (keuze op de pagina zelf):
+- **Social Media Scan** (leadgenerator #1a): Platforms & Reach, Instagram, Engagement, Content. Vercel serverless: `api/scan.js`.
+- **Marketing Strategy Scan** (leadgenerator #1b): Brand & Positioning, Audience & Market, Channels & Reach, Strategy & Execution. Vercel serverless: `api/marketing-scan.js`.
+Beide sturen een rapport-email naar de aanvrager en een volledige lead-email naar sayhello@funkiness.ai. Beveiligd met honeypot en input-validatie.
 
 **AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Terminator, Content Crusher, Growth Guru, Experience Engine). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
 
@@ -75,6 +78,7 @@ Als een tekst saai klinkt, past hij niet bij FUNkiness!
 - Donkere secties (zwart) voor contrast, Why Us, footer, blog hero
 - Blob/plas-vormen in roze als decoratief element (zie homepage hero)
 - Jeep met panterprint is het centrale visuele merk-icoon
+- **Logo:** `funkiness-logo.png` in root. PNG met transparante achtergrond, 999x515px. Gebruikt in navbar op alle pagina's via `.logo-img` (100px mobiel, 120px desktop). Niet vervangen door tekst.
 
 **Aanpak bij nieuwe pagina-elementen:**
 Gebruik altijd organische overgangen (SVG-golf of blob) tussen secties met verschillende achtergrondkleuren. Nooit een harde rechte lijn tussen twee kleurvlakken.
@@ -108,6 +112,8 @@ Lees deze bestanden voor meer detail:
 
 **Mobile office sectie** - nieuwe homepage sectie in ontwikkeling voor het "You pick the spot, we bring the office" concept. Preview: `docs/preview-mobile-office-sectie.html`. Booking via **Cal.com** (gratis, werkt met Apple Agenda via CalDAV). Meeting naam: "Marketing Strategy Session". Wacht op Cal.com embed code van Daisy om formulier te vervangen. Nog niet live op `index.html`.
 
+**NFC visitekaartje** - fysiek kaartje met NFC-chip. Tik opent `connect.html` (funkiness.ai/connect). Bestanden: `connect.html` (landingspagina: WhatsApp, Instagram, TikTok, Website), `docs/visitekaartje.html` (printbaar ontwerp 85x55mm, voor- en achterkant). Panterprint met golvende rand via SVG clipPath. Via Mobilo of vergelijkbare leverancier laten drukken.
+
 ## Social media planning
 
 Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-juni-2026.md`, TikTok + Instagram, 10 posts, 11 juni t/m 1 juli 2026. Scripts, captions, CapCut-instructies en kalender staan erin.
@@ -118,4 +124,5 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-06-29: Website updates, logo, NFC visitekaartje — docs/logs/2026-06-29/01-website-logo-visitekaartje.md
 - 2026-06-26: Mobile office preview updates — docs/logs/2026-06-26/01-mobile-office-preview-updates.md
