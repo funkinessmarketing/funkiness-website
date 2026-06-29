@@ -57,7 +57,7 @@
       align-items: center;
       justify-content: center;
       gap: 0;
-      padding: 6mm 8mm;
+      padding: 5mm 8mm 13mm;
     }
 
     .card-front .logo-img {
@@ -84,6 +84,28 @@
       margin-top: 2.5mm;
     }
 
+    .panter-strip-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 9mm;
+      background-image: url('../panterprint.png');
+      background-size: auto 100%;
+      background-repeat: repeat-x;
+    }
+
+    .panter-strip-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5mm;
+      background-image: url('../panterprint.png');
+      background-size: auto 100%;
+      background-repeat: repeat-x;
+    }
+
     /* ACHTERKANT */
     .card-back {
       background: var(--cream);
@@ -91,7 +113,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 6mm 8mm;
+      padding: 10mm 8mm 6mm;
       gap: 0;
     }
 
@@ -179,12 +201,14 @@
       <img src="../funkiness-logo.png" alt="FUNkiness!" class="logo-img">
       <p class="tagline">Boring was never the plan.</p>
       <p class="names-line">Daisy &amp; Berdien</p>
+      <div class="panter-strip-bottom"></div>
     </div>
   </div>
 
   <div>
     <p class="label">Achterkant</p>
     <div class="card card-back">
+      <div class="panter-strip-top"></div>
 
       <!-- NFC icon -->
       <svg class="nfc-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
