@@ -812,6 +812,57 @@ h1 span { color: var(--pink); }
 }
 
 /* ============================
+   JEEP GALLERY
+   ============================ */
+.jeep-gallery {
+  background: var(--pink);
+  padding: 56px 5vw 64px;
+  text-align: center;
+}
+
+.jeep-gallery .section-kicker {
+  color: white;
+  margin-bottom: 36px;
+}
+
+.jeep-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.jeep-gallery-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.jeep-reel-wrap {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.jeep-reel-wrap .instagram-media {
+  margin: 0 !important;
+  max-width: 400px !important;
+  min-width: 280px !important;
+  border-radius: 16px !important;
+}
+
+@media (min-width: 900px) {
+  .jeep-gallery {
+    padding: 80px 5vw 88px;
+  }
+  .jeep-gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ============================
    WHY US
    ============================ */
 .why-us {
