@@ -14,6 +14,8 @@ Dit is het geheugen van mijn AI. Alles wat hier staat, leest Claude bij elke ses
 
 **BERDIEN WOONT NOG NIET OP CURAÇAO.** Berdien sluit eind oktober 2026 aan. Schrijf nooit "we live here", "we are based here" of vergelijkbare formuleringen die impliceren dat beiden op het eiland wonen. Daisy woont er wel. Gebruik "FUNkiness! is based on Curaçao" of "Daisy is based on Curaçao" maar nooit "we" in die context.
 
+**ALTIJD OPENROUTER VOOR ANDERE AI-MODELLEN.** Als gevraagd wordt om een afbeelding te genereren, een video te genereren, of gebruik te maken van een ander AI-model dan Claude (bijvoorbeeld GPT, Gemini, Moonshot, Grok, Kling, Nano Banana, GPT Image), gebruik dan ALTIJD OpenRouter met de `OPENROUTER_API_KEY` uit `.env`. Gebruik NOOIT losse directe koppelingen met OpenAI, Google AI Studio, Anthropic of andere providers, ook niet als ze rechtstreeks beschikbaar zijn. Reden: één sleutel, één kostenoverzicht (openrouter.ai/activity), altijd toegang tot de nieuwste modellen zonder per provider een aparte account te beheren.
+
 ## Mijn bedrijf
 
 Ik ben Daisy, en samen met Berdien run ik **FUNkiness! AI, Social Media & Marketing** op Curaçao. We zijn allebei ervaren marketeers uit Nederland die de stap naar het eiland hebben gemaakt. Marketing op Curaçao is nog heel traditioneel, iedereen doet hetzelfde, niemand springt eruit. FUNkiness! is ons antwoord daarop.
@@ -31,15 +33,15 @@ FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie ee
 **Twee gratis scans** via `scan.html` (keuze op de pagina zelf):
 - **Social Media Scan** (leadgenerator #1a): Platforms & Reach, Instagram, Engagement, Content. Vercel serverless: `api/scan.js`.
 - **Marketing Strategy Scan** (leadgenerator #1b): Brand & Positioning, Audience & Market, Channels & Reach, Strategy & Execution. Vercel serverless: `api/marketing-scan.js`.
-Beide sturen een rapport-email naar de aanvrager en een volledige lead-email naar sayhello@funkiness.ai. Beveiligd met honeypot en input-validatie.
+Beide sturen een rapport-email naar de aanvrager en een volledige lead-email naar sayhello@funkiness.ai via SMTP (smtpout.secureserver.net, sayhello@funkiness.ai, `TITAN_PASSWORD` env var, niet smtp.titan.email). Beveiligd met honeypot en input-validatie. Elke aanvraag wordt daarnaast, onafhankelijk van of de mail lukt, direct gelogd naar een Google Sheet ("Funkiness! Scan aanvragen") via een Apps Script webhook (`GSHEET_WEBHOOK_URL` env var), als vangnet tegen verloren aanvragen. Werk aan structurele deliverability-fix via Resend loopt nog (DNS-records nog toe te voegen bij GoDaddy).
 
 **AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Terminator, Content Crusher, Growth Guru, Experience Engine). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
 
 **Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
 
-**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 12 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen via de platforms. Verdeeld in 3 categorieën: Platform Descriptions (01-03: Airbnb, VRBO, Micazu), Universal Listing Tools (04-09: titels, teasers, rewrite, USP, outdoor, locatie), Algorithm Tips (10-12: audit, amenities, foto brief). Social Media is een aparte upsell (nog te bouwen). Bestanden: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF) en `docs/island-host-ai-prompt-kit.md` (referentie). Online op `https://www.funkiness.ai/island-host-ai-prompt-kit`. Verkoop via Gumroad ($27). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 11 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen via de platforms. Verdeeld in 2 categorieën: Listing Descriptions (01-08: Airbnb, VRBO, Micazu platform-beschrijvingen + universele tools zoals teaser, rewrite, USP, outdoor, locatie), More Bookings (09-11: Airbnb Algorithm Audit, Amenities Maximizer, Listing Photo Brief). Geen van de prompts scraped of haalt automatisch data op van boekingsplatformen, alles werkt met gegevens die de host zelf al heeft of zelf invult. Social Media is een aparte upsell (nog te bouwen, teaser al aanwezig in de PDF met een "annulering/rustige periode"-post als eerste voorbeeld). Bestanden: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF) en `docs/island-host-ai-prompt-kit.md` (referentie, moet bij wijziging aan de HTML meebijgewerkt worden). Online op `https://www.funkiness.ai/island-host-ai-prompt-kit`. Verkoop via Gumroad ($27). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
 
-Productstructuur: gebruiker vult Property Fact Sheet eenmalig in en selecteert eiland in Quick Fill. Eiland context (Aruba/Bonaire/Curaçao briefing) wordt automatisch ingevuld in alle platform-prompts. Airbnb Prompt 01 heeft 5 aparte outputs: Dutch, American, Canadian, Your Space EN, Your Space NL. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal invoeren. VRBO heeft geen multi-taal support. Guest emails, WhatsApp, Social Media en Host Profile zijn niet opgenomen in dit product.
+Productstructuur: gebruiker vult Property Fact Sheet eenmalig in en selecteert eiland in Quick Fill. Eiland context (Aruba/Bonaire/Curaçao briefing) wordt automatisch ingevuld in alle platform-prompts. Airbnb Prompt 01 heeft 6 aparte outputs: Dutch, American, Canadian, Your Space EN, Your Space NL, title. VRBO Prompt 02 heeft 3 outputs: Dutch/Europees, Noord-Amerikaans, title. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal invoeren. VRBO heeft geen multi-taal support. Guest emails, WhatsApp, Social Media en Host Profile zijn niet opgenomen in dit product.
 
 ## Doelgroep
 
@@ -124,5 +126,6 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-07-24: Scan e-mailflow gerepareerd (SMTP-server, JSON-crash, vangnet-logging) — docs/logs/2026-07-24/01-scan-email-flow-smtp-fix.md
 - 2026-06-29: Website updates, logo, NFC visitekaartje — docs/logs/2026-06-29/01-website-logo-visitekaartje.md
 - 2026-06-26: Mobile office preview updates — docs/logs/2026-06-26/01-mobile-office-preview-updates.md

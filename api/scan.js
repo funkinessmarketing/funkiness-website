@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const mailer = nodemailer.createTransport({
-  host: 'smtp.titan.email',
+  host: 'smtpout.secureserver.net',
   port: 587,
   secure: false,
   auth: {
@@ -60,6 +60,14 @@ export default async function handler(req, res) {
 
   if (!email.includes('@') || bedrijf.length > 200 || naam?.length > 200) {
     return res.status(400).json({ success: false, error: 'Invalid input.' });
+  }
+
+  if (process.env.GSHEET_WEBHOOK_URL) {
+    fetch(process.env.GSHEET_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'social', bedrijf, sector, naam, functie, email, telefoon, telefoon_nl, instagram })
+    }).catch(err => console.error('Sheet log error:', err.message));
   }
 
   const sectorLabel = {
@@ -132,38 +140,62 @@ STRUCTURE RULES:
 7. DO TODAY: One ultra-specific action they can do in 20 minutes. Make it feel like the first step, not the full solution.
 8. DYNAMIC CTA: Personalized to their lowest scoring area (${lowestLabel}). Direct and inviting, not salesy.
 
-Output ONLY valid JSON:
-{
-  "intro": "2 sharp sentences about ${bedrijf} specifically. Reference their follower range or platform situation. Feel like you looked at their profile.",
-  "whats_working": "1-2 sentences in a playful, encouraging tone about the 1 thing they are genuinely doing well. Specific to their answers.",
-  "platforms": { "score": ${scores.platforms}, "feedback": "2 sentences. Reference a Curaçao or Caribbean market fact." },
-  "instagram": { "score": ${scores.instagram}, "feedback": "2 sentences. Reference a verified Instagram platform behavior." },
-  "engagement": { "score": ${scores.engagement}, "feedback": "2 sentences. Reference a fact about DMs, comments or algorithm signals." },
-  "content": { "score": ${scores.content}, "feedback": "2 sentences. Reference a verified content behavior (Reels, carousels, Stories)." },
-  "bio_feedback": "${bio && bio.trim() ? 'Name the problem clearly. Give 1 directional tip. Do NOT write the new bio. Stop at the insight.' : ''}",
-  "top_quickwin": "The single best, fully explained quick win for ${bedrijf}. Include the source. Genuinely useful.",
-  "teaser_wins": "We spotted 2 more wins specific to ${bedrijf}. One is about [vague area 1, not explained]. The other touches on [vague area 2, not explained]. Both need a closer look at the account to execute right.",
-  "fomo": "2 sentences. What are the fast-moving ${benchmark.label} already doing on social that ${bedrijf} is not yet? Positive framing. Make them want to be in that group.",
-  "do_today": "One ultra-specific action ${bedrijf} can take in 20 minutes. The first step, not the full solution.",
-  "cta_dynamic": "A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.",
-  "totaalscore": ${totaalscore},
-  "benchmark_avg": ${benchmark.avg},
-  "benchmark_top": ${benchmark.top},
-  "benchmark_label": "${benchmark.label}"
-}`;
+Call the submit_scan_report tool with your completed report, following the structure rules above and the field descriptions in the tool schema.`;
+
+  const reportTool = {
+    name: 'submit_scan_report',
+    description: 'Submit the completed social media scan report.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        intro: { type: 'string', description: `2 sharp sentences about ${bedrijf} specifically. Reference their follower range or platform situation. Feel like you looked at their profile.` },
+        whats_working: { type: 'string', description: '1-2 sentences in a playful, encouraging tone about the 1 thing they are genuinely doing well. Specific to their answers.' },
+        platforms_feedback: { type: 'string', description: '2 sentences. Reference a Curaçao or Caribbean market fact.' },
+        instagram_feedback: { type: 'string', description: '2 sentences. Reference a verified Instagram platform behavior.' },
+        engagement_feedback: { type: 'string', description: '2 sentences. Reference a fact about DMs, comments or algorithm signals.' },
+        content_feedback: { type: 'string', description: '2 sentences. Reference a verified content behavior (Reels, carousels, Stories).' },
+        bio_feedback: { type: 'string', description: bio && bio.trim() ? 'Name the problem clearly. Give 1 directional tip. Do NOT write the new bio. Stop at the insight.' : 'Leave as an empty string, no bio was provided.' },
+        top_quickwin: { type: 'string', description: `The single best, fully explained quick win for ${bedrijf}. Include the source. Genuinely useful.` },
+        teaser_wins: { type: 'string', description: `We spotted 2 more wins specific to ${bedrijf}. One is about [vague area 1, not explained]. The other touches on [vague area 2, not explained]. Both need a closer look at the account to execute right.` },
+        fomo: { type: 'string', description: `2 sentences. What are the fast-moving ${benchmark.label} already doing on social that ${bedrijf} is not yet? Positive framing. Make them want to be in that group.` },
+        do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. The first step, not the full solution.` },
+        cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
+      },
+      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'fomo', 'do_today', 'cta_dynamic']
+    }
+  };
 
   try {
     const message = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1800,
+      tools: [reportTool],
+      tool_choice: { type: 'tool', name: 'submit_scan_report' },
       messages: [{ role: 'user', content: prompt }]
     });
 
-    const text = message.content[0].text;
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No JSON in response');
+    const toolUse = message.content.find(block => block.type === 'tool_use');
+    if (!toolUse) throw new Error('No tool_use block in response');
 
-    const rapport = JSON.parse(jsonMatch[0]);
+    const out = toolUse.input;
+    const rapport = {
+      intro: out.intro,
+      whats_working: out.whats_working,
+      platforms: { score: scores.platforms, feedback: out.platforms_feedback },
+      instagram: { score: scores.instagram, feedback: out.instagram_feedback },
+      engagement: { score: scores.engagement, feedback: out.engagement_feedback },
+      content: { score: scores.content, feedback: out.content_feedback },
+      bio_feedback: out.bio_feedback,
+      top_quickwin: out.top_quickwin,
+      teaser_wins: out.teaser_wins,
+      fomo: out.fomo,
+      do_today: out.do_today,
+      cta_dynamic: out.cta_dynamic,
+      totaalscore,
+      benchmark_avg: benchmark.avg,
+      benchmark_top: benchmark.top,
+      benchmark_label: benchmark.label
+    };
 
     // Email to user with key findings
     if (process.env.TITAN_PASSWORD) {

@@ -244,7 +244,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('topQuickwin').textContent = rapport.top_quickwin;
   document.getElementById('quickwinText').textContent = rapport.do_today;
   document.getElementById('ctaHook').textContent = rapport.cta_dynamic;
-  document.getElementById('reportEmailNote').textContent = `We also sent a copy to ${email}.`;
+  document.getElementById('reportEmailNote').textContent = `We also sent a copy to ${email}. Don't see it? Check your spam folder.`;
 
   const waMsg = encodeURIComponent(
     `Hi FUNkiness! I just completed the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan.\n\nName: ${naam}\nJob title: ${functie}\nBusiness: ${bedrijf}\nScore: ${rapport.totaalscore}/100\n\nI'd love to talk about what's possible!`

@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const mailer = nodemailer.createTransport({
-  host: 'smtp.titan.email',
+  host: 'smtpout.secureserver.net',
   port: 587,
   secure: false,
   auth: {
