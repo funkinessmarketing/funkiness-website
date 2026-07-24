@@ -118,7 +118,7 @@ Lees deze bestanden voor meer detail:
 
 ## Social media planning
 
-Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-juni-2026.md`, TikTok + Instagram, 10 posts, 11 juni t/m 1 juli 2026. Scripts, captions, CapCut-instructies en kalender staan erin.
+Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-augustus-2026.md`, TikTok + Instagram + Facebook + YouTube Shorts, 14 posts, 3 t/m 31 augustus 2026, verdeeld over 7 Canva-ontwerptypes (elk onderwerp/doelgroep krijgt steeds dezelfde opzet). Scripts, captions per platform, ontwerpspecs per template, CapCut-instructies en kalender staan erin. Bijbehorende CSV's voor Canva Bulk Create staan in `docs/canva-augustus-2026/` (één CSV per template, geen Canva API-koppeling beschikbaar dus import via Canva's eigen Bulk Create functie). Ontwerpen zijn vrolijk crème/roze, geen zware zwarte vlakken.
 
 Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen roast-content of "hier is wat iedereen fout doet"-aanpak.
 
@@ -126,6 +126,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
-- 2026-07-24: Scan e-mailflow gerepareerd (SMTP-server, JSON-crash, vangnet-logging) — docs/logs/2026-07-24/01-scan-email-flow-smtp-fix.md
+- 2026-07-24: Social media plan augustus 2026, 14 posts over 7 Canva-templates: docs/logs/2026-07-24/02-social-media-plan-augustus-2026.md
+- 2026-07-24: Scan e-mailflow gerepareerd (SMTP-server, JSON-crash, vangnet-logging): docs/logs/2026-07-24/01-scan-email-flow-smtp-fix.md
 - 2026-06-29: Website updates, logo, NFC visitekaartje — docs/logs/2026-06-29/01-website-logo-visitekaartje.md
 - 2026-06-26: Mobile office preview updates — docs/logs/2026-06-26/01-mobile-office-preview-updates.md
