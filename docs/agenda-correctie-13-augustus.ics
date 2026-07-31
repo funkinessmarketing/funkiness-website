@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FUNkiness!//Strategieplan//NL
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Curacao
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0400
+TZNAME:AST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:df6c5f34-08a3-497e-a069-29d0b2387a7a@funkiness.ai
+DTSTAMP:20260731T144452Z
+DTSTART;TZID=America/Curacao:20260813T090000
+DTEND;TZID=America/Curacao:20260813T130000
+SUMMARY:FUNkiness!: Discovery calls + Gumroad check
+DESCRIPTION:Discovery calls voeren met geinteresseerde prospects. Gumroad Prompt Kit: eerste verkopen checken\, bijsturen waar nodig. (Verzet vanaf wo 12 aug.)
+END:VEVENT
+END:VCALENDAR

@@ -35,11 +35,11 @@ FUNkiness! is een **fullservice marketingbureau**: strategie en AI-integratie ee
 - **Marketing Strategy Scan** (leadgenerator #1b): Brand & Positioning, Audience & Market, Channels & Reach, Strategy & Execution. Vercel serverless: `api/marketing-scan.js`.
 Beide sturen een rapport-email naar de aanvrager en een volledige lead-email naar sayhello@funkiness.ai via SMTP (smtpout.secureserver.net, sayhello@funkiness.ai, `TITAN_PASSWORD` env var, niet smtp.titan.email). Beveiligd met honeypot en input-validatie. Elke aanvraag wordt daarnaast, onafhankelijk van of de mail lukt, direct gelogd naar een Google Sheet ("Funkiness! Scan aanvragen") via een Apps Script webhook (`GSHEET_WEBHOOK_URL` env var), als vangnet tegen verloren aanvragen. Werk aan structurele deliverability-fix via Resend loopt nog (DNS-records nog toe te voegen bij GoDaddy).
 
-**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Terminator, Content Crusher, Growth Guru, Experience Engine). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`.
+**AI Superpower Quiz** - leadgenerator #2. "What's Your AI Superpower?", 8 vragen, 4 archetypes (Time Terminator, Content Crusher, Growth Guru, Experience Engine). Resultaat via Claude API, deelbaar via WhatsApp. Bestanden: `quiz.html`, `quiz-script.js`, `api/archetype-quiz.js`. Sinds 2026-07-31 gelinkt vanuit navigatie, mobiel menu en footer op alle pagina's (stond daarvoor nergens gelinkt).
 
-**Social media abonnementen** (in ontwikkeling) - structurele ondersteuning op content en strategie. Prijzen nog uit te werken.
+**The Spark Plan** (social media abonnement, in opbouw) - structurele ondersteuning op content en strategie. Scope, prijsanker en pilotdoelgroep staan uitgewerkt in `kennis/strategieplan.md`.
 
-**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 11 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen via de platforms. Verdeeld in 2 categorieën: Listing Descriptions (01-08: Airbnb, VRBO, Micazu platform-beschrijvingen + universele tools zoals teaser, rewrite, USP, outdoor, locatie), More Bookings (09-11: Airbnb Algorithm Audit, Amenities Maximizer, Listing Photo Brief). Geen van de prompts scraped of haalt automatisch data op van boekingsplatformen, alles werkt met gegevens die de host zelf al heeft of zelf invult. Social Media is een aparte upsell (nog te bouwen, teaser al aanwezig in de PDF met een "annulering/rustige periode"-post als eerste voorbeeld). Bestanden: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF) en `docs/island-host-ai-prompt-kit.md` (referentie, moet bij wijziging aan de HTML meebijgewerkt worden). Online op `https://www.funkiness.ai/island-host-ai-prompt-kit`. Verkoop via Gumroad ($27). Marketing via TikTok demo + WhatsApp groepen ABC eilanden.
+**Island Host AI Prompt Kit** - downloadbaar digitaal product ($27). 11 AI-prompts voor vakantieverhuurders op Aruba, Bonaire en Curaçao. Focus: zoveel mogelijk boekingen via de platforms. Verdeeld in 2 categorieën: Listing Descriptions (01-08: Airbnb, VRBO, Micazu platform-beschrijvingen + universele tools zoals teaser, rewrite, USP, outdoor, locatie), More Bookings (09-11: Airbnb Algorithm Audit, Amenities Maximizer, Listing Photo Brief). Geen van de prompts scraped of haalt automatisch data op van boekingsplatformen, alles werkt met gegevens die de host zelf al heeft of zelf invult. Social Media is een aparte upsell (nog te bouwen, teaser al aanwezig in de PDF met een "annulering/rustige periode"-post als eerste voorbeeld). Bestanden: `docs/island-host-ai-prompt-kit.html` (in browser openen, via Cmd+P opslaan als PDF) en `docs/island-host-ai-prompt-kit.md` (referentie, moet bij wijziging aan de HTML meebijgewerkt worden). Online op `https://www.funkiness.ai/island-host-ai-prompt-kit`. Verkoop MOET nog via Gumroad ($27), de Gumroad-winkel staat nog niet live, dus er zijn nog geen kopers. Zie `kennis/strategieplan.md` voor de actuele status en volgorde. Marketing via TikTok demo + WhatsApp groepen ABC eilanden is een toekomstig plan, geen lopende activiteit.
 
 Productstructuur: gebruiker vult Property Fact Sheet eenmalig in en selecteert eiland in Quick Fill. Eiland context (Aruba/Bonaire/Curaçao briefing) wordt automatisch ingevuld in alle platform-prompts. Airbnb Prompt 01 heeft 6 aparte outputs: Dutch, American, Canadian, Your Space EN, Your Space NL, title. VRBO Prompt 02 heeft 3 outputs: Dutch/Europees, Noord-Amerikaans, title. Advies: auto-vertaling Airbnb uitzetten, eigen tekst per taal invoeren. VRBO heeft geen multi-taal support. Guest emails, WhatsApp, Social Media en Host Profile zijn niet opgenomen in dit product.
 
@@ -100,6 +100,7 @@ Nieuwe blogposts volgen de structuur van bestaande posts (zie `blog-marketing-st
 ## Kennisbestanden
 
 Lees deze bestanden voor meer detail:
+- kennis/strategieplan.md (basisplan: wie/wat/waar/hoe/wanneer, levend document, altijd meelezen bij prioriteiten of nieuwe producten). Printbare versie: `docs/strategieplan-printbaar.html` (openen in browser, printen of Cmd+P naar PDF), moet na elke materiële wijziging aan het strategieplan opnieuw gegenereerd worden.
 - kennis/over-mij.md
 - kennis/missie-en-visie.md
 - kennis/producten.md
@@ -118,7 +119,9 @@ Lees deze bestanden voor meer detail:
 
 ## Social media planning
 
-Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-augustus-2026.md`, TikTok + Instagram + Facebook + YouTube Shorts, 14 posts, 3 t/m 31 augustus 2026, verdeeld over 7 Canva-ontwerptypes (elk onderwerp/doelgroep krijgt steeds dezelfde opzet). Scripts, captions per platform, ontwerpspecs per template, CapCut-instructies en kalender staan erin. Bijbehorende CSV's voor Canva Bulk Create staan in `docs/canva-augustus-2026/` (één CSV per template, geen Canva API-koppeling beschikbaar dus import via Canva's eigen Bulk Create functie). Ontwerpen zijn vrolijk crème/roze, geen zware zwarte vlakken.
+Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-media-plan-augustus-2026.md`, TikTok + Instagram + Facebook + YouTube Shorts, 14 posts, 3 t/m 31 augustus 2026, verdeeld over 7 ontwerptypes (elk onderwerp/doelgroep krijgt steeds dezelfde opzet). Scripts, captions per platform, ontwerpspecs per template, CapCut-instructies en kalender staan erin. Ontwerpen zijn vrolijk crème/roze, geen zware zwarte vlakken.
+
+**Kant-en-klare postbeelden:** `docs/social-posts-augustus-2026/post-01.png` t/m `post-14.png`, 1080x1920, gerenderd met de echte huisstijlfonts (Poppins/Permanent Marker/Inter, opgehaald bij Google Fonts en lokaal ingebed). Gemaakt door de HTML-ontwerpen per post te bouwen en met headless Chrome (`Google Chrome.app` via CLI) naar PNG te renderen, zonder Canva. Bouwscript en losse HTML-bronbestanden stonden in de scratchpad van de sessie waarin ze gemaakt zijn, niet in de projectmap. Bij een nieuwe maand: hetzelfde recept herhalen (fonts downloaden, per-template Python-renderfuncties, headless Chrome screenshot op 1080x1920). CSV's voor eventueel handmatig Canva-gebruik staan nog in `docs/canva-augustus-2026/` maar zijn niet meer nodig om te posten.
 
 Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen roast-content of "hier is wat iedereen fout doet"-aanpak.
 
@@ -126,6 +129,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-07-31: Strategisch herstart, kennis/strategieplan.md, The Spark Plan, site-fixes en agenda: docs/logs/2026-07-31/01-strategisch-herstart-en-uitvoeringsplan.md
 - 2026-07-24: Social media plan augustus 2026, 14 posts over 7 Canva-templates: docs/logs/2026-07-24/02-social-media-plan-augustus-2026.md
 - 2026-07-24: Scan e-mailflow gerepareerd (SMTP-server, JSON-crash, vangnet-logging): docs/logs/2026-07-24/01-scan-email-flow-smtp-fix.md
 - 2026-06-29: Website updates, logo, NFC visitekaartje — docs/logs/2026-06-29/01-website-logo-visitekaartje.md

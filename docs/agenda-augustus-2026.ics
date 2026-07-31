@@ -1,0 +1,62 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FUNkiness!//Strategieplan//NL
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/Curacao
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0400
+TZNAME:AST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:6f76300e-26dd-4791-8f9c-6ee3f8a4566d@funkiness.ai
+DTSTAMP:20260731T145038Z
+DTSTART;TZID=America/Curacao:20260803T090000
+DTEND;TZID=America/Curacao:20260803T130000
+SUMMARY:FUNkiness!: Sales & infra\, Spark Plan + Gumroad
+DESCRIPTION:Spark Plan-prijs definitief bevestigen. Gumroad-account aanmaken en Prompt Kit-product instellen (PDF\, titel\, beschrijving\, prijs). Google Sheet outreach-tracker opzetten. Cal.com event type aanmaken.
+END:VEVENT
+BEGIN:VEVENT
+UID:15c4000c-9ab4-4e81-9363-d6c6fcaafa6c@funkiness.ai
+DTSTAMP:20260731T145038Z
+DTSTART;TZID=America/Curacao:20260805T090000
+DTEND;TZID=America/Curacao:20260805T130000
+SUMMARY:FUNkiness!: Content dag\, eigen kanaal + ManyChat
+DESCRIPTION:Eerste FUNkiness brand-content plannen en filmen: 1 tot 2 korte video's voor TikTok/Instagram (mobiel kantoor concept\, Jeep). ManyChat-account aanmaken en verkennen\, nog geen advertentiebudget inzetten.
+END:VEVENT
+BEGIN:VEVENT
+UID:0765adb4-8d48-42e1-9a48-4ee99ebaf337@funkiness.ai
+DTSTAMP:20260731T145038Z
+DTSTART;TZID=America/Curacao:20260807T090000
+DTEND;TZID=America/Curacao:20260807T130000
+SUMMARY:FUNkiness!: Outreach\, Gumroad live + eerste ronde
+DESCRIPTION:Gumroad-pagina live zetten\, testaankoop doen. One-pager en outreach-templates afronden. Eerste ronde outreach versturen naar shortlist vakantiewoningbeheerders (eerste 5 tot 8).
+END:VEVENT
+BEGIN:VEVENT
+UID:0cecba74-2d47-400a-bf03-95d29838760b@funkiness.ai
+DTSTAMP:20260731T145038Z
+DTSTART;TZID=America/Curacao:20260810T090000
+DTEND;TZID=America/Curacao:20260810T130000
+SUMMARY:FUNkiness!: Sales & infra\, reacties verwerken
+DESCRIPTION:Reacties op outreach verwerken in de tracker\, tweede ronde voorbereiden.
+END:VEVENT
+BEGIN:VEVENT
+UID:f8ae0f06-bb9d-46c8-b1b2-4214769144ae@funkiness.ai
+DTSTAMP:20260731T145038Z
+DTSTART;TZID=America/Curacao:20260813T090000
+DTEND;TZID=America/Curacao:20260813T130000
+SUMMARY:FUNkiness!: Content dag\, posten + ManyChat-flow
+DESCRIPTION:Content van week 1 posten en resultaten checken. ManyChat-flow instellen zodat reacties op content automatisch worden opgevangen. (Verzet vanaf wo 12 aug.)
+END:VEVENT
+BEGIN:VEVENT
+UID:5dd8267f-6b01-417c-97f4-8d4565c72a49@funkiness.ai
+DTSTAMP:20260731T145038Z
+DTSTART;TZID=America/Curacao:20260814T090000
+DTEND;TZID=America/Curacao:20260814T130000
+SUMMARY:FUNkiness!: Outreach\, pilotklant sluiten
+DESCRIPTION:Tweede ronde outreach\, follow-up naar ronde 1\, discovery calls voeren. Spark Plan pilotklant sluiten of vervolgstappen bepalen\, anders loopt dit door in week 3.
+END:VEVENT
+END:VCALENDAR

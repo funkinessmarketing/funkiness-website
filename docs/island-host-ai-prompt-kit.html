@@ -32,14 +32,17 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .cover-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .cover-tag { background: rgba(242,27,122,0.12); border: 1px solid rgba(242,27,122,0.35); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 13px; padding: 4px 13px; border-radius: 999px; }
 .cover-visual { height: 170px; position: relative; overflow: hidden; }
-.blob { position: absolute; background: var(--pink); border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; opacity: 0.1; }
+.blob { position: absolute; background: var(--pink); border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; opacity: 0.22; }
 .blob-1 { width: 340px; height: 340px; right: -80px; bottom: -80px; }
-.blob-2 { width: 160px; height: 160px; right: 60px; bottom: 30px; opacity: 0.15; }
+.blob-2 { width: 160px; height: 160px; right: 60px; bottom: 30px; opacity: 0.32; }
 .cover-n { position: absolute; right: 16mm; top: 50%; transform: translateY(-50%); font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 160px; color: rgba(255,255,255,0.03); line-height: 1; }
-.cover-foot { padding: 13px 18mm; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; }
+.cover-wave { line-height: 0; }
+.cover-wave svg { width: 100%; display: block; }
+.cover-foot { padding: 13px 18mm; display: flex; justify-content: space-between; align-items: center; }
 .cover-brand { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 14px; color: rgba(255,255,255,0.45); }
 .cover-brand em { font-family: 'Permanent Marker', cursive; color: var(--pink); font-style: normal; }
 .cover-url { font-size: 13px; color: rgba(255,255,255,0.25); }
+.cover-cut { display: none; }
 
 /* ── FACT SHEET ── */
 .fact-page { padding: 14mm 18mm; }
@@ -259,6 +262,20 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .prompt-note        { font-size: 14px; line-height: 1.6; }
   .prompt-body        { font-size: 15px; line-height: 1.85; padding: 14px 16px; }
   .ph                 { font-size: 15px; }
+  .cover-sub          { font-size: 16px; }
+  .section-desc       { font-size: 15px; line-height: 1.65; }
+  .cat-desc           { font-size: 15px; }
+  .fact-check         { font-size: 14px; gap: 5px; }
+  .fact-label         { font-size: 12px; }
+  .fact-block-title   { font-size: 14px; }
+  .step-body h3       { font-size: 16px; }
+  .step-body p        { font-size: 14px; }
+  .how-tip p          { font-size: 14px; }
+  .toc-label          { font-size: 14px; }
+  .toc-sub            { font-size: 12px; }
+  .qf-desc            { font-size: 15px; }
+  .output-label       { font-size: 11px; }
+  .back-body          { font-size: 16px; }
 
   /* ── Inputs: 16px prevents iOS auto-zoom ── */
   .sel-text {
@@ -277,6 +294,15 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   }
 
   /* ── Touch targets: radio + checkbox ── */
+  .fact-check {
+    min-height: 34px;
+    padding: 4px 2px;
+  }
+  .fact-check input {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+  }
   .sel-opt {
     padding: 7px 6px;
     min-height: 40px;
@@ -328,6 +354,10 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .fact-grid  { grid-template-columns: 1fr; }
   .toc-grid   { grid-template-columns: 1fr; }
   .upsell-box { flex-direction: column; align-items: flex-start; }
+
+  /* ── Cover: organic wave instead of a flat black rectangle ── */
+  .cover-cut { display: block; position: relative; margin-bottom: -1px; }
+  .cover-cut svg { width: 100%; display: block; }
 }
 
 /* ── Tablet and up: centered, slightly larger ── */
@@ -389,10 +419,12 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
     <div class="blob blob-2"></div>
     <div class="cover-n">11</div>
   </div>
+  <div class="cover-wave" aria-hidden="true"><svg viewBox="0 0 1440 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,10 C180,22 360,0 600,12 C780,20 960,2 1140,14 C1260,20 1360,6 1440,10 L1440,24 L0,24 Z" fill="rgba(242,27,122,0.18)"/></svg></div>
   <div class="cover-foot">
     <div class="cover-brand">FUN<em>kiness!</em></div>
     <div class="cover-url">funkiness.ai</div>
   </div>
+  <div class="cover-cut" aria-hidden="true"><svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 L0,18 C240,40 480,0 720,16 C960,32 1200,4 1440,20 L1440,40 Z" fill="#e8e0d8"/></svg></div>
 </div>
 
 <!-- PAGE 2: PROPERTY FACT SHEET -->
@@ -468,7 +500,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
       <label class="fact-check"><input type="checkbox"> Washing machine</label>
               <label class="fact-check"><input type="checkbox"> Dryer</label>
               <label class="fact-check"><input type="checkbox"> Ironing board</label>
-      <label class="fact-check"><input type="checkbox"> Fast WiFi</label>
+      <label class="fact-check"><input type="checkbox"> Free WiFi</label>
       <label class="fact-check"><input type="checkbox"> Remote work setup</label>
       <label class="fact-check"><input type="checkbox"> Parking</label>
       <label class="fact-check"><input type="checkbox"> Pet-friendly</label>

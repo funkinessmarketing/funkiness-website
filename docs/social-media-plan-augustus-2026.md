@@ -115,7 +115,7 @@ Marketing on Curaçao has looked the same for years, everyone doing the same thi
 Every meeting doesn't need four walls and bad coffee. Pick a spot on the island, we set up the office, and we get to work. This is how we do marketing strategy sessions. Boring was never the plan. 🌊
 
 **Caption Facebook:**
-Every strategy session doesn't need a boardroom. Our mobile office setup means we bring the table, the chairs and the laptop to a spot on Curaçao that actually feels good to work from. This is what a Marketing Strategy Session with FUNkiness! looks like.
+Every strategy session doesn't need a boardroom. Our mobile office setup means we bring the table, the chairs and the laptop to a spot on Curaçao that actually feels good to work from. This is what a Marketing Strategy Session with FUNkiness! looks like. Message us to book yours.
 
 **YouTube Shorts titel:** You Pick The Spot, We Bring The Office: Mobile Marketing Meetings Curaçao
 
@@ -131,29 +131,37 @@ Every strategy session doesn't need a boardroom. Our mobile office setup means w
 
 ## Post 3: vrijdag 7 augustus, Template B
 
-**Pijler:** Marketing Strategy Scan (leadgenerator)
+**Pijler:** Marketing Strategy Scan & Social Media Scan (leadgenerator, klant kiest zelf)
 
-**Hook:** "What is your brand actually saying?"
+**Canva-velden (Template B, editable):**
+- Categorie_label: FREE SCAN
+- Hook: Which free scan fits you today?
+- Vraag1: Marketing Strategy Scan, for brand, audience, channels and execution
+- Vraag2: Social Media Scan, for platforms, reach, engagement and content
+- Vraag3: Either way: a clear, personalized report, made for Curaçao businesses
+- CTA_badge: Pick yours, link in bio
+
+**Hook:** "Which free scan fits you today?"
 
 **Script/beeldrichting:**
-1. Snelle vraag-cuts in beeld: "Do people remember your brand after one scroll?", "Could a stranger explain what you do in one sentence?"
-2. Reveal: "We built a free scan that shows you exactly where your marketing stands."
-3. Schermopname van scan.html op telefoon, keuze Marketing Strategy Scan
+1. Snelle tekst-cuts in beeld: "Marketing Strategy Scan" en "Social Media Scan" naast elkaar
+2. Reveal: "Two free scans, made for businesses on Curaçao. Pick the one that fits."
+3. Schermopname van scan.html op telefoon, keuzepagina met beide opties in beeld
 4. Eindcard met CTA
 
 **Caption TikTok/Instagram:**
-Most businesses on Curaçao are guessing when it comes to their marketing. We built a free Marketing Strategy Scan that shows you exactly where you stand on positioning, audience, channels and execution. Takes minutes. Link in bio, go find out. 🔍
+Two free scans, one smart move 🔍 FUNkiness! is a marketing agency on Curaçao, and we built a Marketing Strategy Scan (brand, audience, channels, execution) and a Social Media Scan (platforms, reach, engagement, content). Pick the one that fits your business, get your personalized report in minutes. Link in bio.
 
 **Caption Facebook:**
-Not sure if your marketing strategy is actually working? We built a free Marketing Strategy Scan covering brand positioning, audience, channels and execution. It takes a few minutes and gives you a clear, personalized report. Link in bio to try it.
+Ready to see where your marketing actually stands? FUNkiness! is a fullservice marketing agency on Curaçao, and we built two free scans for local businesses: a Marketing Strategy Scan covering brand positioning, audience, channels and execution, and a Social Media Scan covering platforms, reach, engagement and content. Pick the one that fits your business and get a clear, personalized report in minutes: funkiness.ai/scan
 
-**YouTube Shorts titel:** Free Marketing Strategy Scan for Curaçao Businesses
+**YouTube Shorts titel:** Free Marketing Strategy Scan or Social Media Scan, Marketing Agency on Curaçao
 
-**YouTube Shorts beschrijving:** Find out where your marketing strategy actually stands with our free scan. Positioning, audience, channels and execution, covered in minutes. #Curacao #MarketingStrategy
+**YouTube Shorts beschrijving:** Pick the free scan that fits your business: Marketing Strategy or Social Media. Get a clear, personalized report from FUNkiness!, marketing agency on Curaçao, in minutes. #Curacao #MarketingStrategy #MarketingAgencyCuracao
 
-**Hashtags:** #MarketingCuracao #FreeScan #BrandStrategy #CuracaoBusiness #FUNkiness
+**Hashtags:** #MarketingAgencyCuracao #MarketingCuracao #FreeMarketingScan #MarketingStrategyScan #SocialMediaScan #CuracaoBusiness #FUNkiness
 
-**CTA:** Doe de gratis scan, link in bio
+**CTA:** Kies je gratis scan, link in bio
 
 ---
 
@@ -201,7 +209,7 @@ Curious who's behind that panterprint Jeep driving around Curaçao? That's the F
 Time Terminator: automates the boring stuff, never misses a follow-up, and somehow runs the business while you sleep. Sound like you, or the version of you that you want to become? Take our free AI Superpower Quiz and find out which archetype you actually are. Link in bio. ⚡
 
 **Caption Facebook:**
-We built a free AI Superpower Quiz to show business owners how AI could actually work for them. First up, meet the Time Terminator: automates the boring stuff, never misses a follow-up, and runs the business while you sleep. Curious which archetype you are? Take the quiz, link in bio.
+We built a free AI Superpower Quiz to show business owners how AI could actually work for them. First up, meet the Time Terminator: automates the boring stuff, never misses a follow-up, and runs the business while you sleep. Curious which archetype you are? Take the quiz: funkiness.ai/quiz
 
 **YouTube Shorts titel:** Meet The Time Terminator: Free AI Superpower Quiz for Business Owners
 
@@ -229,7 +237,7 @@ We built a free AI Superpower Quiz to show business owners how AI could actually
 Content Crusher: posts like it's a full-time job, fifty tabs open at all times, and AI-powered through every deadline. Sound familiar? Take the quiz and find out if we called it. Link in bio. ⚡
 
 **Caption Facebook:**
-Second archetype from our free AI Superpower Quiz: the Content Crusher. Always posting, always juggling ideas, always one AI prompt away from finishing the job. Curious which archetype you are? Take the quiz, link in bio.
+Second archetype from our free AI Superpower Quiz: the Content Crusher. Always posting, always juggling ideas, always one AI prompt away from finishing the job. Curious which archetype you are? Take the quiz: funkiness.ai/quiz
 
 **YouTube Shorts titel:** Are You a Content Crusher? Free AI Superpower Quiz Spotlight
 
@@ -285,7 +293,7 @@ Want a faster way to write social captions? Try this prompt formula: describe yo
 Running a rental on Airbnb, VRBO or Micazu and stuck writing the same tired listing description? We built the Island Host AI Prompt Kit: 11 ready-to-use prompts to write stronger listings and get more bookings. $27, instant download, link in bio. 🏝️
 
 **Caption Facebook:**
-If you manage a short-term rental on Aruba, Bonaire or Curaçao, listed on Airbnb, VRBO or Micazu, the Island Host AI Prompt Kit gives you 11 ready-to-use AI prompts to write stronger listing descriptions and work toward more bookings. $27, instant download. Link in bio.
+If you manage a short-term rental on Aruba, Bonaire or Curaçao, listed on Airbnb, VRBO or Micazu, the Island Host AI Prompt Kit gives you 11 ready-to-use AI prompts to write stronger listing descriptions and work toward more bookings. $27, instant download: funkiness.ai/island-host-ai-prompt-kit
 
 **YouTube Shorts titel:** Island Host AI Prompt Kit: AI Prompts for Airbnb, VRBO and Micazu Hosts
 
@@ -313,7 +321,7 @@ If you manage a short-term rental on Aruba, Bonaire or Curaçao, listed on Airbn
 Today's office view: unbeatable. Same laptop, same strategy brain, completely different backdrop. This is what building a marketing plan looks like when the boardroom is optional. 🌴
 
 **Caption Facebook:**
-Another day, another view. Our mobile office setup means every strategy session gets a different backdrop on Curaçao, without losing focus on the work. Interested in a session like this for your business? Link in bio.
+Another day, another view. Our mobile office setup means every strategy session gets a different backdrop on Curaçao, without losing focus on the work. Interested in a session like this for your business? Message us to book.
 
 **YouTube Shorts titel:** Another Day, Another Office View: Mobile Marketing on Curaçao
 
@@ -341,7 +349,7 @@ Another day, another view. Our mobile office setup means every strategy session 
 Posting doesn't automatically mean it's working. Our free Social Media Scan checks your platforms, reach, engagement and content, and tells you exactly where to focus. No guessing, no fluff. Link in bio. 📊
 
 **Caption Facebook:**
-Posting regularly doesn't always mean it's working. Our free Social Media Scan looks at your platforms, reach, engagement and content, and gives you a clear personalized report on where to focus next. Link in bio to try it.
+Posting regularly doesn't always mean it's working. Our free Social Media Scan looks at your platforms, reach, engagement and content, and gives you a clear personalized report on where to focus next: funkiness.ai/scan
 
 **YouTube Shorts titel:** Free Social Media Scan: How Strong Is Your Instagram?
 
@@ -425,7 +433,7 @@ Got a dry business update to share? Give your AI tool the facts, then ask it to 
 Type your property details in once. Get a ready-to-post Airbnb description, a VRBO description and title options out the other end. That's the whole point of the Island Host AI Prompt Kit. $27, instant download, link in bio. 🌺
 
 **Caption Facebook:**
-Here's the Island Host AI Prompt Kit in action: fill in your property details once, and get a ready-to-post Airbnb description, a VRBO description and title options back. Built for short-term rental hosts on Aruba, Bonaire and Curaçao. $27, instant download, link in bio.
+Here's the Island Host AI Prompt Kit in action: fill in your property details once, and get a ready-to-post Airbnb description, a VRBO description and title options back. Built for short-term rental hosts on Aruba, Bonaire and Curaçao. $27, instant download: funkiness.ai/island-host-ai-prompt-kit
 
 **YouTube Shorts titel:** Watch: One Prompt, Three Listing Descriptions (Island Host AI Prompt Kit)
 
@@ -453,7 +461,7 @@ Here's the Island Host AI Prompt Kit in action: fill in your property details on
 That's a wrap on August. New setups, new spots, two free scans and a quiz that's still living in people's group chats. And honestly, we're just getting started. Take a free scan, find your AI Superpower, or just come say hi. Link in bio. 🔥
 
 **Caption Facebook:**
-That's a wrap on August for FUNkiness! New mobile office setups, two free scans, an AI Superpower Quiz, and a lot of energy. We're just getting started. Take a free scan or the quiz, links in bio.
+That's a wrap on August for FUNkiness! New mobile office setups, two free scans, an AI Superpower Quiz, and a lot of energy. We're just getting started. Take a free scan at funkiness.ai/scan or the quiz at funkiness.ai/quiz.
 
 **YouTube Shorts titel:** August Recap: A Month of FUNkiness! Marketing on Curaçao
 
@@ -486,10 +494,26 @@ That's a wrap on August for FUNkiness! New mobile office setups, two free scans,
 
 ---
 
-## Volgende stap: Canva
+## Kant-en-klare ontwerpen
 
-1. Maak in Canva 7 templateontwerpen aan, één per type hierboven (A t/m G), elk met de bijbehorende tekstvelden.
-2. Ga voor elk template naar **Apps → Bulk Create**.
-3. Upload de bijbehorende CSV uit `docs/canva-augustus-2026/` (bijvoorbeeld `template-A-brand-hook.csv` voor het Brand Hook-ontwerp).
-4. Koppel de kolommen aan de tekstvelden in dat template.
-5. Canva genereert automatisch de ontwerpen voor dat type. Herhaal voor de andere 6 templates.
+Alle 14 ontwerpen staan al af, als PNG op het echte formaat (1080x1920, verticaal), met de echte huisstijlfonts (Poppins, Permanent Marker, Inter). Geen Canva nodig.
+
+**Bestanden:** `docs/social-posts-augustus-2026/post-01.png` t/m `post-14.png`, genummerd op post uit de overzichtstabel hierboven.
+
+**Ontwerptaal (3e versie):** elk template heeft een eigen, herkenbaar vormconcept in plaats van steeds "tekst netjes gecentreerd":
+- **A, Brand Hook:** diagonale roze wig door het frame, gekantelde headline, rond stempel-logo als CTA.
+- **B, Free Scan:** echte lifestyle-foto (`ai-marketing-scan-lifestyle.png`, dezelfde foto als op de homepage) met telefoon + scan-report + panterprint mok. Headline en subtekst boven op crème, foto neemt de onderste twee derde in, met een stevig roze CTA-vlak ("Free. 5 minutes. Real scores, no pitch." + witte knop "Start your scan") dat de rommelige onderkant van het telefoonscherm afdekt en meteen naar de scan doorstuurt. Dit is het uitgangspunt geweest van Daisy zelf, gebaseerd op de echte scan-sectie van de homepage.
+- **C, Quiz Archetype:** boven/onder gesplitst met een zigzag-naad, archetype-naam reuze groot in Permanent Marker.
+- **D, AI Tip:** een outline-cijfer dat van de rand afloopt, plus een gekanteld "sticky note"-kaartje met een stukje tape.
+- **E, Product Promo:** het productkaartje hangt schuin, de prijs is een ronde stempel-sticker, platformtags liggen los verspreid.
+- **F, Mobile Office:** postzegel-achtige locatietag in de hoek, headline in het midden van de veilige zone.
+- **G, Maandrecap:** vier losse "paspoortstempel"-kaartjes in een los rooster, elk lichtjes gekanteld.
+
+**Veilige zone voor mobiel:** alle tekst en CTA's staan binnen x 72-880 / y 240-1560 (op 1080x1920), zodat niets wegvalt achter de camera/profielfoto bovenin of achter bijschrift, geluid en like/comment/share-iconen onderin en rechts bij TikTok, Reels en Stories. Achtergrondkleur en decoratie lopen door tot de rand, tekst niet.
+
+**Hoe te gebruiken:**
+- Als los feedpost-beeld op Instagram/Facebook: direct uploaden.
+- Als openingsframe/coverbeeld van de TikTok, Reel of YouTube Short: eerste 1-2 seconden van de video, daarna verder met de rest van het script.
+- Template F (mobiel kantoor, post 2 en 9) heeft een tekst-placeholder waar een echte foto van de setup in moet: `[foto: mobiel kantoor setup, turquoise kleed + Jeep]`. Vervang dat vlak door de echte foto voordat je publiceert.
+
+De Canva-CSV's in `docs/canva-augustus-2026/` blijven staan voor het geval je zelf nog een ontwerp wil aanpassen in Canva, maar zijn niet meer nodig om te kunnen posten.
