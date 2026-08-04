@@ -38,9 +38,9 @@ De Caribische eilandenergie blijft de identiteit, ook als spoor B wereldwijd of 
 
 Dit is de logische bouwvolgorde, bepaald op basis van wat al staat, wat de meeste hefboom oplevert, en wat van elkaar afhankelijk is:
 
-1. **Leadgenerators eerst echt op orde brengen, niet aannemen dat ze al werken.** Quiz technisch zichtbaar gemaakt (nav-link toegevoegd op alle pagina's, 2026-07-31, afgerond). De scan heeft geen technisch probleem maar een verkeersprobleem: 0 voltooide scans betekent dat dit nog geen werkende motor is, alleen een correct gebouwde. Daar bouwen we niet opnieuw voor, wel de link naar de scan meenemen in de outreach die toch al gepland staat voor The Spark Plan en de Prompt Kit (zie Marketinguitvoeringsplan), in plaats van er een apart marketingtraject voor op te tuigen.
-2. **The Spark Plan (abonnement) bouwen en lanceren.** Dit is de hoogste hefboom omdat het de enige terugkerende inkomstenstroom is en omdat de bestaande leadgenerators er direct een bestemming voor geven. Dit staat daarom vóór een nieuw downloadproduct.
-3. **Eerst de bestaande Prompt Kit live zetten, dan pas een productlijn.** De Island Host AI Prompt Kit is af maar staat nog niet te koop, de Gumroad-winkel moet nog opgezet worden. Dat gebeurt eerst. Pas als dat format eenmaal echt getest is (verkoopt het, converteert de pagina), wordt het herhaald voor nieuwe sectoren. Dit is dus niet "een bewezen format hergebruiken" maar "eerst het format bewijzen."
+1. **Leadgenerators eerst echt op orde brengen, niet aannemen dat ze al werken.** Quiz technisch zichtbaar gemaakt (nav-link toegevoegd op alle pagina's, 2026-07-31, afgerond). De scan heeft geen technisch probleem maar een verkeersprobleem: 0 voltooide scans betekent dat dit nog geen werkende motor is, alleen een correct gebouwde. Daar bouwen we niet opnieuw voor, wel de link naar de scan meenemen in de outreach die toch al gepland staat voor de Prompt Kit (zie Marketinguitvoeringsplan), in plaats van er een apart marketingtraject voor op te tuigen.
+2. **Update 2026-08-03: de Island Host AI Prompt Kit live zetten en verkopen is nu prioriteit 1 van spoor B, The Spark Plan is geparkeerd.** Reden: The Spark Plan is inhoudelijk geen schaalbaar product maar een arbeidsintensieve dienst (net als spoor A, alleen met vast maandbedrag), en 500 tot 750 USD/maand vragen aan een vreemde zonder trackrecord is een zware ask. De Prompt Kit is een eenmalige aankoop van 27 USD, dat is een veel kleinere vertrouwensdrempel voor een onbekend merk en dus de realistische eerste verkoop. De Prompt Kit dient bovendien als bewijs (kopers, testimonials) om later de Spark Plan-ask wél te kunnen maken.
+3. **The Spark Plan (abonnement), geparkeerd.** Scope en prijsanker blijven hieronder staan zodat ze niet verloren gaan. Voorwaarde om dit weer op te pakken: een aantal echte Prompt Kit-kopers en/of testimonials, plus zichtbare tractie uit de eigen contentkalender. Pas dan is er bewijs om de duurdere, terugkerende ask te doen.
 4. **Update 2026-07-31, verduidelijkt: "content als laatste" gaat over content VOOR KLANTEN, niet over het eigen kanaal.** Eigen FUNkiness-kanalen (TikTok, Instagram) vullen is vanaf nu een vaste, parallelle prioriteit naast Spark Plan/Gumroad en outreach, verdeeld over de 3 beschikbare dagen (zie Dagindeling). Content die je namens/voor een klant maakt (de eigenlijke Spark Plan dienstverlening) blijft wel pas relevant zodra er een klant is, dat volgt vanzelf en hoeft niet apart geoefend te worden.
    - **Waarom dit geen zijspoor is:** het lost het verkeersprobleem op dat al was vastgesteld (0 voltooide scans, geen bezoekers), en sterke eigen content dient meteen als portfolio-bewijs richting prospects, dat maakt aparte voorbeeldposts voor klanten overbodig.
    - **Toon:** steengoede content die FUN, bold en grappig is en aan het denken zet, moet opvallen en inspireren. Dit is niet nieuw, dit is exact de merkstem die al vastligt (Magician x Outlaw, energie en humor verplicht, litmustest "kan een ander bureau dit ook zeggen?").
@@ -52,9 +52,9 @@ Dit is de logische bouwvolgorde, bepaald op basis van wat al staat, wat de meest
 |---|---|---|
 | AI & Marketing Scan (Social + Strategy variant) | B | Technisch live en overal gelinkt, 0 voltooide scans tot nu toe: verkeersprobleem, geen bouwprobleem |
 | AI Superpower Quiz | B | Live: op 2026-07-31 gelinkt vanuit navigatie, mobiel menu en footer op alle pagina's |
-| Island Host AI Prompt Kit ($27) | B | Product (PDF) af, Gumroad-winkel nog niet live, nog geen kopers |
-| **The Spark Plan (social media abonnement)** | B | In opbouw, huidige stap |
-| Prompt Kit productlijn-uitbreiding naar andere sectoren | B | Volgende stap, nog niet gestart |
+| **Island Host AI Prompt Kit ($27)** | B | Prioriteit 1, huidige stap: product (PDF) af, Gumroad-winkel wordt nu opgezet |
+| The Spark Plan (social media abonnement) | B | Geparkeerd sinds 2026-08-03, scope/prijsanker blijven staan, zie voorwaarde hierboven |
+| Prompt Kit productlijn-uitbreiding naar andere sectoren | B | Volgende stap, na de eerste verkopen van de bestaande kit |
 | Lokale fullservice klantprojecten | A | Bestaand model, op maat, blijft doorlopen |
 | Eigen contentkalender/social posts FUNkiness! | Ondersteunend | Bewust laatste prioriteit |
 
@@ -101,18 +101,18 @@ Dit zijn ideeën die inhoudelijk kunnen kloppen, maar niet passen in de huidige 
 
 **Kernregel:** direct/outbound marketing (rechtstreeks naar mensen toe) mag al tijdens het bouwen van spoor B, contentmarketing (TikTok, Instagram, eigen contentkalender) wacht tot de contentfase (zie Volgorde van werk, punt 4). Reden: outreach en salesmateriaal kosten geen tijd aan contentproductie, ze hergebruiken wat er al staat (website, expertise, bestaande klanten).
 
-### The Spark Plan (abonnement)
+### Prompt Kit: nu de hoofdprioriteit
 
-- **Wat:** koude directe outreach. Geen warm netwerk of bestaande klanten om op te leunen, dat is er nog niet.
-- **Nodig:** shortlist van 10 tot 15 vakantiewoningbeheerders (ABC-eilanden en regio), een one-pager met scope, prijs en de reden waarom (expertise van Daisy en Berdien, niet "bestaande klanten"), landingsplek op de bestaande website hergebruiken.
-- **Kanalen:** e-mail, LinkedIn, WhatsApp. Puur koude/eerste contactmomenten, geen introducties via bestaande kopers.
-- **Wanneer:** augustus 2026, zodra scope en prijs bevestigd zijn.
-
-### Prompt Kit: eerst live, dan pas een lijn
-
-- **Wat:** eerst de bestaande Island Host AI Prompt Kit daadwerkelijk op Gumroad zetten en verkopen. Pas als dat draait, gerichte outreach naar branchegroepen voor nieuwe sectoren. Geen cross-promotie naar "bestaande kopers", die zijn er nog niet.
+- **Wat:** de bestaande Island Host AI Prompt Kit daadwerkelijk op Gumroad zetten en verkopen. Lage drempel (27 USD eenmalig) maakt dit de realistische eerste verkoop voor een nog onbekend merk. Verkopen/testimonials hieruit zijn ook het bewijs dat nodig is om The Spark Plan later weer op te pakken.
 - **Nodig:** Gumroad-account/winkel opzetten voor de bestaande kit, koppeling met de website-pagina, eerste verkopen genereren via koude outreach naar vakantieverhuurders/WhatsApp-groepen. Pas daarna nieuwe Gumroad-pagina's per sector.
-- **Wanneer:** Gumroad live zetten kan parallel aan The Spark Plan lopen (het is een korte, afgebakende actie). De productlijn-uitbreiding naar nieuwe sectoren start pas na afronding van The Spark Plan, richting september/oktober 2026.
+- **Kanalen:** WhatsApp-groepen ABC eilanden, directe berichten naar hosts, eventueel korte TikTok-demo. Lage-drempel kanalen, passend bij een lage-drempel product.
+- **Wanneer:** Gumroad live zetten deze week (augustus 2026). Verkoop-outreach start zodra de winkel live is. Productlijn-uitbreiding naar nieuwe sectoren start na de eerste verkopen van de bestaande kit.
+
+### The Spark Plan (abonnement), geparkeerd
+
+- **Wat:** koude directe outreach voor een maandabonnement. Geparkeerd sinds 2026-08-03, zie Volgorde van werk punt 3 voor de reden en de voorwaarde om dit weer op te pakken.
+- **Nodig zodra opgepakt:** shortlist van 10 tot 15 vakantiewoningbeheerders (ABC-eilanden en regio), een one-pager met scope, prijs en de reden waarom (expertise van Daisy en Berdien, plus bewijs uit de Prompt Kit-verkopen).
+- **Kanalen:** e-mail, LinkedIn, WhatsApp.
 
 ### Bestaande leadgenerators (scans, quiz): eerst echt aan de praat krijgen
 
@@ -150,8 +150,9 @@ Onderscheid: salesmateriaal (nu al nodig, geen social kalender) versus social/co
 
 Regel: geen tool toevoegen die nu nog geen taak heeft. Dat is dezelfde discipline als "geen hap-snap ontwikkelen", maar dan voor tooling.
 
-**Nu nodig (fase 1: Spark Plan afronden + Gumroad live zetten):**
-- **Gumroad**: verkoopplatform voor de Island Host AI Prompt Kit, en straks de productlijn.
+**Nu nodig (fase 1: Prompt Kit live zetten):**
+- **MCB Bank Internet Merchant Account**: verkoopplatform/betaalgateway voor de Island Host AI Prompt Kit, en straks de productlijn. Vervangt Gumroad, zie Open beslispunten. Aangevraagd 2026-08-03, wacht op reactie.
+- **Gumroad**: on hold, betaalt niet uit naar Curaçao. Productpagina-copy en thumbnail die hier al voor gemaakt zijn worden hergebruikt op de eigen website zodra MCB-checkout werkt.
 - **Google Sheets**: eenvoudige outreach-tracker (naam, contactpersoon, kanaal, status, laatste contact), zelfde aanpak als de bestaande scan-vangnet sheet.
 - **Titan e-mail (sayhello@funkiness.ai)**: outreach-mails en mailings, bestaande SMTP hergebruiken.
 - **WhatsApp Business**: koude outreach en klantcommunicatie, standaard kanaal in de regio.
@@ -162,6 +163,7 @@ Regel: geen tool toevoegen die nu nog geen taak heeft. Dat is dezelfde disciplin
 - **ManyChat**: account aanmaken en instellen zodra er content gepost wordt, automatiseert het omzetten van reacties op social posts naar leads (bijvoorbeeld automatisch de scan-, quiz- of Prompt Kit-link sturen bij een reactie). Nog niet actief gebruiken voor advertenties voordat er organisch geteste content is.
 - **Social scheduling tool (bijvoorbeeld Metricool of Later)**: pas nodig zodra het contentvolume te groot wordt voor handmatig posten, bij 1 contentdag per week nog niet nodig.
 - **Advertentiebudget**: nog niet vastgesteld. Advies: geen betaald adverteren starten voordat een paar weken organische content is getest, anders wordt er betaald voor verkeer naar een boodschap die nog niet bewezen werkt.
+- **Gumroad third-party analytics (Facebook Pixel, TikTok Pixel, Google Analytics)**: bewust leeg gelaten bij setup op 2026-08-03, pas invullen zodra er daadwerkelijk campagnes draaien om op te sturen.
 
 ## Dagindeling: 3 dagen per week, 9.00 tot 13.00 uur
 
@@ -169,15 +171,15 @@ Beschikbare capaciteit: maandag, woensdag, vrijdag, 9.00 tot 13.00 uur, 12 uur p
 
 ### Week 1
 
-- **Ma 3 aug (sales & infra):** Spark Plan-prijs definitief bevestigen. Gumroad-account aanmaken en Prompt Kit-product instellen (PDF uploaden, titel, beschrijving, prijs). Google Sheet outreach-tracker opzetten. Cal.com event type aanmaken.
+- **Ma 3 aug (sales & infra):** Gumroad-account aanmaken en Prompt Kit-product instellen (PDF uploaden, titel, beschrijving, prijs). Google Sheet verkoop-/leadtracker opzetten (voor Prompt Kit-outreach in plaats van Spark Plan).
 - **Wo 5 aug (content & advertising):** Eerste FUNkiness brand-content plannen en filmen, 1 tot 2 korte video's voor TikTok/Instagram (mobiel kantoor concept of Jeep zijn hier ideaal materiaal voor). ManyChat-account aanmaken en verkennen, nog geen advertentiebudget inzetten.
-- **Vr 7 aug (outreach):** Gumroad-pagina live zetten, testaankoop doen. One-pager en outreach-templates afronden. Eerste ronde outreach versturen naar shortlist vakantiewoningbeheerders (eerste 5 tot 8).
+- **Vr 7 aug (outreach):** Gumroad-pagina live zetten, testaankoop doen. Eerste ronde verkoop-outreach voor de Prompt Kit naar WhatsApp-groepen en hosts (ABC eilanden).
 
 ### Week 2
 
-- **Ma 10 aug (sales & infra):** Reacties op outreach verwerken in de tracker, tweede ronde voorbereiden.
+- **Ma 10 aug (sales & infra):** Reacties op Prompt Kit-outreach verwerken in de tracker, tweede ronde voorbereiden.
 - **Do 13 aug (content & advertising, verzet vanaf wo 12 aug):** Content van week 1 posten en resultaten checken. ManyChat-flow instellen zodat reacties op content automatisch worden opgevangen.
-- **Vr 14 aug (outreach):** Tweede ronde outreach versturen, follow-up naar ronde 1, discovery calls voeren met geïnteresseerde prospects. Spark Plan pilotklant sluiten of vervolgstappen bepalen indien mogelijk, anders doorloopt dit in week 3.
+- **Vr 14 aug (outreach):** Tweede ronde Prompt Kit-outreach versturen, follow-up naar ronde 1.
 
 *(Week 3 en verder worden ingevuld zodra week 1 en 2 zijn afgerond en het plan is bijgewerkt. Reken realistisch op iets meer tijd dan de eerder geplande 2 weken, omdat contentwerk er nu bij is gekomen.)*
 
@@ -187,9 +189,12 @@ Beschikbare capaciteit: maandag, woensdag, vrijdag, 9.00 tot 13.00 uur, 12 uur p
 
 ## Open beslispunten
 
-- Definitieve prijs The Spark Plan.
-- Gumroad-winkel voor de Island Host AI Prompt Kit opzetten en live zetten. Status: nog niet gestart, dit staat los van en mag parallel aan The Spark Plan.
+- **Betaalprovider voor online verkoop, uitgezocht op 2026-08-03: Curaçao wordt niet ondersteund door Gumroad, Payoneer, Lemon Squeezy of Fygaro voor uitbetaling.** MCB Bank bleek wel een Internet Merchant Account-optie te hebben, maar de Final Review vereist cedula (Daisy ontvangt deze 2026-08-12), KvK-inschrijving (nog niet gestart) én een lopende zakelijke MCB-rekening (aanvraagtijd op Curaçao normaliter enkele maanden). Dat traject is dus pas realistisch richting eind 2026.
+  - **Definitieve route, besloten 2026-08-03: Gumroad-account op Nederland gezet, uitbetaling naar Daisy's Nederlandse privérekening.** Bewuste afweging: lokaal overmaken/ontvangen op Curaçao voor dit soort onlineverkoop is in de praktijk niet werkbaar, en het MCB-traject duurt te lang om nu op te wachten. Openstaand aandachtspunt: dit moet administratief netjes gescheiden blijven van de Curaçaose boekhouding, dat is nog geen uitgewerkt proces, later oppakken (bijvoorbeeld met een boekhouder).
+  - MCB Internet Merchant Account blijft een optie voor de langere termijn (Preliminary Review, Business Plan + Questionnaire, kan al vóór cedula/KvK ingediend worden), maar is niet meer de blokkerende route voor nu.
+- Gumroad-winkel voor de Island Host AI Prompt Kit opzetten en live zetten. Status: **weer actief, 2026-08-03**, account op Nederland gezet voor uitbetaling naar Daisy's privérekening, zie betaalprovider-punt hierboven.
 - Welke sectoren volgen ná vakantieverhuur voor de Prompt Kit-productlijn (pas relevant zodra de eerste kit daadwerkelijk verkoopt).
+- Definitieve prijs The Spark Plan (anker: 750 USD/maand standaard, 500 USD/maand founding-tarief eerste 1 tot 2 klanten, eerste 3 maanden). Status: uitgewerkt maar pas relevant zodra Spark Plan weer wordt opgepakt, zie Volgorde van werk punt 3.
 - Precieze ladder-tiers en prijzen vanaf november 2026.
-- Shortlist van 10 tot 15 vakantiewoningbeheerders (namen, contactpersonen) voor The Spark Plan outreach. Status: bestaat nog niet, actie voor Claude (research).
+- Shortlist van 10 tot 15 vakantiewoningbeheerders (namen, contactpersonen) voor The Spark Plan outreach. Status: bestaat nog niet, pas relevant zodra Spark Plan weer wordt opgepakt.
 - E-maillijst van Prompt Kit kopers voor cross-promotie. Status: niet van toepassing zolang Gumroad niet live is en er nog geen kopers zijn.

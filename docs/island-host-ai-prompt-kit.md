@@ -1,17 +1,29 @@
 # The Island Host AI Prompt Kit
-## 11 AI Prompts for Vacation Rental Owners on Aruba, Bonaire & Curaçao
+## 12 AI Prompts for Vacation Rental Owners on Aruba, Bonaire & Curaçao
 
 Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt-kit.html](island-host-ai-prompt-kit.html) (verkocht via Gumroad, $27). Bij een wijziging aan de HTML altijd dit bestand meebijwerken, en andersom.
 
+**Cover-positionering (2026-08-03, kritische herziening):** "A generic AI prompt doesn't know Airbnb's 295-character preview cutoff, or that VRBO banned fee-mentions in April 2025. These 12 do." Elke prompt-note heet nu expliciet "What generic AI doesn't know" en is visueel het meest prominente element op de kaart (roze label + achtergrond), de prompttekst zelf is bewust rustiger gestyled. Doel: nooit het gevoel "dit had ik zelf ook met AI kunnen maken."
+
+**Founder note (nieuw, 2026-08-03, bovenaan "How to use this kit"):** "I rent a villa on Curaçao myself. I got tired of staring at the same blank description field every other host stares at, so I built the prompts I wished existed instead." Waargebeurd (Daisy verhuurt zelf een villa op Curaçao), geen onbewezen claim, geeft vertrouwen zonder ervaring met andere hosts te claimen.
+
+**AI-verwachtingsmanagement (nieuw, 2026-08-03, toegevoegd aan stap 3):** "This kit is built for the version you're already paying for: free tiers can drift past the character limits or miss the nuance, paid tiers don't." Impliceert dat een betaald abonnement de investering waard is, zonder dat letterlijk te beweren.
+
+**Scope (nieuw, 2026-08-03):** kit is bedoeld voor hosts met maximaal 3 woningen (geen opslag/wisselen tussen profielen in de Fact Sheet, bij meer dan 3 wordt herhaaldelijk invullen te omslachtig). Toegevoegd aan de Fact Sheet-intro op de PDF, Gumroad-beschrijving en de website-pagina: "Built for hosts managing up to 3 properties."
+
+**Booking.com bewust buiten scope (nieuw, 2026-08-03):** toegevoegd aan "What this is not" op Gumroad, de Gumroad-landingpagina en de website-pagina: "No Booking.com prompt. Booking.com writes your listing description for you from your structured property data, you can't paste custom text there the way you can on Airbnb or VRBO." Reden: Booking.com laat een host geen eigen vrije tekst plakken zoals Airbnb/VRBO dat wel doen (bevestigd door Daisy), dus een rewrite-prompt zou een tekst opleveren die nergens te plaatsen is. Geen aparte Booking.com-prompt gebouwd, want er is geen even hard verifieerbaar feit (zoals de Airbnb 295-tekens-cutoff of de VRBO-regel van april 2025) om als anker te gebruiken.
+
+**Opgelost, 2026-08-03:** "What this is not" stond nog niet in de PDF zelf. Toegevoegd als eigen donkere pagina (zelfde stijl als de categorie-intropagina's) direct na "How to use this kit" en vóór de Airbnb-prompts, met dezelfde 4 punten als op Gumroad/website.
+
 **How to use:**
-1. Vul eerst de Property Fact Sheet in (pagina 2 van de PDF): eigen naam, eiland, woningtype, kenmerken, doelgroep, wat gasten altijd noemen in reviews.
-2. Klik "Copy prompt" op elke kaart. Dit kopieert alleen de prompttekst, niet de grijze expert-notitie.
+1. Vul de Property Fact Sheet in (pagina 2 van de PDF): eigen naam, eiland, woningtype, kenmerken, doelgroep, wat gasten altijd noemen in reviews. Property name, Island, Type en Aanspreekvorm (je/u) werken **live door in elke prompt op de pagina** zodra je ze invult, zelfde data, nergens twee keer intypen. Het losse "Quick Fill"-paneel van vóór 2026-08-03 bestaat niet meer, is opgegaan in de Fact Sheet.
+2. Klik "Copy prompt" op elke kaart. Dit kopieert alleen de prompttekst, niet de roze expert-notitie erboven.
 3. Plak in chatgpt.com of claude.ai, vervang elke roze [PLACEHOLDER] met eigen gegevens.
 4. Verfijn in dezelfde conversatie: "maak het korter", "meer warmte", "andere opening".
 
-**Power user workflow:** plak de complete Fact Sheet als allereerste bericht in een nieuwe ChatGPT/Claude conversatie ("dit is mijn woning, gebruik dit als context voor alles wat ik hierna vraag"), gebruik daarna alle prompts in diezelfde conversatie zonder opnieuw gegevens te typen.
+**Power user workflow:** plak de "Copy my property facts"-samenvatting als allereerste bericht in een nieuwe ChatGPT/Claude conversatie, gebruik daarna alle 12 prompts in diezelfde conversatie zonder opnieuw gegevens te typen.
 
-**Quick Fill:** eiland (Aruba/Bonaire/Curaçao), property naam, type, host naam en aanspreekvorm (je/u) worden één keer ingevuld en automatisch verwerkt in elke platform-prompt.
+**Strategisch inzicht (nieuw, 2026-08-03):** Aruba en Curaçao liggen buiten de orkaangordel, weinig Noord-Amerikaanse gasten weten dat. Dit als verkoopargument inzetten specifiek van juni t/m november (orkaanseizoen), niet jaarrond.
 
 ---
 
@@ -243,24 +255,32 @@ Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood
 
 ---
 
-## Categorie 2: More Bookings (prompt 09-11)
+## Categorie 2: More Bookings & Reputation (prompt 09-12)
 
 De platforms belonen hosts die snappen hoe het algoritme werkt: responssnelheid, volledigheid van de listing, aantal foto's, amenities, review-snelheid, Instant Book en Superhost-status. Belangrijk: deze prompts halen geen data automatisch van Airbnb/VRBO/Booking.com op, de host vult zelf in wat hij al weet uit het eigen host-dashboard. Geen scraping, geen platform-koppeling.
 
 #### Prompt 09: Airbnb Algorithm Audit
 
-```
-You are an Airbnb optimization expert. Audit my listing against Airbnb's known ranking factors. Use my property details as context.
+**2026-08-03 gefixt:** dit vroeg de AI eerder om Instant Book, responssnelheid en kalenderactiviteit te "beoordelen" zonder ergens te vragen die gegevens aan te leveren, met een echte test (Daisy, ChatGPT) kwam dit terug als "Onbekend, niet zichtbaar voor mij" op precies die punten. Nu vraagt de prompt eerst expliciet om 5 host-dashboard-cijfers (Instant Book, responstijd, kalenderupdates, aantal foto's, reviews) via losse invulvelden, de AI gokt niet meer.
 
-Evaluate each factor as strong / needs work / unknown:
+```
+You are an Airbnb optimization expert. Audit my listing against Airbnb's known ranking factors, using the details below. These come from my host dashboard, not the public listing page, so use exactly what I give you instead of guessing.
+
+Instant Book: [ENABLED / NOT ENABLED]
+Typical response time: [WITHIN AN HOUR / A FEW HOURS / A DAY / SLOWER]
+Calendar updates: [DAILY / WEEKLY / RARELY]
+Photos uploaded: [NUMBER]
+Reviews: [RATING AND COUNT]
+
+Evaluate each factor as strong / needs work, based on the numbers above and my property info:
 1. Listing completeness: every field filled in?
 2. Photo quantity: at or above 20 photos?
 3. Amenities: likely amenities I have but haven't listed?
-4. Instant Book: enabled or not?
-5. Response rate and speed: hitting the targets?
-6. Review count and recency: is my review velocity healthy?
+4. Instant Book
+5. Response rate and speed
+6. Review count and recency
 7. Pricing: competitive for my market and dates?
-8. Calendar: updated regularly to signal active management?
+8. Calendar activity
 
 After the audit, give me a numbered action list ranked by expected impact on bookings. Be specific. No vague advice.
 ```
@@ -295,6 +315,28 @@ Deliver:
 5. Airbnb photo captions: write one caption (max 20 words) for the 6 most important photos. Each caption adds one specific detail the photo cannot show on its own.
 
 End with: 3 things to avoid in vacation rental photography on the ABC islands.
+```
+
+#### Prompt 12: Review Response Writer
+
+**Nieuw, 2026-08-03.** Toegevoegd naar aanleiding van de vraag "dit moet echt wow-waarde hebben, niet iets wat je zelf ook met AI had kunnen doen." Een publieke review-reactie is permanent en wordt op de meeste platforms gelezen vóórdat een toekomstige gast de review zelf leest. De belangrijkste regel die hosts breken: je verontschuldigen voor iets wat niet jouw fout was, dat leest als schuld bekennen.
+
+```
+You are a hospitality reputation manager. Write a public response to this guest review for my vacation rental on [ISLAND]. This response will be visible to every future guest before they read the review itself, so it matters more than the review does.
+
+Review type: [MINOR COMPLAINT / NEUTRAL / FEELS UNFAIR / LEGITIMATE ISSUE]
+
+What the guest said: [PASTE THE REVIEW OR COMPLAINT]
+
+What actually happened, my side: [YOUR CONTEXT, BE HONEST]
+
+Rules:
+- Never apologize for something that wasn't my fault. That reads as guilt to future readers, even when I did nothing wrong.
+- Address the specific point the guest raised. No generic template response.
+- If a factual claim in the review is inaccurate, correct it politely and specifically, without arguing.
+- Warm but brief: one short paragraph, max 80 words.
+- End forward-looking, not defensive.
+- Never use "we're sorry you feel that way." It is the most recognizably dismissive line in hospitality, and guests spot it instantly.
 ```
 
 ---

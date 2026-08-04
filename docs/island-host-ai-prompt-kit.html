@@ -67,6 +67,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 
 /* ── HOW TO USE ── */
 .how-page { padding: 14mm 18mm; }
+.founder-note { font-size: 13.5px; font-style: italic; color: #555; line-height: 1.6; border-left: 3px solid var(--pink); padding: 4px 0 4px 14px; margin-bottom: 22px; }
 .how-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
 .how-step { display: flex; gap: 16px; align-items: flex-start; }
 .step-num { width: 36px; height: 36px; min-width: 36px; background: var(--pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Permanent Marker', cursive; font-size: 16px; color: var(--white); }
@@ -90,6 +91,8 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .cat-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 380px; margin-bottom: 28px; position: relative; }
 .cat-list { display: flex; flex-direction: column; gap: 9px; position: relative; }
 .cat-item { display: flex; align-items: center; gap: 10px; }
+.cat-item.wrap { align-items: flex-start; }
+.cat-item.wrap .cat-dot { margin-top: 7px; }
 .cat-dot { width: 5px; height: 5px; min-width: 5px; background: var(--pink); border-radius: 50%; }
 .cat-item span { font-size: 13px; color: rgba(255,255,255,0.65); }
 
@@ -108,10 +111,11 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .copy-btn { margin-left: auto; background: transparent; border: 1px solid var(--pink); color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 11px; padding: 3px 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
 .copy-btn:hover, .copy-btn.copied { background: var(--pink); color: var(--white); }
 
-.prompt-note { font-size: 13px; color: #999; font-style: italic; line-height: 1.55; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px dashed rgba(0,0,0,0.08); }
+.prompt-note { font-size: 13.5px; color: var(--black); font-style: normal; line-height: 1.6; padding: 12px 14px; margin-bottom: 12px; background: rgba(242,27,122,0.06); border-left: 3px solid var(--pink); border-radius: 0 8px 8px 0; }
+.prompt-note::before { content: "What generic AI doesn't know"; display: block; font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 12px; margin-bottom: 5px; }
 .prompt-note strong { color: var(--pink); font-family: 'Permanent Marker', cursive; font-style: normal; font-weight: normal; font-size: 12px; }
 
-.prompt-body { font-size: 13px; line-height: 1.8; color: #2a2a2a; background: #f9f5f1; border-radius: 8px; padding: 13px 15px; border-left: 3px solid var(--pink); white-space: pre-wrap; word-break: break-word; }
+.prompt-body { font-size: 13px; line-height: 1.8; color: #2a2a2a; background: #f9f5f1; border-radius: 8px; padding: 13px 15px; border-left: 3px solid #ddd; white-space: pre-wrap; word-break: break-word; }
 .ph { color: var(--pink); font-family: 'Permanent Marker', cursive; font-size: 13px; }
 
 /* ── BACK COVER ── */
@@ -150,7 +154,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .sel-text { font-size: 12px; font-family: 'Inter', sans-serif; border: 1px solid #e0dbd5; border-radius: 6px; padding: 4px 8px; color: var(--black); background: white; outline: none; flex: 1; max-width: 200px; }
 .sel-text:focus { border-color: #f21b7a; }
 .ph.filled { color: #f21b7a; background: rgba(242,27,122,0.08); border-radius: 3px; padding: 0 2px; }
-@media print { .prompt-selectors { display: none !important; } .quick-fill-page { display: none !important; } .global-panel { display: none !important; } .ph.filled { background: none !important; color: inherit !important; padding: 0 !important; } }
+@media print { .prompt-selectors { display: none !important; } .ph.filled { background: none !important; color: inherit !important; padding: 0 !important; } }
 
 .copy-facts-btn {
   display: block;
@@ -197,13 +201,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 @page { size: A4; margin: 0; }
 
 /* ── QUICK FILL PAGE ── */
-.quick-fill-page { padding: 14mm 18mm; display: flex; flex-direction: column; }
-.qf-eyebrow { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 14px; margin-bottom: 6px; }
-.qf-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 32px; color: var(--black); margin-bottom: 8px; line-height: 1.1; }
-.qf-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 22px; max-width: 460px; }
-.qf-hint { font-size: 12px; color: #aaa; margin-top: 20px; }
-.global-panel { background: #f8f3ee; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 9px; }
-
 /* ── TEXTAREA SELECTOR ── */
 .sel-textarea { font-size: 12px; font-family: 'Inter', sans-serif; border: 1px solid #e0dbd5; border-radius: 8px; padding: 7px 10px; color: var(--black); background: white; outline: none; width: 100%; resize: vertical; line-height: 1.5; }
 .sel-textarea:focus { border-color: #f21b7a; }
@@ -215,8 +212,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .sel-check-opt span { font-size: 12px; font-family: 'Inter', sans-serif; color: var(--black); }
 
 @media print {
-  .quick-fill-page { display: none !important; }
-  .global-panel { display: none !important; }
 }
 
 /* ══════════════════════════════════════════
@@ -244,7 +239,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .how-page           { padding: 24px 18px; }
   .cat-page           { padding: 40px 20px; }
   .prompts-page       { padding: 18px 14px; }
-  .quick-fill-page    { padding: 24px 18px; }
   .teaser-page        { padding: 24px 18px; }
   .back               { padding: 48px 24px; }
 
@@ -257,7 +251,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .cat-bg-num         { font-size: 120px; }
   .back-title         { font-size: 30px; }
   .section-title      { font-size: 26px; }
-  .qf-title           { font-size: 26px; }
   .prompt-title       { font-size: 15px; }
   .prompt-note        { font-size: 14px; line-height: 1.6; }
   .prompt-body        { font-size: 15px; line-height: 1.85; padding: 14px 16px; }
@@ -273,7 +266,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .how-tip p          { font-size: 14px; }
   .toc-label          { font-size: 14px; }
   .toc-sub            { font-size: 12px; }
-  .qf-desc            { font-size: 15px; }
   .output-label       { font-size: 11px; }
   .back-body          { font-size: 16px; }
 
@@ -329,7 +321,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 
   /* ── Selector layout ── */
   .prompt-selectors   { padding: 14px 14px; gap: 10px; }
-  .global-panel       { padding: 16px 14px; gap: 12px; }
   .sel-row            { gap: 10px; align-items: flex-start; }
   .sel-label          { min-width: 76px; font-size: 11px; padding-top: 3px; }
   .sel-check-grid     { gap: 6px; }
@@ -375,7 +366,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .cover-foot         { padding: 14px 32px; }
   .cat-page           { padding: 48px 32px; }
   .teaser-page        { padding: 28px 32px; }
-  .quick-fill-page    { padding: 28px 32px; }
   .back               { padding: 56px 32px; }
 
   .prompt-body  { font-size: 14px; }
@@ -395,7 +385,6 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   .cat-title   { font-size: 44px; }
   .back-title  { font-size: 36px; }
   .section-title { font-size: 30px; }
-  .qf-title    { font-size: 30px; }
 }
 </style>
 </head>
@@ -404,9 +393,9 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 <!-- PAGE 1: COVER -->
 <div class="page cover">
   <div class="cover-inner">
-    <div class="cover-eyebrow">11 copy-paste prompts for vacation rental owners</div>
+    <div class="cover-eyebrow">12 copy-paste prompts for vacation rental owners</div>
     <h1 class="cover-title">The Island Host<br>AI <em>Prompt Kit</em></h1>
-    <p class="cover-sub">Stop writing what every other host writes. These prompts turn ChatGPT or Claude into a hospitality copywriter who actually knows Aruba, Bonaire and Curaçao.</p>
+    <p class="cover-sub">A generic AI prompt doesn't know Airbnb's 295-character preview cutoff, or that VRBO banned fee-mentions in April 2025. These 12 do.</p>
     <div class="cover-tags">
       <span class="cover-tag">Airbnb</span>
       <span class="cover-tag">VRBO</span>
@@ -417,7 +406,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <div class="cover-visual">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
-    <div class="cover-n">11</div>
+    <div class="cover-n">12</div>
   </div>
   <div class="cover-wave" aria-hidden="true"><svg viewBox="0 0 1440 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,10 C180,22 360,0 600,12 C780,20 960,2 1140,14 C1260,20 1360,6 1440,10 L1440,24 L0,24 Z" fill="rgba(242,27,122,0.18)"/></svg></div>
   <div class="cover-foot">
@@ -434,16 +423,17 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <p class="section-desc">Fill this in once. Every prompt in this kit asks for the same basic details. Having them written down here saves you time and gets you better results.</p>
 
   <div class="fact-intro">
-    <p><strong>How it works:</strong> Keep this page open while you use the prompts. When you see a [PLACEHOLDER], copy the answer from here instead of thinking it up every time. The more specific you are below, the better every prompt output will be.</p>
+    <p><strong>How it works:</strong> Fill this in once, here, at the start. Property name, island, type and Dutch tone update automatically in every prompt below as you fill them in, no retyping later. Everything else on this page (bedrooms, features, guest profile) gets bundled into one paste-ready summary by the button at the bottom, for the "power user" workflow on the next page. You never fill in the same thing twice. Managing more than one property? Print or duplicate this page per property, this kit is built for hosts with up to 3 properties.</p>
   </div>
 
   <div class="fact-grid">
     <div class="fact-block">
       <div class="fact-block-title">Your property</div>
-      <div class="fact-field" data-label="Property name"><span class="fact-label">Property name</span><input class="fact-line" type="text" placeholder="e.g. Villa Flamingo"></div>
-      <div class="fact-field" data-label="Island"><span class="fact-label">Island</span><div class="fact-checks"><label class="fact-check"><input type="checkbox"> Aruba</label><label class="fact-check"><input type="checkbox"> Bonaire</label><label class="fact-check"><input type="checkbox"> Curaçao</label></div></div>
+      <div class="fact-field" data-label="Property name"><span class="fact-label">Property name</span><input class="fact-line" type="text" placeholder="e.g. Villa Flamingo" data-ph="g-name"></div>
+      <div class="fact-field" data-label="Island"><span class="fact-label">Island</span><div class="fact-checks"><label class="fact-check"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Aruba"> Aruba</label><label class="fact-check"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Bonaire"> Bonaire</label><label class="fact-check"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Curaçao"> Curaçao</label></div></div>
       <div class="fact-field" data-label="Neighborhood / area"><span class="fact-label">Neighborhood / area</span><input class="fact-line" type="text" placeholder="e.g. Jan Thiel, Eagle Beach"></div>
-      <div class="fact-field" data-label="Type"><span class="fact-label">Type</span><div class="fact-checks"><label class="fact-check"><input type="checkbox"> Villa</label><label class="fact-check"><input type="checkbox"> Apartment</label><label class="fact-check"><input type="checkbox"> Guesthouse</label><label class="fact-check"><input type="checkbox"> Studio</label><label class="fact-check"><input type="checkbox"> B&amp;B</label></div></div>
+      <div class="fact-field" data-label="Type"><span class="fact-label">Type</span><div class="fact-checks"><label class="fact-check"><input type="radio" name="g-type" data-ph="g-type" data-val="villa"> Villa</label><label class="fact-check"><input type="radio" name="g-type" data-ph="g-type" data-val="apartment"> Apartment</label><label class="fact-check"><input type="radio" name="g-type" data-ph="g-type" data-val="guesthouse"> Guesthouse</label><label class="fact-check"><input type="radio" name="g-type" data-ph="g-type" data-val="studio"> Studio</label><label class="fact-check"><input type="radio" name="g-type" data-ph="g-type" data-val="B&amp;B"> B&amp;B</label></div></div>
+      <div class="fact-field" data-label="Dutch tone (aanspreekvorm)"><span class="fact-label">If writing Dutch copy: je/u</span><div class="fact-checks"><label class="fact-check"><input type="radio" name="g-aansp" data-ph="g-aansp" data-val="je/jij (informeel)"> je/jij (informal)</label><label class="fact-check"><input type="radio" name="g-aansp" data-ph="g-aansp" data-val="u (formeel)"> u (formal)</label></div></div>
       <div class="fact-field" data-label="Bedrooms">
         <span class="fact-label">Bedrooms</span>
         <div class="fact-checks"><label class="fact-check"><input type="radio" name="bedrooms"> Studio</label><label class="fact-check"><input type="radio" name="bedrooms"> 1</label><label class="fact-check"><input type="radio" name="bedrooms"> 2</label><label class="fact-check"><input type="radio" name="bedrooms"> 3</label><label class="fact-check"><input type="radio" name="bedrooms"> 4</label><label class="fact-check"><input type="radio" name="bedrooms"> 5</label><label class="fact-check"><input type="radio" name="bedrooms"> 6+</label></div>
@@ -459,7 +449,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
     </div>
     <div class="fact-block">
       <div class="fact-block-title">As a host</div>
-      <div class="fact-field" data-label="Host name"><span class="fact-label">Your name</span><input class="fact-line" type="text"></div>
+      <div class="fact-field" data-label="Host name"><span class="fact-label">Your name</span><input class="fact-line" type="text" data-ph="g-hname"></div>
       <div class="fact-field" data-label="Languages">
         <span class="fact-label">Languages you speak</span>
         <div class="fact-checks"><label class="fact-check"><input type="checkbox"> Dutch</label><label class="fact-check"><input type="checkbox"> English</label><label class="fact-check"><input type="checkbox"> Spanish</label><label class="fact-check"><input type="checkbox"> Papiamentu</label><label class="fact-check"><input type="checkbox"> German</label><label class="fact-check"><input type="checkbox"> French</label></div>
@@ -555,6 +545,8 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <div class="section-eyebrow">Before you start</div>
   <h2 class="section-title">How to use<br>this kit</h2>
 
+  <div class="founder-note">I rent a villa on Curaçao myself. I got tired of staring at the same blank description field every other host stares at, so I built the prompts I wished existed instead.</div>
+
   <div class="how-steps">
     <div class="how-step">
       <div class="step-num">1</div>
@@ -574,7 +566,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
       <div class="step-num">3</div>
       <div class="step-body">
         <h3>Paste into ChatGPT or Claude</h3>
-        <p>Go to chatgpt.com or claude.ai. Paste the prompt. Replace every pink [PLACEHOLDER] with your own details from the Fact Sheet. Press enter.</p>
+        <p>Go to chatgpt.com or claude.ai. Paste the prompt. Replace every pink [PLACEHOLDER] with your own details from the Fact Sheet. Press enter. This kit is built for the version you're already paying for: free tiers can drift past the character limits or miss the nuance, paid tiers don't.</p>
       </div>
     </div>
     <div class="how-step">
@@ -587,61 +579,30 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   </div>
 
   <div class="how-tip">
-    <strong>The insider move</strong>
-    <p>After getting a result you like, type: "Now give me 2 more variations with a different opening line." This gives you options to A/B test without any extra work. The best vacation rental hosts on Airbnb do this constantly.</p>
-  </div>
-
-  <div class="how-tip">
-    <strong>The power user workflow</strong>
-    <p>Open one ChatGPT or Claude conversation. Paste your completed Fact Sheet as your very first message and say: "This is my property. I'll be using it as context for everything I ask next." Then use all 12 prompts in that same conversation. No placeholders to fill in, no details to retype. The AI already knows everything. This cuts your time per prompt from 5 minutes to 90 seconds.</p>
-  </div>
-
-  <div class="how-tip">
-    <strong>The island context is already in your prompts</strong>
-    <p>Select your island in the Quick Fill panel. Every platform description prompt (Airbnb, VRBO, Micazu) automatically includes the right island context for the AI. You do not need to paste anything manually. The AI knows where your property is the moment it reads your prompt.</p>
+    <strong>4 pro tips</strong>
+    <p><strong>Insider move:</strong> after a result you like, type "now give me 2 more variations with a different opening line." Instant A/B options, no extra work.</p>
+    <p style="margin-top:10px;"><strong>Power user workflow:</strong> paste your "Copy my property facts" summary as the very first message in a new ChatGPT or Claude conversation, then use all 12 prompts in that same conversation. The AI already knows everything, no placeholders to fill in.</p>
+    <p style="margin-top:10px;"><strong>Island context is automatic:</strong> the island you pick on the Fact Sheet is already built into every platform prompt (Airbnb, VRBO, Micazu). Nothing to paste manually.</p>
+    <p style="margin-top:10px;"><strong>Time your hurricane-free angle:</strong> Aruba and Curaçao sit outside the hurricane belt, most North American guests don't know that. They start searching "hurricane-free Caribbean" from June through November. Push that fact in your teaser and social posts during those months specifically, not year-round, it loses impact outside hurricane season.</p>
   </div>
 
   <div class="toc-grid">
     <div class="toc-item"><div class="toc-num">08</div><div class="toc-label">Listing Descriptions</div><div class="toc-sub">Airbnb, VRBO, Micazu + universal tools</div></div>
-    <div class="toc-item"><div class="toc-num">03</div><div class="toc-label">Algorithm Tips</div><div class="toc-sub">Audit, amenities, photo brief</div></div>
+    <div class="toc-item"><div class="toc-num">04</div><div class="toc-label">Algorithm &amp; Reputation</div><div class="toc-sub">Audit, amenities, photos, reviews</div></div>
   </div>
 </div>
 
-
-<!-- QUICK FILL PANEL -->
-<div class="page quick-fill-page">
-  <div class="qf-eyebrow">Step 0 of 11</div>
-  <h2 class="qf-title">Quick Fill</h2>
-  <p class="qf-desc">Fill this in once. Your answers appear automatically in all 11 prompts as you scroll through the kit.</p>
-  <div class="global-panel">
-    <div class="sel-row">
-      <span class="sel-label">Island</span>
-      <label class="sel-opt"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Aruba"><span>Aruba</span></label>
-      <label class="sel-opt"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Bonaire"><span>Bonaire</span></label>
-      <label class="sel-opt"><input type="radio" name="g-isl" data-ph="g-isl" data-val="Curaçao"><span>Curaçao</span></label>
-    </div>
-    <div class="sel-row">
-      <span class="sel-label">Property name</span>
-      <input type="text" class="sel-text" data-ph="g-name" placeholder="e.g. Villa Sunset">
-    </div>
-    <div class="sel-row">
-      <span class="sel-label">Property type</span>
-      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="villa"><span>Villa</span></label>
-      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="apartment"><span>Appartement</span></label>
-      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="guesthouse"><span>Guesthouse</span></label>
-      <label class="sel-opt"><input type="radio" name="g-type" data-ph="g-type" data-val="studio"><span>Studio</span></label>
-    </div>
-    <div class="sel-row">
-      <span class="sel-label">Your name</span>
-      <input type="text" class="sel-text" data-ph="g-hname" placeholder="e.g. Daisy">
-    </div>
-    <div class="sel-row">
-      <span class="sel-label">Dutch tone</span>
-      <label class="sel-opt"><input type="radio" name="g-aansp" data-ph="g-aansp" data-val="je/jij (informeel)"><span>je/jij (informeel)</span></label>
-      <label class="sel-opt"><input type="radio" name="g-aansp" data-ph="g-aansp" data-val="u (formeel)"><span>u (formeel)</span></label>
-    </div>
+<!-- WHAT THIS IS NOT -->
+<div class="page cat-page">
+  <div class="cat-blob"></div>
+  <div class="cat-eyebrow">Set expectations</div>
+  <h2 class="cat-title">What this<br>is not</h2>
+  <div class="cat-list">
+    <div class="cat-item wrap"><div class="cat-dot"></div><span>No automatic connection to Airbnb, VRBO or Booking.com. You paste the output into your own listing yourself.</span></div>
+    <div class="cat-item wrap"><div class="cat-dot"></div><span>No promise about how many bookings this gets you. That depends on your property, photos and market, not a prompt.</span></div>
+    <div class="cat-item wrap"><div class="cat-dot"></div><span>No Booking.com prompt. Booking.com writes your listing description for you from your structured property data, you can't paste custom text there the way you can on Airbnb or VRBO.</span></div>
+    <div class="cat-item wrap"><div class="cat-dot"></div><span>No Social Media Kit included, that's coming later as a separate product.</span></div>
   </div>
-  <p class="qf-hint">Done? Scroll to any prompt, copy it and paste it into ChatGPT or Claude.</p>
 </div>
 
 <!-- AIRBNB INTRO PAGE -->
@@ -666,7 +627,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 1: Dutch market (in Dutch) → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Eilandcontext: <span class="ph" data-ph="g-isl-brief" data-default="[selecteer eiland in Quick Fill hierboven]">[selecteer eiland in Quick Fill hierboven]</span>
+      <div class="output-body prompt-body">Eilandcontext: <span class="ph" data-ph="g-isl-brief" data-default="[selecteer eiland op de Fact Sheet hierboven]">[selecteer eiland op de Fact Sheet hierboven]</span>
 
 Schrijf een Airbnb-advertentiebeschrijving voor mijn vakantiewoning voor de Nederlandse markt. Max 500 tekens. Schrijf in het Nederlands. Geen clichés: geen "paradijs," "parel," "home away from home" of "adembenemend."
 
@@ -677,7 +638,7 @@ Aanspreekvorm: <span class="ph" data-ph="g-aansp" data-default="[je/jij (informe
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 2: American market (in English) → upload as English (US) translation</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island in Quick Fill above]">[select your island in Quick Fill above]</span>
+      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island on the Fact Sheet above]">[select your island on the Fact Sheet above]</span>
 
 Write an Airbnb listing description for my property for the American market. Max 500 characters. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
 
@@ -686,7 +647,7 @@ Write an Airbnb listing description for my property for the American market. Max
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 3: Canadian market (in English) → upload as English (Canada) translation</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island in Quick Fill above]">[select your island in Quick Fill above]</span>
+      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island on the Fact Sheet above]">[select your island on the Fact Sheet above]</span>
 
 Write an Airbnb listing description for my property for the Canadian market. Max 500 characters. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
 
@@ -695,7 +656,7 @@ Write an Airbnb listing description for my property for the Canadian market. Max
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 4: Your Space in English → upload as English translation</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island in Quick Fill above]">[select your island in Quick Fill above]</span>
+      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island on the Fact Sheet above]">[select your island on the Fact Sheet above]</span>
 
 Write the "Your Space" section for my Airbnb listing. This is a separate field specifically about the physical property. Max 500 characters. Write in English.
 
@@ -704,7 +665,7 @@ Don't try to describe every room. Pick the 2-3 spaces guests will actually remem
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 5: Je accommodatie in het Nederlands → upload as Dutch translation</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Eilandcontext: <span class="ph" data-ph="g-isl-brief" data-default="[selecteer eiland in Quick Fill hierboven]">[selecteer eiland in Quick Fill hierboven]</span>
+      <div class="output-body prompt-body">Eilandcontext: <span class="ph" data-ph="g-isl-brief" data-default="[selecteer eiland op de Fact Sheet hierboven]">[selecteer eiland op de Fact Sheet hierboven]</span>
 
 Schrijf de "Je accommodatie" sectie voor mijn Airbnb listing. Dit is een apart veld specifiek over de fysieke woning. Max 500 tekens. Schrijf in het Nederlands.
 
@@ -743,7 +704,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 1: Dutch / European market (in Dutch)</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island in Quick Fill above]">[select your island in Quick Fill above]</span>
+      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island on the Fact Sheet above]">[select your island on the Fact Sheet above]</span>
 
 You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the Dutch and European market. Target 600-800 words. Write in Dutch (Nederlands). No clichés: no "paradijs," "parel," "adembenemend" or "home away from home."
 
@@ -756,7 +717,7 @@ Verwerk vanzelfsprekend als zoektermen in de tekst: de eilandnaam, het type woni
 
     <div class="output-section">
       <div class="output-header"><span class="output-label">Output 2: North American market (in English)</span><button class="copy-output-btn">Copy</button></div>
-      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island in Quick Fill above]">[select your island in Quick Fill above]</span>
+      <div class="output-body prompt-body">Island context: <span class="ph" data-ph="g-isl-brief" data-default="[select your island on the Fact Sheet above]">[select your island on the Fact Sheet above]</span>
 
 You are a vacation home copywriter specializing in Caribbean vacation rentals. Write a VRBO listing description for my property for the North American market. Target 600-800 words. Write in English. No clichés: no "paradise," "gem," "stunning" or "home away from home."
 
@@ -795,7 +756,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Onderscheidend kenmerk</span><textarea class="sel-textarea" data-ph="p04-onderscheid" placeholder="Bijv. panoramisch zeezicht, privézwembad op het dak, directe strandtoegang..." rows="2"></textarea></div>
     </div>
-<div class="prompt-body">Eilandcontext: <span class="ph" data-ph="g-isl-brief" data-default="[selecteer eiland in Quick Fill hierboven]">[selecteer eiland in Quick Fill hierboven]</span>
+<div class="prompt-body">Eilandcontext: <span class="ph" data-ph="g-isl-brief" data-default="[selecteer eiland op de Fact Sheet hierboven]">[selecteer eiland op de Fact Sheet hierboven]</span>
 
 Jij bent een copywriter die gespecialiseerd is in de Nederlandse vakantieverhuurmarkt. Je hebt alle basisgegevens van mijn woning al. Schrijf nu een Micazu-beschrijving.
 
@@ -940,10 +901,10 @@ Write in second person ("you"). Open with the exact moment the reader steps outs
     <div class="prompt-note">Saying "5 minutes from the beach" is less persuasive than walking the reader through the neighborhood. Distance in minutes is data. A sense of place is desire. This prompt makes your location feel like a character, not a coordinate.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Neighborhood</span><input type="text" class="sel-text" data-ph="p10-hood" placeholder="e.g. Jan Thiel, quiet and residential with a small marina"></div>
-      <div class="sel-row"><span class="sel-label">Op loopafstand</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="beach"><span>Strand</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="restaurants"><span>Restaurants</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="supermarket"><span>Supermarkt</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="town center"><span>Centrum</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="cafes"><span>Cafés</span></label></div></div>
+      <div class="sel-row"><span class="sel-label">Within walking distance</span><div class="sel-check-grid"><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="beach"><span>Beach</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="restaurants"><span>Restaurants</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="supermarket"><span>Supermarket</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="town center"><span>Town center</span></label><label class="sel-check-opt"><input type="checkbox" name="p10-walk" data-ph="p10-walk" data-val="cafes"><span>Cafés</span></label></div></div>
       <div class="sel-row"><span class="sel-label">Within 10 min by car</span><textarea class="sel-textarea" data-ph="p10-car" placeholder="e.g. Jan Thiel Beach (sailing and snorkeling), Willemstad city center, Blue Bay Beach..." rows="2"></textarea></div>
       <div class="sel-row"><span class="sel-label">Insider tip</span><input type="text" class="sel-text" data-ph="p10-tip" placeholder="Your real local recommendation that tourists almost never find"></div>
-      <div class="sel-row"><span class="sel-label">Geliefd bij</span><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="COUPLES"><span>Couples</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="FAMILIES"><span>Families</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="DIVERS"><span>Divers</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="REMOTE WORKERS"><span>Remote workers</span></label></div>
+      <div class="sel-row"><span class="sel-label">Popular with</span><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="COUPLES"><span>Couples</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="FAMILIES"><span>Families</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="DIVERS"><span>Divers</span></label><label class="sel-opt"><input type="radio" name="p10-who" data-ph="p10-who" data-val="REMOTE WORKERS"><span>Remote workers</span></label></div>
     </div>
 <div class="prompt-body">Write a location section for my vacation rental listing that makes <span class="ph" data-ph="p10-hood" data-default="[NEIGHBORHOOD]">[NEIGHBORHOOD]</span> on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span> feel like a place worth choosing, not just a geographic fact.
 
@@ -966,32 +927,46 @@ Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood
   <div class="cat-bg-num">02</div>
   <div class="cat-eyebrow">Category 02</div>
   <h2 class="cat-title">More<br>Bookings</h2>
-  <p class="cat-desc">Great listing copy is the start, not the finish. The platforms reward hosts who understand how the algorithm works: response speed, listing completeness, photo count, amenities, review velocity, Instant Book and Superhost status. These 3 prompts help you work the algorithm: audit your listing against every known ranking factor, build a complete amenities list, and brief your photos for maximum conversion.</p>
+  <p class="cat-desc">Great listing copy is the start, not the finish. The platforms reward hosts who understand how the algorithm works: response speed, listing completeness, photo count, amenities, review velocity, Instant Book and Superhost status. These 4 prompts help you work the algorithm and protect your reputation: audit your listing against every known ranking factor, build a complete amenities list, brief your photos for maximum conversion, and respond to reviews the way future guests trust.</p>
   <div class="cat-list">
     <div class="cat-item"><div class="cat-dot"></div><span>09: Airbnb Algorithm Audit</span></div>
     <div class="cat-item"><div class="cat-dot"></div><span>10: Amenities Maximizer</span></div>
     <div class="cat-item"><div class="cat-dot"></div><span>11: Listing Photo Brief</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>12: Review Response Writer</span></div>
   </div>
 </div>
 
-<!-- ALGORITHM PROMPTS: 21-23 -->
+<!-- ALGORITHM PROMPTS: 09-12 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">More Bookings</span><span class="page-bar-range">09-11</span></div>
+  <div class="page-bar"><span class="page-bar-cat">More Bookings</span><span class="page-bar-range">09-12</span></div>
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">09</div><div class="prompt-title">Airbnb Algorithm Audit</div></div>
-    <div class="prompt-note">Airbnb's search ranking is determined by more than 14 factors beyond your listing text. Response rate, listing completeness, photo quantity, amenities listed, Instant Book status, review velocity and calendar activity all feed the algorithm directly. Most hosts write a great description and stop there. This prompt audits what else needs attention.</div>
-    <div class="prompt-body">You are an Airbnb optimization expert. Audit my listing against Airbnb's known ranking factors. Use my property details as context.
+    <div class="prompt-note">Airbnb's search ranking is determined by more than 14 factors beyond your listing text. Response rate, photo quantity, amenities listed, Instant Book status, review velocity and calendar activity all feed the algorithm directly. None of that is visible on your public listing page, not even to AI. Pull these 5 numbers from your Airbnb host dashboard first (Listings &gt; your listing &gt; Performance), the audit is only as good as what you give it.</div>
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Instant Book</span><label class="sel-opt"><input type="radio" name="p09-ib" data-ph="p09-ib" data-val="enabled"><span>Enabled</span></label><label class="sel-opt"><input type="radio" name="p09-ib" data-ph="p09-ib" data-val="not enabled"><span>Not enabled</span></label></div>
+      <div class="sel-row"><span class="sel-label">Typical response time</span><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="within an hour"><span>Within an hour</span></label><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="within a few hours"><span>A few hours</span></label><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="within a day"><span>Within a day</span></label><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="slower than a day"><span>Slower</span></label></div>
+      <div class="sel-row"><span class="sel-label">Calendar updates</span><label class="sel-opt"><input type="radio" name="p09-cal" data-ph="p09-cal" data-val="daily"><span>Daily</span></label><label class="sel-opt"><input type="radio" name="p09-cal" data-ph="p09-cal" data-val="weekly"><span>Weekly</span></label><label class="sel-opt"><input type="radio" name="p09-cal" data-ph="p09-cal" data-val="rarely"><span>Rarely</span></label></div>
+      <div class="sel-row"><span class="sel-label">Photos uploaded</span><input type="text" class="sel-text" data-ph="p09-photos" placeholder="e.g. 14"></div>
+      <div class="sel-row"><span class="sel-label">Reviews</span><input type="text" class="sel-text" data-ph="p09-reviews" placeholder="e.g. 4.9 stars, 47 reviews"></div>
+    </div>
+<div class="prompt-body">You are an Airbnb optimization expert. Audit my listing against Airbnb's known ranking factors, using the details below. These come from my host dashboard, not the public listing page, so use exactly what I give you instead of guessing.
 
-Evaluate each factor as strong / needs work / unknown:
+Instant Book: <span class="ph" data-ph="p09-ib" data-default="[ENABLED / NOT ENABLED]">[ENABLED / NOT ENABLED]</span>
+Typical response time: <span class="ph" data-ph="p09-resp" data-default="[WITHIN AN HOUR / A FEW HOURS / A DAY / SLOWER]">[WITHIN AN HOUR / A FEW HOURS / A DAY / SLOWER]</span>
+Calendar updates: <span class="ph" data-ph="p09-cal" data-default="[DAILY / WEEKLY / RARELY]">[DAILY / WEEKLY / RARELY]</span>
+Photos uploaded: <span class="ph" data-ph="p09-photos" data-default="[NUMBER]">[NUMBER]</span>
+Reviews: <span class="ph" data-ph="p09-reviews" data-default="[RATING AND COUNT]">[RATING AND COUNT]</span>
+
+Evaluate each factor as strong / needs work, based on the numbers above and my property info:
 1. Listing completeness: every field filled in?
 2. Photo quantity: at or above 20 photos?
 3. Amenities: likely amenities I have but haven't listed?
-4. Instant Book: enabled or not?
-5. Response rate and speed: hitting the targets?
-6. Review count and recency: is my review velocity healthy?
+4. Instant Book
+5. Response rate and speed
+6. Review count and recency
 7. Pricing: competitive for my market and dates?
-8. Calendar: updated regularly to signal active management?
+8. Calendar activity
 
 After the audit, give me a numbered action list ranked by expected impact on bookings. Be specific. No vague advice.</div>
   </div>
@@ -1029,6 +1004,31 @@ Deliver:
 5. Airbnb photo captions: write one caption (max 20 words) for the 6 most important photos. Each caption adds one specific detail the photo cannot show on its own.
 
 End with: 3 things to avoid in vacation rental photography on the ABC islands.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header"><div class="prompt-badge">12</div><div class="prompt-title">Review Response Writer</div></div>
+    <div class="prompt-note">A public review response is permanent, and on most platforms future guests read it before they read the review itself. Apologizing for something that wasn't your fault reads as an admission of guilt, even when you did nothing wrong. The response matters more than the review does.</div>
+        <div class="prompt-selectors">
+      <div class="sel-row"><span class="sel-label">Review type</span><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="minor complaint, otherwise positive"><span>Minor complaint</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="neutral, 3-star"><span>Neutral, 3-star</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="negative, feels unfair"><span>Feels unfair</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="negative, legitimate issue"><span>Legitimate issue</span></label></div>
+      <div class="sel-row"><span class="sel-label">What the guest said</span><textarea class="sel-textarea" data-ph="p14-said" placeholder="Paste the review or complaint here..." rows="2"></textarea></div>
+      <div class="sel-row"><span class="sel-label">What actually happened</span><textarea class="sel-textarea" data-ph="p14-actual" placeholder="Your side, be honest, this stays between you and the AI..." rows="2"></textarea></div>
+    </div>
+<div class="prompt-body">You are a hospitality reputation manager. Write a public response to this guest review for my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. This response will be visible to every future guest before they read the review itself, so it matters more than the review does.
+
+Review type: <span class="ph" data-ph="p14-type" data-default="[MINOR COMPLAINT / NEUTRAL / FEELS UNFAIR / LEGITIMATE ISSUE]">[MINOR COMPLAINT / NEUTRAL / FEELS UNFAIR / LEGITIMATE ISSUE]</span>
+
+What the guest said: <span class="ph" data-ph="p14-said" data-default="[PASTE THE REVIEW OR COMPLAINT]">[PASTE THE REVIEW OR COMPLAINT]</span>
+
+What actually happened, my side: <span class="ph" data-ph="p14-actual" data-default="[YOUR CONTEXT, BE HONEST]">[YOUR CONTEXT, BE HONEST]</span>
+
+Rules:
+- Never apologize for something that wasn't my fault. That reads as guilt to future readers, even when I did nothing wrong.
+- Address the specific point the guest raised. No generic template response.
+- If a factual claim in the review is inaccurate, correct it politely and specifically, without arguing.
+- Warm but brief: one short paragraph, max 80 words.
+- End forward-looking, not defensive.
+- Never use "we're sorry you feel that way." It is the most recognizably dismissive line in hospitality, and guests spot it instantly.</div>
   </div>
 </div>
 
@@ -1154,8 +1154,8 @@ Rules:
       <p>20+ prompts for Instagram, TikTok, Facebook and Reels. Built for ABC island hosts who want to show up on social without spending hours on it.</p>
     </div>
     <div>
-      <div class="upsell-cta">Get the Kit</div>
-      <div class="upsell-price">$19 · funkiness.ai/social-kit</div>
+      <div class="upsell-cta">Get notified</div>
+      <div class="upsell-price">funkiness.ai</div>
     </div>
   </div>
 </div>
@@ -1276,12 +1276,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// ── GLOBAL PANEL: updates ALL matching spans document-wide ──
+// ── FACT SHEET: property name, island, type and Dutch tone update ALL matching spans document-wide ──
 document.addEventListener('DOMContentLoaded', function () {
-  var gPanel = document.querySelector('.global-panel');
+  var gPanel = document.querySelector('.fact-page');
   if (!gPanel) return;
 
   function applyGlobal(phKey, val) {
+    if (!phKey) return;
     document.querySelectorAll('.ph[data-ph="' + phKey + '"]').forEach(function (span) {
       if (val && val.trim()) {
         span.textContent = val;
@@ -1293,13 +1294,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  gPanel.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+  gPanel.querySelectorAll('input[data-ph][type="radio"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
       applyGlobal(radio.getAttribute('data-ph'), radio.getAttribute('data-val'));
     });
   });
 
-  gPanel.querySelectorAll('input[type="text"]').forEach(function (input) {
+  gPanel.querySelectorAll('input[data-ph][type="text"]').forEach(function (input) {
     input.addEventListener('input', function () {
       applyGlobal(input.getAttribute('data-ph'), input.value);
     });
@@ -1356,7 +1357,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'Curaçao': 'Curaçao: autonomous island ~65km north of Venezuela, outside the hurricane belt. Year-round sun, avg. 29°C. Willemstad is a UNESCO World Heritage city. Dutch widely spoken. Cosmopolitan culture with Dutch, Spanish and Papiamentu influences. Mixed European and North American market.'
   };
   function updateIslandBrief(island) {
-    var brief = islandBriefs[island] || '[select your island in Quick Fill above]';
+    var brief = islandBriefs[island] || '[select your island on the Fact Sheet above]';
     document.querySelectorAll('.ph[data-ph="g-isl-brief"]').forEach(function(span) {
       span.textContent = brief;
       span.classList.add('filled');
