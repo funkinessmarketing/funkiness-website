@@ -119,7 +119,7 @@ Lees deze bestanden voor meer detail:
 
 **Mobile office sectie** - nieuwe homepage sectie in ontwikkeling voor het "You pick the spot, we bring the office" concept. Preview: `docs/preview-mobile-office-sectie.html`. Booking via **Cal.com** (gratis, werkt met Apple Agenda via CalDAV). Meeting naam: "Marketing Strategy Session". Wacht op Cal.com embed code van Daisy om formulier te vervangen. Nog niet live op `index.html`.
 
-**NFC visitekaartje** - fysiek kaartje met NFC-chip. Tik opent `connect.html` (funkiness.ai/connect). Bestanden: `connect.html` (landingspagina: WhatsApp, Instagram, TikTok, Website), `docs/visitekaartje.html` (printbaar ontwerp 85x55mm, voor- en achterkant). Panterprint met golvende rand via SVG clipPath. Via Mobilo of vergelijkbare leverancier laten drukken.
+**NFC visitekaartje** - fysiek kaartje met NFC-chip. Tik opent `connect.html` (funkiness.ai/connect). Bestanden: `connect.html` (landingspagina: WhatsApp, Instagram, TikTok, Website), `docs/visitekaartje.html` (print-klaar ontwerp, 85x55mm trim + 3mm bleed, dus 91x61mm paginaformaat, voor- en achterkant). Panterprint met golvende rand via SVG clipPath. Wordt gedrukt bij **drukwerkdeal.nl** (niet meer Mobilo): Chrome-PDF-export (Cmd+P, achtergrondafbeeldingen aan, papierformaat pakt automatisch 91x61mm) dient als bouwtekening, die wordt in Affinity Publisher geplaatst (CMYK, Coated FOGRA39, 3mm bleed) om zuiver te exporteren als PDF/X-4:2008. Zwarte tekst en de QR-code staan bewust op puur `#000` (nooit rich black) volgens drukwerkdeal's aanleverspecs voor kleine/fijne elementen.
 
 ## Social media planning
 
@@ -133,6 +133,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-08-04: Visitekaartje print-klaar gemaakt (bleed, aanleverspecs drukwerkdeal, fotofix, Affinity-workflow): docs/logs/2026-08-04/02-visitekaartje-print-ready.md
 - 2026-08-04: Prompt Kit lancering, betaalprovider-crisis, Gumroad live, grote kritische contentherziening (12 prompts): docs/logs/2026-08-04/01-prompt-kit-lancering-en-betaalprovider-crisis.md
 - 2026-07-31: Strategisch herstart, kennis/strategieplan.md, The Spark Plan, site-fixes en agenda: docs/logs/2026-07-31/01-strategisch-herstart-en-uitvoeringsplan.md
 - 2026-07-24: Social media plan augustus 2026, 14 posts over 7 Canva-templates: docs/logs/2026-07-24/02-social-media-plan-augustus-2026.md
