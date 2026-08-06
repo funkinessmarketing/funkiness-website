@@ -1,7 +1,7 @@
 # Social Media Plan Augustus 2026
 
 **Platforms:** TikTok, Instagram, Facebook, YouTube Shorts
-**Cadans:** 14 posts, 3 augustus t/m 31 augustus 2026
+**Cadans:** 14 posts, 10 augustus t/m 7 september 2026
 **Aanpak:** Elk stuk kerncontent wordt één keer opgenomen (TikTok-formaat, verticale video) en daarna hergebruikt over alle vier de platforms. Alleen de captions verschillen licht per platform.
 
 **Belangrijk:** dit plan gebruikt 7 verschillende ontwerptypes in Canva, niet één. Elk onderwerp/doelgroep krijgt steeds dezelfde opzet, zodat de kalender herkenbaar en samenhangend oogt zonder dat elke post er identiek uitziet. Alle ontwerpen blijven binnen de FUNkiness!-stijl: vrolijk, crème/roze, geen zware zwarte vlakken.
@@ -69,7 +69,7 @@ Elke post heeft:
 
 ---
 
-## Post 1: maandag 3 augustus, Template A
+## Post 1: maandag 10 augustus, Template A
 
 **Pijler:** Merkintroductie, Magician x Outlaw energie
 
@@ -98,7 +98,7 @@ Marketing on Curaçao has looked the same for years, everyone doing the same thi
 
 ---
 
-## Post 2: woensdag 5 augustus, Template F
+## Post 2: woensdag 12 augustus, Template F
 
 **Pijler:** Mobiel kantoor concept
 
@@ -129,7 +129,7 @@ Every strategy session doesn't need a boardroom. Our mobile office setup means w
 
 ---
 
-## Post 3: vrijdag 7 augustus, Template B
+## Post 3: vrijdag 14 augustus, Template B
 
 **Pijler:** Marketing Strategy Scan & Social Media Scan (leadgenerator, klant kiest zelf)
 
@@ -165,7 +165,7 @@ Ready to see where your marketing actually stands? FUNkiness! is a fullservice m
 
 ---
 
-## Post 4: maandag 10 augustus, Template A
+## Post 4: maandag 17 augustus, Template A
 
 **Pijler:** Spotted on Curaçao / merkwereld
 
@@ -193,7 +193,7 @@ Curious who's behind that panterprint Jeep driving around Curaçao? That's the F
 
 ---
 
-## Post 5: woensdag 12 augustus, Template C
+## Post 5: woensdag 19 augustus, Template C
 
 **Pijler:** AI Superpower Quiz, archetype-spotlight 1 van 2
 
@@ -221,7 +221,7 @@ We built a free AI Superpower Quiz to show business owners how AI could actually
 
 ---
 
-## Post 6: donderdag 13 augustus, Template C
+## Post 6: donderdag 20 augustus, Template C
 
 **Pijler:** AI Superpower Quiz, archetype-spotlight 2 van 2 (follow-up daags na post 5)
 

@@ -129,10 +129,13 @@ Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-me
 
 Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen roast-content of "hier is wat iedereen fout doet"-aanpak.
 
+**Content Prompt Bank:** `docs/content-prompt-bank.md` bevat een verzameling AI-contentprompts (hooks, captions, content ideeën, reel-scripts, stories, doelgroepprofielen, verkoopcontent, contentkalenders) die de vaste basis vormen voor alle content die voor FUNkiness! gemaakt wordt. Bij elk gebruik: [ ] altijd vervangen door FUNkiness!-eigen info, en de output daarna nog toetsen aan de merkregels in dit bestand. Groeit mee met nieuwe prompts die Daisy aandraagt.
+
 ## Sessie logs
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-08-06: Promptbank opgeslagen (@merelnijman + 20-prompt lijst), harde contentstijl-correctie (niet-commercieel, humor, viral), Higgsfield VFX-experiment: docs/logs/2026-08-06/01-promptbank-en-humor-contentstijl-higgsfield-vfx.md
 - 2026-08-04: Visitekaartje print-klaar gemaakt (bleed, aanleverspecs drukwerkdeal, fotofix, Affinity-workflow): docs/logs/2026-08-04/02-visitekaartje-print-ready.md
 - 2026-08-04: Prompt Kit lancering, betaalprovider-crisis, Gumroad live, grote kritische contentherziening (12 prompts): docs/logs/2026-08-04/01-prompt-kit-lancering-en-betaalprovider-crisis.md
 - 2026-07-31: Strategisch herstart, kennis/strategieplan.md, The Spark Plan, site-fixes en agenda: docs/logs/2026-07-31/01-strategisch-herstart-en-uitvoeringsplan.md
