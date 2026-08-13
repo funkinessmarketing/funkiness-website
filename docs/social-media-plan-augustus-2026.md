@@ -447,7 +447,7 @@ Here's the Island Host AI Prompt Kit in action: fill in your property details on
 
 ## Post 14: maandag 31 augustus, Template G
 
-**Pijler:** Maandafsluiting, momentum, brede CTA
+**Pijler:** Maandafsluiting, vaart erin, brede CTA
 
 **Hook:** "This is just the warm-up."
 
