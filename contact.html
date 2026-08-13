@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.funkiness.ai/contact">
+  <link rel="alternate" hreflang="en" href="https://www.funkiness.ai/contact">
+  <link rel="alternate" hreflang="nl" href="https://www.funkiness.ai/nl/contact">
+  <link rel="alternate" hreflang="x-default" href="https://www.funkiness.ai/contact">
 
   <meta property="og:title" content="Contact | FUNkiness!">
   <meta property="og:description" content="Get in touch. We come to you. You pick the spot.">
@@ -14,7 +17,7 @@
   <meta property="og:url" content="https://www.funkiness.ai/contact.html">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -28,6 +31,10 @@
       <a href="quiz.html">Free Quiz</a>
       <span>✚</span>
       <a href="blog.html">Blog</a>
+      <div class="lang-switch">
+        <a href="/contact.html" class="lang-active" aria-label="English" hreflang="en">🇬🇧</a>
+        <a href="/nl/contact.html" aria-label="Nederlands" hreflang="nl">🇳🇱</a>
+      </div>
       <a href="contact.html" class="nav-button" style="background:var(--pink);">Say Hello <span>↗</span></a>
     </nav>
     <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
@@ -37,6 +44,10 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+    <div class="lang-switch">
+      <a href="/contact.html" class="lang-active" aria-label="English" hreflang="en">🇬🇧</a>
+      <a href="/nl/contact.html" aria-label="Nederlands" hreflang="nl">🇳🇱</a>
+    </div>
     <a href="/" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
     <a href="what-we-do.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">What We Do</a>
     <a href="scan.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Free Scan</a>
@@ -71,7 +82,7 @@
 
       <div class="contact-detail">
         <p class="contact-detail-label">We come to you</p>
-        <p class="contact-detail-value">You pick the spot: beach bar, hotel lobby, your office. We're on the island.</p>
+        <p class="contact-detail-value">You pick the spot: beach bar, hotel lobby, your office. Daisy is on the island.</p>
       </div>
 
     </div>
