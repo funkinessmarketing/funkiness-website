@@ -14,7 +14,7 @@ overal identiek zijn.
 | Home | Home |
 | Contact | Contact |
 | Say Hello | Zeg Hallo |
-| Get your free scan | Vraag je gratis scan aan |
+| Get your free scan | Doe de gratis scan |
 | Boring was never the plan. | Boring was never the plan. (blijft altijd Engels, ook op NL-pagina's) |
 
 ## Regels
