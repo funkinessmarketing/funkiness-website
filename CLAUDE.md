@@ -137,6 +137,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-08-13: Tweetalige website (NL/EN) gebouwd via subagent-driven-development, merkregel-fixes, servicekaart-overlap opgelost, NL-vertaling losser gemaakt. Open punt: titelgroottes op mobiel nog niet gecheckt: docs/logs/2026-08-13/01-tweetalige-website-nl-en.md
 - 2026-08-06: Promptbank opgeslagen (@merelnijman + 20-prompt lijst), harde contentstijl-correctie (niet-commercieel, humor, viral), Higgsfield VFX-experiment: docs/logs/2026-08-06/01-promptbank-en-humor-contentstijl-higgsfield-vfx.md
 - 2026-08-04: Visitekaartje print-klaar gemaakt (bleed, aanleverspecs drukwerkdeal, fotofix, Affinity-workflow): docs/logs/2026-08-04/02-visitekaartje-print-ready.md
 - 2026-08-04: Prompt Kit lancering, betaalprovider-crisis, Gumroad live, grote kritische contentherziening (12 prompts): docs/logs/2026-08-04/01-prompt-kit-lancering-en-betaalprovider-crisis.md
