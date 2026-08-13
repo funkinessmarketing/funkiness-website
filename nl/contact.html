@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact FUNkiness! | AI &amp; Marketingbureau Curaçao</title>
+  <meta name="description" content="Neem contact op met FUNkiness!, het AI en marketingbureau op Curaçao. Wij komen naar jou toe. Jij kiest de plek. Geen pitch deck, gewoon een écht strategisch gesprek over jouw bedrijf.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.funkiness.ai/nl/contact">
+  <link rel="alternate" hreflang="en" href="https://www.funkiness.ai/contact">
+  <link rel="alternate" hreflang="nl" href="https://www.funkiness.ai/nl/contact">
+  <link rel="alternate" hreflang="x-default" href="https://www.funkiness.ai/contact">
+
+  <meta property="og:title" content="Contact | FUNkiness!">
+  <meta property="og:description" content="Neem contact op. Wij komen naar jou toe. Jij kiest de plek.">
+  <meta property="og:image" content="https://www.funkiness.ai/jeep3.png">
+  <meta property="og:url" content="https://www.funkiness.ai/nl/contact.html">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="/nl/" class="logo"><img src="../funkiness-logo.png" alt="FUNkiness! Marketingbureau Curaçao" class="logo-img"></a>
+    <nav class="menu">
+      <a href="what-we-do.html">Wat We Doen</a>
+      <span>✚</span>
+      <a href="/scan.html">Gratis Scan (EN)</a>
+      <span>✚</span>
+      <a href="/quiz.html">Gratis Quiz (EN)</a>
+      <span>✚</span>
+      <a href="blog.html">Blog</a>
+      <div class="lang-switch">
+        <a href="/contact.html" aria-label="English" hreflang="en">🇬🇧</a>
+        <a href="/nl/contact.html" class="lang-active" aria-label="Nederlands" hreflang="nl">🇳🇱</a>
+      </div>
+      <a href="contact.html" class="nav-button" style="background:var(--pink);">Zeg Hallo <span>↗</span></a>
+    </nav>
+    <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+    <div class="lang-switch">
+      <a href="/contact.html" aria-label="English" hreflang="en">🇬🇧</a>
+      <a href="/nl/contact.html" class="lang-active" aria-label="Nederlands" hreflang="nl">🇳🇱</a>
+    </div>
+    <a href="/nl/" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
+    <a href="what-we-do.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Wat We Doen</a>
+    <a href="/scan.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Gratis Scan (EN)</a>
+    <a href="/quiz.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Gratis Quiz (EN)</a>
+    <a href="blog.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Blog</a>
+    <a href="faq.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">FAQ</a>
+    <a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="kicker">Contact</span>
+    <h1>Laten we jouw marketingstrategie<br><span class="script-word">op Curaçao bouwen.</span></h1>
+    <p class="page-tagline">Jij kiest de plek. Wij brengen het kantoor mee. Laat hieronder je gegevens achter en we nemen contact op om iets te plannen. Geen verplichtingen, geen pitch deck, gewoon een écht gesprek.</p>
+  </div>
+
+  <section class="contact-page-section">
+
+    <div class="contact-info-col">
+      <p class="section-kicker">Neem contact op</p>
+      <h2>Vertel ons over jouw bedrijf.<br><span class="script-word">Wij nemen het van daar over.</span></h2>
+      <p>Heb je een vraag, wil je meer weten over de scan, of ben je klaar om te praten over samenwerken. Neem gewoon contact op. Wij reageren snel.</p>
+
+      <div class="contact-detail">
+        <p class="contact-detail-label">E-mail</p>
+        <p class="contact-detail-value"><a href="mailto:sayhello@funkiness.ai">sayhello@funkiness.ai</a></p>
+      </div>
+
+      <div class="contact-detail">
+        <p class="contact-detail-label">Locatie</p>
+        <p class="contact-detail-value">Curaçao, Nederlandse Cariben</p>
+      </div>
+
+      <div class="contact-detail">
+        <p class="contact-detail-label">Wij komen naar jou toe</p>
+        <p class="contact-detail-value">Jij kiest de plek: beach bar, hotellobby, jouw kantoor. Wij zijn op het eiland.</p>
+      </div>
+
+    </div>
+
+    <div class="contact-form-col">
+      <div id="formContent">
+        <label for="name">Jouw naam</label>
+        <form action="https://formspree.io/f/mdajpopd" method="POST" onsubmit="handleContactSubmit(event)">
+          <input type="text" id="name" name="name" placeholder="Daisy Kuipers" required>
+          <label for="email">E-mailadres</label>
+          <input type="email" id="email" name="email" placeholder="jij@jouwbedrijf.com" required>
+          <label for="company">Bedrijf</label>
+          <input type="text" id="company" name="company" placeholder="Jouw bedrijf of hotel">
+          <label for="subject">Waar gaat het over?</label>
+          <select id="subject" name="subject">
+            <option value="">Kies een onderwerp</option>
+            <option value="strategy">Marketingstrategie</option>
+            <option value="scan">Gratis AI & Marketing Scan</option>
+            <option value="ai">AI-integratie</option>
+            <option value="social">Social media & content</option>
+            <option value="branding">Branding & campagnes</option>
+            <option value="other">Iets anders</option>
+          </select>
+          <label for="message">Jouw bericht</label>
+          <textarea id="message" name="message" placeholder="Vertel ons wat er speelt. Waar werk je aan? Wat heb je nodig?" required></textarea>
+          <button type="submit" class="black-button" style="width:100%;justify-content:center;font-size:17px;border:none;cursor:pointer;">Verstuur <span>↗</span></button>
+        </form>
+      </div>
+
+      <div id="formSuccess" style="display:none;text-align:center;padding:60px 20px;">
+        <p style="font-size:52px;margin-bottom:20px;">🐆</p>
+        <h3 style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;">We komen eraan!</h3>
+        <p style="font-size:17px;color:rgba(8,4,3,0.62);line-height:1.6;">Bericht ontvangen. We nemen snel contact op.<br>Boring was never the plan.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="wave-divider" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C240,4 600,64 960,24 C1160,4 1340,56 1440,28 L1440,64 L0,64 Z" fill="#080403"/></svg></div>
+
+  <footer class="site-footer">
+    <div>
+      <a href="/nl/" class="footer-logo">FUNkiness!</a>
+      <p class="footer-tagline">AI-gedreven marketingstrategie. Gevestigd op Curaçao.</p>
+      <a href="mailto:sayhello@funkiness.ai" class="footer-email">sayhello@funkiness.ai</a>
+    </div>
+    <div>
+      <p class="footer-nav-title">Navigatie</p>
+      <nav class="footer-nav">
+        <a href="/nl/">Home</a>
+        <a href="what-we-do.html">Wat We Doen</a>
+        <a href="/scan.html">Gratis Scan (EN)</a>
+        <a href="/quiz.html">Gratis Quiz (EN)</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 FUNkiness! Curaçao</p>
+    <p>Boring was never the plan.</p>
+  </div>
+
+  <script>
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          document.getElementById('formContent').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        }
+      } catch {
+        alert('Er ging iets mis. Mail ons op sayhello@funkiness.ai');
+      }
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact FUNkiness!, AI & Marketingbureau Curaçao",
+    "url": "https://www.funkiness.ai/nl/contact",
+    "description": "Neem contact op met FUNkiness!, het AI en marketingbureau op Curaçao. Strategie, AI-integratie, social media en campagnes.",
+    "inLanguage": "nl",
+    "publisher": { "@id": "https://www.funkiness.ai/#organization" }
+  }
+  </script>
+</body>
+</html>
