@@ -49,7 +49,7 @@ Alle bedrijven op Curaçao: hotels, resorts, makelaars, restaurants, vakantiever
 
 ## Schrijfstijl
 
-Casual, direct, bold, met humor. Altijd positief en vanuit eigen kracht. Kort en krachtig. Nooit corporate, traag, voorspelbaar, safe of verontschuldigend. De website is sinds augustus 2026 tweetalig: Engels is de default taal, Nederlands staat onder de `nl/` submap (bv. `nl/what-we-do.html`), met een vlaggetjes-taalswitcher in de navbar. Geen automatische taaldetectie. `quiz.html`, `scan.html` en `island-host-ai-prompt-kit.html` blijven Engelstalig, geen NL-versie. Vaste navigatie-/UI-vertalingen staan in `docs/vertaalgids-website.md`. Social media blijft Nederlands en Engels. TikTok is een kernplatform. Altijd spreektaal.
+Casual, direct, bold, met humor. Altijd positief en vanuit eigen kracht. Kort en krachtig. Nooit corporate, traag, voorspelbaar, safe of verontschuldigend. Engels op de website, Nederlands en Engels op social media. TikTok is een kernplatform. Altijd spreektaal.
 
 Verboden: emdash, woorden als 'premium' of 'luxury', negatieve vergelijkingen met anderen of de markt, onverifieerbare claims over concurrenten.
 
@@ -120,8 +120,6 @@ Lees deze bestanden voor meer detail:
 **Mobile office sectie** - nieuwe homepage sectie in ontwikkeling voor het "You pick the spot, we bring the office" concept. Preview: `docs/preview-mobile-office-sectie.html`. Booking via **Cal.com** (gratis, werkt met Apple Agenda via CalDAV). Meeting naam: "Marketing Strategy Session". Wacht op Cal.com embed code van Daisy om formulier te vervangen. Nog niet live op `index.html`.
 
 **NFC visitekaartje** - fysiek kaartje met NFC-chip. Tik opent `connect.html` (funkiness.ai/connect). Bestanden: `connect.html` (landingspagina: WhatsApp, Instagram, TikTok, Website), `docs/visitekaartje.html` (print-klaar ontwerp, 85x55mm trim + 3mm bleed, dus 91x61mm paginaformaat, voor- en achterkant). Panterprint met golvende rand via SVG clipPath. Wordt gedrukt bij **drukwerkdeal.nl** (niet meer Mobilo): Chrome-PDF-export (Cmd+P, achtergrondafbeeldingen aan, papierformaat pakt automatisch 91x61mm) dient als bouwtekening, die wordt in Affinity Publisher geplaatst (CMYK, Coated FOGRA39, 3mm bleed) om zuiver te exporteren als PDF/X-4:2008. Zwarte tekst en de QR-code staan bewust op puur `#000` (nooit rich black) volgens drukwerkdeal's aanleverspecs voor kleine/fijne elementen.
-
-**Tweetalige website (NL/EN)** - sinds augustus 2026. Elke tweetalige pagina heeft een `nl/`-tegenhanger met dezelfde bestandsnaam (bv. `contact.html` ↔ `nl/contact.html`), gedeelde `style.css`, taalswitcher (🇬🇧/🇳🇱) in de navbar. `quiz.html`, `scan.html` en `island-host-ai-prompt-kit.html` blijven Engels-only. Vertaalgids: `docs/vertaalgids-website.md`. Design-spec: `docs/superpowers/specs/2026-08-13-tweetalige-website-design.md`.
 
 ## Social media planning
 
