@@ -51,7 +51,7 @@ Alle bedrijven op Curaçao: hotels, resorts, makelaars, restaurants, vakantiever
 
 Casual, direct, bold, met humor. Altijd positief en vanuit eigen kracht. Kort en krachtig. Nooit corporate, traag, voorspelbaar, safe of verontschuldigend. De website is sinds augustus 2026 tweetalig: Engels is de default taal, Nederlands staat onder de `nl/` submap (bv. `nl/what-we-do.html`), met een vlaggetjes-taalswitcher in de navbar. Geen automatische taaldetectie. `quiz.html`, `scan.html` en `island-host-ai-prompt-kit.html` blijven Engelstalig, geen NL-versie. Vaste navigatie-/UI-vertalingen staan in `docs/vertaalgids-website.md`. Social media blijft Nederlands en Engels. TikTok is een kernplatform. Altijd spreektaal.
 
-Verboden: emdash, woorden als 'premium' of 'luxury', negatieve vergelijkingen met anderen of de markt, onverifieerbare claims over concurrenten.
+Verboden: emdash, woorden als 'premium', 'luxury' of 'momentum', negatieve vergelijkingen met anderen of de markt, onverifieerbare claims over concurrenten.
 
 Als een tekst saai klinkt, past hij niet bij FUNkiness!
 
