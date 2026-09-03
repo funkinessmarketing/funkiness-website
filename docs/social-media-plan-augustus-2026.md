@@ -498,7 +498,7 @@ That's a wrap on August for FUNkiness! New mobile office setups, two free scans,
 
 Alle 14 ontwerpen staan al af, als PNG op het echte formaat (1080x1920, verticaal), met de echte huisstijlfonts (Poppins, Permanent Marker, Inter). Geen Canva nodig.
 
-**Bestanden:** `docs/social-posts-augustus-2026/post-01.png` t/m `post-14.png`, genummerd op post uit de overzichtstabel hierboven.
+**Bestanden:** `docs/Graphic-Design/social-posts-augustus-2026/post-01.png` t/m `post-14.png`, genummerd op post uit de overzichtstabel hierboven.
 
 **Ontwerptaal (3e versie):** elk template heeft een eigen, herkenbaar vormconcept in plaats van steeds "tekst netjes gecentreerd":
 - **A, Brand Hook:** diagonale roze wig door het frame, gekantelde headline, rond stempel-logo als CTA.

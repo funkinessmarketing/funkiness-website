@@ -192,7 +192,8 @@
     .contact-row {
       font-family: 'Poppins', sans-serif;
       font-weight: 900;
-      font-size: 7pt;
+      font-size: 8pt;
+      letter-spacing: -0.4px;
       color: #000;
       white-space: nowrap;
     }
@@ -204,6 +205,7 @@
     }
 
     @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
       body { background: white; padding: 0; gap: 0; }
       .label { display: none; }
       .trim-line { display: none; }
@@ -219,7 +221,7 @@
     <p class="label">Voorkant</p>
     <div class="card card-front">
       <div class="trim-line"></div>
-      <img src="../funkiness-logo.png" alt="FUNkiness!" class="logo-img">
+      <img src="../../funkiness-logo.png" alt="FUNkiness!" class="logo-img">
       <p class="service-line">AI, Social Media &amp; Marketing · Curaçao</p>
       <p class="tagline">Boring was never the plan.</p>
 
@@ -230,7 +232,7 @@
             <path d="M0,38 C70,8 155,68 240,32 C325,-4 410,62 495,28 C580,-6 665,58 750,24 C800,8 830,22 850,16 L850,140 L0,140 Z"/>
           </clipPath>
         </defs>
-        <image href="../panterprint.png" x="0" y="0" width="850" height="140"
+        <image href="../../panterprint.png" x="0" y="0" width="850" height="140"
                preserveAspectRatio="xMidYMid slice"
                clip-path="url(#waveBottom)"/>
       </svg>
@@ -249,7 +251,7 @@
             <path d="M0,0 L850,0 L850,90 C780,120 695,60 610,96 C525,130 440,66 355,100 C270,132 185,68 100,102 C60,116 28,104 0,110 Z"/>
           </clipPath>
         </defs>
-        <image href="../panterprint.png" x="0" y="0" width="850" height="120"
+        <image href="../../panterprint.png" x="0" y="0" width="850" height="120"
                preserveAspectRatio="xMidYMid slice"
                clip-path="url(#waveTop)"/>
       </svg>

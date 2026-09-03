@@ -1,7 +1,7 @@
 # The Island Host AI Prompt Kit
 ## 12 AI Prompts for Vacation Rental Owners on Aruba, Bonaire & Curaçao
 
-Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt-kit.html](island-host-ai-prompt-kit.html) (verkocht via Gumroad, $27). Bij een wijziging aan de HTML altijd dit bestand meebijwerken, en andersom.
+Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt-kit.html](Graphic-Design/island-host-ai-prompt-kit.html) (verkocht via Gumroad, $27). Bij een wijziging aan de HTML altijd dit bestand meebijwerken, en andersom.
 
 **Cover-positionering (2026-08-03, kritische herziening):** "A generic AI prompt doesn't know Airbnb's 295-character preview cutoff, or that VRBO banned fee-mentions in April 2025. These 12 do." Elke prompt-note heet nu expliciet "What generic AI doesn't know" en is visueel het meest prominente element op de kaart (roze label + achtergrond), de prompttekst zelf is bewust rustiger gestyled. Doel: nooit het gevoel "dit had ik zelf ook met AI kunnen maken."
 
