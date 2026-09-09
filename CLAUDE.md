@@ -139,6 +139,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-09-09: Repost/Repurpose/Reinvent-methode (@bizwithlaurelle) vastgelegd, koerscorrectie: augustus-postbeelden staan nog niet live, dat is het openstaande punt: docs/logs/2026-09-09/01-repost-strategie-en-augustus-posts-nog-niet-live.md
 - 2026-09-03: Visitekaartje Daisy print-klaar (drukwerkdeal-marge-fix, Affinity losgelaten voor directe RGB-upload, bevestigd goed gedrukt), nieuw Berdien-kaartje (blanco naam/nummer), docs/Graphic-Design/ map opgezet: docs/logs/2026-09-03/01-visitekaartje-berdien-en-graphic-design-map.md
 - 2026-08-13: Tweetalige website (NL/EN) gebouwd via subagent-driven-development, merkregel-fixes, servicekaart-overlap opgelost, NL-vertaling losser gemaakt. Open punt: titelgroottes op mobiel nog niet gecheckt: docs/logs/2026-08-13/01-tweetalige-website-nl-en.md
 - 2026-08-06: Promptbank opgeslagen (@merelnijman + 20-prompt lijst), harde contentstijl-correctie (niet-commercieel, humor, viral), Higgsfield VFX-experiment: docs/logs/2026-08-06/01-promptbank-en-humor-contentstijl-higgsfield-vfx.md
