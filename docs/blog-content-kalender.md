@@ -7,8 +7,8 @@ Onderwerpen bedacht op 2026-08-14, na afronding van de tweetalige website. Doel:
 | # | Datum | Onderwerp | Categorie | Status |
 |---|-------|-----------|-----------|--------|
 | 1 | 2026-08-25 | Hoe je opvalt tussen alle Airbnb- en Booking.com-listings op Curaçao | Marketing | Geschreven, klaar om te reviewen |
-| 2 | 2026-09-08 | Social media is geen strategie: het verschil tussen posten en groeien | Strategie | Nog te schrijven |
-| 3 | 2026-09-22 | Wat ChatGPT, Perplexity en Google AI Overviews wel en niet over jouw bedrijf weten | AI | Nog te schrijven |
+| 2 | 2026-09-08 | Social media is geen strategie: het verschil tussen posten en groeien | Strategie | Nog te schrijven (achterstallig) |
+| 3 | 2026-09-09 | Wat ChatGPT, Perplexity en Google AI Overviews wel en niet over jouw bedrijf weten | AI | Geschreven en live (`blog-ai-search-curacao.html`), vervroegd vanaf 2026-09-22 |
 | 4 | 2026-10-06 | Wat marketing die wél opvalt op Curaçao gemeen heeft | Marketing | Nog te schrijven |
 | 5 | 2026-10-20 | Hoog- en laagseizoen op Curaçao: hoe je daar strategisch marketing omheen bouwt | Strategie | Nog te schrijven |
 | 6 | 2026-11-03 | Hoe bedrijven op Curaçao online vertrouwen opbouwen via reviews | Marketing | Nog te schrijven |
