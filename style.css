@@ -1024,9 +1024,15 @@ h1.section-kicker {
   .page-hero .kicker { font-size: 14px; margin-bottom: 28px; }
 }
 
-.page-hero h1 {
+.page-hero h1, .page-hero h2 {
   font-size: clamp(32px, 6vw, 96px);
   line-height: 0.92;
+}
+
+.page-hero h1.kicker {
+  font-family: "Inter", sans-serif;
+  line-height: normal;
+  word-spacing: normal;
 }
 
 .page-hero .page-tagline {
