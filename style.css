@@ -1029,6 +1029,8 @@ h1.section-kicker {
   line-height: 0.92;
 }
 
+.page-hero h1:not(.kicker) { margin-bottom: 20px; }
+
 .page-hero h1.kicker {
   font-family: "Inter", sans-serif;
   line-height: normal;
@@ -1108,6 +1110,45 @@ h1.section-kicker {
 
 @media (min-width: 900px) {
   .service-detail-card p { font-size: 18px; }
+}
+
+/* ============================
+   SEO LANDING PAGES (AI Marketing, Social Media, Content Creation,
+   Marketing Strategy, Branding & Campaigns Curaçao)
+   ============================ */
+.seo-section {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 56px 5vw 24px;
+}
+
+@media (min-width: 900px) {
+  .seo-section { padding: 80px 7vw 32px; }
+}
+
+.seo-section h2 {
+  font-size: clamp(30px, 4.2vw, 56px);
+  line-height: 1.02;
+  margin-bottom: 24px;
+}
+
+.seo-section h2 .script-word { font-size: 0.95em; }
+
+.seo-section p {
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.65;
+  color: rgba(8,4,3,0.78);
+  margin-bottom: 18px;
+}
+
+.seo-statement {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: clamp(24px, 3.2vw, 40px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin: 28px 0 8px !important;
 }
 
 /* ============================
