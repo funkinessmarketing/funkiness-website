@@ -218,22 +218,27 @@ Beschikbare capaciteit: maandag, woensdag, vrijdag, 9.00 tot 13.00 uur, 12 uur p
 
 ## SEO-landingspagina's Curaçao (GEO/SEO-traject, stap 13)
 
-Vastgelegd op 2026-09-11, na de homepage- en what-we-do-optimalisaties (H1/H2-herstructurering, keyword-cannibalisatie tussen pagina's opgelost, vier dienstnamen hernoemd naar Marketing Strategy / AI Marketing & Integration / Social Media & Content / Branding & Campaigns). Volgende stap: vijf losse commerciële SEO-pagina's bouwen, geen blogs, gericht op daadwerkelijke zoekintentie. Bewust gekozen om niet steeds "Curaçao" te herhalen op de pagina's zelf; wel in H1, intro en structuur.
+Vastgelegd op 2026-09-11, na de homepage- en what-we-do-optimalisaties (H1/H2-herstructurering, keyword-cannibalisatie tussen pagina's opgelost, vier dienstnamen hernoemd naar Marketing Strategy / AI Marketing & Integration / Social Media & Content / Branding & Campaigns). Vijf losse commerciële SEO-pagina's bouwen, geen blogs, gericht op daadwerkelijke zoekintentie. Bewust gekozen om niet steeds "Curaçao" te herhalen op de pagina's zelf; wel in H1, intro en structuur.
 
-Bouwvolgorde:
-1. `/ai-marketing-curacao`, onderscheidende pagina
-2. `/social-media-marketing-curacao`
-3. `/content-creation-curacao`
-4. `/marketing-strategy-curacao`
-5. `/branding-curacao`, primair zoekthema "branding Curaçao" / "brand strategy Curaçao". Toegevoegd op 2026-09-11 om het gat te dichten dat het vierde dienstenblok (Branding & Campaigns) anders zonder eigen landingspagina bleef. Titel, meta description, H1 en hero-copy nog niet uitgeschreven, dat gebeurt zoals bij de andere pagina's pas vlak voordat hij gebouwd wordt.
+**Bouwvolgorde (herzien op 2026-09-11, positionering leidend boven zoekvolume):**
+1. **`/ai-marketing-curacao`, live sinds 2026-09-11 (stap 14).** Onderscheidende pagina, EN + NL, FAQPage-schema, vijf AI-diensten. Interne links naar de andere vier pagina's nog niet gelegd (bestonden nog niet), staat als platte tekst met een HTML-comment als reminder.
+2. `/marketing-strategy-curacao`, stap 16
+3. `/social-media-marketing-curacao`, stap 17 (let op de verkorte "content"-paragraaf, zie hieronder)
+4. `/branding-campaigns-curacao`, stap 18
+5. `/content-creation-curacao`, stap 19, bewust als laatste. Reden: Daisy wil FUNkiness! primair positioneren als het strategische marketingbureau dat ook uitvoert, niet als "het bureau dat Reels en content maakt". Deze pagina blijft wel gebouwd worden, want er wordt wel degelijk lokaal op gezocht en dat is een geldige commerciële ingang, maar krijgt minder prominente site-navigatie en de copy stuurt bezoekers door naar Social Media, Marketing Strategy en Branding & Campaigns.
 
-Vaste paginastructuur per pagina: H1 met Curaçao → intro met Curaçao → concrete diensten → voor wie → lokale context → waarom FUNkiness! → FAQ → CTA. Pagina's linken onderling naar elkaar (cluster rond marketing op Curaçao). Bewust géén aparte `/marketing-agency-curacao`-pagina, dat werk doet de homepage al (`AI & Marketing Agency in Curaçao`), een tweede pagina zou daarmee concurreren. De bestaande `/blog-marketing-strategy-curacao` blijft de informatieve pagina en gaat linken naar de nieuwe commerciële `/marketing-strategy-curacao`.
+**Let op voor stap 17 (Social Media Marketing Curaçao):** de sectie "Need the content too?" moet klein blijven, geen volwaardige contentsectie. Concreet:
+- H2/kopregel: `Content when you need it`
+- Tekst: `Need Reels, video or social content to bring the strategy to life? We can create that locally in Curaçao too.`
+- Niet meer dan dat, geen aparte diensten-opsomming zoals bij de andere secties.
 
-Techniek: `vercel.json` heeft al `"cleanUrls": true`, dus een bestand `ai-marketing-curacao.html` in de root is automatisch bereikbaar op `/ai-marketing-curacao` zonder extra config.
+Vaste paginastructuur per pagina: H1 met Curaçao → intro met Curaçao → concrete diensten → voor wie → lokale context → waarom FUNkiness! → FAQ → CTA. Pagina's linken onderling naar elkaar (cluster rond marketing op Curaçao) zodra ze allemaal bestaan. Bewust géén aparte `/marketing-agency-curacao`-pagina, dat werk doet de homepage al (`AI & Marketing Agency in Curaçao`), een tweede pagina zou daarmee concurreren. De bestaande `/blog-marketing-strategy-curacao` blijft de informatieve pagina en gaat linken naar de nieuwe commerciële `/marketing-strategy-curacao`.
+
+Techniek: `vercel.json` heeft al `"cleanUrls": true`, dus een bestand `ai-marketing-curacao.html` in de root is automatisch bereikbaar op `/ai-marketing-curacao` zonder extra config. Voor stap 14 zijn twee herbruikbare CSS-klassen toegevoegd aan `style.css`: `.seo-section` (contentblokken) en `.seo-statement` (grote uitgelichte regel), bedoeld om alle vier de resterende pagina's dezelfde structuur te laten hergebruiken.
 
 Stap 14: pagina 1 (`AI Marketing Curaçao`) volledig uitschrijven (H2's, definitieve teksten, CTA's, interne links, FAQ) en live zetten. Nog niet begonnen.
 
-**Gat gedicht op 2026-09-11:** Daisy bevestigde dat "Branding & Campaigns" ook een eigen landingspagina krijgt, zie `/branding-curacao` als vijfde pagina hierboven.
+**Gat gedicht op 2026-09-11:** Daisy bevestigde dat "Branding & Campaigns" ook een eigen landingspagina krijgt, zie `/branding-campaigns-curacao` in de bouwvolgorde hierboven.
 
 ## Open beslispunten
 
