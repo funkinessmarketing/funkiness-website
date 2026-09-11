@@ -556,6 +556,12 @@ h1 span { color: var(--pink); }
   font-weight: 800;
 }
 
+h1.section-kicker {
+  font-family: "Inter", sans-serif;
+  line-height: normal;
+  word-spacing: normal;
+}
+
 .services-copy h2 {
   font-size: clamp(32px, 5.7vw, 92px);
   line-height: 0.95;
