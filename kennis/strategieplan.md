@@ -45,6 +45,7 @@ Dit is de logische bouwvolgorde, bepaald op basis van wat al staat, wat de meest
    - **Waarom dit geen zijspoor is:** het lost het verkeersprobleem op dat al was vastgesteld (0 voltooide scans, geen bezoekers), en sterke eigen content dient meteen als portfolio-bewijs richting prospects, dat maakt aparte voorbeeldposts voor klanten overbodig.
    - **Toon:** steengoede content die FUN, bold en grappig is en aan het denken zet, moet opvallen en inspireren. Dit is niet nieuw, dit is exact de merkstem die al vastligt (Magician x Outlaw, energie en humor verplicht, litmustest "kan een ander bureau dit ook zeggen?").
    - **Begrenzing:** 1 vaste dag per week, geen advertentiebudget zonder eerst organische content getest te hebben, vervangt niet de Spark Plan/Gumroad/outreach-inspanning, komt ernaast.
+5. **Update 2026-09-09: focus tijdelijk verschoven naar spoor A, eerste klant via de Scan + directe outreach, Prompt Kit-lancering on hold.** Daisy wil nu actief op zoek naar de eerste klant in plaats van te wachten tot de Prompt Kit als bewijslast dient. Vandaag is bovendien GEO-werk gedaan (nieuwe blogpost `blog-ai-search-curacao.html`, 4 nieuwe top-of-funnel FAQ-vragen, een reel). Dat versterkt de propositie en de vindbaarheid op termijn, maar lost het verkeersprobleem uit punt 1 niet meteen op: organische SEO/GEO-groei op een gloednieuw domein kost weken tot maanden, geen dagen. De eerste klant komt dus niet via afwachten op organisch verkeer, maar via directe, persoonlijke outreach naar een korte shortlist van concrete bedrijven op Curaçao, met de gratis Scan als opener en de GEO-invalshoek (bijna niemand hier speelt hier al op in) als aandachttrekker. Zie Marketinguitvoeringsplan voor het concrete outreach-bericht.
 
 ## Wat: productportfolio en status
 
@@ -121,6 +122,34 @@ Dit zijn ideeën die inhoudelijk kunnen kloppen, maar niet passen in de huidige 
   - Scan: geen technische fix nodig (stond al overal gelinkt), het echte probleem is verkeer, niet vindbaarheid. Oplossing is niet een aparte scan-campagne (dat zou een nieuw parallel traject zijn), maar de scan-link meenemen als soft opener in de outreach die al gepland staat voor The Spark Plan en de Gumroad-lancering van de Prompt Kit. Bijvoorbeeld: cold e-mail opent met "doe eerst de gratis scan" voordat de pitch komt.
 - **Wanneer:** quiz-link toevoegen is gedaan. Scan-link verwerken in de outreach-materialen gebeurt als onderdeel van de one-pager/e-mailtemplates die toch al gemaakt worden voor The Spark Plan (zie hieronder).
 
+### Directe outreach voor de eerste klant (spoor A), vanaf 2026-09-09
+
+Vervangt niet de scan/quiz-fix hierboven, maakt 'm actief bruikbaar: de scan wacht niet langer op organisch verkeer, Daisy stuurt 'm zelf naar concrete, met naam genoemde bedrijven.
+
+- **Stap 1, shortlist:** 5 tot 10 concrete bedrijven op Curaçao die bij de doelgroep passen (hotels, restaurants, makelaars, vakantiewoningbeheerders), gevonden via Google Maps of Instagram, niet verzonnen. Begin klein, liever 5 goed gekozen bedrijven dan 20 lukraak.
+- **Stap 2, persoonlijk bericht sturen** (WhatsApp/DM als er geen mailadres is, e-mail als die er wel is), met de gratis Scan als opener en de GEO-invalshoek als aandachttrekker, niet als directe verkooppitch:
+
+  **WhatsApp/DM (kort):**
+  > Hi [naam], ik ben Daisy van FUNkiness!, wij doen AI-marketing op Curaçao. Ik ben benieuwd of [bedrijfsnaam] al zichtbaar is in ChatGPT en Google's AI-antwoorden, de meeste bedrijven hier zijn dat nog niet. Ik heb een gratis scan gemaakt die dat en je marketing in 5 minuten in kaart brengt: [scanlink]. Benieuwd wat eruit komt bij jullie.
+
+  **E-mail (iets uitgebreider):**
+  > Onderwerp: Is [bedrijfsnaam] al zichtbaar in ChatGPT en Google's AI-antwoorden?
+  >
+  > Beste [naam],
+  >
+  > Ik ben Daisy, mede-oprichter van FUNkiness!, een AI-marketingbureau op Curaçao. Zoeken verandert snel: ChatGPT, Perplexity en Google's eigen AI geven nu vaak al een compleet antwoord voordat iemand ooit op een link klikt. Bijna geen enkel bedrijf op Curaçao speelt hier al op in.
+  >
+  > Ik heb een gratis scan ontwikkeld die in 5 minuten in kaart brengt waar [bedrijfsnaam] qua marketing en AI-zichtbaarheid staat, en waar de grootste kansen liggen. Kost niets, geen verplichtingen: [scanlink]
+  >
+  > Benieuwd naar wat eruit komt. Laat gerust weten als je vragen hebt.
+  >
+  > Met vriendelijke groet,
+  > Daisy Kuipers
+  > FUNkiness! AI, Social Media & Marketing
+
+- **Toon:** zakelijk, direct, zelfverzekerd, geen casual slang, niet pushy (zie [[feedback_zakelijke_toon]]).
+- **Stap 3:** wie de scan invult krijgt automatisch een rapport (bestaande flow), dat is het natuurlijke vervolgmoment om persoonlijk op te volgen en het strategiegesprek voor te stellen.
+
 ### Contentfase (fase 2, ná spoor B)
 
 - **Wat:** eigen contentkalender hervatten (TikTok, Instagram, Facebook, YouTube Shorts), zoals eerder opgezet in `docs/social-media-plan-augustus-2026.md`, dan gericht op het promoten van The Spark Plan en de Prompt Kit-lijn, niet alleen merkverhaal.
@@ -186,6 +215,24 @@ Beschikbare capaciteit: maandag, woensdag, vrijdag, 9.00 tot 13.00 uur, 12 uur p
 *(Week 3 en verder worden ingevuld zodra week 1 en 2 zijn afgerond en het plan is bijgewerkt.)*
 
 **Apple Agenda:** deze 2 weken staan ook als importeerbaar bestand in `docs/agenda-augustus-2026.ics` (ma/wo/vr, 9.00-13.00 uur, taken in de omschrijving). Geopend en geïmporteerd op 2026-07-31. Bij een nieuwe periode wordt een nieuw .ics-bestand gegenereerd op basis van de bijgewerkte dagindeling hierboven.
+
+## SEO-landingspagina's Curaçao (GEO/SEO-traject, stap 13)
+
+Vastgelegd op 2026-09-11, na de homepage- en what-we-do-optimalisaties (H1/H2-herstructurering, keyword-cannibalisatie tussen pagina's opgelost, vier dienstnamen hernoemd naar Marketing Strategy / AI Marketing & Integration / Social Media & Content / Branding & Campaigns). Volgende stap: vier losse commerciële SEO-pagina's bouwen, geen blogs, gericht op daadwerkelijke zoekintentie. Bewust gekozen om niet steeds "Curaçao" te herhalen op de pagina's zelf; wel in H1, intro en structuur.
+
+Bouwvolgorde:
+1. `/ai-marketing-curacao`, onderscheidende pagina
+2. `/social-media-marketing-curacao`
+3. `/content-creation-curacao`
+4. `/marketing-strategy-curacao`
+
+Vaste paginastructuur per pagina: H1 met Curaçao → intro met Curaçao → concrete diensten → voor wie → lokale context → waarom FUNkiness! → FAQ → CTA. Pagina's linken onderling naar elkaar (cluster rond marketing op Curaçao). Bewust géén aparte `/marketing-agency-curacao`-pagina, dat werk doet de homepage al (`AI & Marketing Agency in Curaçao`), een tweede pagina zou daarmee concurreren. De bestaande `/blog-marketing-strategy-curacao` blijft de informatieve pagina en gaat linken naar de nieuwe commerciële `/marketing-strategy-curacao`.
+
+Techniek: `vercel.json` heeft al `"cleanUrls": true`, dus een bestand `ai-marketing-curacao.html` in de root is automatisch bereikbaar op `/ai-marketing-curacao` zonder extra config.
+
+Stap 14: pagina 1 (`AI Marketing Curaçao`) volledig uitschrijven (H2's, definitieve teksten, CTA's, interne links, FAQ) en live zetten. Nog niet begonnen.
+
+**Open gat, nog niet besproken met Daisy:** de vier SEO-pagina's dekken drie van de vier dienstenblokken (Marketing Strategy, AI Marketing & Integration, Social Media & Content, dat laatste zelfs dubbel via social-media-marketing + content-creation). "Branding & Campaigns" heeft geen eigen landingspagina in dit plan. Navragen of dat bewust is (lagere zoekintentie/prioriteit) of dat er later een vijfde pagina bij moet.
 
 ## Open beslispunten
 
