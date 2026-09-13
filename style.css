@@ -1175,6 +1175,28 @@ h1.section-kicker {
   top: 0;
 }
 
+.moment-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+@media (min-width: 700px) {
+  .moment-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.moment-card {
+  background: var(--cream-light);
+  border: 1px solid rgba(8,4,3,0.08);
+  border-radius: 20px;
+  padding: 24px 26px;
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--black);
+}
+
 /* ============================
    HOW IT WORKS
    ============================ */
