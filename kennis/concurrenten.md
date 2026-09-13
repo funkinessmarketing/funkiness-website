@@ -1,9 +1,7 @@
 # Mijn concurrenten
 
-FUNkiness! vergelijkt zich niet met andere bureaus. We positioneren ons niet naast de concurrentie — we stappen daar volledig buiten.
+FUNkiness! vergelijkt zich niet met andere bureaus en maakt geen negatieve uitspraken over de markt of over concurrenten. We schrijven en denken vanuit onze eigen kracht: wie FUNkiness! is, niet wie de rest niet is.
 
-Onze echte concurrent is de status quo: luxemerken op Curaçao die er allemaal hetzelfde uitzien. Resorts, hotels en andere premium bedrijven die dezelfde toon, dezelfde beelden en dezelfde aanpak gebruiken als iedereen. Niemand durft op te vallen. Niemand springt eruit.
+Iemand kiest voor FUNkiness! omdat ze klaar zijn om op te vallen: scherpe strategie, AI die daadwerkelijk werkt, en een aanpak die past bij hun eigen bedrijf. FUNkiness! is gevestigd op Curaçao en werkt vanuit die lokale kennis.
 
-FUNkiness! is het antwoord voor elk luxemerk dat er precies hetzelfde uitziet als elk ander luxemerk.
-
-Iemand kiest voor FUNkiness! omdat ze klaar zijn om te transformeren — en bereid zijn de regels te breken om er te komen. Wij maken AI begeerlijk in plaats van beangstigend, en we leven zelf op het eiland waar onze klanten gezien willen worden. Dat maakt ons anders dan elk bureau dat vanuit een kantoor elders een strategie schrijft.
+Geen onverifieerbare claims over concurrenten of de markt. Alleen schrijven wat we zelf kunnen bevestigen.

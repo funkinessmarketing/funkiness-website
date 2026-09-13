@@ -2,7 +2,7 @@
 
 ## Toon en karakter
 
-FUNkiness! communiceert casual, direct en met humor — maar nooit goedkoop. De toon is premium én rebels tegelijk. Denk: Vogue met een attitude, niet een flyer voor een buurtborrel.
+FUNkiness! communiceert casual, direct en met humor, maar nooit goedkoop. De toon is bold én rebels tegelijk. Denk: Vogue met een attitude, niet een flyer voor een buurtborrel.
 
 Merkpersoonlijkheid in 6 woorden: **Sharp. Tropical. Cinematic. Rebellious. Alive.FUN!**
 
@@ -12,9 +12,9 @@ Merkarchetype: The Magician meets The Outlaw. Eén creëert transformatie, de an
 
 - Korte, krachtige zinnen. Geen lange lappen tekst.
 - Zelfverzekerd en zonder verontschuldiging. Nooit defensief.
-- Humor: ja, maar scherp — niet flauw.
+- Humor: ja, maar scherp, niet flauw.
 - Engels (Amerikaans) op de website. Nederlands én Engels op social media.
-- TikTok is een kernplatform — content moet werken op snelheid en gevoel.
+- TikTok is een kernplatform: content moet werken op snelheid en gevoel.
 - Altijd een positieve toon in schrijfstijl
 - je zegt niet wat de rest niet doet, laat je niet negatief uit over andere marketingbureaus. Ga altijd uit van eigen kracht.
 GEO en SEO voeren de boventoon in teksten voor zowel social media als de website.
