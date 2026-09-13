@@ -216,6 +216,20 @@ Beschikbare capaciteit: maandag, woensdag, vrijdag, 9.00 tot 13.00 uur, 12 uur p
 
 **Apple Agenda:** deze 2 weken staan ook als importeerbaar bestand in `docs/agenda-augustus-2026.ics` (ma/wo/vr, 9.00-13.00 uur, taken in de omschrijving). Geopend en geïmporteerd op 2026-07-31. Bij een nieuwe periode wordt een nieuw .ics-bestand gegenereerd op basis van de bijgewerkte dagindeling hierboven.
 
+## Interne linkstructuur SEO-cluster (stap 19, 2026-09-13)
+
+Hiërarchie doorgevoerd in plaats van alle pagina's plat naar elkaar te laten linken:
+- **Homepage**: services-grid toont nu de vier hoofddiensten (AI Marketing, Marketing Strategy, Social Media Marketing, Branding & Campaigns) als klikbare kaarten naar hun eigen pagina. De losse "Free Scan"-kaart is eruit (de hero heeft al een prominente free-scan CTA). Content Creation komt hier bewust niet als vijfde kaart, wel al gelinkt vanaf What We Do en de andere dienstenpagina's.
+- **What We Do**: alle vijf diensten met een `Explore [dienst] →`-link naar de bijbehorende pagina. Content Creation-kaart toegevoegd (bestond nog niet). Homepage- en What We Do-schema (`hasOfferCatalog` / `serviceType`) bijgewerkt naar de huidige vijf dienstnamen, met `url` per Service waar de pagina al bestaat.
+- **`/ai-marketing-curacao`**: linkt prominent naar Marketing Strategy, Social Media Marketing/Branding & Campaigns/Content Creation staan als kleinere contextuele regel eronder.
+- **`/marketing-strategy-curacao`**: strategische spil, linkt prominent naar alle drie: AI Marketing (eigen sectie, bestond al), Social Media Marketing en Branding & Campaigns (nu allebei een eigen prominente regel in de "Think it, build it, run it"-sectie).
+- **`/branding-campaigns-curacao`**: al vooral gericht op Marketing Strategy (prominent) en Social Media Marketing (prominent zodra gebouwd), AI Marketing staat secundair/kleiner. Geen wijziging nodig, klopte al.
+- **`/content-creation-curacao`**: draait het om, stuurt actief door naar Social Media Marketing, Marketing Strategy en Branding & Campaigns. Geen wijziging nodig, klopte al bij bouw.
+- **Blogs**: `/blog-ai-curacao` (EN+NL) linkt nu naar `/ai-marketing-curacao` met ankertekst "AI marketing for businesses in Curaçao". `/blog-marketing-strategy-curacao` (EN+NL) had al een link, ankertekst aangescherpt naar "marketing strategy for businesses in Curaçao" (was "See how FUNkiness! can help", te generiek voor SEO-ankertekst).
+- **Navigatie**: bewust geen dropdown-menu gebouwd onder "What We Do". De site heeft daar nu geen mechanisme voor en dat zou een aparte losse UI-taak zijn, geen onderdeel van "interne links". Daisy's eigen instructie noemde dit al optioneel ("als je site geen mooie dropdown ondersteunt, houd alleen What We Do in de hoofdnavigatie"), dus hoofdnavigatie blijft zoals die was (alleen "What We Do", geen vijf losse item's).
+- Social Media Marketing (stap 18) bestaat nog niet: overal waar ernaar verwezen wordt staat het bewust als niet-klikbare, grijzere tekst met een HTML-comment als reminder, in plaats van een dode link.
+- **Bug gevonden en gefixt tijdens dit werk**: `/nl/marketing-strategy-curacao` linkte naar AI Marketing met `href="../ai-marketing-curacao.html"` (één niveau te hoog), dat stuurde Nederlandse bezoekers per ongeluk naar de Engelse AI Marketing-pagina. Was er al sinds stap 16, nu gecorrigeerd naar `ai-marketing-curacao.html`.
+
 ## SEO-landingspagina's Curaçao (GEO/SEO-traject, stap 13)
 
 Vastgelegd op 2026-09-11, na de homepage- en what-we-do-optimalisaties (H1/H2-herstructurering, keyword-cannibalisatie tussen pagina's opgelost, vier dienstnamen hernoemd naar Marketing Strategy / AI Marketing & Integration / Social Media & Content / Branding & Campaigns). Vijf losse commerciële SEO-pagina's bouwen, geen blogs, gericht op daadwerkelijke zoekintentie. Bewust gekozen om niet steeds "Curaçao" te herhalen op de pagina's zelf; wel in H1, intro en structuur.

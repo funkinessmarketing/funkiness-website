@@ -458,6 +458,8 @@ h1 span { color: var(--pink); }
 }
 
 .service-card {
+  display: block;
+  text-decoration: none;
   padding: 28px;
   border-radius: 28px;
   border: 1px solid var(--card-border);
