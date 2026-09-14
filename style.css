@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Poppins:wght@700;800;900&display=swap');
-
 :root {
   --pink: #f21b7a;
   --black: #080403;
@@ -1062,19 +1060,26 @@ h1.section-kicker {
 }
 
 @media (min-width: 900px) {
-  .page-hero--split { grid-template-columns: 1.15fr 0.85fr; gap: 48px; }
+  .page-hero--split { grid-template-columns: 1.1fr 0.9fr; gap: 6vw; min-height: 560px; }
+}
+
+/* Long headlines break into one word per line at the full clamp(96px) size in a split hero;
+   cap it a bit lower here so the text column stays readable next to the photo. */
+.page-hero--split h2 {
+  font-size: clamp(28px, 5vw, 76px);
 }
 
 .page-hero-visual {
   position: relative;
-  border-radius: 32px;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 1/1;
   order: -1;
+  box-shadow: 0 0 58px var(--shadow-pink);
+  align-self: center;
 }
 
 @media (min-width: 900px) {
-  .page-hero-visual { order: 2; }
+  .page-hero-visual { order: 2; aspect-ratio: 4/5; max-height: 560px; }
 }
 
 .page-hero-visual img {
@@ -1084,20 +1089,12 @@ h1.section-kicker {
   display: block;
 }
 
-.page-hero-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 32px;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35);
-}
-
-.page-hero-blob {
-  position: absolute;
-  z-index: -1;
-  opacity: 0.9;
-  pointer-events: none;
-}
+/* Each SEO page gets its own blob shape and tilt, so the five pages don't feel identical */
+.page-hero-visual--ai { border-radius: 34% 66% 45% 55% / 44% 38% 62% 56%; transform: rotate(-2deg); }
+.page-hero-visual--strategy { border-radius: 62% 38% 55% 45% / 40% 62% 38% 60%; transform: rotate(2deg); }
+.page-hero-visual--branding { border-radius: 48% 52% 65% 35% / 55% 45% 58% 42%; transform: rotate(-3deg); }
+.page-hero-visual--content { border-radius: 55% 45% 40% 60% / 60% 35% 65% 40%; transform: rotate(3deg); }
+.page-hero-visual--social { border-radius: 42% 58% 60% 40% / 48% 55% 45% 52%; transform: rotate(-2deg); }
 
 .page-hero .page-tagline {
   font-size: clamp(17px, 1.7vw, 24px);
