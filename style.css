@@ -1052,15 +1052,20 @@ h1.section-kicker {
 }
 
 /* Playful split hero: text + organic visual, used on the SEO landing pages */
-.page-hero--split {
+.page-hero.page-hero--split {
   display: grid;
   grid-template-columns: 1fr;
   gap: 36px;
   align-items: center;
+  max-width: none;
 }
 
 @media (min-width: 900px) {
-  .page-hero--split { grid-template-columns: 1.1fr 0.9fr; gap: 6vw; min-height: 560px; }
+  .page-hero.page-hero--split { grid-template-columns: 1.1fr 0.9fr; gap: 6vw; min-height: 560px; }
+}
+
+@media (min-width: 1400px) {
+  .page-hero.page-hero--split { grid-template-columns: 1fr 1fr; max-width: 1700px; margin: 0 auto; }
 }
 
 /* Long headlines break into one word per line at the full clamp(96px) size in a split hero;
