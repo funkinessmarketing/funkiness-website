@@ -1064,8 +1064,22 @@ h1.section-kicker {
   .page-hero.page-hero--split { grid-template-columns: 1.1fr 0.9fr; gap: 6vw; min-height: 560px; }
 }
 
-@media (min-width: 1400px) {
-  .page-hero.page-hero--split { grid-template-columns: 1fr 1fr; max-width: 1700px; margin: 0 auto; }
+/* Stop the row from growing forever on very wide screens, but stay anchored to the
+   left padding (like the homepage hero) instead of floating centered as an island. */
+@media (min-width: 1300px) {
+  .page-hero.page-hero--split { max-width: 1500px; }
+}
+
+/* Mirrored composition: photo on the left, text on the right. Applied to alternating
+   pages so the SEO pages don't all look identical, while keeping the same underlying
+   blob/glow system and giving the text column the same wide (1.1fr) share either way. */
+.page-hero.page-hero--split.page-hero--reverse {
+  max-width: none;
+}
+
+@media (min-width: 900px) {
+  .page-hero.page-hero--split.page-hero--reverse { grid-template-columns: 0.9fr 1.1fr; }
+  .page-hero--reverse .page-hero-visual { order: -1; }
 }
 
 /* Long headlines break into one word per line at the full clamp(96px) size in a split hero;
@@ -1084,7 +1098,7 @@ h1.section-kicker {
 }
 
 @media (min-width: 900px) {
-  .page-hero-visual { order: 2; aspect-ratio: 4/5; max-height: 560px; }
+  .page-hero-visual { order: 2; aspect-ratio: 4/5; width: 100%; max-width: 520px; align-self: center; }
 }
 
 .page-hero-visual img {
