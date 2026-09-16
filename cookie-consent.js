@@ -19,16 +19,16 @@ window.funkinessLoadAnalytics = function () {
 
   var copy = {
     en: {
-      text: 'Yes, the cookie thing. One remembers you saw this so we don’t nag you again. One optional cookie shows us which pages actually get read. No stalking, no selling your data.',
+      text: 'Quick cookie check. One remembers you said hi, so we don’t ask twice. One (optional) shows us which pages you’re actually into.',
       policy: 'Cookie Policy',
-      accept: 'Sounds good',
-      decline: 'No thanks'
+      accept: 'Works for me',
+      decline: 'Not now'
     },
     nl: {
-      text: 'Ja, het cookie-dingetje. Eén onthoudt dat je dit al zag, zodat we niet zeuren. Eén optionele cookie laat ons zien welke pagina’s je echt leest. Geen spionage, geen doorverkoop van jouw gegevens.',
+      text: 'Eventjes de cookies. Eén onthoudt dat je hier al was, zodat we het niet nog een keer vragen. Eén (optioneel) laat zien welke pagina’s je leest.',
       policy: 'Cookiebeleid',
-      accept: 'Prima zo',
-      decline: 'Nee, laat maar'
+      accept: 'Prima',
+      decline: 'Liever niet'
     }
   };
 
