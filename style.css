@@ -1373,6 +1373,81 @@ a.service-detail-card {
   max-width: 480px;
 }
 
+/* "Why FUNkiness!?" dark band, upgraded from a plain text column to text + a
+   circular team portrait so every SEO page's dark section has a face, not just copy. */
+.why-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 1100px;
+  padding: 64px 5vw;
+}
+
+@media (min-width: 900px) {
+  .why-split { grid-template-columns: 1.2fr 0.8fr; gap: 6vw; padding: 88px 7vw; }
+}
+
+.why-split-visual {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  aspect-ratio: 1/1;
+  border-radius: 50% 50% 44% 56% / 56% 44% 56% 44%;
+  box-shadow: 0 0 46px rgba(242,27,122,0.4);
+}
+
+@media (min-width: 900px) {
+  .why-split-visual { margin: 0; order: 2; }
+}
+
+.why-split-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Illustrative stand-in for a photo block: a bold, organic-shaped stat card.
+   Used on pages/sections where no fitting photo exists yet. */
+.stat-panel {
+  margin: 8px 5vw 56px;
+  max-width: 720px;
+  padding: 44px 36px;
+  border-radius: 40% 60% 55% 45% / 48% 42% 58% 52%;
+  background: var(--cream-light);
+  border: 1px solid rgba(8,4,3,0.08);
+  box-shadow: 0 0 40px var(--shadow-pink);
+  transform: rotate(-1deg);
+}
+
+@media (min-width: 900px) {
+  .stat-panel { padding: 64px 72px; margin: 16px 7vw 72px; }
+}
+
+.stat-panel .stat-panel-label {
+  color: var(--pink);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.stat-panel p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: clamp(26px, 3.6vw, 44px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+
+.stat-panel p .script-word { font-size: 0.95em; }
+
 /* ============================
    HOW IT WORKS
    ============================ */
