@@ -46,6 +46,7 @@ Dit is de logische bouwvolgorde, bepaald op basis van wat al staat, wat de meest
    - **Toon:** steengoede content die FUN, bold en grappig is en aan het denken zet, moet opvallen en inspireren. Dit is niet nieuw, dit is exact de merkstem die al vastligt (Magician x Outlaw, energie en humor verplicht, litmustest "kan een ander bureau dit ook zeggen?").
    - **Begrenzing:** 1 vaste dag per week, geen advertentiebudget zonder eerst organische content getest te hebben, vervangt niet de Spark Plan/Gumroad/outreach-inspanning, komt ernaast.
 5. **Update 2026-09-09: focus tijdelijk verschoven naar spoor A, eerste klant via de Scan + directe outreach, Prompt Kit-lancering on hold.** Daisy wil nu actief op zoek naar de eerste klant in plaats van te wachten tot de Prompt Kit als bewijslast dient. Vandaag is bovendien GEO-werk gedaan (nieuwe blogpost `blog-ai-search-curacao.html`, 4 nieuwe top-of-funnel FAQ-vragen, een reel). Dat versterkt de propositie en de vindbaarheid op termijn, maar lost het verkeersprobleem uit punt 1 niet meteen op: organische SEO/GEO-groei op een gloednieuw domein kost weken tot maanden, geen dagen. De eerste klant komt dus niet via afwachten op organisch verkeer, maar via directe, persoonlijke outreach naar een korte shortlist van concrete bedrijven op Curaçao, met de gratis Scan als opener en de GEO-invalshoek (bijna niemand hier speelt hier al op in) als aandachttrekker. Zie Marketinguitvoeringsplan voor het concrete outreach-bericht.
+6. **Update 2026-09-16: Nederland-landingspagina (EN/NL) ingepland, volgt ná punt 5.** Zie [[project_nederland_als_afstandsmarkt]] en de sectie "Waar: geografisch bereik" hierboven: op-afstand-leverbare diensten (strategie, AI marketing, social media, campagnes) reiken ook naar Nederland. Dit wordt één eigen pagina die het werkgebied uitlegt (Curaçao fullservice + op-afstand voor Nederland), geen volledige nieuwe marktstructuur. Bewust ná de eerste-klant-outreach uit punt 5 gezet, niet ervoor: dat blijft de hoogste hefboom nu, dit is aanvullend vindbaarheidswerk met een langere aanlooptijd (organische SEO/GEO-groei kost weken tot maanden, zie punt 5). Nog te bepalen bij oppakken: URL/bestandsnaam, precieze copy en of dit in de bestaande internal-linking hiërarchie van de 5 SEO-pagina's wordt opgenomen.
 
 ## Wat: productportfolio en status
 
@@ -70,8 +71,10 @@ Dit is de logische bouwvolgorde, bepaald op basis van wat al staat, wat de meest
 
 ## Waar: geografisch bereik
 
-- Spoor A blijft Curaçao.
+- Spoor A (fullservice, inclusief uitvoering op locatie) blijft Curaçao.
 - Spoor B reikt breder dan de ABC eilanden, geen vaste regiogrens, met behoud van de eilandidentiteit in de branding.
+- **Update 2026-09-16:** de onderdelen van de dienstverlening die op afstand te leveren zijn (strategie, AI marketing, social media, campagnes, geen uitvoering op locatie) reiken ook naar Nederland. Geen aparte marktstructuur of vaste regio-indeling (dat is expliciet afgewezen, zie hieronder), maar Nederland is wel een concreet, benoemd voorbeeld van "breder dan de ABC eilanden" uit spoor B, nu ook van toepassing op het op-afstand-leverbare deel van spoor A. Reden: geen fysieke aanwezigheid nodig voor dit type werk.
+- **Afgewezen, 2026-09-16:** een extern rapport ("Prioriteitenrapport SEO AEO en GEO") stelde een vaste driedeling voor (Curaçao thuisbasis, Aruba/Bonaire regionale markt, Nederland aparte groeimarkt met eigen landingspagina). Dat is niet overgenomen: het staat haaks op "geen vaste regiogrens" hierboven, en cases/bewijs als SEO-prioriteit uit datzelfde rapport kan nog niet, er zijn nog geen klanten (zie Uitgangspositie). Wel ingepland: één eigen Nederland-landingspagina die het werkgebied uitlegt, zie punt 6 in "Volgorde van werk" hieronder, geen volledige marktstructuur.
 
 ## Hoe: werkwijze
 
