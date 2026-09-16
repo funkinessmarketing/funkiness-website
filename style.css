@@ -2300,3 +2300,72 @@ details[open] .faq-icon {
 }
 
 .footer-bottom a:hover { color: var(--pink); }
+
+/* ============================
+   COOKIE CONSENT BANNER
+   ============================ */
+#funkiness-cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 999;
+  background: var(--black);
+  color: rgba(247,239,231,0.88);
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+}
+
+@media (min-width: 700px) {
+  #funkiness-cookie-banner {
+    left: 24px;
+    right: auto;
+    bottom: 24px;
+    max-width: 460px;
+    padding: 24px 26px;
+  }
+}
+
+#funkiness-cookie-banner p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+#funkiness-cookie-banner a {
+  color: var(--pink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.funkiness-cookie-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#funkiness-cookie-banner button {
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+#funkiness-cookie-banner button[data-action="accept"] {
+  background: var(--pink);
+  color: white;
+}
+
+#funkiness-cookie-banner button[data-action="decline"] {
+  background: transparent;
+  color: rgba(247,239,231,0.6);
+}
+
+#funkiness-cookie-banner button[data-action="decline"]:hover { color: rgba(247,239,231,0.9); }
