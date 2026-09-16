@@ -1,3 +1,17 @@
+window.funkinessLoadAnalytics = function () {
+  if (window.__funkinessGaLoaded) return;
+  window.__funkinessGaLoaded = true;
+  var GA_ID = 'G-VEEW2PC9P5';
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID);
+};
+
 (function () {
   var STORAGE_KEY = 'funkiness_cookie_consent';
   var lang = document.documentElement.lang === 'nl' ? 'nl' : 'en';
