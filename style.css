@@ -1337,6 +1337,13 @@ a.service-detail-card {
   .feature-split-visual { order: 2; }
 }
 
+/* Each page's blob shape carries through every organic element on that page
+   (hero, feature-split, why-split, stat-panel), so pages read as visually
+   distinct from each other while every shape on one page belongs together. */
+.feature-split-visual--ai { border-radius: 34% 66% 45% 55% / 44% 38% 62% 56%; transform: rotate(-2deg); }
+.feature-split-visual--content { border-radius: 55% 45% 40% 60% / 60% 35% 65% 40%; transform: rotate(3deg); }
+.feature-split-visual--social { border-radius: 42% 58% 60% 40% / 48% 55% 45% 52%; transform: rotate(-2deg); }
+
 .feature-split-visual img {
   width: 100%;
   height: 100%;
@@ -1403,6 +1410,12 @@ a.service-detail-card {
   .why-split-visual { margin: 0; order: 2; }
 }
 
+.why-split-visual--ai { border-radius: 34% 66% 45% 55% / 44% 38% 62% 56%; }
+.why-split-visual--strategy { border-radius: 62% 38% 55% 45% / 40% 62% 38% 60%; }
+.why-split-visual--branding { border-radius: 48% 52% 65% 35% / 55% 45% 58% 42%; }
+.why-split-visual--content { border-radius: 55% 45% 40% 60% / 60% 35% 65% 40%; }
+.why-split-visual--social { border-radius: 42% 58% 60% 40% / 48% 55% 45% 52%; }
+
 .why-split-visual img {
   width: 100%;
   height: 100%;
@@ -1426,6 +1439,11 @@ a.service-detail-card {
 @media (min-width: 900px) {
   .stat-panel { padding: 64px 72px; margin: 16px 7vw 72px; }
 }
+
+.stat-panel--strategy { border-radius: 62% 38% 55% 45% / 40% 62% 38% 60%; transform: rotate(1deg); }
+.stat-panel--branding { border-radius: 48% 52% 65% 35% / 55% 45% 58% 42%; transform: rotate(-1.5deg); }
+.stat-panel--content { border-radius: 55% 45% 40% 60% / 60% 35% 65% 40%; transform: rotate(1.5deg); }
+.stat-panel--social { border-radius: 42% 58% 60% 40% / 48% 55% 45% 52%; transform: rotate(-1deg); }
 
 .stat-panel .stat-panel-label {
   color: var(--pink);
