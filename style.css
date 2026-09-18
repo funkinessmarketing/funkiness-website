@@ -884,14 +884,10 @@ h1.section-kicker {
    widget (which only shows one post and breaks the site's own visual style). */
 .insta-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  max-width: 780px;
+  max-width: 900px;
   margin: 40px auto 0;
-}
-
-@media (min-width: 700px) {
-  .insta-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .insta-grid-item {
