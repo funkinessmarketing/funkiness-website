@@ -35,7 +35,7 @@ FUNkiness! is a full-service marketing agency based on Curaçao, owned and found
 
 FUNkiness! operates on two revenue tracks: (1) local, on-island full-service marketing engagements built around each client's specific needs, and (2) scalable digital products and subscriptions sold online, starting with a downloadable AI prompt kit for vacation rental hosts and a recurring social media management subscription currently in development.
 
-The business is self-funded by the owner and is not seeking external financing. This account is requested to process online payments for FUNkiness!'s digital products and to support the agency's day-to-day business operations.
+The business is self-funded by the owner and is not seeking external financing. This account is requested to receive all business income, both online digital product sales and payments from local clients, and to support the agency's day-to-day business operations.
 
 ## 2. Company Description
 
@@ -109,11 +109,11 @@ FUNkiness! is fully owned and operated by Daisy Kuipers, who is responsible for 
 
 ## 8. Initial Investment and Funding
 
-FUNkiness! is entirely self-funded by the owner and requires no external financing to operate. The initial investment below has been or will be covered from Daisy Kuipers' personal savings.
+FUNkiness! is entirely self-funded by the owner and requires no external financing to operate. The initial investment below has been covered from Daisy Kuipers' personal savings.
 
 | Item | Estimated Amount |
 |---|---|
-| Business registration (KvK) and administrative setup | $150 |
+| Business registration (KvK) and administrative setup, completed | $150 |
 | Website domain and hosting setup | $100 |
 | Branding and design production | $300 |
 | Working capital buffer (software subscriptions and tools for the first few months) | $2,000 |
@@ -123,16 +123,19 @@ No loan or external investment is being requested. The owner's personal savings 
 
 ## 9. Use of Funds / Purpose of Account
 
-- Receive payment for digital product sales.
+- Receive payment for digital product sales (Island Host AI Prompt Kit and future products, via Gumroad).
+- Receive payment from local full-service clients and Spark Plan subscribers on Curaçao.
 - Manage day-to-day operating expenses, including software subscriptions, hosting, email services, and marketing tools.
 - Keep business finances cleanly separated from personal finances.
 
+All business income, both online digital product sales and local client payments, is intended to flow through this account, consistent with the revenue projections in Sections 10 and 11.
+
 ## 10. Projection of Business Income
 
-**Note:** these figures are the founder's own conservative estimate. The retainer price point is grounded in published market research for marketing agency pricing, adjusted down to reflect a new brand entering a small local market with no track record yet. The growth pace assumes a realistic, gradual client acquisition rate rather than uninterrupted monthly growth.
+**Note:** these figures are the founder's own conservative estimate. The retainer price point is set relative to the founder's existing Spark Plan pricing, reflecting a new brand entering a small local market with no track record yet. The growth pace assumes a realistic, gradual client acquisition rate rather than uninterrupted monthly growth.
 
 **Year 1 revenue assumptions:**
-- **Local full-service engagements, custom pricing (average $850/month per client):** the core of the business. Published market research on marketing agency retainers puts small-business pricing between $1,500 and $5,000/month in the U.S. market, with light single-channel engagements starting around $500 to $1,500/month. FUNkiness! anchors below that U.S. range, consistent with its existing Spark Plan pricing ($500 to $750/month for a narrower, social-only scope), reflecting a new, unproven brand in a small local market. Growth target of one net new client roughly every two months, starting in month 3, reaching 5 active clients by month 12. Estimated Year 1 total: $25,500.
+- **Local full-service engagements, custom pricing (average $850/month per client):** the core of the business. This full-service average sits somewhat above the existing Spark Plan pricing ($500 to $750/month for a narrower, social-only scope), reflecting the broader scope of a full-service engagement (strategy, AI integration, social media, and content combined). The business began operating in August 2026; with no local client signed yet as of this writing, the growth target conservatively assumes the first client around month 4, then roughly one net new client every two months, reaching 5 active clients by month 12. Estimated Year 1 total: $21,250.
 - **The Spark Plan, $500/month founding rate:** one founding client signed around month 6. Estimated Year 1 total: $3,500.
 - **Island Host AI Prompt Kit, $27/sale:** a gradual ramp from 2 sales/month in the first quarter to 8 sales/month by the fourth quarter, as outreach and content marketing build momentum. Estimated Year 1 total: 60 units, $1,620.
 
@@ -140,16 +143,16 @@ No loan or external investment is being requested. The owner's personal savings 
 
 | Category | Amount |
 |---|---|
-| Local full-service engagements | $25,500 |
+| Local full-service engagements | $21,250 |
 | The Spark Plan revenue | $3,500 |
 | Island Host AI Prompt Kit revenue | $1,620 |
-| **Total projected annual revenue** | **$30,620** |
+| **Total projected annual revenue** | **$26,370** |
 | Estimated annual operating expenses (software, hosting, marketing tools, Gumroad fees, freelance production support from Berdien Renes as client volume grows) | $3,500 |
-| **Projected net income** | **$27,120** |
+| **Projected net income** | **$22,870** |
 
 ### Basis for projection
 
-This is a start-up-phase business, so the projection is a growth target rather than a historical baseline, and it is deliberately conservative. It reflects the outreach strategy already underway: direct, personal outreach to a shortlist of Curaçao businesses, opening with the free AI & Marketing Scan before proposing a custom engagement. Rather than assuming uninterrupted monthly client growth, the projection assumes a new client roughly every two months, which allows time for delivery, referrals, and realistic sales cycles between signings. The Spark Plan and Prompt Kit lines are modeled separately and even more conservatively, since they depend on Prompt Kit traction building first.
+This is a start-up-phase business, so the projection is a growth target rather than a historical baseline, and it is deliberately conservative. It reflects the outreach strategy already underway: direct, personal outreach to a shortlist of Curaçao businesses, opening with the free AI & Marketing Scan before proposing a custom engagement. Rather than assuming uninterrupted monthly client growth, the projection assumes a new client roughly every two months, starting a few months into operation rather than immediately, which allows time for delivery, referrals, and realistic sales cycles between signings. The Spark Plan and Prompt Kit lines are modeled separately and even more conservatively, since they depend on Prompt Kit traction building first.
 
 **Sources for retainer pricing benchmark:** WebFX, "Marketing Agency Cost: How Much It Costs To Market Your Business" (2026); Searchlab, "Marketing Agency Cost: 2026 Reality Check"; Socialrails, "Social Media Marketing Agency Pricing (2026)".
 
@@ -161,15 +164,15 @@ Client acquisition is projected to continue beyond Year 1 at a cautious pace, an
 |---|---|---|---|
 | Active local clients (year-end) | 5 | 8 | 12 |
 | Active Spark Plan clients (year-end) | 1 | 2 | 3 |
-| Total projected revenue | $30,620 | $74,500 | $115,500 |
+| Total projected revenue | $26,370 | $70,000 | $109,000 |
 | Estimated operating expenses | $3,500 | $6,500 | $10,000 |
-| **Projected net income** | **$27,120** | **$68,000** | **$105,500** |
+| **Projected net income** | **$22,870** | **$63,500** | **$99,000** |
 
 Year 2 and Year 3 operating expenses grow to reflect additional freelance production support from Berdien Renes as the client roster expands beyond what the owner can deliver alone. Revenue growth is modeled well below a straight-line continuation of the Year 1 pace, allowing room for slower sales cycles, occasional client churn, and the reality that a small local market will not sustain indefinite linear growth.
 
 ## 12. Break-Even Analysis
 
-Base monthly operating costs during the early ramp-up period (before freelance support begins) are estimated at approximately $150 to $200 per month, covering software subscriptions, hosting, and email services. A single local client at the average $850/month retainer covers this cost several times over. Based on the growth target of one net new client roughly every two months, with the first client signed around month 3, FUNkiness! is projected to reach operational break-even in month 3 of its first year, well before the freelance support cost is added later in the year.
+Base monthly operating costs during the early ramp-up period (before freelance support begins) are estimated at approximately $150 to $200 per month, covering software subscriptions, hosting, and email services. A single local client at the average $850/month retainer covers this cost several times over. Based on the growth target of one net new client roughly every two months, with the first client signed around month 4, FUNkiness! projects a pre-revenue period in months 1 through 3, followed by positive monthly cash flow from month 4 onward once the first client is signed, well before the freelance support cost is added later in the year.
 
 ## 13. Risks and Mitigation
 
