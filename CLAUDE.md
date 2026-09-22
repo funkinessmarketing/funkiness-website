@@ -87,6 +87,8 @@ Als een tekst saai klinkt, past hij niet bij FUNkiness!
 **Aanpak bij nieuwe pagina-elementen:**
 Gebruik altijd organische overgangen (SVG-golf of blob) tussen secties met verschillende achtergrondkleuren. Nooit een harde rechte lijn tussen twee kleurvlakken.
 
+**Eigen vormtaal per pagina (sinds 2026-09-17):** elke pagina krijgt haar eigen blob-vorm-familie (foto-blokken, cirkels en "stat panels" op die pagina delen dezelfde unieke `border-radius`/rotatie) én haar eigen set golfvormen tussen secties, in plaats van sitewide identieke ovalen/golven te hergebruiken. Bij een nieuwe pagina: nieuwe vorm-variant toevoegen, niet een bestaande kopiëren. Zie style.css (`--ai`, `--strategy`, `--branding`, `--content`, `--social`-varianten) voor het patroon.
+
 **CSS architectuur:**
 style.css is **mobile-first**. Base styles zijn voor mobiel. Breakpoints: `min-width: 600px`, `700px`, `900px`, `1100px`. Gebruik altijd `min-width`, nooit `max-width`.
 
@@ -115,7 +117,7 @@ Lees deze bestanden voor meer detail:
 
 ## Tools en projecten
 
-**Betaalprovider voor online verkoop:** Gumroad, Payoneer, Lemon Squeezy en Fygaro ondersteunen geen uitbetaling naar Curaçao. Gumroad-account staat daarom op land Nederland, uitbetaling naar Daisy's Nederlandse privérekening. MCB Bank Internet Merchant Account is een alternatief voor de langere termijn maar vereist cedula + KvK-inschrijving + zakelijke rekening, niet op korte termijn haalbaar. Volledige beslisboom in `kennis/strategieplan.md`.
+**Betaalprovider voor online verkoop:** Gumroad, Payoneer, Lemon Squeezy en Fygaro ondersteunen geen uitbetaling naar Curaçao. Gumroad-account staat daarom op land Nederland, uitbetaling naar Daisy's Nederlandse privérekening. MCB Bank Internet Merchant Account wordt nu actief aangevraagd (KvK-inschrijving is rond). Businessplan voor de aanvraag: `docs/mcb-bank-business-plan.html` (bron) / `.md` (referentie) / `.pdf` (kant-en-klaar, altijd door Claude zelf genereren met headless Chrome `--print-to-pdf`, nooit via Daisy's eigen browser-printdialoog, en `@page{margin:2.5cm}` aanhouden, zie `docs/logs/2026-09-22/`). Handtekening: `docs/handtekening-daisy.png`. Volledige beslisboom in `kennis/strategieplan.md`.
 
 **Gumroad CLI** (`gumroad`, via `brew install antiwork/cli/gumroad`, ingelogd via device-code OAuth): voor productbeheer (titel, beschrijving, prijs, custom landingpagina) zonder de browser-UI. Belangrijkste commando's: `gumroad products view <id>`, `gumroad products update <id> --name/--description/...`, `gumroad products page preview/publish <id> ./landing.html` (check altijd het `sanitization_report` voordat je publiceert).
 
@@ -135,6 +137,8 @@ Maandelijkse social media plannen staan in `docs/`. Huidig plan: `docs/social-me
 
 **Kant-en-klare reels (video):** zelfde huisstijl-aanpak als de postbeelden, maar dan bewegend. Losse HTML-frames per animatiebeat gebouwd (pop-in met ease-out-back bounce, tilt, stempel-effect, korte witte flash-cuts tussen scenes), elk frame gerenderd met headless Chrome, daarna met `ffmpeg` (image-sequence naar mp4, 1080x1920) tot een reel samengevoegd. Kant-en-klare reels staan in `docs/Graphic-Design/social-media-posts/`, bestandsnaam verwijst naar de bijbehorende blogpost. Statische tekstkaarten zonder animatie zijn voor dit merk te saai bevonden, altijd kiezen voor de bewegende variant.
 
+**Homepage Instagram-sectie:** `index.html`/`nl/index.html`, `.insta-grid` (3 kolommen, vierkante tegels). Toont alleen bestaande, echt gepubliceerde/bestaande content (nu de 4 jeep-foto's), nooit nog niet gepubliceerde social posts of concepten, ook niet als "voorbeeld". Zie `feedback_geen_ongepubliceerde_content_als_live` in het sessiegeheugen.
+
 **Actieposts (reader-focused hookposts):** losse contentlijn naast de maandplannen en de humor-reels, gestart 2026-09-11. Elke post spreekt één specifieke branche direct aan (makelaar, bank, verhuurder, etc., roterend) met een concreet, direct uitvoerbaar advies/test, hook groot en alleen op het beeld (geen tagline/badge meer), caption in het Nederlands met een zoekwoord-openingszin, max 5 hashtags. Bronfoto's van Daisy en hun AI-bewerkte varianten (jurk naar panterprint/magenta/paars via OpenRouter, `google/gemini-3-pro-image`) staan in `docs/Graphic-Design/social-media-posts/foto's Daisy origineel/`. Opgeleverde posts staan als losse PNG's in `docs/Graphic-Design/social-media-posts/` (bv. `daisy-teach-it-post-04.png`). Volledige regels (eye-opener-lat, crop-veilige tekstmarges, verplichte voor/na-fotocheck) staan in het sessiegeheugen van Claude, niet hier; zie `docs/logs/2026-09-14/` voor de volledige uitleg en aanloop.
 
 Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen roast-content of "hier is wat iedereen fout doet"-aanpak.
@@ -145,6 +149,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-09-22: Website-creativiteitsronde (eigen vormtaal per pagina), social media reel + Realtors-post, MCB-businessplan afgerond en kritisch nagelopen (VS-claim en verouderde toerismecijfers verwijderd, jaar 1-aannames realistischer getimed): docs/logs/2026-09-22/01-website-creativiteit-social-reel-mcb-businessplan.md
 - 2026-09-14: Actiepost-format ontwikkeld (branche-per-post, eye-opener-lat, hook-alleen beeldopmaak), Instagram grid-crop-fout gecorrigeerd (horizontaal, niet verticaal), fotobewerkingsfout gevonden (AI verzon sieraad) en verplichte voor/na-check ingevoerd: docs/logs/2026-09-14/01-social-media-posts-actiepost-format.md
 - 2026-09-11: Youvia GEO-whitepaper geanalyseerd, sameAs-links en nieuwe FAQ live, GEO-blogpost + reel gepubliceerd, outreach-strategie eerste klant vastgelegd, AI Visibility Scan grotendeels gebouwd (taak 7 wacht op review testmails): docs/logs/2026-09-11/01-geo-whitepaper-tot-ai-visibility-scan.md
 - 2026-09-09: Repost/Repurpose/Reinvent-methode (@bizwithlaurelle) vastgelegd, koerscorrectie: augustus-postbeelden staan nog niet live, dat is het openstaande punt: docs/logs/2026-09-09/01-repost-strategie-en-augustus-posts-nog-niet-live.md
