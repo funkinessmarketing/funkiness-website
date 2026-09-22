@@ -65,7 +65,7 @@ Two free assessment tools (a Social Media Scan and a Marketing Strategy Scan) th
 
 **Industry:** Marketing services, with a growing emphasis on AI-assisted content and strategy.
 
-**Local market context:** Curaçao's tourism sector welcomed over 1.1 million stay-over visitors in 2023, the highest number in the island's history (Curaçao Tourist Board, 2023 Annual Report), with tourism accounting for approximately 30% of the island's GDP. This sustains steady demand for marketing services among hotels, restaurants, real estate agencies, and vacation rental businesses.
+**Local market context:** Tourism remains a major driver of Curaçao's economy, sustaining steady demand for marketing services among hotels, restaurants, real estate agencies, and vacation rental businesses.
 
 **Target market:** All businesses on Curaçao, with particular focus on hotels and resorts, restaurants, real estate agencies, and vacation rental owners and managers. The digital product line also targets vacation rental hosts across Aruba and Bonaire.
 
@@ -86,7 +86,7 @@ Two free assessment tools (a Social Media Scan and a Marketing Strategy Scan) th
 
 **Opportunities**
 - Marketing on Curaçao remains largely traditional and templated, leaving room to differentiate
-- Strong, growing tourism sector sustains demand from hospitality and real estate businesses
+- Tourism remains a major driver of the local economy, sustaining demand from hospitality and real estate businesses
 - Shift toward AI-powered search creates a positioning angle competitors have not yet claimed
 - Digital product line can expand beyond Curaçao to Aruba, Bonaire, and further
 
