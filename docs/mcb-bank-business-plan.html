@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FUNkiness! Business Plan, MCB Bank</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@600;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#f21b7a;
+    --black:#080403;
+    --cream:#f7efe7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--black);
+    background:#fff;
+    max-width:820px;
+    margin:0 auto;
+    padding:40px 24px 80px;
+    line-height:1.55;
+    font-size:15px;
+  }
+  .print-bar{
+    position:sticky; top:0; background:var(--cream);
+    padding:10px 16px; margin:-40px -24px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:2px solid var(--black);
+  }
+  .print-bar button{
+    background:var(--pink); color:#fff; border:none; border-radius:999px;
+    padding:8px 20px; font-family:'Inter',sans-serif; font-weight:600;
+    font-size:14px; cursor:pointer;
+  }
+  h1{
+    font-family:'Permanent Marker',cursive;
+    color:var(--pink);
+    font-size:32px;
+    margin:0 0 4px;
+  }
+  .subtitle{
+    font-family:'Poppins',sans-serif; font-weight:600;
+    font-size:14px; color:var(--black); margin:0 0 4px;
+  }
+  .meta-top{
+    font-size:13px; color:#555; margin:0 0 24px;
+  }
+  .toc{
+    background:var(--cream); border-radius:8px; padding:16px 20px; margin:0 0 32px;
+  }
+  .toc-title{
+    font-family:'Poppins',sans-serif; font-weight:900; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.5px; margin:0 0 8px;
+  }
+  .toc ol{ margin:0; padding-left:18px; columns:2; column-gap:24px; }
+  .toc li{ font-size:13.5px; margin-bottom:4px; break-inside:avoid; }
+  .toc a{ color:var(--black); text-decoration:none; }
+  h2{
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:19px; margin:36px 0 4px;
+    page-break-after:avoid;
+  }
+  h2::before{
+    content:"";
+    display:block;
+    width:54px; height:4px;
+    background:var(--pink);
+    margin-bottom:8px;
+  }
+  h3{
+    font-family:'Poppins',sans-serif; font-weight:700;
+    font-size:15px; margin:20px 0 6px;
+    page-break-after:avoid;
+  }
+  p, li{ font-size:14.5px; }
+  ul, ol{ padding-left:20px; margin:8px 0; }
+  li{ margin-bottom:4px; }
+  section{ page-break-inside:avoid; }
+  table{
+    width:100%; border-collapse:collapse; margin:12px 0 20px; font-size:13.5px;
+  }
+  th, td{
+    border:1px solid #ccc; padding:6px 8px; text-align:left; vertical-align:top;
+  }
+  th{ background:var(--cream); font-family:'Poppins',sans-serif; }
+  strong{ font-weight:600; }
+  .note{
+    background:var(--cream); border-left:4px solid var(--pink);
+    padding:12px 16px; font-size:13.5px; margin:12px 0 20px;
+  }
+  .swot-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0 20px;
+  }
+  .swot-box{
+    border:1px solid #ccc; border-radius:8px; padding:12px 14px;
+  }
+  .swot-box h3{ margin:0 0 8px; color:var(--pink); }
+  .swot-box ul{ margin:0; padding-left:18px; }
+  .signature-block{
+    margin-top:48px;
+  }
+  .signature-line{
+    margin-top:12px;
+    border-bottom:1px solid var(--black);
+    width:320px;
+    height:88px;
+    display:flex;
+    align-items:flex-end;
+  }
+  .signature-line img{
+    max-width:260px;
+    max-height:80px;
+    display:block;
+  }
+  .meta{
+    font-size:12.5px; color:#555; margin-top:60px; border-top:1px solid #ccc; padding-top:12px;
+  }
+  @media print{
+    .print-bar{ display:none; }
+    body{ padding:0 8px; max-width:100%; }
+    h2{ page-break-before:auto; }
+    a{ color:inherit; text-decoration:none; }
+    .swot-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span style="font-family:'Poppins',sans-serif;font-weight:600;">Business Plan, MCB Bank application</span>
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<h1>FUNkiness!</h1>
+<p class="subtitle">Business Plan and Projection of Business Income</p>
+<p class="meta-top">Prepared for: MCB Bank Internet Merchant Account application &nbsp;|&nbsp; Date: September 22, 2026</p>
+
+<div class="toc">
+  <p class="toc-title">Contents</p>
+  <ol>
+    <li><a href="#s1">Executive Summary</a></li>
+    <li><a href="#s2">Company Description</a></li>
+    <li><a href="#s3">Products and Services</a></li>
+    <li><a href="#s4">Market Analysis</a></li>
+    <li><a href="#s5">SWOT Analysis</a></li>
+    <li><a href="#s6">Marketing and Sales Strategy</a></li>
+    <li><a href="#s7">Management and Organization</a></li>
+    <li><a href="#s8">Initial Investment and Funding</a></li>
+    <li><a href="#s9">Use of Funds / Purpose of Account</a></li>
+    <li><a href="#s10">Projection of Business Income</a></li>
+    <li><a href="#s11">Three-Year Financial Outlook</a></li>
+    <li><a href="#s12">Break-Even Analysis</a></li>
+    <li><a href="#s13">Risks and Mitigation</a></li>
+    <li><a href="#s14">Signature</a></li>
+  </ol>
+</div>
+
+<section id="s1">
+<h2>1. Executive Summary</h2>
+<p>FUNkiness! is a full-service marketing agency based on Curaçao, owned and founded by Daisy Kuipers. The agency combines marketing strategy, AI integration, social media management, content creation, and campaign execution for businesses on Curaçao, including hotels and resorts, restaurants, real estate agencies, vacation rental owners and managers, and banks and financial services.</p>
+<p>FUNkiness! operates on two revenue tracks: (1) local, on-island full-service marketing engagements built around each client's specific needs, and (2) scalable digital products and subscriptions sold online, starting with a downloadable AI prompt kit for vacation rental hosts and a recurring social media management subscription currently in development.</p>
+<p>The business is self-funded by the owner and is not seeking external financing. This account is requested to process online payments for FUNkiness!'s digital products and to support the agency's day-to-day business operations.</p>
+</section>
+
+<section id="s2">
+<h2>2. Company Description</h2>
+<ul>
+  <li><strong>Legal name:</strong> FUNkiness! AI, Social Media &amp; Marketing</li>
+  <li><strong>Legal structure:</strong> Sole Proprietorship (Eenmanszaak), registered on Curaçao</li>
+  <li><strong>Location:</strong> Curaçao</li>
+  <li><strong>Founded:</strong> 2026</li>
+  <li><strong>Owner, Founder &amp; Managing Director:</strong> Daisy Kuipers</li>
+</ul>
+<p>Daisy Kuipers is the sole owner of FUNkiness!, an experienced marketer from the Netherlands who relocated to Curaçao to build the business. Her background covers brand strategy, campaign management, digital marketing, and applied AI. FUNkiness! was founded on the observation that marketing on Curaçao is still largely traditional, and that there is a clear opportunity for a marketing partner that combines sharp strategy with practical AI tools. Daisy is fully dedicated to the business and has personal savings in place to support its growth, giving her the time to build FUNkiness! properly without financial pressure to compromise on quality or pricing. Starting late October 2026, marketer Berdien Renes joins as a freelance contractor based on Curaçao, adding capacity for content production and client delivery as the client roster grows.</p>
+</section>
+
+<section id="s3">
+<h2>3. Products and Services</h2>
+<h3>A. Full-service marketing engagements (local, Curaçao)</h3>
+<p>Custom marketing strategy, AI integration, social media management, content creation, and campaign execution for businesses on Curaçao. There are no fixed packages; each engagement is scoped to the client's size, sector, and goals.</p>
+<h3>B. Island Host AI Prompt Kit, digital product ($27 one-time)</h3>
+<p>A downloadable set of 12 AI prompts for vacation rental hosts on Aruba, Bonaire, and Curaçao, covering listing descriptions for major booking platforms and tools to improve bookings and guest reviews. Sold as an instant digital download via Gumroad.</p>
+<h3>C. The Spark Plan, recurring subscription (in development)</h3>
+<p>A monthly social media management subscription for businesses that need structural, ongoing content and strategy support. Anchor pricing is $500 to $750 per month depending on scope.</p>
+<h3>D. Free lead-generation tools</h3>
+<p>Two free assessment tools (a Social Media Scan and a Marketing Strategy Scan) that give prospective clients a personalized report on their marketing and AI readiness. These generate leads for the paid services above and do not themselves produce revenue.</p>
+</section>
+
+<section id="s4">
+<h2>4. Market Analysis</h2>
+<p><strong>Industry:</strong> Marketing services, with a growing emphasis on AI-assisted content and strategy.</p>
+<p><strong>Local market context:</strong> Curaçao's tourism sector welcomed over 1.1 million stay-over visitors in 2023, the highest number in the island's history (Curaçao Tourist Board, 2023 Annual Report), with tourism accounting for approximately 30% of the island's GDP. This sustains steady demand for marketing services among hotels, restaurants, real estate agencies, and vacation rental businesses.</p>
+<p><strong>Target market:</strong> All businesses on Curaçao, with particular focus on hotels and resorts, restaurants, real estate agencies, and vacation rental owners and managers. The digital product line also targets vacation rental hosts across Aruba and Bonaire.</p>
+<p><strong>Competitive positioning:</strong> Most marketing services on Curaçao follow conventional, templated approaches. FUNkiness! differentiates through a strategy-first approach with practical AI integration built in from the start.</p>
+</section>
+
+<section id="s5">
+<h2>5. SWOT Analysis</h2>
+<div class="swot-grid">
+  <div class="swot-box">
+    <h3>Strengths</h3>
+    <ul>
+      <li>Founder brings professional marketing and AI experience from the Netherlands</li>
+      <li>Early positioning around AI-driven marketing, a topic most local competitors have not yet addressed</li>
+      <li>Low fixed overhead, online-first operating model</li>
+      <li>Owner's personal savings remove short-term revenue pressure during ramp-up</li>
+    </ul>
+  </div>
+  <div class="swot-box">
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>New brand with no local track record yet</li>
+      <li>Small team: one full-time owner plus one freelance contractor</li>
+      <li>No local full-service clients under contract as of this writing</li>
+    </ul>
+  </div>
+  <div class="swot-box">
+    <h3>Opportunities</h3>
+    <ul>
+      <li>Marketing on Curaçao remains largely traditional and templated, leaving room to differentiate</li>
+      <li>Strong, growing tourism sector sustains demand from hospitality and real estate businesses</li>
+      <li>Shift toward AI-powered search creates a positioning angle competitors have not yet claimed</li>
+      <li>Digital product line can expand beyond Curaçao to Aruba, Bonaire, and further</li>
+    </ul>
+  </div>
+  <div class="swot-box">
+    <h3>Threats</h3>
+    <ul>
+      <li>Small total addressable market for local services on a single island</li>
+      <li>Local economy is partly dependent on tourism performance</li>
+      <li>Competitors could adopt a similar AI-driven positioning over time</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section id="s6">
+<h2>6. Marketing and Sales Strategy</h2>
+<ul>
+  <li><strong>Direct outreach:</strong> personal outreach to specific local businesses, using the free assessment tools as a value-first opener.</li>
+  <li><strong>Content marketing:</strong> a bilingual (English/Dutch) website and blog, including content on the shift toward AI-powered search (ChatGPT, Perplexity, Google AI Overviews).</li>
+  <li><strong>Social media:</strong> active presence on Instagram and TikTok.</li>
+  <li><strong>Digital product distribution:</strong> online sales through Gumroad, expanding the product line to additional sectors once initial sales validate the model.</li>
+  <li><strong>Referral and reputation:</strong> word-of-mouth within Curaçao's close-knit business community, building on early client results.</li>
+</ul>
+</section>
+
+<section id="s7">
+<h2>7. Management and Organization</h2>
+<p>FUNkiness! is fully owned and operated by Daisy Kuipers, who is responsible for strategy, client work, and day-to-day operations. Daisy works full-time on the business and has personal savings in place to cover her own runway during the early growth phase, so the business is not under pressure to generate income immediately. Starting late October 2026, Berdien Renes joins as a freelance contractor based on Curaçao, supporting content production and client delivery as the client roster grows. No employees are currently engaged.</p>
+</section>
+
+<section id="s8">
+<h2>8. Initial Investment and Funding</h2>
+<p>FUNkiness! is entirely self-funded by the owner and requires no external financing to operate. The initial investment below has been or will be covered from Daisy Kuipers' personal savings.</p>
+<table>
+  <tr><th>Item</th><th>Estimated Amount</th></tr>
+  <tr><td>Business registration (KvK) and administrative setup</td><td>$150</td></tr>
+  <tr><td>Website domain and hosting setup</td><td>$100</td></tr>
+  <tr><td>Branding and design production</td><td>$300</td></tr>
+  <tr><td>Working capital buffer (software subscriptions and tools for the first few months)</td><td>$2,000</td></tr>
+  <tr><td><strong>Total initial investment</strong></td><td><strong>$2,550</strong></td></tr>
+</table>
+<p>No loan or external investment is being requested. The owner's personal savings also provide additional runway beyond this initial investment, covering personal living expenses during the early growth phase described in this plan.</p>
+</section>
+
+<section id="s9">
+<h2>9. Use of Funds / Purpose of Account</h2>
+<ul>
+  <li>Receive payment for digital product sales.</li>
+  <li>Manage day-to-day operating expenses, including software subscriptions, hosting, email services, and marketing tools.</li>
+  <li>Keep business finances cleanly separated from personal finances.</li>
+</ul>
+</section>
+
+<section id="s10">
+<h2>10. Projection of Business Income</h2>
+<div class="note">These figures are the founder's own conservative estimate. The retainer price point is grounded in published market research for marketing agency pricing, adjusted down to reflect a new brand entering a small local market with no track record yet. The growth pace assumes a realistic, gradual client acquisition rate rather than uninterrupted monthly growth.</div>
+
+<h3>Year 1 revenue assumptions</h3>
+<ul>
+  <li><strong>Local full-service engagements, custom pricing (average $850/month per client):</strong> the core of the business. Published market research on marketing agency retainers puts small-business pricing between $1,500 and $5,000/month in the U.S. market, with light single-channel engagements starting around $500 to $1,500/month. FUNkiness! anchors below that U.S. range, consistent with its existing Spark Plan pricing ($500 to $750/month for a narrower, social-only scope), reflecting a new, unproven brand in a small local market. Growth target of one net new client roughly every two months, starting in month 3, reaching 5 active clients by month 12. Estimated Year 1 total: $25,500.</li>
+  <li><strong>The Spark Plan, $500/month founding rate:</strong> one founding client signed around month 6. Estimated Year 1 total: $3,500.</li>
+  <li><strong>Island Host AI Prompt Kit, $27/sale:</strong> a gradual ramp from 2 sales/month in the first quarter to 8 sales/month by the fourth quarter, as outreach and content marketing build momentum. Estimated Year 1 total: 60 units, $1,620.</li>
+</ul>
+
+<h3>Year 1 Projected Annual Summary</h3>
+<table>
+  <tr><th>Category</th><th>Amount</th></tr>
+  <tr><td>Local full-service engagements</td><td>$25,500</td></tr>
+  <tr><td>The Spark Plan revenue</td><td>$3,500</td></tr>
+  <tr><td>Island Host AI Prompt Kit revenue</td><td>$1,620</td></tr>
+  <tr><td><strong>Total projected annual revenue</strong></td><td><strong>$30,620</strong></td></tr>
+  <tr><td>Estimated annual operating expenses (software, hosting, marketing tools, Gumroad fees, freelance production support from Berdien Renes as client volume grows)</td><td>$3,500</td></tr>
+  <tr><td><strong>Projected net income</strong></td><td><strong>$27,120</strong></td></tr>
+</table>
+
+<h3>Basis for projection</h3>
+<p>This is a start-up-phase business, so the projection is a growth target rather than a historical baseline, and it is deliberately conservative. It reflects the outreach strategy already underway: direct, personal outreach to a shortlist of Curaçao businesses, opening with the free AI &amp; Marketing Scan before proposing a custom engagement. Rather than assuming uninterrupted monthly client growth, the projection assumes a new client roughly every two months, which allows time for delivery, referrals, and realistic sales cycles between signings. The Spark Plan and Prompt Kit lines are modeled separately and even more conservatively, since they depend on Prompt Kit traction building first.</p>
+</section>
+
+<section id="s11">
+<h2>11. Three-Year Financial Outlook</h2>
+<p>Client acquisition is projected to continue beyond Year 1 at a cautious pace, and the Year 2 and Year 3 figures below assume some client turnover alongside new signings rather than pure, uninterrupted addition, a deliberately conservative planning assumption for a small local market.</p>
+<table>
+  <tr><th>Metric</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr>
+  <tr><td>Active local clients (year-end)</td><td>5</td><td>8</td><td>12</td></tr>
+  <tr><td>Active Spark Plan clients (year-end)</td><td>1</td><td>2</td><td>3</td></tr>
+  <tr><td>Total projected revenue</td><td>$30,620</td><td>$74,500</td><td>$115,500</td></tr>
+  <tr><td>Estimated operating expenses</td><td>$3,500</td><td>$6,500</td><td>$10,000</td></tr>
+  <tr><td><strong>Projected net income</strong></td><td><strong>$27,120</strong></td><td><strong>$68,000</strong></td><td><strong>$105,500</strong></td></tr>
+</table>
+<p>Year 2 and Year 3 operating expenses grow to reflect additional freelance production support from Berdien Renes as the client roster expands beyond what the owner can deliver alone. Revenue growth is modeled well below a straight-line continuation of the Year 1 pace, allowing room for slower sales cycles, occasional client churn, and the reality that a small local market will not sustain indefinite linear growth.</p>
+</section>
+
+<section id="s12">
+<h2>12. Break-Even Analysis</h2>
+<p>Base monthly operating costs during the early ramp-up period (before freelance support begins) are estimated at approximately $150 to $200 per month, covering software subscriptions, hosting, and email services. A single local client at the average $850/month retainer covers this cost several times over. Based on the growth target of one net new client roughly every two months, with the first client signed around month 3, FUNkiness! is projected to reach operational break-even in month 3 of its first year, well before the freelance support cost is added later in the year.</p>
+</section>
+
+<section id="s13">
+<h2>13. Risks and Mitigation</h2>
+<table>
+  <tr><th>Risk</th><th>Mitigation</th></tr>
+  <tr><td>Slower-than-projected client acquisition</td><td>Owner's personal financial runway removes pressure to accept unprofitable work while the pipeline builds. Revenue is diversified across three separate lines rather than depending on one.</td></tr>
+  <tr><td>Limited delivery capacity as a small team</td><td>Freelance support (Berdien Renes) scales with client volume rather than being a fixed cost, so delivery capacity grows in step with revenue.</td></tr>
+  <tr><td>Local economy partly tied to tourism performance</td><td>The digital product line and Spark Plan subscription are not tied to the tourism sector specifically and can serve businesses across the ABC islands.</td></tr>
+</table>
+</section>
+
+<section id="s14" class="signature-block">
+<h2>14. Signature</h2>
+<p>I confirm that the information in this business plan is accurate to the best of my knowledge as of the date below.</p>
+<div class="signature-line"><!-- SIGNATURE_IMAGE_PLACEHOLDER --></div>
+<p>Signature</p>
+<p><strong>Name:</strong> Daisy Kuipers</p>
+<p><strong>Title:</strong> Owner, Founder &amp; Managing Director, FUNkiness! AI, Social Media &amp; Marketing</p>
+<p><strong>Date:</strong> September 22, 2026</p>
+</section>
+
+<p class="meta">FUNkiness! AI, Social Media &amp; Marketing. Curaçao.</p>
+
+</body>
+</html>
