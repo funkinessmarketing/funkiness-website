@@ -2523,6 +2523,19 @@ details[open] .faq-icon {
   .footer-email { font-size: 15px; }
 }
 
+.footer-whatsapp {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .footer-whatsapp { font-size: 15px; }
+}
+
 .footer-nav-title {
   font-size: 11px;
   font-weight: 800;
