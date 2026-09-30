@@ -121,6 +121,8 @@ Lees deze bestanden voor meer detail:
 
 **Gumroad CLI** (`gumroad`, via `brew install antiwork/cli/gumroad`, ingelogd via device-code OAuth): voor productbeheer (titel, beschrijving, prijs, custom landingpagina) zonder de browser-UI. Belangrijkste commando's: `gumroad products view <id>`, `gumroad products update <id> --name/--description/...`, `gumroad products page preview/publish <id> ./landing.html` (check altijd het `sanitization_report` voordat je publiceert).
 
+**IndexNow (Bing/ChatGPT-vindbaarheid):** na elke live deploy met nieuwe of gewijzigde pagina's `sh scripts/indexnow.sh` draaien (meldt alle sitemap-URL's aan, verwacht HTTP 200/202). Sleutelbestand `11d8868433074608bc5520a00778147f.txt` in de root nooit verwijderen. ChatGPT zoekt via Bing, dus dit is de snelste route naar AI-zoekresultaten. WhatsApp zakelijk: +599 9 675 1737 (footer, contact, schema).
+
 **funkiness-scan/**, de AI & Marketing Scan webapp (leadgenerator). Multi-step form, gepersonaliseerd rapport via Claude API, radar chart. Draait op Node.js/Express, poort 3001. Start met `node server.js` vanuit de map. Beveiligd met rate limiting (IP + email) en email confirmation flow: rapport is alleen toegankelijk via unieke token-link in de email. Nodemailer via Titan SMTP (smtp.titan.email:587, sayhello@funkiness.ai).
 
 **Mobile office sectie** - nieuwe homepage sectie in ontwikkeling voor het "You pick the spot, we bring the office" concept. Preview: `docs/Graphic-Design/preview-mobile-office-sectie.html`. Booking via **Cal.com** (gratis, werkt met Apple Agenda via CalDAV). Meeting naam: "Marketing Strategy Session". Wacht op Cal.com embed code van Daisy om formulier te vervangen. Nog niet live op `index.html`.
