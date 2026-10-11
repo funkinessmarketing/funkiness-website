@@ -225,7 +225,7 @@ a { color: inherit; }
 
 .hero-script {
   color: var(--pink);
-  font-size: clamp(72px, 8.5vw, 148px);
+  font-size: clamp(64px, 7vw, 116px);
   line-height: 0.72;
   margin-bottom: 18px;
   transform: rotate(-4deg);
@@ -243,7 +243,7 @@ h1, h2 {
 }
 
 h1 {
-  font-size: clamp(34px, 6vw, 100px);
+  font-size: clamp(34px, 4.8vw, 72px);
   line-height: 0.88;
   font-weight: 600;
 }
@@ -563,7 +563,7 @@ h1.section-kicker {
 }
 
 .services-copy h2 {
-  font-size: clamp(32px, 5.7vw, 92px);
+  font-size: clamp(32px, 4.4vw, 64px);
   line-height: 0.95;
   margin-top: 36px;
 }
@@ -612,7 +612,7 @@ h1.section-kicker {
 .funky-ladies-left { position: relative; z-index: 2; }
 
 .funky-ladies-left h2 {
-  font-size: clamp(32px, 5.8vw, 98px);
+  font-size: clamp(32px, 4.4vw, 66px);
   line-height: 0.95;
   margin-bottom: 28px;
 }
@@ -688,7 +688,7 @@ h1.section-kicker {
 }
 
 .scan-copy h2 {
-  font-size: clamp(30px, 3.6vw, 54px);
+  font-size: clamp(30px, 3.2vw, 46px);
   line-height: 1.04;
   margin: 28px 0 28px;
 }
@@ -788,7 +788,7 @@ h1.section-kicker {
 }
 
 .contact-copy h2 {
-  font-size: clamp(38px, 5.4vw, 86px);
+  font-size: clamp(36px, 4.4vw, 64px);
   line-height: 1.02;
   margin: 28px 0 24px;
 }
@@ -993,7 +993,7 @@ h1.section-kicker {
 
 .why-us-header h2 {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(34px, 4.2vw, 68px);
+  font-size: clamp(32px, 3.8vw, 54px);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 0.95;
@@ -1096,7 +1096,7 @@ h1.section-kicker {
 }
 
 .page-hero h2 {
-  font-size: clamp(32px, 6vw, 96px);
+  font-size: clamp(32px, 4.8vw, 70px);
   line-height: 0.92;
 }
 
@@ -1153,10 +1153,10 @@ h1.section-kicker {
   .page-hero--reverse .page-hero-visual { order: -1; }
 }
 
-/* Long headlines break into one word per line at the full clamp(96px) size in a split hero;
+/* Long headlines break into one word per line at the full clamp(70px) size in a split hero;
    cap it a bit lower here so the text column stays readable next to the photo. */
 .page-hero--split h2 {
-  font-size: clamp(28px, 5vw, 76px);
+  font-size: clamp(28px, 4vw, 58px);
 }
 
 .page-hero-visual {
@@ -1291,7 +1291,7 @@ a.service-detail-card {
 }
 
 .seo-section h2 {
-  font-size: clamp(30px, 4.2vw, 56px);
+  font-size: clamp(30px, 3.6vw, 46px);
   line-height: 1.02;
   margin-bottom: 24px;
 }
@@ -1308,7 +1308,7 @@ a.service-detail-card {
 .seo-statement {
   font-family: "Poppins", sans-serif;
   font-weight: 900;
-  font-size: clamp(24px, 3.2vw, 40px) !important;
+  font-size: clamp(24px, 2.8vw, 34px) !important;
   line-height: 1.15 !important;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -1435,7 +1435,7 @@ a.service-detail-card {
 .feature-split-content h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 900;
-  font-size: clamp(24px, 3.2vw, 40px);
+  font-size: clamp(24px, 2.8vw, 34px);
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
@@ -1529,7 +1529,7 @@ a.service-detail-card {
 .stat-panel p {
   font-family: "Poppins", sans-serif;
   font-weight: 900;
-  font-size: clamp(26px, 3.6vw, 44px);
+  font-size: clamp(26px, 3.2vw, 38px);
   line-height: 1.14;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -1839,7 +1839,7 @@ details[open] .faq-icon {
 
 .cta-band h2 {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(32px, 4.5vw, 72px);
+  font-size: clamp(32px, 3.8vw, 56px);
   font-weight: 900;
   letter-spacing: -0.02em;
   color: var(--black);
@@ -2089,7 +2089,7 @@ details[open] .faq-icon {
 
 .contact-info-col h2 {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(34px, 4vw, 64px);
+  font-size: clamp(32px, 3.6vw, 50px);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 0.95;
@@ -2192,7 +2192,7 @@ details[open] .faq-icon {
 .blog-hero h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 900;
-  font-size: clamp(26px, 3.6vw, 52px);
+  font-size: clamp(26px, 3.2vw, 44px);
   letter-spacing: -0.02em;
   line-height: 1.07;
   max-width: 840px;
