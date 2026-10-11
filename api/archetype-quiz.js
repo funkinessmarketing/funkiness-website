@@ -142,10 +142,10 @@ Output ONLY valid JSON:
         subject: `Your AI Superpower: ${arch.name}`,
         html: `
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
-            <h1 style="font-size:24px;color:#080403;margin-bottom:6px">Hey ${naam},</h1>
+            <h1 style="font-size:24px;color:#3a251b;margin-bottom:6px">Hey ${naam},</h1>
             <p style="font-size:15px;color:#555;margin-bottom:32px">Your AI Superpower Quiz result is in.</p>
 
-            <div style="background:#080403;border-radius:16px;padding:36px 28px;margin-bottom:28px;text-align:center">
+            <div style="background:#3a251b;border-radius:16px;padding:36px 28px;margin-bottom:28px;text-align:center">
               <div style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#f21b7a;margin-bottom:12px">Your AI Superpower</div>
               <div style="font-size:40px;margin-bottom:12px">${arch.name.split(' ')[1] === 'Time' ? '⚡' : arch.name.includes('Content') ? '📡' : arch.name.includes('Growth') ? '🚀' : '✨'}</div>
               <div style="font-size:30px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px">${arch.name}</div>
@@ -154,11 +154,11 @@ Output ONLY valid JSON:
 
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">What this means for you</div>
-              <p style="font-size:16px;font-weight:700;color:#080403;margin:0 0 10px">${rapport.headline}</p>
+              <p style="font-size:16px;font-weight:700;color:#3a251b;margin:0 0 10px">${rapport.headline}</p>
               <p style="font-size:15px;line-height:1.6;color:#444;margin:0">${rapport.description}</p>
             </div>
 
-            <div style="background:#080403;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+            <div style="background:#3a251b;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your #1 AI opportunity right now</div>
               <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,0.85);margin:0">${rapport.ai_superpower}</p>
             </div>

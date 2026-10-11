@@ -65,7 +65,7 @@ Als een tekst saai klinkt, past hij niet bij FUNkiness!
 
 **Kleuren:**
 - Roze: `#f21b7a` (primair, altijd FUNkiness! roze)
-- Zwart: `#080403`
+- Espressobruin: `#3a251b` (sinds 11-10-2026 vervangt dit het zwart #080403 op de website, voor vlakken én tekst)
 - Crème: `#f7efe7` (standaard achtergrond)
 - Crème licht: `#fbf6f1`
 

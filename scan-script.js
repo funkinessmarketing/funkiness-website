@@ -302,7 +302,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
           beginAtZero: true, max: 100,
           ticks: { display: false },
           grid: { color: 'rgba(0,0,0,0.08)' },
-          pointLabels: { font: { family: 'Poppins', size: 13, weight: '700' }, color: '#080403' }
+          pointLabels: { font: { family: 'Poppins', size: 13, weight: '700' }, color: '#3a251b' }
         }
       },
       plugins: { legend: { display: false } }
@@ -365,7 +365,7 @@ function downloadReport() {
   <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Poppins',sans-serif;background:#f7efe7;color:#080403;padding:32px 24px}
+    body{font-family:'Poppins',sans-serif;background:#f7efe7;color:#3a251b;padding:32px 24px}
     h2{font-family:'Permanent Marker',cursive;font-size:2rem;font-weight:400;line-height:1.15;margin-bottom:16px}
     h3{font-size:1rem;font-weight:700;margin-bottom:10px}
     .scan-pink{color:#f21b7a}
@@ -386,7 +386,7 @@ function downloadReport() {
     .scan-bench-fill.top{background:rgba(242,27,122,.3)}
     .scan-bench-fill.you{background:#f21b7a;print-color-adjust:exact;-webkit-print-color-adjust:exact}
     .scan-bench-val{width:36px;font-weight:700;font-size:.82rem}
-    .scan-working-wrap{background:#080403;color:white;border-radius:14px;padding:20px 24px;margin-bottom:24px}
+    .scan-working-wrap{background:#3a251b;color:white;border-radius:14px;padding:20px 24px;margin-bottom:24px}
     .scan-working-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#f21b7a;margin-bottom:8px}
     .scan-category-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
     .scan-cat-card{background:white;border-radius:14px;padding:18px 20px}
@@ -399,7 +399,7 @@ function downloadReport() {
     .scan-cat-bar{height:5px;background:rgba(0,0,0,.08);border-radius:99px;overflow:hidden;margin-bottom:10px}
     .scan-cat-bar-fill{height:100%;background:#f21b7a;border-radius:99px;print-color-adjust:exact;-webkit-print-color-adjust:exact}
     .scan-cat-feedback{font-size:.88rem;color:#555;line-height:1.6}
-    .scan-bio-wrap{background:white;border-radius:14px;padding:18px 20px;margin-bottom:20px;border-left:4px solid #080403}
+    .scan-bio-wrap{background:white;border-radius:14px;padding:18px 20px;margin-bottom:20px;border-left:4px solid #3a251b}
     .scan-kansen-wrap{background:white;border-radius:14px;padding:20px;margin-bottom:20px}
     .scan-quickwin-wrap{background:#f21b7a;color:white;border-radius:14px;padding:20px;margin-bottom:28px;print-color-adjust:exact;-webkit-print-color-adjust:exact}
     .scan-quickwin-wrap h3{color:white;opacity:.85}

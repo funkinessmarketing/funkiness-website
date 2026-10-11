@@ -200,7 +200,7 @@ Call the submit_scan_report tool with your completed report, following the struc
         subject: `Your Marketing Strategy Scan is ready, ${naam}!`,
         html: `
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
-            <h1 style="font-size:26px;color:#080403;margin-bottom:8px">Hey ${naam},</h1>
+            <h1 style="font-size:26px;color:#3a251b;margin-bottom:8px">Hey ${naam},</h1>
             <p style="font-size:16px;color:#444;line-height:1.6;margin-bottom:24px">${rapport.intro}</p>
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
               <div style="font-size:48px;font-weight:900;line-height:1">${rapport.totaalscore}</div>
@@ -214,19 +214,19 @@ Call the submit_scan_report tool with your completed report, following the struc
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:12px">Your scores, by category</div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#080403">Brand &amp; Positioning, ${rapport.brand.score}/100</div>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Brand &amp; Positioning, ${rapport.brand.score}/100</div>
                 <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.brand.feedback}</p>
               </div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#080403">Audience &amp; Market, ${rapport.audience.score}/100</div>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Audience &amp; Market, ${rapport.audience.score}/100</div>
                 <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.audience.feedback}</p>
               </div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#080403">Channels &amp; Reach, ${rapport.channels.score}/100</div>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Channels &amp; Reach, ${rapport.channels.score}/100</div>
                 <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.channels.feedback}</p>
               </div>
               <div>
-                <div style="font-size:14px;font-weight:700;color:#080403">Strategy &amp; Execution, ${rapport.strategy.score}/100</div>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Strategy &amp; Execution, ${rapport.strategy.score}/100</div>
                 <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.strategy.feedback}</p>
               </div>
             </div>
@@ -242,7 +242,7 @@ Call the submit_scan_report tool with your completed report, following the struc
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">What the fast movers are doing</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.fomo}</p>
             </div>
-            <div style="background:#080403;color:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
+            <div style="background:#3a251b;color:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Do this today</div>
               <p style="font-size:15px;line-height:1.6;margin:0;opacity:0.9">${rapport.do_today}</p>
             </div>
