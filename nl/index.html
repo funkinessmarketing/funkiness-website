@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Poppins:wght@700;800;900&display=swap">
-  <link rel="stylesheet" href="../style.css?v=6">
+  <link rel="stylesheet" href="../style.css?v=9">
 </head>
 <body>
 
@@ -263,6 +263,7 @@
 
   <section class="scan-section">
     <div class="scan-copy">
+      <div class="paw-trail" aria-hidden="true"><i class="paw"></i><i class="paw"></i><i class="paw"></i><i class="paw"></i><i class="paw"></i><i class="paw"></i><i class="paw"></i></div>
       <p class="section-kicker">Gratis Scans</p>
       <h2>Twee gratis scans voor bedrijven op <span class="script-word">Curaçao, Aruba, Bonaire</span> en in Nederland.</h2>
       <p>Kies wat je nodig hebt. Beide duren 5 minuten. Beide geven je een gepersonaliseerd AI-rapport met echte scores en eerlijke feedback. Geen verkooppraatje.</p>
@@ -303,6 +304,9 @@
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
       </nav>
+    </div>
+    <div class="footer-leopard" aria-hidden="true">
+      <video src="/panter-zwaai.mp4" poster="/panter-zwaai.jpg" autoplay muted loop playsinline></video>
     </div>
   </footer>
   <div class="footer-bottom">
@@ -391,6 +395,23 @@
       }
     ]
   }
+  </script>
+<script>
+    (function () {
+      var trail = document.querySelector('.paw-trail');
+      if (!trail || !('IntersectionObserver' in window)) return;
+      trail.classList.add('is-ready');
+      var io = new IntersectionObserver(function (entries) {
+        var step = 0;
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var paw = e.target;
+          setTimeout(function () { paw.classList.add('is-seen'); }, step++ * 140);
+          io.unobserve(paw);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' });
+      trail.querySelectorAll('.paw').forEach(function (p) { io.observe(p); });
+    })();
   </script>
 <script src="../cookie-consent.js"></script>
 </body>

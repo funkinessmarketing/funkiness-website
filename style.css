@@ -2588,7 +2588,7 @@ details[open] .faq-icon {
 .footer-bottom p,
 .footer-bottom a {
   font-size: 13px;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.68);
   text-decoration: none;
 }
 
@@ -2662,3 +2662,193 @@ details[open] .faq-icon {
 }
 
 #funkiness-cookie-banner button[data-action="decline"]:hover { color: rgba(247,239,231,0.9); }
+
+/* ============================
+   LEOPARD TOUCHES
+   ============================ */
+
+/* Leopard marker swipe under every pink script word */
+.script-word { position: relative; }
+
+/* the swipe sits behind all text of its heading, also the line below */
+:is(h1, h2, h3, p):has(> .script-word) { isolation: isolate; }
+
+.script-word::after {
+  content: "";
+  position: absolute;
+  left: -0.12em;
+  right: -0.18em;
+  bottom: -0.24em;
+  height: 0.28em;
+  background: url("/leopard-caramel.svg") 0 0 / 2.4em auto;
+  border-radius: 46% 54% 40% 60% / 60% 45% 55% 40%;
+  transform: rotate(-2deg);
+  opacity: 0.9;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Dark buttons turn leopard on tap or hover */
+.black-button,
+.nav-button,
+.insta-follow-button {
+  background-image: url("/leopard-dark.svg");
+  background-size: 0 0;
+  background-position: 0 0;
+  background-repeat: repeat;
+  transition: background-size 0s, background-position 1.6s linear, transform 180ms ease;
+}
+
+.black-button:hover,
+.black-button:focus-visible,
+.black-button:active,
+.nav-button:hover,
+.nav-button:focus-visible,
+.nav-button:active,
+.insta-follow-button:hover,
+.insta-follow-button:focus-visible,
+.insta-follow-button:active {
+  background-size: 90px 90px;
+  background-position: 45px 0;
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+/* Paw prints walking to the free scan button */
+.scan-copy { position: relative; }
+
+.paw-trail {
+  position: absolute;
+  top: 6px;
+  bottom: 0;
+  left: -4.2vw;
+  width: 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.paw {
+  width: 13px;
+  height: 13px;
+  background: url("/paw.svg") center / contain no-repeat;
+  transform: rotate(180deg) translateX(-3px);
+  opacity: 1;
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+.paw:nth-child(even) { transform: rotate(180deg) translateX(3px); }
+
+.paw-trail.is-ready .paw:not(.is-seen) {
+  opacity: 0;
+  transform: rotate(180deg) translateY(8px) scale(0.6);
+}
+
+@media (min-width: 1100px) {
+  .paw-trail { left: -5.5vw; width: 4vw; }
+  .paw { width: 24px; height: 24px; transform: rotate(180deg) translateX(-8px); }
+  .paw:nth-child(even) { transform: rotate(180deg) translateX(8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paw-trail.is-ready .paw:not(.is-seen) { opacity: 1; transform: none; }
+  .black-button, .nav-button, .insta-follow-button { transition: none; }
+}
+
+/* 404 page */
+.lost-hero {
+  padding: 8px 0 88px;
+}
+
+.lost-visual {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* full bleed, so the leopard runs in from the left edge and out past the right edge of the screen */
+.lost-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1280 / 444;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+  transition: opacity 400ms ease;
+}
+
+.lost-copy { padding: 0 5vw; }
+
+.lost-hero .lost-number {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: clamp(90px, 14vw, 170px);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: #c47c3e;
+  background: url("/leopard-caramel.svg") 0 0 / 70px auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+
+.lost-hero h1 { margin-bottom: 22px; }
+
+.lost-hero p:not(.lost-number) {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+.lost-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+}
+
+.lost-links a:not(.black-button) {
+  font-weight: 800;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.lost-links a:not(.black-button):hover { color: var(--pink); }
+
+@media (min-width: 1100px) {
+  .lost-hero { padding: 0 0 120px; }
+  .lost-copy { padding: 0 7vw; }
+  .lost-hero p:not(.lost-number) { font-size: 21px; }
+}
+
+/* Leopard chilling in the footer, small and on the right */
+.site-footer { position: relative; }
+
+.footer-leopard {
+  position: absolute;
+  right: 5vw;
+  bottom: 28px;
+  width: 92px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--cream);
+  border-radius: 48% 52% 58% 42% / 46% 54% 46% 54%;
+  box-shadow: 0 0 0 4px rgba(242, 27, 122, 0.3);
+  transform: rotate(-4deg);
+}
+
+.footer-leopard video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.4) translateY(4%);
+}
+
+@media (min-width: 1100px) {
+  .footer-leopard { right: 7vw; bottom: 50%; transform: translateY(50%) rotate(-4deg); width: 150px; }
+}
+
+.lost-hero .script-word::after { display: none; }
