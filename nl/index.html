@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Poppins:wght@700;800;900&display=swap">
-  <link rel="stylesheet" href="../style.css?v=9">
+  <link rel="stylesheet" href="../style.css?v=11">
 </head>
 <body>
 
@@ -114,7 +114,11 @@
         <ellipse cx="1062" cy="292" rx="27" ry="18" fill="#f21b7a"/>
         <ellipse cx="1090" cy="308" rx="13" ry="9" fill="#f21b7a"/>
       </svg>
-      <img src="../jeep3.webp" alt="FUNkiness Jeep met panterprint" class="jeep">
+      <div class="jeep">
+        <img src="../jeep3.webp" alt="FUNkiness Jeep met panterprint" class="jeep-img">
+        <span class="jeep-wheel jeep-wheel--front" aria-hidden="true"><i style="background-image:url('../jeep-wheel-front.webp')"></i></span>
+        <span class="jeep-wheel jeep-wheel--rear" aria-hidden="true"><i style="background-image:url('../jeep-wheel-rear.webp')"></i></span>
+      </div>
     </div>
     <div class="pattern pattern-right"></div>
   </section>
@@ -413,6 +417,7 @@
       trail.querySelectorAll('.paw').forEach(function (p) { io.observe(p); });
     })();
   </script>
+<script src="/effects.js"></script>
 <script src="../cookie-consent.js"></script>
 </body>
 </html>

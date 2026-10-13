@@ -2667,27 +2667,6 @@ details[open] .faq-icon {
    LEOPARD TOUCHES
    ============================ */
 
-/* Leopard marker swipe under every pink script word */
-.script-word { position: relative; }
-
-/* the swipe sits behind all text of its heading, also the line below */
-:is(h1, h2, h3, p):has(> .script-word) { isolation: isolate; }
-
-.script-word::after {
-  content: "";
-  position: absolute;
-  left: -0.12em;
-  right: -0.18em;
-  bottom: -0.24em;
-  height: 0.28em;
-  background: url("/leopard-caramel.svg") 0 0 / 2.4em auto;
-  border-radius: 46% 54% 40% 60% / 60% 45% 55% 40%;
-  transform: rotate(-2deg);
-  opacity: 0.9;
-  z-index: -1;
-  pointer-events: none;
-}
-
 /* Dark buttons turn leopard on tap or hover */
 .black-button,
 .nav-button,
@@ -2851,4 +2830,83 @@ details[open] .faq-icon {
   .footer-leopard { right: 7vw; bottom: 50%; transform: translateY(50%) rotate(-4deg); width: 150px; }
 }
 
-.lost-hero .script-word::after { display: none; }
+
+/* ============================
+   SUBTLE MOTION
+   ============================ */
+
+/* The Jeep drives in from the right and brakes on the pink splash */
+.hero { overflow-x: clip; }
+
+.jeep { animation: jeep-drive-in 1.7s cubic-bezier(0.22, 0.8, 0.3, 1) 0.15s both; }
+.pink-blob { animation: blob-squish 0.6s ease-out 1.25s both; transform-origin: 50% 80%; }
+
+.jeep-img { display: block; width: 100%; height: auto; }
+
+/* Rims cut from the photo, un-squashed into circles: the span squashes them back
+   into the wheel's ellipse, the inner layer spins while the Jeep drives in */
+.jeep-wheel {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  animation: wheel-fade 0.3s ease 1.9s both;
+}
+
+.jeep-wheel i {
+  position: absolute;
+  inset: 0;
+  background-size: 100% 100%;
+  border-radius: 50%;
+  animation: wheel-spin 1.7s cubic-bezier(0.22, 0.8, 0.3, 1) 0.15s both;
+}
+
+/* front rim: centre 658,549 rx 82 ry 100 on the 1200x800 photo */
+.jeep-wheel--front { left: 46.5%; top: 56.125%; width: 16.667%; transform: scaleX(0.82); }
+/* rear rim: centre 1137,463 rx 27 ry 79 */
+.jeep-wheel--rear { left: 88.167%; top: 48%; width: 13.167%; transform: scaleX(0.342); }
+
+@keyframes wheel-spin {
+  from { transform: rotate(1440deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* once parked, hand back to the photo so the wheels look exactly like before */
+@keyframes wheel-fade {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes jeep-drive-in {
+  0%   { transform: translateX(105vw); }
+  68%  { transform: translateX(-3%) rotate(-1.6deg); }
+  84%  { transform: translateX(0.6%) rotate(0.5deg); }
+  100% { transform: none; }
+}
+
+@keyframes blob-squish {
+  0%   { transform: scale(1, 1); }
+  40%  { transform: scale(1.06, 0.9); }
+  100% { transform: scale(1, 1); }
+}
+
+/* Pink marker words get written left to right when they come into view */
+.script-word,
+.hero-script {
+  transition: clip-path 0.9s cubic-bezier(0.55, 0.1, 0.3, 1);
+}
+
+.fx-write .script-word:not(.is-written),
+.fx-write .hero-script:not(.is-written) {
+  clip-path: inset(-30% 100% -30% -5%);
+}
+
+.script-word.is-written,
+.hero-script.is-written {
+  clip-path: inset(-30% -5% -30% -5%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jeep, .pink-blob { animation: none; }
+  .jeep-wheel { display: none; }
+  .script-word, .hero-script { transition: none; }
+}
