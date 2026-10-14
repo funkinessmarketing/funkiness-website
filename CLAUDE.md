@@ -151,6 +151,7 @@ Contenttoon: altijd vanuit mogelijkheden en positiviteit (The Magician). Geen ro
 
 Logs staan in docs/logs/YYYY-MM-DD/. Zie de laatste log voor recente acties en openstaande punten.
 
+- 2026-10-14: Scanmail gerepareerd, scans zonder verzinsels (feiten met bron per locatie, controle per zin), Social Media Scan uitgebreid en 3x sneller, echte Instagram-cijfers via Meta-app; open: eigen testscan Daisy, daarna Marketing Scan: docs/logs/2026-10-14/01-scans-mail-bronnen-instagram.md
 - 2026-09-22: Website-creativiteitsronde (eigen vormtaal per pagina), social media reel + Realtors-post, MCB-businessplan afgerond en kritisch nagelopen (VS-claim en verouderde toerismecijfers verwijderd, jaar 1-aannames realistischer getimed): docs/logs/2026-09-22/01-website-creativiteit-social-reel-mcb-businessplan.md
 - 2026-09-14: Actiepost-format ontwikkeld (branche-per-post, eye-opener-lat, hook-alleen beeldopmaak), Instagram grid-crop-fout gecorrigeerd (horizontaal, niet verticaal), fotobewerkingsfout gevonden (AI verzon sieraad) en verplichte voor/na-check ingevoerd: docs/logs/2026-09-14/01-social-media-posts-actiepost-format.md
 - 2026-09-11: Youvia GEO-whitepaper geanalyseerd, sameAs-links en nieuwe FAQ live, GEO-blogpost + reel gepubliceerd, outreach-strategie eerste klant vastgelegd, AI Visibility Scan grotendeels gebouwd (taak 7 wacht op review testmails): docs/logs/2026-09-11/01-geo-whitepaper-tot-ai-visibility-scan.md
