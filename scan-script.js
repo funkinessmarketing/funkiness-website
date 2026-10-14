@@ -7,7 +7,7 @@ let scanType = null;
 const STEP_HEADERS = {
   social: {
     2: { eyebrow: 'Step 1: Your Channels',  h2: 'Where are you<br><span class="scan-pink">showing up?</span>' },
-    3: { eyebrow: 'Step 2: Instagram',       h2: 'Let\'s look at<br><span class="scan-pink">your Instagram.</span>' },
+    3: { eyebrow: 'Step 2: Video & Profile', h2: 'Let\'s look at<br><span class="scan-pink">your profile.</span>' },
     4: { eyebrow: 'Step 3: Engagement',      h2: 'Are people actually<br><span class="scan-pink">interacting?</span>' },
     5: { eyebrow: 'Step 4: Content',         h2: 'What does your<br><span class="scan-pink">content look like?</span>' },
   },
@@ -148,29 +148,10 @@ document.addEventListener('click', (e) => {
     btn.classList.add('selected');
     answers[question.dataset.key] = {
       value: btn.dataset.value,
-      category: question.dataset.category,
-      scores: JSON.parse(question.dataset.scores)
+      category: question.dataset.category
     };
   }
 });
-
-function calcScores() {
-  const catKeys = scanType === 'social'
-    ? ['platforms', 'instagram', 'engagement', 'content']
-    : ['brand', 'audience', 'channels', 'strategy'];
-
-  const cats = {};
-  catKeys.forEach(k => cats[k] = []);
-
-  for (const [, data] of Object.entries(answers)) {
-    const score = data.scores[data.value] ?? 50;
-    if (cats[data.category] !== undefined) cats[data.category].push(score);
-  }
-  const avg = arr => arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
-  const result = {};
-  catKeys.forEach(k => result[k] = avg(cats[k]));
-  return result;
-}
 
 async function submitScan() {
   if (!validateStep(5)) return;
@@ -186,7 +167,7 @@ async function submitScan() {
   const instagram   = document.getElementById('instagram')?.value.trim() || '';
   const bio         = document.getElementById('bio')?.value.trim() || '';
   const sector      = fieldSelections['sector'];
-  const scores      = calcScores();
+  const site        = document.getElementById('site_url').value.trim();
   const honeypot    = document.getElementById('honeypot')?.value || '';
 
   document.getElementById('loadingName').textContent = bedrijf;
@@ -204,7 +185,7 @@ async function submitScan() {
     const res = await fetch(apiEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, antwoorden, scores, honeypot })
+      body: JSON.stringify({ bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, honeypot })
     });
     const data = await res.json();
     if (!data.success) throw new Error(data.error);
@@ -251,28 +232,8 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   );
   document.getElementById('btnWhatsApp').href = `https://wa.me/59996751737?text=${waMsg}`;
 
-  document.getElementById('benchmarkWrap').innerHTML = `
-    <p>How <strong>${bedrijf}</strong> compares to ${rapport.benchmark_label}:</p>
-    <div class="scan-bench-bars">
-      <div class="scan-bench-row">
-        <span class="scan-bench-label">Average</span>
-        <div class="scan-bench-track"><div class="scan-bench-fill avg" style="width:${rapport.benchmark_avg}%"></div></div>
-        <span class="scan-bench-val">${rapport.benchmark_avg}</span>
-      </div>
-      <div class="scan-bench-row">
-        <span class="scan-bench-label">Top 20%</span>
-        <div class="scan-bench-track"><div class="scan-bench-fill top" style="width:${rapport.benchmark_top}%"></div></div>
-        <span class="scan-bench-val">${rapport.benchmark_top}</span>
-      </div>
-      <div class="scan-bench-row">
-        <span class="scan-bench-label" style="color:#f21b7a;font-weight:800">You</span>
-        <div class="scan-bench-track"><div class="scan-bench-fill you" style="width:${rapport.totaalscore}%"></div></div>
-        <span class="scan-bench-val" style="color:#f21b7a;font-weight:800">${rapport.totaalscore}</span>
-      </div>
-    </div>`;
-
   const radarLabels = isSocial
-    ? ['Platforms', 'Instagram', 'Engagement', 'Content']
+    ? ['Platforms', 'Video & Profile', 'Engagement', 'Content']
     : ['Brand', 'Audience', 'Channels', 'Strategy'];
 
   const radarData = isSocial
@@ -312,7 +273,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   const categories = isSocial
     ? [
         { label: 'Platforms & Reach', data: rapport.platforms },
-        { label: 'Instagram',         data: rapport.instagram },
+        { label: 'Video & Profile',   data: rapport.instagram },
         { label: 'Engagement',        data: rapport.engagement },
         { label: 'Content',           data: rapport.content }
       ]
@@ -332,7 +293,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
         <span class="scan-cat-pill ${pill}">${s}/100</span>
       </div>
       <div class="scan-cat-bar"><div class="scan-cat-bar-fill" style="width:${s}%"></div></div>
-      <p class="scan-cat-feedback">${data.feedback}</p>
+      <p class="scan-cat-feedback">${escHtml(data.feedback)}</p>
     </div>`;
   }).join('');
 
@@ -350,7 +311,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
 
   document.getElementById('fomoWrap').innerHTML = `
     <h3>What the fast movers are doing</h3>
-    <p>${rapport.fomo}</p>`;
+    <p>${escHtml(rapport.fomo)}</p>`;
 }
 
 function downloadReport() {
@@ -376,16 +337,6 @@ function downloadReport() {
     .scan-score-badge{display:flex;flex-direction:column;align-items:center;background:#f21b7a;color:white;border-radius:50%;width:100px;height:100px;justify-content:center}
     .scan-score-num{font-size:2.2rem;font-weight:900;line-height:1}
     .scan-score-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;opacity:.9}
-    .scan-bench-wrap{background:white;border-radius:14px;padding:20px 24px;margin-bottom:24px}
-    .scan-bench-bars{display:flex;flex-direction:column;gap:8px}
-    .scan-bench-row{display:flex;align-items:center;gap:10px;font-size:.82rem}
-    .scan-bench-label{width:110px;text-align:right;color:#888;font-weight:600;flex-shrink:0}
-    .scan-bench-track{flex:1;height:8px;background:rgba(0,0,0,.07);border-radius:99px;overflow:hidden}
-    .scan-bench-fill{height:100%;border-radius:99px}
-    .scan-bench-fill.avg{background:rgba(0,0,0,.2)}
-    .scan-bench-fill.top{background:rgba(242,27,122,.3)}
-    .scan-bench-fill.you{background:#f21b7a;print-color-adjust:exact;-webkit-print-color-adjust:exact}
-    .scan-bench-val{width:36px;font-weight:700;font-size:.82rem}
     .scan-working-wrap{background:#3a251b;color:white;border-radius:14px;padding:20px 24px;margin-bottom:24px}
     .scan-working-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#f21b7a;margin-bottom:8px}
     .scan-category-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}

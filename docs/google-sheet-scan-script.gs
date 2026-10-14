@@ -5,7 +5,7 @@
 //   2. actie 'rapport' (score + rapport) of actie 'fout' (foutmelding), na de AI-analyse
 
 const KOPPEN = ['Datum', 'Type', 'Bedrijf', 'Sector', 'Naam', 'Functie', 'Email',
-  'Telefoon CW', 'Telefoon NL', 'Instagram', 'Archetype', 'Score', 'Status', 'Rapport', 'ID'];
+  'Telefoon CW', 'Telefoon NL', 'Instagram', 'Archetype', 'Score', 'Status', 'Rapport', 'ID', 'Website'];
 const KOLOM_SCORE = 12;
 const KOLOM_ID = 15;
 
@@ -27,7 +27,7 @@ function doPost(e) {
     } else {
       sheet.appendRow([new Date(), d.type || '', d.bedrijf || '', d.sector || '', d.naam || '',
         d.functie || '', d.email || '', alsTekst(d.telefoon), alsTekst(d.telefoon_nl),
-        d.instagram || '', d.archetype || '', '', 'Bezig', '', d.id || '']);
+        d.instagram || '', d.archetype || '', '', 'Bezig', '', d.id || '', d.website || '']);
     }
     return ContentService.createTextOutput('ok');
   } finally {
@@ -53,8 +53,7 @@ function zoekRij(sheet, id) {
 }
 
 function zorgVoorKoppen(sheet) {
-  if (sheet.getRange(1, 1).getValue() === 'Datum') return;
-  sheet.insertRowBefore(1);
+  if (sheet.getRange(1, 1).getValue() !== 'Datum') sheet.insertRowBefore(1);
   sheet.getRange(1, 1, 1, KOPPEN.length).setValues([KOPPEN]).setFontWeight('bold');
   sheet.setFrozenRows(1);
 }

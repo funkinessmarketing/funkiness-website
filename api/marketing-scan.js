@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
+import { berekenScores, SECTOREN, leesWebsite } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -21,16 +22,16 @@ const CURACAO_MARKETING_CONTEXT = `
 CURAÇAO BUSINESS & MARKETING CONTEXT. Only use facts from this list. Do not invent statistics.
 
 CURAÇAO OVERVIEW:
-- Curaçao has approximately 160,000 inhabitants
-- Tourism accounts for approximately 30% of GDP (Curaçao Tourist Board)
-- Curaçao welcomed over 1.1 million stay-over visitors in 2023, the highest in island history (CTB Annual Report 2023)
+- Curaçao welcomed 582,409 stay-over visitors in 2023, a record year (Curaçao Tourist Board, January 2024)
 - The US, Netherlands and Germany are the top three source markets for stay-over tourism
 
 DIGITAL BEHAVIOR ON CURAÇAO (structural, verified):
-- WhatsApp is the primary communication channel, used by an estimated 90%+ of the population (GSMA Mobile Economy Caribbean, 2024)
+- WhatsApp is the primary communication channel on Curaçao
 - The majority of web and social traffic is mobile. Desktop usage is minimal
 - Word-of-mouth and WhatsApp referrals remain dominant lead sources for most local businesses
 - Google Business Profile is widely underused by local businesses, those who optimize it gain a clear visibility advantage
+- More people ask AI assistants such as ChatGPT for local recommendations. A website that clearly states what a business does, where, and for whom makes it easier for these assistants to mention that business. Do not claim percentages about this
+- Responding to online reviews shows future customers that a business is active and cares
 
 VERIFIED MARKETING BEST PRACTICES:
 - Businesses with a documented strategy, even a basic one, are more consistent and waste less budget on reactive spending
@@ -52,13 +53,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, antwoorden, scores, honeypot } = req.body;
+  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, site, antwoorden, honeypot } = req.body;
+  const scores = berekenScores('marketing', antwoorden);
 
   if (honeypot) {
     return res.status(400).json({ success: false, error: 'Invalid submission.' });
   }
 
-  if (!bedrijf || !email || !scores || !antwoorden) {
+  if (!bedrijf || !email || !scores) {
     return res.status(400).json({ success: false, error: 'Missing required fields.' });
   }
 
@@ -79,15 +81,14 @@ export default async function handler(req, res) {
         body: JSON.stringify({ id: scanId, ...data })
       }).catch(err => console.error('Sheet log error:', err.message))
     : Promise.resolve();
-  const sheetAanvraag = naarSheet({ type: 'marketing', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl) });
+  const sheetAanvraag = naarSheet({ type: 'marketing', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), website: site });
 
-  const sectorLabel = {
-    hotel:      'hotel or resort',
-    restaurant: 'restaurant or café',
-    makelaar:   'real estate agency',
-    airbnb:     'vacation rental or short-term rental',
-    anders:     'local business (sector unknown)'
-  }[sector] || 'local business (sector unknown)';
+  // Homepage van de klant lezen terwijl de sheet-logging loopt
+  const websiteInhoud = await leesWebsite(site);
+
+  const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
+  const sectorLabel = sectorInfo.prompt;
+  const groep = sectorInfo.groep;
 
   const totaalscore = Math.round((scores.brand + scores.audience + scores.channels + scores.strategy) / 4);
   const lowestCat = Object.entries(scores).sort((a, b) => a[1] - b[1])[0][0];
@@ -98,28 +99,17 @@ export default async function handler(req, res) {
     strategy: 'Strategy & Execution'
   }[lowestCat];
 
-  const sectorBenchmarks = {
-    hotel:      { avg: 46, top: 76, label: 'hotels and resorts on Curaçao' },
-    restaurant: { avg: 40, top: 70, label: 'restaurants on Curaçao' },
-    makelaar:   { avg: 36, top: 66, label: 'real estate agencies on Curaçao' },
-    airbnb:     { avg: 33, top: 63, label: 'vacation rentals on Curaçao' },
-    anders:     { avg: 38, top: 68, label: 'local businesses on Curaçao' }
-  };
-  const benchmark = sectorBenchmarks[sector] || sectorBenchmarks.anders;
 
   const prompt = `You are a sharp, direct marketing strategist at FUNkiness!, an AI & marketing agency on Curaçao. You analyze marketing strategy for businesses on the island.
 
 ${CURACAO_MARKETING_CONTEXT}
 
-SECTOR BENCHMARKS (based on FUNkiness! analysis of ${benchmark.label}):
-- Average score: ${benchmark.avg}/100
-- Top 20% score: ${benchmark.top}/100
-- ${bedrijf}'s score: ${totaalscore}/100
+OVERALL SCORE: ${bedrijf} scored ${totaalscore}/100. Do not compare this score to other businesses or invent averages.
 
 THE BUSINESS:
 Name: ${bedrijf}
 Sector: ${sectorLabel}
-
+${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}
 SCAN RESULTS:
 ${Object.entries(antwoorden).map(([k, v]) => `- ${k}: ${v}`).join('\n')}
 
@@ -139,13 +129,14 @@ TONE:
 - Never use an em dash. Never use "premium" or "luxury"
 - FUNkiness! brand voice: confident, a little cheeky, never corporate
 - Always mention ${bedrijf} by name
+- If their website text is provided, use one concrete detail from it in the intro so it is clear we actually looked. Never invent details about the website. If no website text is provided, do not mention the website
 
 STRUCTURE RULES:
 1. WHAT'S WORKING: Find 1 genuine thing ${bedrijf} is doing right. Be specific. Tone: playful and encouraging. Not generic.
 2. SCORES: 2 sentences per category. Reference a fact from the market context. No invented percentages.
-3. TOP QUICK WIN: Give exactly 1 strong, concrete, immediately actionable quick win with the source that backs it up. Genuinely useful but does not replace a strategy session.
+3. TOP QUICK WIN: Give exactly 1 strong, concrete, immediately actionable quick win. Explain why it works. Only name a source if it appears in the context above. Genuinely useful but does not replace a strategy session.
 4. TEASER WINS: Hint at 2 more wins you spotted but don't explain them. Name the area vaguely. Create curiosity without giving the solution.
-5. FOMO (positive): 2 sentences about what the fast-moving ${benchmark.label} are already doing that ${bedrijf} isn't yet. Positive angle. Make them want to be in that group.
+5. FOMO (positive): 2 sentences about what the fast-moving ${groep} are already doing that ${bedrijf} isn't yet. Positive angle. Make them want to be in that group.
 6. DO TODAY: One ultra-specific action they can do in 20 minutes. The first step, not the full solution.
 7. DYNAMIC CTA: Personalized to their lowest scoring area (${lowestLabel}). Direct and inviting, not salesy.
 
@@ -163,9 +154,9 @@ Call the submit_scan_report tool with your completed report, following the struc
         audience_feedback: { type: 'string', description: '2 sentences. Reference a fact about knowing your customer or word-of-mouth.' },
         channels_feedback: { type: 'string', description: '2 sentences. Reference a verified channel behavior (Google, WhatsApp, website, mobile).' },
         strategy_feedback: { type: 'string', description: '2 sentences. Reference a fact about planning, budget or tracking.' },
-        top_quickwin: { type: 'string', description: `The single best, fully explained quick win for ${bedrijf}. Include the source. Genuinely useful but leaves the strategy work for FUNkiness!.` },
+        top_quickwin: { type: 'string', description: `The single best, fully explained quick win for ${bedrijf}. Explain why it works. Genuinely useful but leaves the strategy work for FUNkiness!.` },
         teaser_wins: { type: 'string', description: `We spotted 2 more wins specific to ${bedrijf}. One is about [vague area 1]. The other touches on [vague area 2]. Both need a closer look to execute right.` },
-        fomo: { type: 'string', description: `2 sentences. What are the fast-moving ${benchmark.label} already doing that ${bedrijf} is not yet? Positive framing.` },
+        fomo: { type: 'string', description: `2 sentences. What are the fast-moving ${groep} already doing that ${bedrijf} is not yet? Positive framing.` },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. The first step, not the full solution.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
@@ -202,10 +193,7 @@ Call the submit_scan_report tool with your completed report, following the struc
       fomo: out.fomo,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
-      totaalscore,
-      benchmark_avg: benchmark.avg,
-      benchmark_top: benchmark.top,
-      benchmark_label: benchmark.label
+      totaalscore
     };
 
     // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
@@ -222,7 +210,6 @@ Call the submit_scan_report tool with your completed report, following the struc
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
               <div style="font-size:48px;font-weight:900;line-height:1">${rapport.totaalscore}</div>
               <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.9">Overall Score / 100</div>
-              <div style="font-size:14px;margin-top:8px;opacity:0.85">vs. average ${rapport.benchmark_avg}/100 for ${rapport.benchmark_label}</div>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">What's working</div>
@@ -276,10 +263,7 @@ Call the submit_scan_report tool with your completed report, following the struc
     }
 
     if (process.env.TITAN_PASSWORD) {
-      const sectorNaam = {
-        hotel: 'Hotel / Resort', restaurant: 'Restaurant / Café',
-        makelaar: 'Real Estate', airbnb: 'Vacation Rental', anders: 'Other'
-      }[sector] || sector;
+      const sectorNaam = sectorInfo.naam;
 
       mails.push(mailer.sendMail({
         from: '"FUNkiness! Scan" <sayhello@funkiness.ai>',
@@ -293,6 +277,7 @@ Call the submit_scan_report tool with your completed report, following the struc
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorNaam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${esc(functie) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Website</td><td style="padding:8px;border:1px solid #eee">${esc(site) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
@@ -343,7 +328,7 @@ Call the submit_scan_report tool with your completed report, following the struc
           <div style="font-family:sans-serif">
             <h2 style="color:#f21b7a">Marketing Strategy Scan mislukt</h2>
             <p>De klant kreeg een foutmelding en heeft geen rapport gezien. Contactgegevens:</p>
-            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Email: ${esc(email)}<br>Telefoon (CW): ${esc(telefoon)}<br>Telefoon (NL): ${esc(telefoon_nl)}</p>
+            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Website: ${esc(site)}<br>Email: ${esc(email)}<br>Telefoon (CW): ${esc(telefoon)}<br>Telefoon (NL): ${esc(telefoon_nl)}</p>
             <p style="color:#888">Fout: ${esc(err.message)}</p>
           </div>
         `

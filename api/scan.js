@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
+import { berekenScores, SECTOREN, leesWebsite } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -21,24 +22,23 @@ const CURACAO_CONTEXT = `
 CURAÇAO MARKET CONTEXT. Only use facts from this list. Do not invent statistics. If you reference a number, it must come from here.
 
 PLATFORM BEHAVIOR ON CURAÇAO (structural, verified):
-- WhatsApp is the primary communication channel on Curaçao, used by an estimated 90%+ of the population. It is not a social media platform but a trust and conversion channel (GSMA Mobile Economy Caribbean, 2024)
+- WhatsApp is the primary communication channel on Curaçao. It is not a social media platform but a trust and conversion channel
 - Instagram is the leading visual discovery platform for tourism and hospitality on the island
 - Facebook reaches the 35+ age group most effectively; younger audiences have shifted toward Instagram and TikTok
-- TikTok is growing rapidly among 18-34 year olds across the Caribbean region (Kepios Global Digital Report, 2025)
+- TikTok is growing fast among younger audiences across the Caribbean region
 - The majority of social media traffic on Curaçao is mobile. Desktop usage is minimal
 
 CURAÇAO TOURISM (Curaçao Tourist Board, verified):
-- Curaçao welcomed over 1.1 million stay-over visitors in 2023, the highest number in the island's history (CTB Annual Report 2023)
+- Curaçao welcomed 582,409 stay-over visitors in 2023, a record year (Curaçao Tourist Board, January 2024)
 - The US, Netherlands and Germany are the top three source markets for stay-over tourism
-- Tourism accounts for approximately 30% of Curaçao's GDP
 
 VERIFIED PLATFORM BEHAVIOR (use directional, not specific percentages):
 - Instagram's algorithm actively prioritizes Reels over static images in the Explore and Reels feeds. This is confirmed Meta policy, not a benchmark stat
-- Instagram Stories disappear after 24 hours but are the most-viewed format daily on the platform (Meta, 2025)
+- Stories disappear after 24 hours and keep a business visible to existing followers between posts
 - Carousel posts generate more saves and return visits than single-image posts. Saves are a strong engagement signal in Instagram's current algorithm
 - Consistency of posting is a confirmed ranking factor in Instagram's algorithm. Irregular posting reduces reach
 - Instagram bio is the only clickable text on a profile. A weak or missing CTA directly costs conversions
-- Responding to DMs and comments signals account activity to the algorithm and increases future post visibility (Meta Business Help Center)
+- Responding to DMs and comments signals account activity to the algorithm and increases future post visibility
 - English-language content reaches a broader international audience; Papiamentu and Dutch perform better for local community engagement
 
 WHAT NOT TO CLAIM:
@@ -52,13 +52,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, antwoorden, scores, honeypot } = req.body;
+  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, honeypot } = req.body;
+  const scores = berekenScores('social', antwoorden);
 
   if (honeypot) {
     return res.status(400).json({ success: false, error: 'Invalid submission.' });
   }
 
-  if (!bedrijf || !email || !scores || !antwoorden) {
+  if (!bedrijf || !email || !scores) {
     return res.status(400).json({ success: false, error: 'Missing required fields.' });
   }
 
@@ -79,46 +80,34 @@ export default async function handler(req, res) {
         body: JSON.stringify({ id: scanId, ...data })
       }).catch(err => console.error('Sheet log error:', err.message))
     : Promise.resolve();
-  const sheetAanvraag = naarSheet({ type: 'social', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram });
+  const sheetAanvraag = naarSheet({ type: 'social', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram, website: site });
 
-  const sectorLabel = {
-    hotel:      'hotel or resort',
-    restaurant: 'restaurant or café',
-    makelaar:   'real estate agency',
-    airbnb:     'vacation rental or short-term rental',
-    anders:     'local business (sector unknown - do not assume hospitality or tourism)'
-  }[sector] || 'local business (sector unknown - do not assume hospitality or tourism)';
+  // Homepage van de klant lezen terwijl de sheet-logging loopt
+  const websiteInhoud = await leesWebsite(site);
+
+  const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
+  const sectorLabel = sectorInfo.prompt;
+  const groep = sectorInfo.groep;
 
   const bioSection = bio && bio.trim()
-    ? `Their current Instagram bio (analyze this critically):\n"${bio.trim()}"`
+    ? `Their current profile bio (analyze this critically):\n"${bio.trim()}"`
     : 'Instagram bio: not provided';
 
   const totaalscore = Math.round((scores.platforms + scores.instagram + scores.engagement + scores.content) / 4);
   const lowestCat = Object.entries(scores).sort((a, b) => a[1] - b[1])[0][0];
-  const lowestLabel = { platforms: 'Platforms & Reach', instagram: 'Instagram', engagement: 'Engagement', content: 'Content' }[lowestCat];
+  const lowestLabel = { platforms: 'Platforms & Reach', instagram: 'Video & Profile', engagement: 'Engagement', content: 'Content' }[lowestCat];
 
-  const sectorBenchmarks = {
-    hotel:      { avg: 54, top: 83, label: 'hotels and resorts on Curaçao' },
-    restaurant: { avg: 48, top: 79, label: 'restaurants on Curaçao' },
-    makelaar:   { avg: 41, top: 72, label: 'real estate agencies on Curaçao' },
-    airbnb:     { avg: 38, top: 70, label: 'vacation rentals on Curaçao' },
-    anders:     { avg: 45, top: 75, label: 'local businesses on Curaçao' }
-  };
-  const benchmark = sectorBenchmarks[sector] || sectorBenchmarks.anders;
 
   const prompt = `You are a sharp, direct social media expert at FUNkiness!, an AI & marketing agency on Curaçao. You analyze social media performance for businesses on the island.
 
 ${CURACAO_CONTEXT}
 
-SECTOR BENCHMARKS (based on FUNkiness! analysis of ${benchmark.label}):
-- Average score: ${benchmark.avg}/100
-- Top 20% score: ${benchmark.top}/100
-- ${bedrijf}'s score: ${totaalscore}/100
+OVERALL SCORE: ${bedrijf} scored ${totaalscore}/100. Do not compare this score to other businesses or invent averages.
 
 THE BUSINESS:
 Name: ${bedrijf}
 Sector: ${sectorLabel}
-Instagram: ${instagram || 'not provided'}
+${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}Instagram/TikTok handle: ${instagram || 'not provided'}
 ${bioSection}
 
 SCAN RESULTS:
@@ -126,7 +115,7 @@ ${Object.entries(antwoorden).map(([k, v]) => `- ${k}: ${v}`).join('\n')}
 
 SCORES (0-100):
 - Platforms & Reach: ${scores.platforms}
-- Instagram: ${scores.instagram}
+- Video & Profile: ${scores.instagram}
 - Engagement: ${scores.engagement}
 - Content: ${scores.content}
 - Lowest scoring area: ${lowestLabel}
@@ -140,12 +129,13 @@ TONE:
 - Never use an em dash. Never use "premium" or "luxury"
 - FUNkiness! brand voice: confident, a little cheeky, never corporate
 - Always mention ${bedrijf} by name
+- If their website text is provided, use one concrete detail from it in the intro so it is clear we actually looked. Never invent details about the website. If no website text is provided, do not mention the website
 
 STRUCTURE RULES:
 1. WHAT'S WORKING: Find 1 genuine thing ${bedrijf} is doing right. Be specific. Tone: playful and encouraging, like a coach who spotted something good. Not generic.
 2. SCORES: 2 sentences per category. Reference a fact from the market context. No invented percentages.
 3. BIO (if provided): Name the problem clearly and give 1 directional tip. Do NOT write their new bio for them. Stop at the insight.
-4. TOP QUICK WIN: Give exactly 1 strong, concrete, immediately actionable quick win with the source that backs it up. Make it genuinely useful.
+4. TOP QUICK WIN: Give exactly 1 strong, concrete, immediately actionable quick win. Explain why it works. Only name a source if it appears in the context above. Make it genuinely useful.
 5. TEASER WINS: Hint at 2 more wins you spotted but don't explain them. Name the area vaguely. Create curiosity without giving the solution.
 6. FOMO (positive): 2 sentences about what the fast movers in their sector on Curaçao are already doing that ${bedrijf} isn't yet. Positive angle, not scary. Make them want to be in that group.
 7. DO TODAY: One ultra-specific action they can do in 20 minutes. Make it feel like the first step, not the full solution.
@@ -162,13 +152,13 @@ Call the submit_scan_report tool with your completed report, following the struc
         intro: { type: 'string', description: `2 sharp sentences about ${bedrijf} specifically. Reference their follower range or platform situation. Feel like you looked at their profile.` },
         whats_working: { type: 'string', description: '1-2 sentences in a playful, encouraging tone about the 1 thing they are genuinely doing well. Specific to their answers.' },
         platforms_feedback: { type: 'string', description: '2 sentences. Reference a Curaçao or Caribbean market fact.' },
-        instagram_feedback: { type: 'string', description: '2 sentences. Reference a verified Instagram platform behavior.' },
+        instagram_feedback: { type: 'string', description: '2 sentences about short video, Stories and where their profile sends people. Reference a verified platform behavior.' },
         engagement_feedback: { type: 'string', description: '2 sentences. Reference a fact about DMs, comments or algorithm signals.' },
         content_feedback: { type: 'string', description: '2 sentences. Reference a verified content behavior (Reels, carousels, Stories).' },
         bio_feedback: { type: 'string', description: bio && bio.trim() ? 'Name the problem clearly. Give 1 directional tip. Do NOT write the new bio. Stop at the insight.' : 'Leave as an empty string, no bio was provided.' },
-        top_quickwin: { type: 'string', description: `The single best, fully explained quick win for ${bedrijf}. Include the source. Genuinely useful.` },
+        top_quickwin: { type: 'string', description: `The single best, fully explained quick win for ${bedrijf}. Explain why it works. Genuinely useful.` },
         teaser_wins: { type: 'string', description: `We spotted 2 more wins specific to ${bedrijf}. One is about [vague area 1, not explained]. The other touches on [vague area 2, not explained]. Both need a closer look at the account to execute right.` },
-        fomo: { type: 'string', description: `2 sentences. What are the fast-moving ${benchmark.label} already doing on social that ${bedrijf} is not yet? Positive framing. Make them want to be in that group.` },
+        fomo: { type: 'string', description: `2 sentences. What are the fast-moving ${groep} already doing on social that ${bedrijf} is not yet? Positive framing. Make them want to be in that group.` },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. The first step, not the full solution.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
@@ -206,10 +196,7 @@ Call the submit_scan_report tool with your completed report, following the struc
       fomo: out.fomo,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
-      totaalscore,
-      benchmark_avg: benchmark.avg,
-      benchmark_top: benchmark.top,
-      benchmark_label: benchmark.label
+      totaalscore
     };
 
     // Email to user with key findings
@@ -227,7 +214,6 @@ Call the submit_scan_report tool with your completed report, following the struc
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
               <div style="font-size:48px;font-weight:900;line-height:1">${rapport.totaalscore}</div>
               <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.9">Overall Score / 100</div>
-              <div style="font-size:14px;margin-top:8px;opacity:0.85">vs. average ${rapport.benchmark_avg}/100 for ${rapport.benchmark_label}</div>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">What's working</div>
@@ -240,7 +226,7 @@ Call the submit_scan_report tool with your completed report, following the struc
                 <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.platforms.feedback}</p>
               </div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#3a251b">Instagram, ${rapport.instagram.score}/100</div>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Video &amp; Profile, ${rapport.instagram.score}/100</div>
                 <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.instagram.feedback}</p>
               </div>
               <div style="margin-bottom:14px">
@@ -287,10 +273,7 @@ Call the submit_scan_report tool with your completed report, following the struc
 
     // Lead email to FUNkiness!
     if (process.env.TITAN_PASSWORD) {
-      const sectorNaam = {
-        hotel: 'Hotel / Resort', restaurant: 'Restaurant / Café',
-        makelaar: 'Real Estate', airbnb: 'Vacation Rental', anders: 'Other'
-      }[sector] || sector;
+      const sectorNaam = sectorInfo.naam;
 
       mails.push(mailer.sendMail({
         from: '"FUNkiness! Scan" <sayhello@funkiness.ai>',
@@ -304,6 +287,7 @@ Call the submit_scan_report tool with your completed report, following the struc
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorNaam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${esc(functie) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Website</td><td style="padding:8px;border:1px solid #eee">${esc(site) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
@@ -314,7 +298,7 @@ Call the submit_scan_report tool with your completed report, following the struc
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Scores</h3>
             <ul style="margin-bottom:20px">
               <li>Platforms & Reach: <strong>${rapport.platforms.score}/100</strong>, ${rapport.platforms.feedback}</li>
-              <li>Instagram: <strong>${rapport.instagram.score}/100</strong>, ${rapport.instagram.feedback}</li>
+              <li>Video &amp; Profile: <strong>${rapport.instagram.score}/100</strong>, ${rapport.instagram.feedback}</li>
               <li>Engagement: <strong>${rapport.engagement.score}/100</strong>, ${rapport.engagement.feedback}</li>
               <li>Content: <strong>${rapport.content.score}/100</strong>, ${rapport.content.feedback}</li>
             </ul>
@@ -356,7 +340,7 @@ Call the submit_scan_report tool with your completed report, following the struc
           <div style="font-family:sans-serif">
             <h2 style="color:#f21b7a">Social Media Scan mislukt</h2>
             <p>De klant kreeg een foutmelding en heeft geen rapport gezien. Contactgegevens:</p>
-            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Email: ${esc(email)}<br>Telefoon (CW): ${esc(telefoon)}<br>Telefoon (NL): ${esc(telefoon_nl)}<br>Instagram: ${esc(instagram)}</p>
+            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Website: ${esc(site)}<br>Email: ${esc(email)}<br>Telefoon (CW): ${esc(telefoon)}<br>Telefoon (NL): ${esc(telefoon_nl)}<br>Instagram: ${esc(instagram)}</p>
             <p style="color:#888">Fout: ${esc(err.message)}</p>
           </div>
         `
