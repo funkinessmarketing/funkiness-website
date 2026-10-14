@@ -423,3 +423,70 @@ export function antwoordenSamenvatting(type, cat, antwoorden) {
     .map(([k]) => `${VRAAGTEKST[k]} Your answer: "${antwoorden[k]}".`)
     .join('\n');
 }
+
+// Echte openbare Instagram-cijfers via de officiële Instagram API (Business Discovery).
+// Werkt alleen voor zakelijke en creator-accounts. Zonder sleutel, of bij een privé/persoonlijk account: null.
+// Alle cijfers rekent de code uit; de AI krijgt ze als feit met bron.
+export async function leesInstagram(invoer) {
+  const igUser = process.env.IG_USER_ID;
+  const token = process.env.IG_ACCESS_TOKEN;
+  if (!igUser || !token || !invoer || typeof invoer !== 'string') return null;
+  const handle = invoer.trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/^@/, '').replace(/[/?#].*$/, '');
+  if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) return null;
+
+  try {
+    const velden = `business_discovery.username(${handle}){username,followers_count,media_count,media.limit(25){timestamp,like_count,comments_count,media_type,media_product_type}}`;
+    const url = `https://graph.facebook.com/v23.0/${igUser}?fields=${encodeURIComponent(velden)}&access_token=${encodeURIComponent(token)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
+    const json = await res.json();
+    const bd = json?.business_discovery;
+    if (!res.ok || !bd) {
+      console.warn('Instagram niet gelezen:', handle, json?.error?.message?.slice(0, 120));
+      return null;
+    }
+
+    const posts = (bd.media?.data || []).filter(p => p.timestamp);
+    const vandaag = new Date();
+    const datum = d => d.toISOString().slice(0, 10);
+    const delen = [`${bd.followers_count} followers and ${bd.media_count} posts in total`];
+
+    if (posts.length) {
+      const tijden = posts.map(p => new Date(p.timestamp).getTime()).sort((a, b) => b - a);
+      const nieuwste = new Date(tijden[0]);
+      const oudste = new Date(tijden[tijden.length - 1]);
+      const dagenSindsLaatste = Math.floor((vandaag - nieuwste) / 86400000);
+      delen.push(`the latest post was ${dagenSindsLaatste} days ago (${datum(nieuwste)})`);
+      if (posts.length >= 2) {
+        const weken = Math.max((tijden[0] - tijden[tijden.length - 1]) / (7 * 86400000), 1 / 7);
+        delen.push(`the last ${posts.length} posts (${datum(oudste)} to ${datum(nieuwste)}) work out to ${(posts.length / weken).toFixed(1)} posts per week`);
+      }
+      const reels = posts.filter(p => p.media_product_type === 'REELS');
+      delen.push(`${Math.round(reels.length / posts.length * 100)}% of the last ${posts.length} posts are Reels`);
+
+      // Interacties alleen als likes zichtbaar zijn
+      const metLikes = posts.filter(p => typeof p.like_count === 'number');
+      if (metLikes.length >= 3) {
+        const interacties = p => p.like_count + (p.comments_count || 0);
+        const gem = lijst => lijst.reduce((s, p) => s + interacties(p), 0) / lijst.length;
+        const gemAlles = gem(metLikes);
+        delen.push(`these posts average ${gemAlles.toFixed(1)} likes plus comments each`);
+        if (bd.followers_count > 0) delen.push(`that is an engagement rate of ${(gemAlles / bd.followers_count * 100).toFixed(1)}% of followers per post`);
+        const reelsMet = metLikes.filter(p => p.media_product_type === 'REELS');
+        const andereMet = metLikes.filter(p => p.media_product_type !== 'REELS');
+        if (reelsMet.length >= 2 && andereMet.length >= 2) {
+          delen.push(`Reels average ${gem(reelsMet).toFixed(1)} likes plus comments versus ${gem(andereMet).toFixed(1)} for other posts`);
+        }
+      }
+    }
+
+    return {
+      id: 'F90', voor: 'social', locaties: [], sectoren: [],
+      tekst: `Public Instagram data for @${bd.username}, fetched on ${datum(vandaag)}: ${delen.join('; ')}.`,
+      bron: `Instagram, public data of @${bd.username} (${datum(vandaag)})`,
+      url: `https://www.instagram.com/${bd.username}/`
+    };
+  } catch (err) {
+    console.warn('Instagram fout:', err.message);
+    return null;
+  }
+}

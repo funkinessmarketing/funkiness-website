@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -60,13 +60,14 @@ export default async function handler(req, res) {
     .catch(() => false);
 
   // Homepage van de klant lezen terwijl de sheet-logging loopt
-  const websiteInhoud = await leesWebsite(site);
+  // Website en echte Instagram-cijfers tegelijk ophalen
+  const [websiteInhoud, instagramFeit] = await Promise.all([leesWebsite(site), leesInstagram(instagram)]);
 
   const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
   const sectorLabel = sectorInfo.prompt;
   const locatieInfo = LOCATIES[locatie];
   const groep = `${sectorInfo.groep} ${locatieInfo.in}`;
-  const feiten = feitenVoor('social', sector, locatie);
+  const feiten = [...(instagramFeit ? [instagramFeit] : []), ...feitenVoor('social', sector, locatie)];
 
   const bioSection = bio && bio.trim()
     ? `Their current profile bio (analyze this critically):\n"${bio.trim()}"`
@@ -94,7 +95,7 @@ ${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteIn
 THEIR CONTEXT (use it to make every recommendation fit their goal, audience and capacity; quote their challenge only literally):
 ${contextAlsTekst(context)}
 
-THEIR ANSWERS (quote these exactly, never change them):
+${instagramFeit ? `MEASURED DATA: fact [F90] contains their real public Instagram numbers. In the intro and in the categories where it fits, put these measured numbers next to their own answers (for example their stated posting frequency, engagement rate or use of short video), quoting both exactly with [F90]. Where they differ, say so plainly and positively. Do not interpret beyond what the numbers show.\n\n` : ''}THEIR ANSWERS (quote these exactly, never change them):
 ${antwoordenAlsTekst('social', antwoorden)}
 
 SCORES (0-100, calculated from their answers):
@@ -184,7 +185,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     }
     const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
     // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
-    const { items: weetjes, bronnen, velden: out } = feitenBlok(schoon.chosen_facts, feiten, schoon);
+    const { items: weetjes, bronnen, velden: out } = feitenBlok(instagramFeit ? ['F90', ...(schoon.chosen_facts || []).filter(id => id !== 'F90')] : schoon.chosen_facts, feiten, schoon);
     const rapport = {
       intro: out.intro,
       whats_working: out.whats_working,
@@ -317,7 +318,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${esc(instagram) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${esc(instagram) || 'niet opgegeven'}${instagramFeit ? ' (echte cijfers opgehaald)' : ''}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold;font-size:16px">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:22px;font-weight:bold;color:#f21b7a">${br(rapport.totaalscore)}/100</td></tr>
           </table>
           <div style="font-family:sans-serif">
