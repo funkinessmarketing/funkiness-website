@@ -4,7 +4,7 @@
 
 export const VRAGEN = {
   social: {
-    main_platform:    { cat: 'platforms', scores: { 'Instagram': 80, 'Facebook': 80, 'TikTok': 80, 'LinkedIn': 80, 'YouTube': 80, 'Pinterest': 80, 'X / Threads': 80, 'WhatsApp Business': 80, 'Not really active': 0 } },
+    main_platform:    { cat: 'platforms', scores: { 'Instagram': 80, 'Facebook': 80, 'TikTok': 80, 'LinkedIn': 80, 'YouTube': 80, 'WhatsApp Business': 80, 'Not really active': 0 } },
     posting_freq:     { cat: 'platforms', scores: { 'Rarely or never': 0, '1-2x per week': 40, '3-4x per week': 75, 'Daily': 100 } },
     growth:           { cat: 'platforms', scores: { 'Not tracked': 10, 'Shrinking': 25, 'About the same': 45, 'Growing slowly': 75, 'Growing fast': 100 } },
     short_video:      { cat: 'instagram', scores: { 'Never': 0, 'Sometimes': 40, 'Regularly': 80, 'It is our main format': 100 } },
@@ -53,7 +53,7 @@ export function berekenScores(type, antwoorden) {
 }
 
 // Vragen zonder punten: alleen context voor het rapport. Meerdere antwoorden mogelijk.
-export const EXTRA_KANALEN = ['Instagram', 'Facebook', 'TikTok', 'LinkedIn', 'YouTube', 'Pinterest', 'X / Threads', 'WhatsApp Business', 'None'];
+export const EXTRA_KANALEN = ['Instagram', 'Facebook', 'TikTok', 'LinkedIn', 'YouTube', 'WhatsApp Business', 'None'];
 
 export function extraKanalenGeldig(waarde) {
   if (typeof waarde !== 'string' || !waarde) return false;
