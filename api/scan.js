@@ -41,6 +41,7 @@ export default async function handler(req, res) {
 
   // Sheets leest '+5999...' als formule (#ERROR!), apostrof maakt het tekst
   const alsTekst = v => v ? `'${v}` : v;
+  const br = v => String(v ?? '').replace(/\n/g, '<br>');
   const esc = v => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   // Elke aanvraag krijgt een id; de sheet vult later op dezelfde rij score, status en rapport in
@@ -118,20 +119,21 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     input_schema: {
       type: 'object',
       properties: {
-        intro: { type: 'string', description: `2 sharp sentences about ${bedrijf}, based only on their answers and, if provided, their website or bio.` },
-        whats_working: { type: 'string', description: '1-2 playful, encouraging sentences about one thing they are genuinely doing well, based on their answers.' },
-        platforms_feedback: { type: 'string', description: '2 sentences about their platforms, posting frequency and audience growth. Based only on their answers, plus advice.' },
-        instagram_feedback: { type: 'string', description: '2 sentences about short video, Stories and where their profile sends people. Based only on their answers, plus advice.' },
-        engagement_feedback: { type: 'string', description: '2 sentences about engagement rate and reply speed. Based only on their answers, plus advice.' },
-        content_feedback: { type: 'string', description: '2 sentences about content type, content plan and whether customers post about them. Based only on their answers, plus advice.' },
+        intro: { type: 'string', description: `3 sharp sentences about ${bedrijf}: what they do (from their website or bio if provided), what their answers show overall, and the biggest gap. Based only on their answers and, if provided, their website or bio.` },
+        whats_working: { type: 'string', description: '2 to 3 playful, encouraging sentences about the things they are genuinely doing well, based on their exact answers and, if provided, their website or bio.' },
+        platforms_feedback: { type: 'string', description: '4 to 6 sentences about their platforms, posting frequency and audience growth. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
+        instagram_feedback: { type: 'string', description: '4 to 6 sentences about short video, Stories and where their profile sends people. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
+        engagement_feedback: { type: 'string', description: '4 to 6 sentences about engagement rate and reply speed. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
+        content_feedback: { type: 'string', description: '4 to 6 sentences about content type, content plan and whether customers post about them. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
         bio_feedback: { type: 'string', description: bio && bio.trim() ? 'Based only on the bio text provided: name the problem clearly and give 1 directional tip. Do NOT write the new bio.' : 'Leave as an empty string, no bio was provided.' },
-        top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain it as advice based on their answers. Genuinely useful.` },
+        top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain step by step how to do it: 4 to 6 sentences or numbered steps on their own lines, specific to their answers. Genuinely useful.` },
         teaser_wins: { type: 'string', description: `Name two areas from their answers that FUNkiness! would dig into together in a conversation, without explaining them. Never mention a full report or anything they have not received.` },
+        plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
         chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, maxItems: 3, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
-      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'chosen_facts', 'do_today', 'cta_dynamic']
+      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
   };
 
@@ -140,7 +142,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     const schrijf = async (inhoud) => {
       const message = await client.messages.create({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 1800,
+        max_tokens: 4000,
         tools: [reportTool],
         tool_choice: { type: 'tool', name: 'submit_scan_report' },
         messages: [{ role: 'user', content: inhoud }]
@@ -150,22 +152,20 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       return toolUse.input;
     };
     let ruw = await schrijf(prompt);
+    // Getallen die nergens vandaan komen gaan mee naar de controleur, die haalt ze weg
     const verzonnen = verzonnenGetallen(ruw, prompt);
-    if (verzonnen.length) {
-      console.warn('Verzonnen getallen, opnieuw:', verzonnen);
-      ruw = await schrijf(`${prompt}\n\nIMPORTANT: a previous draft used these numbers that do not appear in their answers, their website or the FACTS list: ${verzonnen.join(', ')}. Do not use them. Only use numbers that appear above.`);
-    }
+    if (verzonnen.length) console.warn('Verdachte getallen:', verzonnen);
 
     // Strenge controle: elke zin moet uit antwoorden, website of feitenlijst volgen
     ruw = await controleerRapport({
-      client, model: 'claude-sonnet-5-5', reportTool,
-      antwoordenTekst: antwoordenAlsTekst('social', antwoorden),
-      websiteInhoud, bio: bio, concept: ruw
+      client, model: 'claude-sonnet-5-5',
+      feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: antwoordenAlsTekst('social', antwoorden),
+      websiteInhoud, bio: bio, concept: ruw, verdacht: verzonnen
     });
 
-    const out = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v.replace(/\[F\d+\]/g, '')) : v]));
-    // Feiten letterlijk uit de bronnenlijst, niet uit de AI-tekst
-    const { items: weetjes, bronnen } = feitenBlok(out.chosen_facts, feiten);
+    const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
+    // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
+    const { items: weetjes, bronnen, velden: out } = feitenBlok(schoon.chosen_facts, feiten, schoon);
     const rapport = {
       intro: out.intro,
       whats_working: out.whats_working,
@@ -178,6 +178,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       teaser_wins: out.teaser_wins,
       feiten: weetjes,
       fomo: weetjes.map(w => `${w.tekst} [${w.nr}]`).join(' '),
+      plan_30_days: out.plan_30_days,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
       totaalscore,
@@ -195,56 +196,60 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         html: `
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
             <h1 style="font-size:26px;color:#3a251b;margin-bottom:8px">Hey ${esc(naam)},</h1>
-            <p style="font-size:16px;color:#444;line-height:1.6;margin-bottom:24px">${rapport.intro}</p>
+            <p style="font-size:16px;color:#444;line-height:1.6;margin-bottom:24px">${br(rapport.intro)}</p>
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
-              <div style="font-size:48px;font-weight:900;line-height:1">${rapport.totaalscore}</div>
+              <div style="font-size:48px;font-weight:900;line-height:1">${br(rapport.totaalscore)}</div>
               <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.9">Overall Score / 100</div>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">What's working</div>
-              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.whats_working}</p>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.whats_working)}</p>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:12px">Your scores, by category</div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#3a251b">Platforms &amp; Reach, ${rapport.platforms.score}/100</div>
-                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.platforms.feedback}</p>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Platforms &amp; Reach, ${br(rapport.platforms.score)}/100</div>
+                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${br(rapport.platforms.feedback)}</p>
               </div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#3a251b">Video &amp; Profile, ${rapport.instagram.score}/100</div>
-                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.instagram.feedback}</p>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Video &amp; Profile, ${br(rapport.instagram.score)}/100</div>
+                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${br(rapport.instagram.feedback)}</p>
               </div>
               <div style="margin-bottom:14px">
-                <div style="font-size:14px;font-weight:700;color:#3a251b">Engagement, ${rapport.engagement.score}/100</div>
-                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.engagement.feedback}</p>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Engagement, ${br(rapport.engagement.score)}/100</div>
+                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${br(rapport.engagement.feedback)}</p>
               </div>
               <div>
-                <div style="font-size:14px;font-weight:700;color:#3a251b">Content, ${rapport.content.score}/100</div>
-                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${rapport.content.feedback}</p>
+                <div style="font-size:14px;font-weight:700;color:#3a251b">Content, ${br(rapport.content.score)}/100</div>
+                <p style="font-size:14px;line-height:1.6;color:#444;margin:2px 0 0">${br(rapport.content.feedback)}</p>
               </div>
             </div>
             ${bio && bio.trim() ? `
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your bio</div>
-              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.bio_feedback}</p>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.bio_feedback)}</p>
             </div>` : ''}
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your #1 Quick Win</div>
-              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.top_quickwin}</p>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.top_quickwin)}</p>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">2 more wins we spotted</div>
-              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.teaser_wins}</p>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.teaser_wins)}</p>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Worth knowing</div>
-              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.fomo}</p>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.fomo)}</p>
             </div>
             <div style="background:#3a251b;color:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Do this today</div>
-              <p style="font-size:15px;line-height:1.6;margin:0;opacity:0.9">${rapport.do_today}</p>
+              <p style="font-size:15px;line-height:1.6;margin:0;opacity:0.9">${br(rapport.do_today)}</p>
             </div>
-            <p style="font-size:15px;color:#444;line-height:1.6;margin-bottom:20px">${rapport.cta_dynamic}</p>
+            <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your 30-day plan</div>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.plan_30_days)}</p>
+            </div>
+            <p style="font-size:15px;color:#444;line-height:1.6;margin-bottom:20px">${br(rapport.cta_dynamic)}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
             <div style="text-align:center;margin-bottom:32px">
               <a href="https://wa.me/59996751737" style="display:inline-block;background:#f21b7a;color:white;padding:14px 32px;border-radius:99px;font-size:15px;font-weight:700;text-decoration:none">
@@ -279,31 +284,33 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${esc(instagram) || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold;font-size:16px">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:22px;font-weight:bold;color:#f21b7a">${rapport.totaalscore}/100</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold;font-size:16px">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:22px;font-weight:bold;color:#f21b7a">${br(rapport.totaalscore)}/100</td></tr>
           </table>
           <div style="font-family:sans-serif">
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Scores</h3>
             <ul style="margin-bottom:20px">
-              <li>Platforms & Reach: <strong>${rapport.platforms.score}/100</strong>, ${rapport.platforms.feedback}</li>
-              <li>Video &amp; Profile: <strong>${rapport.instagram.score}/100</strong>, ${rapport.instagram.feedback}</li>
-              <li>Engagement: <strong>${rapport.engagement.score}/100</strong>, ${rapport.engagement.feedback}</li>
-              <li>Content: <strong>${rapport.content.score}/100</strong>, ${rapport.content.feedback}</li>
+              <li>Platforms & Reach: <strong>${br(rapport.platforms.score)}/100</strong>, ${br(rapport.platforms.feedback)}</li>
+              <li>Video &amp; Profile: <strong>${br(rapport.instagram.score)}/100</strong>, ${br(rapport.instagram.feedback)}</li>
+              <li>Engagement: <strong>${br(rapport.engagement.score)}/100</strong>, ${br(rapport.engagement.feedback)}</li>
+              <li>Content: <strong>${br(rapport.content.score)}/100</strong>, ${br(rapport.content.feedback)}</li>
             </ul>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Intro (wat de klant ziet)</h3>
-            <p style="background:#f5f5f5;padding:12px;border-radius:8px;margin-bottom:16px">${rapport.intro}</p>
+            <p style="background:#f5f5f5;padding:12px;border-radius:8px;margin-bottom:16px">${br(rapport.intro)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">What's working</h3>
-            <p style="margin-bottom:16px">${rapport.whats_working}</p>
+            <p style="margin-bottom:16px">${br(rapport.whats_working)}</p>
             ${bio ? `<h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Bio (ingevuld door klant)</h3><p style="background:#f5f5f5;padding:12px;border-radius:8px;font-style:italic;margin-bottom:8px">${esc(bio)}</p><p style="margin-bottom:16px">${rapport.bio_feedback || ''}</p>` : ''}
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Top quick win</h3>
-            <p style="margin-bottom:16px">${rapport.top_quickwin}</p>
+            <p style="margin-bottom:16px">${br(rapport.top_quickwin)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Teaser wins</h3>
-            <p style="margin-bottom:16px">${rapport.teaser_wins}</p>
+            <p style="margin-bottom:16px">${br(rapport.teaser_wins)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Worth knowing</h3>
-            <p style="margin-bottom:16px">${rapport.fomo}</p>
+            <p style="margin-bottom:16px">${br(rapport.fomo)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Do today</h3>
-            <p style="margin-bottom:16px">${rapport.do_today}</p>
+            <p style="margin-bottom:16px">${br(rapport.do_today)}</p>
+            <h3 style="color:#f21b7a">30-dagenplan</h3>
+            <p>${br(rapport.plan_30_days)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">CTA (dynamisch)</h3>
-            <p>${rapport.cta_dynamic}</p>
+            <p>${br(rapport.cta_dynamic)}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
           </div>
         `
@@ -351,6 +358,7 @@ function rapportAlsTekst(r) {
     `Teaser wins: ${r.teaser_wins}`,
     `Feiten: ${r.fomo}`,
     `Do today: ${r.do_today}`,
+    `30-dagenplan: ${r.plan_30_days}`,
     `CTA: ${r.cta_dynamic}`,
     r.bronnen?.length ? `Bronnen: ${r.bronnen.map(b => `[${b.nr}] ${b.bron} ${b.url}`).join(' | ')}` : ''
   ].filter(Boolean).join('\n\n');

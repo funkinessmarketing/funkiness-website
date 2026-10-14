@@ -1,8 +1,8 @@
 {
   "cleanUrls": true,
   "functions": {
-    "api/scan.js": { "maxDuration": 60 },
-    "api/marketing-scan.js": { "maxDuration": 60 },
+    "api/scan.js": { "maxDuration": 120 },
+    "api/marketing-scan.js": { "maxDuration": 120 },
     "api/archetype-quiz.js": { "maxDuration": 30 }
   },
   "headers": [

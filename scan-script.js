@@ -247,6 +247,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('whatsWorking').textContent = rapport.whats_working;
   document.getElementById('topQuickwin').textContent = rapport.top_quickwin;
   document.getElementById('quickwinText').textContent = rapport.do_today;
+  document.getElementById('planText').textContent = rapport.plan_30_days || '';
   document.getElementById('ctaHook').textContent = rapport.cta_dynamic;
   document.getElementById('reportEmailNote').textContent = `We also sent a copy to ${email}. Don't see it? Check your spam folder.`;
 
@@ -364,7 +365,7 @@ async function downloadReport() {
       image: { type: 'jpeg', quality: 0.95 },
       html2canvas: { scale: 2, backgroundColor: '#f7efe7', useCORS: true, scrollX: 0, scrollY: 0 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all', 'css'], avoid: ['.scan-cat-card', '.scan-working-wrap', '.scan-quickwin-wrap', '.scan-fomo-wrap', '.scan-radar-wrap', '.scan-kansen-wrap', '.scan-bio-wrap'] }
+      pagebreak: { mode: ['avoid-all', 'css'], avoid: ['.scan-cat-card', '.scan-working-wrap', '.scan-quickwin-wrap', '.scan-fomo-wrap', '.scan-radar-wrap', '.scan-kansen-wrap', '.scan-bio-wrap', '.scan-plan-wrap'] }
     }).from(bron).save();
   } catch (err) {
     console.error('PDF error:', err);

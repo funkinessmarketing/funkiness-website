@@ -670,6 +670,10 @@
     }
     .scan-fomo-wrap h3 { color: var(--pink); }
     .scan-fomo-wrap p + p { margin-top: 10px; }
+    .scan-cat-feedback, #topQuickwin, #quickwinText, #planText, #whatsWorking, #reportIntro { white-space: pre-line; }
+    .scan-plan-wrap { background: white; border-radius: 18px; padding: 20px 24px; margin-bottom: 24px; }
+    .scan-plan-wrap h3 { font-family: 'Permanent Marker', cursive; font-weight: 400; color: var(--pink); margin-bottom: 8px; }
+    .scan-plan-wrap p { line-height: 1.7; }
     .scan-bronnen { font-size: 12px; line-height: 1.6; color: rgba(58,37,27,0.6); margin: 0 0 24px; }
     .scan-bronnen a { color: inherit; }
   </style>
@@ -1148,7 +1152,7 @@
       <div class="scan-step-inner center">
         <div class="scan-loader"></div>
         <h2 class="scan-h2">Scanning <span class="scan-pink" id="loadingName">your socials</span>...</h2>
-        <p class="scan-sub">Buckle up. We're pulling zero punches.<br>Every line gets fact-checked, so give it about 30 seconds.</p>
+        <p class="scan-sub">Buckle up. We're pulling zero punches.<br>Every line gets fact-checked, so give it about a minute.</p>
       </div>
     </section>
 
@@ -1196,6 +1200,11 @@
           <p id="quickwinText"></p>
         </div>
 
+        <div class="scan-plan-wrap">
+          <h3>Your 30-day plan</h3>
+          <p id="planText"></p>
+        </div>
+
         <div class="scan-bronnen" id="bronnenWrap"></div>
 
         <div class="scan-download-wrap">
@@ -1241,7 +1250,7 @@
     <p>Boring was never the plan.</p>
   </div>
 
-  <script src="scan-script.js?v=20261014j"></script>
+  <script src="scan-script.js?v=20261014k"></script>
 <script src="/effects.js"></script>
 <script src="cookie-consent.js"></script>
 </body>

@@ -239,13 +239,14 @@ export function feitenAlsTekst(feiten) {
 
 // Regels die elk rapport volgt: niets verzinnen
 export const REGELS_GEEN_VERZINSELS = `HARD RULES, NOTHING MAY BE MADE UP:
-- Your text contains NO factual claims of your own. Do not explain how platforms, algorithms, search engines, markets, customers or "most businesses" behave. Do not mention statistics. The facts are shown separately in the report, you only choose which ones fit (chosen_facts).
+- Your text contains NO factual claims of your own. Do not explain how platforms, algorithms, search engines, markets, customers or "most businesses" behave.
+- The ONLY exception: you may quote a fact from the FACTS list, using its figures and wording exactly, followed by its id in square brackets like [F3], and place it next to what their answer says. Never add a cause or effect the fact does not state. A fact about Instagram may only be used about Instagram.
 - You may only write about: (1) what their answers say, using their exact answer, (2) what is literally in their website text or bio, (3) recommendations, never as a promise or a guaranteed effect.
 - Write recommendations as bold, direct commands with energy, like a coach who believes in them: "Put your scan link in your bio today." "Pick one platform and own it." Avoid weak openers like "Try", "Consider" or "You might".
 - No guesses presented as facts ("likely means", "you are losing", "is costing you", "is invisible", "the algorithm rewards").
 - Never claim what other businesses, competitors or "fast movers" do.
 - Never invent or change numbers, frequencies or percentages. The only numbers allowed are the ones in their answers.
-- Plain text only: no markdown, no asterisks, no square brackets, no em dash, no " - " as a separator.`;
+- Plain text only: no markdown, no asterisks, no em dash, no " - " as a separator. Square brackets only for fact ids like [F3]. Numbered steps go on their own line ("1. ...").`;
 
 // Zet [F3]-verwijzingen om naar [1], [2] ... en geeft de gebruikte bronnen terug.
 // Verwijzingen naar onbekende feiten worden weggehaald.
@@ -278,7 +279,9 @@ export function schoonTekst(t) {
     .replace(/\s*\u2014\s*/g, ', ')
     .replace(/ - /g, ', ')                          // geen spatie-koppelteken-spatie als scheiding
     .replace(/\s*\[(?!F\d+(?:\s*,\s*F\d+)*\])[^\]]*\]/g, '') // haakjes die geen bronverwijzing zijn
-    .replace(/\s+/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/ *\n */g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
   const quotes = (s.match(/"/g) || []).length;
   if (quotes % 2 === 1) s = s.replace(/^"|"$/g, '');
@@ -293,7 +296,7 @@ export function verzonnenGetallen(velden, prompt) {
     if (typeof v !== 'string') continue;
     for (const n of v.replace(/\[F\d+\]/g, '').match(/\d[\d.,]*/g) || []) {
       const schoon = n.replace(/[.,]$/, '');
-      if (!inPrompt.has(schoon) && !/^(1|2|3|20|30)$/.test(schoon)) verdacht.add(schoon);
+      if (!inPrompt.has(schoon) && !/^(1|2|3|4|5|20|30)$/.test(schoon)) verdacht.add(schoon);
     }
   }
   return [...verdacht];
@@ -301,9 +304,12 @@ export function verzonnenGetallen(velden, prompt) {
 
 // Tweede stap: een strenge controleur legt elke zin naast feiten, antwoorden en website
 // en herschrijft alleen wat er niet uit volgt. Valt terug op het concept als de controle mislukt.
-export async function controleerRapport({ client, model, reportTool, antwoordenTekst, websiteInhoud, bio, concept }) {
+export async function controleerRapport({ client, model, feitenTekst, antwoordenTekst, websiteInhoud, bio, concept, verdacht = [] }) {
   const tekstVelden = Object.fromEntries(Object.entries(concept).filter(([, v]) => typeof v === 'string'));
   const prompt = `You are a strict checker for a business scan report. The report text may contain NO factual claims of its own.
+
+FACTS (may only be quoted exactly, with their [F#]):
+${feitenTekst}
 
 THE CLIENT'S EXACT ANSWERS:
 ${antwoordenTekst}
@@ -314,12 +320,13 @@ THEIR BIO: ${bio || 'none provided'}
 DRAFT REPORT TEXT (JSON):
 ${JSON.stringify(tekstVelden, null, 2)}
 
-Go through every field, sentence by sentence. A sentence is allowed only if it does one of these:
+${verdacht.length ? `These numbers appear in the draft but not in the answers, website, bio or FACTS, so they are made up and must be removed: ${verdacht.join(', ')}.\n\n` : ''}Go through every field, sentence by sentence. A sentence is allowed only if it does one of these:
 (a) states what their answers say, matching the exact answer,
 (b) states what is literally in their website text or bio,
-(c) gives a recommendation as a direct command ("Add", "Pick", "Start with"), without promising an effect.
+(c) gives a recommendation or a concrete step as a direct command ("Add", "Pick", "Start with"), without promising an effect,
+(d) quotes a fact from the FACTS list with the same figures and meaning, followed by its correct [F#], and places it next to their answer without adding a cause or effect. Check the figures and the [F#] against the FACTS list; fix or remove any mismatch.
 Rewrite or remove every other sentence, for example: claims about how platforms, algorithms, search engines, markets or customers work; claims about other businesses or "most businesses"; guesses presented as facts ("likely", "you are losing", "is costing you", "invisible", "the algorithm"); promised effects ("will grow", "unlocks", "turns browsers into bookers"); statistics; any number that is not in their answers.
-Keep allowed sentences exactly as they are. When you rewrite, keep the FUNkiness! tone: bold, positive, direct commands with energy ("Put it in your bio today."), never weak openers like "Try" or "Consider". Plain text only, no markdown, no square brackets, no em dash.
+Keep allowed sentences exactly as they are. When you rewrite, keep the FUNkiness! tone: bold, positive, direct commands with energy ("Put it in your bio today."), never weak openers like "Try" or "Consider". Plain text only, no markdown, no em dash. Keep [F#] markers on correct fact quotes. Keep line breaks and numbered steps.
 
 Call submit_checked_report once with every field from the draft, corrected.`;
   const checkTool = {
@@ -331,37 +338,49 @@ Call submit_checked_report once with every field from the draft, corrected.`;
       required: Object.keys(tekstVelden)
     }
   };
-  try {
-    const message = await client.messages.create({
-      model,
-      max_tokens: 3000,
-      tools: [checkTool],
-      tool_choice: { type: 'auto' },
-      messages: [{ role: 'user', content: prompt }]
-    });
-    const toolUse = message.content.find(block => block.type === 'tool_use');
-    if (!toolUse) { console.warn('Controle: geen tool_use'); return concept; }
-    const uit = toolUse.input || {};
-    // Alleen een complete, schone controle overnemen; anders het concept houden
-    const kapot = Object.entries(tekstVelden).some(([k, v]) => typeof uit[k] !== 'string' || (v && !uit[k].trim()) || /<\/?\w|parameter name=/.test(uit[k]));
-    if (kapot) { console.warn('Controle onvolledig, concept behouden'); return concept; }
-    return { ...concept, ...Object.fromEntries(Object.keys(tekstVelden).map(k => [k, uit[k]])) };
-  } catch (err) {
-    console.error('Controle mislukt:', err.message);
-    return concept;
+  for (let poging = 1; poging <= 2; poging++) {
+    try {
+      const message = await client.messages.create({
+        model,
+        max_tokens: 6000,
+        tools: [checkTool],
+        tool_choice: { type: 'auto' },
+        messages: [{ role: 'user', content: prompt }]
+      });
+      const toolUse = message.content.find(block => block.type === 'tool_use');
+      const uit = toolUse?.input || {};
+      // Alleen een complete, schone controle overnemen
+      const kapotVeld = !toolUse ? '(geen tool_use, stop: ' + message.stop_reason + ')'
+        : Object.keys(tekstVelden).find(k => typeof uit[k] !== 'string' || (tekstVelden[k] && !uit[k].trim()) || /<\/?\w|parameter name=/.test(uit[k]));
+      if (!kapotVeld) return { ...concept, ...Object.fromEntries(Object.keys(tekstVelden).map(k => [k, uit[k]])) };
+      console.warn(`Controle poging ${poging} onvolledig:`, kapotVeld);
+    } catch (err) {
+      console.error(`Controle poging ${poging} mislukt:`, err.message);
+    }
   }
+  // Nooit ongecontroleerde tekst naar de klant
+  throw new Error('Rapportcontrole mislukt');
 }
 
 // Bouwt het blok "Worth knowing": de gekozen feiten letterlijk uit de bronnenlijst, met genummerde bronnen
-export function feitenBlok(gekozenIds, feiten) {
+export function feitenBlok(gekozenIds, feiten, tekstVelden = {}) {
   const geldig = [...new Set(Array.isArray(gekozenIds) ? gekozenIds : [])].filter(id => feiten.some(f => f.id === id)).slice(0, 3);
   const ids = geldig.length ? geldig : feiten.slice(0, 2).map(f => f.id);
   const bronnen = [];
-  const items = ids.map(id => {
-    const f = feiten.find(x => x.id === id);
+  const nummerVoor = f => {
     let b = bronnen.find(x => x.url === f.url);
     if (!b) { b = { nr: bronnen.length + 1, bron: f.bron, url: f.url }; bronnen.push(b); }
-    return { tekst: f.tekst, nr: b.nr };
+    return b.nr;
+  };
+  // [F#] in de tekst omzetten naar bronnummers; onbekende verwijzingen verdwijnen
+  const velden = Object.fromEntries(Object.entries(tekstVelden).map(([k, v]) => [k, typeof v !== 'string' ? v
+    : v.replace(/\s*\[(F\d+(?:\s*,\s*F\d+)*)\]/g, (m, lijst) => {
+        const nrs = [...new Set(lijst.split(/\s*,\s*/).map(id => feiten.find(f => f.id === id)).filter(Boolean).map(nummerVoor))];
+        return nrs.length ? ' ' + nrs.map(n => `[${n}]`).join('') : '';
+      })]));
+  const items = ids.map(id => {
+    const f = feiten.find(x => x.id === id);
+    return { tekst: f.tekst, nr: nummerVoor(f) };
   });
-  return { items, bronnen };
+  return { items, bronnen, velden };
 }
