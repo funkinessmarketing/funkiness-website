@@ -144,27 +144,37 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
   };
 
   try {
-    // Schrijven, en één keer opnieuw als er getallen in staan die nergens vandaan komen
-    const schrijf = async (inhoud) => {
+    // Rapport in twee helften tegelijk schrijven: kleiner per aanroep, dus vollediger en sneller
+    const alleVelden = Object.keys(reportTool.input_schema.properties);
+    const helftA = alleVelden.filter(k => k === 'intro' || k === 'whats_working' || k.endsWith('_feedback'));
+    const helftB = alleVelden.filter(k => !helftA.includes(k));
+    const schrijf = async (velden, extra = '') => {
+      const tool = {
+        ...reportTool,
+        input_schema: {
+          type: 'object',
+          properties: Object.fromEntries(velden.map(k => [k, reportTool.input_schema.properties[k]])),
+          required: velden
+        }
+      };
       const message = await client.messages.create({
         model: 'claude-haiku-5-5',
-        max_tokens: 6000,
+        max_tokens: 4000,
         output_config: { effort: 'low' },
-        tools: [reportTool],
-        tool_choice: { type: 'tool', name: 'submit_scan_report' },
-        messages: [{ role: 'user', content: inhoud }]
+        tools: [tool],
+        tool_choice: { type: 'tool', name: tool.name },
+        messages: [{ role: 'user', content: `${prompt}\n\nThis call writes only these parts of the report: ${velden.join(', ')}. Fill in every one of them.${extra}` }]
       });
       const toolUse = message.content.find(block => block.type === 'tool_use');
-      if (!toolUse) throw new Error('No tool_use block in response');
-      return toolUse.input;
+      return toolUse ? toolUse.input : {};
     };
-    let ruw = await schrijf(prompt);
+    let ruw = Object.assign({}, ...await Promise.all([schrijf(helftA), schrijf(helftB)]));
     // Ontbrekende onderdelen nog één keer opvragen; een rapport met gaten gaat nooit naar buiten
-    const verplicht = reportTool.input_schema.required.filter(k => k !== 'chosen_facts');
+    const verplicht = alleVelden.filter(k => k !== 'chosen_facts');
     let ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
     if (ontbreekt.length) {
       console.warn('Ontbrekende velden, opnieuw:', ontbreekt);
-      ruw = await schrijf(`${prompt}\n\nIMPORTANT: your previous answer left out these fields: ${ontbreekt.join(', ')}. Fill in every field of the tool.`);
+      Object.assign(ruw, await schrijf(ontbreekt));
       ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
       if (ontbreekt.length) throw new Error('Rapport onvolledig: ' + ontbreekt.join(', '));
     }
