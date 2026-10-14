@@ -29,7 +29,7 @@ function doPost(e) {
         d.functie || '', d.email || '', alsTekst(d.telefoon), alsTekst(d.telefoon_nl),
         d.instagram || '', d.archetype || '', '', 'Bezig', '', d.id || '', d.website || '']);
     }
-    return ContentService.createTextOutput('ok');
+    return ContentService.createTextOutput('ok-v2');
   } finally {
     lock.releaseLock();
   }

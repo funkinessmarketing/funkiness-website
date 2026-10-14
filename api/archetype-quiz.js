@@ -85,7 +85,11 @@ export default async function handler(req, res) {
         body: JSON.stringify({ id: scanId, ...data })
       }).catch(err => console.error('Sheet log error:', err.message))
     : Promise.resolve();
-  const sheetAanvraag = naarSheet({ type: 'quiz', bedrijf, sector, naam, email, archetype: arch.name });
+  // Alleen het nieuwe sheetscript antwoordt 'ok-v2'; bij het oude script geen vervolgberichten (die zouden lege rijen geven)
+  const sheetAanvraag = naarSheet({ type: 'quiz', bedrijf, sector, naam, email, archetype: arch.name })
+    .then(r => r?.text?.())
+    .then(t => t?.trim() === 'ok-v2')
+    .catch(() => false);
   const sectorLabel = SECTOR_LABELS[sector] || 'local business';
   const businessRef = bedrijf ? bedrijf : (sector ? `a ${sectorLabel}` : 'their business');
 
@@ -252,14 +256,14 @@ Call the submit_quiz_result tool with your result.`;
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    const sheetRapport = sheetAanvraag.then(() => naarSheet({ actie: 'rapport', rapport: [rapport.headline, rapport.description, rapport.ai_superpower, rapport.teaser, rapport.cta].join('\n\n') }));
+    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', rapport: [rapport.headline, rapport.description, rapport.ai_superpower, rapport.teaser, rapport.cta].join('\n\n') }));
     await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport });
 
   } catch (err) {
     console.error(err);
-    const meldingen = [sheetAanvraag.then(() => naarSheet({ actie: 'fout', fout: err.message }))];
+    const meldingen = [sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'fout', fout: err.message }))];
     if (process.env.TITAN_PASSWORD) {
       meldingen.push(mailer.sendMail({
         from: '"FUNkiness! Quiz" <sayhello@funkiness.ai>',

@@ -81,7 +81,11 @@ export default async function handler(req, res) {
         body: JSON.stringify({ id: scanId, ...data })
       }).catch(err => console.error('Sheet log error:', err.message))
     : Promise.resolve();
-  const sheetAanvraag = naarSheet({ type: 'marketing', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), website: site });
+  // Alleen het nieuwe sheetscript antwoordt 'ok-v2'; bij het oude script geen vervolgberichten (die zouden lege rijen geven)
+  const sheetAanvraag = naarSheet({ type: 'marketing', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), website: site })
+    .then(r => r?.text?.())
+    .then(t => t?.trim() === 'ok-v2')
+    .catch(() => false);
 
   // Homepage van de klant lezen terwijl de sheet-logging loopt
   const websiteInhoud = await leesWebsite(site);
@@ -310,14 +314,14 @@ Call the submit_scan_report tool with your completed report, following the struc
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    const sheetRapport = sheetAanvraag.then(() => naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) }));
+    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) }));
     await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });
 
   } catch (err) {
     console.error(err);
-    const meldingen = [sheetAanvraag.then(() => naarSheet({ actie: 'fout', fout: err.message }))];
+    const meldingen = [sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'fout', fout: err.message }))];
     if (process.env.TITAN_PASSWORD) {
       meldingen.push(mailer.sendMail({
         from: '"FUNkiness! Scan" <sayhello@funkiness.ai>',
