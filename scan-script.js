@@ -354,12 +354,15 @@ async function downloadReport() {
     // Het echte rapport omzetten (html2pdf kopieert de grafiek zelf); knoppen tijdelijk verbergen
     const bron = document.querySelector('#reportStep .scan-step-inner');
     document.body.classList.add('scan-pdf-mode');
+    // html2canvas fotografeert vanaf de scrollpositie: eerst naar boven, anders blijft de pdf leeg
+    var terugNaar = window.scrollY;
+    window.scrollTo(0, 0);
     const bedrijf = (document.getElementById('bedrijf').value.trim() || 'report').replace(/[^\w-]+/g, '-');
     await html2pdf().set({
       margin: 0,
       filename: `FUNkiness-scan-${bedrijf}.pdf`,
       image: { type: 'jpeg', quality: 0.95 },
-      html2canvas: { scale: 2, backgroundColor: '#f7efe7', useCORS: true },
+      html2canvas: { scale: 2, backgroundColor: '#f7efe7', useCORS: true, scrollX: 0, scrollY: 0 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
       pagebreak: { mode: ['avoid-all', 'css'], avoid: ['.scan-cat-card', '.scan-working-wrap', '.scan-quickwin-wrap', '.scan-fomo-wrap', '.scan-radar-wrap', '.scan-kansen-wrap', '.scan-bio-wrap'] }
     }).from(bron).save();
@@ -368,6 +371,7 @@ async function downloadReport() {
     printReport();
   } finally {
     document.body.classList.remove('scan-pdf-mode');
+    if (typeof terugNaar === 'number') window.scrollTo(0, terugNaar);
     btn.disabled = false;
     btn.innerHTML = label;
   }
