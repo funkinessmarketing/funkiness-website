@@ -141,8 +141,9 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     // Schrijven, en één keer opnieuw als er getallen in staan die nergens vandaan komen
     const schrijf = async (inhoud) => {
       const message = await client.messages.create({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 4000,
+        model: 'claude-haiku-5-5',
+        max_tokens: 6000,
+        output_config: { effort: 'low' },
         tools: [reportTool],
         tool_choice: { type: 'tool', name: 'submit_scan_report' },
         messages: [{ role: 'user', content: inhoud }]
