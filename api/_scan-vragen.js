@@ -436,7 +436,7 @@ export async function leesInstagram(invoer) {
 
   try {
     const velden = `business_discovery.username(${handle}){username,followers_count,media_count,media.limit(25){timestamp,like_count,comments_count,media_type,media_product_type}}`;
-    const url = `https://graph.facebook.com/v23.0/${igUser}?fields=${encodeURIComponent(velden)}&access_token=${encodeURIComponent(token)}`;
+    const url = `https://graph.facebook.com/v26.0/${igUser}?fields=${encodeURIComponent(velden)}&access_token=${encodeURIComponent(token)}`;
     const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
     const json = await res.json();
     const bd = json?.business_discovery;
@@ -448,14 +448,16 @@ export async function leesInstagram(invoer) {
     const posts = (bd.media?.data || []).filter(p => p.timestamp);
     const vandaag = new Date();
     const datum = d => d.toISOString().slice(0, 10);
-    const delen = [`${bd.followers_count} followers and ${bd.media_count} posts in total`];
+    const getal = n => n >= 100 ? Math.round(n).toLocaleString('en-US') : n.toFixed(1);
+    const procent = n => n < 0.1 ? n.toFixed(2) : n.toFixed(1);
+    const delen = [`${bd.followers_count.toLocaleString('en-US')} followers and ${bd.media_count.toLocaleString('en-US')} posts in total`];
 
     if (posts.length) {
       const tijden = posts.map(p => new Date(p.timestamp).getTime()).sort((a, b) => b - a);
       const nieuwste = new Date(tijden[0]);
       const oudste = new Date(tijden[tijden.length - 1]);
       const dagenSindsLaatste = Math.floor((vandaag - nieuwste) / 86400000);
-      delen.push(`the latest post was ${dagenSindsLaatste} days ago (${datum(nieuwste)})`);
+      delen.push(`the latest post was ${dagenSindsLaatste === 0 ? 'today' : dagenSindsLaatste === 1 ? '1 day ago' : `${dagenSindsLaatste} days ago`} (${datum(nieuwste)})`);
       if (posts.length >= 2) {
         const weken = Math.max((tijden[0] - tijden[tijden.length - 1]) / (7 * 86400000), 1 / 7);
         delen.push(`the last ${posts.length} posts (${datum(oudste)} to ${datum(nieuwste)}) work out to ${(posts.length / weken).toFixed(1)} posts per week`);
@@ -469,12 +471,12 @@ export async function leesInstagram(invoer) {
         const interacties = p => p.like_count + (p.comments_count || 0);
         const gem = lijst => lijst.reduce((s, p) => s + interacties(p), 0) / lijst.length;
         const gemAlles = gem(metLikes);
-        delen.push(`these posts average ${gemAlles.toFixed(1)} likes plus comments each`);
-        if (bd.followers_count > 0) delen.push(`that is an engagement rate of ${(gemAlles / bd.followers_count * 100).toFixed(1)}% of followers per post`);
+        delen.push(`these posts average ${getal(gemAlles)} likes plus comments each`);
+        if (bd.followers_count > 0) delen.push(`that is an engagement rate of ${procent(gemAlles / bd.followers_count * 100)}% of followers per post`);
         const reelsMet = metLikes.filter(p => p.media_product_type === 'REELS');
         const andereMet = metLikes.filter(p => p.media_product_type !== 'REELS');
         if (reelsMet.length >= 2 && andereMet.length >= 2) {
-          delen.push(`Reels average ${gem(reelsMet).toFixed(1)} likes plus comments versus ${gem(andereMet).toFixed(1)} for other posts`);
+          delen.push(`Reels average ${getal(gem(reelsMet))} likes plus comments versus ${getal(gem(andereMet))} for other posts`);
         }
       }
     }
