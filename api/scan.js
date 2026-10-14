@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
+import { randomUUID } from 'crypto';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -7,6 +8,9 @@ const mailer = nodemailer.createTransport({
   host: 'smtpout.secureserver.net',
   port: 587,
   secure: false,
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 15000,
   auth: {
     user: 'sayhello@funkiness.ai',
     pass: process.env.TITAN_PASSWORD
@@ -64,14 +68,18 @@ export default async function handler(req, res) {
 
   // Sheets leest '+5999...' als formule (#ERROR!), apostrof maakt het tekst
   const alsTekst = v => v ? `'${v}` : v;
+  const esc = v => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-  if (process.env.GSHEET_WEBHOOK_URL) {
-    fetch(process.env.GSHEET_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'social', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram })
-    }).catch(err => console.error('Sheet log error:', err.message));
-  }
+  // Elke aanvraag krijgt een id; de sheet vult later op dezelfde rij score, status en rapport in
+  const scanId = randomUUID();
+  const naarSheet = data => process.env.GSHEET_WEBHOOK_URL
+    ? fetch(process.env.GSHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: scanId, ...data })
+      }).catch(err => console.error('Sheet log error:', err.message))
+    : Promise.resolve();
+  const sheetAanvraag = naarSheet({ type: 'social', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram });
 
   const sectorLabel = {
     hotel:      'hotel or resort',
@@ -181,6 +189,10 @@ Call the submit_scan_report tool with your completed report, following the struc
     if (!toolUse) throw new Error('No tool_use block in response');
 
     const out = toolUse.input;
+    // Geen emdashes in de output, regel is absoluut
+    for (const key of Object.keys(out)) {
+      if (typeof out[key] === 'string') out[key] = out[key].replace(/\s*\u2014\s*/g, ', ');
+    }
     const rapport = {
       intro: out.intro,
       whats_working: out.whats_working,
@@ -210,7 +222,7 @@ Call the submit_scan_report tool with your completed report, following the struc
         subject: `Your Social Media Scan is ready, ${naam}!`,
         html: `
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
-            <h1 style="font-size:26px;color:#3a251b;margin-bottom:8px">Hey ${naam},</h1>
+            <h1 style="font-size:26px;color:#3a251b;margin-bottom:8px">Hey ${esc(naam)},</h1>
             <p style="font-size:16px;color:#444;line-height:1.6;margin-bottom:24px">${rapport.intro}</p>
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
               <div style="font-size:48px;font-weight:900;line-height:1">${rapport.totaalscore}</div>
@@ -283,18 +295,19 @@ Call the submit_scan_report tool with your completed report, following the struc
       mails.push(mailer.sendMail({
         from: '"FUNkiness! Scan" <sayhello@funkiness.ai>',
         to: 'sayhello@funkiness.ai',
+        replyTo: email,
         subject: `Nieuwe scan: ${bedrijf}, score ${rapport.totaalscore}/100`,
         html: `
           <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe Social Media Scan</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:24px">
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${bedrijf}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${sectorNaam}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${naam || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${functie || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${telefoon || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${telefoon_nl || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${instagram || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorNaam)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${esc(functie) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${esc(instagram) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold;font-size:16px">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:22px;font-weight:bold;color:#f21b7a">${rapport.totaalscore}/100</td></tr>
           </table>
           <div style="font-family:sans-serif">
@@ -309,7 +322,7 @@ Call the submit_scan_report tool with your completed report, following the struc
             <p style="background:#f5f5f5;padding:12px;border-radius:8px;margin-bottom:16px">${rapport.intro}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">What's working</h3>
             <p style="margin-bottom:16px">${rapport.whats_working}</p>
-            ${bio ? `<h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Bio (ingevuld door klant)</h3><p style="background:#f5f5f5;padding:12px;border-radius:8px;font-style:italic;margin-bottom:8px">${bio}</p><p style="margin-bottom:16px">${rapport.bio_feedback || ''}</p>` : ''}
+            ${bio ? `<h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Bio (ingevuld door klant)</h3><p style="background:#f5f5f5;padding:12px;border-radius:8px;font-style:italic;margin-bottom:8px">${esc(bio)}</p><p style="margin-bottom:16px">${rapport.bio_feedback || ''}</p>` : ''}
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Top quick win</h3>
             <p style="margin-bottom:16px">${rapport.top_quickwin}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Teaser wins</h3>
@@ -325,12 +338,47 @@ Call the submit_scan_report tool with your completed report, following the struc
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    await Promise.allSettled(mails);
+    const sheetRapport = sheetAanvraag.then(() => naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) }));
+    await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });
 
   } catch (err) {
     console.error(err);
+    const meldingen = [sheetAanvraag.then(() => naarSheet({ actie: 'fout', fout: err.message }))];
+    if (process.env.TITAN_PASSWORD) {
+      meldingen.push(mailer.sendMail({
+        from: '"FUNkiness! Scan" <sayhello@funkiness.ai>',
+        to: 'sayhello@funkiness.ai',
+        replyTo: email,
+        subject: `Scan MISLUKT: ${bedrijf}, neem zelf contact op`,
+        html: `
+          <div style="font-family:sans-serif">
+            <h2 style="color:#f21b7a">Social Media Scan mislukt</h2>
+            <p>De klant kreeg een foutmelding en heeft geen rapport gezien. Contactgegevens:</p>
+            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Email: ${esc(email)}<br>Telefoon (CW): ${esc(telefoon)}<br>Telefoon (NL): ${esc(telefoon_nl)}<br>Instagram: ${esc(instagram)}</p>
+            <p style="color:#888">Fout: ${esc(err.message)}</p>
+          </div>
+        `
+      }).catch(e => console.error('Fail email error:', e.message)));
+    }
+    await Promise.allSettled(meldingen);
     res.status(500).json({ success: false, error: 'Scan could not be generated. Please try again.' });
   }
+}
+
+function rapportAlsTekst(r) {
+  const cats = Object.entries(r).filter(([, v]) => v && typeof v === 'object' && 'score' in v);
+  return [
+    `Totaalscore: ${r.totaalscore}/100`,
+    ...cats.map(([k, v]) => `${k}: ${v.score}/100. ${v.feedback}`),
+    `Intro: ${r.intro}`,
+    `What's working: ${r.whats_working}`,
+    r.bio_feedback ? `Bio: ${r.bio_feedback}` : '',
+    `Quick win: ${r.top_quickwin}`,
+    `Teaser wins: ${r.teaser_wins}`,
+    `FOMO: ${r.fomo}`,
+    `Do today: ${r.do_today}`,
+    `CTA: ${r.cta_dynamic}`
+  ].filter(Boolean).join('\n\n');
 }

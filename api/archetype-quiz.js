@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
+import { randomUUID } from 'crypto';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -7,6 +8,9 @@ const mailer = nodemailer.createTransport({
   host: 'smtpout.secureserver.net',
   port: 587,
   secure: false,
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 15000,
   auth: {
     user: 'sayhello@funkiness.ai',
     pass: process.env.TITAN_PASSWORD
@@ -70,6 +74,18 @@ export default async function handler(req, res) {
   }
 
   const arch = ARCHETYPE_CONTEXT[archetype];
+  const esc = v => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  // Vangnet: elke quiz-lead ook in de sheet, de rij krijgt later status en rapport
+  const scanId = randomUUID();
+  const naarSheet = data => process.env.GSHEET_WEBHOOK_URL
+    ? fetch(process.env.GSHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: scanId, ...data })
+      }).catch(err => console.error('Sheet log error:', err.message))
+    : Promise.resolve();
+  const sheetAanvraag = naarSheet({ type: 'quiz', bedrijf, sector, naam, email, archetype: arch.name });
   const sectorLabel = SECTOR_LABELS[sector] || 'local business';
   const businessRef = bedrijf ? bedrijf : (sector ? `a ${sectorLabel}` : 'their business');
 
@@ -105,32 +121,42 @@ STRUCTURE RULES:
 4. teaser: Hint at 2 more AI wins specific to their archetype without revealing them. Create real curiosity. Name the area vaguely.
 5. cta: A warm, personal invitation to connect. Not a sales pitch. Make ${naam} feel like this is the beginning of something, not a close.
 
-Output ONLY valid JSON:
-{
-  "headline": "one punchy personalized line",
-  "description": "2 sentences about what this archetype means for them",
-  "ai_superpower": "their #1 concrete AI opportunity",
-  "teaser": "hint at 2 more wins, create curiosity",
-  "cta": "personal invitation to connect with FUNkiness!"
-}`;
+Call the submit_quiz_result tool with your result.`;
+
+  const resultTool = {
+    name: 'submit_quiz_result',
+    description: 'Submit the personalized quiz result.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        headline: { type: 'string', description: 'One punchy personalized line' },
+        description: { type: 'string', description: '2 sentences about what this archetype means for them' },
+        ai_superpower: { type: 'string', description: 'Their #1 concrete AI opportunity' },
+        teaser: { type: 'string', description: 'Hint at 2 more wins, create curiosity' },
+        cta: { type: 'string', description: 'Personal invitation to connect with FUNkiness!' }
+      },
+      required: ['headline', 'description', 'ai_superpower', 'teaser', 'cta']
+    }
+  };
 
   try {
     const message = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 1000,
+      tools: [resultTool],
+      tool_choice: { type: 'tool', name: 'submit_quiz_result' },
       messages: [{ role: 'user', content: prompt }]
     });
 
-    const text = message.content[0].text;
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No JSON in response');
+    const toolUse = message.content.find(block => block.type === 'tool_use');
+    if (!toolUse) throw new Error('No tool_use block in response');
 
-    const rapport = JSON.parse(jsonMatch[0]);
+    const rapport = { ...toolUse.input };
 
     // Strip em dashes regardless of model output, rule is absolute
     for (const key of Object.keys(rapport)) {
       if (typeof rapport[key] === 'string') {
-        rapport[key] = rapport[key].replace(/, /g, ',').replace(/\s,/g, ',');
+        rapport[key] = rapport[key].replace(/\s*\u2014\s*/g, ', ');
       }
     }
 
@@ -144,7 +170,7 @@ Output ONLY valid JSON:
         subject: `Your AI Superpower: ${arch.name}`,
         html: `
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
-            <h1 style="font-size:24px;color:#3a251b;margin-bottom:6px">Hey ${naam},</h1>
+            <h1 style="font-size:24px;color:#3a251b;margin-bottom:6px">Hey ${esc(naam)},</h1>
             <p style="font-size:15px;color:#555;margin-bottom:32px">Your AI Superpower Quiz result is in.</p>
 
             <div style="background:#3a251b;border-radius:16px;padding:36px 28px;margin-bottom:28px;text-align:center">
@@ -194,14 +220,15 @@ Output ONLY valid JSON:
       mails.push(mailer.sendMail({
         from: '"FUNkiness! Quiz" <sayhello@funkiness.ai>',
         to: 'sayhello@funkiness.ai',
+        replyTo: email,
         subject: `Nieuwe AI Quiz lead: ${naam}, ${arch.name}`,
         html: `
           <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe AI Superpower Quiz Lead</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:20px">
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${naam}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${email}">${email}</a></td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${bedrijf || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${sectorDisplay}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorDisplay)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Archetype</td><td style="padding:8px;border:1px solid #eee;font-size:17px;font-weight:bold;color:#f21b7a">${arch.name}</td></tr>
           </table>
 
@@ -225,12 +252,31 @@ Output ONLY valid JSON:
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    await Promise.allSettled(mails);
+    const sheetRapport = sheetAanvraag.then(() => naarSheet({ actie: 'rapport', rapport: [rapport.headline, rapport.description, rapport.ai_superpower, rapport.teaser, rapport.cta].join('\n\n') }));
+    await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport });
 
   } catch (err) {
     console.error(err);
+    const meldingen = [sheetAanvraag.then(() => naarSheet({ actie: 'fout', fout: err.message }))];
+    if (process.env.TITAN_PASSWORD) {
+      meldingen.push(mailer.sendMail({
+        from: '"FUNkiness! Quiz" <sayhello@funkiness.ai>',
+        to: 'sayhello@funkiness.ai',
+        replyTo: email,
+        subject: `Quiz MISLUKT: ${naam}, neem zelf contact op`,
+        html: `
+          <div style="font-family:sans-serif">
+            <h2 style="color:#f21b7a">AI Superpower Quiz mislukt</h2>
+            <p>De deelnemer kreeg een foutmelding en heeft geen resultaat gezien. Contactgegevens:</p>
+            <p>Naam: ${esc(naam)}<br>Email: ${esc(email)}<br>Bedrijf: ${esc(bedrijf)}<br>Archetype: ${arch.name}</p>
+            <p style="color:#888">Fout: ${esc(err.message)}</p>
+          </div>
+        `
+      }).catch(e => console.error('Fail email error:', e.message)));
+    }
+    await Promise.allSettled(meldingen);
     res.status(500).json({ success: false, error: 'Quiz result could not be generated. Please try again.' });
   }
 }
