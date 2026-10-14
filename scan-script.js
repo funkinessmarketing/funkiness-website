@@ -94,6 +94,10 @@ function validateStep(step) {
     const cw = document.getElementById('telefoon').value.trim();
     const nl = document.getElementById('telefoon_nl').value.trim();
     if (!cw && !nl) { shake('telefoon'); return false; }
+    if (!fieldSelections['locatie']) {
+      alert('Please select where your business is based.');
+      return false;
+    }
     if (!fieldSelections['sector']) {
       alert('Please select your sector.');
       return false;
@@ -147,6 +151,18 @@ document.addEventListener('click', (e) => {
     group.querySelectorAll('.scan-option-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
     fieldSelections[group.dataset.field] = btn.dataset.value;
+  } else if (question && question.dataset.multi) {
+    // Meerdere antwoorden: aan/uit zetten, 'None' sluit de rest uit
+    const isNone = btn.dataset.value === 'None';
+    question.querySelectorAll('.scan-option-btn').forEach(b => {
+      if (isNone ? b !== btn : b.dataset.value === 'None') b.classList.remove('selected');
+    });
+    btn.classList.toggle('selected');
+    const gekozen = [...question.querySelectorAll('.scan-option-btn.selected')].map(b => b.dataset.value);
+    if (gekozen.length) answers[question.dataset.key] = { value: gekozen.join(', '), category: 'context' };
+    else delete answers[question.dataset.key];
+    question.classList.remove('scan-question-missing');
+    question.querySelector('.scan-missing-note')?.remove();
   } else if (question) {
     question.querySelectorAll('.scan-option-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
@@ -173,6 +189,7 @@ async function submitScan() {
   const instagram   = document.getElementById('instagram')?.value.trim() || '';
   const bio         = document.getElementById('bio')?.value.trim() || '';
   const sector      = fieldSelections['sector'];
+  const locatie     = fieldSelections['locatie'];
   const site        = document.getElementById('site_url').value.trim();
   const honeypot    = document.getElementById('honeypot')?.value || '';
 
@@ -191,7 +208,7 @@ async function submitScan() {
     const res = await fetch(apiEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, honeypot })
+      body: JSON.stringify({ bedrijf, sector, locatie, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, honeypot })
     });
     const data = await res.json();
     if (!data.success) throw new Error(data.error);
@@ -316,8 +333,14 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('teaserWins').textContent = rapport.teaser_wins;
 
   document.getElementById('fomoWrap').innerHTML = `
-    <h3>What the fast movers are doing</h3>
-    <p>${escHtml(rapport.fomo)}</p>`;
+    <h3>Worth knowing</h3>
+    ${(rapport.feiten || []).map(w => `<p>${escHtml(w.tekst)} <sup>[${w.nr}]</sup></p>`).join('')}`;
+
+  // Bronnen van alle feiten in het rapport, zodat alles herleidbaar is
+  const bronnen = rapport.bronnen || [];
+  document.getElementById('bronnenWrap').innerHTML = bronnen.length
+    ? '<strong>Sources</strong><br>' + bronnen.map(b => `[${b.nr}] <a href="${escHtml(b.url)}" target="_blank" rel="noopener">${escHtml(b.bron)}</a>`).join('<br>')
+    : '';
 }
 
 // Maakt direct een pdf-bestand van het rapport (html2pdf), valt terug op afdrukken als dat niet lukt

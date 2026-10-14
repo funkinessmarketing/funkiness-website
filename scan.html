@@ -664,6 +664,14 @@
     }
 
     .scan-type-card.selected p { opacity: 0.85; }
+    /* Huisstijl: alle roze tekst in Permanent Marker */
+    #scanApp .scan-eyebrow, .scan-pink, .scan-working-label, .scan-cat-pill.low, .scan-type-label, .scan-fomo-wrap h3 {
+      font-family: 'Permanent Marker', cursive; font-weight: 400; letter-spacing: 0.5px;
+    }
+    .scan-fomo-wrap h3 { color: var(--pink); }
+    .scan-fomo-wrap p + p { margin-top: 10px; }
+    .scan-bronnen { font-size: 12px; line-height: 1.6; color: rgba(58,37,27,0.6); margin: 0 0 24px; }
+    .scan-bronnen a { color: inherit; }
   </style>
 </head>
 <body>
@@ -746,6 +754,16 @@
           <input type="text" id="site_url" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" />
         </div>
         <div class="scan-form-group">
+          <label>Where is your business based?</label>
+          <div class="scan-options-grid" data-field="locatie">
+            <button class="scan-option-btn" data-value="curacao">Curaçao</button>
+            <button class="scan-option-btn" data-value="aruba">Aruba</button>
+            <button class="scan-option-btn" data-value="bonaire">Bonaire</button>
+            <button class="scan-option-btn" data-value="nederland">The Netherlands</button>
+            <button class="scan-option-btn" data-value="elders">Elsewhere</button>
+          </div>
+        </div>
+        <div class="scan-form-group">
           <label>Your sector</label>
           <div class="scan-options-grid" data-field="sector">
             <button class="scan-option-btn" data-value="hotel">Hotel / Resort</button>
@@ -804,9 +822,25 @@
               <button class="scan-option-btn" data-value="Facebook">Facebook</button>
               <button class="scan-option-btn" data-value="TikTok">TikTok</button>
               <button class="scan-option-btn" data-value="LinkedIn">LinkedIn</button>
-              <button class="scan-option-btn" data-value="Instagram + Facebook">Instagram + Facebook</button>
-              <button class="scan-option-btn" data-value="Instagram + TikTok">Instagram + TikTok</button>
+              <button class="scan-option-btn" data-value="YouTube">YouTube</button>
+              <button class="scan-option-btn" data-value="Pinterest">Pinterest</button>
+              <button class="scan-option-btn" data-value="X / Threads">X / Threads</button>
+              <button class="scan-option-btn" data-value="WhatsApp Business">WhatsApp Business</button>
               <button class="scan-option-btn" data-value="Not really active">Not really active</button>
+            </div>
+          </div>
+          <div class="scan-question" data-category="context" data-key="other_channels" data-multi="true">
+            <p class="scan-q-label">Where else are you active? <span class="scan-hint">(pick all that apply)</span></p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Instagram">Instagram</button>
+              <button class="scan-option-btn" data-value="Facebook">Facebook</button>
+              <button class="scan-option-btn" data-value="TikTok">TikTok</button>
+              <button class="scan-option-btn" data-value="LinkedIn">LinkedIn</button>
+              <button class="scan-option-btn" data-value="YouTube">YouTube</button>
+              <button class="scan-option-btn" data-value="Pinterest">Pinterest</button>
+              <button class="scan-option-btn" data-value="X / Threads">X / Threads</button>
+              <button class="scan-option-btn" data-value="WhatsApp Business">WhatsApp Business</button>
+              <button class="scan-option-btn" data-value="None">Nowhere else</button>
             </div>
           </div>
           <div class="scan-question" data-category="platforms" data-key="posting_freq">
@@ -833,7 +867,7 @@
         <!-- Marketing Strategy questions -->
         <div class="scan-qs" data-scan-type="marketing" style="display:none">
           <div class="scan-question" data-category="brand" data-key="positioning">
-            <p class="scan-q-label">Do you have a clear description of what makes your business different on Curaçao?</p>
+            <p class="scan-q-label">Do you have a clear description of what makes your business different?</p>
             <div class="scan-options-list">
               <button class="scan-option-btn" data-value="Not at all">Not at all</button>
               <button class="scan-option-btn" data-value="In my head, not written down">In my head, not written down</button>
@@ -996,7 +1030,7 @@
             </div>
           </div>
           <div class="scan-question" data-category="channels" data-key="ai_visibility">
-            <p class="scan-q-label">If someone asks ChatGPT for a business like yours on Curaçao, do you show up?</p>
+            <p class="scan-q-label">If someone asks ChatGPT for a business like yours in your area, do you show up?</p>
             <div class="scan-options-list">
               <button class="scan-option-btn" data-value="Never checked">Never checked</button>
               <button class="scan-option-btn" data-value="No">No</button>
@@ -1114,7 +1148,7 @@
       <div class="scan-step-inner center">
         <div class="scan-loader"></div>
         <h2 class="scan-h2">Scanning <span class="scan-pink" id="loadingName">your socials</span>...</h2>
-        <p class="scan-sub">Buckle up. We're pulling zero punches.<br>Your report is being built right now.</p>
+        <p class="scan-sub">Buckle up. We're pulling zero punches.<br>Every line gets fact-checked, so give it about 30 seconds.</p>
       </div>
     </section>
 
@@ -1162,6 +1196,8 @@
           <p id="quickwinText"></p>
         </div>
 
+        <div class="scan-bronnen" id="bronnenWrap"></div>
+
         <div class="scan-download-wrap">
           <button class="scan-btn-download" onclick="downloadReport()">Download your report <span>↓</span></button>
         </div>
@@ -1205,7 +1241,7 @@
     <p>Boring was never the plan.</p>
   </div>
 
-  <script src="scan-script.js?v=20261014d"></script>
+  <script src="scan-script.js?v=20261014g"></script>
 <script src="/effects.js"></script>
 <script src="cookie-consent.js"></script>
 </body>

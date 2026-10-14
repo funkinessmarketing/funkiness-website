@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, leesWebsite } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, extraKanalenGeldig } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -18,48 +18,20 @@ const mailer = nodemailer.createTransport({
   }
 });
 
-const CURACAO_CONTEXT = `
-CURAÇAO MARKET CONTEXT. Only use facts from this list. Do not invent statistics. If you reference a number, it must come from here.
-
-PLATFORM BEHAVIOR ON CURAÇAO (structural, verified):
-- WhatsApp is the primary communication channel on Curaçao. It is not a social media platform but a trust and conversion channel
-- Instagram is the leading visual discovery platform for tourism and hospitality on the island
-- Facebook reaches the 35+ age group most effectively; younger audiences have shifted toward Instagram and TikTok
-- TikTok is growing fast among younger audiences across the Caribbean region
-- The majority of social media traffic on Curaçao is mobile. Desktop usage is minimal
-
-CURAÇAO TOURISM (Curaçao Tourist Board, verified):
-- Curaçao welcomed 582,409 stay-over visitors in 2023, a record year (Curaçao Tourist Board, January 2024)
-- The US, Netherlands and Germany are the top three source markets for stay-over tourism
-
-VERIFIED PLATFORM BEHAVIOR (use directional, not specific percentages):
-- Instagram's algorithm actively prioritizes Reels over static images in the Explore and Reels feeds. This is confirmed Meta policy, not a benchmark stat
-- Stories disappear after 24 hours and keep a business visible to existing followers between posts
-- Carousel posts generate more saves and return visits than single-image posts. Saves are a strong engagement signal in Instagram's current algorithm
-- Consistency of posting is a confirmed ranking factor in Instagram's algorithm. Irregular posting reduces reach
-- Instagram bio is the only clickable text on a profile. A weak or missing CTA directly costs conversions
-- Responding to DMs and comments signals account activity to the algorithm and increases future post visibility
-- English-language content reaches a broader international audience; Papiamentu and Dutch perform better for local community engagement
-
-WHAT NOT TO CLAIM:
-- Do not cite specific engagement rate percentages (e.g. "3x more reach", "22% more interaction"). These are algorithm-dependent and change constantly
-- Do not cite specific optimal posting frequencies as universal rules. These vary by account and niche
-- Do not cite specific hashtag counts as optimal. Instagram's own guidance has shifted away from hashtag quantity
-`;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, honeypot } = req.body;
+  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, locatie, site, antwoorden, honeypot } = req.body;
   const scores = berekenScores('social', antwoorden);
 
   if (honeypot) {
     return res.status(400).json({ success: false, error: 'Invalid submission.' });
   }
 
-  if (!bedrijf || !email || !scores) {
+  if (!bedrijf || !email || !scores || !LOCATIES[locatie] || !extraKanalenGeldig(antwoorden.other_channels)) {
     return res.status(400).json({ success: false, error: 'Missing required fields.' });
   }
 
@@ -81,7 +53,7 @@ export default async function handler(req, res) {
       }).catch(err => console.error('Sheet log error:', err.message))
     : Promise.resolve();
   // Alleen het nieuwe sheetscript antwoordt 'ok-v2'; bij het oude script geen vervolgberichten (die zouden lege rijen geven)
-  const sheetAanvraag = naarSheet({ type: 'social', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram, website: site })
+  const sheetAanvraag = naarSheet({ type: 'social', bedrijf, sector, locatie, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram, website: site })
     .then(r => r?.text?.())
     .then(t => t?.trim() === 'ok-v2')
     .catch(() => false);
@@ -91,7 +63,9 @@ export default async function handler(req, res) {
 
   const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
   const sectorLabel = sectorInfo.prompt;
-  const groep = sectorInfo.groep;
+  const locatieInfo = LOCATIES[locatie];
+  const groep = `${sectorInfo.groep} ${locatieInfo.in}`;
+  const feiten = feitenVoor('social', sector, locatie);
 
   const bioSection = bio && bio.trim()
     ? `Their current profile bio (analyze this critically):\n"${bio.trim()}"`
@@ -102,50 +76,41 @@ export default async function handler(req, res) {
   const lowestLabel = { platforms: 'Platforms & Reach', instagram: 'Video & Profile', engagement: 'Engagement', content: 'Content' }[lowestCat];
 
 
-  const prompt = `You are a sharp, direct social media expert at FUNkiness!, an AI & marketing agency on Curaçao. You analyze social media performance for businesses on the island.
+  const prompt = `You are a sharp, direct social media expert at FUNkiness!, an AI, social media & marketing agency based on Curaçao. You write a short social media scan report for a business based ${locatieInfo.in}.
 
-${CURACAO_CONTEXT}
+${REGELS_GEEN_VERZINSELS}
 
-OVERALL SCORE: ${bedrijf} scored ${totaalscore}/100. Do not compare this score to other businesses or invent averages.
+FACTS (shown separately in the report; only choose which ones fit this business in chosen_facts, do not repeat them in your text):
+${feitenAlsTekst(feiten)}
 
 THE BUSINESS:
 Name: ${bedrijf}
 Sector: ${sectorLabel}
-${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}Instagram/TikTok handle: ${instagram || 'not provided'}
+Location: ${locatieInfo.naam}
+Instagram/TikTok handle: ${instagram || 'not provided'}
 ${bioSection}
+${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}
+THEIR ANSWERS (quote these exactly, never change them):
+${antwoordenAlsTekst('social', antwoorden)}
 
-SCAN RESULTS:
-${Object.entries(antwoorden).map(([k, v]) => `- ${k}: ${v}`).join('\n')}
-
-SCORES (0-100):
+SCORES (0-100, calculated from their answers):
 - Platforms & Reach: ${scores.platforms}
 - Video & Profile: ${scores.instagram}
 - Engagement: ${scores.engagement}
 - Content: ${scores.content}
+- Overall: ${totaalscore}
 - Lowest scoring area: ${lowestLabel}
-
-INSTRUCTIONS:
-Write a sharp, personalized social media scan report for ${bedrijf}. Follow every rule below exactly.
+Do not compare these scores to other businesses or invent averages.
 
 TONE:
 - English only
 - Direct, bold, honest but always positive. Frame everything from opportunity
-- Never use an em dash. Never use "premium" or "luxury"
+- Never use "premium" or "luxury"
 - FUNkiness! brand voice: confident, a little cheeky, never corporate
 - Always mention ${bedrijf} by name
-- If their website text is provided, use one concrete detail from it in the intro so it is clear we actually looked. Never invent details about the website. If no website text is provided, do not mention the website
+- If their website text is provided, use one concrete detail from it in the intro so it is clear we actually looked. If not, do not mention the website
 
-STRUCTURE RULES:
-1. WHAT'S WORKING: Find 1 genuine thing ${bedrijf} is doing right. Be specific. Tone: playful and encouraging, like a coach who spotted something good. Not generic.
-2. SCORES: 2 sentences per category. Reference a fact from the market context. No invented percentages.
-3. BIO (if provided): Name the problem clearly and give 1 directional tip. Do NOT write their new bio for them. Stop at the insight.
-4. TOP QUICK WIN: Give exactly 1 strong, concrete, immediately actionable quick win. Explain why it works. Only name a source if it appears in the context above. Make it genuinely useful.
-5. TEASER WINS: Hint at 2 more wins you spotted but don't explain them. Name the area vaguely. Create curiosity without giving the solution.
-6. FOMO (positive): 2 sentences about what the fast movers in their sector on Curaçao are already doing that ${bedrijf} isn't yet. Positive angle, not scary. Make them want to be in that group.
-7. DO TODAY: One ultra-specific action they can do in 20 minutes. Make it feel like the first step, not the full solution.
-8. DYNAMIC CTA: Personalized to their lowest scoring area (${lowestLabel}). Direct and inviting, not salesy.
-
-Call the submit_scan_report tool with your completed report, following the structure rules above and the field descriptions in the tool schema.`;
+Call the submit_scan_report tool. Follow the field descriptions exactly.`;
 
   const reportTool = {
     name: 'submit_scan_report',
@@ -153,40 +118,54 @@ Call the submit_scan_report tool with your completed report, following the struc
     input_schema: {
       type: 'object',
       properties: {
-        intro: { type: 'string', description: `2 sharp sentences about ${bedrijf} specifically. Reference their follower range or platform situation. Feel like you looked at their profile.` },
-        whats_working: { type: 'string', description: '1-2 sentences in a playful, encouraging tone about the 1 thing they are genuinely doing well. Specific to their answers.' },
-        platforms_feedback: { type: 'string', description: '2 sentences. Reference a Curaçao or Caribbean market fact.' },
-        instagram_feedback: { type: 'string', description: '2 sentences about short video, Stories and where their profile sends people. Reference a verified platform behavior.' },
-        engagement_feedback: { type: 'string', description: '2 sentences. Reference a fact about DMs, comments or algorithm signals.' },
-        content_feedback: { type: 'string', description: '2 sentences. Reference a verified content behavior (Reels, carousels, Stories).' },
-        bio_feedback: { type: 'string', description: bio && bio.trim() ? 'Name the problem clearly. Give 1 directional tip. Do NOT write the new bio. Stop at the insight.' : 'Leave as an empty string, no bio was provided.' },
-        top_quickwin: { type: 'string', description: `The single best, fully explained quick win for ${bedrijf}. Explain why it works. Genuinely useful.` },
-        teaser_wins: { type: 'string', description: `We spotted 2 more wins specific to ${bedrijf}. One is about [vague area 1, not explained]. The other touches on [vague area 2, not explained]. Both need a closer look at the account to execute right.` },
-        fomo: { type: 'string', description: `2 sentences. What are the fast-moving ${groep} already doing on social that ${bedrijf} is not yet? Positive framing. Make them want to be in that group.` },
-        do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. The first step, not the full solution.` },
+        intro: { type: 'string', description: `2 sharp sentences about ${bedrijf}, based only on their answers and, if provided, their website or bio.` },
+        whats_working: { type: 'string', description: '1-2 playful, encouraging sentences about one thing they are genuinely doing well, based on their answers.' },
+        platforms_feedback: { type: 'string', description: '2 sentences about their platforms, posting frequency and audience growth. Based only on their answers, plus advice.' },
+        instagram_feedback: { type: 'string', description: '2 sentences about short video, Stories and where their profile sends people. Based only on their answers, plus advice.' },
+        engagement_feedback: { type: 'string', description: '2 sentences about engagement rate and reply speed. Based only on their answers, plus advice.' },
+        content_feedback: { type: 'string', description: '2 sentences about content type, content plan and whether customers post about them. Based only on their answers, plus advice.' },
+        bio_feedback: { type: 'string', description: bio && bio.trim() ? 'Based only on the bio text provided: name the problem clearly and give 1 directional tip. Do NOT write the new bio.' : 'Leave as an empty string, no bio was provided.' },
+        top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain it as advice based on their answers. Genuinely useful.` },
+        teaser_wins: { type: 'string', description: `Name two areas from their answers that FUNkiness! would dig into together in a conversation, without explaining them. Never mention a full report or anything they have not received.` },
+        chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, maxItems: 3, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
+        do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
-      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'fomo', 'do_today', 'cta_dynamic']
+      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
   };
 
   try {
-    const message = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1800,
-      tools: [reportTool],
-      tool_choice: { type: 'tool', name: 'submit_scan_report' },
-      messages: [{ role: 'user', content: prompt }]
+    // Schrijven, en één keer opnieuw als er getallen in staan die nergens vandaan komen
+    const schrijf = async (inhoud) => {
+      const message = await client.messages.create({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1800,
+        tools: [reportTool],
+        tool_choice: { type: 'tool', name: 'submit_scan_report' },
+        messages: [{ role: 'user', content: inhoud }]
+      });
+      const toolUse = message.content.find(block => block.type === 'tool_use');
+      if (!toolUse) throw new Error('No tool_use block in response');
+      return toolUse.input;
+    };
+    let ruw = await schrijf(prompt);
+    const verzonnen = verzonnenGetallen(ruw, prompt);
+    if (verzonnen.length) {
+      console.warn('Verzonnen getallen, opnieuw:', verzonnen);
+      ruw = await schrijf(`${prompt}\n\nIMPORTANT: a previous draft used these numbers that do not appear in their answers, their website or the FACTS list: ${verzonnen.join(', ')}. Do not use them. Only use numbers that appear above.`);
+    }
+
+    // Strenge controle: elke zin moet uit antwoorden, website of feitenlijst volgen
+    ruw = await controleerRapport({
+      client, model: 'claude-sonnet-5-5', reportTool,
+      antwoordenTekst: antwoordenAlsTekst('social', antwoorden),
+      websiteInhoud, bio: bio, concept: ruw
     });
 
-    const toolUse = message.content.find(block => block.type === 'tool_use');
-    if (!toolUse) throw new Error('No tool_use block in response');
-
-    const out = toolUse.input;
-    // Geen emdashes in de output, regel is absoluut
-    for (const key of Object.keys(out)) {
-      if (typeof out[key] === 'string') out[key] = out[key].replace(/\s*\u2014\s*/g, ', ');
-    }
+    const out = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v.replace(/\[F\d+\]/g, '')) : v]));
+    // Feiten letterlijk uit de bronnenlijst, niet uit de AI-tekst
+    const { items: weetjes, bronnen } = feitenBlok(out.chosen_facts, feiten);
     const rapport = {
       intro: out.intro,
       whats_working: out.whats_working,
@@ -197,10 +176,12 @@ Call the submit_scan_report tool with your completed report, following the struc
       bio_feedback: out.bio_feedback,
       top_quickwin: out.top_quickwin,
       teaser_wins: out.teaser_wins,
-      fomo: out.fomo,
+      feiten: weetjes,
+      fomo: weetjes.map(w => `${w.tekst} [${w.nr}]`).join(' '),
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
-      totaalscore
+      totaalscore,
+      bronnen
     };
 
     // Email to user with key findings
@@ -256,7 +237,7 @@ Call the submit_scan_report tool with your completed report, following the struc
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.teaser_wins}</p>
             </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
-              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">What the fast movers are doing</div>
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Worth knowing</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${rapport.fomo}</p>
             </div>
             <div style="background:#3a251b;color:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
@@ -264,6 +245,7 @@ Call the submit_scan_report tool with your completed report, following the struc
               <p style="font-size:15px;line-height:1.6;margin:0;opacity:0.9">${rapport.do_today}</p>
             </div>
             <p style="font-size:15px;color:#444;line-height:1.6;margin-bottom:20px">${rapport.cta_dynamic}</p>
+            ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
             <div style="text-align:center;margin-bottom:32px">
               <a href="https://wa.me/59996751737" style="display:inline-block;background:#f21b7a;color:white;padding:14px 32px;border-radius:99px;font-size:15px;font-weight:700;text-decoration:none">
                 Say hello on WhatsApp →
@@ -288,6 +270,7 @@ Call the submit_scan_report tool with your completed report, following the struc
           <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe Social Media Scan</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:24px">
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Locatie</td><td style="padding:8px;border:1px solid #eee">${esc(locatieInfo.naam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorNaam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${esc(functie) || 'niet opgegeven'}</td></tr>
@@ -315,12 +298,13 @@ Call the submit_scan_report tool with your completed report, following the struc
             <p style="margin-bottom:16px">${rapport.top_quickwin}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Teaser wins</h3>
             <p style="margin-bottom:16px">${rapport.teaser_wins}</p>
-            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">FOMO</h3>
+            <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Worth knowing</h3>
             <p style="margin-bottom:16px">${rapport.fomo}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Do today</h3>
             <p style="margin-bottom:16px">${rapport.do_today}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">CTA (dynamisch)</h3>
             <p>${rapport.cta_dynamic}</p>
+            ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
           </div>
         `
       }).catch(err => console.error('Lead email error:', err.message)));
@@ -365,8 +349,9 @@ function rapportAlsTekst(r) {
     r.bio_feedback ? `Bio: ${r.bio_feedback}` : '',
     `Quick win: ${r.top_quickwin}`,
     `Teaser wins: ${r.teaser_wins}`,
-    `FOMO: ${r.fomo}`,
+    `Feiten: ${r.fomo}`,
     `Do today: ${r.do_today}`,
-    `CTA: ${r.cta_dynamic}`
+    `CTA: ${r.cta_dynamic}`,
+    r.bronnen?.length ? `Bronnen: ${r.bronnen.map(b => `[${b.nr}] ${b.bron} ${b.url}`).join(' | ')}` : ''
   ].filter(Boolean).join('\n\n');
 }
