@@ -67,6 +67,10 @@ export const SECTOREN = {
   airbnb:     { prompt: 'vacation rental or short-term rental',   groep: 'vacation rentals',         naam: 'Vacation Rental' },
   retail:     { prompt: 'retail business or shop',                groep: 'shops and retailers',      naam: 'Retail / Shop' },
   finance:    { prompt: 'bank or financial services company',     groep: 'banks and financial services', naam: 'Finance / Banking' },
+  marketing:  { prompt: 'marketing, advertising or creative agency', groep: 'marketing and creative agencies', naam: 'Marketing / Agency' },
+  tours:      { prompt: 'tour, activity, dive or car rental business', groep: 'tour and activity businesses', naam: 'Tours & Activities' },
+  beauty:     { prompt: 'beauty, wellness or fitness business',    groep: 'beauty and wellness businesses', naam: 'Beauty & Wellness' },
+  diensten:   { prompt: 'professional services firm (legal, accounting, consultancy)', groep: 'professional services firms', naam: 'Professional Services' },
   anders:     { prompt: 'local business (sector unknown, do not assume hospitality or tourism)', groep: 'local businesses', naam: 'Other' }
 };
 
@@ -148,7 +152,7 @@ export function antwoordenAlsTekst(type, antwoorden) {
 // voor: 'social' | 'marketing' | 'beide'; sectoren: alleen tonen bij deze sectoren (leeg = alle)
 export const FEITEN = [
   // Curaçao
-  { id: 'F1', voor: 'beide', locaties: ['curacao'], sectoren: ['hotel', 'restaurant', 'airbnb'],
+  { id: 'F1', voor: 'beide', locaties: ['curacao'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
     tekst: 'Curaçao welcomed a record 788,427 stay-over visitors in 2025, up 13% from 2024. In December 2025 the largest source markets were the Netherlands (26,243 visitors) and the United States (20,423 visitors).',
     bron: 'Curaçao Tourist Board, January 2026', url: 'https://www.curacaotouristboard.com/2026/01/13/a-successful-year-for-curacao-tourism-stayover-arrivals-reach-record-of-788000-in-2025/' },
   { id: 'F2', voor: 'beide', locaties: ['curacao'], sectoren: [],
@@ -158,7 +162,7 @@ export const FEITEN = [
     tekst: 'Ad audience on Curaçao in late 2025: Facebook 108,000 (58.1% of the population), TikTok 102,000 adults (66.7% of adults), LinkedIn 93,000 members (50.1% of the population), Instagram 68,000 (36.7% of the population). These are advertising reach figures, not unique users.',
     bron: 'DataReportal, Digital 2026: Curaçao', url: 'https://datareportal.com/reports/digital-2026-curacao' },
   // Aruba
-  { id: 'F11', voor: 'beide', locaties: ['aruba'], sectoren: ['hotel', 'restaurant', 'airbnb'],
+  { id: 'F11', voor: 'beide', locaties: ['aruba'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
     tekst: 'Aruba welcomed 1,515,102 stay-over visitors in 2025 (preliminary figure), up from 1,421,686 in 2024.',
     bron: 'Centrale Bank van Aruba, tourism indicators', url: 'https://www.cbaruba.org/readBlob.do?id=19182' },
   { id: 'F12', voor: 'beide', locaties: ['aruba'], sectoren: [],
@@ -168,14 +172,14 @@ export const FEITEN = [
     tekst: 'Ad audience on Aruba in late 2025: Facebook 85,100 (78.7% of the population), LinkedIn 73,000 members (67.5%), Instagram 66,000 (61.0%). These are advertising reach figures, not unique users.',
     bron: 'DataReportal, Digital 2026: Aruba', url: 'https://datareportal.com/reports/digital-2026-aruba' },
   // Bonaire (DataReportal rapporteert Bonaire, Sint Eustatius en Saba samen; geen officieel jaartotaal toerisme gevonden)
-  { id: 'F21', voor: 'beide', locaties: ['bonaire'], sectoren: ['hotel', 'restaurant', 'airbnb'],
+  { id: 'F21', voor: 'beide', locaties: ['bonaire'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
     tekst: 'Bonaire welcomed 19,540 stay-over visitors in December 2025 (preliminary), up 1.9% from December 2024. The Netherlands (43.9%) and the United States (31.9%) were the largest markets that month.',
     bron: 'Tourism Corporation Bonaire, January 2026', url: 'https://bonaireisland.com/?p=15508' },
   { id: 'F22', voor: 'beide', locaties: ['bonaire'], sectoren: [],
     tekst: 'Bonaire, Sint Eustatius and Saba together have 22,100 internet users (70.1% of the population), 21,700 social media user identities (68.7%) and 48,900 mobile connections (155%), as of late 2025. These figures are for the three islands combined.',
     bron: 'DataReportal, Digital 2026: Bonaire, Sint Eustatius and Saba', url: 'https://datareportal.com/reports/digital-2026-bonaire-sint-eustatius-and-saba' },
   // Nederland
-  { id: 'F31', voor: 'beide', locaties: ['nederland'], sectoren: ['hotel', 'restaurant', 'airbnb'],
+  { id: 'F31', voor: 'beide', locaties: ['nederland'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
     tekst: 'Hotels, campsites and holiday parks in the Netherlands received about 52.2 million guests in 2025, almost 2% more than in 2024. International guests grew 5% to 22.3 million, Dutch guests dipped slightly to 29.9 million.',
     bron: 'CBS (Statistics Netherlands), April 2026', url: 'https://www.cbs.nl/en-gb/news/2026/16/fewer-overnight-stays-by-dutch-guests-more-international-visitors-in-2025' },
   { id: 'F32', voor: 'beide', locaties: ['nederland'], sectoren: [],
@@ -185,7 +189,7 @@ export const FEITEN = [
     tekst: 'Ad audience in the Netherlands in late 2025: LinkedIn 14.0 million members (76.2% of the population), Instagram 8.15 million (44.4%), Facebook 7.50 million (40.8%), TikTok 6.30 million adults (41.9% of adults). These are advertising reach figures, not unique users.',
     bron: 'DataReportal, Digital 2026: The Netherlands', url: 'https://datareportal.com/reports/digital-2026-netherlands' },
   // Elders: wereldwijde cijfers
-  { id: 'F41', voor: 'beide', locaties: ['elders'], sectoren: ['hotel', 'restaurant', 'airbnb'],
+  { id: 'F41', voor: 'beide', locaties: ['elders'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
     tekst: 'International tourist arrivals worldwide grew about 4% in 2025, to an estimated 1.52 billion.',
     bron: 'UN Tourism, World Tourism Barometer, January 2026', url: 'https://www.hospitalitynet.org/news/4130515.html' },
   { id: 'F42', voor: 'beide', locaties: ['elders'], sectoren: [],
