@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -127,7 +127,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain step by step how to do it: 4 to 6 sentences or numbered steps on their own lines, specific to their answers. Genuinely useful.` },
         teaser_wins: { type: 'string', description: `Name two areas from their answers that FUNkiness! would dig into together in a conversation, without explaining them. Never mention a full report or anything they have not received.` },
         plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
-        chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, maxItems: 3, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
+        chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
@@ -151,6 +151,15 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       return toolUse.input;
     };
     let ruw = await schrijf(prompt);
+    // Ontbrekende onderdelen nog één keer opvragen; een rapport met gaten gaat nooit naar buiten
+    const verplicht = reportTool.input_schema.required.filter(k => k !== 'chosen_facts');
+    let ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
+    if (ontbreekt.length) {
+      console.warn('Ontbrekende velden, opnieuw:', ontbreekt);
+      ruw = await schrijf(`${prompt}\n\nIMPORTANT: your previous answer left out these fields: ${ontbreekt.join(', ')}. Fill in every field of the tool.`);
+      ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
+      if (ontbreekt.length) throw new Error('Rapport onvolledig: ' + ontbreekt.join(', '));
+    }
     // Getallen die nergens vandaan komen gaan mee naar de controleur, die haalt ze weg
     const verzonnen = verzonnenGetallen(ruw, prompt);
     if (verzonnen.length) console.warn('Verdachte getallen:', verzonnen);
@@ -162,6 +171,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       websiteInhoud, bio: '', concept: ruw, verdacht: verzonnen
     });
 
+    // Categorie zonder goedgekeurde tekst: samenvatting van hun eigen antwoorden
+    for (const cat of ["brand", "audience", "channels", "strategy"]) {
+      if (!ruw[`${cat}_feedback`]) ruw[`${cat}_feedback`] = antwoordenSamenvatting('marketing', cat, antwoorden);
+    }
     const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
     // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
     const { items: weetjes, bronnen, velden: out } = feitenBlok(schoon.chosen_facts, feiten, schoon);

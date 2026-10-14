@@ -12,6 +12,7 @@ export const VRAGEN = {
     profile_cta:      { cat: 'instagram', scores: { 'Nowhere': 0, 'Website': 50, 'WhatsApp or booking': 80, 'Clear CTA plus WhatsApp or booking': 100 } },
     engagement_rate:  { cat: 'engagement', scores: { 'I have no idea': 10, 'Under 1%': 25, '1-3%': 55, '3-6%': 80, 'Above 6%': 100 } },
     reply_speed:      { cat: 'engagement', scores: { 'Never': 0, 'Eventually': 20, 'Within 24 hours': 70, 'Within 1 hour': 100 } },
+    social_results:   { cat: 'engagement', scores: { 'No idea': 0, 'A rough sense': 35, 'We track it roughly': 70, 'We track it exactly': 100 } },
     content_type:     { cat: 'content', scores: { 'Stock photos or reposts': 10, 'Own photos only': 40, 'Mix of photos and video': 70, 'Professional video-first': 100 } },
     content_plan:     { cat: 'content', scores: { 'No plan': 0, 'Post when inspired': 20, 'Loose schedule': 55, 'Full content calendar': 100 } },
     customer_content: { cat: 'content', scores: { 'Never': 10, 'Rarely': 30, 'Sometimes': 60, 'Often and we share it': 100 } }
@@ -58,6 +59,23 @@ export const EXTRA_KANALEN = ['Instagram', 'Facebook', 'TikTok', 'LinkedIn', 'Yo
 export function extraKanalenGeldig(waarde) {
   if (typeof waarde !== 'string' || !waarde) return false;
   return waarde.split(', ').every(k => EXTRA_KANALEN.includes(k));
+}
+
+// Context zonder punten: richting voor het rapport
+export const CONTEXT = {
+  doel:    { vraag: 'Main goal for the next 6 months', opties: ['More customers or bookings', 'Better customers or higher prices', 'Fill quiet periods', 'More brand awareness', 'Grow in a new market'] },
+  publiek: { vraag: 'Main audience', opties: ['Mostly locals', 'Mostly tourists and visitors', 'Locals and tourists', 'Other businesses (B2B)'] },
+  wie:     { vraag: 'Who does the marketing', opties: ['I do it myself', 'Someone on my team', 'An agency or freelancer', 'Nobody really'] }
+};
+
+export function contextGeldig(c) {
+  return c && Object.entries(CONTEXT).every(([k, { opties }]) => opties.includes(c[k]))
+    && (c.uitdaging === undefined || c.uitdaging === '' || (typeof c.uitdaging === 'string' && c.uitdaging.length <= 500));
+}
+
+export function contextAlsTekst(c) {
+  return [...Object.entries(CONTEXT).map(([k, { vraag }]) => `- ${vraag}: "${c[k]}"`),
+    `- Biggest marketing challenge right now, in their own words: ${c.uitdaging ? `"${c.uitdaging.trim()}"` : 'not provided'}`].join('\n');
 }
 
 export const SECTOREN = {
@@ -121,6 +139,7 @@ export const VRAAGTEKST = {
   profile_cta: 'Where does your profile send people?',
   engagement_rate: 'What is your average engagement rate? (likes + comments / followers)',
   reply_speed: 'How fast do you reply to comments and DMs?',
+  social_results: 'Do you know how many customers or leads social media brings you?',
   content_type: 'What type of content do you mainly post?',
   content_plan: 'Do you work with a content plan?',
   customer_content: 'Do customers post about you or tag you? (content made by customers, not by the business)',
@@ -360,13 +379,14 @@ Call submit_checked_report once with every field from this draft part, corrected
         const kapotVeld = !toolUse ? '(geen tool_use, stop: ' + message.stop_reason + ')'
           : keys.find(k => typeof uit[k] !== 'string' || (groep[k] && !uit[k].trim()) || /<\/?\w|parameter name=/.test(uit[k]));
         if (!kapotVeld) return Object.fromEntries(keys.map(k => [k, uit[k]]));
-        console.warn(`Controle poging ${poging} onvolledig:`, kapotVeld);
+        console.warn(`Controle poging ${poging} onvolledig:`, kapotVeld, JSON.stringify(uit[kapotVeld])?.slice(0, 300));
       } catch (err) {
         console.error(`Controle poging ${poging} mislukt:`, err.message);
       }
     }
-    // Nooit ongecontroleerde tekst naar de klant
-    throw new Error('Rapportcontrole mislukt');
+    // Nooit ongecontroleerde tekst naar de klant: deze onderdelen worden leeg en de code vult ze veilig aan
+    console.error('Controle mislukt voor:', keys.join(', '));
+    return Object.fromEntries(keys.map(k => [k, '']));
   };
 
   const resultaten = await Promise.all(groepen.map(controleerGroep));
@@ -394,4 +414,12 @@ export function feitenBlok(gekozenIds, feiten, tekstVelden = {}) {
     return { tekst: f.tekst, nr: nummerVoor(f) };
   });
   return { items, bronnen, velden };
+}
+
+// Veilige vervanging als de controle van een categorie mislukt: alleen de eigen antwoorden van de klant
+export function antwoordenSamenvatting(type, cat, antwoorden) {
+  return Object.entries(VRAGEN[type])
+    .filter(([, v]) => v.cat === cat)
+    .map(([k]) => `${VRAAGTEKST[k]} Your answer: "${antwoorden[k]}".`)
+    .join('\n');
 }

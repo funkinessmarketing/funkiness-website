@@ -98,6 +98,12 @@ function validateStep(step) {
       alert('Please select where your business is based.');
       return false;
     }
+    for (const [veld, tekst] of [['doel', 'your main goal'], ['publiek', 'who your customers are'], ['wie', 'who does your marketing']]) {
+      if (!fieldSelections[veld]) {
+        alert(`Please select ${tekst}.`);
+        return false;
+      }
+    }
     if (!fieldSelections['sector']) {
       alert('Please select your sector.');
       return false;
@@ -190,6 +196,10 @@ async function submitScan() {
   const bio         = document.getElementById('bio')?.value.trim() || '';
   const sector      = fieldSelections['sector'];
   const locatie     = fieldSelections['locatie'];
+  const context     = {
+    doel: fieldSelections['doel'], publiek: fieldSelections['publiek'], wie: fieldSelections['wie'],
+    uitdaging: (document.getElementById('uitdaging')?.value || '').trim().slice(0, 500)
+  };
   const site        = document.getElementById('site_url').value.trim();
   const honeypot    = document.getElementById('honeypot')?.value || '';
 
@@ -208,7 +218,7 @@ async function submitScan() {
     const res = await fetch(apiEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bedrijf, sector, locatie, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, honeypot })
+      body: JSON.stringify({ bedrijf, sector, locatie, email, telefoon, telefoon_nl, naam, functie, instagram, bio, site, antwoorden, context, honeypot })
     });
     const data = await res.json();
     if (!data.success) throw new Error(data.error);
@@ -248,6 +258,10 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('topQuickwin').textContent = rapport.top_quickwin;
   document.getElementById('quickwinText').textContent = rapport.do_today;
   document.getElementById('planText').textContent = rapport.plan_30_days || '';
+  for (const [wrap, tekst, waarde] of [['challengeWrap', 'challengeText', rapport.challenge_answer], ['ideasWrap', 'ideasText', rapport.post_ideas]]) {
+    document.getElementById(wrap).style.display = waarde ? 'block' : 'none';
+    document.getElementById(tekst).textContent = waarde || '';
+  }
   document.getElementById('ctaHook').textContent = rapport.cta_dynamic;
   document.getElementById('reportEmailNote').textContent = `We also sent a copy to ${email}. Don't see it? Check your spam folder.`;
 

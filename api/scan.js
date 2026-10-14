@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, extraKanalenGeldig } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -24,14 +24,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, locatie, site, antwoorden, honeypot } = req.body;
+  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, instagram, bio, locatie, site, antwoorden, context, honeypot } = req.body;
   const scores = berekenScores('social', antwoorden);
 
   if (honeypot) {
     return res.status(400).json({ success: false, error: 'Invalid submission.' });
   }
 
-  if (!bedrijf || !email || !scores || !LOCATIES[locatie] || !extraKanalenGeldig(antwoorden.other_channels)) {
+  if (!bedrijf || !email || !scores || !LOCATIES[locatie] || !contextGeldig(context) || !extraKanalenGeldig(antwoorden.other_channels)) {
     return res.status(400).json({ success: false, error: 'Missing required fields.' });
   }
 
@@ -91,6 +91,9 @@ Location: ${locatieInfo.naam}
 Instagram/TikTok handle: ${instagram || 'not provided'}
 ${bioSection}
 ${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}
+THEIR CONTEXT (use it to make every recommendation fit their goal, audience and capacity; quote their challenge only literally):
+${contextAlsTekst(context)}
+
 THEIR ANSWERS (quote these exactly, never change them):
 ${antwoordenAlsTekst('social', antwoorden)}
 
@@ -128,12 +131,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         bio_feedback: { type: 'string', description: bio && bio.trim() ? 'Based only on the bio text provided: name the problem clearly and give 1 directional tip. Do NOT write the new bio.' : 'Leave as an empty string, no bio was provided.' },
         top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain step by step how to do it: 4 to 6 sentences or numbered steps on their own lines, specific to their answers. Genuinely useful.` },
         teaser_wins: { type: 'string', description: `Name two areas from their answers that FUNkiness! would dig into together in a conversation, without explaining them. Never mention a full report or anything they have not received.` },
-        plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
-        chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, maxItems: 3, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
+        post_ideas: { type: 'string', description: `Exactly 3 post ideas for ${bedrijf}, made for their main goal, their audience and their main platform. Each idea on its own line as "1. [format, e.g. Reel, carousel or Story]: [the hook, the first line people see] + one sentence on what to show". Based only on their answers, website and bio. No promised results.` },
+        challenge_answer: { type: 'string', description: 'If they described their biggest challenge: 2 to 3 sentences that respond directly to it, quoting it literally, with a concrete first move. If they did not describe one, leave an empty string.' },
+        plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas and their main goal, realistic for who does their marketing, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
+        chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
-      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
+      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'post_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
   };
 
@@ -153,6 +158,15 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       return toolUse.input;
     };
     let ruw = await schrijf(prompt);
+    // Ontbrekende onderdelen nog één keer opvragen; een rapport met gaten gaat nooit naar buiten
+    const verplicht = reportTool.input_schema.required.filter(k => k !== 'chosen_facts');
+    let ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
+    if (ontbreekt.length) {
+      console.warn('Ontbrekende velden, opnieuw:', ontbreekt);
+      ruw = await schrijf(`${prompt}\n\nIMPORTANT: your previous answer left out these fields: ${ontbreekt.join(', ')}. Fill in every field of the tool.`);
+      ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
+      if (ontbreekt.length) throw new Error('Rapport onvolledig: ' + ontbreekt.join(', '));
+    }
     // Getallen die nergens vandaan komen gaan mee naar de controleur, die haalt ze weg
     const verzonnen = verzonnenGetallen(ruw, prompt);
     if (verzonnen.length) console.warn('Verdachte getallen:', verzonnen);
@@ -160,10 +174,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     // Strenge controle: elke zin moet uit antwoorden, website of feitenlijst volgen
     ruw = await controleerRapport({
       client, model: 'claude-sonnet-5-5',
-      feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: antwoordenAlsTekst('social', antwoorden),
+      feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: contextAlsTekst(context) + '\n' + antwoordenAlsTekst('social', antwoorden),
       websiteInhoud, bio: bio, concept: ruw, verdacht: verzonnen
     });
 
+    // Categorie zonder goedgekeurde tekst: samenvatting van hun eigen antwoorden
+    for (const cat of ["platforms", "instagram", "engagement", "content"]) {
+      if (!ruw[`${cat}_feedback`]) ruw[`${cat}_feedback`] = antwoordenSamenvatting('social', cat, antwoorden);
+    }
     const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
     // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
     const { items: weetjes, bronnen, velden: out } = feitenBlok(schoon.chosen_facts, feiten, schoon);
@@ -179,11 +197,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       teaser_wins: out.teaser_wins,
       feiten: weetjes,
       fomo: weetjes.map(w => `${w.tekst} [${w.nr}]`).join(' '),
+      post_ideas: out.post_ideas,
+      challenge_answer: out.challenge_answer,
       plan_30_days: out.plan_30_days,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
       totaalscore,
-      bronnen
+      bronnen,
+      context
     };
 
     // Email to user with key findings
@@ -234,6 +255,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your #1 Quick Win</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.top_quickwin)}</p>
             </div>
+            ${rapport.challenge_answer ? `<div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your challenge</div>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.challenge_answer)}</p>
+            </div>` : ''}
+            <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">3 post ideas for you</div>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.post_ideas)}</p>
+            </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">2 more wins we spotted</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.teaser_wins)}</p>
@@ -276,6 +305,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
           <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe Social Media Scan</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:24px">
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Doel</td><td style="padding:8px;border:1px solid #eee">${esc(context.doel)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Publiek</td><td style="padding:8px;border:1px solid #eee">${esc(context.publiek)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Marketing door</td><td style="padding:8px;border:1px solid #eee">${esc(context.wie)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Uitdaging</td><td style="padding:8px;border:1px solid #eee">${esc(context.uitdaging) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Locatie</td><td style="padding:8px;border:1px solid #eee">${esc(locatieInfo.naam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorNaam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam) || 'niet opgegeven'}</td></tr>
@@ -308,6 +341,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <p style="margin-bottom:16px">${br(rapport.fomo)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">Do today</h3>
             <p style="margin-bottom:16px">${br(rapport.do_today)}</p>
+            <h3 style="color:#f21b7a">Uitdaging (antwoord)</h3>
+            <p>${br(rapport.challenge_answer) || '-'}</p>
+            <h3 style="color:#f21b7a">3 postideeën</h3>
+            <p>${br(rapport.post_ideas)}</p>
             <h3 style="color:#f21b7a">30-dagenplan</h3>
             <p>${br(rapport.plan_30_days)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">CTA (dynamisch)</h3>
@@ -350,6 +387,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
 function rapportAlsTekst(r) {
   const cats = Object.entries(r).filter(([, v]) => v && typeof v === 'object' && 'score' in v);
   return [
+    r.context ? `Context: doel ${r.context.doel} | publiek ${r.context.publiek} | marketing door ${r.context.wie}${r.context.uitdaging ? ` | uitdaging: ${r.context.uitdaging}` : ''}` : '',
     `Totaalscore: ${r.totaalscore}/100`,
     ...cats.map(([k, v]) => `${k}: ${v.score}/100. ${v.feedback}`),
     `Intro: ${r.intro}`,
@@ -359,6 +397,8 @@ function rapportAlsTekst(r) {
     `Teaser wins: ${r.teaser_wins}`,
     `Feiten: ${r.fomo}`,
     `Do today: ${r.do_today}`,
+    r.challenge_answer ? `Uitdaging: ${r.challenge_answer}` : '',
+    `Postideeën: ${r.post_ideas}`,
     `30-dagenplan: ${r.plan_30_days}`,
     `CTA: ${r.cta_dynamic}`,
     r.bronnen?.length ? `Bronnen: ${r.bronnen.map(b => `[${b.nr}] ${b.bron} ${b.url}`).join(' | ')}` : ''

@@ -670,7 +670,7 @@
     }
     .scan-fomo-wrap h3 { color: var(--pink); }
     .scan-fomo-wrap p + p { margin-top: 10px; }
-    .scan-cat-feedback, #topQuickwin, #quickwinText, #planText, #whatsWorking, #reportIntro { white-space: pre-line; }
+    .scan-cat-feedback, #topQuickwin, #quickwinText, #planText, #ideasText, #challengeText, #whatsWorking, #reportIntro { white-space: pre-line; }
     .scan-plan-wrap { background: white; border-radius: 18px; padding: 20px 24px; margin-bottom: 24px; }
     .scan-plan-wrap h3 { font-family: 'Permanent Marker', cursive; font-weight: 400; color: var(--pink); margin-bottom: 8px; }
     .scan-plan-wrap p { line-height: 1.7; }
@@ -781,6 +781,34 @@
             <button class="scan-option-btn" data-value="beauty">Beauty &amp; Wellness</button>
             <button class="scan-option-btn" data-value="diensten">Professional Services</button>
             <button class="scan-option-btn" data-value="anders">Other</button>
+          </div>
+        </div>
+        <div class="scan-form-group">
+          <label>Your main goal for the next 6 months</label>
+          <div class="scan-options-grid" data-field="doel">
+            <button class="scan-option-btn" data-value="More customers or bookings">More customers or bookings</button>
+            <button class="scan-option-btn" data-value="Better customers or higher prices">Better customers or higher prices</button>
+            <button class="scan-option-btn" data-value="Fill quiet periods">Fill quiet periods</button>
+            <button class="scan-option-btn" data-value="More brand awareness">More brand awareness</button>
+            <button class="scan-option-btn" data-value="Grow in a new market">Grow in a new market</button>
+          </div>
+        </div>
+        <div class="scan-form-group">
+          <label>Who are your customers?</label>
+          <div class="scan-options-grid" data-field="publiek">
+            <button class="scan-option-btn" data-value="Mostly locals">Mostly locals</button>
+            <button class="scan-option-btn" data-value="Mostly tourists and visitors">Mostly tourists and visitors</button>
+            <button class="scan-option-btn" data-value="Locals and tourists">Locals and tourists</button>
+            <button class="scan-option-btn" data-value="Other businesses (B2B)">Other businesses (B2B)</button>
+          </div>
+        </div>
+        <div class="scan-form-group">
+          <label>Who does your marketing now?</label>
+          <div class="scan-options-grid" data-field="wie">
+            <button class="scan-option-btn" data-value="I do it myself">I do it myself</button>
+            <button class="scan-option-btn" data-value="Someone on my team">Someone on my team</button>
+            <button class="scan-option-btn" data-value="An agency or freelancer">An agency or freelancer</button>
+            <button class="scan-option-btn" data-value="Nobody really">Nobody really</button>
           </div>
         </div>
         <div class="scan-form-group">
@@ -1010,6 +1038,15 @@
               <button class="scan-option-btn" data-value="Within 1 hour">Within 1 hour</button>
             </div>
           </div>
+          <div class="scan-question" data-category="engagement" data-key="social_results">
+            <p class="scan-q-label">Do you know how many customers or leads social media brings you?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="No idea">No idea</button>
+              <button class="scan-option-btn" data-value="A rough sense">A rough sense</button>
+              <button class="scan-option-btn" data-value="We track it roughly">We track it roughly</button>
+              <button class="scan-option-btn" data-value="We track it exactly">We track it exactly</button>
+            </div>
+          </div>
           
         </div>
 
@@ -1143,6 +1180,10 @@
           </div>
         </div>
 
+        <div class="scan-form-group" style="margin-top:24px">
+          <label>What is your biggest marketing challenge right now? <span class="scan-hint">(optional, but it makes your report a lot sharper)</span></label>
+          <textarea id="uitdaging" maxlength="500" placeholder="e.g. We get likes, but hardly any bookings from social media"></textarea>
+        </div>
         <button class="scan-btn-next" onclick="submitScan()">Get my scan report <span>→</span></button>
       </div>
     </section>
@@ -1191,6 +1232,16 @@
           <h3 class="scan-h3">Your #1 quick win</h3>
           <p id="topQuickwin"></p>
           <div class="scan-teaser-wins" id="teaserWins"></div>
+        </div>
+
+        <div class="scan-plan-wrap" id="challengeWrap" style="display:none">
+          <h3>Your challenge</h3>
+          <p id="challengeText"></p>
+        </div>
+
+        <div class="scan-plan-wrap" id="ideasWrap" style="display:none">
+          <h3>3 post ideas for you</h3>
+          <p id="ideasText"></p>
         </div>
 
         <div class="scan-fomo-wrap" id="fomoWrap"></div>
@@ -1250,7 +1301,7 @@
     <p>Boring was never the plan.</p>
   </div>
 
-  <script src="scan-script.js?v=20261014l"></script>
+  <script src="scan-script.js?v=20261014n"></script>
 <script src="/effects.js"></script>
 <script src="cookie-consent.js"></script>
 </body>
