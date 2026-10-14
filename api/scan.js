@@ -62,11 +62,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, error: 'Invalid input.' });
   }
 
+  // Sheets leest '+5999...' als formule (#ERROR!), apostrof maakt het tekst
+  const alsTekst = v => v ? `'${v}` : v;
+
   if (process.env.GSHEET_WEBHOOK_URL) {
     fetch(process.env.GSHEET_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'social', bedrijf, sector, naam, functie, email, telefoon, telefoon_nl, instagram })
+      body: JSON.stringify({ type: 'social', bedrijf, sector, naam, functie, email, telefoon: alsTekst(telefoon), telefoon_nl: alsTekst(telefoon_nl), instagram })
     }).catch(err => console.error('Sheet log error:', err.message));
   }
 
@@ -198,8 +201,10 @@ Call the submit_scan_report tool with your completed report, following the struc
     };
 
     // Email to user with key findings
+    // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
+    const mails = [];
     if (process.env.TITAN_PASSWORD) {
-      mailer.sendMail({
+      mails.push(mailer.sendMail({
         from: '"FUNkiness!" <sayhello@funkiness.ai>',
         to: email,
         subject: `Your Social Media Scan is ready, ${naam}!`,
@@ -265,7 +270,7 @@ Call the submit_scan_report tool with your completed report, following the struc
             <p style="font-size:13px;color:#aaa;margin-top:24px;text-align:center">FUNkiness! AI, Social Media & Marketing. Curaçao.<br>Questions? Reply to this email or WhatsApp: +5999 675 1737</p>
           </div>
         `
-      }).catch(err => console.error('User email error:', err.message));
+      }).catch(err => console.error('User email error:', err.message)));
     }
 
     // Lead email to FUNkiness!
@@ -275,7 +280,7 @@ Call the submit_scan_report tool with your completed report, following the struc
         makelaar: 'Real Estate', airbnb: 'Vacation Rental', anders: 'Other'
       }[sector] || sector;
 
-      mailer.sendMail({
+      mails.push(mailer.sendMail({
         from: '"FUNkiness! Scan" <sayhello@funkiness.ai>',
         to: 'sayhello@funkiness.ai',
         subject: `Nieuwe scan: ${bedrijf}, score ${rapport.totaalscore}/100`,
@@ -317,8 +322,10 @@ Call the submit_scan_report tool with your completed report, following the struc
             <p>${rapport.cta_dynamic}</p>
           </div>
         `
-      }).catch(err => console.error('Lead email error:', err.message));
+      }).catch(err => console.error('Lead email error:', err.message)));
     }
+
+    await Promise.allSettled(mails);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });
 

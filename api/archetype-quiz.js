@@ -135,8 +135,10 @@ Output ONLY valid JSON:
     }
 
     // Email to user
+    // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
+    const mails = [];
     if (process.env.TITAN_PASSWORD) {
-      mailer.sendMail({
+      mails.push(mailer.sendMail({
         from: '"FUNkiness!" <sayhello@funkiness.ai>',
         to: email,
         subject: `Your AI Superpower: ${arch.name}`,
@@ -179,7 +181,7 @@ Output ONLY valid JSON:
             <p style="font-size:13px;color:#aaa;margin-top:24px;text-align:center">FUNkiness! AI, Social Media & Marketing. Curaçao.<br>Questions? Reply to this email or WhatsApp: +5999 675 1737</p>
           </div>
         `
-      }).catch(err => console.error('User email error:', err.message));
+      }).catch(err => console.error('User email error:', err.message)));
     }
 
     // Lead email to Daisy
@@ -189,7 +191,7 @@ Output ONLY valid JSON:
         rental: 'Vacation Rental', retail: 'Retail', finance: 'Finance / Banking', anders: 'Other'
       }[sector] || sector || 'Not specified';
 
-      mailer.sendMail({
+      mails.push(mailer.sendMail({
         from: '"FUNkiness! Quiz" <sayhello@funkiness.ai>',
         to: 'sayhello@funkiness.ai',
         subject: `Nieuwe AI Quiz lead: ${naam}, ${arch.name}`,
@@ -220,8 +222,10 @@ Output ONLY valid JSON:
             <h4>CTA</h4><p>${rapport.cta}</p>
           </div>
         `
-      }).catch(err => console.error('Lead email error:', err.message));
+      }).catch(err => console.error('Lead email error:', err.message)));
     }
+
+    await Promise.allSettled(mails);
 
     res.json({ success: true, rapport });
 
