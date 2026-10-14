@@ -320,9 +320,47 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
     <p>${escHtml(rapport.fomo)}</p>`;
 }
 
-function downloadReport() {
-  const reportEl = document.getElementById('reportStep');
-  const content = reportEl.innerHTML;
+// Maakt direct een pdf-bestand van het rapport (html2pdf), valt terug op afdrukken als dat niet lukt
+async function downloadReport() {
+  const btn = document.querySelector('.scan-btn-download');
+  const label = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = 'Preparing your PDF...';
+  try {
+    if (!window.html2pdf) throw new Error('html2pdf niet geladen');
+    // Het echte rapport omzetten (html2pdf kopieert de grafiek zelf); knoppen tijdelijk verbergen
+    const bron = document.querySelector('#reportStep .scan-step-inner');
+    document.body.classList.add('scan-pdf-mode');
+    const bedrijf = (document.getElementById('bedrijf').value.trim() || 'report').replace(/[^\w-]+/g, '-');
+    await html2pdf().set({
+      margin: 0,
+      filename: `FUNkiness-scan-${bedrijf}.pdf`,
+      image: { type: 'jpeg', quality: 0.95 },
+      html2canvas: { scale: 2, backgroundColor: '#f7efe7', useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all', 'css'], avoid: ['.scan-cat-card', '.scan-working-wrap', '.scan-quickwin-wrap', '.scan-fomo-wrap', '.scan-radar-wrap', '.scan-kansen-wrap', '.scan-bio-wrap'] }
+    }).from(bron).save();
+  } catch (err) {
+    console.error('PDF error:', err);
+    printReport();
+  } finally {
+    document.body.classList.remove('scan-pdf-mode');
+    btn.disabled = false;
+    btn.innerHTML = label;
+  }
+}
+
+function printReport() {
+  const kopie = document.getElementById('reportStep').cloneNode(true);
+  const chart = Chart.getChart('radarChart');
+  const canvas = kopie.querySelector('#radarChart');
+  if (chart && canvas) {
+    const img = document.createElement('img');
+    img.src = chart.toBase64Image();
+    img.style.width = '100%';
+    canvas.replaceWith(img);
+  }
+  const content = kopie.innerHTML;
   const printWindow = window.open('', '_blank');
   printWindow.document.write(`<!DOCTYPE html>
 <html><head>

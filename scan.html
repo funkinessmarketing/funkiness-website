@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&family=Poppins:wght@700;800;900&display=swap">
   <link rel="stylesheet" href="style.css?v=11">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 
   <style>
     /* ============================
@@ -247,6 +248,8 @@
 
     .scan-question { margin-bottom: 36px; }
 
+    .scan-pdf-mode .scan-step-inner { background: #f7efe7; padding: 36px 32px; max-width: none; }
+    .scan-pdf-mode .scan-download-wrap, .scan-pdf-mode .scan-cta-wrap, .scan-pdf-mode .scan-email-note { display: none !important; }
     .scan-question-missing { outline: 2px solid var(--pink); outline-offset: 10px; border-radius: 16px; }
     .scan-missing-note { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 15px; margin: -4px 0 12px; }
     .scan-q-label {
@@ -1142,7 +1145,7 @@
         <div class="scan-category-cards" id="categoryCards"></div>
 
         <div class="scan-bio-wrap" id="bioWrap">
-          <h3 class="scan-h3">Your Instagram bio</h3>
+          <h3 class="scan-h3">Your bio</h3>
           <p id="bioFeedback"></p>
         </div>
 
@@ -1202,7 +1205,7 @@
     <p>Boring was never the plan.</p>
   </div>
 
-  <script src="scan-script.js?v=20261014b"></script>
+  <script src="scan-script.js?v=20261014d"></script>
 <script src="/effects.js"></script>
 <script src="cookie-consent.js"></script>
 </body>
