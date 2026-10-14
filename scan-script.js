@@ -106,10 +106,14 @@ function validateStep(step) {
   const questions = activeQs ? activeQs.querySelectorAll('.scan-question') : [];
   for (const q of questions) {
     if (!answers[q.dataset.key]) {
-      const btn = q.querySelector('.scan-option-btn');
-      btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      btn.classList.add('pulse');
-      setTimeout(() => btn.classList.remove('pulse'), 600);
+      // Duidelijk laten zien welke vraag nog open staat
+      q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      q.classList.add('scan-question-missing');
+      if (!q.querySelector('.scan-missing-note')) {
+        q.querySelector('.scan-q-label').insertAdjacentHTML('afterend', '<p class="scan-missing-note">Pick one answer to continue</p>');
+      }
+      q.querySelectorAll('.scan-option-btn').forEach(b => b.classList.add('pulse'));
+      setTimeout(() => q.querySelectorAll('.scan-option-btn').forEach(b => b.classList.remove('pulse')), 600);
       return false;
     }
   }
@@ -146,6 +150,8 @@ document.addEventListener('click', (e) => {
   } else if (question) {
     question.querySelectorAll('.scan-option-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
+    question.classList.remove('scan-question-missing');
+    question.querySelector('.scan-missing-note')?.remove();
     answers[question.dataset.key] = {
       value: btn.dataset.value,
       category: question.dataset.category
