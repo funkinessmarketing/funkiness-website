@@ -104,7 +104,7 @@ ${websiteRegel(site, websiteInhoud, websiteStatus)}
 THEIR CONTEXT (use it to make every recommendation fit their goal, audience and capacity; quote their challenge only literally):
 ${contextAlsTekst(context)}
 
-${websiteFeit ? `MEASURED DATA: fact [F91] contains an objective check of their homepage. In the intro and in Channels (and Brand where it fits), put these measured results next to their own answers, for example their answer about their website or about showing up in ChatGPT, quoting both exactly with [F91]. Where they differ, say so plainly and positively. Only state what was measured; do not claim effects on rankings, traffic or sales. Across the whole report, name at most 2 of the measured points that need attention; never list all checks.\n\n` : ''}${eyeHint ? eyeHint + '\n\n' : ''}THEIR ANSWERS (quote these exactly, never change them):
+${websiteFeit ? `MEASURED DATA: fact [F91] contains an objective check of their homepage. In the intro and in Channels (and Brand where it fits), put these measured results next to their own answers, for example their answer about their website or about showing up in ChatGPT, quoting both exactly with [F91]. Where they differ, say so plainly and positively. Only state what was measured; do not claim effects on rankings, traffic or sales. Across the whole report, name at most 3 of the measured points that need attention; never list all checks.\n\n` : ''}${eyeHint ? eyeHint + '\n\n' : ''}THEIR ANSWERS (quote these exactly, never change them):
 ${antwoordenAlsTekst('marketing', antwoorden)}
 
 SCORES (0-100, calculated from their answers):

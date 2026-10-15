@@ -626,7 +626,7 @@ export async function analyseerWebsite(invoer) {
     return {
       inhoud,
       punten,
-      samenvatting: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): we checked 13 points and found ${punten.length} ${punten.length === 1 ? 'point' : 'points'} that need attention${punten.length ? `, including: ${punten.slice(0, 2).join('; ')}` : ''}.`,
+      samenvatting: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): we checked 13 points and found ${punten.length} ${punten.length === 1 ? 'point' : 'points'} that need attention${punten.length ? `, including: ${punten.slice(0, 3).join('; ')}` : ''}.`,
       feit: {
         id: 'F91', voor: 'marketing', locaties: [], sectoren: [],
         tekst: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): ${metingen.join('; ')}.`,
@@ -661,9 +661,9 @@ export const TIJDZONE = { curacao: 'America/Curacao', aruba: 'America/Aruba', bo
 export function teasers({ instagramFeit, websitePunten, aantalVragen }) {
   const lijst = [];
   if (websitePunten?.length) {
-    const rest = websitePunten.length - Math.min(2, websitePunten.length);
+    const rest = websitePunten.length - Math.min(3, websitePunten.length);
     lijst.push(rest > 0
-      ? `Our website check found ${websitePunten.length} points that need attention on your homepage. This report names 2 of them; the other ${rest} we go through with you.`
+      ? `Our website check found ${websitePunten.length} points that need attention on your homepage. This report names 3 of them; the other ${rest} we go through with you.`
       : `Our website check found ${websitePunten.length} ${websitePunten.length === 1 ? 'point' : 'points'} that need attention on your homepage, and we show you exactly how to fix ${websitePunten.length === 1 ? 'it' : 'them'}.`);
   }
   if (instagramFeit?.extra?.length) {
