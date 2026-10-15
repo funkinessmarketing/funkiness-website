@@ -50,6 +50,12 @@ function showStep(n) {
     target.querySelectorAll('.scan-qs').forEach(qs => {
       qs.style.display = qs.dataset.scanType === scanType ? 'block' : 'none';
     });
+    // Vragen die alleen voor bepaalde sectoren gelden
+    target.querySelectorAll('.scan-question[data-sectors]').forEach(q => {
+      const zichtbaar = q.dataset.sectors.split(',').includes(fieldSelections['sector']);
+      q.style.display = zichtbaar ? '' : 'none';
+      if (!zichtbaar) delete answers[q.dataset.key];
+    });
   }
 }
 
@@ -115,6 +121,7 @@ function validateStep(step) {
   const activeQs = stepEl.querySelector(`.scan-qs[data-scan-type="${scanType}"]`);
   const questions = activeQs ? activeQs.querySelectorAll('.scan-question') : [];
   for (const q of questions) {
+    if (q.style.display === 'none') continue;
     if (!answers[q.dataset.key]) {
       // Duidelijk laten zien welke vraag nog open staat
       q.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -258,7 +265,8 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('topQuickwin').textContent = rapport.top_quickwin;
   document.getElementById('quickwinText').textContent = rapport.do_today;
   document.getElementById('planText').textContent = rapport.plan_30_days || '';
-  for (const [wrap, tekst, waarde] of [['challengeWrap', 'challengeText', rapport.challenge_answer], ['ideasWrap', 'ideasText', rapport.post_ideas]]) {
+  document.getElementById('ideasTitle').textContent = isSocial ? '3 post ideas for you' : '3 campaign ideas for you';
+  for (const [wrap, tekst, waarde] of [['challengeWrap', 'challengeText', rapport.challenge_answer], ['ideasWrap', 'ideasText', isSocial ? rapport.post_ideas : rapport.campaign_ideas]]) {
     document.getElementById(wrap).style.display = waarde ? 'block' : 'none';
     document.getElementById(tekst).textContent = waarde || '';
   }

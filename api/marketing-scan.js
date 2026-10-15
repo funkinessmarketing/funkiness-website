@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -24,14 +24,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, locatie, site, antwoorden, honeypot } = req.body;
-  const scores = berekenScores('marketing', antwoorden);
+  const { bedrijf, sector, email, telefoon, telefoon_nl, naam, functie, locatie, site, antwoorden, context, honeypot } = req.body;
+  const scores = berekenScores('marketing', antwoorden, sector);
 
   if (honeypot) {
     return res.status(400).json({ success: false, error: 'Invalid submission.' });
   }
 
-  if (!bedrijf || !email || !scores || !LOCATIES[locatie]) {
+  if (!bedrijf || !email || !scores || !LOCATIES[locatie] || !contextGeldig(context)) {
     return res.status(400).json({ success: false, error: 'Missing required fields.' });
   }
 
@@ -60,13 +60,14 @@ export default async function handler(req, res) {
     .catch(() => false);
 
   // Homepage van de klant lezen terwijl de sheet-logging loopt
-  const websiteInhoud = await leesWebsite(site);
+  // Website lezen en objectief doorlichten (één keer ophalen)
+  const { inhoud: websiteInhoud, feit: websiteFeit, status: websiteStatus } = await analyseerWebsite(site);
 
   const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
   const sectorLabel = sectorInfo.prompt;
   const locatieInfo = LOCATIES[locatie];
   const groep = `${sectorInfo.groep} ${locatieInfo.in}`;
-  const feiten = feitenVoor('marketing', sector, locatie);
+  const feiten = [...(websiteFeit ? [websiteFeit] : []), ...feitenVoor('marketing', sector, locatie)];
 
   const totaalscore = Math.round((scores.brand + scores.audience + scores.channels + scores.strategy) / 4);
   const lowestCat = Object.entries(scores).sort((a, b) => a[1] - b[1])[0][0];
@@ -89,8 +90,11 @@ THE BUSINESS:
 Name: ${bedrijf}
 Sector: ${sectorLabel}
 Location: ${locatieInfo.naam}
-${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}
-THEIR ANSWERS (quote these exactly, never change them):
+${websiteRegel(site, websiteInhoud, websiteStatus)}
+THEIR CONTEXT (use it to make every recommendation fit their goal, audience and capacity; quote their challenge only literally):
+${contextAlsTekst(context)}
+
+${websiteFeit ? `MEASURED DATA: fact [F91] contains an objective check of their homepage. In the intro and in Channels (and Brand where it fits), put these measured results next to their own answers, for example their answer about their website or about showing up in ChatGPT, quoting both exactly with [F91]. Where they differ, say so plainly and positively. Only state what was measured; do not claim effects on rankings, traffic or sales.\n\n` : ''}THEIR ANSWERS (quote these exactly, never change them):
 ${antwoordenAlsTekst('marketing', antwoorden)}
 
 SCORES (0-100, calculated from their answers):
@@ -126,12 +130,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         strategy_feedback: { type: 'string', description: '4 to 6 sentences about plan, budget, tracking and time spent. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
         top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain step by step how to do it: 4 to 6 sentences or numbered steps on their own lines, specific to their answers. Genuinely useful.` },
         teaser_wins: { type: 'string', description: `Name two areas from their answers that FUNkiness! would dig into together in a conversation, without explaining them. Never mention a full report or anything they have not received.` },
-        plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
+        campaign_ideas: { type: 'string', description: `Exactly 3 marketing campaign ideas for ${bedrijf}, made for their main goal, their audience and who does their marketing. Each on its own line as "1. [campaign name]: [what to do, on which channel] + the first step". Based only on their answers, website and context. No promised results.` },
+        challenge_answer: { type: 'string', description: 'If they described their biggest challenge: 2 to 3 sentences that respond directly to it, quoting it literally, with a concrete first move. If they did not describe one, leave an empty string.' },
+        plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas and their main goal, realistic for who does their marketing, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
         chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
-      required: ['intro', 'whats_working', 'brand_feedback', 'audience_feedback', 'channels_feedback', 'strategy_feedback', 'top_quickwin', 'teaser_wins', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
+      required: ['intro', 'whats_working', 'brand_feedback', 'audience_feedback', 'channels_feedback', 'strategy_feedback', 'top_quickwin', 'teaser_wins', 'campaign_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
   };
 
@@ -177,7 +183,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     // Strenge controle: elke zin moet uit antwoorden, website of feitenlijst volgen
     ruw = await controleerRapport({
       client, model: 'claude-sonnet-5-5',
-      feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: antwoordenAlsTekst('marketing', antwoorden),
+      feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: contextAlsTekst(context) + '\n' + antwoordenAlsTekst('marketing', antwoorden),
       websiteInhoud, bio: '', concept: ruw, verdacht: verzonnen
     });
 
@@ -185,9 +191,11 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     for (const cat of ["brand", "audience", "channels", "strategy"]) {
       if (!ruw[`${cat}_feedback`]) ruw[`${cat}_feedback`] = antwoordenSamenvatting('marketing', cat, antwoorden);
     }
+    // Geen uitdaging ingevuld: geen blok, ook niet als de AI er toch iets over schrijft
+    if (!context.uitdaging?.trim()) ruw.challenge_answer = '';
     const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
     // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
-    const { items: weetjes, bronnen, velden: out } = feitenBlok(schoon.chosen_facts, feiten, schoon);
+    const { items: weetjes, bronnen, velden: out } = feitenBlok(websiteFeit ? ['F91', ...(schoon.chosen_facts || []).filter(id => id !== 'F91')] : schoon.chosen_facts, feiten, schoon);
     const rapport = {
       intro: out.intro,
       whats_working: out.whats_working,
@@ -199,11 +207,15 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       teaser_wins: out.teaser_wins,
       feiten: weetjes,
       fomo: weetjes.map(w => `${w.tekst} [${w.nr}]`).join(' '),
+      campaign_ideas: out.campaign_ideas,
+      challenge_answer: out.challenge_answer,
       plan_30_days: out.plan_30_days,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
       totaalscore,
-      bronnen
+      bronnen,
+      context,
+      websiteGemeten: !!websiteFeit
     };
 
     // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
@@ -248,6 +260,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your #1 Quick Win</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.top_quickwin)}</p>
             </div>
+            ${rapport.challenge_answer ? `<div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your challenge</div>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.challenge_answer)}</p>
+            </div>` : ''}
+            <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">3 campaign ideas for you</div>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.campaign_ideas)}</p>
+            </div>
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:16px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">2 more wins we spotted</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.teaser_wins)}</p>
@@ -289,11 +309,15 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
           <h2 style="color:#f21b7a">Nieuwe Marketing Strategy Scan</h2>
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif">
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Doel</td><td style="padding:8px;border:1px solid #eee">${esc(context.doel)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Publiek</td><td style="padding:8px;border:1px solid #eee">${esc(context.publiek)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Marketing door</td><td style="padding:8px;border:1px solid #eee">${esc(context.wie)}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Uitdaging</td><td style="padding:8px;border:1px solid #eee">${esc(context.uitdaging) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Locatie</td><td style="padding:8px;border:1px solid #eee">${esc(locatieInfo.naam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Sector</td><td style="padding:8px;border:1px solid #eee">${esc(sectorNaam)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Naam</td><td style="padding:8px;border:1px solid #eee">${esc(naam) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${esc(functie) || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Website</td><td style="padding:8px;border:1px solid #eee">${esc(site) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Website</td><td style="padding:8px;border:1px solid #eee">${esc(site) || 'niet opgegeven'}${websiteFeit ? ' (website doorgelicht)' : ''}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
@@ -319,6 +343,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <p>${br(rapport.fomo)}</p>
             <h3 style="color:#f21b7a;margin-top:20px">Do today</h3>
             <p>${br(rapport.do_today)}</p>
+            <h3 style="color:#f21b7a">Uitdaging (antwoord)</h3>
+            <p>${br(rapport.challenge_answer) || '-'}</p>
+            <h3 style="color:#f21b7a">3 campagne-ideeën</h3>
+            <p>${br(rapport.campaign_ideas)}</p>
             <h3 style="color:#f21b7a">30-dagenplan</h3>
             <p>${br(rapport.plan_30_days)}</p>
             <h3 style="color:#f21b7a;margin-top:20px">CTA</h3>
@@ -361,6 +389,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
 function rapportAlsTekst(r) {
   const cats = Object.entries(r).filter(([, v]) => v && typeof v === 'object' && 'score' in v);
   return [
+    r.context ? `Context: doel ${r.context.doel} | publiek ${r.context.publiek} | marketing door ${r.context.wie}${r.context.uitdaging ? ` | uitdaging: ${r.context.uitdaging}` : ''}` : '',
     `Totaalscore: ${r.totaalscore}/100`,
     ...cats.map(([k, v]) => `${k}: ${v.score}/100. ${v.feedback}`),
     `Intro: ${r.intro}`,
@@ -370,6 +399,8 @@ function rapportAlsTekst(r) {
     `Teaser wins: ${r.teaser_wins}`,
     `Feiten: ${r.fomo}`,
     `Do today: ${r.do_today}`,
+    r.challenge_answer ? `Uitdaging: ${r.challenge_answer}` : '',
+    `Campagne-ideeën: ${r.campaign_ideas}`,
     `30-dagenplan: ${r.plan_30_days}`,
     `CTA: ${r.cta_dynamic}`,
     r.bronnen?.length ? `Bronnen: ${r.bronnen.map(b => `[${b.nr}] ${b.bron} ${b.url}`).join(' | ')}` : ''

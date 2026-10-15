@@ -1079,6 +1079,25 @@
               <button class="scan-option-btn" data-value="Yes, every time">Yes, every time</button>
             </div>
           </div>
+          <div class="scan-question" data-category="channels" data-key="social_presence">
+            <p class="scan-q-label">How active is your business on social media?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="Not active">Not active</button>
+              <button class="scan-option-btn" data-value="Occasionally">Occasionally</button>
+              <button class="scan-option-btn" data-value="Weekly">Weekly</button>
+              <button class="scan-option-btn" data-value="Several times a week with a plan">Several times a week with a plan</button>
+            </div>
+          </div>
+          <div class="scan-question" data-sectors="hotel,airbnb,tours" data-category="channels" data-key="direct_bookings">
+            <p class="scan-q-label">How many of your bookings come in directly, instead of via platforms like Booking.com, Airbnb or Expedia?</p>
+            <div class="scan-options-list">
+              <button class="scan-option-btn" data-value="I do not know">I don't know</button>
+              <button class="scan-option-btn" data-value="Almost all via platforms">Almost all via platforms</button>
+              <button class="scan-option-btn" data-value="Mostly via platforms">Mostly via platforms</button>
+              <button class="scan-option-btn" data-value="About half direct">About half direct</button>
+              <button class="scan-option-btn" data-value="Mostly direct">Mostly direct</button>
+            </div>
+          </div>
           <div class="scan-question" data-category="channels" data-key="whatsapp_email">
             <p class="scan-q-label">Do you use WhatsApp or email to stay in touch with existing customers?</p>
             <div class="scan-options-list">
@@ -1240,7 +1259,7 @@
         </div>
 
         <div class="scan-plan-wrap" id="ideasWrap" style="display:none">
-          <h3>3 post ideas for you</h3>
+          <h3 id="ideasTitle">3 post ideas for you</h3>
           <p id="ideasText"></p>
         </div>
 
@@ -1301,7 +1320,7 @@
     <p>Boring was never the plan.</p>
   </div>
 
-  <script src="scan-script.js?v=20261014n"></script>
+  <script src="scan-script.js?v=20261015b"></script>
 <script src="/effects.js"></script>
 <script src="cookie-consent.js"></script>
 </body>

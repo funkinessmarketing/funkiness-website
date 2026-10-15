@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, websiteRegel, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -91,7 +91,7 @@ Sector: ${sectorLabel}
 Location: ${locatieInfo.naam}
 Instagram/TikTok handle: ${instagram || 'not provided'}
 ${bioSection}
-${websiteInhoud ? `Their website (homepage text, fetched just now):\n${websiteInhoud}\n` : 'Website: not provided or not reachable\n'}
+${websiteRegel(site, websiteInhoud)}
 THEIR CONTEXT (use it to make every recommendation fit their goal, audience and capacity; quote their challenge only literally):
 ${contextAlsTekst(context)}
 
@@ -193,6 +193,8 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     for (const cat of ["platforms", "instagram", "engagement", "content"]) {
       if (!ruw[`${cat}_feedback`]) ruw[`${cat}_feedback`] = antwoordenSamenvatting('social', cat, antwoorden);
     }
+    // Geen uitdaging ingevuld: geen blok, ook niet als de AI er toch iets over schrijft
+    if (!context.uitdaging?.trim()) ruw.challenge_answer = '';
     const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
     // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
     const { items: weetjes, bronnen, velden: out } = feitenBlok(instagramFeit ? ['F90', ...(schoon.chosen_facts || []).filter(id => id !== 'F90')] : schoon.chosen_facts, feiten, schoon);

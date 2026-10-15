@@ -27,6 +27,8 @@ export const VRAGEN = {
     website:            { cat: 'channels', scores: { 'No website': 0, 'Outdated or not mobile-friendly': 20, 'Basic, reasonably current': 55, 'Optimized and regularly updated': 100 } },
     google_profile:     { cat: 'channels', scores: { 'I do not have one': 0, 'Set up but not managed': 30, 'Active with photos and reviews': 75, 'Fully optimized with regular updates': 100 } },
     ai_visibility:      { cat: 'channels', scores: { 'Never checked': 10, 'No': 25, 'Sometimes': 60, 'Yes, every time': 100 } },
+    social_presence:    { cat: 'channels', scores: { 'Not active': 0, 'Occasionally': 30, 'Weekly': 65, 'Several times a week with a plan': 100 } },
+    direct_bookings:    { cat: 'channels', sectoren: ['hotel', 'airbnb', 'tours'], scores: { 'I do not know': 0, 'Almost all via platforms': 15, 'Mostly via platforms': 35, 'About half direct': 65, 'Mostly direct': 100 } },
     whatsapp_email:     { cat: 'channels', scores: { 'Neither': 0, 'Occasionally': 35, 'Regularly for one': 65, 'Both actively': 100 } },
     paid_ads:           { cat: 'channels', scores: { 'No': 0, 'Tried without a plan': 25, 'Yes with some targeting': 60, 'Yes with tracking and optimization': 100 } },
     marketing_plan:     { cat: 'strategy', scores: { 'No': 0, 'In my head not written': 20, 'Yes a basic plan': 55, 'Yes detailed with goals and timeline': 100 } },
@@ -37,11 +39,12 @@ export const VRAGEN = {
 };
 
 // Geeft { scores } terug, of null als er een vraag ontbreekt of een onbekend antwoord in zit
-export function berekenScores(type, antwoorden) {
+export function berekenScores(type, antwoorden, sector) {
   const vragen = VRAGEN[type];
   if (!vragen || !antwoorden || typeof antwoorden !== 'object') return null;
   const perCat = {};
-  for (const [key, { cat, scores }] of Object.entries(vragen)) {
+  for (const [key, { cat, scores, sectoren }] of Object.entries(vragen)) {
+    if (sectoren && !sectoren.includes(sector)) continue;   // vraag geldt niet voor deze sector
     const punten = scores[antwoorden[key]];
     if (punten === undefined) return null;
     (perCat[cat] ||= []).push(punten);
@@ -152,6 +155,8 @@ export const VRAAGTEKST = {
   website: 'Do you have a mobile-friendly, up-to-date website?',
   google_profile: 'Is your Google Business Profile active?',
   ai_visibility: 'If someone asks ChatGPT for a business like yours in your area, do you show up?',
+  social_presence: 'How active is your business on social media?',
+  direct_bookings: 'How many of your bookings come in directly, instead of via platforms like Booking.com, Airbnb or Expedia?',
   whatsapp_email: 'Do you use WhatsApp or email to stay in touch with existing customers?',
   paid_ads: 'Do you run paid advertising?',
   marketing_plan: 'Do you have a written marketing plan?',
@@ -162,6 +167,7 @@ export const VRAAGTEKST = {
 
 export function antwoordenAlsTekst(type, antwoorden) {
   return [...(type === 'social' ? ['other_channels'] : []), ...Object.keys(VRAGEN[type])]
+    .filter(key => antwoorden[key] !== undefined)
     .map(key => `- Q: ${VRAAGTEKST[key]}\n  A: "${antwoorden[key]}"`)
     .join('\n');
 }
@@ -419,7 +425,7 @@ export function feitenBlok(gekozenIds, feiten, tekstVelden = {}) {
 // Veilige vervanging als de controle van een categorie mislukt: alleen de eigen antwoorden van de klant
 export function antwoordenSamenvatting(type, cat, antwoorden) {
   return Object.entries(VRAGEN[type])
-    .filter(([, v]) => v.cat === cat)
+    .filter(([k, v]) => v.cat === cat && antwoorden[k] !== undefined)
     .map(([k]) => `${VRAAGTEKST[k]} Your answer: "${antwoorden[k]}".`)
     .join('\n');
 }
@@ -491,4 +497,106 @@ export async function leesInstagram(invoer) {
     console.warn('Instagram fout:', err.message);
     return null;
   }
+}
+
+// Objectieve website-check: alles gemeten door de code, niets door de AI.
+// Geeft { inhoud, feit } terug: inhoud = homepagetekst voor de prompt, feit = meetresultaten als bronfeit F91.
+export async function analyseerWebsite(invoer) {
+  const leeg = { inhoud: '', feit: null };
+  try {
+    if (!invoer || typeof invoer !== 'string' || invoer.length > 300) return leeg;
+    const url = new URL(/^https?:\/\//i.test(invoer.trim()) ? invoer.trim() : `https://${invoer.trim()}`);
+    const host = url.hostname.toLowerCase();
+    if (!['http:', 'https:'].includes(url.protocol) || !host.includes('.') || host === 'localhost'
+      || host.endsWith('.local') || host.endsWith('.internal') || /^[\d.]+$/.test(host) || host.includes(':')) return leeg;
+
+    const ua = { 'User-Agent': 'Mozilla/5.0 (compatible; FUNkinessScan/1.0; +https://funkiness.ai/scan)' };
+    const t0 = Date.now();
+    const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(8000), headers: ua });
+    if (res.status === 401 || res.status === 403 || res.status === 429) return { ...leeg, status: 'blocked' };
+    if (!res.ok || !(res.headers.get('content-type') || '').includes('text/html')) return { ...leeg, status: 'unreadable' };
+    const ruweHtml = await res.text();
+    const seconden = (Date.now() - t0) / 1000;
+    const html = ruweHtml.slice(0, 600000);
+    const eind = new URL(res.url || url);
+
+    // Robots.txt en sitemap tegelijk ophalen
+    const haal = p => fetch(new URL(p, eind.origin), { signal: AbortSignal.timeout(4000), headers: ua, redirect: 'follow' })
+      .then(async r => ({ ok: r.ok, tekst: r.ok ? (await r.text()).slice(0, 100000) : '' })).catch(() => ({ ok: false, tekst: '' }));
+    const [robots, sitemap] = await Promise.all([haal('/robots.txt'), haal('/sitemap.xml')]);
+
+    const ontcijfer = t => t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"');
+    const titel = ontcijfer(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '').trim();
+    const metaInhoud = naam => ontcijfer(
+      html.match(new RegExp(`<meta[^>]+(?:name|property)=["']${naam}["'][^>]*content=["']([^"']*)["']`, 'i'))?.[1]
+      || html.match(new RegExp(`<meta[^>]+content=["']([^"']*)["'][^>]*(?:name|property)=["']${naam}["']`, 'i'))?.[1] || '').trim();
+    const beschrijving = metaInhoud('description');
+    const viewport = /<meta[^>]+name=["']viewport["']/i.test(html);
+    const h1 = (html.match(/<h1[\s>]/gi) || []).length;
+    const ogBeeld = !!metaInhoud('og:image');
+    const taal = html.match(/<html[^>]+lang=["']([^"']+)["']/i)?.[1] || '';
+    const ldTypes = [...html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)]
+      .flatMap(m => [...m[1].matchAll(/"@type"\s*:\s*(?:"([^"]+)"|\[([^\]]*)\])/g)].flatMap(t => (t[1] || t[2] || '').replace(/"/g, '').split(',').map(s => s.trim())))
+      .filter(Boolean);
+    const whatsapp = /href=["'][^"']*(wa\.me|api\.whatsapp\.com|whatsapp:\/\/)/i.test(html);
+    const telefoon = /href=["']tel:/i.test(html);
+    const mail = /href=["']mailto:/i.test(html);
+
+    // Robots.txt: mag OAI-SearchBot de homepage lezen?
+    let openai = robots.ok ? 'allowed' : 'no robots.txt found, so allowed by default';
+    if (robots.ok) {
+      const groepen = []; let huidig = null;
+      for (const regel of robots.tekst.split(/\r?\n/).map(r => r.replace(/#.*/, '').trim()).filter(Boolean)) {
+        const [k, ...rest] = regel.split(':'); const v = rest.join(':').trim(); const sleutel = k.trim().toLowerCase();
+        if (sleutel === 'user-agent') { if (!huidig || huidig.regels.length) { huidig = { agents: [], regels: [] }; groepen.push(huidig); } huidig.agents.push(v.toLowerCase()); }
+        else if (huidig && (sleutel === 'disallow' || sleutel === 'allow')) huidig.regels.push([sleutel, v]);
+      }
+      const groep = groepen.find(g => g.agents.includes('oai-searchbot')) || groepen.find(g => g.agents.includes('*'));
+      if (groep && groep.regels.some(([s, v]) => s === 'disallow' && v === '/') && !groep.regels.some(([s, v]) => s === 'allow' && v === '/')) openai = 'blocked';
+    }
+    const heeftSitemap = sitemap.ok && /<(urlset|sitemapindex)/i.test(sitemap.tekst) || /^sitemap:/im.test(robots.tekst);
+
+    const ja = b => b ? 'yes' : 'no';
+    const metingen = [
+      `secure connection (HTTPS): ${ja(eind.protocol === 'https:')}`,
+      `homepage loaded in ${seconden.toFixed(1)} seconds from our server, ${Math.round(ruweHtml.length / 1024)} KB of HTML`,
+      `mobile viewport tag: ${ja(viewport)}`,
+      `page title: ${titel ? `"${titel.slice(0, 90)}" (${titel.length} characters)` : 'missing'}`,
+      `meta description: ${beschrijving ? `present (${beschrijving.length} characters)` : 'missing'}`,
+      `H1 headings on the homepage: ${h1}`,
+      `structured data (JSON-LD): ${ldTypes.length ? [...new Set(ldTypes)].slice(0, 6).join(', ') : 'none found'}`,
+      `social sharing image (og:image): ${ja(ogBeeld)}`,
+      `language set in the page: ${taal || 'no'}`,
+      `WhatsApp link: ${ja(whatsapp)}, phone link: ${ja(telefoon)}, email link: ${ja(mail)}`,
+      `robots.txt for OAI-SearchBot (ChatGPT search): ${openai}`,
+      `sitemap: ${heeftSitemap ? 'found' : 'not found'}`
+    ];
+    const datum = new Date().toISOString().slice(0, 10);
+    const tekst = html
+      .replace(/<(script|style|noscript|svg|nav|footer)[\s\S]*?<\/\1>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ');
+    const inhoud = [titel && `Title: ${titel}`, beschrijving && `Meta description: ${beschrijving}`,
+      `Homepage text: ${ontcijfer(tekst).replace(/\s+/g, ' ').trim().slice(0, 3000)}`].filter(Boolean).join('\n');
+
+    return {
+      inhoud,
+      feit: {
+        id: 'F91', voor: 'marketing', locaties: [], sectoren: [],
+        tekst: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): ${metingen.join('; ')}.`,
+        bron: `FUNkiness! website check of ${eind.hostname} (${datum})`,
+        url: eind.href
+      }
+    };
+  } catch (err) {
+    console.warn('Website-check fout:', err.message);
+    return { ...leeg, status: 'unreachable' };
+  }
+}
+
+// Eerlijke regel voor de prompt als er wel een website is opgegeven maar die niet te lezen was
+export function websiteRegel(site, inhoud, status) {
+  if (inhoud) return `Their website (homepage text, fetched just now):\n${inhoud}\n`;
+  if (!site) return 'Website: not provided\n';
+  const reden = status === 'blocked' ? 'the site refused automated visits' : status === 'unreachable' ? 'the site could not be reached' : 'the page could not be read';
+  return `Website: they gave ${site}, but our automatic check could not read it (${reden}). Do not describe its content and do not say they have no website.\n`;
 }
