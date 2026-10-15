@@ -676,6 +676,15 @@
     .scan-plan-wrap p { line-height: 1.7; }
     .scan-bronnen { font-size: 12px; line-height: 1.6; color: rgba(58,37,27,0.6); margin: 0 0 24px; }
     .scan-bronnen a { color: inherit; }
+    .scan-eye-wrap { background: var(--pink); color: white; border-radius: 18px; padding: 22px 24px; margin: 0 0 24px; }
+    .scan-eye-label { font-family: 'Permanent Marker', cursive; font-size: 18px; margin-bottom: 8px; }
+    #eyeText { font-size: 17px; line-height: 1.55; font-weight: 700; white-space: pre-line; }
+    .scan-more-wrap { background: white; border: 2px solid var(--pink); border-radius: 18px; padding: 22px 24px; margin-bottom: 24px; }
+    .scan-more-wrap h3 { font-family: 'Permanent Marker', cursive; font-weight: 400; color: var(--pink); margin-bottom: 10px; }
+    .scan-more-wrap ul { padding-left: 20px; margin-bottom: 12px; line-height: 1.6; }
+    .scan-more-wrap li + li { margin-top: 6px; }
+    .scan-more-wrap p { margin-bottom: 16px; }
+    .scan-pdf-mode .scan-more-wrap .scan-btn-cta { display: none; }
   </style>
 </head>
 <body>
@@ -1222,6 +1231,10 @@
         <span class="scan-eyebrow" id="reportEyebrow">Your Scan</span>
         <h2 class="scan-h2" id="reportTitle">Your socials.<br><span class="scan-pink">Exposed.</span></h2>
         <p class="scan-intro-text" id="reportIntro"></p>
+        <div class="scan-eye-wrap" id="eyeWrap" style="display:none">
+          <p class="scan-eye-label">Your eye-opener</p>
+          <p id="eyeText"></p>
+        </div>
         <p class="scan-email-note" id="reportEmailNote"></p>
 
         <div class="scan-radar-wrap">
@@ -1275,6 +1288,13 @@
           <p id="planText"></p>
         </div>
 
+        <div class="scan-more-wrap" id="moreWrap" style="display:none">
+          <h3>We saw more</h3>
+          <ul id="moreList"></ul>
+          <p>We walk you through all of it in a free 20-minute call. WhatsApp <strong>+599 9 675 1737</strong> or email <strong>sayhello@funkiness.ai</strong>.</p>
+          <a id="btnMore" href="https://wa.me/59996751737" class="scan-btn-cta" target="_blank" rel="noopener">Walk me through it <span>→</span></a>
+        </div>
+
         <div class="scan-bronnen" id="bronnenWrap"></div>
 
         <div class="scan-download-wrap">
@@ -1320,7 +1340,7 @@
     <p>Boring was never the plan.</p>
   </div>
 
-  <script src="scan-script.js?v=20261015b"></script>
+  <script src="scan-script.js?v=20261015c"></script>
 <script src="/effects.js"></script>
 <script src="cookie-consent.js"></script>
 </body>

@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -61,12 +61,22 @@ export default async function handler(req, res) {
 
   // Homepage van de klant lezen terwijl de sheet-logging loopt
   // Website lezen en objectief doorlichten (één keer ophalen)
-  const { inhoud: websiteInhoud, feit: websiteFeit, status: websiteStatus } = await analyseerWebsite(site);
+  const websiteAnalyse = await analyseerWebsite(site);
+  const { inhoud: websiteInhoud, feit: websiteFeit, status: websiteStatus } = websiteAnalyse;
 
   const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
   const sectorLabel = sectorInfo.prompt;
   const locatieInfo = LOCATIES[locatie];
   const groep = `${sectorInfo.groep} ${locatieInfo.in}`;
+  const websitePunten = websiteAnalyse.punten || [];
+  const websiteSamenvatting = websiteAnalyse.samenvatting;
+  // De code wijst het sterkste contrast aan voor de eye-opener: gemeten verbeterpunt tegenover hun eigen oordeel
+  const chatgptDicht = websitePunten.find(p => p.includes('OAI-SearchBot'));
+  const eyeHint = chatgptDicht
+    ? `EYE-OPENER TO USE: their answer about showing up in ChatGPT is "${antwoorden.ai_visibility}", while our check measured: ${chatgptDicht} [F91].`
+    : websitePunten.length
+      ? `EYE-OPENER TO USE: their answer about their website is "${antwoorden.website}", while our check measured: ${websitePunten.slice(0, 2).join('; ')} [F91].`
+      : '';
   const feiten = [...(websiteFeit ? [websiteFeit] : []), ...feitenVoor('marketing', sector, locatie)];
 
   const totaalscore = Math.round((scores.brand + scores.audience + scores.channels + scores.strategy) / 4);
@@ -94,7 +104,7 @@ ${websiteRegel(site, websiteInhoud, websiteStatus)}
 THEIR CONTEXT (use it to make every recommendation fit their goal, audience and capacity; quote their challenge only literally):
 ${contextAlsTekst(context)}
 
-${websiteFeit ? `MEASURED DATA: fact [F91] contains an objective check of their homepage. In the intro and in Channels (and Brand where it fits), put these measured results next to their own answers, for example their answer about their website or about showing up in ChatGPT, quoting both exactly with [F91]. Where they differ, say so plainly and positively. Only state what was measured; do not claim effects on rankings, traffic or sales.\n\n` : ''}THEIR ANSWERS (quote these exactly, never change them):
+${websiteFeit ? `MEASURED DATA: fact [F91] contains an objective check of their homepage. In the intro and in Channels (and Brand where it fits), put these measured results next to their own answers, for example their answer about their website or about showing up in ChatGPT, quoting both exactly with [F91]. Where they differ, say so plainly and positively. Only state what was measured; do not claim effects on rankings, traffic or sales. Across the whole report, name at most 2 of the measured points that need attention; never list all checks.\n\n` : ''}${eyeHint ? eyeHint + '\n\n' : ''}THEIR ANSWERS (quote these exactly, never change them):
 ${antwoordenAlsTekst('marketing', antwoorden)}
 
 SCORES (0-100, calculated from their answers):
@@ -123,6 +133,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       type: 'object',
       properties: {
         intro: { type: 'string', description: `3 sharp sentences about ${bedrijf}: what they do (from their website or bio if provided), what their answers show overall, and the biggest gap. Based only on their answers and, if provided, their website.` },
+        eye_opener: { type: 'string', description: `The single biggest eye-opener for ${bedrijf}, in 2 short, punchy sentences. Choose in this order: (1) a measured website point from [F91] that contradicts their own answer about their website, quoting both exactly with [F91]; (2) if [F91] says robots.txt blocks OAI-SearchBot, put that next to their answer about showing up in ChatGPT; (3) otherwise their lowest-scoring answer, quoted exactly, next to the FACTS-list fact that relates to it with its [F#]. Never combine two unrelated answers. End with one bold piece of advice. Surprising and positive, never alarming, no promised results.` },
         whats_working: { type: 'string', description: '2 to 3 playful, encouraging sentences about the things they are genuinely doing well, based on their exact answers and, if provided, their website or bio.' },
         brand_feedback: { type: 'string', description: '4 to 6 sentences about positioning, visual consistency and clarity. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
         audience_feedback: { type: 'string', description: '4 to 6 sentences about their ideal customer, reviews and knowing where customers come from. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
@@ -137,14 +148,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
-      required: ['intro', 'whats_working', 'brand_feedback', 'audience_feedback', 'channels_feedback', 'strategy_feedback', 'top_quickwin', 'teaser_wins', 'campaign_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
+      required: ['intro', 'eye_opener', 'whats_working', 'brand_feedback', 'audience_feedback', 'channels_feedback', 'strategy_feedback', 'top_quickwin', 'teaser_wins', 'campaign_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
   };
 
   try {
     // Rapport in twee helften tegelijk schrijven: kleiner per aanroep, dus vollediger en sneller
     const alleVelden = Object.keys(reportTool.input_schema.properties);
-    const helftA = alleVelden.filter(k => k === 'intro' || k === 'whats_working' || k.endsWith('_feedback'));
+    const helftA = alleVelden.filter(k => k === 'intro' || k === 'eye_opener' || k === 'whats_working' || k.endsWith('_feedback'));
     const helftB = alleVelden.filter(k => !helftA.includes(k));
     const schrijf = async (velden, extra = '') => {
       const tool = {
@@ -195,9 +206,12 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     if (!context.uitdaging?.trim()) ruw.challenge_answer = '';
     const schoon = Object.fromEntries(Object.entries(ruw).map(([k, v]) => [k, typeof v === 'string' ? schoonTekst(v) : v]));
     // Feiten letterlijk uit de bronnenlijst; [F#] in de tekst wordt een bronnummer
-    const { items: weetjes, bronnen, velden: out } = feitenBlok(websiteFeit ? ['F91', ...(schoon.chosen_facts || []).filter(id => id !== 'F91')] : schoon.chosen_facts, feiten, schoon);
+    const { items: weetjes, bronnen, velden: out } = feitenBlok(websiteFeit ? ['F91', ...(schoon.chosen_facts || []).filter(id => id !== 'F91')] : schoon.chosen_facts,
+      // In het rapport alleen de samenvatting van de website-check; de volledige lijst is voor het gesprek
+      feiten.map(f => f.id === 'F91' ? { ...f, tekst: websiteSamenvatting } : f), schoon);
     const rapport = {
       intro: out.intro,
+      eye_opener: out.eye_opener,
       whats_working: out.whats_working,
       brand: { score: scores.brand, feedback: out.brand_feedback },
       audience: { score: scores.audience, feedback: out.audience_feedback },
@@ -212,6 +226,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       plan_30_days: out.plan_30_days,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
+      meer: teasers({ websitePunten, aantalVragen: scoresPerVraag('marketing', antwoorden, sector).length }),
       totaalscore,
       bronnen,
       context,
@@ -219,6 +234,8 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     };
 
     // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
+    // Volledige analyse alleen voor Daisy (leadmail en sheet)
+    const volledigeAnalyse = [...(websitePunten?.length ? ['Website-check, alle punten:', ...websitePunten.map(p => '- ' + p)] : []), 'Punten per vraag:', ...scoresPerVraag('marketing', antwoorden, sector).map(p => '- ' + p)];
     const mails = [];
     if (process.env.TITAN_PASSWORD) {
       mails.push(mailer.sendMail({
@@ -229,6 +246,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
             <h1 style="font-size:26px;color:#3a251b;margin-bottom:8px">Hey ${esc(naam)},</h1>
             <p style="font-size:16px;color:#444;line-height:1.6;margin-bottom:24px">${br(rapport.intro)}</p>
+            <div style="background:#f21b7a;color:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;opacity:0.9">Your eye-opener</div>
+              <p style="font-size:17px;line-height:1.5;font-weight:700;margin:0">${br(rapport.eye_opener)}</p>
+            </div>
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
               <div style="font-size:48px;font-weight:900;line-height:1">${br(rapport.totaalscore)}</div>
               <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.9">Overall Score / 100</div>
@@ -283,6 +304,11 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your 30-day plan</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.plan_30_days)}</p>
+            </div>
+            <div style="background:white;border:2px solid #f21b7a;border-radius:12px;padding:20px 24px;margin-bottom:24px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">We saw more</div>
+              <ul style="font-size:15px;line-height:1.6;color:#333;margin:0 0 8px;padding-left:20px">${rapport.meer.map(m => `<li>${esc(m)}</li>`).join('')}</ul>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">We walk you through all of it in a free 20-minute call. WhatsApp +599 9 675 1737 or reply to this email.</p>
             </div>
             <p style="font-size:15px;color:#444;line-height:1.6;margin-bottom:20px">${br(rapport.cta_dynamic)}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
@@ -351,13 +377,17 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <p>${br(rapport.plan_30_days)}</p>
             <h3 style="color:#f21b7a;margin-top:20px">CTA</h3>
             <p>${br(rapport.cta_dynamic)}</p>
+            <h3 style="color:#f21b7a">Eye-opener</h3>
+            <p>${br(rapport.eye_opener)}</p>
+            <h3 style="color:#f21b7a">Volledige analyse (alleen voor jou, niet in het klantrapport)</h3>
+            <p style="background:#fff4f9;padding:12px;border-radius:8px">${volledigeAnalyse.map(esc).join('<br>')}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
           </div>
         `
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) }));
+    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) + '\n\n' + volledigeAnalyse.join('\n') }));
     await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });
@@ -391,6 +421,7 @@ function rapportAlsTekst(r) {
   return [
     r.context ? `Context: doel ${r.context.doel} | publiek ${r.context.publiek} | marketing door ${r.context.wie}${r.context.uitdaging ? ` | uitdaging: ${r.context.uitdaging}` : ''}` : '',
     `Totaalscore: ${r.totaalscore}/100`,
+    r.eye_opener ? `Eye-opener: ${r.eye_opener}` : '',
     ...cats.map(([k, v]) => `${k}: ${v.score}/100. ${v.feedback}`),
     `Intro: ${r.intro}`,
     `What's working: ${r.whats_working}`,

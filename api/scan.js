@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, websiteRegel, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, websiteRegel, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst, teasers, scoresPerVraag, TIJDZONE } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 
   // Homepage van de klant lezen terwijl de sheet-logging loopt
   // Website en echte Instagram-cijfers tegelijk ophalen
-  const [websiteInhoud, instagramFeit] = await Promise.all([leesWebsite(site), leesInstagram(instagram)]);
+  const [websiteInhoud, instagramFeit] = await Promise.all([leesWebsite(site), leesInstagram(instagram, TIJDZONE[locatie])]);
 
   const sectorInfo = SECTOREN[sector] || SECTOREN.anders;
   const sectorLabel = sectorInfo.prompt;
@@ -124,6 +124,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       type: 'object',
       properties: {
         intro: { type: 'string', description: `3 sharp sentences about ${bedrijf}: what they do (from their website or bio if provided), what their answers show overall, and the biggest gap. Based only on their answers and, if provided, their website or bio.` },
+        eye_opener: { type: 'string', description: `The single biggest eye-opener for ${bedrijf}, in 2 short, punchy sentences. If MEASURED DATA [F90] is available, use the largest difference between their own answer and what was measured, quoting both exactly with [F90]. Otherwise use their most striking answer, quoted exactly, followed by one bold piece of advice. Surprising and positive, never alarming, no promised results.` },
         whats_working: { type: 'string', description: '2 to 3 playful, encouraging sentences about the things they are genuinely doing well, based on their exact answers and, if provided, their website or bio.' },
         platforms_feedback: { type: 'string', description: '4 to 6 sentences about their platforms, posting frequency and audience growth. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
         instagram_feedback: { type: 'string', description: '4 to 6 sentences about short video, Stories and where their profile sends people. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
@@ -139,14 +140,14 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
         cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
       },
-      required: ['intro', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'post_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
+      required: ['intro', 'eye_opener', 'whats_working', 'platforms_feedback', 'instagram_feedback', 'engagement_feedback', 'content_feedback', 'bio_feedback', 'top_quickwin', 'teaser_wins', 'post_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
   };
 
   try {
     // Rapport in twee helften tegelijk schrijven: kleiner per aanroep, dus vollediger en sneller
     const alleVelden = Object.keys(reportTool.input_schema.properties);
-    const helftA = alleVelden.filter(k => k === 'intro' || k === 'whats_working' || k.endsWith('_feedback'));
+    const helftA = alleVelden.filter(k => k === 'intro' || k === 'eye_opener' || k === 'whats_working' || k.endsWith('_feedback'));
     const helftB = alleVelden.filter(k => !helftA.includes(k));
     const schrijf = async (velden, extra = '') => {
       const tool = {
@@ -200,6 +201,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     const { items: weetjes, bronnen, velden: out } = feitenBlok(instagramFeit ? ['F90', ...(schoon.chosen_facts || []).filter(id => id !== 'F90')] : schoon.chosen_facts, feiten, schoon);
     const rapport = {
       intro: out.intro,
+      eye_opener: out.eye_opener,
       whats_working: out.whats_working,
       platforms: { score: scores.platforms, feedback: out.platforms_feedback },
       instagram: { score: scores.instagram, feedback: out.instagram_feedback },
@@ -215,6 +217,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       plan_30_days: out.plan_30_days,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
+      meer: teasers({ instagramFeit, aantalVragen: scoresPerVraag('social', antwoorden).length }),
       totaalscore,
       bronnen,
       context
@@ -222,6 +225,8 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
 
     // Email to user with key findings
     // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
+    // Volledige analyse alleen voor Daisy (leadmail en sheet)
+    const volledigeAnalyse = [...(instagramFeit?.extra?.length ? ['Instagram, verdieping:', ...instagramFeit.extra.map(p => '- ' + p)] : []), 'Punten per vraag:', ...scoresPerVraag('social', antwoorden).map(p => '- ' + p)];
     const mails = [];
     if (process.env.TITAN_PASSWORD) {
       mails.push(mailer.sendMail({
@@ -232,6 +237,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
           <div style="font-family:'Helvetica Neue',sans-serif;max-width:560px;margin:0 auto;background:#f7efe7;padding:40px 32px;border-radius:16px">
             <h1 style="font-size:26px;color:#3a251b;margin-bottom:8px">Hey ${esc(naam)},</h1>
             <p style="font-size:16px;color:#444;line-height:1.6;margin-bottom:24px">${br(rapport.intro)}</p>
+            <div style="background:#f21b7a;color:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;opacity:0.9">Your eye-opener</div>
+              <p style="font-size:17px;line-height:1.5;font-weight:700;margin:0">${br(rapport.eye_opener)}</p>
+            </div>
             <div style="text-align:center;background:#f21b7a;color:white;border-radius:12px;padding:24px;margin-bottom:24px">
               <div style="font-size:48px;font-weight:900;line-height:1">${br(rapport.totaalscore)}</div>
               <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.9">Overall Score / 100</div>
@@ -291,6 +300,11 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <div style="background:white;border-radius:12px;padding:20px 24px;margin-bottom:24px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">Your 30-day plan</div>
               <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${br(rapport.plan_30_days)}</p>
+            </div>
+            <div style="background:white;border:2px solid #f21b7a;border-radius:12px;padding:20px 24px;margin-bottom:24px">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">We saw more</div>
+              <ul style="font-size:15px;line-height:1.6;color:#333;margin:0 0 8px;padding-left:20px">${rapport.meer.map(m => `<li>${esc(m)}</li>`).join('')}</ul>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">We walk you through all of it in a free 20-minute call. WhatsApp +599 9 675 1737 or reply to this email.</p>
             </div>
             <p style="font-size:15px;color:#444;line-height:1.6;margin-bottom:20px">${br(rapport.cta_dynamic)}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
@@ -362,13 +376,17 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <p>${br(rapport.plan_30_days)}</p>
             <h3 style="color:#f21b7a;font-size:11px;text-transform:uppercase;letter-spacing:2px">CTA (dynamisch)</h3>
             <p>${br(rapport.cta_dynamic)}</p>
+            <h3 style="color:#f21b7a">Eye-opener</h3>
+            <p>${br(rapport.eye_opener)}</p>
+            <h3 style="color:#f21b7a">Volledige analyse (alleen voor jou, niet in het klantrapport)</h3>
+            <p style="background:#fff4f9;padding:12px;border-radius:8px">${volledigeAnalyse.map(esc).join('<br>')}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}
           </div>
         `
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) }));
+    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) + '\n\n' + volledigeAnalyse.join('\n') }));
     await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });
@@ -402,6 +420,7 @@ function rapportAlsTekst(r) {
   return [
     r.context ? `Context: doel ${r.context.doel} | publiek ${r.context.publiek} | marketing door ${r.context.wie}${r.context.uitdaging ? ` | uitdaging: ${r.context.uitdaging}` : ''}` : '',
     `Totaalscore: ${r.totaalscore}/100`,
+    r.eye_opener ? `Eye-opener: ${r.eye_opener}` : '',
     ...cats.map(([k, v]) => `${k}: ${v.score}/100. ${v.feedback}`),
     `Intro: ${r.intro}`,
     `What's working: ${r.whats_working}`,

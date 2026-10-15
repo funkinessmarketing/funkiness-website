@@ -265,6 +265,14 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('topQuickwin').textContent = rapport.top_quickwin;
   document.getElementById('quickwinText').textContent = rapport.do_today;
   document.getElementById('planText').textContent = rapport.plan_30_days || '';
+  // Eye-opener bovenaan en 'We saw more' met een WhatsApp-uitnodiging voor het gesprek
+  document.getElementById('eyeWrap').style.display = rapport.eye_opener ? 'block' : 'none';
+  document.getElementById('eyeText').textContent = rapport.eye_opener || '';
+  const meer = rapport.meer || [];
+  document.getElementById('moreWrap').style.display = meer.length ? 'block' : 'none';
+  document.getElementById('moreList').innerHTML = meer.map(m => `<li>${escHtml(m)}</li>`).join('');
+  document.getElementById('btnMore').href = 'https://wa.me/59996751737?text=' + encodeURIComponent(
+    `Hi FUNkiness! I just did the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan for ${bedrijf} (score ${rapport.totaalscore}/100). I'd like to hear what else you saw.`);
   document.getElementById('ideasTitle').textContent = isSocial ? '3 post ideas for you' : '3 campaign ideas for you';
   for (const [wrap, tekst, waarde] of [['challengeWrap', 'challengeText', rapport.challenge_answer], ['ideasWrap', 'ideasText', isSocial ? rapport.post_ideas : rapport.campaign_ideas]]) {
     document.getElementById(wrap).style.display = waarde ? 'block' : 'none';

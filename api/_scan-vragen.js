@@ -433,7 +433,7 @@ export function antwoordenSamenvatting(type, cat, antwoorden) {
 // Echte openbare Instagram-cijfers via de officiële Instagram API (Business Discovery).
 // Werkt alleen voor zakelijke en creator-accounts. Zonder sleutel, of bij een privé/persoonlijk account: null.
 // Alle cijfers rekent de code uit; de AI krijgt ze als feit met bron.
-export async function leesInstagram(invoer) {
+export async function leesInstagram(invoer, tijdzone = 'America/Curacao') {
   const igUser = process.env.IG_USER_ID;
   const token = process.env.IG_ACCESS_TOKEN;
   if (!igUser || !token || !invoer || typeof invoer !== 'string') return null;
@@ -441,7 +441,7 @@ export async function leesInstagram(invoer) {
   if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) return null;
 
   try {
-    const velden = `business_discovery.username(${handle}){username,followers_count,media_count,media.limit(25){timestamp,like_count,comments_count,media_type,media_product_type}}`;
+    const velden = `business_discovery.username(${handle}){username,followers_count,media_count,media.limit(25){timestamp,like_count,comments_count,media_type,media_product_type,permalink}}`;
     const url = `https://graph.facebook.com/v26.0/${igUser}?fields=${encodeURIComponent(velden)}&access_token=${encodeURIComponent(token)}`;
     const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
     const json = await res.json();
@@ -456,6 +456,7 @@ export async function leesInstagram(invoer) {
     const datum = d => d.toISOString().slice(0, 10);
     const getal = n => n >= 100 ? Math.round(n).toLocaleString('en-US') : n.toFixed(1);
     const procent = n => n < 0.1 ? n.toFixed(2) : n.toFixed(1);
+    const extra = [];   // alleen voor Daisy en het gesprek, niet in het klantrapport
     const delen = [`${bd.followers_count.toLocaleString('en-US')} followers and ${bd.media_count.toLocaleString('en-US')} posts in total`];
 
     if (posts.length) {
@@ -484,6 +485,30 @@ export async function leesInstagram(invoer) {
         if (reelsMet.length >= 2 && andereMet.length >= 2) {
           delen.push(`Reels average ${getal(gem(reelsMet))} likes plus comments versus ${getal(gem(andereMet))} for other posts`);
         }
+
+        // Verdieping voor het gesprek: best scorende vorm, dag en dagdeel, beste post, langste stilte
+        const besteVan = (sleutel) => {
+          const groepen = {};
+          for (const p of metLikes) (groepen[sleutel(p)] ||= []).push(p);
+          const kandidaten = Object.entries(groepen).filter(([, l]) => l.length >= 2).map(([k, l]) => [k, gem(l), l.length]);
+          return kandidaten.length >= 2 ? kandidaten.sort((a, b) => b[1] - a[1])[0] : null;
+        };
+        const vormNaam = { REELS: 'Reels', CAROUSEL_ALBUM: 'carousels', IMAGE: 'photos', VIDEO: 'videos' };
+        const vorm = p => p.media_product_type === 'REELS' ? 'REELS' : p.media_type;
+        const dag = p => new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone: tijdzone }).format(new Date(p.timestamp));
+        const uur = p => Number(new Intl.DateTimeFormat('en-US', { hour: 'numeric', hourCycle: 'h23', timeZone: tijdzone }).format(new Date(p.timestamp)));
+        const dagdeel = p => { const u = uur(p); return u < 6 ? 'night (0-6h)' : u < 12 ? 'morning (6-12h)' : u < 17 ? 'afternoon (12-17h)' : 'evening (17-24h)'; };
+        const bv = besteVan(vorm), bd2 = besteVan(dag), bdd = besteVan(dagdeel);
+        if (bv) extra.push(`Best performing format: ${vormNaam[bv[0]] || bv[0]} (average ${getal(bv[1])} likes plus comments over ${bv[2]} posts)`);
+        if (bd2) extra.push(`Best day: ${bd2[0]} (average ${getal(bd2[1])} over ${bd2[2]} posts)`);
+        if (bdd) extra.push(`Best time of day: ${bdd[0]} (average ${getal(bdd[1])} over ${bdd[2]} posts)`);
+        const top = [...metLikes].sort((a, b) => interacties(b) - interacties(a))[0];
+        extra.push(`Best post: ${datum(new Date(top.timestamp))}, ${vormNaam[vorm(top)] || vorm(top)}, ${interacties(top).toLocaleString('en-US')} likes plus comments${top.permalink ? `, ${top.permalink}` : ''}`);
+      }
+      if (posts.length >= 3) {
+        const tijden2 = posts.map(p => new Date(p.timestamp).getTime()).sort((a, b) => a - b);
+        const gat = Math.max(...tijden2.slice(1).map((t, i) => t - tijden2[i])) / 86400000;
+        extra.push(`Longest silence between two posts: ${Math.round(gat)} days`);
       }
     }
 
@@ -491,7 +516,8 @@ export async function leesInstagram(invoer) {
       id: 'F90', voor: 'social', locaties: [], sectoren: [],
       tekst: `Public Instagram data for @${bd.username}, fetched on ${datum(vandaag)}: ${delen.join('; ')}.`,
       bron: `Instagram, public data of @${bd.username} (${datum(vandaag)})`,
-      url: `https://www.instagram.com/${bd.username}/`
+      url: `https://www.instagram.com/${bd.username}/`,
+      extra
     };
   } catch (err) {
     console.warn('Instagram fout:', err.message);
@@ -557,6 +583,25 @@ export async function analyseerWebsite(invoer) {
     const heeftSitemap = sitemap.ok && /<(urlset|sitemapindex)/i.test(sitemap.tekst) || /^sitemap:/im.test(robots.tekst);
 
     const ja = b => b ? 'yes' : 'no';
+    const bedrijfsTypes = /LocalBusiness|Organization|Hotel|Restaurant|Store|Resort|LodgingBusiness|ProfessionalService|Corporation|BankOrCreditUnion|RealEstateAgent|TravelAgency/i;
+    // Punten die aandacht nodig hebben (alleen wat echt gemeten is)
+    const punten = [
+      [eind.protocol !== 'https:', 'no secure connection (HTTPS)'],
+      [seconden > 3, `homepage took ${seconden.toFixed(1)} seconds to load from our server`],
+      [!viewport, 'no mobile viewport tag'],
+      [!titel, 'no page title'],
+      [!!titel && titel.length > 65, `page title is ${titel.length} characters (search results usually show about 60)`],
+      [!beschrijving, 'no meta description'],
+      [!!beschrijving && beschrijving.length > 160, `meta description is ${beschrijving.length} characters (search results usually show about 155)`],
+      [h1 !== 1, h1 === 0 ? 'no H1 heading on the homepage' : `${h1} H1 headings on the homepage instead of 1`],
+      [!ldTypes.some(t => bedrijfsTypes.test(t)), 'no business details in structured data (LocalBusiness or Organization)'],
+      [!ogBeeld, 'no social sharing image (og:image)'],
+      [!taal, 'no language set in the page'],
+      [!whatsapp, 'no WhatsApp link'],
+      [!telefoon, 'no phone link'],
+      [openai === 'blocked', 'robots.txt blocks OAI-SearchBot, the crawler ChatGPT search uses'],
+      [!heeftSitemap, 'no sitemap found']
+    ].filter(([fout]) => fout).map(([, tekst]) => tekst);
     const metingen = [
       `secure connection (HTTPS): ${ja(eind.protocol === 'https:')}`,
       `homepage loaded in ${seconden.toFixed(1)} seconds from our server, ${Math.round(ruweHtml.length / 1024)} KB of HTML`,
@@ -580,6 +625,8 @@ export async function analyseerWebsite(invoer) {
 
     return {
       inhoud,
+      punten,
+      samenvatting: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): we checked 13 points and found ${punten.length} ${punten.length === 1 ? 'point' : 'points'} that need attention${punten.length ? `, including: ${punten.slice(0, 2).join('; ')}` : ''}.`,
       feit: {
         id: 'F91', voor: 'marketing', locaties: [], sectoren: [],
         tekst: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): ${metingen.join('; ')}.`,
@@ -599,4 +646,33 @@ export function websiteRegel(site, inhoud, status) {
   if (!site) return 'Website: not provided\n';
   const reden = status === 'blocked' ? 'the site refused automated visits' : status === 'unreachable' ? 'the site could not be reached' : 'the page could not be read';
   return `Website: they gave ${site}, but our automatic check could not read it (${reden}). Do not describe its content and do not say they have no website.\n`;
+}
+
+// Punten per vraag, voor het gesprek (alleen in de leadmail)
+export function scoresPerVraag(type, antwoorden, sector) {
+  return Object.entries(VRAGEN[type])
+    .filter(([k, v]) => antwoorden[k] !== undefined && (!v.sectoren || v.sectoren.includes(sector)))
+    .map(([k, v]) => `${VRAAGTEKST[k]} "${antwoorden[k]}" = ${v.scores[antwoorden[k]]}/100`);
+}
+
+export const TIJDZONE = { curacao: 'America/Curacao', aruba: 'America/Aruba', bonaire: 'America/Kralendijk', nederland: 'Europe/Amsterdam', elders: 'UTC' };
+
+// Teasers voor het blok "We saw more": alleen wat echt gemeten of berekend is, zonder de inhoud te verklappen
+export function teasers({ instagramFeit, websitePunten, aantalVragen }) {
+  const lijst = [];
+  if (websitePunten?.length) {
+    const rest = websitePunten.length - Math.min(2, websitePunten.length);
+    lijst.push(rest > 0
+      ? `Our website check found ${websitePunten.length} points that need attention on your homepage. This report names 2 of them; the other ${rest} we go through with you.`
+      : `Our website check found ${websitePunten.length} ${websitePunten.length === 1 ? 'point' : 'points'} that need attention on your homepage, and we show you exactly how to fix ${websitePunten.length === 1 ? 'it' : 'them'}.`);
+  }
+  if (instagramFeit?.extra?.length) {
+    const wat = [];
+    if (instagramFeit.extra.some(e => e.startsWith('Best performing format'))) wat.push('which type of post');
+    if (instagramFeit.extra.some(e => e.startsWith('Best day'))) wat.push('which day');
+    if (instagramFeit.extra.some(e => e.startsWith('Best time'))) wat.push('which time of day');
+    lijst.push(`We dug deeper into your latest Instagram posts${wat.length ? `: ${wat.join(', ')} gets the most response for you` : ''}, which post did best, and your longest silence between posts.`);
+  }
+  lijst.push(`Your score for each of the ${aantalVragen} questions, side by side, so you see exactly where the quickest gains are.`);
+  return lijst;
 }
