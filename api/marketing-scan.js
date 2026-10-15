@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE, afspraak } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -146,7 +146,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         plan_30_days: { type: 'string', description: `A 30-day plan for ${bedrijf}, focused on their lowest scoring areas and their main goal, realistic for who does their marketing, as four lines: "Week 1: ...", "Week 2: ...", "Week 3: ...", "Week 4: ...". Each week one clear focus with 1 or 2 concrete actions, based on their answers. No promised results.` },
         chosen_facts: { type: 'array', items: { type: 'string', enum: feiten.map(f => f.id) }, description: 'The ids of the 2 or 3 facts from the FACTS list that are most relevant for this business, most relevant first.' },
         do_today: { type: 'string', description: `One ultra-specific action ${bedrijf} can take in 20 minutes. It must be a different action than the top quick win.` },
-        cta_dynamic: { type: 'string', description: `A personal, direct invitation to talk about their ${lowestLabel} specifically. Not a sales pitch. An open door.` }
+        cta_dynamic: { type: 'string', description: `A personal, direct invitation to plan ${afspraak(locatie).kort} with FUNkiness! to go through their ${lowestLabel} together. Not a sales pitch, never a phone call. An open door.` }
       },
       required: ['intro', 'eye_opener', 'whats_working', 'brand_feedback', 'audience_feedback', 'channels_feedback', 'strategy_feedback', 'top_quickwin', 'teaser_wins', 'campaign_ideas', 'challenge_answer', 'plan_30_days', 'chosen_facts', 'do_today', 'cta_dynamic']
     }
@@ -226,6 +226,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       plan_30_days: out.plan_30_days,
       do_today: out.do_today,
       cta_dynamic: out.cta_dynamic,
+      afspraak: afspraak(locatie),
       meer: teasers({ websitePunten, aantalVragen: scoresPerVraag('marketing', antwoorden, sector).length }),
       totaalscore,
       bronnen,
@@ -308,7 +309,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <div style="background:white;border:2px solid #f21b7a;border-radius:12px;padding:20px 24px;margin-bottom:24px">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f21b7a;margin-bottom:8px">We saw more</div>
               <ul style="font-size:15px;line-height:1.6;color:#333;margin:0 0 8px;padding-left:20px">${rapport.meer.map(m => `<li>${esc(m)}</li>`).join('')}</ul>
-              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">We walk you through all of it in a free 20-minute call. WhatsApp +599 9 675 1737 or reply to this email.</p>
+              <p style="font-size:15px;line-height:1.6;color:#333;margin:0">${afspraak(locatie).zin} Plan it via WhatsApp <a href="https://wa.me/59996751737?text=${encodeURIComponent(`Hi FUNkiness! I did the scan for ${bedrijf} (score ${rapport.totaalscore}/100). ${afspraak(locatie).wens} Days and times that suit me: `)}" style="color:#f21b7a;font-weight:700">+599 9 675 1737</a> or reply to this email.</p>
             </div>
             <p style="font-size:15px;color:#444;line-height:1.6;margin-bottom:20px">${br(rapport.cta_dynamic)}</p>
             ${rapport.bronnen.length ? `<div style="font-size:12px;color:#888;line-height:1.6;margin-top:16px"><strong>Sources</strong><br>${rapport.bronnen.map(b => `[${b.nr}] <a href="${b.url}" style="color:#888">${esc(b.bron)}</a>`).join('<br>')}</div>` : ''}

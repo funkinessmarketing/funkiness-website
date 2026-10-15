@@ -676,3 +676,10 @@ export function teasers({ instagramFeit, websitePunten, aantalVragen }) {
   lijst.push(`Your score for each of the ${aantalVragen} questions, side by side, so you see exactly where the quickest gains are.`);
   return lijst;
 }
+
+// Afspraakvorm: op Curaçao komt FUNkiness! langs, elders een online afspraak
+export function afspraak(locatie) {
+  return locatie === 'curacao'
+    ? { kort: 'a free visit', zin: 'We come to you and walk you through all of it, free, at your business.', knop: 'Plan your free visit', wens: "I'd like to plan a visit." }
+    : { kort: 'a free online meeting', zin: 'We walk you through all of it in a free online meeting.', knop: 'Plan your free meeting', wens: "I'd like to plan an online meeting." };
+}

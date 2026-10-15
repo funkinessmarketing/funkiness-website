@@ -271,8 +271,11 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   const meer = rapport.meer || [];
   document.getElementById('moreWrap').style.display = meer.length ? 'block' : 'none';
   document.getElementById('moreList').innerHTML = meer.map(m => `<li>${escHtml(m)}</li>`).join('');
+  const afspraak = rapport.afspraak || { zin: 'We come to you and walk you through all of it, free, at your business.', knop: 'Plan your free visit', wens: "I'd like to plan a visit." };
+  document.getElementById('afspraakZin').textContent = afspraak.zin;
+  document.getElementById('afspraakKnop').textContent = afspraak.knop;
   document.getElementById('btnMore').href = 'https://wa.me/59996751737?text=' + encodeURIComponent(
-    `Hi FUNkiness! I just did the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan for ${bedrijf} (score ${rapport.totaalscore}/100). I'd like to hear what else you saw.`);
+    `Hi FUNkiness! I just did the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan for ${bedrijf} (score ${rapport.totaalscore}/100). ${afspraak.wens} Days and times that suit me: `);
   document.getElementById('ideasTitle').textContent = isSocial ? '3 post ideas for you' : '3 campaign ideas for you';
   for (const [wrap, tekst, waarde] of [['challengeWrap', 'challengeText', rapport.challenge_answer], ['ideasWrap', 'ideasText', isSocial ? rapport.post_ideas : rapport.campaign_ideas]]) {
     document.getElementById(wrap).style.display = waarde ? 'block' : 'none';
