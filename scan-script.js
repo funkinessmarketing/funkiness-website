@@ -274,8 +274,12 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   const afspraak = rapport.afspraak || { zin: 'We come to you and walk you through all of it, free, at your business.', knop: 'Plan your free visit', wens: "I'd like to plan a visit." };
   document.getElementById('afspraakZin').textContent = afspraak.zin;
   document.getElementById('afspraakKnop').textContent = afspraak.knop;
-  document.getElementById('btnMore').href = 'https://wa.me/59996751737?text=' + encodeURIComponent(
-    `Hi FUNkiness! I just did the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan for ${bedrijf} (score ${rapport.totaalscore}/100). ${afspraak.wens} Days and times that suit me: `);
+  // Booking buttons in the report open Cal.com with name, email and scan result already filled in
+  window.funkinessBookPrefill = {
+    name: naam,
+    email: email,
+    notes: `${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan for ${bedrijf}, score ${rapport.totaalscore}/100`
+  };
   document.getElementById('ideasTitle').textContent = isSocial ? '3 post ideas for you' : '3 campaign ideas for you';
   for (const [wrap, tekst, waarde] of [['challengeWrap', 'challengeText', rapport.challenge_answer], ['ideasWrap', 'ideasText', isSocial ? rapport.post_ideas : rapport.campaign_ideas]]) {
     document.getElementById(wrap).style.display = waarde ? 'block' : 'none';

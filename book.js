@@ -37,7 +37,10 @@
       var menu = document.getElementById('mobileMenu');
       if (menu) menu.classList.remove('open');
       loadCal();
-      Cal.ns[NS]('modal', { calLink: CAL_LINK, config: { layout: 'month_view', theme: 'light' } });
+      var config = { layout: 'month_view', theme: 'light' };
+      var pre = window.funkinessBookPrefill || {};
+      Object.keys(pre).forEach(function (k) { if (pre[k]) config[k] = pre[k]; });
+      Cal.ns[NS]('modal', { calLink: CAL_LINK, config: config });
     });
     // Preload on first hover or touch, so the pop-up opens faster
     el.addEventListener('pointerenter', loadCal, { once: true });

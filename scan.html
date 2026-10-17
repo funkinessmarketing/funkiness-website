@@ -684,7 +684,36 @@
     .scan-more-wrap ul { padding-left: 20px; margin-bottom: 12px; line-height: 1.6; }
     .scan-more-wrap li + li { margin-top: 6px; }
     .scan-more-wrap p { margin-bottom: 16px; }
-    .scan-pdf-mode .scan-more-wrap .scan-btn-cta { display: none; }
+    .scan-pdf-mode .scan-more-wrap .scan-btn-cta,
+    .scan-pdf-mode .scan-more-wrap .book-cta,
+    .scan-pdf-mode .scan-book-wrap { display: none !important; }
+
+    .scan-book-wrap {
+      background: var(--black);
+      border-radius: 24px;
+      padding: 26px 22px;
+      margin: 8px 0 32px;
+    }
+    .scan-book-hook {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.35;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .scan-book-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 12px;
+    }
+    .scan-btn-wa { margin-top: 12px; }
+    #afspraakKnop { display: inline; width: auto; height: auto; background: none; border-radius: 0; color: inherit; font-size: inherit; }
+    @media (min-width: 700px) {
+      .scan-book-wrap { padding: 32px 34px; }
+      .scan-book-hook { font-size: 21px; }
+      .scan-btn-wa { margin-top: 0; margin-left: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -1284,6 +1313,12 @@
         </div>
         <p class="scan-email-note" id="reportEmailNote"></p>
 
+        <div class="scan-book-wrap">
+          <p class="scan-book-hook">Want us to walk you through this report? We come to you, anywhere on Curaçao.</p>
+          <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta book-cta-lg" data-book>Book your free session <span>✚</span></a>
+          <p class="scan-book-sub">Pick your time right now. Takes 30 seconds.</p>
+        </div>
+
         <div class="scan-radar-wrap">
           <canvas id="radarChart"></canvas>
         </div>
@@ -1339,7 +1374,7 @@
           <h3>We saw more</h3>
           <ul id="moreList"></ul>
           <p><span id="afspraakZin">We come to you and walk you through all of it, free, at your business.</span> WhatsApp <strong>+599 9 675 1737</strong> or email <strong>sayhello@funkiness.ai</strong>.</p>
-          <a id="btnMore" href="https://wa.me/59996751737" class="scan-btn-cta" target="_blank" rel="noopener"><span id="afspraakKnop">Plan your free visit</span> <span>→</span></a>
+          <a id="btnMore" href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta book-cta-lg" data-book><span id="afspraakKnop">Plan your free visit</span> <span>✚</span></a>
         </div>
 
         <div class="scan-bronnen" id="bronnenWrap"></div>
@@ -1350,7 +1385,8 @@
 
         <div class="scan-cta-wrap">
           <p class="scan-cta-hook" id="ctaHook"></p>
-          <a id="btnWhatsApp" href="https://wa.me/59996751737" class="scan-btn-cta" target="_blank" rel="noopener">Say hello on WhatsApp <span>→</span></a>
+          <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta book-cta-lg" data-book>Book your free session <span>✚</span></a>
+          <a id="btnWhatsApp" href="https://wa.me/59996751737" class="scan-btn-cta scan-btn-wa" target="_blank" rel="noopener">Say hello on WhatsApp <span>→</span></a>
         </div>
       </div>
     </section>
