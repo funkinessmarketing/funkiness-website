@@ -5,7 +5,7 @@
   var NS = 'marketing-strategy-session';
   var nl = document.documentElement.lang === 'nl';
 
-  var noFloat = /\/(scan|quiz)\.html$/.test(location.pathname);
+  var noFloat = /\/(scan|quiz)(\.html)?$/.test(location.pathname);
 
   var btn = document.createElement('a');
   btn.className = 'book-float';
