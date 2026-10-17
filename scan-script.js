@@ -104,7 +104,7 @@ function validateStep(step) {
       alert('Please select where your business is based.');
       return false;
     }
-    for (const [veld, tekst] of [['doel', 'your main goal'], ['publiek', 'who your customers are'], ['wie', 'who does your marketing']]) {
+    for (const [veld, tekst] of [['doel', 'your main goal'], ['publiek', 'who your customers are'], ['wie', 'who does your marketing'], ['fase', 'where your business stands']]) {
       if (!fieldSelections[veld]) {
         alert(`Please select ${tekst}.`);
         return false;
@@ -204,7 +204,7 @@ async function submitScan() {
   const sector      = fieldSelections['sector'];
   const locatie     = fieldSelections['locatie'];
   const context     = {
-    doel: fieldSelections['doel'], publiek: fieldSelections['publiek'], wie: fieldSelections['wie'],
+    doel: fieldSelections['doel'], publiek: fieldSelections['publiek'], wie: fieldSelections['wie'], fase: fieldSelections['fase'],
     uitdaging: (document.getElementById('uitdaging')?.value || '').trim().slice(0, 500)
   };
   const site        = document.getElementById('site_url').value.trim();

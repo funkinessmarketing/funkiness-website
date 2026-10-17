@@ -821,6 +821,15 @@
           </div>
         </div>
         <div class="scan-form-group">
+          <label>Where does your business stand?</label>
+          <div class="scan-options-grid" data-field="fase">
+            <button class="scan-option-btn" data-value="Just starting, no customers yet">Just starting, no customers yet</button>
+            <button class="scan-option-btn" data-value="First customers, under 1 year">First customers, under 1 year</button>
+            <button class="scan-option-btn" data-value="Up and running, 1 to 5 years">Up and running, 1 to 5 years</button>
+            <button class="scan-option-btn" data-value="Established, 5+ years">Established, 5+ years</button>
+          </div>
+        </div>
+        <div class="scan-form-group">
           <label>Your name</label>
           <input type="text" id="naam" placeholder="e.g. Sarah" />
         </div>
@@ -914,6 +923,7 @@
               <button class="scan-option-btn" data-value="In my head, not written down">In my head, not written down</button>
               <button class="scan-option-btn" data-value="Yes, a positioning statement">Yes, a positioning statement</button>
               <button class="scan-option-btn" data-value="Yes, used consistently everywhere">Yes, and used consistently everywhere</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="brand" data-key="visual_consistency">
@@ -923,6 +933,7 @@
               <button class="scan-option-btn" data-value="Somewhat consistent">Somewhat consistent</button>
               <button class="scan-option-btn" data-value="Mostly consistent">Mostly consistent</button>
               <button class="scan-option-btn" data-value="Fully consistent everywhere">Fully consistent everywhere</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="brand" data-key="clarity">
@@ -932,6 +943,7 @@
               <button class="scan-option-btn" data-value="Somewhat clear">Somewhat clear</button>
               <button class="scan-option-btn" data-value="Pretty clear">Pretty clear</button>
               <button class="scan-option-btn" data-value="Crystal clear, immediately">Crystal clear, immediately</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
         </div>
@@ -994,15 +1006,17 @@
               <button class="scan-option-btn" data-value="I have a rough idea">I have a rough idea</button>
               <button class="scan-option-btn" data-value="I have a clear customer description">I have a clear customer description</button>
               <button class="scan-option-btn" data-value="Detailed profiles backed by data">Detailed profiles backed by data</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="audience" data-key="reviews">
-            <p class="scan-q-label">How do you handle online reviews? (Google, TripAdvisor, Booking)</p>
+            <p class="scan-q-label">Do you ask customers for online reviews? (Google, TripAdvisor, Booking)</p>
             <div class="scan-options-list">
-              <button class="scan-option-btn" data-value="No reviews yet">We don't really have reviews yet</button>
-              <button class="scan-option-btn" data-value="Reviews but rarely respond">We have reviews but rarely respond</button>
-              <button class="scan-option-btn" data-value="Ask sometimes and respond sometimes">We ask for reviews and respond sometimes</button>
-              <button class="scan-option-btn" data-value="Ask after every service and respond to every review">We ask after every service and respond to every review</button>
+              <button class="scan-option-btn" data-value="No reviews yet">We don't have reviews yet</button>
+              <button class="scan-option-btn" data-value="Have reviews but never ask">We have reviews, but we never ask for them</button>
+              <button class="scan-option-btn" data-value="Ask now and then">We ask now and then</button>
+              <button class="scan-option-btn" data-value="Ask after every sale or service">We ask after every sale or service</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="audience" data-key="customer_source">
@@ -1068,6 +1082,7 @@
               <button class="scan-option-btn" data-value="Outdated or not mobile-friendly">Yes but outdated or not mobile-friendly</button>
               <button class="scan-option-btn" data-value="Basic, reasonably current">Basic website, reasonably current</button>
               <button class="scan-option-btn" data-value="Optimized and regularly updated">Yes, optimized and regularly updated</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="channels" data-key="google_profile">
@@ -1075,8 +1090,9 @@
             <div class="scan-options-list">
               <button class="scan-option-btn" data-value="I do not have one">I don't have one</button>
               <button class="scan-option-btn" data-value="Set up but not managed">Set up but not actively managed</button>
-              <button class="scan-option-btn" data-value="Active with photos and reviews">Active, with photos and review responses</button>
-              <button class="scan-option-btn" data-value="Fully optimized with regular updates">Fully optimized with regular updates</button>
+              <button class="scan-option-btn" data-value="Completely filled in">Completely filled in (services, photos, hours)</button>
+              <button class="scan-option-btn" data-value="Updated every week">Filled in and updated every week</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="channels" data-key="ai_visibility">
@@ -1094,7 +1110,8 @@
               <button class="scan-option-btn" data-value="Not active">Not active</button>
               <button class="scan-option-btn" data-value="Occasionally">Occasionally</button>
               <button class="scan-option-btn" data-value="Weekly">Weekly</button>
-              <button class="scan-option-btn" data-value="Several times a week with a plan">Several times a week with a plan</button>
+              <button class="scan-option-btn" data-value="Several times a week">Several times a week</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-sectors="hotel,airbnb,tours" data-category="channels" data-key="direct_bookings">
@@ -1114,15 +1131,17 @@
               <button class="scan-option-btn" data-value="Thinking about it">Thinking about it</button>
               <button class="scan-option-btn" data-value="For some questions">For some questions</button>
               <button class="scan-option-btn" data-value="Yes set up and checked regularly">Yes, set up and checked regularly</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="channels" data-key="whatsapp_email">
-            <p class="scan-q-label">Do you use WhatsApp or email to stay in touch with existing customers?</p>
+            <p class="scan-q-label">How often do you message existing customers via WhatsApp or email?</p>
             <div class="scan-options-list">
-              <button class="scan-option-btn" data-value="Neither">Neither</button>
-              <button class="scan-option-btn" data-value="Occasionally">Occasionally</button>
-              <button class="scan-option-btn" data-value="Regularly for one">Regularly, for one of them</button>
-              <button class="scan-option-btn" data-value="Both actively">Both, actively</button>
+              <button class="scan-option-btn" data-value="Never">Never</button>
+              <button class="scan-option-btn" data-value="Only when they contact us">Only when they contact us</button>
+              <button class="scan-option-btn" data-value="Now and then">Now and then</button>
+              <button class="scan-option-btn" data-value="At least once a month">At least once a month</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="channels" data-key="paid_ads">
@@ -1132,6 +1151,7 @@
               <button class="scan-option-btn" data-value="Tried without a plan">Tried it without a clear plan</button>
               <button class="scan-option-btn" data-value="Yes with some targeting">Yes, with some targeting</button>
               <button class="scan-option-btn" data-value="Yes with tracking and optimization">Yes, with tracking and optimization</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
         </div>
@@ -1186,6 +1206,7 @@
               <button class="scan-option-btn" data-value="Some ideas nothing clear yet">Some ideas, nothing clear yet</button>
               <button class="scan-option-btn" data-value="Yes but we rarely follow it">Yes, but we rarely follow it</button>
               <button class="scan-option-btn" data-value="Yes and all our marketing follows from it">Yes, and all our marketing follows from it</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="strategy" data-key="budget">
@@ -1195,6 +1216,7 @@
               <button class="scan-option-btn" data-value="Flexible depends on the month">Flexible, depends on the month</button>
               <button class="scan-option-btn" data-value="Yes a rough budget">Yes, a rough budget</button>
               <button class="scan-option-btn" data-value="Clear budget with channel allocation">Clear budget with allocation per channel</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="strategy" data-key="tracking">
@@ -1204,6 +1226,7 @@
               <button class="scan-option-btn" data-value="Occasionally check social numbers">Occasionally check social numbers</button>
               <button class="scan-option-btn" data-value="Track some KPIs regularly">Track some KPIs regularly</button>
               <button class="scan-option-btn" data-value="Track all metrics and optimize">Track all metrics and optimize based on data</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="strategy" data-key="marketing_time">
@@ -1213,6 +1236,7 @@
               <button class="scan-option-btn" data-value="When I have time">When I have time</button>
               <button class="scan-option-btn" data-value="Planned at least weekly">Planned, at least weekly</button>
               <button class="scan-option-btn" data-value="Daily its structured">Daily, it's structured</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
           <div class="scan-question" data-category="strategy" data-key="ai_use">
@@ -1222,6 +1246,7 @@
               <button class="scan-option-btn" data-value="Tried it a few times">Tried it a few times</button>
               <button class="scan-option-btn" data-value="Regularly for some tasks">Regularly, for some tasks</button>
               <button class="scan-option-btn" data-value="Built into how we work every week">Built into how we work, every week</button>
+              <button class="scan-option-btn" data-value="Not sure">Not sure</button>
             </div>
           </div>
         </div>

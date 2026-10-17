@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, valutaRegel, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE, afspraak, opvolging, opvolgingHtml, opvolgingVoorSheet } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, valutaRegel, faseRegel, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE, afspraak, opvolging, opvolgingHtml, opvolgingVoorSheet } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -121,7 +121,7 @@ TONE:
 - Direct, bold, honest but always positive. Frame everything from opportunity
 - Never use "premium" or "luxury"
 ${valutaRegel(locatie)}
-- FUNkiness! brand voice: confident, a little cheeky, never corporate
+${faseRegel(context)}- FUNkiness! brand voice: confident, a little cheeky, never corporate
 - Always mention ${bedrijf} by name
 - If their website text is provided, use one concrete detail from it in the intro so it is clear we actually looked. If not, do not mention the website
 
@@ -426,7 +426,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
 function rapportAlsTekst(r) {
   const cats = Object.entries(r).filter(([, v]) => v && typeof v === 'object' && 'score' in v);
   return [
-    r.context ? `Context: doel ${r.context.doel} | publiek ${r.context.publiek} | marketing door ${r.context.wie}${r.context.uitdaging ? ` | uitdaging: ${r.context.uitdaging}` : ''}` : '',
+    r.context ? `Context: doel ${r.context.doel} | publiek ${r.context.publiek} | marketing door ${r.context.wie}${r.context.fase ? ` | fase ${r.context.fase}` : ''}${r.context.uitdaging ? ` | uitdaging: ${r.context.uitdaging}` : ''}` : '',
     `Totaalscore: ${r.totaalscore}/100`,
     r.eye_opener ? `Eye-opener: ${r.eye_opener}` : '',
     ...cats.map(([k, v]) => `${k}: ${v.score}/100. ${v.feedback}`),

@@ -18,25 +18,25 @@ export const VRAGEN = {
     customer_content: { cat: 'content', scores: { 'Never': 10, 'Rarely': 30, 'Sometimes': 60, 'Often and we share it': 100 } }
   },
   marketing: {
-    positioning:        { cat: 'brand', scores: { 'Not at all': 0, 'In my head, not written down': 25, 'Yes, a positioning statement': 70, 'Yes, used consistently everywhere': 100 } },
-    visual_consistency: { cat: 'brand', scores: { 'Very inconsistent': 0, 'Somewhat consistent': 35, 'Mostly consistent': 70, 'Fully consistent everywhere': 100 } },
-    clarity:            { cat: 'brand', scores: { 'Not clear at all': 0, 'Somewhat clear': 35, 'Pretty clear': 65, 'Crystal clear, immediately': 100 } },
-    ideal_customer:     { cat: 'audience', scores: { 'I serve anyone who needs me': 0, 'I have a rough idea': 30, 'I have a clear customer description': 70, 'Detailed profiles backed by data': 100 } },
-    reviews:            { cat: 'audience', scores: { 'No reviews yet': 0, 'Reviews but rarely respond': 30, 'Ask sometimes and respond sometimes': 65, 'Ask after every service and respond to every review': 100 } },
+    positioning:        { cat: 'brand', scores: { 'Not sure': 0, 'Not at all': 0, 'In my head, not written down': 25, 'Yes, a positioning statement': 70, 'Yes, used consistently everywhere': 100 } },
+    visual_consistency: { cat: 'brand', scores: { 'Not sure': 0, 'Very inconsistent': 0, 'Somewhat consistent': 35, 'Mostly consistent': 70, 'Fully consistent everywhere': 100 } },
+    clarity:            { cat: 'brand', scores: { 'Not sure': 0, 'Not clear at all': 0, 'Somewhat clear': 35, 'Pretty clear': 65, 'Crystal clear, immediately': 100 } },
+    ideal_customer:     { cat: 'audience', scores: { 'Not sure': 0, 'I serve anyone who needs me': 0, 'I have a rough idea': 30, 'I have a clear customer description': 70, 'Detailed profiles backed by data': 100 } },
+    reviews:            { cat: 'audience', scores: { 'Not sure': 0, 'No reviews yet': 0, 'Have reviews but never ask': 30, 'Ask now and then': 65, 'Ask after every sale or service': 100 } },
     customer_source:    { cat: 'audience', scores: { 'No idea': 0, 'A rough sense': 35, 'I track most sources': 70, 'Track all sources and use the data': 100 } },
-    website:            { cat: 'channels', scores: { 'No website': 0, 'Outdated or not mobile-friendly': 20, 'Basic, reasonably current': 55, 'Optimized and regularly updated': 100 } },
-    google_profile:     { cat: 'channels', scores: { 'I do not have one': 0, 'Set up but not managed': 30, 'Active with photos and reviews': 75, 'Fully optimized with regular updates': 100 } },
+    website:            { cat: 'channels', scores: { 'Not sure': 0, 'No website': 0, 'Outdated or not mobile-friendly': 20, 'Basic, reasonably current': 55, 'Optimized and regularly updated': 100 } },
+    google_profile:     { cat: 'channels', scores: { 'Not sure': 0, 'I do not have one': 0, 'Set up but not managed': 30, 'Completely filled in': 75, 'Updated every week': 100 } },
     ai_visibility:      { cat: 'channels', scores: { 'Never checked': 10, 'No': 25, 'Sometimes': 60, 'Yes, every time': 100 } },
-    social_presence:    { cat: 'channels', scores: { 'Not active': 0, 'Occasionally': 30, 'Weekly': 65, 'Several times a week with a plan': 100 } },
+    social_presence:    { cat: 'channels', scores: { 'Not sure': 0, 'Not active': 0, 'Occasionally': 30, 'Weekly': 65, 'Several times a week': 100 } },
     direct_bookings:    { cat: 'channels', sectoren: ['hotel', 'airbnb', 'tours'], scores: { 'I do not know': 0, 'Almost all via platforms': 15, 'Mostly via platforms': 35, 'About half direct': 65, 'Mostly direct': 100 } },
-    ai_customers:       { cat: 'channels', scores: { 'No': 0, 'Thinking about it': 20, 'For some questions': 60, 'Yes set up and checked regularly': 100 } },
-    whatsapp_email:     { cat: 'channels', scores: { 'Neither': 0, 'Occasionally': 35, 'Regularly for one': 65, 'Both actively': 100 } },
-    paid_ads:           { cat: 'channels', scores: { 'No': 0, 'Tried without a plan': 25, 'Yes with some targeting': 60, 'Yes with tracking and optimization': 100 } },
-    marketing_strategy: { cat: 'strategy', scores: { 'No we do what feels right': 0, 'Some ideas nothing clear yet': 25, 'Yes but we rarely follow it': 50, 'Yes and all our marketing follows from it': 100 } },
-    budget:             { cat: 'strategy', scores: { 'No budget': 0, 'Flexible depends on the month': 25, 'Yes a rough budget': 55, 'Clear budget with channel allocation': 100 } },
-    tracking:           { cat: 'strategy', scores: { 'Not at all': 0, 'Occasionally check social numbers': 25, 'Track some KPIs regularly': 65, 'Track all metrics and optimize': 100 } },
-    marketing_time:     { cat: 'strategy', scores: { 'Rarely or never': 0, 'When I have time': 25, 'Planned at least weekly': 65, 'Daily its structured': 100 } },
-    ai_use:             { cat: 'strategy', scores: { 'Not at all': 0, 'Tried it a few times': 30, 'Regularly for some tasks': 65, 'Built into how we work every week': 100 } }
+    ai_customers:       { cat: 'channels', scores: { 'Not sure': 0, 'No': 0, 'Thinking about it': 20, 'For some questions': 60, 'Yes set up and checked regularly': 100 } },
+    whatsapp_email:     { cat: 'channels', scores: { 'Not sure': 0, 'Never': 0, 'Only when they contact us': 20, 'Now and then': 50, 'At least once a month': 100 } },
+    paid_ads:           { cat: 'channels', scores: { 'Not sure': 0, 'No': 0, 'Tried without a plan': 25, 'Yes with some targeting': 60, 'Yes with tracking and optimization': 100 } },
+    marketing_strategy: { cat: 'strategy', scores: { 'Not sure': 0, 'No we do what feels right': 0, 'Some ideas nothing clear yet': 25, 'Yes but we rarely follow it': 50, 'Yes and all our marketing follows from it': 100 } },
+    budget:             { cat: 'strategy', scores: { 'Not sure': 0, 'No budget': 0, 'Flexible depends on the month': 25, 'Yes a rough budget': 55, 'Clear budget with channel allocation': 100 } },
+    tracking:           { cat: 'strategy', scores: { 'Not sure': 0, 'Not at all': 0, 'Occasionally check social numbers': 25, 'Track some KPIs regularly': 65, 'Track all metrics and optimize': 100 } },
+    marketing_time:     { cat: 'strategy', scores: { 'Not sure': 0, 'Rarely or never': 0, 'When I have time': 25, 'Planned at least weekly': 65, 'Daily its structured': 100 } },
+    ai_use:             { cat: 'strategy', scores: { 'Not sure': 0, 'Not at all': 0, 'Tried it a few times': 30, 'Regularly for some tasks': 65, 'Built into how we work every week': 100 } }
   }
 };
 
@@ -70,16 +70,19 @@ export function extraKanalenGeldig(waarde) {
 export const CONTEXT = {
   doel:    { vraag: 'Main goal for the next 6 months', opties: ['More customers or bookings', 'Better customers or higher prices', 'Fill quiet periods', 'More brand awareness', 'Grow in a new market'] },
   publiek: { vraag: 'Main audience', opties: ['Mostly locals', 'Mostly tourists and visitors', 'Locals and tourists', 'Other businesses (B2B)'] },
-  wie:     { vraag: 'Who does the marketing', opties: ['I do it myself', 'Someone on my team', 'An agency or freelancer', 'Nobody really'] }
+  wie:     { vraag: 'Who does the marketing', opties: ['I do it myself', 'Someone on my team', 'An agency or freelancer', 'Nobody really'] },
+  fase:    { vraag: 'Business stage', opties: ['Just starting, no customers yet', 'First customers, under 1 year', 'Up and running, 1 to 5 years', 'Established, 5+ years'], optioneel: true }
 };
 
+export const STARTER = 'Just starting, no customers yet';
+
 export function contextGeldig(c) {
-  return c && Object.entries(CONTEXT).every(([k, { opties }]) => opties.includes(c[k]))
+  return c && Object.entries(CONTEXT).every(([k, { opties, optioneel }]) => opties.includes(c[k]) || (optioneel && !c[k]))
     && (c.uitdaging === undefined || c.uitdaging === '' || (typeof c.uitdaging === 'string' && c.uitdaging.length <= 500));
 }
 
 export function contextAlsTekst(c) {
-  return [...Object.entries(CONTEXT).map(([k, { vraag }]) => `- ${vraag}: "${c[k]}"`),
+  return [...Object.entries(CONTEXT).filter(([k]) => c[k]).map(([k, { vraag }]) => `- ${vraag}: "${c[k]}"`),
     `- Biggest marketing challenge right now, in their own words: ${c.uitdaging ? `"${c.uitdaging.trim()}"` : 'not provided'}`].join('\n');
 }
 
@@ -152,14 +155,14 @@ export const VRAAGTEKST = {
   visual_consistency: 'How consistent is your visual identity (logo, colors, fonts) across all your channels?',
   clarity: "When someone finds your business, how quickly do they know what you do and who you're for?",
   ideal_customer: 'How well can you describe your ideal customer?',
-  reviews: 'How do you handle online reviews? (Google, TripAdvisor, Booking)',
+  reviews: 'Do you ask customers for online reviews? (Google, TripAdvisor, Booking)',
   customer_source: 'Do you know where your customers come from?',
   website: 'Do you have a mobile-friendly, up-to-date website?',
   google_profile: 'Is your Google Business Profile active?',
   ai_visibility: 'If someone asks ChatGPT for a business like yours in your area, do you show up?',
   social_presence: 'How active is your business on social media?',
   direct_bookings: 'How many of your bookings come in directly, instead of via platforms like Booking.com, Airbnb or Expedia?',
-  whatsapp_email: 'Do you use WhatsApp or email to stay in touch with existing customers?',
+  whatsapp_email: 'How often do you message existing customers via WhatsApp or email?',
   paid_ads: 'Do you run paid advertising?',
   marketing_strategy: 'Do you have a real marketing strategy? (clear goals, who you target, which channels, and everything you do follows from it)',
   budget: 'Do you have a dedicated marketing budget?',
@@ -261,6 +264,13 @@ export const LOCATIES = {
   nederland: { naam: 'the Netherlands',  in: 'in the Netherlands', valuta: 'euros (EUR)' },
   elders:    { naam: 'outside the Caribbean Netherlands and Aruba', in: 'in their area', valuta: null }
 };
+
+// Starter zonder klanten: geen advies dat uitgaat van bestaande klanten
+export function faseRegel(context) {
+  return context?.fase === STARTER
+    ? '- STAGE: they have NO customers yet. Never give advice that assumes existing, past or happy customers (no asking customers for reviews, no asking customers how they found you, no customer stories, no messages to existing customers). Every recommendation, quick win, campaign idea and the 30-day plan must be about winning their first customers. Their answers about reviews, customer sources and existing customers reflect that they are just starting; treat them as a starting point, not a failure\n'
+    : '';
+}
 
 // Valuta volgt de vestigingsplaats: Curaçao XCG, Aruba en Bonaire USD, Nederland EUR, elders geen valuta noemen
 export function valutaRegel(locatie) {
