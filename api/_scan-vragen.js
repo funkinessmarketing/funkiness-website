@@ -29,12 +29,14 @@ export const VRAGEN = {
     ai_visibility:      { cat: 'channels', scores: { 'Never checked': 10, 'No': 25, 'Sometimes': 60, 'Yes, every time': 100 } },
     social_presence:    { cat: 'channels', scores: { 'Not active': 0, 'Occasionally': 30, 'Weekly': 65, 'Several times a week with a plan': 100 } },
     direct_bookings:    { cat: 'channels', sectoren: ['hotel', 'airbnb', 'tours'], scores: { 'I do not know': 0, 'Almost all via platforms': 15, 'Mostly via platforms': 35, 'About half direct': 65, 'Mostly direct': 100 } },
+    ai_customers:       { cat: 'channels', scores: { 'No': 0, 'Thinking about it': 20, 'For some questions': 60, 'Yes set up and checked regularly': 100 } },
     whatsapp_email:     { cat: 'channels', scores: { 'Neither': 0, 'Occasionally': 35, 'Regularly for one': 65, 'Both actively': 100 } },
     paid_ads:           { cat: 'channels', scores: { 'No': 0, 'Tried without a plan': 25, 'Yes with some targeting': 60, 'Yes with tracking and optimization': 100 } },
-    marketing_plan:     { cat: 'strategy', scores: { 'No': 0, 'In my head not written': 20, 'Yes a basic plan': 55, 'Yes detailed with goals and timeline': 100 } },
+    marketing_strategy: { cat: 'strategy', scores: { 'No we do what feels right': 0, 'Some ideas nothing clear yet': 25, 'Yes but we rarely follow it': 50, 'Yes and all our marketing follows from it': 100 } },
     budget:             { cat: 'strategy', scores: { 'No budget': 0, 'Flexible depends on the month': 25, 'Yes a rough budget': 55, 'Clear budget with channel allocation': 100 } },
     tracking:           { cat: 'strategy', scores: { 'Not at all': 0, 'Occasionally check social numbers': 25, 'Track some KPIs regularly': 65, 'Track all metrics and optimize': 100 } },
-    marketing_time:     { cat: 'strategy', scores: { 'Rarely or never': 0, 'When I have time': 25, 'Planned at least weekly': 65, 'Daily its structured': 100 } }
+    marketing_time:     { cat: 'strategy', scores: { 'Rarely or never': 0, 'When I have time': 25, 'Planned at least weekly': 65, 'Daily its structured': 100 } },
+    ai_use:             { cat: 'strategy', scores: { 'Not at all': 0, 'Tried it a few times': 30, 'Regularly for some tasks': 65, 'Built into how we work every week': 100 } }
   }
 };
 
@@ -159,10 +161,12 @@ export const VRAAGTEKST = {
   direct_bookings: 'How many of your bookings come in directly, instead of via platforms like Booking.com, Airbnb or Expedia?',
   whatsapp_email: 'Do you use WhatsApp or email to stay in touch with existing customers?',
   paid_ads: 'Do you run paid advertising?',
-  marketing_plan: 'Do you have a written marketing plan?',
+  marketing_strategy: 'Do you have a real marketing strategy? (clear goals, who you target, which channels, and everything you do follows from it)',
   budget: 'Do you have a dedicated marketing budget?',
   tracking: 'Do you actively track your marketing results?',
-  marketing_time: 'How often do you actively work on your marketing?'
+  marketing_time: 'How often do you actively work on your marketing?',
+  ai_use: 'How do you use AI in your marketing? (like ChatGPT, Claude or Canva AI)',
+  ai_customers: 'Do you use AI to help answer customer questions? (WhatsApp, website chat or email)'
 };
 
 export function antwoordenAlsTekst(type, antwoorden) {
