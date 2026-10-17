@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE, afspraak } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE, afspraak, opvolging, opvolgingHtml, opvolgingVoorSheet } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -237,6 +237,9 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
     // Volledige analyse alleen voor Daisy (leadmail en sheet)
     const volledigeAnalyse = [...(websitePunten?.length ? ['Website-check, alle punten:', ...websitePunten.map(p => '- ' + p)] : []), 'Punten per vraag:', ...scoresPerVraag('marketing', antwoorden, sector).map(p => '- ' + p)];
+    // Kant-en-klare opvolging voor Daisy: WhatsApp nu, mailconcepten op dag 3 en dag 8 via de sheet
+    const volg = opvolging({ type: 'marketing', naam, bedrijf, locatie, sector, antwoorden, websitePunten, ideeen: rapport.campaign_ideas,
+      laagsteLabel: lowestLabel, laagsteScore: scores[lowestCat], totaalscore, telefoon, telefoon_nl });
     const mails = [];
     if (process.env.TITAN_PASSWORD) {
       mails.push(mailer.sendMail({
@@ -334,6 +337,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         subject: `Nieuwe marketing scan: ${bedrijf}, score ${rapport.totaalscore}/100`,
         html: `
           <h2 style="color:#f21b7a">Nieuwe Marketing Strategy Scan</h2>
+          ${opvolgingHtml(volg, esc)}
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif">
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Doel</td><td style="padding:8px;border:1px solid #eee">${esc(context.doel)}</td></tr>
@@ -388,7 +392,8 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) + '\n\n' + volledigeAnalyse.join('\n') }));
+    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) + '\n\n' + volledigeAnalyse.join('\n'),
+      opvolging: opvolgingVoorSheet(volg) }));
     await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });

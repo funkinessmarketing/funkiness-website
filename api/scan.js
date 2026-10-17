@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, leesWebsite, websiteRegel, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst, teasers, scoresPerVraag, TIJDZONE, afspraak } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, leesWebsite, websiteRegel, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, leesInstagram, extraKanalenGeldig, CONTEXT, contextGeldig, contextAlsTekst, teasers, scoresPerVraag, TIJDZONE, afspraak, opvolging, opvolgingHtml, opvolgingVoorSheet } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -228,6 +228,9 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     // Mails afwachten: Vercel stopt de functie zodra het antwoord terug is
     // Volledige analyse alleen voor Daisy (leadmail en sheet)
     const volledigeAnalyse = [...(instagramFeit?.extra?.length ? ['Instagram, verdieping:', ...instagramFeit.extra.map(p => '- ' + p)] : []), 'Punten per vraag:', ...scoresPerVraag('social', antwoorden).map(p => '- ' + p)];
+    // Kant-en-klare opvolging voor Daisy: WhatsApp nu, mailconcepten op dag 3 en dag 8 via de sheet
+    const volg = opvolging({ type: 'social', naam, bedrijf, locatie, sector, antwoorden, instagramFeit,
+      laagsteLabel: lowestLabel, laagsteScore: scores[lowestCat], totaalscore, telefoon, telefoon_nl });
     const mails = [];
     if (process.env.TITAN_PASSWORD) {
       mails.push(mailer.sendMail({
@@ -331,6 +334,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         subject: `Nieuwe scan: ${bedrijf}, score ${rapport.totaalscore}/100`,
         html: `
           <h2 style="color:#f21b7a;font-family:sans-serif">Nieuwe Social Media Scan</h2>
+          ${opvolgingHtml(volg, esc)}
           <table style="border-collapse:collapse;width:100%;font-family:sans-serif;margin-bottom:24px">
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Bedrijf</td><td style="padding:8px;border:1px solid #eee">${esc(bedrijf)}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Doel</td><td style="padding:8px;border:1px solid #eee">${esc(context.doel)}</td></tr>
@@ -387,7 +391,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
       }).catch(err => console.error('Lead email error:', err.message)));
     }
 
-    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) + '\n\n' + volledigeAnalyse.join('\n') }));
+    const sheetRapport = sheetAanvraag.then(v2 => v2 && naarSheet({ actie: 'rapport', score: rapport.totaalscore, rapport: rapportAlsTekst(rapport) + '\n\n' + volledigeAnalyse.join('\n'), opvolging: opvolgingVoorSheet(volg) }));
     await Promise.allSettled([...mails, sheetRapport]);
 
     res.json({ success: true, rapport, bedrijf, naam, functie });

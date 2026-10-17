@@ -683,3 +683,79 @@ export function afspraak(locatie) {
     ? { kort: 'a free visit', zin: 'We come to you and walk you through all of it, free, at your business.', knop: 'Plan your free visit', wens: "I'd like to plan a visit." }
     : { kort: 'a free online meeting', zin: 'We walk you through all of it in a free online meeting.', knop: 'Plan your free meeting', wens: "I'd like to plan an online meeting." };
 }
+
+// Opvolgberichten voor Daisy bij elke scan: WhatsApp (dag 0) en twee mails (dag 3 en dag 8).
+// Alles komt uit metingen en antwoorden, er schrijft geen AI aan mee, dus er kan niets verzonnen worden.
+// type: 'marketing' of 'social'. Marketing haakt aan op websitepunten, social op de Instagram-verdieping;
+// beide alleen op wat niet in het klantrapport stond.
+export function opvolging({ type = 'marketing', naam, bedrijf, locatie, sector, antwoorden, websitePunten = [], instagramFeit = null, ideeen = '', laagsteLabel, laagsteScore, totaalscore, telefoon, telefoon_nl }) {
+  const hoi = naam ? `Hi ${naam}` : 'Hi there';
+  const scanNaam = type === 'social' ? 'Social Media Scan' : 'Marketing Scan';
+  const ideeSoort = type === 'social' ? 'post ideas' : 'campaign ideas';
+  const metingen = type === 'social'
+    // Instagram-verdieping staat alleen in de leadmail; 'Best post' is te lang voor een bericht
+    ? (instagramFeit?.extra || []).filter(e => !e.startsWith('Best post')).map((e, i) => i === 0
+        ? `We dug into your latest Instagram posts and found something that isn't in your report. ${e}.`
+        : `Another thing from your Instagram that didn't make the report. ${e}.`)
+    // Het rapport noemt de eerste 3 websitepunten; de rest heeft de klant nog niet gezien
+    : websitePunten.slice(3).map((p, i) => i === 0
+        ? `Our website check found something that isn't in your report: ${p}.`
+        : `There's another point from our website check that didn't make the report: ${p}.`);
+  const laagste = Object.entries(VRAGEN[type])
+    .filter(([k, v]) => antwoorden[k] !== undefined && (!v.sectoren || v.sectoren.includes(sector)))
+    .map(([k, v]) => ({ vraag: VRAAGTEKST[k], antwoord: antwoorden[k], score: v.scores[antwoorden[k]] }))
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 2);
+  const haken = [
+    ...metingen.slice(0, 2),
+    ...laagste.map(q => `You answered "${q.antwoord}" to "${q.vraag}", one of your lowest scores in the scan. That's where I'd start.`)
+  ];
+  const idee = ideeen.match(/^\s*1\.\s*([^:\n]{3,80}):/m)?.[1]?.trim();
+  const uitnodiging = `I'd love to come by ${bedrijf} for a free visit and walk you through the rest.`;
+  const afsluiting = 'Daisy\nFUNkiness! AI, Social Media & Marketing, Curaçao\nWhatsApp: +599 9 675 1737';
+
+  const whatsapp = `${hoi}! Daisy from FUNkiness! here. Your ${scanNaam} for ${bedrijf} just landed, love that you did it. ${haken[0]} ${uitnodiging} Which day works for you this week?`;
+
+  const dag3 = {
+    onderwerp: `${bedrijf}: one more thing from your scan`,
+    tekst: [
+      `${hoi},`,
+      `Quick one. Your scan gave ${bedrijf} ${totaalscore}/100, and there's more behind that number than fit in the report.`,
+      haken[1] || haken[0],
+      idee ? `Of the 3 ${ideeSoort} in your report, "${idee}" is the one I can't wait to build with you.` : '',
+      `${uitnodiging} Just reply with a day and time that suits you, or send me a WhatsApp.`,
+      afsluiting
+    ].filter(Boolean).join('\n\n')
+  };
+
+  const dag8 = {
+    onderwerp: `Door's open, ${naam || bedrijf}`,
+    tekst: [
+      `${hoi},`,
+      `Last nudge from me, promise. Your lowest area in the scan was ${laagsteLabel} (${laagsteScore}/100), so that's where I'd dig in first with ${bedrijf}.`,
+      `Whenever you're ready, reply to this email or send me a WhatsApp and we'll plan your free visit.`,
+      `Boring was never the plan,\n${afsluiting}`
+    ].join('\n\n')
+  };
+
+  // Klikbare WhatsApp-link naar de klant, tekst al ingevuld
+  const nummer = (locatie === 'curacao' ? (telefoon || telefoon_nl) : (telefoon_nl || telefoon) || '').replace(/\D/g, '');
+  const whatsappLink = nummer.length >= 7 ? `https://wa.me/${nummer}?text=${encodeURIComponent(whatsapp)}` : '';
+
+  return { whatsapp, whatsappLink, dag3, dag8 };
+}
+
+// Blok bovenaan Daisy's leadmail: WhatsApp in één tik, en wat de sheet daarna doet
+export function opvolgingHtml(volg, esc) {
+  return `<div style="font-family:sans-serif;background:#fff4f9;border:2px solid #f21b7a;border-radius:12px;padding:16px 20px;margin-bottom:20px">
+            <strong>Opvolgen, stap 1: stuur nu deze WhatsApp</strong>
+            <p style="margin:8px 0 12px">${esc(volg.whatsapp)}</p>
+            ${volg.whatsappLink ? `<a href="${volg.whatsappLink}" style="display:inline-block;background:#25d366;color:white;padding:10px 22px;border-radius:99px;font-weight:700;text-decoration:none">Open in WhatsApp</a>` : '<em>Geen telefoonnummer opgegeven, kopieer de tekst of mail hem.</em>'}
+            <p style="font-size:13px;color:#666;margin:12px 0 0">Stap 2 en 3: op dag 3 en dag 8 staat er vanzelf een mailconcept klaar in Gmail, zolang je in de sheet "Gereageerd" niet hebt aangevinkt.</p>
+          </div>`;
+}
+
+// Zo leest het sheetscript de opvolging: eerste regel van een mail is het onderwerp
+export function opvolgingVoorSheet(volg) {
+  return { whatsapp: volg.whatsapp, whatsappLink: volg.whatsappLink, dag3: `${volg.dag3.onderwerp}\n\n${volg.dag3.tekst}`, dag8: `${volg.dag8.onderwerp}\n\n${volg.dag8.tekst}` };
+}
