@@ -2910,3 +2910,297 @@ details[open] .faq-icon {
   .jeep-wheel { display: none; }
   .script-word, .hero-script { transition: none; }
 }
+
+/* ============================
+   FLOATING BOOK BUTTON (Cal.com)
+   ============================ */
+.book-float {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #2bea5c;
+  color: var(--black);
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  padding: 12px 22px 12px 14px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(43,234,92,0.35), 0 4px 12px rgba(58,37,27,0.18);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  animation: book-float-in 600ms cubic-bezier(.34,1.56,.64,1) 1.2s both;
+}
+
+.book-float:hover,
+.book-float:focus-visible {
+  transform: translateY(-3px) rotate(-2deg);
+  box-shadow: 0 14px 36px rgba(43,234,92,0.5), 0 4px 12px rgba(58,37,27,0.18);
+}
+
+.book-float-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--black);
+  color: #2bea5c;
+  font-size: 14px;
+}
+
+.book-float-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.book-float-text strong {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.book-float-text small {
+  font-weight: 600;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+@keyframes book-float-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.85); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (min-width: 700px) {
+  .book-float {
+    right: 24px;
+    bottom: 24px;
+    padding: 14px 26px 14px 16px;
+  }
+  .book-float-text strong { font-size: 16px; }
+  .book-float-text small { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-float { animation: none; transition: none; }
+}
+
+/* Green booking buttons in header, mobile menu and CTA blocks */
+.book-cta {
+  background: #2bea5c;
+  color: var(--black);
+  text-decoration: none;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 12px 30px rgba(43,234,92,0.32);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.book-cta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--black);
+  color: #2bea5c;
+  font-size: 11px;
+}
+
+.book-cta:hover,
+.book-cta:focus-visible {
+  transform: translateY(-2px) rotate(-1.5deg);
+  box-shadow: 0 16px 36px rgba(43,234,92,0.45);
+}
+
+@media (min-width: 1100px) {
+  .book-cta { padding: 18px 30px; font-size: 17px; gap: 12px; }
+}
+
+.book-cta-lg { padding: 18px 32px; font-size: 17px; }
+.book-cta-next { margin-left: 12px; margin-top: 12px; }
+
+/* Compact green button next to the hamburger on mobile */
+.book-cta-mobile {
+  margin-left: auto;
+  margin-right: 12px;
+  background: #2bea5c;
+  color: var(--black);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(43,234,92,0.3);
+}
+
+@media (min-width: 1100px) {
+  .book-cta-mobile { display: none; }
+}
+
+.mobile-menu a.mobile-book {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: var(--black);
+  padding: 16px 26px;
+}
+
+.mobile-menu a.mobile-book:hover { color: var(--black); }
+
+@media (prefers-reduced-motion: reduce) {
+  .book-cta, .book-cta:hover { transition: none; transform: none; }
+}
+
+/* ============================
+   MOBILE OFFICE (homepage, Cal.com inline)
+   ============================ */
+.mobile-office {
+  background: var(--black);
+  padding: 52px 5vw 0;
+}
+
+.mo-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mo-right { order: -1; position: relative; }
+
+.mo-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2bea5c;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.mo-headline {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.mo-headline span {
+  font-family: "Permanent Marker", cursive;
+  color: var(--pink);
+  display: block;
+  font-size: 46px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.mo-sub {
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 8px;
+}
+
+.mo-note {
+  font-family: "Permanent Marker", cursive;
+  font-size: 19px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 28px;
+}
+
+.mo-pill {
+  display: inline-block;
+  background: #2bea5c;
+  color: var(--black);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.mo-booking {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+#mo-cal-inline {
+  width: 100%;
+  min-height: 480px;
+  overflow: auto;
+}
+
+.mo-booking-note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+  margin-top: 14px;
+  padding-bottom: 8px;
+}
+
+.mo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px 16px 0 0;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+@media (min-width: 700px) {
+  .mobile-office { padding: 64px 5vw 0; }
+  .mo-headline { font-size: 56px; }
+  .mo-headline span { font-size: 60px; }
+}
+
+@media (min-width: 1100px) {
+  .mobile-office { padding: 80px 7vw 0; }
+  .mo-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .mo-right { order: 0; }
+  .mo-headline { font-size: 62px; }
+  .mo-headline span { font-size: 66px; }
+  .mo-sub { font-size: 17px; }
+  .mo-img {
+    border-radius: 24px 24px 0 0;
+    min-height: 620px;
+    object-position: center;
+  }
+}
+
+/* Header: keep menu items on one line now that Contact and the booking button share the bar */
+.menu .book-cta { white-space: nowrap; }
+@media (min-width: 1100px) {
+  .menu { gap: 14px; }
+  .menu .book-cta { padding: 12px 18px; font-size: 14px; }
+  .menu .book-cta span { display: none; }
+}
+@media (min-width: 1400px) {
+  .menu { gap: 24px; }
+  .menu .book-cta { padding: 16px 28px; font-size: 16px; }
+  .menu .book-cta span { display: inline-flex; }
+}

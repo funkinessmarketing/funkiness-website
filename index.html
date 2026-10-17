@@ -56,12 +56,15 @@
       <a href="blog.html">Blog</a>
       <span>✚</span>
       <a href="faq.html">FAQ</a>
+      <span>✚</span>
+      <a href="contact.html">Contact</a>
       <div class="lang-switch">
         <a href="/" class="lang-active" aria-label="English" hreflang="en">🇬🇧</a>
         <a href="/nl/" aria-label="Nederlands" hreflang="nl">🇳🇱</a>
       </div>
-      <a href="contact.html" class="nav-button">Say Hello <span>↗</span></a>
+      <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta" data-book>Book free session <span>✚</span></a>
     </nav>
+    <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta-mobile" data-book>Free session</a>
     <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -80,6 +83,7 @@
     <a href="blog.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Blog</a>
     <a href="faq.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">FAQ</a>
     <a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+    <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta mobile-book" data-book>Book your free session <span>✚</span></a>
   </div>
 
   <section class="hero">
@@ -207,7 +211,26 @@
     </div>
   </section>
 
-  <div class="wave-divider" style="background:var(--cream);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,16 C240,64 480,0 720,40 C960,72 1200,8 1440,36 L1440,64 L0,64 Z" fill="#f21b7a"/></svg></div>
+  <div class="wave-divider" style="background:var(--cream);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,30 C200,62 520,4 820,34 C1060,58 1260,10 1440,24 L1440,64 L0,64 Z" fill="#3a251b"/></svg></div>
+
+  <section class="mobile-office" id="book">
+    <div class="mo-inner">
+      <div class="mo-left">
+        <p class="mo-kicker">How we work · Curaçao</p>
+        <h2 class="mo-headline">You pick the spot. <span>We bring the office.</span></h2>
+        <p class="mo-sub">No boardroom. No commute. Pick your spot and we show up. Panther print Jeep, full setup, ready to work. Anywhere on Curaçao.</p>
+        <p class="mo-note">The Jeep finds you.</p>
+        <p class="mo-pill">Free session ✚ pick your time right now</p>
+        <div class="mo-booking"><div id="mo-cal-inline"></div></div>
+        <p class="mo-booking-note">Pick a time, tell us where. We drive to your spot anywhere on the island. Close to the beach? We park as close to the water as we can get.</p>
+      </div>
+      <div class="mo-right">
+        <img class="mo-img" src="mobile-office-curacao.webp" alt="FUNkiness! mobile office: Jeep with panther print and meeting table on the beach in Curaçao" loading="lazy" width="1200" height="800">
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider" style="background:var(--black);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C260,8 560,58 900,22 C1120,0 1300,46 1440,30 L1440,64 L0,64 Z" fill="#f21b7a"/></svg></div>
 
   <section class="jeep-gallery">
     <p class="section-kicker">Follow @funkiness.ai</p>
@@ -419,6 +442,22 @@
     })();
   </script>
   <script src="/effects.js"></script>
+  <script src="/book.js"></script>
+  <script>
+  (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "mo-inline", { origin: "https://app.cal.com" });
+  Cal.ns["mo-inline"]("inline", {
+    elementOrSelector: "#mo-cal-inline",
+    config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "dark" },
+    calLink: "funkiness/marketing-strategy-session"
+  });
+  Cal.ns["mo-inline"]("ui", {
+    theme: "dark",
+    cssVarsPerTheme: { dark: { "cal-brand": "#2bea5c", "cal-bg": "#3a251b", "cal-bg-muted": "#4a3327" } },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
+  </script>
   <script src="cookie-consent.js"></script>
 </body>
 </html>
