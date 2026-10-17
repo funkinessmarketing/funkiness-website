@@ -255,12 +255,20 @@ export function feitenVoor(type, sector, locatie) {
 }
 
 export const LOCATIES = {
-  curacao:   { naam: 'Curaçao',          in: 'on Curaçao' },
-  aruba:     { naam: 'Aruba',            in: 'on Aruba' },
-  bonaire:   { naam: 'Bonaire',          in: 'on Bonaire' },
-  nederland: { naam: 'the Netherlands',  in: 'in the Netherlands' },
-  elders:    { naam: 'outside the Caribbean Netherlands and Aruba', in: 'in their area' }
+  curacao:   { naam: 'Curaçao',          in: 'on Curaçao',         valuta: 'Caribbean guilders (XCG)' },
+  aruba:     { naam: 'Aruba',            in: 'on Aruba',           valuta: 'US dollars (USD)' },
+  bonaire:   { naam: 'Bonaire',          in: 'on Bonaire',         valuta: 'US dollars (USD)' },
+  nederland: { naam: 'the Netherlands',  in: 'in the Netherlands', valuta: 'euros (EUR)' },
+  elders:    { naam: 'outside the Caribbean Netherlands and Aruba', in: 'in their area', valuta: null }
 };
+
+// Valuta volgt de vestigingsplaats: Curaçao XCG, Aruba en Bonaire USD, Nederland EUR, elders geen valuta noemen
+export function valutaRegel(locatie) {
+  const valuta = LOCATIES[locatie]?.valuta;
+  return valuta
+    ? `- Money: if you mention a currency at all, only use ${valuta}. Never mention any other currency`
+    : '- Money: never mention a currency or currency word (no euro, dollar, guilder or symbols); say "budget" or "spend" instead';
+}
 
 export function feitenAlsTekst(feiten) {
   return feiten.map(f => `[${f.id}] ${f.tekst}`).join('\n');
