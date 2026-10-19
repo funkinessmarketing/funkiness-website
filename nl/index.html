@@ -248,7 +248,7 @@
         <p class="mo-booking-note">Kies een tijd, vertel ons waar. We rijden naar jouw plek, overal op het eiland. Dicht bij het strand? We parkeren zo dicht bij het water als het kan.</p>
       </div>
       <div class="mo-right">
-        <img class="mo-img" src="../mobile-office-curacao.webp" alt="FUNkiness! mobiel kantoor: Jeep met panterprint en vergadertafel op het strand van Curaçao" loading="lazy" width="1200" height="800">
+        <img class="mo-img" src="../mobile-office-jeep-curacao.webp" alt="FUNkiness! mobiel kantoor op Curaçao: Jeep met panterprint, roze vergadertafel en bloemen, met uitzicht over de baai en de heuvels" loading="lazy" width="1200" height="800">
       </div>
       <div class="mo-booking" id="mo-booking" hidden><div id="mo-cal-inline"></div></div>
     </div>
@@ -337,6 +337,22 @@
   </section>
 
   <div class="wave-divider" style="background:var(--cream-light)" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,28 C480,68 960,0 1440,44 L1440,64 L0,64 Z" fill="#3a251b"/></svg></div>
+
+  <section class="playlist-section" id="playlist">
+    <div class="pl-inner">
+      <div class="pl-copy">
+        <p class="pl-kicker">Onze FUN-playlist ✚ op Spotify</p>
+        <h2 class="pl-headline">Feel Good Funk <span>Curaçao</span></h2>
+        <p class="pl-sub">Funk waar je van in beweging komt. Voor tijdens het werk, in de auto met de ramen open en elke dag die wat meer FUN kan gebruiken. Uitgezocht door Daisy van FUNkiness!, het marketingbureau op Curaçao.</p>
+        <div class="pl-actions">
+          <button type="button" class="pl-toggle" aria-expanded="false" aria-controls="pl-player">Luister hier meteen <span aria-hidden="true">▶</span></button>
+          <a href="https://open.spotify.com/playlist/3fPoCunEmMHFWb7YDUeOsP" class="pl-open" target="_blank" rel="noopener">Open in Spotify <span>↗</span></a>
+        </div>
+        <p class="pl-note">De speler komt van Spotify en laadt pas als je op de knop drukt.</p>
+      </div>
+      <div class="pl-player" id="pl-player" hidden></div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div>
@@ -496,6 +512,31 @@
         hideEventTypeDetails: true,
         layout: "month_view"
       });
+    });
+  })();
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MusicPlaylist","name":"Feel Good Funk | Curaçao","description":"Funk waar je van in beweging komt, uitgezocht door FUNkiness! op Curaçao.","url":"https://open.spotify.com/playlist/3fPoCunEmMHFWb7YDUeOsP","author":{"@type":"Organization","name":"FUNkiness!","url":"https://funkiness.ai/"}}
+  </script>
+  <script>
+  // Spotify-speler laadt pas na een klik, zodat Spotify geen cookies zet zonder dat de bezoeker dat kiest
+  (function () {
+    var toggle = document.querySelector(".pl-toggle");
+    var box = document.getElementById("pl-player");
+    if (!toggle || !box) return;
+    toggle.addEventListener("click", function () {
+      if (!box.firstChild) {
+        var f = document.createElement("iframe");
+        f.src = "https://open.spotify.com/embed/playlist/3fPoCunEmMHFWb7YDUeOsP?utm_source=generator&theme=0";
+        f.title = "Feel Good Funk Curaçao playlist op Spotify";
+        f.height = "352";
+        f.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+        f.loading = "lazy";
+        box.appendChild(f);
+      }
+      box.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.hidden = true;
     });
   })();
   </script>

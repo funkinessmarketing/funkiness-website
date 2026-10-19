@@ -3411,3 +3411,119 @@ details[open] .faq-icon {
 .why-us--pink .why-us-visual { box-shadow: 0 0 50px rgba(58, 37, 27, 0.3); }
 .why-us--pink .why-card { background: var(--black); border-color: transparent; }
 .why-us--pink .why-card:hover { background: #4a3327; }
+
+/* ============================
+   PLAYLIST (homepage, boven de footer)
+   ============================ */
+.playlist-section {
+  background: var(--black);
+  padding: 48px 5vw 8px;
+}
+
+.pl-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.pl-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2bea5c;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.pl-headline {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.pl-headline span {
+  font-family: "Permanent Marker", cursive;
+  color: var(--pink);
+  display: block;
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.pl-sub {
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 24px;
+}
+
+.pl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+}
+
+.pl-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2bea5c;
+  color: var(--black);
+  font: inherit;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 14px 22px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.pl-toggle:hover { transform: translateY(-2px); }
+.pl-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+.pl-open {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.pl-note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.45);
+  margin-top: 14px;
+}
+
+.pl-player {
+  border-radius: 28px 46px 30px 52px / 40px 28px 50px 30px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+}
+.pl-player iframe { display: block; width: 100%; border: 0; }
+
+@media (min-width: 700px) {
+  .playlist-section { padding: 64px 5vw 16px; }
+  .pl-headline { font-size: 52px; }
+  .pl-headline span { font-size: 56px; }
+}
+
+@media (min-width: 1100px) {
+  .playlist-section { padding: 80px 7vw 24px; }
+  .pl-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .pl-sub { font-size: 17px; }
+}
