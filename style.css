@@ -437,10 +437,12 @@ h1 span { color: var(--pink); }
   .services {
     min-height: 850px;
     padding: 115px 7vw 120px;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 0.95fr 1.05fr;
     gap: 8vw;
     align-items: center;
   }
+  /* Homepage blocks zigzag: text left here, then right in the FUNky Letter below */
+  .services-copy { order: -1; }
 }
 
 .service-cards {
@@ -681,10 +683,12 @@ h1.section-kicker {
   .scan-section {
     min-height: 780px;
     padding: 115px 7vw;
-    grid-template-columns: 1fr 0.92fr;
+    grid-template-columns: 0.92fr 1fr;
     gap: 8vw;
     align-items: center;
   }
+  /* Text/image blocks zigzag: photo left here, after Why FUNkiness! with photo right */
+  .scan-image-wrap { order: -1; }
 }
 
 .scan-copy h2 {
@@ -1479,6 +1483,8 @@ a.service-detail-card {
 
 @media (min-width: 900px) {
   .why-split-visual { margin: 0; order: 2; }
+  .why-split--reverse { grid-template-columns: 0.8fr 1.2fr; }
+  .why-split--reverse .why-split-visual { order: -1; }
 }
 
 .why-split-visual--ai { border-radius: 34% 66% 45% 55% / 44% 38% 62% 56%; }
@@ -2165,7 +2171,7 @@ details[open] .faq-icon {
    BLOG POST PAGE
    ============================ */
 .blog-hero {
-  background: var(--black);
+  background: var(--pink);
   padding: 56px 5vw 96px;
   position: relative;
 }
@@ -2176,7 +2182,7 @@ details[open] .faq-icon {
 
 
 .blog-hero .kicker {
-  color: var(--pink);
+  color: var(--black);
   font-size: 13px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -2199,7 +2205,7 @@ details[open] .faq-icon {
   color: white;
 }
 
-.blog-hero h1 .script-word { color: var(--pink); }
+.blog-hero h1 .script-word { color: var(--black); }
 
 .blog-layout {
   display: grid;
@@ -3188,12 +3194,12 @@ details[open] .faq-icon {
   .mobile-office { padding: 80px 7vw 90px; }
   .mo-inner {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 40px 64px;
     align-items: center;
   }
   .mo-booking { grid-column: 1 / -1; }
-  .mo-right { order: 0; }
+  .mo-right { order: -1; }
   .mo-headline { font-size: 62px; }
   .mo-headline span { font-size: 66px; }
   .mo-sub { font-size: 17px; }
@@ -3234,10 +3240,11 @@ details[open] .faq-icon {
 @media (min-width: 1100px) {
   .newsletter-section {
     padding: 100px 7vw 110px;
-    grid-template-columns: 1fr 0.95fr;
+    grid-template-columns: 0.95fr 1fr;
     gap: 7vw;
     align-items: center;
   }
+  .newsletter-form { order: -1; }
 }
 
 .newsletter-panter {
@@ -3253,7 +3260,7 @@ details[open] .faq-icon {
 }
 
 @media (min-width: 1100px) {
-  .newsletter-panter { width: 300px; height: 260px; right: -150px; bottom: auto; top: calc(50% - 130px); }
+  .newsletter-panter { width: 300px; height: 260px; right: auto; left: -150px; bottom: auto; top: calc(50% - 130px); }
 }
 
 .newsletter-copy,
@@ -3411,6 +3418,11 @@ details[open] .faq-icon {
 .why-us--pink .why-us-visual { box-shadow: 0 0 50px rgba(58, 37, 27, 0.3); }
 .why-us--pink .why-card { background: var(--black); border-color: transparent; }
 .why-us--pink .why-card:hover { background: #4a3327; }
+
+/* Pink band on the service pages: sits between cream sections so the page reads
+   cream, pink, cream, brown footer. Pink text would vanish here, so accents go brown. */
+.seo-section--pink .script-word { color: var(--black); }
+.seo-section--pink .why-split-visual { box-shadow: 0 0 50px rgba(58, 37, 27, 0.3); }
 
 /* ============================
    PLAYLIST (homepage, boven de footer)
