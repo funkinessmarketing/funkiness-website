@@ -51,7 +51,6 @@
       <span>✚</span>
       <a href="/scan.html">Gratis Scan (EN)</a>
       <span>✚</span>
-      <a href="/quiz.html">Gratis Quiz (EN)</a>
       <span>✚</span>
       <a href="blog.html">Blog</a>
       <span>✚</span>
@@ -79,7 +78,6 @@
     <a href="/nl/" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
     <a href="what-we-do.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Wat We Doen</a>
     <a href="/scan.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Gratis Scan (EN)</a>
-    <a href="/quiz.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Gratis Quiz (EN)</a>
     <a href="blog.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Blog</a>
     <a href="faq.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">FAQ</a>
     <a href="contact.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
@@ -193,14 +191,14 @@
       <a href="what-we-do.html" class="black-button" style="margin-top:44px;display:inline-flex;">Bekijk hoe het werkt <span>↗</span></a>
     </div>
   </section>
-  <div class="wave-divider" style="background:var(--cream);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,22 C180,54 430,60 700,30 C960,2 1210,12 1440,40 L1440,64 L0,64 Z" fill="#3a251b"/></svg></div>
+  <div class="wave-divider" style="background:var(--cream);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,22 C180,54 430,60 700,30 C960,2 1210,12 1440,40 L1440,64 L0,64 Z" fill="#f21b7a"/></svg></div>
 
   <section class="newsletter-section" id="newsletter">
     <div class="newsletter-panter" aria-hidden="true"></div>
     <div class="newsletter-copy">
       <p class="section-kicker">De FUNky Letter ✚ gratis in je inbox</p>
       <h2>Marketing- en AI-nieuws. Saai komt er niet <span class="script-word">in.</span></h2>
-      <p>Wat er verandert in marketing en AI, en wat dat betekent voor jouw bedrijf op Curaçao, Aruba of Bonaire. In elke editie een praktische tip die je dezelfde dag nog uitprobeert.</p>
+      <p>Wat er verandert in marketing en AI, en wat dat betekent voor jouw bedrijf op Curaçao, Aruba, Bonaire of in Nederland. In elke editie een praktische tip die je dezelfde dag nog uitprobeert.</p>
     </div>
     <form class="newsletter-form" data-newsletter data-bron="homepage-nl" novalidate>
       <label for="nb-email-nl" class="newsletter-label">Waar mogen we hem naartoe sturen?</label>
@@ -219,7 +217,7 @@
     </form>
   </section>
 
-  <div class="wave-divider" style="background:var(--cream);margin-top:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L1440,0 L1440,18 C1250,48 1020,66 760,40 C520,14 240,6 0,36 Z" fill="#3a251b"/></svg></div>
+  <div class="wave-divider" style="background:var(--cream);margin-top:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L1440,0 L1440,18 C1250,48 1020,66 760,40 C520,14 240,6 0,36 Z" fill="#f21b7a"/></svg></div>
 
   <section class="funky-ladies-section">
     <div class="funky-ladies-left">
@@ -247,19 +245,19 @@
         <h2 class="mo-headline">Jij kiest de plek. <span>Wij nemen het kantoor mee.</span></h2>
         <p class="mo-sub">Geen vergaderzaal. Geen file. Kies je plek en wij komen eraan. Jeep met panterprint, alles mee, klaar om te werken. Overal op Curaçao.</p>
         <p class="mo-note">De Jeep vindt jou.</p>
-        <p class="mo-pill">Gratis sessie ✚ kies zelf direct een tijd</p>
-        <div class="mo-booking"><div id="mo-cal-inline"></div></div>
+        <button type="button" class="mo-toggle" aria-expanded="false" aria-controls="mo-booking">Gratis sessie ✚ kies zelf direct een tijd <span aria-hidden="true">↓</span></button>
         <p class="mo-booking-note">Kies een tijd, vertel ons waar. We rijden naar jouw plek, overal op het eiland. Dicht bij het strand? We parkeren zo dicht bij het water als het kan.</p>
       </div>
       <div class="mo-right">
         <img class="mo-img" src="../mobile-office-curacao.webp" alt="FUNkiness! mobiel kantoor: Jeep met panterprint en vergadertafel op het strand van Curaçao" loading="lazy" width="1200" height="800">
       </div>
+      <div class="mo-booking" id="mo-booking" hidden><div id="mo-cal-inline"></div></div>
     </div>
   </section>
 
-  <div class="wave-divider" style="background:var(--black);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C260,8 560,58 900,22 C1120,0 1300,46 1440,30 L1440,64 L0,64 Z" fill="#f21b7a"/></svg></div>
+  <div class="wave-divider" style="background:var(--cream);margin-top:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 L1440,0 L1440,30 C1300,46 1120,0 900,22 C560,58 260,8 0,40 Z" fill="#3a251b"/></svg></div>
 
-  <section class="jeep-gallery">
+  <section class="jeep-gallery jeep-gallery--cream">
     <p class="section-kicker">Volg @funkiness.ai</p>
     <div class="insta-grid">
       <a href="https://www.instagram.com/funkiness.ai/" class="insta-grid-item" target="_blank" rel="noopener">
@@ -278,9 +276,9 @@
     <a href="https://www.instagram.com/funkiness.ai/" class="insta-follow-button" target="_blank" rel="noopener">Volg @funkiness.ai <span>↗</span></a>
   </section>
 
-  <div class="wave-divider" style="background:#f21b7a;margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,44 C360,8 720,60 1080,16 C1260,2 1380,52 1440,36 L1440,64 L0,64 Z" fill="#3a251b"/></svg></div>
+  <div class="wave-divider" style="background:var(--cream);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,44 C360,8 720,60 1080,16 C1260,2 1380,52 1440,36 L1440,64 L0,64 Z" fill="#f21b7a"/></svg></div>
 
-  <section class="why-us">
+  <section class="why-us why-us--pink">
     <div class="why-us-top">
       <div class="why-us-header">
         <p class="section-kicker">Waarom FUNkiness!</p>
@@ -314,7 +312,7 @@
     </div>
   </section>
 
-  <div class="wave-divider" style="background:var(--black);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,44 C320,4 720,64 1100,20 C1240,4 1360,48 1440,28 L1440,64 L0,64 Z" fill="#fbf6f1"/></svg></div>
+  <div class="wave-divider" style="background:#f21b7a;margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,44 C320,4 720,64 1100,20 C1240,4 1360,48 1440,28 L1440,64 L0,64 Z" fill="#fbf6f1"/></svg></div>
 
   <section class="scan-section">
     <div class="scan-copy">
@@ -354,7 +352,6 @@
         <a href="/nl/">Home</a>
         <a href="what-we-do.html">Wat We Doen</a>
         <a href="/scan.html">Gratis Scan (EN)</a>
-        <a href="/quiz.html">Gratis Quiz (EN)</a>
         <a href="blog.html">Blog</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
@@ -445,7 +442,7 @@
           {
             "@type": "Question",
             "name": "Biedt FUNkiness! AI-diensten voor bedrijven op Curaçao?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Ja. AI-integratie is een van de kerndiensten van FUNkiness!. Ze brengen in kaart waar AI echt verschil maakt voor een specifiek bedrijf op Curaçao en implementeren het: het automatiseren van repetitieve taken, AI-gedreven contentcreatie, AI-klantcommunicatie en business intelligence. FUNkiness! biedt ook een gratis AI Superpower Quiz aan op funkiness.ai/quiz om bedrijven te helpen hun grootste AI-kans te ontdekken." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Ja. AI-integratie is een van de kerndiensten van FUNkiness!. Ze brengen in kaart waar AI echt verschil maakt voor een specifiek bedrijf op Curaçao en implementeren het: het automatiseren van repetitieve taken, AI-gedreven contentcreatie, AI-klantcommunicatie en business intelligence." }
           }
         ]
       }
@@ -474,18 +471,34 @@
   <script src="/newsletter.js"></script>
   <script>
   (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "mo-inline", { origin: "https://app.cal.com" });
-  Cal.ns["mo-inline"]("inline", {
-    elementOrSelector: "#mo-cal-inline",
-    config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "dark" },
-    calLink: "funkiness/marketing-strategy-session"
-  });
-  Cal.ns["mo-inline"]("ui", {
-    theme: "dark",
-    cssVarsPerTheme: { dark: { "cal-brand": "#2bea5c", "cal-bg": "#3a251b", "cal-bg-muted": "#4a3327" } },
-    hideEventTypeDetails: false,
-    layout: "month_view"
-  });
+  // Kalender blijft ingeklapt tot de bezoeker op de knop drukt, en laadt pas dan
+  (function () {
+    var toggle = document.querySelector(".mo-toggle");
+    var box = document.getElementById("mo-booking");
+    var loaded = false;
+    if (!toggle || !box) return;
+    toggle.addEventListener("click", function () {
+      var open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      box.hidden = open;
+      if (open) return;
+      box.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (loaded) return;
+      loaded = true;
+      Cal("init", "mo-inline", { origin: "https://app.cal.com" });
+      Cal.ns["mo-inline"]("inline", {
+        elementOrSelector: "#mo-cal-inline",
+        config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "dark" },
+        calLink: "funkiness/marketing-strategy-session"
+      });
+      Cal.ns["mo-inline"]("ui", {
+        theme: "dark",
+        cssVarsPerTheme: { dark: { "cal-brand": "#2bea5c", "cal-bg": "#3a251b", "cal-bg-muted": "#4a3327" } },
+        hideEventTypeDetails: true,
+        layout: "month_view"
+      });
+    });
+  })();
   </script>
 <script src="../cookie-consent.js"></script>
 </body>

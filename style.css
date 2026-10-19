@@ -3069,7 +3069,7 @@ details[open] .faq-icon {
    ============================ */
 .mobile-office {
   background: var(--black);
-  padding: 52px 5vw 0;
+  padding: 52px 5vw 56px;
 }
 
 .mo-inner {
@@ -3125,16 +3125,25 @@ details[open] .faq-icon {
   margin-bottom: 28px;
 }
 
-.mo-pill {
-  display: inline-block;
+.mo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   background: #2bea5c;
   color: var(--black);
+  font: inherit;
   font-weight: 800;
-  font-size: 14px;
-  padding: 10px 18px;
+  font-size: 15px;
+  padding: 14px 22px;
+  border: 0;
   border-radius: 999px;
-  margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 0.15s;
 }
+.mo-toggle:hover { transform: translateY(-2px); }
+.mo-toggle:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+.mo-toggle span { transition: transform 0.2s; }
+.mo-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
 
 .mo-booking {
   background: rgba(255,255,255,0.05);
@@ -3146,9 +3155,11 @@ details[open] .faq-icon {
 
 #mo-cal-inline {
   width: 100%;
-  min-height: 480px;
+  min-height: 420px;
   overflow: auto;
 }
+
+.mo-booking { scroll-margin-top: 90px; }
 
 .mo-booking-note {
   font-size: 13px;
@@ -3162,32 +3173,32 @@ details[open] .faq-icon {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 16px 16px 0 0;
+  border-radius: 34% 66% 45% 55% / 30% 28% 72% 70%;
   object-fit: cover;
   object-position: center bottom;
 }
 
 @media (min-width: 700px) {
-  .mobile-office { padding: 64px 5vw 0; }
+  .mobile-office { padding: 64px 5vw 64px; }
   .mo-headline { font-size: 56px; }
   .mo-headline span { font-size: 60px; }
 }
 
 @media (min-width: 1100px) {
-  .mobile-office { padding: 80px 7vw 0; }
+  .mobile-office { padding: 80px 7vw 90px; }
   .mo-inner {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 64px;
-    align-items: end;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px 64px;
+    align-items: center;
   }
+  .mo-booking { grid-column: 1 / -1; }
   .mo-right { order: 0; }
   .mo-headline { font-size: 62px; }
   .mo-headline span { font-size: 66px; }
   .mo-sub { font-size: 17px; }
   .mo-img {
-    border-radius: 24px 24px 0 0;
-    min-height: 620px;
+    aspect-ratio: 4 / 3;
     object-position: center;
   }
 }
@@ -3212,7 +3223,7 @@ details[open] .faq-icon {
   position: relative;
   overflow: hidden;
   padding: 64px 5vw 72px;
-  background: var(--black);
+  background: var(--pink);
   color: white;
   display: grid;
   grid-template-columns: 1fr;
@@ -3264,8 +3275,9 @@ details[open] .faq-icon {
 }
 
 .newsletter-form {
-  background: #45312a;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--black);
+  border: 0;
+  box-shadow: 0 20px 50px rgba(58, 37, 27, 0.25);
   border-radius: 34px 26px 38px 24px;
   padding: 28px 22px;
 }
@@ -3383,3 +3395,19 @@ details[open] .faq-icon {
 
 .newsletter-status.is-ok { color: #2bea5c; }
 .newsletter-status.is-fout { color: #ffb3d1; }
+
+/* Roze FUNky Letter: geen roze tekst op roze */
+.newsletter-section .section-kicker { color: white; }
+.newsletter-section .newsletter-copy h2 .script-word { color: var(--black); }
+.newsletter-copy p:not(.section-kicker) { color: white; }
+
+/* Homepage: kleuren wisselen crème, roze, crème, bruin. Nooit bruin tegen roze */
+.jeep-gallery--cream { background: var(--cream); }
+.jeep-gallery--cream .section-kicker { color: var(--pink); font-family: 'Permanent Marker', cursive; letter-spacing: 1px; }
+
+.why-us--pink { background: var(--pink); }
+.why-us--pink .why-us-header .section-kicker { color: white; }
+.why-us--pink .why-us-header h2 span { color: var(--black); }
+.why-us--pink .why-us-visual { box-shadow: 0 0 50px rgba(58, 37, 27, 0.3); }
+.why-us--pink .why-card { background: var(--black); border-color: transparent; }
+.why-us--pink .why-card:hover { background: #4a3327; }
