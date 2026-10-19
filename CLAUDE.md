@@ -79,7 +79,7 @@ Als een tekst saai klinkt, past hij niet bij FUNkiness!
 - Kleine roze streep (4px, 54px breed) als sectie-accent
 - Roze pil-badges (zwart of roze, afgerond 999px) voor labels en categorieën
 - Cards: border-radius 24-34px, lichte witte achtergrond met subtiele border
-- Donkere secties (bruin) voor contrast: footer, ticker, Mobile Office, playlist. Sinds 2026-10-19 zijn blog hero (blogs + FAQ), de "Why FUNkiness!"-band op de dienstenpagina's (`.seo-section--pink`) en Why Us op What We Do roze, zodat elke pagina crème, roze, crème, bruin (footer) leest
+- Donkere secties (bruin) voor contrast: ticker, Mobile Office, playlist. De footer is sinds 2026-10-19 crème. Sinds 2026-10-19 zijn blog hero (blogs + FAQ), de "Why FUNkiness!"-band op de dienstenpagina's (`.seo-section--pink`) en Why Us op What We Do roze, zodat bruin en roze elkaar afwisselen met crème ertussen
 - Blob/plas-vormen in roze als decoratief element (zie homepage hero)
 - Jeep met panterprint is het centrale visuele merk-icoon
 - **Logo:** `funkiness-logo.png` in root. PNG met transparante achtergrond, 999x515px. Gebruikt in navbar op alle pagina's via `.logo-img` (100px mobiel, 120px desktop). Niet vervangen door tekst.
@@ -100,7 +100,7 @@ Nieuwe blogposts volgen de structuur van bestaande posts (zie `blog-marketing-st
 - Direct na `</header>`: een `<div class="wave-divider" style="background:var(--pink)">` met crème SVG-golf (blog hero is roze sinds 2026-10-19)
 - `<div class="blog-layout">` met `<aside class="blog-sidebar">` + `<article class="blog-post-body">`
 - Minimaal één `.blog-callout` en een `.blog-post-cta` afsluiter
-- Wave-divider (crème→zwart) WEL toevoegen vóór de footer
+- Geen wave-divider vóór de footer (footer is crème sinds 2026-10-19)
 - Bestandsnaam: `blog-[onderwerp]-curacao.html`
 
 **Grafische ontwerpbestanden:** alle visuele ontwerpen (logo's, foto's, panterprint, visitekaartjes, printbare HTML-ontwerpen, social media postbeelden) staan in `docs/Graphic-Design/` (koppelteken, geen spatie i.v.m. een live og:image-URL die daarop leunt). Planning- en tekstdocumenten blijven los in `docs/`. Nieuwe ontwerpbestanden hier toevoegen, niet los in `docs/`.

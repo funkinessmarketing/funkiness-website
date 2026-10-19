@@ -2473,8 +2473,9 @@ details[open] .faq-icon {
    FOOTER
    ============================ */
 .site-footer {
-  background: var(--black);
-  color: white;
+  background: var(--cream);
+  color: var(--black);
+  border-top: 1px solid rgba(58,37,27,0.1);
   padding: 56px 5vw 40px;
   display: grid;
   grid-template-columns: 1fr;
@@ -2508,7 +2509,7 @@ details[open] .faq-icon {
 
 .footer-tagline {
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(58,37,27,0.6);
   line-height: 1.55;
   max-width: 260px;
   margin-bottom: 20px;
@@ -2534,7 +2535,7 @@ details[open] .faq-icon {
   margin-top: 8px;
   font-size: 14px;
   font-weight: 700;
-  color: rgba(255,255,255,0.85);
+  color: var(--black);
   text-decoration: none;
 }
 
@@ -2547,7 +2548,7 @@ details[open] .faq-icon {
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
+  color: rgba(58,37,27,0.45);
   margin-bottom: 16px;
 }
 
@@ -2559,7 +2560,7 @@ details[open] .faq-icon {
   display: block;
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255,255,255,0.68);
+  color: rgba(58,37,27,0.75);
   text-decoration: none;
   margin-bottom: 10px;
   transition: color 200ms ease;
@@ -2569,11 +2570,11 @@ details[open] .faq-icon {
   .footer-nav a { font-size: 15px; margin-bottom: 12px; }
 }
 
-.footer-nav a:hover { color: white; }
+.footer-nav a:hover { color: var(--black); }
 
 .footer-bottom {
-  background: var(--black);
-  border-top: 1px solid rgba(255,255,255,0.08);
+  background: var(--cream);
+  border-top: 1px solid rgba(58,37,27,0.1);
   padding: 18px 5vw;
   display: flex;
   flex-direction: column;
@@ -2594,7 +2595,7 @@ details[open] .faq-icon {
 .footer-bottom p,
 .footer-bottom a {
   font-size: 13px;
-  color: rgba(255,255,255,0.68);
+  color: rgba(58,37,27,0.68);
   text-decoration: none;
 }
 
