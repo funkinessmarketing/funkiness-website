@@ -345,12 +345,18 @@
         <h2 class="pl-headline">Feel Good Funk <span>Curaçao</span></h2>
         <p class="pl-sub">Funk waar je van in beweging komt. Voor tijdens het werk, in de auto met de ramen open en elke dag die wat meer FUN kan gebruiken.</p>
         <div class="pl-actions">
-          <button type="button" class="pl-toggle" aria-expanded="false" aria-controls="pl-player">Luister hier meteen <span aria-hidden="true">▶</span></button>
+          <button type="button" class="pl-toggle" data-pl-play aria-expanded="false" aria-controls="pl-player">Luister hier meteen <span aria-hidden="true">▶</span></button>
           <a href="https://open.spotify.com/playlist/3fPoCunEmMHFWb7YDUeOsP" class="pl-open" target="_blank" rel="noopener">Open in Spotify <span>↗</span></a>
         </div>
         <p class="pl-note">De speler komt van Spotify en laadt pas als je op de knop drukt.</p>
       </div>
-      <div class="pl-player" id="pl-player" hidden></div>
+      <div class="pl-visual">
+        <button type="button" class="pl-record" data-pl-play aria-label="Speel Feel Good Funk Curaçao af">
+          <span class="pl-disc" aria-hidden="true"><span class="pl-disc-label">FUN</span></span>
+          <span class="pl-sleeve" aria-hidden="true"><span class="pl-sleeve-title">Feel Good Funk</span><span class="pl-sleeve-play">▶</span></span>
+        </button>
+        <div class="pl-player" id="pl-player" hidden></div>
+      </div>
     </div>
   </section>
 
@@ -522,9 +528,10 @@
   // Spotify-speler laadt pas na een klik, zodat Spotify geen cookies zet zonder dat de bezoeker dat kiest
   (function () {
     var toggle = document.querySelector(".pl-toggle");
+    var record = document.querySelector(".pl-record");
     var box = document.getElementById("pl-player");
     if (!toggle || !box) return;
-    toggle.addEventListener("click", function () {
+    function play() {
       if (!box.firstChild) {
         var f = document.createElement("iframe");
         f.src = "https://open.spotify.com/embed/playlist/3fPoCunEmMHFWb7YDUeOsP?utm_source=generator&theme=0";
@@ -537,7 +544,9 @@
       box.hidden = false;
       toggle.setAttribute("aria-expanded", "true");
       toggle.hidden = true;
-    });
+      if (record) record.hidden = true;
+    }
+    document.querySelectorAll("[data-pl-play]").forEach(function (el) { el.addEventListener("click", play); });
   })();
   </script>
 <script src="../cookie-consent.js"></script>

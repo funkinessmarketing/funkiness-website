@@ -3417,21 +3417,24 @@ details[open] .faq-icon {
    ============================ */
 .playlist-section {
   background: var(--black);
-  padding: 48px 5vw 8px;
+  padding: 40px 16px 8px;
 }
 
 .pl-inner {
   max-width: 1200px;
   margin: 0 auto;
+  background: #4a3327;
+  border-radius: 38px 64px 42px 70px / 54px 40px 66px 44px;
+  padding: 36px 24px 40px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 36px;
 }
 
 .pl-kicker {
   font-size: 11px;
   font-weight: 700;
-  color: #2bea5c;
+  color: var(--soft-pink);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -3460,7 +3463,7 @@ details[open] .faq-icon {
 .pl-sub {
   font-size: 16px;
   line-height: 1.65;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.7);
   margin-bottom: 24px;
 }
 
@@ -3475,8 +3478,8 @@ details[open] .faq-icon {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #2bea5c;
-  color: var(--black);
+  background: var(--pink);
+  color: var(--cream);
   font: inherit;
   font-weight: 800;
   font-size: 15px;
@@ -3504,6 +3507,104 @@ details[open] .faq-icon {
   margin-top: 14px;
 }
 
+/* Vinylplaat half uit een panterprint-hoes; klik laadt de Spotify-speler op deze plek */
+.pl-visual { width: 100%; }
+
+.pl-record {
+  position: relative;
+  display: block;
+  width: min(100%, 440px);
+  aspect-ratio: 10 / 6.4;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.pl-toggle[hidden], .pl-record[hidden] { display: none; }
+.pl-record:focus-visible { outline: 3px solid white; outline-offset: 6px; border-radius: 24px; }
+
+.pl-sleeve {
+  position: absolute;
+  left: 0;
+  top: 4%;
+  width: 56%;
+  aspect-ratio: 1;
+  background: url("/leopard-caramel.svg") 0 0 / 70px auto;
+  border-radius: 22px 30px 24px 34px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  transform: rotate(-4deg);
+  z-index: 2;
+}
+
+.pl-sleeve-title {
+  position: absolute;
+  left: 9%;
+  bottom: 10%;
+  background: var(--cream);
+  color: var(--black);
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: clamp(14px, 4vw, 21px);
+  line-height: 1;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transform: rotate(-3deg);
+}
+
+.pl-sleeve-play {
+  position: absolute;
+  right: 9%;
+  top: 9%;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  background: var(--black);
+  color: var(--cream);
+  font-size: 20px;
+  border-radius: 50%;
+  padding-left: 4px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.pl-disc {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 60%;
+  aspect-ratio: 1;
+  margin-top: -30%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 0 31%, rgba(255,255,255,0.08) 31.5% 32%, transparent 32.5%),
+    repeating-radial-gradient(circle, #1c120d 0 2px, #2a1a12 2px 4px);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.4);
+  animation: pl-spin 7s linear infinite;
+  transition: right 0.3s ease;
+  z-index: 1;
+}
+
+.pl-disc-label {
+  position: absolute;
+  inset: 34%;
+  display: grid;
+  place-items: center;
+  background: var(--pink);
+  color: var(--cream);
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: clamp(14px, 3.6vw, 20px);
+  border-radius: 50%;
+}
+
+.pl-record:hover .pl-disc { right: -3%; }
+.pl-record:hover .pl-sleeve-play { transform: scale(1.1); }
+
+@keyframes pl-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .pl-disc { animation: none; } }
+
 .pl-player {
   border-radius: 28px 46px 30px 52px / 40px 28px 50px 30px;
   overflow: hidden;
@@ -3512,18 +3613,20 @@ details[open] .faq-icon {
 .pl-player iframe { display: block; width: 100%; border: 0; }
 
 @media (min-width: 700px) {
-  .playlist-section { padding: 64px 5vw 16px; }
+  .playlist-section { padding: 56px 5vw 16px; }
+  .pl-inner { padding: 52px 48px 56px; }
   .pl-headline { font-size: 52px; }
   .pl-headline span { font-size: 56px; }
 }
 
 @media (min-width: 1100px) {
-  .playlist-section { padding: 80px 7vw 24px; }
+  .playlist-section { padding: 72px 7vw 24px; }
   .pl-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 64px;
+    gap: 56px;
     align-items: center;
+    padding: 64px 64px 68px 72px;
   }
   .pl-sub { font-size: 17px; }
 }
