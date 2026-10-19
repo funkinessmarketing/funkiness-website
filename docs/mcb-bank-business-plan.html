@@ -85,6 +85,10 @@
     border:1px solid #ccc; padding:6px 8px; text-align:left; vertical-align:top;
   }
   th{ background:var(--cream); font-family:'Poppins',sans-serif; }
+  table.num{ font-size:12px; }
+  table.num th, table.num td{ padding:5px 6px; }
+  table.num td:not(:first-child){ text-align:right; white-space:nowrap; }
+  table.num tr.total td{ background:var(--cream); }
   strong{ font-weight:600; }
   .note{
     background:var(--cream); border-left:4px solid var(--pink);
@@ -138,7 +142,7 @@
 
 <h1>FUNkiness!</h1>
 <p class="subtitle">Business Plan and Projection of Business Income</p>
-<p class="meta-top">Prepared for: MCB Bank Internet Merchant Account application &nbsp;|&nbsp; Date: September 22, 2026</p>
+<p class="meta-top">Prepared for: MCB Bank Internet Merchant Account application &nbsp;|&nbsp; Date: September 22, 2026, revised October 1, 2026</p>
 
 <div class="toc">
   <p class="toc-title">Contents</p>
@@ -153,7 +157,7 @@
     <li><a href="#s8">Initial Investment and Funding</a></li>
     <li><a href="#s9">Use of Funds / Purpose of Account</a></li>
     <li><a href="#s10">Projection of Business Income</a></li>
-    <li><a href="#s11">Three-Year Financial Outlook</a></li>
+    <li><a href="#s11">Three-Year Financial Outlook (2026–2028)</a></li>
     <li><a href="#s12">Break-Even Analysis</a></li>
     <li><a href="#s13">Risks and Mitigation</a></li>
     <li><a href="#s14">Signature</a></li>
@@ -183,10 +187,10 @@
 <h2>3. Products and Services</h2>
 <h3>A. Full-service marketing engagements (local, Curaçao)</h3>
 <p>Custom marketing strategy, AI integration, social media management, content creation, and campaign execution for businesses on Curaçao. There are no fixed packages; each engagement is scoped to the client's size, sector, and goals.</p>
-<h3>B. Island Host AI Prompt Kit, digital product ($27 one-time)</h3>
+<h3>B. Island Host AI Prompt Kit, digital product (XCG 48.33 one-time, USD 27)</h3>
 <p>A downloadable set of 12 AI prompts for vacation rental hosts on Aruba, Bonaire, and Curaçao, covering listing descriptions for major booking platforms and tools to improve bookings and guest reviews. Sold as an instant digital download via Gumroad.</p>
 <h3>C. The Spark Plan, recurring subscription (in development)</h3>
-<p>A monthly social media management subscription for businesses that need structural, ongoing content and strategy support. Anchor pricing is $500 to $750 per month depending on scope.</p>
+<p>A monthly social media management subscription for businesses that need structural, ongoing content and strategy support. Anchor pricing is XCG 895.00 to XCG 1,342.50 per month (USD 500 to 750), depending on scope.</p>
 <h3>D. Free lead-generation tools</h3>
 <p>Two free assessment tools (a Social Media Scan and a Marketing Strategy Scan) that give prospective clients a personalized report on their marketing and AI readiness. These generate leads for the paid services above and do not themselves produce revenue.</p>
 </section>
@@ -259,12 +263,12 @@
 <h2>8. Initial Investment and Funding</h2>
 <p>FUNkiness! is entirely self-funded by the owner and requires no external financing to operate. The initial investment below has been covered from Daisy Kuipers' personal savings.</p>
 <table>
-  <tr><th>Item</th><th>Estimated Amount</th></tr>
-  <tr><td>Business registration (KvK) and administrative setup, completed</td><td>$150</td></tr>
-  <tr><td>Website domain and hosting setup</td><td>$100</td></tr>
-  <tr><td>Branding and design production</td><td>$300</td></tr>
-  <tr><td>Working capital buffer (software subscriptions and tools for the first few months)</td><td>$2,000</td></tr>
-  <tr><td><strong>Total initial investment</strong></td><td><strong>$2,550</strong></td></tr>
+  <tr><th>Item</th><th>Estimated Amount (XCG)</th></tr>
+  <tr><td>Business registration (KvK) and administrative setup, completed</td><td>268.50</td></tr>
+  <tr><td>Website domain and hosting setup</td><td>179.00</td></tr>
+  <tr><td>Branding and design production</td><td>537.00</td></tr>
+  <tr><td>Working capital buffer (software subscriptions and tools for the first few months)</td><td>3,580.00</td></tr>
+  <tr><td><strong>Total initial investment</strong></td><td><strong>4,564.50</strong></td></tr>
 </table>
 <p>No loan or external investment is being requested. The owner's personal savings also provide additional runway beyond this initial investment, covering personal living expenses during the early growth phase described in this plan.</p>
 </section>
@@ -282,24 +286,83 @@
 
 <section id="s10">
 <h2>10. Projection of Business Income</h2>
-<div class="note">These figures are the founder's own conservative estimate. The retainer price point is set relative to the founder's existing Spark Plan pricing, reflecting a new brand entering a small local market with no track record yet. The growth pace assumes a realistic, gradual client acquisition rate rather than uninterrupted monthly growth.</div>
+<div class="note"><strong>Currency and period.</strong> All amounts in this plan are stated in Caribbean guilders (XCG), the currency of the account. Prices that are set in US dollars are converted at the exchange rate of October 1, 2026: USD 1.00 = XCG 1.79 (the official fixed rate of the Centrale Bank van Curaçao en Sint Maarten). The annual projections follow calendar years, starting with 2026. FUNkiness! began operating in August 2026, so 2026 is a partial first year of five months (August to December 2026); 2027 is the first full calendar year.</div>
+<p>These figures are the founder's own conservative estimate. The retainer price point is set relative to the founder's existing Spark Plan pricing, reflecting a new brand entering a small local market with no track record yet. The growth pace assumes a realistic, gradual client acquisition rate rather than uninterrupted monthly growth.</p>
 
-<h3>Year 1 revenue assumptions</h3>
+<h3>10.1 Prices used in the calculation</h3>
+<table>
+  <tr><th>Revenue line</th><th>Price (USD)</th><th>Price (XCG)</th><th>Billing</th></tr>
+  <tr><td>Local full-service engagement (average)</td><td>850.00</td><td>1,521.50</td><td>per client per month</td></tr>
+  <tr><td>The Spark Plan, founding rate</td><td>500.00</td><td>895.00</td><td>per client per month</td></tr>
+  <tr><td>Island Host AI Prompt Kit</td><td>27.00</td><td>48.33</td><td>per sale</td></tr>
+</table>
+
+<h3>10.2 Revenue assumptions</h3>
 <ul>
-  <li><strong>Local full-service engagements, custom pricing (average $850/month per client):</strong> the core of the business. This full-service average sits somewhat above the existing Spark Plan pricing ($500 to $750/month for a narrower, social-only scope), reflecting the broader scope of a full-service engagement (strategy, AI integration, social media, and content combined). The business began operating in August 2026; with no local client signed yet as of this writing, the growth target conservatively assumes the first client around month 4, then roughly one net new client every two months, reaching 5 active clients by month 12. Estimated Year 1 total: $21,250.</li>
-  <li><strong>The Spark Plan, $500/month founding rate:</strong> one founding client signed around month 6. Estimated Year 1 total: $3,500.</li>
-  <li><strong>Island Host AI Prompt Kit, $27/sale:</strong> a gradual ramp from 2 sales/month in the first quarter to 8 sales/month by the fourth quarter, as outreach and content marketing build momentum. Estimated Year 1 total: 60 units, $1,620.</li>
+  <li><strong>Local full-service engagements, custom pricing (average XCG 1,521.50 per client per month):</strong> the core of the business. This full-service average sits somewhat above the existing Spark Plan pricing (XCG 895.00 to XCG 1,342.50 per month for a narrower, social-only scope), reflecting the broader scope of a full-service engagement (strategy, AI integration, social media, and content combined). With no local client signed yet as of this writing, the first client is conservatively expected in November 2026, followed by roughly one net new client every two months: January, March, May and July 2027, then November 2027. This gives 1 active client at year-end 2026 and 6 at year-end 2027.</li>
+  <li><strong>The Spark Plan, founding rate XCG 895.00 per month:</strong> one founding client from January 2027.</li>
+  <li><strong>Island Host AI Prompt Kit, XCG 48.33 per sale:</strong> a gradual ramp as outreach and content marketing build momentum: 2 sales per month from August to October 2026, 4 per month from November 2026 to January 2027, 6 per month from February to April 2027, 8 per month from May to July 2027, and 10 per month from August 2027.</li>
 </ul>
 
-<h3>Year 1 Projected Annual Summary</h3>
+<h3>10.3 Calculation of total revenue, first year (2026)</h3>
+<p><strong>Formula per month:</strong> revenue = (active local clients × XCG 1,521.50) + (active Spark Plan clients × XCG 895.00) + (Prompt Kit sales × XCG 48.33). The annual total is the sum of the monthly amounts. All amounts in the tables below are in XCG.</p>
+<p>The first year, 2026, covers the five months of operation from August to December. Revenue in August to October comes from Prompt Kit sales only; the first local client is added in November.</p>
+<table class="num">
+  <tr><th>Month</th><th>Local clients</th><th>Local revenue</th><th>Spark Plan clients</th><th>Spark Plan revenue</th><th>Prompt Kit sales</th><th>Prompt Kit revenue</th><th>Total revenue</th></tr>
+  <tr><td>August 2026</td><td>0</td><td>0.00</td><td>0</td><td>0.00</td><td>2</td><td>96.66</td><td>96.66</td></tr>
+  <tr><td>September 2026</td><td>0</td><td>0.00</td><td>0</td><td>0.00</td><td>2</td><td>96.66</td><td>96.66</td></tr>
+  <tr><td>October 2026</td><td>0</td><td>0.00</td><td>0</td><td>0.00</td><td>2</td><td>96.66</td><td>96.66</td></tr>
+  <tr><td>November 2026</td><td>1</td><td>1,521.50</td><td>0</td><td>0.00</td><td>4</td><td>193.32</td><td>1,714.82</td></tr>
+  <tr><td>December 2026</td><td>1</td><td>1,521.50</td><td>0</td><td>0.00</td><td>4</td><td>193.32</td><td>1,714.82</td></tr>
+  <tr class="total"><td><strong>Total 2026</strong></td><td><strong>2</strong> client-months</td><td><strong>3,043.00</strong></td><td><strong>0</strong> client-months</td><td><strong>0.00</strong></td><td><strong>14</strong> sales</td><td><strong>676.62</strong></td><td><strong>3,719.62</strong></td></tr>
+</table>
 <table>
-  <tr><th>Category</th><th>Amount</th></tr>
-  <tr><td>Local full-service engagements</td><td>$21,250</td></tr>
-  <tr><td>The Spark Plan revenue</td><td>$3,500</td></tr>
-  <tr><td>Island Host AI Prompt Kit revenue</td><td>$1,620</td></tr>
-  <tr><td><strong>Total projected annual revenue</strong></td><td><strong>$26,370</strong></td></tr>
-  <tr><td>Estimated annual operating expenses (software, hosting, marketing tools, Gumroad fees, freelance production support from Berdien Renes as client volume grows)</td><td>$3,500</td></tr>
-  <tr><td><strong>Projected net income</strong></td><td><strong>$22,870</strong></td></tr>
+  <tr><th>Revenue line</th><th>Calculation</th><th>Amount (XCG)</th></tr>
+  <tr><td>Local full-service engagements</td><td>2 client-months × XCG 1,521.50</td><td>3,043.00</td></tr>
+  <tr><td>The Spark Plan</td><td>0 client-months × XCG 895.00</td><td>0.00</td></tr>
+  <tr><td>Island Host AI Prompt Kit</td><td>14 sales × XCG 48.33</td><td>676.62</td></tr>
+  <tr><td><strong>Total projected revenue 2026</strong></td><td></td><td><strong>3,719.62</strong></td></tr>
+</table>
+
+<h3>10.4 Calculation of total revenue, first full year (2027)</h3>
+<p>2027 is the first full year of operation and applies the same formula and assumptions to all twelve months.</p>
+<table class="num">
+  <tr><th>Month</th><th>Local clients</th><th>Local revenue</th><th>Spark Plan clients</th><th>Spark Plan revenue</th><th>Prompt Kit sales</th><th>Prompt Kit revenue</th><th>Total revenue</th></tr>
+  <tr><td>January 2027</td><td>2</td><td>3,043.00</td><td>1</td><td>895.00</td><td>4</td><td>193.32</td><td>4,131.32</td></tr>
+  <tr><td>February 2027</td><td>2</td><td>3,043.00</td><td>1</td><td>895.00</td><td>6</td><td>289.98</td><td>4,227.98</td></tr>
+  <tr><td>March 2027</td><td>3</td><td>4,564.50</td><td>1</td><td>895.00</td><td>6</td><td>289.98</td><td>5,749.48</td></tr>
+  <tr><td>April 2027</td><td>3</td><td>4,564.50</td><td>1</td><td>895.00</td><td>6</td><td>289.98</td><td>5,749.48</td></tr>
+  <tr><td>May 2027</td><td>4</td><td>6,086.00</td><td>1</td><td>895.00</td><td>8</td><td>386.64</td><td>7,367.64</td></tr>
+  <tr><td>June 2027</td><td>4</td><td>6,086.00</td><td>1</td><td>895.00</td><td>8</td><td>386.64</td><td>7,367.64</td></tr>
+  <tr><td>July 2027</td><td>5</td><td>7,607.50</td><td>1</td><td>895.00</td><td>8</td><td>386.64</td><td>8,889.14</td></tr>
+  <tr><td>August 2027</td><td>5</td><td>7,607.50</td><td>1</td><td>895.00</td><td>10</td><td>483.30</td><td>8,985.80</td></tr>
+  <tr><td>September 2027</td><td>5</td><td>7,607.50</td><td>1</td><td>895.00</td><td>10</td><td>483.30</td><td>8,985.80</td></tr>
+  <tr><td>October 2027</td><td>5</td><td>7,607.50</td><td>1</td><td>895.00</td><td>10</td><td>483.30</td><td>8,985.80</td></tr>
+  <tr><td>November 2027</td><td>6</td><td>9,129.00</td><td>1</td><td>895.00</td><td>10</td><td>483.30</td><td>10,507.30</td></tr>
+  <tr><td>December 2027</td><td>6</td><td>9,129.00</td><td>1</td><td>895.00</td><td>10</td><td>483.30</td><td>10,507.30</td></tr>
+  <tr class="total"><td><strong>Total 2027</strong></td><td><strong>50</strong> client-months</td><td><strong>76,075.00</strong></td><td><strong>12</strong> client-months</td><td><strong>10,740.00</strong></td><td><strong>96</strong> sales</td><td><strong>4,639.68</strong></td><td><strong>91,454.68</strong></td></tr>
+</table>
+<table>
+  <tr><th>Revenue line</th><th>Calculation</th><th>Amount (XCG)</th></tr>
+  <tr><td>Local full-service engagements</td><td>50 client-months × XCG 1,521.50</td><td>76,075.00</td></tr>
+  <tr><td>The Spark Plan</td><td>12 client-months × XCG 895.00</td><td>10,740.00</td></tr>
+  <tr><td>Island Host AI Prompt Kit</td><td>96 sales × XCG 48.33</td><td>4,639.68</td></tr>
+  <tr><td><strong>Total projected revenue 2027</strong></td><td></td><td><strong>91,454.68</strong></td></tr>
+</table>
+
+<h3>10.5 Calculation of operating expenses</h3>
+<p>Operating expenses are calculated with the same monthly model:</p>
+<ul>
+  <li><strong>Software, hosting, email services and marketing tools:</strong> XCG 315.00 per month (approximately USD 175).</li>
+  <li><strong>Gumroad fees:</strong> 10% plus USD 0.50 per sale, which comes to XCG 5.73 per Prompt Kit sale.</li>
+  <li><strong>Freelance production support (Berdien Renes):</strong> estimated at 10% of local full-service revenue, so this cost grows in step with the number of clients.</li>
+</ul>
+<table>
+  <tr><th>Expense (XCG)</th><th>2026 (Aug–Dec)</th><th>2027</th><th>2028</th></tr>
+  <tr><td>Software, hosting, email and marketing tools (XCG 315.00/month)</td><td>5 × 315.00 = 1,575.00</td><td>12 × 315.00 = 3,780.00</td><td>12 × 315.00 = 3,780.00</td></tr>
+  <tr><td>Gumroad fees (XCG 5.73 per Prompt Kit sale)</td><td>14 × 5.73 = 80.22</td><td>96 × 5.73 = 550.08</td><td>130 × 5.73 = 744.90</td></tr>
+  <tr><td>Freelance production support (10% of local revenue)</td><td>10% × 3,043.00 = 304.30</td><td>10% × 76,075.00 = 7,607.50</td><td>10% × 138,456.50 = 13,845.65</td></tr>
+  <tr><td><strong>Total operating expenses</strong></td><td><strong>1,959.52</strong></td><td><strong>11,937.58</strong></td><td><strong>18,370.55</strong></td></tr>
 </table>
 
 <h3>Basis for projection</h3>
@@ -307,22 +370,25 @@
 </section>
 
 <section id="s11">
-<h2>11. Three-Year Financial Outlook</h2>
-<p>Client acquisition is projected to continue beyond Year 1 at a cautious pace, and the Year 2 and Year 3 figures below assume some client turnover alongside new signings rather than pure, uninterrupted addition, a deliberately conservative planning assumption for a small local market.</p>
+<h2>11. Three-Year Financial Outlook (2026–2028)</h2>
+<p>The outlook follows calendar years, starting with 2026, and applies the same monthly model as Section 10. For 2028, client acquisition slows to net new local clients in March, July and October 2028 (9 active clients at year-end), a second Spark Plan client starts in January 2028, and Prompt Kit sales rise from 10 to 12 per month from August 2028. Client numbers are net figures: they allow for some client turnover alongside new signings, a deliberately conservative planning assumption for a small local market. All amounts in XCG.</p>
 <table>
-  <tr><th>Metric</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr>
-  <tr><td>Active local clients (year-end)</td><td>5</td><td>8</td><td>12</td></tr>
-  <tr><td>Active Spark Plan clients (year-end)</td><td>1</td><td>2</td><td>3</td></tr>
-  <tr><td>Total projected revenue</td><td>$26,370</td><td>$70,000</td><td>$109,000</td></tr>
-  <tr><td>Estimated operating expenses</td><td>$3,500</td><td>$6,500</td><td>$10,000</td></tr>
-  <tr><td><strong>Projected net income</strong></td><td><strong>$22,870</strong></td><td><strong>$63,500</strong></td><td><strong>$99,000</strong></td></tr>
+  <tr><th>Metric (XCG)</th><th>2026 (Aug–Dec)</th><th>2027</th><th>2028</th></tr>
+  <tr><td>Active local clients (year-end)</td><td>1</td><td>6</td><td>9</td></tr>
+  <tr><td>Active Spark Plan clients (year-end)</td><td>0</td><td>1</td><td>2</td></tr>
+  <tr><td>Local full-service revenue</td><td>3,043.00</td><td>76,075.00</td><td>138,456.50</td></tr>
+  <tr><td>The Spark Plan revenue</td><td>0.00</td><td>10,740.00</td><td>21,480.00</td></tr>
+  <tr><td>Island Host AI Prompt Kit revenue</td><td>676.62</td><td>4,639.68</td><td>6,282.90</td></tr>
+  <tr><td><strong>Total projected revenue</strong></td><td><strong>3,719.62</strong></td><td><strong>91,454.68</strong></td><td><strong>166,219.40</strong></td></tr>
+  <tr><td>Estimated operating expenses</td><td>1,959.52</td><td>11,937.58</td><td>18,370.55</td></tr>
+  <tr><td><strong>Projected net income</strong></td><td><strong>1,760.10</strong></td><td><strong>79,517.10</strong></td><td><strong>147,848.85</strong></td></tr>
 </table>
-<p>Year 2 and Year 3 operating expenses grow to reflect additional freelance production support from Berdien Renes as the client roster expands beyond what the owner can deliver alone. Revenue growth is modeled well below a straight-line continuation of the Year 1 pace, allowing room for slower sales cycles, occasional client churn, and the reality that a small local market will not sustain indefinite linear growth.</p>
+<p>Operating expenses grow mainly through freelance production support from Berdien Renes as the client roster expands beyond what the owner can deliver alone. Revenue growth is modeled well below a straight-line continuation of the early pace, allowing room for slower sales cycles, occasional client churn, and the reality that a small local market will not sustain indefinite linear growth.</p>
 </section>
 
 <section id="s12">
 <h2>12. Break-Even Analysis</h2>
-<p>Base monthly operating costs during the early ramp-up period (before freelance support begins) are estimated at approximately $150 to $200 per month, covering software subscriptions, hosting, and email services. A single local client at the average $850/month retainer covers this cost several times over. Based on the growth target of one net new client roughly every two months, with the first client signed around month 4, FUNkiness! projects a pre-revenue period in months 1 through 3, followed by positive monthly cash flow from month 4 onward once the first client is signed, well before the freelance support cost is added later in the year.</p>
+<p>Base monthly operating costs during the early ramp-up period are estimated at XCG 315.00 per month (approximately USD 175), covering software subscriptions, hosting, and email services. A single local client at the average retainer of XCG 1,521.50 per month covers this cost several times over. From August to October 2026, monthly revenue from Prompt Kit sales (XCG 96.66) is below monthly costs (XCG 326.46), a monthly shortfall of XCG 229.80 that is covered by the owner's working capital buffer. From November 2026, when the first local client is expected, monthly revenue of XCG 1,714.82 exceeds monthly costs of XCG 490.07, giving positive monthly cash flow from November 2026 onward. Over the full 2026 period the business is projected to close with a net result of XCG 1,760.10.</p>
 </section>
 
 <section id="s13">
@@ -342,7 +408,7 @@
 <p>Signature</p>
 <p><strong>Name:</strong> Daisy Kuipers</p>
 <p><strong>Title:</strong> Owner, Founder &amp; Managing Director, FUNkiness! AI, Social Media &amp; Marketing</p>
-<p><strong>Date:</strong> September 22, 2026</p>
+<p><strong>Date:</strong> October 1, 2026</p>
 </section>
 
 <p class="meta">FUNkiness! AI, Social Media &amp; Marketing. Curaçao.</p>
