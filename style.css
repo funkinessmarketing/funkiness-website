@@ -3643,3 +3643,76 @@ details[open] .faq-icon {
   }
   .pl-sub { font-size: 17px; }
 }
+
+/* ============================
+   LETTERGROOTTES GELIJK AAN DE HOMEPAGE (sinds 2026-10-19)
+   Eén maat per soort tekst op elke pagina. !important omdat een deel van de
+   koppen inline font-sizes heeft. Tussenkoppen in blogartikelen blijven kleiner.
+   ============================ */
+:root {
+  --fs-title: clamp(32px, 4.4vw, 66px);
+  --fs-intro: clamp(16px, 1.6vw, 26px);
+}
+
+/* Titels: paginatitel en de kop van elk blok, zoals "The AI marketing team behind your brand." */
+.page-hero h2,
+.page-hero:not(:has(h2)) h1,
+.blog-hero h1,
+.hero-content h1:not([class]),
+.scan-h1,
+.services-copy h2,
+.funky-ladies-left h2,
+.newsletter-copy h2,
+.scan-copy h2,
+.mo-headline,
+.pl-headline,
+.why-us-header h2,
+.journey-header h2,
+.seo-section h2,
+.feature-split-content h3,
+.faq-category h2,
+.cta-band h2,
+.contact-info-col h2,
+.blog-section-header h2,
+.kit-cta-final h2 {
+  font-size: var(--fs-title) !important;
+}
+.mo-headline span,
+.pl-headline span { font-size: 1em !important; }
+.blog-hero h1 { max-width: 1000px; }
+
+/* Labels boven een kop */
+.kicker,
+.section-kicker,
+.mo-kicker,
+.pl-kicker { font-size: 14px !important; }
+
+/* Intro onder een titel */
+.page-tagline,
+.blog-hero p { font-size: var(--fs-intro) !important; }
+
+/* Kaarttitels: groot zoals de dienstenkaarten, klein zoals de Why-kaarten */
+.service-detail-card h3 { font-size: 22px !important; }
+.blog-card-content h3,
+.journey-content h3,
+.kit-card h3 { font-size: 20px !important; }
+@media (min-width: 1100px) {
+  .service-detail-card h3 { font-size: 25px !important; }
+  .blog-card-content h3,
+  .journey-content h3,
+  .kit-card h3 { font-size: 22px !important; }
+}
+
+/* Broodtekst 17px, kaarttekst 15/16px zoals op de homepage */
+.seo-section p:not(.seo-statement):not([style*="font-size"]),
+.feature-split-content p,
+.cta-band p:not([style*="font-size"]),
+.contact-info-col p:not(.section-kicker):not([style*="font-size"]),
+.blog-post-body p,
+.blog-callout p,
+.funky-ladies-left p:not(.section-label),
+.mo-sub { font-size: 17px !important; }
+.service-detail-card p { font-size: 15px !important; }
+@media (min-width: 1100px) {
+  .service-detail-card p { font-size: 16px !important; }
+}
