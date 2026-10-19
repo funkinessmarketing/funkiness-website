@@ -3039,14 +3039,14 @@ details[open] .faq-icon {
 /* Compact green button next to the hamburger on mobile */
 .book-cta-mobile {
   margin-left: auto;
-  margin-right: 12px;
+  margin-right: 8px;
   background: #2bea5c;
   color: var(--black);
   text-decoration: none;
   font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 14px;
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 999px;
   white-space: nowrap;
   box-shadow: 0 8px 20px rgba(43,234,92,0.3);
@@ -3716,3 +3716,74 @@ details[open] .faq-icon {
 @media (min-width: 1100px) {
   .service-detail-card p { font-size: 16px !important; }
 }
+
+/* ============================
+   BLOKKLEUREN (sinds 2026-10-19)
+   Elke pagina volgt het ritme van de homepage: vanaf de crème footer omhoog
+   bruin, crème, roze, crème, bruin... Elk blok krijgt .blok-creme, .blok-roze
+   of .blok-bruin; de achtergrond loopt altijd over de volle breedte, ook als
+   het blok zelf smal is.
+   ============================ */
+.blok-creme { --blok-bg: var(--cream); }
+.blok-roze { --blok-bg: var(--pink); }
+.blok-bruin { --blok-bg: var(--black); }
+.blok-creme,
+.blok-roze,
+.blok-bruin {
+  background: var(--blok-bg) !important;
+  box-shadow: 0 0 0 100vmax var(--blok-bg);
+  clip-path: inset(0 -100vmax);
+}
+
+/* Tekst direct in het blok (niet in kaarten, FAQ-items of formulieren) */
+.blok-creme :is(h1, h2, h3, li):not(:where([class*="card"] *, details *, form *, .stat-panel *)) { color: var(--black) !important; }
+.blok-creme p:not(:where([class*="card"] *, details *, form *, .stat-panel *, .section-kicker, .kicker, .section-label)) { color: rgba(58,37,27,0.78) !important; }
+.blok-roze :is(h1, h2, h3, li, p):not(:where([class*="card"] *, details *, form *, .stat-panel *, .section-label)),
+.blok-bruin :is(h1, h2, h3, li):not(:where([class*="card"] *, details *, form *, .stat-panel *)) { color: white !important; }
+.blok-bruin p:not(:where([class*="card"] *, details *, form *, .stat-panel *, .section-kicker, .kicker, .section-label)) { color: rgba(255,255,255,0.8) !important; }
+
+/* Roze accenten: op roze worden ze bruin of wit, anders blijven ze roze */
+.blok-creme .script-word,
+.blok-bruin .script-word,
+.blok-creme .cta-band h2 span,
+.blok-bruin h2 span { color: var(--pink) !important; }
+.blok-roze .script-word,
+.blok-roze h2 span,
+.blok-roze .section-label { color: var(--black) !important; }
+.blok-roze :is(.kicker, .section-kicker, .stat-panel-label):not(:where([class*="card"] *, .stat-panel *)) { color: white !important; }
+.blok-roze li::before { color: white !important; }
+.blok-roze a:not([class*="button"]):not([data-book]):not([class*="card"]):not(:where([class*="card"] *, details *)) { color: white !important; }
+.blok-roze .pink-button { background: var(--black) !important; }
+.blok-bruin .black-button { background: var(--pink) !important; }
+.blok-creme .why-card,
+.blok-roze .why-card { background: var(--black); border-color: transparent; }
+.blok-roze .why-split-visual,
+.blok-roze .why-us-visual { box-shadow: 0 0 50px rgba(58, 37, 27, 0.3); }
+
+/* Tekstblok rechts (om en om) */
+@media (min-width: 900px) {
+  .faq-section--right { margin-left: auto; }
+}
+@media (min-width: 1100px) {
+  .funky-ladies-section--reverse { grid-template-columns: 1.08fr 0.92fr; }
+  .funky-ladies-section--reverse .funky-ladies-image-wrap { order: -1; }
+}
+.blok-bruin .service-detail-card,
+.blok-roze .service-detail-card { background: var(--cream-light); border-color: transparent; }
+
+/* Het ronde citaatpaneel houdt zijn lichte blob-vorm; de blokkleur vult de ruimte eromheen, ook de marges */
+.stat-panel.blok-creme,
+.stat-panel.blok-roze,
+.stat-panel.blok-bruin {
+  background: var(--cream-light) !important;
+  clip-path: inset(-9px -100vmax -57px);
+  transform: none !important;
+}
+@media (min-width: 900px) {
+  .stat-panel.blok-creme,
+  .stat-panel.blok-roze,
+  .stat-panel.blok-bruin { clip-path: inset(-17px -100vmax -73px); }
+}
+
+/* FAQ- en bloghero zijn roze: links daarin wit, anders vallen ze weg */
+.blog-hero a { color: white !important; text-decoration: underline !important; }
