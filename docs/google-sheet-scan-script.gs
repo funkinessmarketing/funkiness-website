@@ -29,6 +29,10 @@ function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
+    if (d.type === 'nieuwsbrief') {
+      nieuwsbriefInschrijving(d);
+      return ContentService.createTextOutput('ok-v2');
+    }
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
     zorgVoorKoppen(sheet);
 
@@ -54,6 +58,31 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+// Nieuwsbrief: eigen tabblad, één rij per mailadres. Opnieuw inschrijven werkt taal en datum bij.
+const NIEUWSBRIEF_KOPPEN = ['Datum', 'Email', 'Taal', 'Bron', 'Status'];
+
+function nieuwsbriefInschrijving(d) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const tab = ss.getSheetByName('Nieuwsbrief') || ss.insertSheet('Nieuwsbrief');
+  if (tab.getRange(1, 1).getValue() !== 'Datum') {
+    tab.getRange(1, 1, 1, NIEUWSBRIEF_KOPPEN.length).setValues([NIEUWSBRIEF_KOPPEN]).setFontWeight('bold');
+    tab.setFrozenRows(1);
+  }
+  const email = String(d.email || '').trim().toLowerCase();
+  const rij = [new Date(), email, (d.taal || 'en').toUpperCase(), d.bron || '', 'Ingeschreven'];
+  const laatste = tab.getLastRow();
+  if (laatste > 1) {
+    const adressen = tab.getRange(2, 2, laatste - 1, 1).getValues();
+    for (let i = 0; i < adressen.length; i++) {
+      if (String(adressen[i][0]).toLowerCase() === email) {
+        tab.getRange(i + 2, 1, 1, rij.length).setValues([rij]);
+        return;
+      }
+    }
+  }
+  tab.appendRow(rij);
 }
 
 // Telefoonnummers met + worden anders als formule gelezen (#ERROR!)

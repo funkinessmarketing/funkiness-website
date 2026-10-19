@@ -714,6 +714,35 @@
       .scan-book-hook { font-size: 21px; }
       .scan-btn-wa { margin-top: 0; margin-left: 12px; }
     }
+    /* FUNky Letter opt-in */
+    .scan-funky {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 14px;
+      align-items: start;
+      margin: 28px 0 18px;
+      padding: 20px 20px 20px 18px;
+      background: white;
+      border: 2px solid var(--pink);
+      border-radius: 26px 18px 30px 16px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .scan-funky:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(242,27,122,0.15); }
+    .scan-funky input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .scan-funky-box {
+      width: 30px; height: 30px; border-radius: 9px;
+      border: 2px solid var(--black); background: var(--cream);
+      display: grid; place-items: center; margin-top: 2px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .scan-funky-box::after { content: "✚"; color: white; font-size: 16px; transform: scale(0) rotate(-90deg); transition: transform 0.2s; }
+    .scan-funky input:checked + .scan-funky-box { background: var(--pink); border-color: var(--pink); }
+    .scan-funky input:checked + .scan-funky-box::after { transform: scale(1) rotate(0); }
+    .scan-funky input:focus-visible + .scan-funky-box { outline: 3px solid var(--pink); outline-offset: 3px; }
+    .scan-funky-kicker { display: block; font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 16px; margin-bottom: 2px; }
+    .scan-funky-text strong { display: block; font-family: "Poppins", sans-serif; font-weight: 900; font-size: 17px; line-height: 1.25; }
+    .scan-funky-sub { display: block; font-size: 14px; line-height: 1.5; color: rgba(58,37,27,0.7); margin-top: 6px; }
   </style>
 </head>
 <body>
@@ -1288,6 +1317,15 @@
           <label>What is your biggest marketing challenge right now? <span class="scan-hint">(optional, but it makes your report a lot sharper)</span></label>
           <textarea id="uitdaging" maxlength="500" placeholder="e.g. We get likes, but hardly any bookings from social media"></textarea>
         </div>
+        <label class="scan-funky" for="funkyLetter">
+          <input type="checkbox" id="funkyLetter" />
+          <span class="scan-funky-box" aria-hidden="true"></span>
+          <span class="scan-funky-text">
+            <span class="scan-funky-kicker">Your report is round one.</span>
+            <strong>Yes, keep the tips coming with the FUNky Letter</strong>
+            <span class="scan-funky-sub">The marketing and AI news that matters for businesses on Curaçao, Aruba and Bonaire, with one tip you can use the same day. No boring allowed. Unsubscribe anytime with one reply.</span>
+          </span>
+        </label>
         <button class="scan-btn-next" onclick="submitScan()">Get my scan report <span>→</span></button>
       </div>
     </section>
@@ -1412,6 +1450,7 @@
         <a href="blog.html">Blog</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
+        <a href="/#newsletter">FUNky Letter</a>
       </nav>
     </div>
     <div class="footer-leopard" aria-hidden="true">

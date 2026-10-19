@@ -221,6 +221,15 @@ async function submitScan() {
 
   const apiEndpoint = scanType === 'social' ? '/api/scan' : '/api/marketing-scan';
 
+  // FUNky Letter: alleen als het vakje is aangevinkt, los van de scan zelf
+  if (document.getElementById('funkyLetter')?.checked) {
+    fetch('/api/newsletter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, taal: locatie === 'nederland' ? 'nl' : 'en', bron: 'scan-' + scanType, honeypot })
+    }).catch(() => {});
+  }
+
   try {
     const res = await fetch(apiEndpoint, {
       method: 'POST',
