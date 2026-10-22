@@ -143,6 +143,8 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
 .upsell-text p { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5; max-width: 280px; }
 .upsell-cta { background: var(--pink); color: var(--white); font-family: 'Permanent Marker', cursive; font-size: 15px; padding: 10px 22px; border-radius: 999px; white-space: nowrap; text-align: center; flex-shrink: 0; }
 .upsell-price { font-size: 11px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 4px; font-family: 'Inter', sans-serif; }
+a.upsell-cta, a.upsell-price, a.back-url { display: block; text-decoration: none; }
+.back-body a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ── PROMPT SELECTORS (interactive quick fill) ── */
 .prompt-selectors { background: #f8f3ee; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 7px; }
@@ -584,12 +586,12 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
     <p><strong>Insider move:</strong> after a result you like, type "now give me 2 more variations with a different opening line." Instant A/B options, no extra work.</p>
     <p style="margin-top:10px;"><strong>Power user workflow:</strong> paste your "Copy my property facts" summary as the very first message in a new ChatGPT or Claude conversation, then use all 12 prompts in that same conversation. The AI already knows everything, no placeholders to fill in.</p>
     <p style="margin-top:10px;"><strong>Island context is automatic:</strong> the island you pick on the Fact Sheet is already built into every platform prompt (Airbnb, VRBO, Micazu). Nothing to paste manually.</p>
-    <p style="margin-top:10px;"><strong>Time your hurricane-free angle:</strong> Aruba and Curaçao sit outside the hurricane belt, most North American guests don't know that. They start searching "hurricane-free Caribbean" from June through November. Push that fact in your teaser and social posts during those months specifically, not year-round, it loses impact outside hurricane season.</p>
+    <p style="margin-top:10px;"><strong>Time your hurricane-free angle:</strong> Aruba, Bonaire and Curaçao sit outside the main hurricane belt, and plenty of North American guests don't know that. The Atlantic hurricane season runs from June through November. Push that fact in your teaser and social posts during those months specifically, not year-round.</p>
   </div>
 
   <div class="toc-grid">
     <div class="toc-item"><div class="toc-num">08</div><div class="toc-label">Listing Descriptions</div><div class="toc-sub">Airbnb, VRBO, Micazu + universal tools</div></div>
-    <div class="toc-item"><div class="toc-num">04</div><div class="toc-label">Algorithm &amp; Reputation</div><div class="toc-sub">Audit, amenities, photos, reviews</div></div>
+    <div class="toc-item"><div class="toc-num">04</div><div class="toc-label">More Bookings &amp; Reputation</div><div class="toc-sub">Audit, amenities, photos, reviews</div></div>
   </div>
 </div>
 
@@ -612,7 +614,7 @@ body { font-family: 'Inter', sans-serif; background: #e0d8d0; color: var(--black
   <div class="cat-bg-num">AB</div>
   <div class="cat-eyebrow">Platform 01</div>
   <h2 class="cat-title">Airbnb</h2>
-  <p class="cat-desc">The largest vacation rental platform globally. On the ABC islands it drives the majority of international bookings. Your listing description and Your Space field are each limited to 500 characters: roughly 60-80 words. Only the first 295 characters show without "read more." Write for that first screen. Airbnb rewards active listings: fast response rate, regular updates and a completed profile all lift your ranking. Turn off auto-translation and set your own text per language to reach Dutch, American, Canadian and Colombian guests in their own language. Colombia is now Curaçao's #3 source market, ahead of Canada (Curaçao Tourist Board, January to September 2026).</p>
+  <p class="cat-desc">The largest vacation rental platform globally. Your listing description and Your Space field are each limited to 500 characters: roughly 60-80 words. In the app, only the first 295 characters show before "Show more." Write for that first screen. Airbnb rewards active listings: fast response rate, regular updates and a completed profile all lift your ranking. Turn off auto-translation and set your own text per language to reach Dutch, American, Canadian and Colombian guests in their own language. Colombia is now Curaçao's #3 source market, ahead of Canada (Curaçao Tourist Board, January to September 2026).</p>
   <div class="cat-list">
     <div class="cat-item"><div class="cat-dot"></div><span>01: Airbnb Listing Description + Title</span></div>
   </div>
@@ -652,7 +654,7 @@ Write an Airbnb listing description for my property for the American market. Max
 
 Write an Airbnb listing description for my property for the Canadian market. Max 500 characters. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
 
-500 characters is tight. Canadian guests are escaping real winters: lead with the contrast between -20°C back home and what it feels like to arrive here. That contrast is the single most emotionally resonant booking trigger for this market. Then anchor it with one specific detail about this property. End with a line that makes booking feel like the obvious decision before winter hits. Include the island name and 1-2 top amenities as natural search terms.</div>
+500 characters is tight. Canadian guests are escaping real winters: lead with the contrast between -20°C back home and what it feels like to arrive here. That contrast is a strong booking trigger for this market. Then anchor it with one specific detail about this property. End with a line that makes booking feel like the obvious decision before winter hits. Include the island name and 1-2 top amenities as natural search terms.</div>
     </div>
 
     <div class="output-section">
@@ -711,7 +713,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
   <div class="cat-bg-num">VR</div>
   <div class="cat-eyebrow">Platform 02</div>
   <h2 class="cat-title">VRBO</h2>
-  <p class="cat-desc">VRBO reaches primarily North American families and groups looking for full-home rentals. The platform gives you up to 10,000 characters for your description, far more than Airbnb. Unlike Airbnb, VRBO shows one listing to all guests regardless of language, so choose the version that fits your primary audience. VRBO guests tend to book longer stays and read listings more carefully than on other platforms.</p>
+  <p class="cat-desc">VRBO reaches primarily North American families and groups looking for full-home rentals. The platform gives you up to 10,000 characters for your description, far more than Airbnb. Unlike Airbnb, VRBO shows one listing to all guests regardless of language, so choose the version that fits your primary audience.</p>
   <div class="cat-list">
     <div class="cat-item"><div class="cat-dot"></div><span>02: VRBO Description + Title</span></div>
   </div>
@@ -765,7 +767,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
   <h2 class="cat-title">Micazu</h2>
   <p class="cat-desc">Micazu is a Dutch vacation rental platform with strong coverage on Curaçao, Aruba and Bonaire. Almost all guests are Dutch-speaking. They compare listings carefully, read descriptions in full and want to feel they can trust the host before they book. Maximum 5,000 characters. Always write in Dutch. A sharp 3,000-character description converts better than a padded 5,000-character one.</p>
   <div class="cat-list">
-    <div class="cat-item"><div class="cat-dot"></div><span>03: Micazu beschrijving (Nederlands)</span></div>
+    <div class="cat-item"><div class="cat-dot"></div><span>03: Micazu Description (in Dutch)</span></div>
   </div>
 </div>
 
@@ -774,7 +776,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
   <div class="page-bar"><span class="page-bar-cat">Micazu</span><span class="page-bar-range">03</span></div>
 
   <div class="prompt-card">
-    <div class="prompt-header"><div class="prompt-badge">03</div><div class="prompt-title">Micazu beschrijving</div></div>
+    <div class="prompt-header"><div class="prompt-badge">03</div><div class="prompt-title">Micazu Description (in Dutch)</div></div>
     <div class="prompt-note">Micazu staat maximaal 5000 tekens toe voor de beschrijving. Dat is ruimer dan Airbnb maar gebruik die ruimte niet om meer te zeggen, gebruik hem om beter te zeggen. Nederlandse gasten waarderen eerlijkheid en warmte boven perfecte marketing. Ze willen weten of het er gezellig is, of de woning klopt en of jij als host te vertrouwen bent.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Onderscheidend kenmerk</span><textarea class="sel-textarea" data-ph="p04-onderscheid" placeholder="Bijv. panoramisch zeezicht, privézwembad op het dak, directe strandtoegang..." rows="2"></textarea></div>
@@ -825,7 +827,7 @@ Verwerk vanzelfsprekend als zoektermen in de tekst: de eilandnaam, het type woni
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">04</div><div class="prompt-title">Short Teaser Description</div></div>
-    <div class="prompt-note">These 2 sentences work harder than most hosts realize. They appear in your Airbnb link preview when you share on WhatsApp, in your direct booking website header, in social media bios and in Google snippet previews. Guests decide in under 4 seconds whether to click through. A sentence that leads with a feeling ("Steps from the water, shaded by palms") outperforms one that leads with features ("3 bedrooms, private pool") every time. This prompt gives you 3 angles so you can pick the one that hits.</div>
+    <div class="prompt-note">These 2 sentences work harder than most hosts realize. They appear in your Airbnb link preview when you share on WhatsApp, in your direct booking website header, in social media bios and in Google snippet previews. Guests decide in seconds whether to click through. A sentence that leads with a feeling ("Steps from the water, shaded by palms") usually beats one that leads with features ("3 bedrooms, private pool"). This prompt gives you 3 angles so you can pick the one that hits.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Strongest feature</span><input type="text" class="sel-text" data-ph="p06-feat1" placeholder="e.g. private infinity pool facing west for sunsets"></div>
       <div class="sel-row"><span class="sel-label">Second feature</span><input type="text" class="sel-text" data-ph="p06-feat2" placeholder="e.g. 4-minute walk to Klein Knip beach"></div>
@@ -879,7 +881,7 @@ After the rewrite, list the 3 specific changes you made and why each one improve
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">06</div><div class="prompt-title">Unique Selling Points</div></div>
-    <div class="prompt-note">Most listings on the ABC islands use the same 6 words: pool, view, beach, clean, spacious, well-equipped. This prompt forces a harder question: what can <em>only you</em> say? The test is blunt: if another host on the island could say the exact same thing, it doesn't count. What usually passes are the things the host takes for granted: the outdoor shower that faces the sea, the breadfruit tree guests always photograph, the way morning light hits the terrace. Those details convert. The generic ones don't.</div>
+    <div class="prompt-note">Most listings lean on the same 6 words: pool, view, beach, clean, spacious, well-equipped. This prompt forces a harder question: what can <em>only you</em> say? The test is blunt: if another host on the island could say the exact same thing, it doesn't count. What usually passes are the things the host takes for granted: the outdoor shower that faces the sea, the breadfruit tree guests always photograph, the way morning light hits the terrace. Those details convert. The generic ones don't.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Surprise on arrival</span><input type="text" class="sel-text" data-ph="p08-surprise" placeholder="What do photos not capture? e.g. the sound of the ocean, the scent of the garden..."></div>
       <div class="sel-row"><span class="sel-label">Price vs. similar</span><label class="sel-opt"><input type="radio" name="p08-price" data-ph="p08-price" data-val="CHEAPER"><span>Cheaper</span></label><label class="sel-opt"><input type="radio" name="p08-price" data-ph="p08-price" data-val="SIMILAR"><span>Similar</span></label><label class="sel-opt"><input type="radio" name="p08-price" data-ph="p08-price" data-val="MORE EXPENSIVE"><span>More expensive</span></label></div>
@@ -900,7 +902,7 @@ Deliver:
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">07</div><div class="prompt-title">Pool and Outdoor Space</div></div>
-    <div class="prompt-note">On tropical islands, outdoor spaces sell rentals more than any interior feature. Yet most descriptions spend half their words on the living room. If your property has a private pool or terrace, this paragraph should appear early in your listing, not at the end.</div>
+    <div class="prompt-note">On a tropical island, the outdoor space is often what guests picture first. Yet many descriptions spend half their words on the living room. If your property has a private pool or terrace, this paragraph should appear early in your listing, not at the end.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Outdoor space includes</span><textarea class="sel-textarea" data-ph="p09-elems" placeholder="e.g. private pool, sun loungers, outdoor shower, BBQ, terrace, sea view, palm trees, hammock, outdoor dining area..." rows="2"></textarea></div>
       <div class="sel-row"><span class="sel-label">Orientation</span><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="faces east, morning sun"><span>East (morning sun)</span></label><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="faces west, sunset view"><span>West (sunset)</span></label><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="faces south"><span>South</span></label><label class="sel-opt"><input type="radio" name="p09-orient" data-ph="p09-orient" data-val="afternoon shade"><span>Afternoon shade</span></label></div>
@@ -949,7 +951,7 @@ Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood
   <div class="cat-blob"></div>
   <div class="cat-bg-num">02</div>
   <div class="cat-eyebrow">Category 02</div>
-  <h2 class="cat-title">More<br>Bookings</h2>
+  <h2 class="cat-title">More Bookings<br>&amp; Reputation</h2>
   <p class="cat-desc">Great listing copy is the start, not the finish. The platforms reward hosts who understand how the algorithm works: response speed, listing completeness, photo count, amenities, review velocity, Instant Book and Superhost status. These 4 prompts help you work the algorithm and protect your reputation: audit your listing against every known ranking factor, build a complete amenities list, brief your photos for maximum conversion, and respond to reviews the way future guests trust.</p>
   <div class="cat-list">
     <div class="cat-item"><div class="cat-dot"></div><span>09: Airbnb Algorithm Audit</span></div>
@@ -961,11 +963,11 @@ Write 2 paragraphs. First: the feel, rhythm and personality of this neighborhood
 
 <!-- ALGORITHM PROMPTS: 09-12 -->
 <div class="page prompts-page">
-  <div class="page-bar"><span class="page-bar-cat">More Bookings</span><span class="page-bar-range">09-12</span></div>
+  <div class="page-bar"><span class="page-bar-cat">More Bookings &amp; Reputation</span><span class="page-bar-range">09-12</span></div>
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">09</div><div class="prompt-title">Airbnb Algorithm Audit</div></div>
-    <div class="prompt-note">Airbnb's search ranking is determined by more than 14 factors beyond your listing text. Response rate, photo quantity, amenities listed, Instant Book status, review velocity and calendar activity all feed the algorithm directly. None of that is visible on your public listing page, not even to AI. Pull these 5 numbers from your Airbnb host dashboard first (Listings &gt; your listing &gt; Performance), the audit is only as good as what you give it.</div>
+    <div class="prompt-note">Airbnb's search ranking depends on far more than your listing text. Response rate, photo quantity, amenities listed, Instant Book status, review velocity and calendar activity all feed the algorithm directly. None of that is visible on your public listing page, not even to AI. Pull these 5 numbers from your Airbnb host dashboard first (Listings &gt; your listing &gt; Performance), the audit is only as good as what you give it.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Instant Book</span><label class="sel-opt"><input type="radio" name="p09-ib" data-ph="p09-ib" data-val="enabled"><span>Enabled</span></label><label class="sel-opt"><input type="radio" name="p09-ib" data-ph="p09-ib" data-val="not enabled"><span>Not enabled</span></label></div>
       <div class="sel-row"><span class="sel-label">Typical response time</span><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="within an hour"><span>Within an hour</span></label><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="within a few hours"><span>A few hours</span></label><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="within a day"><span>Within a day</span></label><label class="sel-opt"><input type="radio" name="p09-resp" data-ph="p09-resp" data-val="slower than a day"><span>Slower</span></label></div>
@@ -983,7 +985,7 @@ Reviews: <span class="ph" data-ph="p09-reviews" data-default="[RATING AND COUNT]
 
 Evaluate each factor as strong / needs work, based on the numbers above and my property info:
 1. Listing completeness: every field filled in?
-2. Photo quantity: at or above 20 photos?
+2. Photos: enough to show every room and outdoor space, with a strong first photo?
 3. Amenities: likely amenities I have but haven't listed?
 4. Instant Book
 5. Response rate and speed
@@ -996,7 +998,7 @@ After the audit, give me a numbered action list ranked by expected impact on boo
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">10</div><div class="prompt-title">Amenities Maximizer</div></div>
-    <div class="prompt-note">Every amenity you have but haven't listed makes you invisible in filtered searches. A guest filtering for 'pool + beachfront + high chair + AC' only sees hosts who have checked all four. Airbnb and VRBO both weight amenity filters heavily. If you have it, list it.</div>
+    <div class="prompt-note">Every amenity you have but haven't listed makes you invisible in filtered searches. A guest filtering for 'pool + beachfront + high chair + AC' only sees hosts who have checked all four. If you have it, list it.</div>
     <div class="prompt-body">Based on my property details, help me build a complete amenities list.
 
 Step 1: Generate a comprehensive amenities list based on everything I've described.
@@ -1010,13 +1012,13 @@ Deliver the final formatted amenities list ready to copy into my platform settin
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">11</div><div class="prompt-title">Listing Photo Brief</div></div>
-    <div class="prompt-note">Photos are the #1 conversion factor on every rental platform. Guests decide in under 3 seconds whether to click. Your first photo is your billboard in search results. Airbnb recommends 20 or more photos. Most hosts upload 10-12. Every additional photo adds to your completeness score. Airbnb also supports a caption on each photo, visible when guests click through the gallery. Almost no one uses this. It is free copy space directly in front of a guest who is already considering your property.</div>
+    <div class="prompt-note">Your first photo is your thumbnail in search results, so it decides whether a guest clicks at all. Airbnb lets you upload up to 100 photos and add a caption to each one, visible when guests click through the gallery. Captions are easy to skip, but they're free copy space directly in front of a guest who is already considering your property.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Best photo feature</span><input type="text" class="sel-text" data-ph="p13-standout" placeholder="e.g. the pool at sunset, the panoramic terrace, the open-plan kitchen..."></div>
     </div>
 <div class="prompt-body">Create a photo shoot brief for my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. A photographer or I should be able to follow this as a shot list.
 
-Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Type: <span class="ph" data-ph="g-type" data-default="[VILLA / APARTMENT / GUESTHOUSE / STUDIO]">[VILLA / APARTMENT / GUESTHOUSE / STUDIO]</span>
+Property: <span class="ph" data-ph="g-name" data-default="[NAME]">[NAME]</span> / Type: <span class="ph" data-ph="g-type" data-default="[VILLA / APARTMENT / GUESTHOUSE / STUDIO / B&amp;B]">[VILLA / APARTMENT / GUESTHOUSE / STUDIO / B&amp;B]</span>
 Stand-out feature: <span class="ph" data-ph="p13-standout" data-default="[THE ONE THING THAT LOOKS BEST IN A PHOTO]">[THE ONE THING THAT LOOKS BEST IN A PHOTO]</span>
 
 Deliver:
@@ -1031,13 +1033,13 @@ End with: 3 things to avoid in vacation rental photography on the ABC islands.</
 
   <div class="prompt-card">
     <div class="prompt-header"><div class="prompt-badge">12</div><div class="prompt-title">Review Response Writer</div></div>
-    <div class="prompt-note">A public review response is permanent, and on most platforms future guests read it before they read the review itself. Apologizing for something that wasn't your fault reads as an admission of guilt, even when you did nothing wrong. The response matters more than the review does.</div>
+    <div class="prompt-note">A public review response is permanent, and every future guest who reads that review sees how you handled it. Apologizing for something that wasn't your fault reads as an admission of guilt, even when you did nothing wrong. Your response is the part you control.</div>
         <div class="prompt-selectors">
       <div class="sel-row"><span class="sel-label">Review type</span><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="minor complaint, otherwise positive"><span>Minor complaint</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="neutral, 3-star"><span>Neutral, 3-star</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="negative, feels unfair"><span>Feels unfair</span></label><label class="sel-opt"><input type="radio" name="p14-type" data-ph="p14-type" data-val="negative, legitimate issue"><span>Legitimate issue</span></label></div>
       <div class="sel-row"><span class="sel-label">What the guest said</span><textarea class="sel-textarea" data-ph="p14-said" placeholder="Paste the review or complaint here..." rows="2"></textarea></div>
       <div class="sel-row"><span class="sel-label">What actually happened</span><textarea class="sel-textarea" data-ph="p14-actual" placeholder="Your side, be honest, this stays between you and the AI..." rows="2"></textarea></div>
     </div>
-<div class="prompt-body">You are a hospitality reputation manager. Write a public response to this guest review for my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. This response will be visible to every future guest before they read the review itself, so it matters more than the review does.
+<div class="prompt-body">You are a hospitality reputation manager. Write a public response to this guest review for my vacation rental on <span class="ph" data-ph="g-isl" data-default="[ISLAND]">[ISLAND]</span>. Every future guest who reads this review will also see my response, so it matters as much as the review itself.
 
 Review type: <span class="ph" data-ph="p14-type" data-default="[MINOR COMPLAINT / NEUTRAL / FEELS UNFAIR / LEGITIMATE ISSUE]">[MINOR COMPLAINT / NEUTRAL / FEELS UNFAIR / LEGITIMATE ISSUE]</span>
 
@@ -1106,11 +1108,11 @@ Rules:
 Situatie: <span class="ph" data-ph="nl-sit">[ANNULERING: er zijn datums vrijgekomen / RUSTIGE PERIODE: ik heb beschikbaarheid die ik wil vullen]</span>
 Beschikbare datums: <span class="ph" data-ph="nl-datums" data-default="[DATUMS]">[DATUMS]</span>
 Naam van de woning: <span class="ph" data-ph="nl-naam" data-default="[NAAM]">[NAAM]</span> / Eiland: <span class="ph" data-ph="nl-isl">[EILAND]</span>
-Wat gasten hier altijd het meest op reageren (beschrijf wat het gezin er concreet doet, niet alleen wat het is): <span class="ph" data-ph="nl-feat">[REQUIRED: bijv. "eigen zwembad, geen gedeeld bad, kinderen claimen het de hele dag" of "buitenkeuken, elke avond buiten eten zonder restaurant"]</span>
-Waarom zijn juist deze datums de moeite waard: <span class="ph" data-ph="nl-reden">[REQUIRED: een echte reden. Bijv. lokaal festival, beste duikweer, rustigste week van het jaar, Carnaval]</span>
+Wat gasten hier altijd het meest op reageren (beschrijf wat de gast er concreet doet, niet alleen wat het is): <span class="ph" data-ph="nl-feat">[VERPLICHT: bijv. "eigen zwembad, geen gedeeld bad, kinderen claimen het de hele dag" of "buitenkeuken, elke avond buiten eten zonder restaurant"]</span>
+Waarom zijn juist deze datums de moeite waard: <span class="ph" data-ph="nl-reden">[VERPLICHT: een echte reden. Bijv. lokaal festival, beste duikweer, rustigste week van het jaar, Carnaval]</span>
 
 Regels:
-- De eerste zin beschrijft iets wat het gezin hier concreet doet. Niet over het eiland, niet over het weer.
+- De eerste zin beschrijft iets wat de gast hier concreet doet. Niet over het eiland, niet over het weer.
 - Verwerk praktische zekerheid vanzelfsprekend: privacy, hoeveel personen, strand op afstand, parkeergelegenheid.
 - Nooit "annulering," "last-minute," "luxe," "paradijs" of "adembenemend" gebruiken.
 - Eindig met één CTA: DM voor info, link in bio of directe boekingslink.
@@ -1160,7 +1162,7 @@ Regels:
 
 Situation: <span class="ph" data-ph="en-sit">[CANCELLATION: dates just opened up / SLOW PERIOD: I have availability I want to fill]</span>
 Available dates: <span class="ph" data-ph="en-dates" data-default="[DATES]">[DATES]</span>
-Property: <span class="ph" data-ph="en-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="en-isl">[ARUBA / BONAIRE / CURACAO]</span>
+Property: <span class="ph" data-ph="en-name" data-default="[NAME]">[NAME]</span> / Island: <span class="ph" data-ph="en-isl">[ARUBA / BONAIRE / CURAÇAO]</span>
 The one thing guests always react to most (what the guest actually does there, not just what it is): <span class="ph" data-ph="en-feat">[REQUIRED: e.g. "private pool, no sharing, kids claim it all day" / "outdoor kitchen, family dinners outside every night" / "direct beach access, no car needed"]</span>
 What makes these specific dates worth booking: <span class="ph" data-ph="en-reden">[REQUIRED: a real reason. E.g. carnival season, peak diving conditions, quietest week of the year, local festival, best sunset month]</span>
 
@@ -1175,11 +1177,11 @@ Rules:
   <div class="upsell-box">
     <div class="upsell-text">
       <h3>The Island Host<br><em>Social Media Kit</em></h3>
-      <p>20+ prompts for Instagram, TikTok, Facebook and Reels. Built for ABC island hosts who want to show up on social without spending hours on it.</p>
+      <p>Prompts for Instagram, TikTok, Facebook and Reels. Built for ABC island hosts who want to show up on social without spending hours on it.</p>
     </div>
     <div>
-      <div class="upsell-cta">Get notified</div>
-      <div class="upsell-price">funkiness.ai</div>
+      <a class="upsell-cta" href="https://www.funkiness.ai/#newsletter" target="_blank" rel="noopener">Get notified</a>
+      <a class="upsell-price" href="https://www.funkiness.ai/#newsletter" target="_blank" rel="noopener">funkiness.ai</a>
     </div>
   </div>
 </div>
@@ -1191,9 +1193,9 @@ Rules:
   <div class="back-tag">Boring was never the plan.</div>
   <h2 class="back-title">FUNkiness!<br>AI, Social Media<br>& Marketing</h2>
   <div class="back-div"></div>
-  <p class="back-body">We run on sharp strategy, Caribbean energy and a deep impatience with boring. AI-first, full-service marketing for businesses on Aruba, Bonaire and Curaçao.</p>
+  <p class="back-body">We run on Caribbean energy and a deep impatience with boring. Hands-on marketing for businesses on Aruba, Bonaire and Curaçao: content, social media, campaigns and AI that actually happen.<br><br>Questions about this kit? <a href="mailto:sayhello@funkiness.ai">sayhello@funkiness.ai</a></p>
   <div class="back-brand">FUN<em>kiness!</em></div>
-  <div class="back-url">funkiness.ai</div>
+  <a class="back-url" href="https://www.funkiness.ai" target="_blank" rel="noopener">funkiness.ai</a>
 </div>
 
 <script>

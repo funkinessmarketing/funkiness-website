@@ -34,7 +34,7 @@ Dit bestand is gelijk aan wat live op Gumroad staat (product `yfefbu`, laatst bi
 <li>Airbnb Algorithm Audit: walks through the ranking factors that are actually in your control (photos, amenities, response rate, Instant Book, calendar activity) and gives you a ranked action list.</li>
 <li>Amenities Maximizer: flags the amenities island hosts forget to list (snorkeling gear, outdoor shower, blackout curtains, and 18 more), one by one.</li>
 <li>Listing Photo Brief: a full shot list for your phone or a photographer, including the 3 shots most hosts forget and captions that actually add information.</li>
-<li>Review Response Writer: writes the public reply that future guests read before the review itself. Knows the one rule most hosts break: never apologize for something that wasn't your fault.</li>
+<li>Review Response Writer: writes the public reply that future guests read alongside the review. Knows the rule that matters most: never apologize for something that wasn't your fault.</li>
 </ul><p><strong>Plus: </strong>a one-time Property Fact Sheet so you enter your island and property details once, and every prompt already knows your context. Fill it in and it updates every prompt on the page automatically, nothing to type twice.</p><h2>What you get</h2><ul>
 <li>The interactive kit: open it in your browser, fill in the Fact Sheet, copy each prompt with one click.</li>
 <li>The same kit as a PDF, to print or keep.</li>

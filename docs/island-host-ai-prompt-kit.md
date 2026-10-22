@@ -23,9 +23,11 @@ Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt
 
 **Power user workflow:** plak de "Copy my property facts"-samenvatting als allereerste bericht in een nieuwe ChatGPT/Claude conversatie, gebruik daarna alle 12 prompts in diezelfde conversatie zonder opnieuw gegevens te typen.
 
+**Volledige check (2026-10-22):** alle 12 prompts, 23 kopieerknoppen, de Fact Sheet en "Copy my property facts" getest in Chrome (puppeteer): alles werkt, geen fouten. Onverifieerbare claims eruit of afgezwakt: "under 4 seconds" / "under 3 seconds", "every time", "more than 14 factors", "#1 conversion factor", "Airbnb recommends 20 photos", "most hosts upload 10-12", "almost no one uses captions", "weight amenity filters heavily", "drives the majority of bookings", "VRBO guests book longer". Review-reactie: niet "vóór de review gelezen" maar "samen met de review". Orkaantip: nu ook Bonaire, met het echte orkaanseizoen (juni t/m november) in plaats van een verzonnen zoekgedrag. Categorie 2 heet overal "More Bookings & Reputation", Prompt 03 heet "Micazu Description (in Dutch)". Er stond geen enkele klikbare link in de kit: "Get notified" linkt nu naar funkiness.ai/#newsletter, achterkant heeft funkiness.ai en sayhello@funkiness.ai. Achterkant volgt de nieuwe positionering (hands-on). "20+ prompts" bij de nog niet gebouwde Social Media Kit weggehaald.
+
 **Spaanse markt (nieuw, 2026-10-22):** Colombia is het #3 herkomstland van Curaçao, vóór Canada (jan-sep 2026: 44.072 Colombianen tegen 36.676 Canadezen, bron Curaçao Tourist Board). Groei: +25% in september 2026 en +24% in juni, maar over januari-juli ongeveer +10,6%. Daarom nooit "25% groei dit jaar" in de kit of salescopy zetten, wel "#3 source market, ahead of Canada". Aruba: Colombia +8,2% over de eerste 7 maanden van 2026. Toegevoegd: Airbnb Output 6 (Spaanse beschrijving) en Output 7 (Your Space in het Spaans), de titel is nu Output 8. Nieuw Fact Sheet-veld "Spanish tone" (tú/usted, live placeholder `g-tono`, staat in de kolom "As a host" zodat Key features op pagina 2 blijft). Guest profile heeft nu "Colombian / Latin American guests". In de Curaçao-eilandbriefing staat de Zuid-Amerikaanse markt. Prompt 12 kreeg een taalregel. VRBO is bewust niet aangepast: één tekst voor alle talen, dus een Spaanse versie heeft daar geen zin.
 
-**Strategisch inzicht (nieuw, 2026-08-03):** Aruba en Curaçao liggen buiten de orkaangordel, weinig Noord-Amerikaanse gasten weten dat. Dit als verkoopargument inzetten specifiek van juni t/m november (orkaanseizoen), niet jaarrond.
+**Strategisch inzicht (nieuw, 2026-08-03):** Aruba, Bonaire en Curaçao liggen buiten de belangrijkste orkaangordel, veel Noord-Amerikaanse gasten weten dat niet. Dit als verkoopargument inzetten specifiek van juni t/m november (orkaanseizoen), niet jaarrond.
 
 ---
 
@@ -64,7 +66,7 @@ Output 3: Canadian market (upload as English Canada translation)
 Island context: [select your island]
 Write an Airbnb listing description for my property for the Canadian market. Max 500 characters. Write in English. No clichés: no "paradise," "gem," "home away from home," or "stunning."
 
-500 characters is tight. Canadian guests are escaping real winters: lead with the contrast between -20°C back home and what it feels like to arrive here. That contrast is the single most emotionally resonant booking trigger for this market. Then anchor it with one specific detail about this property. End with a line that makes booking feel like the obvious decision before winter hits. Include the island name and 1-2 top amenities as natural search terms.
+500 characters is tight. Canadian guests are escaping real winters: lead with the contrast between -20°C back home and what it feels like to arrive here. That contrast is a strong booking trigger for this market. Then anchor it with one specific detail about this property. End with a line that makes booking feel like the obvious decision before winter hits. Include the island name and 1-2 top amenities as natural search terms.
 ```
 
 ```
@@ -162,7 +164,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
 
 Nederlands vakantieverhuurplatform, sterk vertegenwoordigd op Curaçao, Aruba en Bonaire. Vrijwel alle gasten zijn Nederlandstalig, vergelijken zorgvuldig en willen vertrouwen voelen. Max 5.000 tekens, altijd Nederlands. Een scherpe tekst van 3.000 tekens converteert beter dan een opgevulde tekst van 5.000.
 
-#### Prompt 03: Micazu beschrijving (1 output, Nederlands)
+#### Prompt 03: Micazu Description (in Dutch, 1 output)
 
 ```
 Eilandcontext: [selecteer eiland]
@@ -299,7 +301,7 @@ Reviews: [RATING AND COUNT]
 
 Evaluate each factor as strong / needs work, based on the numbers above and my property info:
 1. Listing completeness: every field filled in?
-2. Photo quantity: at or above 20 photos?
+2. Photos: enough to show every room and outdoor space, with a strong first photo?
 3. Amenities: likely amenities I have but haven't listed?
 4. Instant Book
 5. Response rate and speed
@@ -329,7 +331,7 @@ Deliver the final formatted amenities list ready to copy into my platform settin
 ```
 Create a photo shoot brief for my vacation rental on [ISLAND]. A photographer or I should be able to follow this as a shot list.
 
-Property: [NAME] / Type: [VILLA / APARTMENT / GUESTHOUSE / STUDIO]
+Property: [NAME] / Type: [VILLA / APARTMENT / GUESTHOUSE / STUDIO / B&B]
 Stand-out feature: [THE ONE THING THAT LOOKS BEST IN A PHOTO]
 
 Deliver:
@@ -344,10 +346,10 @@ End with: 3 things to avoid in vacation rental photography on the ABC islands.
 
 #### Prompt 12: Review Response Writer
 
-**Nieuw, 2026-08-03.** Toegevoegd naar aanleiding van de vraag "dit moet echt wow-waarde hebben, niet iets wat je zelf ook met AI had kunnen doen." Een publieke review-reactie is permanent en wordt op de meeste platforms gelezen vóórdat een toekomstige gast de review zelf leest. De belangrijkste regel die hosts breken: je verontschuldigen voor iets wat niet jouw fout was, dat leest als schuld bekennen.
+**Nieuw, 2026-08-03.** Toegevoegd naar aanleiding van de vraag "dit moet echt wow-waarde hebben, niet iets wat je zelf ook met AI had kunnen doen." Een publieke review-reactie is permanent en elke toekomstige gast die de review leest, ziet ook hoe je reageerde. De belangrijkste regel die hosts breken: je verontschuldigen voor iets wat niet jouw fout was, dat leest als schuld bekennen.
 
 ```
-You are a hospitality reputation manager. Write a public response to this guest review for my vacation rental on [ISLAND]. This response will be visible to every future guest before they read the review itself, so it matters more than the review does.
+You are a hospitality reputation manager. Write a public response to this guest review for my vacation rental on [ISLAND]. Every future guest who reads this review will also see my response, so it matters as much as the review itself.
 
 Review type: [MINOR COMPLAINT / NEUTRAL / FEELS UNFAIR / LEGITIMATE ISSUE]
 
