@@ -1,0 +1,76 @@
+{
+  "bronnen": [
+    {"naam": "Engadget", "url": "https://www.engadget.com/2254580/instagram-lets-you-add-tagged-photos-to-profile-grid/"},
+    {"naam": "OpenAI", "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries/"},
+    {"naam": "TechCrunch", "url": "https://techcrunch.com/2026/08/31/instagram-puts-new-limits-on-undisclosed-ai-profiles/"},
+    {"naam": "WhatsApp Business", "url": "https://whatsappbusiness.com/blog/introducing-meta-business-agent-ai/"}
+  ],
+  "en": {
+    "onderwerp": "Your customers can now decorate your Instagram",
+    "preheader": "Plus: ads in ChatGPT, AI faces and a 5-minute WhatsApp test.",
+    "taalwissel": "Liever in het Nederlands? Antwoord met NL.",
+    "ondertitel": "Edition 1 · Marketing, AI & social. No boring allowed.",
+    "groet": "Hey!",
+    "hook": "Businesses on Curaçao, this one's for you: the best photo on your Instagram this month might not be yours.",
+    "big": {
+      "label": "The big one",
+      "titel": "Your customers can now fill your Instagram grid",
+      "tekst": [
+        "Since September, Instagram has a button called \"Add to grid\". When a guest or customer tags you in their post, you can put that post on your own profile. It stays their post. It just shows up in your grid too, with a small tag icon.",
+        "People believe a happy customer faster than they believe you. And you didn't have to shoot a thing."
+      ],
+      "tip": "*Try it:* put a small card at the till, on the table or in the room: \"Tag us @yourname and you might end up on our grid.\" Every week, pick the best tag. Open your profile, tap the Tagged tab, hold the post and tap \"Add to grid\"."
+    },
+    "quick_label": "Two quick hits",
+    "quick": [
+      {"titel": "ChatGPT now shows ads. Just not to everyone.", "tekst": ["ChatGPT ads now run in 89 countries, the Netherlands included. Only people on the free plans see them. Pay for ChatGPT and you never see one. Two customers asking the same question can get a different screen."]},
+      {"titel": "AI faces get a label on Instagram", "tekst": ["Accounts built around AI-generated people now need the label \"AI-generated profile\". Skip it and Instagram limits your reach. Used AI to edit a photo or write a caption? No label needed."]}
+    ],
+    "try": {
+      "label": "Try this today",
+      "titel": "The 10-question test",
+      "tekst": [
+        "Meta is rolling out an AI assistant for WhatsApp Business that answers your customers day and night. Don't switch anything on yet.",
+        "Grab a notepad and write down the 10 questions you get on WhatsApp every week, with your best answer. Whatever you decide about AI, that list works three times: as answers for your WhatsApp, as Instagram highlights and as a month of posts."
+      ]
+    },
+    "afsluiter": "Which one are you trying first? Hit reply and tell me.",
+    "waarom": "You get the FUNky Letter because you signed up at funkiness.ai.",
+    "afmelden": "Unsubscribe",
+    "bronnen_label": "Sources"
+  },
+  "nl": {
+    "onderwerp": "Je klanten mogen nu je Instagram aankleden",
+    "preheader": "Plus: reclame in ChatGPT, AI-gezichten en een WhatsApp-test van 5 minuten.",
+    "taalwissel": "Prefer English? Reply with EN.",
+    "ondertitel": "Editie 1 · Marketing, AI & social. Saai komt er niet in.",
+    "groet": "Hoi!",
+    "hook": "Ondernemers op Curaçao, deze is voor jullie: de mooiste foto op je Instagram deze maand is misschien niet van jou.",
+    "big": {
+      "label": "The big one",
+      "titel": "Je klanten vullen nu je Instagram-grid",
+      "tekst": [
+        "Sinds september heeft Instagram een knop \"Add to grid\". Tagt een gast of klant je in een post, dan zet je die post zo in je eigen profiel. Het blijft hun post. Hij staat alleen ook in jouw grid, met een klein tag-icoontje.",
+        "Mensen geloven een blije klant sneller dan jou. En jij hoefde er niks voor te fotograferen."
+      ],
+      "tip": "*Zo doe je het:* leg een kaartje bij de kassa, op tafel of in de kamer: \"Tag ons @jouwnaam en wie weet sta jij straks in onze grid.\" Kies elke week de leukste tag. Ga naar je profiel, tik op het tabblad met getagde posts, houd de post ingedrukt en tik op \"Add to grid\"."
+    },
+    "quick_label": "Twee quick hits",
+    "quick": [
+      {"titel": "ChatGPT toont nu reclame. Maar niet aan iedereen.", "tekst": ["Advertenties in ChatGPT draaien nu in 89 landen, ook in Nederland. Alleen wie de gratis versie gebruikt, ziet ze. Betaal je voor ChatGPT, dan zie je er nooit een. Twee klanten met dezelfde vraag kunnen dus een ander scherm zien."]},
+      {"titel": "AI-gezichten krijgen een label op Instagram", "tekst": ["Accounts met AI-gemaakte mensen moeten nu het label \"AI-generated profile\" gebruiken. Doe je dat niet, dan remt Instagram je bereik. Gebruik je AI om een foto te bewerken of een caption te schrijven? Dan heb je geen label nodig."]}
+    ],
+    "try": {
+      "label": "Try this today",
+      "titel": "De 10-vragentest",
+      "tekst": [
+        "Meta rolt een AI-assistent uit voor WhatsApp Business die je klanten dag en nacht antwoordt. Zet nog niks aan.",
+        "Pak eerst een kladblok en schrijf de 10 vragen op die je elke week via WhatsApp krijgt, met je beste antwoord. Wat je ook besluit over AI, die lijst werkt drie keer: als antwoorden in je WhatsApp, als Instagram-highlights en als een maand aan posts."
+      ]
+    },
+    "afsluiter": "Welke probeer jij als eerste? Antwoord op deze mail en vertel het me.",
+    "waarom": "Je krijgt de FUNky Letter omdat je je hebt ingeschreven op funkiness.ai.",
+    "afmelden": "Afmelden",
+    "bronnen_label": "Bronnen"
+  }
+}
