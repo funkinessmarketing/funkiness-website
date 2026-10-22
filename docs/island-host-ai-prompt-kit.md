@@ -3,7 +3,7 @@
 
 Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt-kit.html](Graphic-Design/island-host-ai-prompt-kit.html) (verkocht via Gumroad, $27). Bij een wijziging aan de HTML altijd dit bestand meebijwerken, en andersom.
 
-**Cover-positionering (2026-08-03, kritische herziening):** "A generic AI prompt doesn't know Airbnb's 295-character preview cutoff, or that VRBO banned fee-mentions in April 2025. These 12 do." Elke prompt-note heet nu expliciet "What generic AI doesn't know" en is visueel het meest prominente element op de kaart (roze label + achtergrond), de prompttekst zelf is bewust rustiger gestyled. Doel: nooit het gevoel "dit had ik zelf ook met AI kunnen maken."
+**Cover-positionering (2026-08-03, kritische herziening):** "A generic AI prompt doesn't know that Airbnb's app cuts your description off after 295 characters, or that VRBO won't let you charge a fee that only appears in your description. These 12 do." Elke prompt-note heet nu expliciet "What generic AI doesn't know" en is visueel het meest prominente element op de kaart (roze label + achtergrond), de prompttekst zelf is bewust rustiger gestyled. Doel: nooit het gevoel "dit had ik zelf ook met AI kunnen maken."
 
 **Founder note (nieuw, 2026-08-03, bovenaan "How to use this kit"):** "I rent a villa on Curaçao myself. I got tired of staring at the same blank description field every other host stares at, so I built the prompts I wished existed instead." Waargebeurd (Daisy verhuurt zelf een villa op Curaçao), geen onbewezen claim, geeft vertrouwen zonder ervaring met andere hosts te claimen.
 
@@ -11,7 +11,7 @@ Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt
 
 **Scope (nieuw, 2026-08-03):** kit is bedoeld voor hosts met maximaal 3 woningen (geen opslag/wisselen tussen profielen in de Fact Sheet, bij meer dan 3 wordt herhaaldelijk invullen te omslachtig). Toegevoegd aan de Fact Sheet-intro op de PDF, Gumroad-beschrijving en de website-pagina: "Built for hosts managing up to 3 properties."
 
-**Booking.com bewust buiten scope (nieuw, 2026-08-03):** toegevoegd aan "What this is not" op Gumroad, de Gumroad-landingpagina en de website-pagina: "No Booking.com prompt. Booking.com writes your listing description for you from your structured property data, you can't paste custom text there the way you can on Airbnb or VRBO." Reden: Booking.com laat een host geen eigen vrije tekst plakken zoals Airbnb/VRBO dat wel doen (bevestigd door Daisy), dus een rewrite-prompt zou een tekst opleveren die nergens te plaatsen is. Geen aparte Booking.com-prompt gebouwd, want er is geen even hard verifieerbaar feit (zoals de Airbnb 295-tekens-cutoff of de VRBO-regel van april 2025) om als anker te gebruiken.
+**Booking.com bewust buiten scope (nieuw, 2026-08-03):** toegevoegd aan "What this is not" op Gumroad, de Gumroad-landingpagina en de website-pagina: "No Booking.com prompt. Booking.com writes your listing description for you from your structured property data. You can't paste custom text there the way you can on Airbnb or VRBO." Reden: Booking.com laat een host geen eigen vrije tekst plakken zoals Airbnb/VRBO dat wel doen (bevestigd door Daisy), dus een rewrite-prompt zou een tekst opleveren die nergens te plaatsen is. Geen aparte Booking.com-prompt gebouwd, want er is geen even hard verifieerbaar feit (zoals de Airbnb 295-tekens-cutoff of de VRBO-toeslagenregel) om als anker te gebruiken.
 
 **Opgelost, 2026-08-03:** "What this is not" stond nog niet in de PDF zelf. Toegevoegd als eigen donkere pagina (zelfde stijl als de categorie-intropagina's) direct na "How to use this kit" en vóór de Airbnb-prompts, met dezelfde 4 punten als op Gumroad/website.
 
@@ -23,6 +23,8 @@ Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt
 
 **Power user workflow:** plak de "Copy my property facts"-samenvatting als allereerste bericht in een nieuwe ChatGPT/Claude conversatie, gebruik daarna alle 12 prompts in diezelfde conversatie zonder opnieuw gegevens te typen.
 
+**Spaanse markt (nieuw, 2026-10-22):** Colombia is het #3 herkomstland van Curaçao, vóór Canada (jan-sep 2026: 44.072 Colombianen tegen 36.676 Canadezen, bron Curaçao Tourist Board). Groei: +25% in september 2026 en +24% in juni, maar over januari-juli ongeveer +10,6%. Daarom nooit "25% groei dit jaar" in de kit of salescopy zetten, wel "#3 source market, ahead of Canada". Aruba: Colombia +8,2% over de eerste 7 maanden van 2026. Toegevoegd: Airbnb Output 6 (Spaanse beschrijving) en Output 7 (Your Space in het Spaans), de titel is nu Output 8. Nieuw Fact Sheet-veld "Spanish tone" (tú/usted, live placeholder `g-tono`, staat in de kolom "As a host" zodat Key features op pagina 2 blijft). Guest profile heeft nu "Colombian / Latin American guests". In de Curaçao-eilandbriefing staat de Zuid-Amerikaanse markt. Prompt 12 kreeg een taalregel. VRBO is bewust niet aangepast: één tekst voor alle talen, dus een Spaanse versie heeft daar geen zin.
+
 **Strategisch inzicht (nieuw, 2026-08-03):** Aruba en Curaçao liggen buiten de orkaangordel, weinig Noord-Amerikaanse gasten weten dat. Dit als verkoopargument inzetten specifiek van juni t/m november (orkaanseizoen), niet jaarrond.
 
 ---
@@ -33,7 +35,7 @@ Dit bestand is de tekstreferentie van het live product in [island-host-ai-prompt
 
 Airbnb is het grootste platform wereldwijd en drijft het merendeel van de internationale boekingen op de ABC-eilanden. Beschrijving en "Your Space" veld zijn beide gelimiteerd tot 500 tekens, waarvan alleen de eerste 295 tekens zichtbaar zijn zonder "read more". Zet auto-vertaling uit en vul per taal je eigen tekst in.
 
-#### Prompt 01: Airbnb Listing Description + Title (6 outputs)
+#### Prompt 01: Airbnb Listing Description + Title (8 outputs)
 
 Airbnb's automatische vertaling is generiek. Ga naar Airbnb > Listings > je listing > Listing details > Description > Translated descriptions, en plak elke output hieronder in het juiste taalveld.
 
@@ -85,7 +87,30 @@ Beschrijf niet elke ruimte: kies de 2-3 plekken die een gast zich herinnert. Waa
 ```
 
 ```
-Output 6: Airbnb title (max 50 characters)
+Output 6: Colombian / Latin American market (upload as Spanish translation)
+
+Island context: [select your island]
+Write an Airbnb listing description for my property for Colombian and other Latin American guests. Max 500 characters. Write in Latin American Spanish, not Spain Spanish: no "vosotros," no Spain-only words like "piso" or "coger." No clichés: no "paraíso," "joya," "de ensueño" or "como en casa."
+
+Form of address: [usted OR tú]
+Colombians use "usted" in warm, friendly situations too, not only formal ones. If I picked usted, keep the tone warm: usted is not distance here.
+
+500 characters is tight. Colombian guests have Caribbean beaches at home, in Cartagena and Santa Marta, so "sun and beach" alone is no reason to fly here. Lead with what this island and this property give them that home doesn't. Colombian guests on Curaçao stayed 5.4 nights on average (September 2026): write toward a week-long stay, not a quick weekend. End with one line that makes them want to see the photos. Include the island name and 1-2 top amenities as natural search terms in Spanish (e.g. piscina privada, vista al mar).
+```
+
+```
+Output 7: Your Space in Spanish (upload as Spanish translation)
+
+Island context: [select your island]
+Write the "Your Space" section for my Airbnb listing, for the Spanish translation. This is a separate field specifically about the physical property. Max 500 characters. Write in Latin American Spanish, not Spain Spanish.
+
+Form of address: [usted OR tú]
+
+Don't try to describe every room. Pick the 2-3 spaces guests will actually remember: most likely the outdoor area, the primary bedroom and one other standout feature. Be specific. "Una piscina privada con vista al atardecer" beats "un espacio exterior agradable." Warm and honest tone. No filler sentences.
+```
+
+```
+Output 8: Airbnb title (max 50 characters)
 
 Write an optimized Airbnb listing title for my property on [ISLAND]. Max 50 characters. Lead with the most searchable feature, not the property name. Include the property name only if space allows. Guests filter by keywords like pool, ocean view, beachfront and walk to beach. If the keyword is not in your title, the listing does not show up in filtered searches.
 
@@ -96,7 +121,7 @@ Give 2 variations. For each, state in one sentence which keyword you prioritized
 
 ### Platform 02: VRBO
 
-VRBO bereikt vooral Noord-Amerikaanse gezinnen en groepen. Tot 10.000 tekens beschikbaar, veel meer dan Airbnb, maar toont dezelfde tekst aan alle gasten ongeacht taal. Sinds april 2025 verbiedt VRBO het noemen van verplichte kosten (resort fee, tourism tax, parkeerkosten) in de beschrijving zelf, dat hoort alleen in de prijsinstellingen.
+VRBO bereikt vooral Noord-Amerikaanse gezinnen en groepen. Tot 10.000 tekens beschikbaar, veel meer dan Airbnb, maar toont dezelfde tekst aan alle gasten ongeacht taal. Elke verplichte toeslag (schoonmaak, resort, admin, huisdier) hoort in de VRBO-prijsinstellingen. Een verplichte toeslag die alleen in de beschrijving staat mag je niet rekenen, en dat kan tot schorsing leiden (VRBO Host Fees & Taxes Transparency Policy, vrbo.com/tlp/trust-and-safety/host-collected-fees-and-taxes-policy). Optionele extra's juist wel in de beschrijving, met bedrag en wanneer ze gelden. Gecorrigeerd 2026-10-22: de oude claim "VRBO verbiedt sinds april 2025 het noemen van kosten" was onjuist (geen bron voor april, en noemen mag wel).
 
 #### Prompt 02: VRBO Description + Title (3 outputs)
 
@@ -336,6 +361,7 @@ Rules:
 - If a factual claim in the review is inaccurate, correct it politely and specifically, without arguing.
 - Warm but brief: one short paragraph, max 80 words.
 - End forward-looking, not defensive.
+- Write the response in the language the guest wrote the review in. A Spanish review answered in English tells every Spanish-speaking reader after them that this host doesn't speak to them.
 - Never use "we're sorry you feel that way." It is the most recognizably dismissive line in hospitality, and guests spot it instantly.
 ```
 
