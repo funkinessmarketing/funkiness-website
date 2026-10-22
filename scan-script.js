@@ -298,7 +298,7 @@ function renderReport(rapport, bedrijf, naam, functie, email) {
   document.getElementById('reportEmailNote').textContent = `We also sent a copy to ${email}. Don't see it? Check your spam folder.`;
 
   const waMsg = encodeURIComponent(
-    `Hi FUNkiness! I just completed the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan.\n\nName: ${naam}\nJob title: ${functie}\nBusiness: ${bedrijf}\nScore: ${rapport.totaalscore}/100\n\nI'd love to talk about what's possible!`
+    `Hi FUNkiness! I just completed the ${isSocial ? 'Social Media' : 'Marketing Strategy'} Scan.\n\nName: ${naam}\nJob title: ${functie}\nBusiness: ${bedrijf}\nScore: ${rapport.totaalscore}/100\n\nCan you come by and walk me through it?`
   );
   document.getElementById('btnWhatsApp').href = `https://wa.me/59996751737?text=${waMsg}`;
 
