@@ -37,8 +37,10 @@ const WELKOM = {
   }
 };
 
-// Brevo: lijst "FUNky Letter" (id 3), velden TAAL (EN/NL) en BRON. Brevo regelt de afmeldlink in elke editie.
+// Brevo: lijst "FUNky Letter" (id 3) plus een taallijst (EN 4, NL 5) waar de edities naartoe gaan,
+// velden TAAL (EN/NL) en BRON. Brevo regelt de afmeldlink in elke editie.
 const BREVO_LIJST = 3;
+const BREVO_TAALLIJST = { en: 4, nl: 5 };
 const brevo = (pad, body) => fetch('https://api.brevo.com/v3' + pad, {
   method: 'POST',
   headers: { 'api-key': process.env.BREVO_API_KEY, 'Content-Type': 'application/json', accept: 'application/json' },
@@ -79,7 +81,8 @@ export default async function handler(req, res) {
     ? brevo('/contacts', {
         email: adres,
         attributes: { TAAL: lang.toUpperCase(), BRON: String(bron || '').slice(0, 100) },
-        listIds: [BREVO_LIJST],
+        listIds: [BREVO_LIJST, BREVO_TAALLIJST[lang]],
+        unlinkListIds: [BREVO_TAALLIJST[lang === 'nl' ? 'en' : 'nl']],
         updateEnabled: true
       })
     : Promise.resolve(false);
