@@ -153,6 +153,8 @@ document.addEventListener('click', (e) => {
     typeCard.classList.add('selected');
     scanType = typeCard.dataset.scanType;
     for (const key in answers) delete answers[key];
+    // Kaart kiezen is meteen starten
+    if (currentStep === 0) nextStep();
     return;
   }
 
