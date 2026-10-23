@@ -1538,17 +1538,17 @@ a.service-detail-card {
   gap: 32px;
   align-items: center;
   padding: 8px 5vw 56px;
-  max-width: 1100px;
+  max-width: 1240px;
 }
 
 @media (min-width: 900px) {
-  .feature-split { grid-template-columns: 0.85fr 1.15fr; gap: 6vw; padding: 16px 7vw 72px; }
+  .feature-split { grid-template-columns: 1.15fr 0.85fr; gap: 5vw; padding: 16px 7vw 72px; }
 }
 
 .feature-split.feature-split--reverse { }
 
 @media (min-width: 900px) {
-  .feature-split.feature-split--reverse { grid-template-columns: 1.15fr 0.85fr; }
+  .feature-split.feature-split--reverse { grid-template-columns: 0.85fr 1.15fr; }
   .feature-split--reverse .feature-split-visual { order: -1; }
 }
 
@@ -3861,7 +3861,7 @@ details[open] .faq-icon {
    koppen inline font-sizes heeft. Tussenkoppen in blogartikelen blijven kleiner.
    ============================ */
 :root {
-  --fs-title: clamp(32px, 4.4vw, 66px);
+  --fs-title: clamp(32px, 4vw, 58px);
   --fs-intro: clamp(16px, 1.6vw, 26px);
 }
 
@@ -4259,3 +4259,9 @@ details[open] .faq-icon {
 
 /* Formulierlabels leesbaar op bruin (contactpagina) */
 .blok-bruin .contact-form-col label { color: white; }
+
+/* Tekstafbreking (sinds 2026-10-23): gemarkeerde zinsdelen blijven bij elkaar,
+   koppen krijgen evenwichtige regels, geen los woord op de laatste regel */
+p, li { text-wrap: pretty; }
+.warning-strong span,
+.nowrap { white-space: nowrap; }
