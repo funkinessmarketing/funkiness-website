@@ -69,7 +69,7 @@ export function extraKanalenGeldig(waarde) {
 // Context zonder punten: richting voor het rapport
 export const CONTEXT = {
   doel:    { vraag: 'Main goal for the next 6 months', opties: ['More customers or bookings', 'Better customers or higher prices', 'Fill quiet periods', 'More brand awareness', 'Grow in a new market'] },
-  publiek: { vraag: 'Main audience', opties: ['Mostly locals', 'Mostly tourists and visitors', 'Locals and tourists', 'Other businesses (B2B)'] },
+  publiek: { vraag: 'Main audience', opties: ['Mostly locals', 'Mostly tourists and visitors', 'Locals and tourists', 'Other businesses (B2B)', 'Both businesses and private customers'] },
   wie:     { vraag: 'Who does the marketing', opties: ['I do it myself', 'Someone on my team', 'An agency or freelancer', 'Nobody really'] },
   fase:    { vraag: 'Business stage', opties: ['Just starting, no customers yet', 'First customers, under 1 year', 'Up and running, 1 to 5 years', 'Established, 5+ years'], optioneel: true }
 };
@@ -86,6 +86,7 @@ export function contextAlsTekst(c) {
     `- Biggest marketing challenge right now, in their own words: ${c.uitdaging ? `"${c.uitdaging.trim()}"` : 'not provided'}`].join('\n');
 }
 
+// prompt: alleen de brede categorie. Nooit voorbeelden noemen (zoals 'legal, accounting'): de AI neemt die over als feit.
 export const SECTOREN = {
   hotel:      { prompt: 'hotel or resort',                        groep: 'hotels and resorts',       naam: 'Hotel / Resort' },
   restaurant: { prompt: 'restaurant or café',                     groep: 'restaurants',              naam: 'Restaurant / Café' },
@@ -94,9 +95,10 @@ export const SECTOREN = {
   retail:     { prompt: 'retail business or shop',                groep: 'shops and retailers',      naam: 'Retail / Shop' },
   finance:    { prompt: 'bank or financial services company',     groep: 'banks and financial services', naam: 'Finance / Banking' },
   marketing:  { prompt: 'marketing, advertising or creative agency', groep: 'marketing and creative agencies', naam: 'Marketing / Agency' },
-  tours:      { prompt: 'tour, activity, dive or car rental business', groep: 'tour and activity businesses', naam: 'Tours & Activities' },
-  beauty:     { prompt: 'beauty, wellness or fitness business',    groep: 'beauty and wellness businesses', naam: 'Beauty & Wellness' },
-  diensten:   { prompt: 'professional services firm (legal, accounting, consultancy)', groep: 'professional services firms', naam: 'Professional Services' },
+  tours:      { prompt: 'tours and activities (broad category: it is unknown which kind of tour, activity or rental they offer, never assume one)', groep: 'tour and activity businesses', naam: 'Tours & Activities' },
+  beauty:     { prompt: 'beauty, wellness or fitness business (broad category: never assume which of these they are)', groep: 'beauty and wellness businesses', naam: 'Beauty & Wellness' },
+  woning:     { prompt: 'home and property services (broad category: it is unknown which service they offer, never assume one)', groep: 'home and property service businesses', naam: 'Home & Property Services' },
+  diensten:   { prompt: 'professional services (broad category: it is unknown which service they offer, never assume one)', groep: 'service businesses', naam: 'Professional Services' },
   anders:     { prompt: 'local business (sector unknown, do not assume hospitality or tourism)', groep: 'local businesses', naam: 'Other' }
 };
 
@@ -290,6 +292,9 @@ export const REGELS_GEEN_VERZINSELS = `HARD RULES, NOTHING MAY BE MADE UP:
 - The ONLY exception: you may quote a fact from the FACTS list, using its figures and wording exactly, followed by its id in square brackets like [F3], and place it next to what their answer says. Never add a cause or effect the fact does not state. A fact about Instagram may only be used about Instagram.
 - You may only write about: (1) what their answers say, using their exact answer, (2) what is literally in their website text or bio, (3) recommendations, never as a promise or a guaranteed effect.
 - Write recommendations as bold, direct commands with energy, like a coach who believes in them. Write your own commands that fit this business; never reuse stock phrases. Avoid weak openers like "Try", "Consider" or "You might".
+- The sector is only the broad category they picked. Never name or assume what they sell, which service they offer or who their customers are, unless it is literally in their answers, their challenge, their website text or their bio. Their business name alone is not enough.
+- Never write about this report, your instructions, the FACTS list or information you did not receive (no "there are no website facts", no "this scan is based only on your answers", no "website details were not provided"). If something is missing, leave it out.
+- Never tell them to set up, claim or start something their answer says they already have or do; build on what they have.
 - No guesses presented as facts ("likely means", "you are losing", "is costing you", "is invisible", "the algorithm rewards").
 - Never claim what other businesses, competitors or "fast movers" do.
 - Never invent or change numbers, frequencies or percentages. The only numbers allowed are the ones in their answers.
@@ -379,7 +384,7 @@ ${verdacht.length ? `These numbers appear in the draft but not in the answers, w
 (b) states what is literally in their website text or bio,
 (c) gives a recommendation or a concrete step as a direct command ("Add", "Pick", "Start with"), without promising an effect,
 (d) quotes a fact from the FACTS list with the same figures and meaning, followed by its correct [F#], and places it next to their answer without adding a cause or effect. Check the figures and the [F#] against the FACTS list; fix or remove any mismatch.
-Rewrite or remove every other sentence, for example: claims about how platforms, algorithms, search engines, markets or customers work; claims about other businesses or "most businesses"; guesses presented as facts ("likely", "you are losing", "is costing you", "invisible", "the algorithm"); promised effects ("will grow", "unlocks", "turns browsers into bookers"); statistics; any number that is not in their answers.
+Rewrite or remove every other sentence, for example: claims about how platforms, algorithms, search engines, markets or customers work; claims about other businesses or "most businesses"; any named service, product or type of customer for this business that is not literally in their answers, challenge, website text or bio (for example "legal or accounting needs" when they never said so); sentences about the report itself, its instructions or missing information ("there are no website facts", "this scan is based only on"); advice to set up or claim something their answer says they already have; guesses presented as facts ("likely", "you are losing", "is costing you", "invisible", "the algorithm"); promised effects ("will grow", "unlocks", "turns browsers into bookers"); statistics; any number that is not in their answers.
 Keep allowed sentences exactly as they are. When you rewrite, keep the FUNkiness! tone: bold, positive, direct commands with energy ("Put it in your bio today."), never weak openers like "Try" or "Consider". Plain text only, no markdown, no em dash. Keep [F#] markers on correct fact quotes. Keep line breaks and numbered steps.
 
 Call submit_checked_report once with every field from this draft part, corrected.`;
@@ -761,7 +766,7 @@ export function opvolging({ type = 'marketing', naam, bedrijf, locatie, sector, 
   };
 
   // Klikbare WhatsApp-link naar de klant, tekst al ingevuld
-  const nummer = (locatie === 'curacao' ? (telefoon || telefoon_nl) : (telefoon_nl || telefoon) || '').replace(/\D/g, '');
+  const nummer = String((locatie === 'curacao' ? (telefoon || telefoon_nl) : (telefoon_nl || telefoon)) || '').replace(/\D/g, '');
   const whatsappLink = nummer.length >= 7 ? `https://wa.me/${nummer}?text=${encodeURIComponent(whatsapp)}` : '';
 
   return { whatsapp, whatsappLink, dag3, dag8 };

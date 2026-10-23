@@ -77,7 +77,8 @@ export default async function handler(req, res) {
     : websitePunten.length
       ? `EYE-OPENER TO USE: their answer about their website is "${antwoorden.website}", while our check measured: ${websitePunten.slice(0, 2).join('; ')} [F91].`
       : '';
-  const feiten = [...(websiteFeit ? [websiteFeit] : []), ...feitenVoor('marketing', sector, locatie)];
+  // Zonder website zegt het feit over websites blokkeren voor ChatGPT (F10) de klant niets
+  const feiten = [...(websiteFeit ? [websiteFeit] : []), ...feitenVoor('marketing', sector, locatie).filter(f => site || f.id !== 'F10')];
 
   const totaalscore = Math.round((scores.brand + scores.audience + scores.channels + scores.strategy) / 4);
   const lowestCat = Object.entries(scores).sort((a, b) => a[1] - b[1])[0][0];
