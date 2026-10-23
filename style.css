@@ -4219,3 +4219,20 @@ details[open] .faq-icon {
 
 .warning-btn { background: var(--black); }
 .warning-sign .script-word { color: var(--black); }
+
+
+/* Homepage zigzag (sinds 2026-10-23): diensten links, why rechts, ladies links,
+   waarschuwing gecentreerd, mobile office rechts, scans links, FUNky Letter rechts */
+.why-us--rechts .why-us-top { grid-template-columns: 1fr; }
+.why-us--rechts .why-us-header { margin-left: auto; text-align: right; }
+
+.warning-sign { text-align: center; }
+.warning-icon { margin-left: auto; margin-right: auto; }
+.warning-intro,
+.warning-strong { margin-left: auto; margin-right: auto; }
+.warning-cols { text-align: left; }
+
+@media (min-width: 1100px) {
+  .scan-section--links { grid-template-columns: 1fr 0.92fr; }
+  .scan-section--links .scan-image-wrap { order: 0; }
+}
