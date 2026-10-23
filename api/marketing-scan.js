@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodemailer from 'nodemailer';
 import { randomUUID } from 'crypto';
-import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, valutaRegel, faseRegel, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, teasers, scoresPerVraag, TIJDZONE, afspraak, opvolging, opvolgingHtml, opvolgingVoorSheet } from './_scan-vragen.js';
+import { berekenScores, SECTOREN, LOCATIES, analyseerWebsite, websiteRegel, contextGeldig, contextAlsTekst, feitenVoor, feitenAlsTekst, antwoordenAlsTekst, REGELS_GEEN_VERZINSELS, valutaRegel, faseRegel, feitenBlok, schoonTekst, verzonnenGetallen, controleerRapport, antwoordenSamenvatting, heeftDrieStappen, controleerCitaten, verwijderFouteZinnen, categorieRegel, categorieRegelsVoorControle, bewaakCategorieen, teasers, scoresPerVraag, TIJDZONE, afspraak, opvolging, opvolgingHtml, opvolgingVoorSheet } from './_scan-vragen.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -120,7 +120,7 @@ Do not compare these scores to other businesses or invent averages.
 TONE:
 - English only
 - Direct, bold, honest but always positive. Frame everything from opportunity
-- Never use "premium" or "luxury"
+- Never use "premium", "luxury" or "momentum"
 ${valutaRegel(locatie)}
 ${faseRegel(context)}- FUNkiness! brand voice: confident, a little cheeky, never corporate
 - Always mention ${bedrijf} by name
@@ -137,10 +137,10 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
         intro: { type: 'string', description: `3 sharp sentences about ${bedrijf}: what they do (from their website or bio if provided), what their answers show overall, and the biggest gap. Based only on their answers and, if provided, their website.` },
         eye_opener: { type: 'string', description: `The single biggest eye-opener for ${bedrijf}, in 2 short, punchy sentences. Choose in this order: (1) a measured website point from [F91] that contradicts their own answer about their website, quoting both exactly with [F91]; (2) if [F91] says robots.txt blocks OAI-SearchBot, put that next to their answer about showing up in ChatGPT; (3) otherwise their lowest-scoring answer, quoted exactly, next to the FACTS-list fact that relates to it with its [F#]. Never combine two unrelated answers. End with one bold piece of advice. Surprising and positive, never alarming, no promised results.` },
         whats_working: { type: 'string', description: '2 to 3 playful, encouraging sentences about the things they are genuinely doing well, based on their exact answers and, if provided, their website or bio.' },
-        brand_feedback: { type: 'string', description: '4 to 6 sentences about positioning, visual consistency and clarity. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
-        audience_feedback: { type: 'string', description: '4 to 6 sentences about their ideal customer, reviews and knowing where customers come from. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
-        channels_feedback: { type: 'string', description: '4 to 6 sentences about website, Google Business Profile, AI visibility, AI for customer questions, WhatsApp/email and ads. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
-        strategy_feedback: { type: 'string', description: '4 to 6 sentences about whether they have a real marketing strategy, budget, tracking, time spent and how they use AI in their marketing. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' },
+        brand_feedback: { type: 'string', description: '4 to 6 sentences about positioning, visual consistency and clarity. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' + ' ' + categorieRegel('marketing', 'brand', antwoorden, sector, feiten) },
+        audience_feedback: { type: 'string', description: '4 to 6 sentences about their ideal customer, reviews and knowing where customers come from. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' + ' ' + categorieRegel('marketing', 'audience', antwoorden, sector, feiten) },
+        channels_feedback: { type: 'string', description: 'If you suggest checking ChatGPT, tell them to ask it the question their own customer would ask, and never write that question for them. 4 to 6 sentences about website, Google Business Profile, AI visibility, AI for customer questions, WhatsApp/email and ads. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' + ' ' + categorieRegel('marketing', 'channels', antwoorden, sector, feiten) },
+        strategy_feedback: { type: 'string', description: '4 to 6 sentences about whether they have a real marketing strategy, budget, tracking, time spent and how they use AI in their marketing. First say what their answers show, using their exact answers. If a fact from the FACTS list relates to this, quote it exactly with its [F#] next to their answer. Then give exactly 3 concrete steps they can do this month, each on its own line as "1. ...", "2. ...", "3. ...", specific to their answers.' + ' ' + categorieRegel('marketing', 'strategy', antwoorden, sector, feiten) },
         top_quickwin: { type: 'string', description: `The single best quick win for ${bedrijf}, based on their answers. Explain step by step how to do it: 4 to 6 sentences or numbered steps on their own lines, specific to their answers. Genuinely useful.` },
         teaser_wins: { type: 'string', description: `Name two areas from their answers that FUNkiness! would dig into together in a conversation, without explaining them. Never mention a full report or anything they have not received.` },
         campaign_ideas: { type: 'string', description: `Exactly 3 marketing campaign ideas for ${bedrijf}, made for their main goal, their audience and who does their marketing. Each on its own line as "1. [campaign name]: [what to do, on which channel] + the first step". Based only on their answers, website and context. No promised results.` },
@@ -182,7 +182,9 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     let ruw = Object.assign({}, ...await Promise.all([schrijf(helftA), schrijf(helftB)]));
     // Ontbrekende onderdelen nog één keer opvragen; een rapport met gaten gaat nooit naar buiten
     const verplicht = alleVelden.filter(k => k !== 'chosen_facts');
-    let ontbreekt = verplicht.filter(k => typeof ruw[k] !== 'string');
+    // Ontbreekt, of een onderdeel zonder drie genummerde stappen: opnieuw
+    const onvolledig = k => typeof ruw[k] !== 'string' || (k.endsWith('_feedback') && k !== 'bio_feedback' && !heeftDrieStappen(schoonTekst(ruw[k])));
+    let ontbreekt = verplicht.filter(onvolledig);
     if (ontbreekt.length) {
       console.warn('Ontbrekende velden, opnieuw:', ontbreekt);
       Object.assign(ruw, await schrijf(ontbreekt));
@@ -194,11 +196,44 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
     if (verzonnen.length) console.warn('Verdachte getallen:', verzonnen);
 
     // Strenge controle: elke zin moet uit antwoorden, website of feitenlijst volgen
+    const concept = ruw;
     ruw = await controleerRapport({
       client, model: 'claude-sonnet-5-5',
       feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: contextAlsTekst(context) + '\n' + antwoordenAlsTekst('marketing', antwoorden),
-      websiteInhoud, bio: '', concept: ruw, verdacht: verzonnen
+      websiteInhoud, bio: '', concept: ruw, verdacht: verzonnen,
+      categorieRegels: categorieRegelsVoorControle('marketing', antwoorden, sector, feiten)
     });
+    // Onderdelen die de controle niet doorkwamen: opnieuw schrijven en controleren. Lukt dat niet, dan geen half rapport naar de klant
+    const nietDoor = Object.keys(concept).filter(k => !k.endsWith('_feedback') && (k !== 'challenge_answer' || context.uitdaging?.trim()) && typeof concept[k] === 'string' && concept[k].trim() && !ruw[k]?.trim());
+    if (nietDoor.length) {
+      console.warn('Opnieuw schrijven na mislukte controle:', nietDoor);
+      const opnieuw = await schrijf(nietDoor);
+      const herzien = await controleerRapport({
+      client, model: 'claude-sonnet-5-5',
+      feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: contextAlsTekst(context) + '\n' + antwoordenAlsTekst('marketing', antwoorden),
+      websiteInhoud, bio: '', concept: Object.fromEntries(nietDoor.map(k => [k, opnieuw[k] || ''])), verdacht: verzonnen,
+      categorieRegels: categorieRegelsVoorControle('marketing', antwoorden, sector, feiten)
+      });
+      for (const k of nietDoor) ruw[k] = herzien[k] || '';
+      const nogLeeg = nietDoor.filter(k => !ruw[k]?.trim());
+      if (nogLeeg.length) throw new Error('Controle mislukt voor: ' + nogLeeg.join(', '));
+    }
+    // Vangnet: zinnen die in een ander onderdeel thuishoren gaan eruit
+    ruw = bewaakCategorieen(ruw, 'marketing', antwoorden, sector);
+    // Elk citaat naast de bronnen leggen; wat niet klopt gaat nog één keer langs de controleur, daarna gaat de zin eruit
+    const controleBasis = { client, model: 'claude-sonnet-5-5', feitenTekst: feitenAlsTekst(feiten), antwoordenTekst: contextAlsTekst(context) + '\n' + antwoordenAlsTekst('marketing', antwoorden), websiteInhoud, bio: '' };
+    const citaatBronnen = [controleBasis.antwoordenTekst, websiteInhoud, '', controleBasis.feitenTekst, bedrijf];
+    let fouteCitaten = controleerCitaten(ruw, citaatBronnen);
+    if (Object.keys(fouteCitaten).length) {
+      console.warn('Citaten kloppen niet:', JSON.stringify(fouteCitaten));
+      const deel = Object.fromEntries(Object.keys(fouteCitaten).map(k => [k, ruw[k]]));
+      const herzien = await controleerRapport({ ...controleBasis, concept: deel, fouteCitaten: [...new Set(Object.values(fouteCitaten).flat())],
+        categorieRegels: categorieRegelsVoorControle('marketing', antwoorden, sector, feiten) });
+      for (const k of Object.keys(deel)) if (herzien[k]) ruw[k] = herzien[k];
+      ruw = bewaakCategorieen(ruw, 'marketing', antwoorden, sector);
+      fouteCitaten = controleerCitaten(ruw, citaatBronnen);
+    }
+    ruw = verwijderFouteZinnen(ruw, fouteCitaten, [...Object.values(antwoorden), ...Object.values(context)].filter(v => typeof v === 'string'));
 
     // Categorie zonder goedgekeurde tekst: samenvatting van hun eigen antwoorden
     for (const cat of ["brand", "audience", "channels", "strategy"]) {

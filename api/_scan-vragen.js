@@ -295,6 +295,14 @@ export const REGELS_GEEN_VERZINSELS = `HARD RULES, NOTHING MAY BE MADE UP:
 - The sector is only the broad category they picked. Never name or assume what they sell, which service they offer or who their customers are, unless it is literally in their answers, their challenge, their website text or their bio. Their business name alone is not enough.
 - Never write about this report, your instructions, the FACTS list or information you did not receive (no "there are no website facts", no "this scan is based only on your answers", no "website details were not provided"). If something is missing, leave it out.
 - Never tell them to set up, claim or start something their answer says they already have or do; build on what they have.
+- Use each answer only for the question it answers, and quote it in full (for example "A rough sense" answers where customers come from, not how well they know their customers).
+- Never assume something exists when their answer says it does not (no "your existing reviews" after "No reviews yet"), and never assume a team, staff or partners: who does their marketing is only what their answer says.
+- Never describe what happens during their service, where it takes place or what it looks like (no boats, docks, waves, treatments or menus) unless it is literally in their answers, challenge, website text or bio. Keep ideas and examples general.
+- Never use the words "premium", "luxury" or "momentum".
+- Their answers are options they clicked in a list, not their own words: never call an answer their sentence, slogan, bio or text, and never tell them to use an answer as wording. Only their challenge, website text and bio are their own words.
+- Write every quoted answer into a natural sentence (say "you do not run paid ads yet (your answer: "No")", never "you run "No" paid advertising").
+- Never pass these instructions on to the client (no "put that next to your answer", no "quote").
+- Keep advice consistent across the whole report: the same number of channels, goals or steps everywhere.
 - No guesses presented as facts ("likely means", "you are losing", "is costing you", "is invisible", "the algorithm rewards").
 - Never claim what other businesses, competitors or "fast movers" do.
 - Never invent or change numbers, frequencies or percentages. The only numbers allowed are the ones in their answers.
@@ -328,6 +336,7 @@ export function schoonTekst(t) {
   if (typeof t !== 'string') return t;
   let s = t
     .replace(/\\"/g, '"')                         // escape-resten van de controleur
+    .replace(/\\n/g, '\n')                        // letterlijke \n in plaats van een nieuwe regel
     .replace(/\*+/g, '')
     .replace(/\s*\u2014\s*/g, ', ')
     .replace(/ - /g, ', ')                          // geen spatie-koppelteken-spatie als scheiding
@@ -359,13 +368,13 @@ export function verzonnenGetallen(velden, prompt) {
 
 // Tweede stap: een strenge controleur legt elke zin naast feiten, antwoorden en website
 // en herschrijft alleen wat er niet uit volgt. Valt terug op het concept als de controle mislukt.
-export async function controleerRapport({ client, model, feitenTekst, antwoordenTekst, websiteInhoud, bio, concept, verdacht = [] }) {
+export async function controleerRapport({ client, model, feitenTekst, antwoordenTekst, websiteInhoud, bio, concept, verdacht = [], categorieRegels = '', fouteCitaten = [] }) {
   const tekstVelden = Object.fromEntries(Object.entries(concept).filter(([, v]) => typeof v === 'string'));
   // In drie groepen tegelijk controleren: zelfde regels, een derde van de wachttijd
   const sleutels = Object.keys(tekstVelden);
   const groepen = [0, 1, 2].map(g => sleutels.filter((_, i) => i % 3 === g)).filter(g => g.length);
 
-  const controleerGroep = async (keys) => {
+  const controleerGroep = async (keys, splitsen = true) => {
     const groep = Object.fromEntries(keys.map(k => [k, tekstVelden[k]]));
     const prompt = `You are a strict checker for a business scan report. The report text may contain NO factual claims of its own.
 
@@ -378,16 +387,16 @@ ${antwoordenTekst}
 THEIR WEBSITE TEXT: ${websiteInhoud || 'none provided'}
 THEIR BIO: ${bio || 'none provided'}
 
-DRAFT REPORT TEXT (JSON, part of the report):
+${categorieRegels ? `WHAT EACH PART OF THE REPORT MAY DISCUSS:\n${categorieRegels}\nRewrite any sentence that discusses a question or fact belonging to another part, or remove it.\n\n` : ''}DRAFT REPORT TEXT (JSON, part of the report):
 ${JSON.stringify(groep, null, 2)}
 
-${verdacht.length ? `These numbers appear in the draft but not in the answers, website, bio or FACTS, so they are made up and must be removed: ${verdacht.join(', ')}.\n\n` : ''}Go through every field, sentence by sentence. A sentence is allowed only if it does one of these:
+${fouteCitaten.length ? `These quotes in the draft do not match anything the client answered or wrote: ${fouteCitaten.map(c => `"${c}"`).join(', ')}. Replace each with their exact answer from THE CLIENT'S EXACT ANSWERS, or rewrite the sentence without it. Never comment on the mistake.\n\n` : ''}${verdacht.length ? `These numbers appear in the draft but not in the answers, website, bio or FACTS, so they are made up and must be removed: ${verdacht.join(', ')}.\n\n` : ''}Go through every field, sentence by sentence. A sentence is allowed only if it does one of these:
 (a) states what their answers say, matching the exact answer,
 (b) states what is literally in their website text or bio,
 (c) gives a recommendation or a concrete step as a direct command ("Add", "Pick", "Start with"), without promising an effect,
 (d) quotes a fact from the FACTS list with the same figures and meaning, followed by its correct [F#], and places it next to their answer without adding a cause or effect. Check the figures and the [F#] against the FACTS list; fix or remove any mismatch.
-Rewrite or remove every other sentence, for example: claims about how platforms, algorithms, search engines, markets or customers work; claims about other businesses or "most businesses"; any named service, product or type of customer for this business that is not literally in their answers, challenge, website text or bio (for example "legal or accounting needs" when they never said so); sentences about the report itself, its instructions or missing information ("there are no website facts", "this scan is based only on"); advice to set up or claim something their answer says they already have; guesses presented as facts ("likely", "you are losing", "is costing you", "invisible", "the algorithm"); promised effects ("will grow", "unlocks", "turns browsers into bookers"); statistics; any number that is not in their answers.
-Keep allowed sentences exactly as they are. When you rewrite, keep the FUNkiness! tone: bold, positive, direct commands with energy ("Put it in your bio today."), never weak openers like "Try" or "Consider". Plain text only, no markdown, no em dash. Keep [F#] markers on correct fact quotes. Keep line breaks and numbered steps.
+Rewrite or remove every other sentence, for example: claims about how platforms, algorithms, search engines, markets or customers work; claims about other businesses or "most businesses"; any named service, product or type of customer for this business that is not literally in their answers, challenge, website text or bio (for example "legal or accounting needs" when they never said so); any description of what happens during their service, where it takes place or what it looks like that is not in their answers, challenge, website text or bio (boats, docks, waves, treatments, menus); the words "premium", "luxury" and "momentum"; sentences that are grammatically broken or do not read naturally; an answer treated as their own words, sentence, slogan or bio (answers are options they clicked); a quoted answer squeezed into a sentence that does not read naturally ("you run "No" paid advertising"); instructions passed on to the client ("put that next to your answer"); advice that contradicts other advice in the same text (three channels in one step, two in the next); an answer quoted for a different question than the one it answers, or quoted only in part; anything assumed to exist that their answers say does not (existing reviews after "No reviews yet"); a team, staff or partners that their answers do not mention; sentences about the report itself, its instructions or missing information ("there are no website facts", "this scan is based only on"); advice to set up or claim something their answer says they already have; guesses presented as facts ("likely", "you are losing", "is costing you", "invisible", "the algorithm"); promised effects ("will grow", "unlocks", "turns browsers into bookers"); statistics; any number that is not in their answers.
+Your output is the final report text the client reads: never add notes, corrections or comments about the draft (no "Correction:", no "is not what you said"). Keep allowed sentences exactly as they are. When you rewrite, keep the FUNkiness! tone: bold, positive, direct commands with energy ("Put it in your bio today."), never weak openers like "Try" or "Consider". Plain text only, no markdown, no em dash. Keep [F#] markers on correct fact quotes. Keep line breaks and numbered steps.
 
 Call submit_checked_report once with every field from this draft part, corrected.`;
     const checkTool = {
@@ -414,30 +423,132 @@ Call submit_checked_report once with every field from this draft part, corrected
         const kapotVeld = !toolUse ? '(geen tool_use, stop: ' + message.stop_reason + ')'
           : keys.find(k => typeof uit[k] !== 'string' || (groep[k] && !uit[k].trim()) || /<\/?\w|parameter name=/.test(uit[k]));
         if (!kapotVeld) return Object.fromEntries(keys.map(k => [k, uit[k]]));
-        console.warn(`Controle poging ${poging} onvolledig:`, kapotVeld, JSON.stringify(uit[kapotVeld])?.slice(0, 300));
+        console.warn(`Controle poging ${poging} onvolledig:`, kapotVeld, '...' + JSON.stringify(uit[kapotVeld])?.slice(-300));
       } catch (err) {
         console.error(`Controle poging ${poging} mislukt:`, err.message);
       }
+    }
+    // Groep mislukt: elk onderdeel apart nog een keer, kleiner is betrouwbaarder
+    if (splitsen && keys.length > 1) {
+      console.warn('Controle per onderdeel opnieuw:', keys.join(', '));
+      return Object.assign({}, ...await Promise.all(keys.map(k => controleerGroep([k], false))));
     }
     // Nooit ongecontroleerde tekst naar de klant: deze onderdelen worden leeg en de code vult ze veilig aan
     console.error('Controle mislukt voor:', keys.join(', '));
     return Object.fromEntries(keys.map(k => [k, '']));
   };
 
-  const resultaten = await Promise.all(groepen.map(controleerGroep));
+  const resultaten = await Promise.all(groepen.map(g => controleerGroep(g)));
   return Object.assign({ ...concept }, ...resultaten);
 }
 
 // Een [F#] die vóór het citaat staat in plaats van erachter, schuift naar het einde van die zin.
-// Alleen als die zin een letterlijk citaat uit dat feit bevat.
+// Alleen als die zin een letterlijk citaat uit dat feit bevat, of letterlijk met het feit begint.
 export function verschuifBronnen(tekst, feiten) {
   return tekst.replace(/\s*\[(F\d+)\]\s+([^\[\n]*?[.!?]"?)(?=\s|$)/g, (m, id, zin, plek, alles) => {
     const feit = feiten.find(f => f.id === id);
     const citaten = (zin.match(/"([^"]{15,})"/g) || []).map(c => c.slice(1, -1).replace(/[.!?]$/, ''));
-    if (!feit || !citaten.some(c => feit.tekst.includes(c))) return m;
+    // De zin citeert het feit, of begint letterlijk zoals het feit
+    const begin = zin.replace(/[.!?"]+$/, '').slice(0, 40);
+    if (!feit || !(citaten.some(c => feit.tekst.includes(c)) || (begin.length >= 20 && feit.tekst.includes(begin)))) return m;
     // Staat dezelfde verwijzing er al achter, dan niet dubbel
     return alles.slice(plek + m.length).startsWith(` [${id}]`) ? ` ${zin}` : ` ${zin} [${id}]`;
   });
+}
+
+// Bij welk onderdeel van het rapport een feit hoort. Een feit verschijnt alleen in dat onderdeel.
+const FEIT_CAT = {
+  marketing: { F1: 'audience', F11: 'audience', F21: 'audience', F31: 'audience', F41: 'audience', F8: 'audience', F9: 'audience',
+    F2: 'channels', F3: 'channels', F12: 'channels', F13: 'channels', F22: 'channels', F32: 'channels', F33: 'channels', F42: 'channels', F10: 'channels', F91: ['channels', 'brand'] },
+  social: { F1: 'platforms', F11: 'platforms', F21: 'platforms', F31: 'platforms', F41: 'platforms',
+    F2: 'platforms', F3: 'platforms', F12: 'platforms', F13: 'platforms', F22: 'platforms', F32: 'platforms', F33: 'platforms', F42: 'platforms', F90: ['platforms', 'instagram', 'engagement'],
+    F4: 'engagement', F5: 'instagram', F6: 'instagram', F7: 'instagram' }
+};
+
+function vragenVan(type, cat, antwoorden, sector) {
+  return Object.entries(VRAGEN[type]).filter(([k, v]) => v.cat === cat && antwoorden[k] !== undefined && (!v.sectoren || v.sectoren.includes(sector)));
+}
+
+const feitHoortBij = (type, id, cat) => { const c = FEIT_CAT[type]?.[id]; return Array.isArray(c) ? c.includes(cat) : c === cat; };
+
+// Een onderdeel is pas compleet met drie genummerde stappen, elk op een eigen regel
+export const heeftDrieStappen = t => typeof t === 'string' && /(^|\n)1\. \S[^\n]*\n2\. \S[^\n]*\n3\. \S/.test(t);
+
+// Regel per onderdeel: alleen de eigen vragen en de eigen feiten
+export function categorieRegel(type, cat, antwoorden, sector, feiten) {
+  const vragen = vragenVan(type, cat, antwoorden, sector).map(([k]) => `"${VRAAGTEKST[k]}" (their answer: "${antwoorden[k]}")`).join('; ');
+  const eigen = feiten.filter(f => feitHoortBij(type, f.id, cat)).map(f => `[${f.id}]`);
+  return `This field may ONLY discuss these questions: ${vragen}. ${eigen.length ? `The only facts allowed in this field: ${eigen.join(', ')}.` : 'No facts from the FACTS list are allowed in this field.'} Never mention answers, questions or facts that belong to another part of the report.`;
+}
+
+// Voor de controleur: alle onderdelen met hun eigen vragen en feiten
+export function categorieRegelsVoorControle(type, antwoorden, sector, feiten) {
+  const cats = [...new Set(Object.values(VRAGEN[type]).map(v => v.cat))];
+  return cats.map(cat => `- Field ${cat}_feedback: ${categorieRegel(type, cat, antwoorden, sector, feiten)}`).join('\n')
+    + '\n- Any other field may quote any fact, but each fact at most once in the whole report text.';
+}
+
+// Vangnet in code: zinnen in een onderdeel die een feit of een letterlijk antwoord uit een ander onderdeel citeren, gaan eruit
+export function bewaakCategorieen(velden, type, antwoorden, sector) {
+  const uit = { ...velden };
+  const cats = [...new Set(Object.values(VRAGEN[type]).map(v => v.cat))];
+  const antwoordVan = cat => new Set(vragenVan(type, cat, antwoorden, sector).map(([k]) => antwoorden[k]));
+  for (const cat of cats) {
+    const veld = `${cat}_feedback`;
+    if (typeof uit[veld] !== 'string') continue;
+    const eigen = antwoordVan(cat);
+    const vreemd = new Set(cats.filter(c => c !== cat).flatMap(c => [...antwoordVan(c)]).filter(a => !eigen.has(a)));
+    const zinOk = zin => {
+      const ids = zin.match(/F\d+/g) || [];
+      if (ids.some(id => FEIT_CAT[type]?.[id] && !feitHoortBij(type, id, cat))) return false;
+      const citaten = [...zin.matchAll(/"([^"]+)"/g)].map(m => m[1].replace(/[.,!?]$/, ''));
+      return !citaten.some(c => vreemd.has(c));
+    };
+    uit[veld] = uit[veld].split('\n').map(regel => regel
+      .split(/(?<=[.!?]"?(?:\s*\[F\d+(?:\s*,\s*F\d+)*\])?)\s+(?=[A-Z0-9"])/)
+      .filter(zinOk).join(' ').trim())
+      .filter(r => r && !/^\d\.$/.test(r)).join('\n').trim();
+  }
+  return uit;
+}
+
+// Velden waarin citaten letterlijk uit de antwoorden, website, bio of feiten moeten komen.
+// Stappen (regels die met "1." beginnen) en ideeën mogen voorbeeldzinnen tussen aanhalingstekens bevatten.
+const CITAAT_VELDEN = k => ['intro', 'eye_opener', 'whats_working', 'teaser_wins', 'challenge_answer', 'cta_dynamic'].includes(k) || (k.endsWith('_feedback') && k !== 'bio_feedback');
+const normaal = t => t.toLowerCase().replace(/[’‘]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ').replace(/[.,!?;:]+$/, '').trim();
+
+// Geeft per veld de citaten die nergens in de bronnen staan
+export function controleerCitaten(velden, bronnen) {
+  const bron = normaal(bronnen.filter(Boolean).join(' \n '));
+  const fout = {};
+  for (const [k, v] of Object.entries(velden)) {
+    if (typeof v !== 'string' || !CITAAT_VELDEN(k)) continue;
+    const tekst = v.replace(/\\"/g, '"').split('\n').filter(r => !/^\s*\d\.\s/.test(r)).join('\n');
+    const lijst = [...tekst.matchAll(/["“]([^"”\n]{3,})["”]/g)].map(m => m[1].replace(/\s*\[F\d+(?:\s*,\s*F\d+)*\]/g, ''))
+      // Scheef gekoppelde aanhalingstekens (de tekst tussen twee citaten) overslaan
+      .filter(c => !/^[\s,.;:)]/.test(c) && !/[\s(]$/.test(c))
+      .filter(c => !bron.includes(normaal(c)));
+    if (lijst.length) fout[k] = [...new Set(lijst)];
+  }
+  return fout;
+}
+
+// Laatste vangnet: zinnen met een citaat dat duidelijk een verkeerd overgenomen antwoord is, en commentaarzinnen, gaan eruit
+export function verwijderFouteZinnen(velden, fout, antwoordLijst) {
+  const woorden = t => new Set(normaal(t).split(/[^a-z0-9']+/).filter(Boolean));
+  const lijktOpAntwoord = c => antwoordLijst.some(a => { const w = woorden(a), cw = woorden(c); const gedeeld = [...cw].filter(x => w.has(x)).length; return w.size && gedeeld / Math.max(w.size, cw.size) >= 0.6; });
+  const commentaar = /\b(correction|is not what you said|not what you answered|the draft|this report says)\b/i;
+  const uit = { ...velden };
+  for (const [k, v] of Object.entries(uit)) {
+    if (typeof v !== 'string') continue;
+    const slecht = (fout[k] || []).filter(lijktOpAntwoord);
+    uit[k] = v.split('\n').map(regel => regel
+      .split(/(?<=[.!?]"?(?:\s*\[F\d+(?:\s*,\s*F\d+)*\])?)\s+(?=[A-Z0-9"])/)
+      .filter(zin => !commentaar.test(zin) && !slecht.some(c => zin.includes(c)))
+      .join(' ').trim())
+      .filter(r => r && !/^\d\.$/.test(r)).join('\n').trim();
+  }
+  return uit;
 }
 
 // Bouwt het blok "Worth knowing": de gekozen feiten letterlijk uit de bronnenlijst, met genummerde bronnen
@@ -667,7 +778,7 @@ export async function analyseerWebsite(invoer) {
     return {
       inhoud,
       punten,
-      samenvatting: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): we checked 13 points and found ${punten.length} ${punten.length === 1 ? 'point' : 'points'} that need attention${punten.length ? `, including: ${punten.slice(0, 3).join('; ')}` : ''}.`,
+      samenvatting: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): we checked 13 points and found ${punten.length} ${punten.length === 1 ? 'point that needs' : 'points that need'} attention${punten.length ? `, including: ${punten.slice(0, 3).join('; ')}` : ''}.`,
       feit: {
         id: 'F91', voor: 'marketing', locaties: [], sectoren: [],
         tekst: `Website check of ${eind.hostname} by FUNkiness! on ${datum} (homepage only): ${metingen.join('; ')}.`,
@@ -705,7 +816,7 @@ export function teasers({ instagramFeit, websitePunten, aantalVragen }) {
     const rest = websitePunten.length - Math.min(3, websitePunten.length);
     lijst.push(rest > 0
       ? `Our website check found ${websitePunten.length} points that need attention on your homepage. This report names 3 of them; the other ${rest} we go through with you.`
-      : `Our website check found ${websitePunten.length} ${websitePunten.length === 1 ? 'point' : 'points'} that need attention on your homepage, and we show you exactly how to fix ${websitePunten.length === 1 ? 'it' : 'them'}.`);
+      : `Our website check found ${websitePunten.length} ${websitePunten.length === 1 ? 'point that needs' : 'points that need'} attention on your homepage, and we show you exactly how to fix ${websitePunten.length === 1 ? 'it' : 'them'}.`);
   }
   if (instagramFeit?.extra?.length) {
     const wat = [];
