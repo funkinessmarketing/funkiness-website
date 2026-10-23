@@ -4236,3 +4236,23 @@ details[open] .faq-icon {
   .scan-section--links { grid-template-columns: 1fr 0.92fr; }
   .scan-section--links .scan-image-wrap { order: 0; }
 }
+
+.warning-budget {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 20px 24px;
+  border-radius: 18px;
+  background: var(--black);
+  color: rgba(255,255,255,0.88);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.warning-budget strong {
+  display: block;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--pink);
+  margin-bottom: 6px;
+}
