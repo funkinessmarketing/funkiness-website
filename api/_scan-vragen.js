@@ -336,6 +336,8 @@ export function schoonTekst(t) {
     .replace(/ *\n */g, '\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+  // Genummerde stappen die achter elkaar op één regel staan: elke stap op een eigen regel
+  if (/(^|\s)1\. \S/.test(s) && /\s2\. \S/.test(s)) s = s.replace(/([.:!?"])[ \t]+(?=[1-9]\. [A-Z])/g, '$1\n');
   const quotes = (s.match(/"/g) || []).length;
   if (quotes % 2 === 1) s = s.replace(/^"|"$/g, '');
   return s.trim();
@@ -426,6 +428,18 @@ Call submit_checked_report once with every field from this draft part, corrected
   return Object.assign({ ...concept }, ...resultaten);
 }
 
+// Een [F#] die vóór het citaat staat in plaats van erachter, schuift naar het einde van die zin.
+// Alleen als die zin een letterlijk citaat uit dat feit bevat.
+export function verschuifBronnen(tekst, feiten) {
+  return tekst.replace(/\s*\[(F\d+)\]\s+([^\[\n]*?[.!?]"?)(?=\s|$)/g, (m, id, zin, plek, alles) => {
+    const feit = feiten.find(f => f.id === id);
+    const citaten = (zin.match(/"([^"]{15,})"/g) || []).map(c => c.slice(1, -1).replace(/[.!?]$/, ''));
+    if (!feit || !citaten.some(c => feit.tekst.includes(c))) return m;
+    // Staat dezelfde verwijzing er al achter, dan niet dubbel
+    return alles.slice(plek + m.length).startsWith(` [${id}]`) ? ` ${zin}` : ` ${zin} [${id}]`;
+  });
+}
+
 // Bouwt het blok "Worth knowing": de gekozen feiten letterlijk uit de bronnenlijst, met genummerde bronnen
 export function feitenBlok(gekozenIds, feiten, tekstVelden = {}) {
   const geldig = [...new Set(Array.isArray(gekozenIds) ? gekozenIds : [])].filter(id => feiten.some(f => f.id === id)).slice(0, 3);
@@ -438,7 +452,7 @@ export function feitenBlok(gekozenIds, feiten, tekstVelden = {}) {
   };
   // [F#] in de tekst omzetten naar bronnummers; onbekende verwijzingen verdwijnen
   const velden = Object.fromEntries(Object.entries(tekstVelden).map(([k, v]) => [k, typeof v !== 'string' ? v
-    : v.replace(/\s*\[(F\d+(?:\s*,\s*F\d+)*)\]/g, (m, lijst) => {
+    : verschuifBronnen(v, feiten).replace(/\s*\[(F\d+(?:\s*,\s*F\d+)*)\]/g, (m, lijst) => {
         const nrs = [...new Set(lijst.split(/\s*,\s*/).map(id => feiten.find(f => f.id === id)).filter(Boolean).map(nummerVoor))];
         return nrs.length ? ' ' + nrs.map(n => `[${n}]`).join('') : '';
       })]));
