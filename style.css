@@ -4117,9 +4117,9 @@ details[open] .faq-icon {
 .warning-sign {
   max-width: 920px;
   margin: 56px auto 0;
-  background: var(--black);
+  background: var(--pink);
   color: white;
-  border: 4px dashed var(--pink);
+  border: 4px dashed var(--black);
   border-radius: 28px;
   padding: 36px 24px 40px;
   transform: rotate(-0.6deg);
@@ -4134,7 +4134,7 @@ details[open] .faq-icon {
 
 .warning-kicker {
   font-family: 'Permanent Marker', cursive;
-  color: var(--pink);
+  color: var(--black);
   font-size: 20px;
   margin-bottom: 10px;
 }
@@ -4152,7 +4152,7 @@ details[open] .faq-icon {
 .warning-intro {
   font-size: 17px;
   line-height: 1.55;
-  color: rgba(255,255,255,0.82);
+  color: white;
   max-width: 640px;
   margin-bottom: 20px;
 }
@@ -4167,7 +4167,7 @@ details[open] .faq-icon {
   margin-bottom: 32px;
 }
 
-.warning-strong span { color: var(--pink); }
+.warning-strong span { color: var(--black); }
 
 .warning-cols {
   display: grid;
@@ -4185,7 +4185,7 @@ details[open] .faq-icon {
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--pink);
+  color: var(--black);
   margin-bottom: 12px;
 }
 
@@ -4206,7 +4206,7 @@ details[open] .faq-icon {
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--pink);
+  color: var(--black);
 }
 
 .warning-foot {
@@ -4217,4 +4217,5 @@ details[open] .faq-icon {
   margin-bottom: 18px;
 }
 
-.warning-btn { background: var(--pink); }
+.warning-btn { background: var(--black); }
+.warning-sign .script-word { color: var(--black); }
