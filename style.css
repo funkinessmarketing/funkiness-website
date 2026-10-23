@@ -4059,7 +4059,7 @@ details[open] .faq-icon {
    WAARSCHUWING: niet voor iedereen (homepage, sinds 2026-10-23)
    ============================ */
 .warning-section {
-  background: var(--cream-light);
+  background: var(--cream);
   padding: 40px 0 8px;
   overflow: hidden;
 }
