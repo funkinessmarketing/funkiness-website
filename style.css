@@ -4256,3 +4256,6 @@ details[open] .faq-icon {
   color: var(--pink);
   margin-bottom: 6px;
 }
+
+/* Formulierlabels leesbaar op bruin (contactpagina) */
+.blok-bruin .contact-form-col label { color: white; }
