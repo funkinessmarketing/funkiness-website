@@ -4265,3 +4265,48 @@ details[open] .faq-icon {
 p, li { text-wrap: pretty; }
 .warning-strong span,
 .nowrap { white-space: nowrap; }
+
+/* Polaroid panterpumps in het waarschuwingsblok (sinds 2026-10-27):
+   mobiel gecentreerd boven de kop, vanaf 1000px vastgeplakt op de rechterhoek van het bord */
+.warning-sign { position: relative; }
+.warning-polaroid {
+  position: relative;
+  width: 150px;
+  margin: 0 auto 22px;
+  padding: 8px 8px 10px;
+  background: var(--cream-light);
+  border-radius: 4px;
+  transform: rotate(4deg);
+  box-shadow: 0 14px 30px rgba(58,37,27,0.3);
+}
+.warning-polaroid::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 64px;
+  height: 20px;
+  margin-left: -32px;
+  background: rgba(247,239,231,0.75);
+  transform: rotate(-5deg);
+}
+.warning-polaroid img { display: block; width: 100%; height: auto; border-radius: 2px; }
+.warning-polaroid figcaption {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--black);
+  margin-top: 8px;
+}
+
+@media (min-width: 1000px) {
+  .warning-polaroid {
+    position: absolute;
+    top: -46px;
+    right: -38px;
+    width: 180px;
+    margin: 0;
+    transform: rotate(7deg);
+  }
+  .warning-polaroid figcaption { font-size: 15px; }
+}
