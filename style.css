@@ -4310,3 +4310,31 @@ p, li { text-wrap: pretty; }
   }
   .warning-polaroid figcaption { font-size: 15px; }
 }
+
+/* ============================
+   BRONNEN ONDER BLOGS (sinds 2026-11-05)
+   ============================ */
+.blog-sources {
+  margin: 40px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(58, 37, 27, 0.15);
+}
+.blog-sources h2 {
+  font-size: 22px !important;
+  margin: 0 0 12px;
+}
+.blog-sources ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.blog-sources a {
+  color: var(--black);
+  text-decoration: underline;
+  word-break: break-word;
+}
+.blog-sidebar-updated {
+  margin-top: 4px;
+  opacity: 0.75;
+}
