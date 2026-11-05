@@ -4338,3 +4338,66 @@ p, li { text-wrap: pretty; }
   margin-top: 4px;
   opacity: 0.75;
 }
+
+/* ============================
+   PIJNPUNT PER BRANCHE (homepage, sinds 2026-11-05)
+   Gecentreerd crème blok onder de diensten: telt niet mee in het zigzaggen.
+   ============================ */
+.pain-section {
+  padding: 8px 5vw 80px;
+  text-align: center;
+}
+.pain-section h2 {
+  font-size: var(--fs-title);
+  line-height: 0.95;
+  margin: 0 auto 40px;
+  max-width: 900px;
+}
+.pain-section h2 .script-word {
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+.pain-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 1240px;
+  margin: 0 auto;
+  text-align: left;
+}
+.pain-card {
+  padding: 28px;
+  border-radius: 28px;
+  border: 1px solid var(--card-border);
+  background: var(--white-soft);
+}
+.pain-sub {
+  font-size: 13px;
+  margin: -8px 0 14px;
+  opacity: 0.7;
+}
+.pain-quote {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--pink);
+  font-size: 21px;
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+.pain-fix {
+  font-size: 15px;
+  line-height: 1.45;
+}
+.pain-more {
+  margin: 36px auto 22px;
+  font-size: 17px;
+  max-width: 560px;
+}
+@media (min-width: 700px) {
+  .pain-cards { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+@media (min-width: 1100px) {
+  .pain-section { padding: 0 7vw 120px; }
+  .pain-cards { grid-template-columns: repeat(4, 1fr); }
+  .pain-card { padding: 32px; }
+  .pain-fix { font-size: 16px; }
+}
