@@ -206,8 +206,7 @@ async function submitScan() {
   const sector      = fieldSelections['sector'];
   const locatie     = fieldSelections['locatie'];
   const context     = {
-    doel: fieldSelections['doel'], publiek: fieldSelections['publiek'], wie: fieldSelections['wie'], fase: fieldSelections['fase'],
-    uitdaging: (document.getElementById('uitdaging')?.value || '').trim().slice(0, 500)
+    doel: fieldSelections['doel'], publiek: fieldSelections['publiek'], wie: fieldSelections['wie'], fase: fieldSelections['fase']
   };
   const site        = document.getElementById('site_url').value.trim();
   const honeypot    = document.getElementById('honeypot')?.value || '';
