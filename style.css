@@ -4401,3 +4401,34 @@ p, li { text-wrap: pretty; }
   .pain-card { padding: 32px; }
   .pain-fix { font-size: 16px; }
 }
+
+/* ============================
+   READ NEXT (blogs + dienstpagina's, sinds 2026-11-16)
+   Interne route: blog -> blog + dienst, dienst -> blogs. Binnen bestaande blokken, geen eigen kleurvlak.
+   ============================ */
+.read-next {
+  margin: 40px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(58, 37, 27, 0.15);
+}
+.read-next h2,
+.read-next h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px !important;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+.read-next ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.read-next li + li { margin-top: 6px; }
+.read-next a {
+  color: var(--black);
+  text-decoration: underline;
+  word-break: break-word;
+}
+.read-next--faq { margin-top: 48px; }
