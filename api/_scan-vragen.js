@@ -212,16 +212,6 @@ export const FEITEN = [
   { id: 'F22', voor: 'beide', locaties: ['bonaire'], sectoren: [],
     tekst: 'Bonaire, Sint Eustatius and Saba together have 22,100 internet users (70.1% of the population), 21,700 social media user identities (68.7%) and 48,900 mobile connections (155%), as of late 2025. These figures are for the three islands combined.',
     bron: 'DataReportal, Digital 2026: Bonaire, Sint Eustatius and Saba', url: 'https://datareportal.com/reports/digital-2026-bonaire-sint-eustatius-and-saba' },
-  // Nederland
-  { id: 'F31', voor: 'beide', locaties: ['nederland'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
-    tekst: 'Hotels, campsites and holiday parks in the Netherlands received about 52.2 million guests in 2025, almost 2% more than in 2024. International guests grew 5% to 22.3 million, Dutch guests dipped slightly to 29.9 million.',
-    bron: 'CBS (Statistics Netherlands), April 2026', url: 'https://www.cbs.nl/en-gb/news/2026/16/fewer-overnight-stays-by-dutch-guests-more-international-visitors-in-2025' },
-  { id: 'F32', voor: 'beide', locaties: ['nederland'], sectoren: [],
-    tekst: 'The Netherlands has 18.2 million internet users (99.0% of the population) and 15.3 million social media user identities (83.3%), as of late 2025.',
-    bron: 'DataReportal, Digital 2026: The Netherlands', url: 'https://datareportal.com/reports/digital-2026-netherlands' },
-  { id: 'F33', voor: 'beide', locaties: ['nederland'], sectoren: [],
-    tekst: 'Ad audience in the Netherlands in late 2025: LinkedIn 14.0 million members (76.2% of the population), Instagram 8.15 million (44.4%), Facebook 7.50 million (40.8%), TikTok 6.30 million adults (41.9% of adults). These are advertising reach figures, not unique users.',
-    bron: 'DataReportal, Digital 2026: The Netherlands', url: 'https://datareportal.com/reports/digital-2026-netherlands' },
   // Elders: wereldwijde cijfers
   { id: 'F41', voor: 'beide', locaties: ['elders'], sectoren: ['hotel', 'restaurant', 'airbnb', 'tours'],
     tekst: 'International tourist arrivals worldwide grew about 4% in 2025, to an estimated 1.52 billion.',
@@ -263,8 +253,7 @@ export const LOCATIES = {
   curacao:   { naam: 'Curaçao',          in: 'on Curaçao',         valuta: 'Caribbean guilders (XCG)' },
   aruba:     { naam: 'Aruba',            in: 'on Aruba',           valuta: 'US dollars (USD)' },
   bonaire:   { naam: 'Bonaire',          in: 'on Bonaire',         valuta: 'US dollars (USD)' },
-  nederland: { naam: 'the Netherlands',  in: 'in the Netherlands', valuta: 'euros (EUR)' },
-  elders:    { naam: 'outside the Caribbean Netherlands and Aruba', in: 'in their area', valuta: null }
+  elders:    { naam: 'outside Curaçao, Aruba and Bonaire', in: 'in their area', valuta: null }
 };
 
 // Starter zonder klanten: geen advies dat uitgaat van bestaande klanten
@@ -274,7 +263,7 @@ export function faseRegel(context) {
     : '';
 }
 
-// Valuta volgt de vestigingsplaats: Curaçao XCG, Aruba en Bonaire USD, Nederland EUR, elders geen valuta noemen
+// Valuta volgt de vestigingsplaats: Curaçao XCG, Aruba en Bonaire USD, elders geen valuta noemen
 export function valutaRegel(locatie) {
   const valuta = LOCATIES[locatie]?.valuta;
   return valuta
@@ -807,7 +796,7 @@ export function scoresPerVraag(type, antwoorden, sector) {
     .map(([k, v]) => `${VRAAGTEKST[k]} "${antwoorden[k]}" = ${v.scores[antwoorden[k]]}/100`);
 }
 
-export const TIJDZONE = { curacao: 'America/Curacao', aruba: 'America/Aruba', bonaire: 'America/Kralendijk', nederland: 'Europe/Amsterdam', elders: 'UTC' };
+export const TIJDZONE = { curacao: 'America/Curacao', aruba: 'America/Aruba', bonaire: 'America/Kralendijk', elders: 'UTC' };
 
 // Teasers voor het blok "We saw more": alleen wat echt gemeten of berekend is, zonder de inhoud te verklappen
 export function teasers({ instagramFeit, websitePunten, aantalVragen }) {

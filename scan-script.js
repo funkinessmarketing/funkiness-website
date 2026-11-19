@@ -227,7 +227,7 @@ async function submitScan() {
     fetch('/api/newsletter', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, taal: locatie === 'nederland' ? 'nl' : 'en', bron: 'scan-' + scanType, honeypot })
+      body: JSON.stringify({ email, taal: 'en', bron: 'scan-' + scanType, honeypot })
     }).catch(() => {});
   }
 
