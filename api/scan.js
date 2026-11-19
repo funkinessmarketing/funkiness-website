@@ -383,8 +383,8 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Functie</td><td style="padding:8px;border:1px solid #eee">${esc(functie) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Website</td><td style="padding:8px;border:1px solid #eee">${esc(site) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Email</td><td style="padding:8px;border:1px solid #eee"><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (NL)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (CW/BON)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon) || 'niet opgegeven'}</td></tr>
+            <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Telefoon (Aruba)</td><td style="padding:8px;border:1px solid #eee">${esc(telefoon_nl) || 'niet opgegeven'}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold">Instagram</td><td style="padding:8px;border:1px solid #eee">${esc(instagram) || 'niet opgegeven'}${instagramFeit ? ' (echte cijfers opgehaald)' : ''}</td></tr>
             <tr><td style="padding:8px;border:1px solid #eee;font-weight:bold;font-size:16px">Totaalscore</td><td style="padding:8px;border:1px solid #eee;font-size:22px;font-weight:bold;color:#f21b7a">${br(rapport.totaalscore)}/100</td></tr>
           </table>
@@ -445,7 +445,7 @@ Call the submit_scan_report tool. Follow the field descriptions exactly.`;
           <div style="font-family:sans-serif">
             <h2 style="color:#f21b7a">Social Media Scan mislukt</h2>
             <p>De klant kreeg een foutmelding en heeft geen rapport gezien. Contactgegevens:</p>
-            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Website: ${esc(site)}<br>Email: ${esc(email)}<br>Telefoon (CW): ${esc(telefoon)}<br>Telefoon (NL): ${esc(telefoon_nl)}<br>Instagram: ${esc(instagram)}</p>
+            <p>Bedrijf: ${esc(bedrijf)}<br>Naam: ${esc(naam)}<br>Functie: ${esc(functie)}<br>Website: ${esc(site)}<br>Email: ${esc(email)}<br>Telefoon (CW/BON): ${esc(telefoon)}<br>Telefoon (Aruba): ${esc(telefoon_nl)}<br>Instagram: ${esc(instagram)}</p>
             <p style="color:#888">Fout: ${esc(err.message)}</p>
           </div>
         `

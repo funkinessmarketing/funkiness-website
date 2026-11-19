@@ -880,7 +880,7 @@ export function opvolging({ type = 'marketing', naam, bedrijf, locatie, sector, 
   };
 
   // Klikbare WhatsApp-link naar de klant, tekst al ingevuld
-  const nummer = String((locatie === 'curacao' ? (telefoon || telefoon_nl) : (telefoon_nl || telefoon)) || '').replace(/\D/g, '');
+  const nummer = String((locatie === 'aruba' ? (telefoon_nl || telefoon) : (telefoon || telefoon_nl)) || '').replace(/\D/g, '');
   const whatsappLink = nummer.length >= 7 ? `https://wa.me/${nummer}?text=${encodeURIComponent(whatsapp)}` : '';
 
   return { whatsapp, whatsappLink, dag3, dag8 };

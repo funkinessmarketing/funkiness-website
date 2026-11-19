@@ -200,7 +200,7 @@ async function submitScan() {
   const cw_input    = document.getElementById('telefoon').value.trim();
   const nl_input    = document.getElementById('telefoon_nl').value.trim();
   const telefoon    = cw_input ? `+599 ${cw_input}` : '';
-  const telefoon_nl = nl_input ? `+31 ${nl_input}` : '';
+  const telefoon_nl = nl_input ? `+297 ${nl_input}` : '';
   const instagram   = document.getElementById('instagram')?.value.trim() || '';
   const bio         = document.getElementById('bio')?.value.trim() || '';
   const sector      = fieldSelections['sector'];
