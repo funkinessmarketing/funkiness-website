@@ -174,5 +174,6 @@ def render(W, H, naam):
     shutil.rmtree(TMP)
     print(naam)
 
-render(1080, 1920, 'ad-EN-black-friday-just-got-funky-9x16.mp4')
-render(1080, 1350, 'ad-EN-black-friday-just-got-funky-4x5.mp4')
+if __name__ == '__main__':
+    render(1080, 1920, 'ad-EN-black-friday-just-got-funky-9x16.mp4')
+    render(1080, 1350, 'ad-EN-black-friday-just-got-funky-4x5.mp4')
