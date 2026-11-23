@@ -32,6 +32,9 @@ function doPost(e) {
     if (d.type === 'bf-spin') {
       return ContentService.createTextOutput(JSON.stringify(bfSpin(d))).setMimeType(ContentService.MimeType.JSON);
     }
+    if (d.type === 'bf-opruimen') {
+      return ContentService.createTextOutput(JSON.stringify({ verwijderd: bfVerwijderTests() })).setMimeType(ContentService.MimeType.JSON);
+    }
     if (d.type === 'bf-event') {
       bfEvent(d);
       return ContentService.createTextOutput('ok-v2');
@@ -201,6 +204,7 @@ function onOpen() {
     .addItem('Stuur bezoekuitnodiging (geselecteerde rij)', 'stuurBezoekuitnodiging')
     .addSeparator()
     .addItem('Black Friday: trek de hoofdprijs', 'bfTrekHoofdprijs')
+    .addItem('Black Friday: verwijder testdeelnames', 'bfVerwijderTests')
     .addToUi();
 }
 
@@ -268,6 +272,7 @@ function maakIcs({ uid, start, eind, titel, omschrijving, adres, email, naam }) 
 // van doPost, zodat twee draaiers tegelijk nooit samen de laatste Marketing SOS krijgen.
 // Tabblad "Black Friday": één rij per deelname. Kolom Status: zet op "Ongeldig" om iemand
 // uit te sluiten van de hoofdprijstrekking (bv. geen bedrijf op Curaçao).
+// Status "TEST": deelname van een test (alleen via de webhook zelf, niet via de site); telt niet mee.
 // Tabblad "BF tellers": één rij per stap (bezoek, start formulier), zonder persoonsgegevens.
 // Tabblad "BF trekking": het verslag van de hoofdprijstrekking op 30 november.
 // ============================================================
@@ -324,6 +329,7 @@ function bfSpin(d) {
   const rijen = tab.getLastRow() > 1 ? tab.getRange(2, 1, tab.getLastRow() - 1, BF_KOPPEN.length).getValues() : [];
   let sosTotaal = 0, sosVandaag = 0;
   for (const r of rijen) {
+    if (r[k('Status')] === 'TEST') continue;   // testdeelnames tellen nergens mee
     const dubbel = (email && String(r[k('Email')]).toLowerCase() === email)
       || (tel && String(r[k('WhatsApp')]).replace(/\D/g, '') === tel)
       || (sBedrijf && r[k('Sleutel bedrijf')] === sBedrijf)
@@ -346,16 +352,16 @@ function bfSpin(d) {
 
   const id = 'BF-' + Utilities.getUuid().slice(0, 8).toUpperCase();
   const rij = [nu, id, d.naam || '', d.bedrijf || '', email, "'" + (d.whatsapp || ''), d.kanaal || '', kvk ? "'" + kvk : '',
-    prijs, 'Geldig', d.bron || '', d.campagne || '', sBedrijf, sKanaal, ''];
+    prijs, d.test === true ? 'TEST' : 'Geldig', d.bron || '', d.campagne || '', sBedrijf, sKanaal, ''];
   tab.appendRow(rij);
   const r = tab.getLastRow();
   tab.getRange(r, k('Status') + 1).setDataValidation(
-    SpreadsheetApp.newDataValidation().requireValueInList(['Geldig', 'Ongeldig'], true).build());
+    SpreadsheetApp.newDataValidation().requireValueInList(['Geldig', 'Ongeldig', 'TEST'], true).build());
   tab.getRange(r, k('Geleverd') + 1).insertCheckboxes();
 
   if (prijs === 'sos') {
     try {
-      MailApp.sendEmail(MELDING_AAN, 'Black Friday: Marketing SOS gewonnen door ' + (d.bedrijf || ''),
+      MailApp.sendEmail(MELDING_AAN, (d.test === true ? '[TEST] ' : '') + 'Black Friday: Marketing SOS gewonnen door ' + (d.bedrijf || ''),
         'Winnaar ' + (sosTotaal + 1) + ' van 5.\n\nNaam: ' + (d.naam || '') + '\nBedrijf: ' + (d.bedrijf || '')
         + '\nEmail: ' + email + '\nWhatsApp: ' + (d.whatsapp || '') + '\nKanaal om te beoordelen: ' + (d.kanaal || '')
         + '\nID: ' + id + '\n\nMax 20 tot 30 minuten: 1 observatie wat goed werkt, 3 verbeterpunten, 1 aanbeveling. '
@@ -397,4 +403,14 @@ function bfTrekHoofdprijs() {
   const w = geldig[parseInt(lot.slice(0, 12), 16) % geldig.length];
   verslag.appendRow([nu, geldig.length, vingerafdruk, w[k('ID')], w[k('Bedrijf')], w[k('Naam')], w[k('Email')]]);
   ui.alert('Winnaar: ' + w[k('Bedrijf')] + ' (' + w[k('Naam')] + ', ' + w[k('Email')] + ')\nID ' + w[k('ID')]);
+}
+
+// Haalt alle rijen met Status "TEST" weg uit tabblad Black Friday (ook aan te roepen via de webhook met type 'bf-opruimen').
+function bfVerwijderTests() {
+  const tab = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(BF_TAB);
+  if (!tab || tab.getLastRow() < 2) return 0;
+  const status = tab.getRange(2, BF_KOPPEN.indexOf('Status') + 1, tab.getLastRow() - 1, 1).getValues();
+  let weg = 0;
+  for (let i = status.length - 1; i >= 0; i--) if (status[i][0] === 'TEST') { tab.deleteRow(i + 2); weg++; }
+  return weg;
 }
