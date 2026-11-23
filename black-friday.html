@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Black Friday Curaçao: Spin the Fun! | FUNkiness!</title>
+  <meta name="description" content="Black Friday for businesses on Curaçao: spin the FUNkiness! wheel for free and win a marketing gift. Everyone wins. Plus a chance at THE ULTIMATE FUNky MAKEOVER.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.funkiness.ai/black-friday">
+
+  <meta property="og:title" content="BLACK FRIDAY JUST GOT FUNKY! Spin the Fun! | FUNkiness!">
+  <meta property="og:description" content="Spin the wheel. Win something awesome. Everyone wins! Free for businesses on Curaçao.">
+  <meta property="og:image" content="https://www.funkiness.ai/jeep3.png">
+  <meta property="og:url" content="https://www.funkiness.ai/black-friday">
+  <meta property="og:type" content="website">
+
+  <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/poppins-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/permanent-marker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=19">
+
+  <style>
+    /* ============ BLACK FRIDAY: SPIN THE FUN! (mobile first) ============ */
+    .bf-hero { padding: 40px 5vw 56px; }
+    .bf-kicker { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 22px; margin: 0 0 6px; transform: rotate(-2deg); display: inline-block; }
+    .bf-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(34px, 8vw, 64px); line-height: 1.02; margin: 0 0 14px; letter-spacing: -0.5px; }
+    .bf-hero h1 span { color: var(--pink); font-family: 'Permanent Marker', cursive; font-weight: 400; }
+    .bf-claim { font-size: clamp(18px, 4.6vw, 24px); font-weight: 700; color: var(--black); margin: 0 0 8px; }
+    .bf-sub { font-size: 16px; margin: 0 0 28px; }
+    .bf-grid { display: grid; gap: 32px; align-items: start; }
+
+    /* Rad */
+    .bf-wheel-wrap { position: relative; width: min(88vw, 420px); margin: 0 auto; aspect-ratio: 1; }
+    .bf-wheel { width: 100%; height: 100%; transform: rotate(0deg); transition: transform 5.6s cubic-bezier(.12,.68,.08,1); filter: drop-shadow(0 18px 30px rgba(58,37,27,.22)); }
+    .bf-wheel.bf-wobble { animation: bfWobble .5s ease-in-out infinite alternate; transition: none; }
+    @keyframes bfWobble { from { transform: rotate(var(--bf-r, 0deg)); } to { transform: rotate(calc(var(--bf-r, 0deg) + 14deg)); } }
+    .bf-wheel text { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 15px; letter-spacing: .2px; }
+    .bf-pointer { position: absolute; top: -6px; left: 50%; width: 34px; height: 44px; transform: translateX(-50%); z-index: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,.25)); }
+    .bf-hub { position: absolute; inset: 0; margin: auto; width: 22%; height: 22%; border-radius: 50%; background: var(--black); color: white; display: grid; place-items: center; font-family: 'Permanent Marker', cursive; font-size: clamp(13px, 3.4vw, 18px); text-align: center; line-height: 1; box-shadow: 0 0 0 6px var(--cream); z-index: 1; }
+
+    /* Formulier */
+    .bf-card { background: white; border-radius: 22px; padding: 24px 20px; box-shadow: 0 16px 40px rgba(58,37,27,.10); }
+    .bf-card h2 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 24px; margin: 0 0 4px; color: var(--black); }
+    .bf-card form > p { margin: 0 0 18px; color: rgba(58,37,27,.75); font-size: 15px; }
+    .bf-field { margin-bottom: 14px; }
+    .bf-field label { display: block; font-weight: 700; font-size: 14px; color: var(--black); margin-bottom: 5px; }
+    .bf-field label small { font-weight: 400; color: rgba(58,37,27,.6); }
+    .bf-field input { width: 100%; box-sizing: border-box; padding: 13px 14px; font: inherit; font-size: 16px; border: 2px solid rgba(58,37,27,.15); border-radius: 12px; background: var(--cream-light); color: var(--black); }
+    .bf-field input:focus { outline: none; border-color: var(--pink); }
+    .bf-field.bf-fout input { border-color: #d6002f; }
+    .bf-err { display: none; color: #d6002f; font-size: 13px; margin-top: 4px; }
+    .bf-fout .bf-err { display: block; }
+    .bf-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--black); margin-bottom: 12px; line-height: 1.4; }
+    .bf-check input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--pink); }
+    .bf-check a { color: var(--pink); font-family: 'Permanent Marker', cursive; }
+    .bf-check.bf-fout { color: #d6002f; }
+    .bf-hp { position: absolute; left: -9999px; }
+    .bf-spin { width: 100%; margin-top: 8px; padding: 17px; border: 0; border-radius: 99px; background: var(--pink); color: white; font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: .5px; cursor: pointer; box-shadow: 0 10px 24px var(--shadow-pink); }
+    .bf-spin:disabled { opacity: .6; cursor: wait; }
+    .bf-melding { display: none; margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: #fde6ee; color: var(--black); font-size: 14px; }
+
+    /* Uitslag */
+    .bf-result { display: none; text-align: center; }
+    .bf-result .bf-won { font-family: 'Permanent Marker', cursive; color: var(--pink); font-size: 22px; margin: 0; }
+    .bf-result h2 { font-size: clamp(28px, 7vw, 38px); margin: 4px 0 10px; }
+    .bf-result p { color: rgba(58,37,27,.8); }
+    .bf-download { display: inline-block; margin: 8px 0 14px; padding: 15px 28px; border-radius: 99px; background: var(--black); color: white; text-decoration: none; font-weight: 900; font-family: 'Poppins', sans-serif; }
+    .bf-extra { font-size: 14px; background: var(--cream); border-radius: 14px; padding: 14px; text-align: left; }
+
+    /* Prijzen */
+    .bf-section { padding: 64px 5vw; }
+    .bf-section h2 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: var(--fs-title); line-height: 1.08; margin: 0 0 12px; }
+    .bf-prizes { display: grid; gap: 14px; margin-top: 26px; }
+    .bf-prize { background: var(--cream); border-radius: 18px; padding: 18px 18px 16px; color: var(--black); }
+    .bf-prize h3 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 19px; margin: 0 0 6px; color: var(--black); display: flex; justify-content: space-between; gap: 10px; }
+    .bf-prize h3 em { font-style: normal; color: var(--pink); font-family: 'Permanent Marker', cursive; font-weight: 400; white-space: nowrap; }
+    .bf-prize p { margin: 0; font-size: 15px; color: rgba(58,37,27,.8); }
+    .bf-note { margin-top: 18px; font-size: 14px; }
+    .bf-makeover ul { padding-left: 20px; }
+    .bf-makeover li { margin-bottom: 6px; }
+
+    @media (min-width: 700px) {
+      .bf-prizes { grid-template-columns: 1fr 1fr; }
+      .bf-card { padding: 30px 28px; }
+    }
+    @media (min-width: 980px) {
+      .bf-hero { padding: 64px 7vw 88px; }
+      .bf-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+      .bf-section { padding: 96px 7vw; }
+      .bf-prizes { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) { .bf-wheel { transition-duration: 1.2s; } .bf-wheel.bf-wobble { animation: none; } }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="/" class="logo"><img src="funkiness-logo.webp" alt="FUNkiness! Marketing Curaçao" class="logo-img"></a>
+    <nav class="menu">
+      <a href="what-we-do.html">What We Do</a>
+      <span>✚</span>
+      <a href="scan.html">Free Scan</a>
+      <span>✚</span>
+      <a href="blog.html">Blog</a>
+      <span>✚</span>
+      <a href="contact.html">Contact</a>
+      <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta" data-book>Book free session <span>✚</span></a>
+    </nav>
+    <a href="https://cal.com/funkiness/marketing-strategy-session" class="book-cta-mobile" data-book>Free session</a>
+    <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+    <a href="/">Home</a>
+    <a href="what-we-do.html">What We Do</a>
+    <a href="scan.html">Free Scan</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <main>
+  <!-- HERO + RAD + FORMULIER (crème) -->
+  <section class="bf-hero blok-creme" id="spin">
+    <p class="bf-kicker">SPIN THE FUN!</p>
+    <h1>BLACK FRIDAY JUST GOT <span>FUNKY!</span></h1>
+    <p class="bf-claim">Spin the wheel. Win something awesome. Everyone wins!</p>
+    <p class="bf-sub">Free for businesses on Curaçao. One spin per business, until Sunday, November 29, 2026.</p>
+
+    <div class="bf-grid">
+      <div class="bf-wheel-wrap" aria-hidden="true">
+        <svg class="bf-pointer" viewBox="0 0 34 44"><path d="M17 44 L2 8 A16 16 0 0 1 32 8 Z" fill="#f21b7a" stroke="#fff" stroke-width="3"/></svg>
+        <svg class="bf-wheel" id="bfWheel" viewBox="-210 -210 420 420"></svg>
+        <div class="bf-hub">SPIN<br>ME</div>
+      </div>
+
+      <div class="bf-card" id="bfCard">
+        <form id="bfForm" novalidate>
+          <h2>Your spin is waiting</h2>
+          <p>Fill this in, hit the button and watch the wheel. Your gift lands on screen and in your inbox.</p>
+
+          <div class="bf-field"><label for="bfNaam">Your name</label><input id="bfNaam" name="naam" autocomplete="name" required><span class="bf-err">Please fill in your name.</span></div>
+          <div class="bf-field"><label for="bfBedrijf">Business name</label><input id="bfBedrijf" name="bedrijf" autocomplete="organization" required><span class="bf-err">Please fill in your business name.</span></div>
+          <div class="bf-field"><label for="bfEmail">Email</label><input id="bfEmail" name="email" type="email" autocomplete="email" required><span class="bf-err">Please use a valid email address.</span></div>
+          <div class="bf-field"><label for="bfWhatsapp">WhatsApp number</label><input id="bfWhatsapp" name="whatsapp" type="tel" inputmode="tel" placeholder="+599 9 ..." autocomplete="tel" required><span class="bf-err">Please use a Curaçao number (+599 9 ...).</span></div>
+          <div class="bf-field"><label for="bfKanaal">Your business website, Instagram or Facebook page</label><input id="bfKanaal" name="kanaal" placeholder="www.yourbusiness.com or @yourbusiness" required><span class="bf-err">Please add a link or @name of your business.</span></div>
+          <div class="bf-field"><label for="bfKvk">Chamber of Commerce number <small>(optional)</small></label><input id="bfKvk" name="kvk" inputmode="numeric"></div>
+          <input class="bf-hp" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <label class="bf-check" id="bfCuracaoWrap"><input type="checkbox" id="bfCuracao"> My business is based on Curaçao.</label>
+          <label class="bf-check" id="bfVoorwaardenWrap"><input type="checkbox" id="bfVoorwaarden"> I accept the <a href="/black-friday-terms" target="_blank">terms of SPIN THE FUN!</a> and the <a href="/privacy-policy" target="_blank">privacy policy</a>.</label>
+          <label class="bf-check"><input type="checkbox" id="bfLetter"> Yes, also send me the FUNky Letter with marketing tips. <small>(optional)</small></label>
+
+          <button class="bf-spin" type="submit" id="bfButton">SPIN THE FUN!</button>
+          <div class="bf-melding" id="bfMelding" role="alert"></div>
+        </form>
+
+        <div class="bf-result" id="bfResult" aria-live="polite">
+          <p class="bf-won" id="bfWonLabel">You won!</p>
+          <h2 id="bfPrijs"></h2>
+          <p id="bfKort"></p>
+          <a class="bf-download" id="bfDownload" href="#" target="_blank" rel="noopener">Download your gift</a>
+          <p id="bfMailNote"></p>
+          <div class="bf-extra">And there is more: you are now in the draw for <strong>THE ULTIMATE FUNky MAKEOVER</strong>. We draw one winner on Monday, November 30, 2026.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider" style="background:var(--cream);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,22 C220,58 520,8 860,40 C1080,60 1300,10 1440,30 L1440,64 L0,64 Z" fill="#3a251b"/></svg></div>
+
+  <!-- PRIJZEN (bruin) -->
+  <section class="bf-section blok-bruin" id="prizes">
+    <h2>What can you win?</h2>
+    <p>Six prizes on the wheel and every spin lands on one. These are the real chances, no small print.</p>
+    <div class="bf-prizes">
+      <div class="bf-prize bf-prize-card"><h3>10 Killer Hooks <em>18%</em></h3><p>Ten original opening lines for your posts, each with an example of how a business can use it.</p></div>
+      <div class="bf-prize bf-prize-card"><h3>AI Power Pack <em>18%</em></h3><p>Ten AI prompts for content, marketing ideas, better copy and customer messages. Works in ChatGPT and similar tools.</p></div>
+      <div class="bf-prize bf-prize-card"><h3>Content Rescue Kit <em>18%</em></h3><p>Five common content problems, the fix for each one, before-and-after examples and a quick checklist.</p></div>
+      <div class="bf-prize bf-prize-card"><h3>30 Days of Ideas <em>18%</em></h3><p>A month of content ideas for Instagram, Facebook and TikTok, with examples for different kinds of businesses.</p></div>
+      <div class="bf-prize bf-prize-card"><h3>Mystery FUNky Gift <em>18%</em></h3><p>A surprise. All we say: it takes five minutes and your profile will thank you.</p></div>
+      <div class="bf-prize bf-prize-card"><h3>Marketing SOS <em>10%</em></h3><p>A personal mini review of your website, Instagram or Facebook page: one thing that works, three improvements, one action to start with. Only 5 available, max 1 per day.</p></div>
+    </div>
+    <p class="bf-note">Marketing SOS gone for the day, or all 5 handed out? Then your spin lands on one of the five digital gifts, each with an equal chance.</p>
+  </section>
+
+  <div class="wave-divider" style="background:var(--black);margin-bottom:-2px" aria-hidden="true"><svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C260,6 600,60 940,26 C1160,4 1330,52 1440,34 L1440,64 L0,64 Z" fill="#f7efe7"/></svg></div>
+
+  <!-- HOOFDPRIJS + FAQ (crème) -->
+  <section class="bf-section bf-makeover blok-creme" id="makeover">
+    <h2>What is THE ULTIMATE FUNky MAKEOVER?</h2>
+    <p>One business wins a creative makeover of one of its existing social media posts or ads. Every valid entry is in the draw automatically. We draw the winner on Monday, November 30, 2026 and let them know by email.</p>
+    <ul>
+      <li>One new creative concept</li>
+      <li>One new AI image</li>
+      <li>One hook that stops the scroll</li>
+      <li>One caption to go with it</li>
+      <li>A short explanation of how to use it</li>
+      <li>One round of changes</li>
+    </ul>
+  </section>
+
+  <section class="faq-section blok-creme" id="faq">
+    <div class="faq-category">
+      <p class="section-kicker">SPIN THE FUN! questions</p>
+      <div class="faq-list">
+        <details class="faq-item"><summary class="faq-question">Is it really free?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Yes. You don't buy anything and you don't pay anything. Fill in the form, spin once and your gift is yours.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">Who can join?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Businesses based on Curaçao. One spin per business. A second spin with the same business, email, phone number or website does not count.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">Does everyone really win?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Yes. Every spin lands on a prize. The chances are listed above: 18% for each of the five digital gifts and 10% for a Marketing SOS while it is available.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">When do I get my prize?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Digital gifts: right away, on screen and by email. Marketing SOS: we send you an email with the details.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">When is THE ULTIMATE FUNky MAKEOVER drawn?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>On Monday, November 30, 2026, from all valid entries. The winner gets an email.</p></div></details>
+        <details class="faq-item"><summary class="faq-question">Until when can I spin?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer"><p>Until Sunday, November 29, 2026 at 11:59 PM Curaçao time.</p></div></details>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <a href="/" class="footer-logo">FUNkiness!</a>
+      <p class="footer-tagline">AI, social media &amp; marketing. Based on Curaçao.</p>
+      <a href="mailto:sayhello@funkiness.ai" class="footer-email">sayhello@funkiness.ai</a>
+      <a href="https://wa.me/59996751737" class="footer-whatsapp">WhatsApp +599 9 675 1737</a>
+    </div>
+    <div>
+      <p class="footer-nav-title">Navigation</p>
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="what-we-do.html">What We Do</a>
+        <a href="scan.html">Free Scan</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="/#newsletter">FUNky Letter</a>
+        <a href="/playlist">Feel Good Funk 🎵</a>
+      </nav>
+    </div>
+    <div class="footer-leopard" aria-hidden="true">
+      <video src="/panter-zwaai.mp4" poster="/panter-zwaai.jpg" autoplay muted loop playsinline></video>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 FUNkiness! Curaçao · <a href="privacy-policy.html" style="color:inherit;">Privacy Policy</a> · <a href="cookie-policy.html" style="color:inherit;">Cookie Policy</a> · <a href="black-friday-terms.html" style="color:inherit;">SPIN THE FUN! terms</a></p>
+    <p class="footer-legal">Registered on Curaçao, doing business across the ABC Islands (Aruba, Bonaire and Curaçao) · Chamber of Commerce no. 176072</p>
+    <p>Boring was never the plan.</p>
+  </div>
+
+  <script src="/black-friday.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Black Friday Curaçao: Spin the Fun! | FUNkiness!",
+        "url": "https://www.funkiness.ai/black-friday",
+        "description": "Free Black Friday prize wheel for businesses on Curaçao. Everyone wins a marketing gift.",
+        "publisher": { "@id": "https://www.funkiness.ai/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is it really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You don't buy anything and you don't pay anything. Fill in the form, spin once and your gift is yours." } },
+          { "@type": "Question", "name": "Who can join?", "acceptedAnswer": { "@type": "Answer", "text": "Businesses based on Curaçao. One spin per business." } },
+          { "@type": "Question", "name": "Does everyone really win?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every spin lands on a prize: 18% for each of the five digital gifts and 10% for a Marketing SOS while it is available." } },
+          { "@type": "Question", "name": "When is THE ULTIMATE FUNky MAKEOVER drawn?", "acceptedAnswer": { "@type": "Answer", "text": "On Monday, November 30, 2026, from all valid entries." } },
+          { "@type": "Question", "name": "Until when can I spin?", "acceptedAnswer": { "@type": "Answer", "text": "Until Sunday, November 29, 2026 at 11:59 PM Curaçao time." } }
+        ]
+      }
+    ]
+  }
+  </script>
+<script src="/effects.js"></script>
+<script src="/book.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

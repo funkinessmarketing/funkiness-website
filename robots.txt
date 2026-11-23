@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /gifts/
 Allow: /
 
 Sitemap: https://www.funkiness.ai/sitemap.xml

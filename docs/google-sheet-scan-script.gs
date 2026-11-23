@@ -29,6 +29,13 @@ function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
+    if (d.type === 'bf-spin') {
+      return ContentService.createTextOutput(JSON.stringify(bfSpin(d))).setMimeType(ContentService.MimeType.JSON);
+    }
+    if (d.type === 'bf-event') {
+      bfEvent(d);
+      return ContentService.createTextOutput('ok-v2');
+    }
     if (d.type === 'nieuwsbrief') {
       nieuwsbriefInschrijving(d);
       return ContentService.createTextOutput('ok-v2');
@@ -192,6 +199,8 @@ function maakOpvolgConcepten() {
 function onOpen() {
   SpreadsheetApp.getUi().createMenu('FUNkiness!')
     .addItem('Stuur bezoekuitnodiging (geselecteerde rij)', 'stuurBezoekuitnodiging')
+    .addSeparator()
+    .addItem('Black Friday: trek de hoofdprijs', 'bfTrekHoofdprijs')
     .addToUi();
 }
 
@@ -251,4 +260,141 @@ function maakIcs({ uid, start, eind, titel, omschrijving, adres, email, naam }) 
     'BEGIN:VALARM', 'TRIGGER:-PT1H', 'ACTION:DISPLAY', 'DESCRIPTION:' + esc(titel), 'END:VALARM',
     'END:VEVENT', 'END:VCALENDAR'
   ].join('\r\n');
+}
+
+// ============================================================
+// BLACK FRIDAY 2026: SPIN THE FUN!
+// De website (api/spin.js) stuurt type 'bf-spin'. Dit script bepaalt de prijs, onder de lock
+// van doPost, zodat twee draaiers tegelijk nooit samen de laatste Marketing SOS krijgen.
+// Tabblad "Black Friday": één rij per deelname. Kolom Status: zet op "Ongeldig" om iemand
+// uit te sluiten van de hoofdprijstrekking (bv. geen bedrijf op Curaçao).
+// Tabblad "BF tellers": één rij per stap (bezoek, start formulier), zonder persoonsgegevens.
+// Tabblad "BF trekking": het verslag van de hoofdprijstrekking op 30 november.
+// ============================================================
+const BF_TAB = 'Black Friday';
+const BF_KOPPEN = ['Datum', 'ID', 'Naam', 'Bedrijf', 'Email', 'WhatsApp', 'Kanaal', 'KvK',
+  'Prijs', 'Status', 'Bron', 'Campagne', 'Sleutel bedrijf', 'Sleutel kanaal', 'Geleverd'];
+const BF_TZ = 'America/Curacao';
+const BF_OPEN = '2026-11-23';   // eerste dag (Curaçao-tijd)
+const BF_DICHT = '2026-11-29';  // laatste dag, t/m 23:59
+// Kansen in procenten. Marketing SOS: max 5 in totaal en max 1 per dag. Is die op,
+// dan valt de draai op een van de vijf digitale cadeaus (gelijke kans).
+const BF_PRIJZEN = [
+  { id: 'hooks', kans: 18 },
+  { id: 'ai-pack', kans: 18 },
+  { id: 'rescue', kans: 18 },
+  { id: 'ideas', kans: 18 },
+  { id: 'mystery', kans: 18 },
+  { id: 'sos', kans: 10, max: 5, maxPerDag: 1 }
+];
+const BF_NAMEN = { hooks: '10 Killer Hooks', 'ai-pack': 'AI Power Pack', rescue: 'Content Rescue Kit',
+  ideas: '30 Days of Ideas', mystery: 'Mystery FUNky Gift', sos: 'Marketing SOS' };
+
+const bfDag = d => Utilities.formatDate(d, BF_TZ, 'yyyy-MM-dd');
+const bfBedrijf = v => String(v || '').toLowerCase()
+  .replace(/\b(n\.?v\.?|b\.?v\.?|llc|inc|ltd|v\.?o\.?f\.?|curacao|curaçao)\b/g, '').replace(/[^a-z0-9]/g, '');
+const bfKanaal = v => String(v || '').toLowerCase().trim()
+  .replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/^(instagram|facebook|fb)\.com\//, '$1:')
+  .replace(/^@/, 'instagram:').replace(/[/?#].*$/, '').replace(/\/+$/, '');
+
+function bfTab(naam, koppen) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const tab = ss.getSheetByName(naam) || ss.insertSheet(naam);
+  if (tab.getRange(1, 1).getValue() !== koppen[0]) {
+    tab.getRange(1, 1, 1, koppen.length).setValues([koppen]).setFontWeight('bold');
+    tab.setFrozenRows(1);
+  }
+  return tab;
+}
+
+function bfSpin(d) {
+  const nu = new Date();
+  const vandaag = bfDag(nu);
+  if (vandaag < BF_OPEN) return { status: 'nog-niet' };
+  if (vandaag > BF_DICHT) return { status: 'gesloten' };
+
+  const tab = bfTab(BF_TAB, BF_KOPPEN);
+  const k = naam => BF_KOPPEN.indexOf(naam);
+  const email = String(d.email || '').trim().toLowerCase();
+  const tel = String(d.whatsapp || '').replace(/\D/g, '');
+  const sBedrijf = bfBedrijf(d.bedrijf);
+  const sKanaal = bfKanaal(d.kanaal);
+  const kvk = String(d.kvk || '').replace(/\D/g, '');
+
+  const rijen = tab.getLastRow() > 1 ? tab.getRange(2, 1, tab.getLastRow() - 1, BF_KOPPEN.length).getValues() : [];
+  let sosTotaal = 0, sosVandaag = 0;
+  for (const r of rijen) {
+    const dubbel = (email && String(r[k('Email')]).toLowerCase() === email)
+      || (tel && String(r[k('WhatsApp')]).replace(/\D/g, '') === tel)
+      || (sBedrijf && r[k('Sleutel bedrijf')] === sBedrijf)
+      || (sKanaal && r[k('Sleutel kanaal')] === sKanaal)
+      || (kvk && String(r[k('KvK')]).replace(/\D/g, '') === kvk);
+    if (dubbel) return { status: 'dubbel', prijs: r[k('Prijs')] };
+    if (r[k('Prijs')] === 'sos') {
+      sosTotaal++;
+      if (bfDag(new Date(r[k('Datum')])) === vandaag) sosVandaag++;
+    }
+  }
+
+  // Prijs trekken op de server
+  const sos = BF_PRIJZEN.find(p => p.id === 'sos');
+  const sosBeschikbaar = sosTotaal < sos.max && sosVandaag < sos.maxPerDag;
+  const pot = BF_PRIJZEN.filter(p => p.id !== 'sos' || sosBeschikbaar);
+  const totaal = pot.reduce((t, p) => t + p.kans, 0);
+  let lot = Math.random() * totaal, prijs = pot[pot.length - 1].id;
+  for (const p of pot) { if ((lot -= p.kans) < 0) { prijs = p.id; break; } }
+
+  const id = 'BF-' + Utilities.getUuid().slice(0, 8).toUpperCase();
+  const rij = [nu, id, d.naam || '', d.bedrijf || '', email, "'" + (d.whatsapp || ''), d.kanaal || '', kvk ? "'" + kvk : '',
+    prijs, 'Geldig', d.bron || '', d.campagne || '', sBedrijf, sKanaal, ''];
+  tab.appendRow(rij);
+  const r = tab.getLastRow();
+  tab.getRange(r, k('Status') + 1).setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(['Geldig', 'Ongeldig'], true).build());
+  tab.getRange(r, k('Geleverd') + 1).insertCheckboxes();
+
+  if (prijs === 'sos') {
+    try {
+      MailApp.sendEmail(MELDING_AAN, 'Black Friday: Marketing SOS gewonnen door ' + (d.bedrijf || ''),
+        'Winnaar ' + (sosTotaal + 1) + ' van 5.\n\nNaam: ' + (d.naam || '') + '\nBedrijf: ' + (d.bedrijf || '')
+        + '\nEmail: ' + email + '\nWhatsApp: ' + (d.whatsapp || '') + '\nKanaal om te beoordelen: ' + (d.kanaal || '')
+        + '\nID: ' + id + '\n\nMax 20 tot 30 minuten: 1 observatie wat goed werkt, 3 verbeterpunten, 1 aanbeveling. '
+        + 'Max 1 A4 of video van max 3 minuten. Vink "Geleverd" aan in het tabblad Black Friday als het verstuurd is.',
+        email ? { replyTo: email } : {});
+    } catch (err) { console.error('SOS-melding mislukt: ' + err.message); }
+  }
+  return { status: 'ok', id: id, prijs: prijs, sosOver: sos.max - sosTotaal - (prijs === 'sos' ? 1 : 0) };
+}
+
+// Teller per stap van de route, zonder persoonsgegevens
+function bfEvent(d) {
+  const stappen = ['bezoek', 'start-formulier'];
+  if (stappen.indexOf(d.stap) < 0) return;
+  bfTab('BF tellers', ['Datum', 'Stap', 'Bron', 'Campagne'])
+    .appendRow([new Date(), d.stap, String(d.bron || '').slice(0, 60), String(d.campagne || '').slice(0, 60)]);
+}
+
+// Hoofdprijs THE ULTIMATE FUNky MAKEOVER: menu FUNkiness! > Black Friday: trek de hoofdprijs.
+// Kan pas vanaf 30 november en maar één keer. Het verslag (aantal deelnemers, vingerafdruk van de
+// deelnemerslijst, tijdstip, winnaar) komt in tabblad "BF trekking", zodat de trekking achteraf te controleren is.
+// Tip: neem je scherm op tijdens de trekking.
+function bfTrekHoofdprijs() {
+  const ui = SpreadsheetApp.getUi();
+  if (bfDag(new Date()) <= BF_DICHT) { ui.alert('De hoofdprijs wordt pas op maandag 30 november getrokken.'); return; }
+  const verslag = bfTab('BF trekking', ['Tijdstip', 'Aantal geldige deelnemers', 'Vingerafdruk lijst (SHA-256)', 'Winnaar ID', 'Bedrijf', 'Naam', 'Email']);
+  if (verslag.getLastRow() > 1) { ui.alert('Er is al getrokken. Zie tabblad BF trekking.'); return; }
+  const tab = bfTab(BF_TAB, BF_KOPPEN);
+  const k = naam => BF_KOPPEN.indexOf(naam);
+  const rijen = tab.getLastRow() > 1 ? tab.getRange(2, 1, tab.getLastRow() - 1, BF_KOPPEN.length).getValues() : [];
+  const geldig = rijen.filter(r => r[k('Status')] === 'Geldig' && r[k('ID')]);
+  if (!geldig.length) { ui.alert('Geen geldige deelnemers.'); return; }
+  if (ui.alert('Hoofdprijs trekken uit ' + geldig.length + ' geldige deelnemers?', ui.ButtonSet.YES_NO) !== ui.Button.YES) return;
+  const nu = new Date();
+  const hex = bytes => bytes.map(b => ('0' + (b & 255).toString(16)).slice(-2)).join('');
+  const lijst = geldig.map(r => r[k('ID')]).join(',');
+  const vingerafdruk = hex(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, lijst));
+  const lot = hex(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, vingerafdruk + nu.getTime() + Math.random()));
+  const w = geldig[parseInt(lot.slice(0, 12), 16) % geldig.length];
+  verslag.appendRow([nu, geldig.length, vingerafdruk, w[k('ID')], w[k('Bedrijf')], w[k('Naam')], w[k('Email')]]);
+  ui.alert('Winnaar: ' + w[k('Bedrijf')] + ' (' + w[k('Naam')] + ', ' + w[k('Email')] + ')\nID ' + w[k('ID')]);
 }
