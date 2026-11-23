@@ -80,6 +80,29 @@ async function stuurMail(aan, m) {
   return true;
 }
 
+// Meta Conversions API: 'Lead' voor een geldige deelname, alleen als de bezoeker cookies accepteerde.
+// Geen e-mail of telefoon naar Meta; wel IP, browser en de klik-id, zodat Meta de advertentie kan koppelen.
+// event_id = deelname-ID, gelijk aan de pixel in de browser, dus Meta telt hem maar één keer.
+// Nodig in Vercel: META_PIXEL_ID en META_CAPI_TOKEN. Zonder die twee gebeurt er niets.
+async function metaLead(req, b, id) {
+  if (b.toestemming !== true || !process.env.META_PIXEL_ID || !process.env.META_CAPI_TOKEN) return 'uit';
+  const user_data = {
+    client_ip_address: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || undefined,
+    client_user_agent: String(req.headers['user-agent'] || '').slice(0, 400) || undefined
+  };
+  if (/^fb\.\d\.\d+\.[\w-]+$/.test(b.fbc || '')) user_data.fbc = b.fbc;
+  if (/^fb\.\d\.\d+\.\d+$/.test(b.fbp || '')) user_data.fbp = b.fbp;
+  const r = await fetch(`https://graph.facebook.com/v26.0/${process.env.META_PIXEL_ID}/events?access_token=${encodeURIComponent(process.env.META_CAPI_TOKEN)}`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data: [{
+      event_name: 'Lead', event_time: Math.floor(Date.now() / 1000), event_id: id,
+      action_source: 'website', event_source_url: SITE + '/black-friday', user_data
+    }] })
+  });
+  if (!r.ok) throw new Error('CAPI ' + r.status + ' ' + (await r.text()).slice(0, 200));
+  return 'ok';
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   const b = req.body || {};
@@ -113,9 +136,13 @@ export default async function handler(req, res) {
   }
 
   // Vercel breekt alles af wat na het antwoord nog loopt, dus de mail eerst afwachten
-  let mail = false;
-  try { mail = await stuurMail(d.email, prijsMail(d, uitslag.id, uitslag.prijs)); }
-  catch (err) { console.error('BF mail error:', err.message); }
+  const [m, capi] = await Promise.allSettled([
+    stuurMail(d.email, prijsMail(d, uitslag.id, uitslag.prijs)),
+    metaLead(req, b, uitslag.id)
+  ]);
+  const mail = m.status === 'fulfilled' && m.value;
+  if (m.status === 'rejected') console.error('BF mail error:', m.reason?.message);
+  if (capi.status === 'rejected') console.error('BF CAPI error:', capi.reason?.message);
 
   return res.status(200).json({ success: true, id: uitslag.id, mail, ...antwoord });
 }

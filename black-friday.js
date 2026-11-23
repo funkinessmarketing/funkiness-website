@@ -79,6 +79,15 @@
     sessionStorage.setItem('bf_herkomst', JSON.stringify(herkomst));
   } catch (e) { /* zonder opslag blijft het 'direct' */ }
 
+  function koekje(naam) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + naam + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+  try {
+    var fbclid = new URLSearchParams(location.search).get('fbclid');
+    if (fbclid) { herkomst.fbc = 'fb.1.' + Date.now() + '.' + fbclid; sessionStorage.setItem('bf_herkomst', JSON.stringify(herkomst)); }
+  } catch (e) {}
+
   function tel(stap) {
     try {
       fetch('/api/bf-event', {
@@ -118,7 +127,9 @@
       naam: form.naam.value, bedrijf: form.bedrijf.value, email: form.email.value, whatsapp: form.whatsapp.value,
       kanaal: form.kanaal.value, kvk: form.kvk.value, honeypot: form.honeypot.value,
       curacao: document.getElementById('bfCuracao').checked, voorwaarden: document.getElementById('bfVoorwaarden').checked,
-      bron: herkomst.bron, campagne: herkomst.campagne
+      bron: herkomst.bron, campagne: herkomst.campagne,
+      toestemming: !!(window.funkinessConsent && window.funkinessConsent() === 'accepted'),
+      fbc: koekje('_fbc') || herkomst.fbc || '', fbp: koekje('_fbp') || ''
     };
     var fout = [];
     if (data.naam.trim().length < 2) fout.push('naam');
