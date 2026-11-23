@@ -187,6 +187,8 @@
         ? (u.mail ? 'We also sent it to ' + data.email + '.' : 'Download it now. Our email may take a little longer.')
         : 'We sent the details to ' + data.email + '. Nothing to do right now.';
     document.getElementById('bfResult').style.display = 'block';
+    // Op mobiel staat de uitslag onder het rad: even laten zien waar het rad stopte, dan erheen
+    setTimeout(function () { document.getElementById('bfCard').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 900);
     if (!u.dubbel) pixel('Lead', u.id);
   }
 })();
