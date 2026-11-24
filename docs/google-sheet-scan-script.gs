@@ -414,3 +414,5 @@ function bfVerwijderTests() {
   for (let i = status.length - 1; i >= 0; i--) if (status[i][0] === 'TEST') { tab.deleteRow(i + 2); weg++; }
   return weg;
 }
+
+// Geplaatst met clasp op 24-11-2026 (Black Friday SPIN THE FUN!)
