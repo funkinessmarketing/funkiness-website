@@ -28,6 +28,13 @@ De sheet is de waarheid. Ads Manager telt alleen wie cookies accepteerde, de she
 | YouTube Shorts | `https://www.funkiness.ai/black-friday?utm_source=youtube&utm_medium=organic&utm_campaign=bf26_spin` |
 | WhatsApp-status / mail | `https://www.funkiness.ai/black-friday?utm_source=whatsapp&utm_medium=organic&utm_campaign=bf26_spin` |
 
+## Route naar het rad (besluit Daisy 24-11-2026)
+
+- Een echt draaiend rad ín een Instagram- of Facebook-post of -advertentie kan niet (Meta staat geen eigen spelletjes toe).
+- Advertenties: de knop opent `funkiness.ai/black-friday` direct in de in-app browser van Instagram/Facebook. Eén tik, rad bovenaan, ±30 sec tot de prijs.
+- Organisch: reageer **SPIN** onder de post/reel → automatische DM met de link naar het rad (ManyChat, als dat aan Instagram gekoppeld is; anders link in bio + linksticker in stories).
+- Het rad volledig in de DM laten draaien (ManyChat Pro + koppeling met `api/spin`) pas bij een volgende actie, met genoeg testtijd.
+
 ## Budgetadvies
 
 Werkbudget van Daisy: USD 200 (voorstel Meta 140, TikTok 60).
