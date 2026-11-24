@@ -23,11 +23,14 @@ def hi(c):
 # (clip, bron-begin, bron-eind, snelheidscurve [(brontijd, snelheid)], ondertitel, camera (zoom-start, zoom-eind, drift-x))
 SHOTS = [
     ('p_tug',       0.15, 3.95, [(0.15, 1.1), (2.6, 1.0), (3.0, 0.55), (3.5, 0.6), (3.95, 1.0)], 'open',   (1.00, 1.06, -12)),
-    ('panter_open', 0.9,  3.6,  [(0.9, 1.0), (3.6, 1.0)],                                         'rad',    (1.04, 1.00, 10)),
+    ('panter_open', 0.0,  1.35, [(0.0, 1.0), (1.35, 1.0)],                                         'rad',    (1.00, 1.04, 0)),     # mep 1
+    ('panter_open', 0.1,  1.35, [(0.1, 1.0), (1.35, 1.0)],                                         'rad',    (1.12, 1.16, -40)),   # mep 2, dichterbij
+    ('panter_open', 0.15, 3.6,  [(0.15, 0.6), (1.2, 0.6), (1.6, 1.0), (3.6, 1.0)],                'rad',    (1.25, 1.05, -60)),   # mep 3 in slow-mo, uitzoomen
     ('p_spin',      0.3,  3.8,  [(0.3, 1.15), (1.5, 1.0), (1.9, 0.5), (2.5, 0.55), (3.0, 1.1), (3.8, 1.2)], 'gratis', (1.00, 1.05, -8)),
     ('p_confetti',  0.2,  3.6,  [(0.2, 1.0), (1.2, 0.8), (1.6, 0.5), (2.4, 0.6), (3.6, 1.0)],       'gift',   (1.05, 1.00, 8)),
-    ('p_stop',      0.9,  3.95, [(0.9, 1.0), (3.95, 1.0)],                                          'wins',   (1.00, 1.05, 0)),
-    ('panter_eind', 0.6,  3.15, [(0.6, 1.35), (1.6, 1.0), (3.15, 1.0)],                              'spin',   (1.00, 1.12, 0)),
+    ('p_schrik',    1.05, 3.8,  [(1.05, 1.0), (1.25, 0.55), (1.8, 0.6), (2.2, 1.0), (3.8, 1.0)],   'pas',    (1.00, 1.07, 20)),
+    ('p_stop',      1.3,  3.95, [(1.3, 1.0), (3.95, 1.0)],                                          'wins',   (1.06, 1.00, 0)),
+    ('panter_eind', 0.6,  3.15, [(0.6, 1.4), (1.6, 1.25), (3.15, 1.25)],                             'spin',   (1.00, 1.12, 0)),
 ]
 XF = 4            # overvloeier in frames
 EIND_T = 3.6
@@ -55,7 +58,7 @@ def ondertitel(regel, size=50):
 OT = {'open': [ondertitel('BLACK FRIDAY ON CURAÇAO', 54), ondertitel('EVERYBODY WANTS A SPIN!', 60)],
       'rad': [ondertitel('NO DISCOUNT CODES. A PRIZE WHEEL.')],
       'gratis': [ondertitel('FREE FOR BUSINESSES ON CURAÇAO')],
-      'gift': [ondertitel('EVERY SPIN WINS A MARKETING GIFT')],
+      'gift': [ondertitel('EVERY SPIN WINS A MARKETING GIFT')], 'pas': [ondertitel('WATCH OUT FOR THE PANTHER!', 58)],
       'wins': [ondertitel('EVERYONE WINS!', 64)], 'spin': [ondertitel('SPIN THE WHEEL!', 64)]}
 
 def rot(c):
@@ -138,7 +141,7 @@ def boem():
 start = 0.0
 for clip, fr, src in shots:
     if clip in ('p_tug', 'p_spin'): zet(start + len(fr) / FPS * 0.62, whoosh(), 0.8)
-    if clip == 'panter_open': zet(start + 0.1, whoosh(0.4), 0.6)
+    if clip == 'panter_open': zet(start + 0.35, whoosh(0.4), 0.7)
     if clip == 'p_confetti': zet(start + 0.1, confetti(), 0.8)
     start += (len(fr) - XF) / FPS
 zet(punt_t - 0.05, boem(), 0.8)
@@ -152,15 +155,17 @@ with wave.open(wav, 'wb') as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((fx * 32000).astype(np.int16).tobytes())
 
 naam = os.path.join(UIT, 'reel-EN-spin-the-wheel-black-friday.mp4')
-stem_dur = punt_t - stem_t + 0.3
+stem_dur = punt_t - stem_t + 0.25; TEMPO = 1.25; stem_bron = stem_dur * TEMPO
 subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-framerate', str(FPS), '-i', os.path.join(OUT, '%05d.png'),
-                '-t', str(DUUR), '-i', MUZIEK, '-i', wav, '-ss', str(2.5 + 1.6), '-t', str(stem_dur), '-i', os.path.expanduser('~/Downloads/IMG_6727.MOV'),
+                '-t', str(DUUR), '-i', MUZIEK, '-i', wav, '-ss', str(2.5 + 1.6), '-t', str(stem_bron), '-i', os.path.expanduser('~/Downloads/IMG_6727.MOV'),
                 '-filter_complex',
                 f'[1:a]afade=t=in:st=0:d=0.2,volume=enable=\'between(t,{stem_t - 0.2},{punt_t})\':volume=0.12,afade=t=out:st={DUUR - 1.5}:d=1.5,volume=0.8[m];'
                 f'[2:a]aformat=channel_layouts=stereo[f];'
-                f'[3:a]afade=t=in:st=0:d=0.05,afade=t=out:st={stem_dur - 0.2}:d=0.2,volume=2.4,adelay=delays={int(stem_t * 1000)}:all=1[v];'
+                f'[3:a]highpass=f=110,afftdn=nr=12:nf=-40,equalizer=f=450:width_type=o:width=1.4:g=-6,equalizer=f=3500:width_type=o:width=1.2:g=4,'
+                f'agate=threshold=0.03:ratio=3:release=60,acompressor=threshold=-18dB:ratio=3:attack=5:release=80,atempo={TEMPO},'
+                f'afade=t=in:st=0:d=0.04,afade=t=out:st={stem_dur - 0.15}:d=0.15,volume=2.6,adelay=delays={int(stem_t * 1000)}:all=1[v];'
                 f'[m][f][v]amix=inputs=3:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]',
-                '-map', '0:v', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '17', '-r', str(FPS),
+                '-map', '0:v', '-map', '[a]', '-vf', 'vibrance=intensity=0.35,eq=saturation=1.08:contrast=1.05', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '17', '-r', str(FPS),
                 '-bsf:v', 'h264_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1:video_full_range_flag=0',
                 '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-t', str(DUUR), '-movflags', '+faststart', naam], check=True)
 shutil.rmtree(W)
