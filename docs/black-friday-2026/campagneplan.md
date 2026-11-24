@@ -32,8 +32,9 @@ De sheet is de waarheid. Ads Manager telt alleen wie cookies accepteerde, de she
 
 - Een echt draaiend rad ín een Instagram- of Facebook-post of -advertentie kan niet (Meta staat geen eigen spelletjes toe).
 - Advertenties: de knop opent `funkiness.ai/black-friday` direct in de in-app browser van Instagram/Facebook. Eén tik, rad bovenaan, ±30 sec tot de prijs.
-- Organisch: reageer **SPIN** onder de post/reel → automatische DM met de link naar het rad (ManyChat, als dat aan Instagram gekoppeld is; anders link in bio + linksticker in stories).
-- Het rad volledig in de DM laten draaien (ManyChat Pro + koppeling met `api/spin`) pas bij een volgende actie, met genoeg testtijd.
+- Organisch, zonder ManyChat (Daisy 24-11-2026: simpelste oplossing): link in de Instagram-bio (pas zetten als het rad live staat), linksticker in stories, link in Facebook-posts. Altijd de UTM-links hieronder.
+- Gegevens: het formulier verzamelt naam, bedrijf, e-mail en WhatsApp (Curaçao-nummer) vóór het draaien; alles in de sheet, tabblad "Black Friday".
+- Later eventueel: SPIN-reactie → DM via ManyChat, of het rad helemaal in de DM (ManyChat Pro + `api/spin`).
 
 ## Budgetadvies
 
