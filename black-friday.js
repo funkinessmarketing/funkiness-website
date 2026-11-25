@@ -124,7 +124,7 @@
     var marge = (v.tot - v.van) * 0.35;
     var doel = v.midden + (Math.random() * 2 - 1) * marge;
     var rest = ((-doel - rotatie) % 360 + 360) % 360;
-    rotatie = rotatie + 360 * 6 + rest;
+    rotatie = rotatie + 360 * 9 + rest;
     wiel.classList.remove('bf-wobble');
     void wiel.getBoundingClientRect();
     wiel.style.transform = 'rotate(' + rotatie + 'deg)';
@@ -132,7 +132,7 @@
     function einde() { if (!gedaan) { gedaan = true; klaar(); } }
     luisterNaarWiel(function () { return gedaan; });
     wiel.addEventListener('transitionend', einde, { once: true });
-    setTimeout(einde, 6200);
+    setTimeout(einde, 9200);
   }
 
   // Herkomst van de bezoeker, voor resultaten per kanaal
