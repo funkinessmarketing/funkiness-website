@@ -176,7 +176,8 @@
 
   // Voor de opening: formulier dicht (de server bewaakt het echt, dit voorkomt dat iemand eerst alles invult)
   var OPEN_OP = Date.UTC(2026, 10, 26, 4, 0, 0); // 26 nov 00:00 Curaçao (UTC-4)
-  var nogDicht = Date.now() < OPEN_OP;
+  // Testlink voor Daisy: /black-friday?test=1 opent het formulier al voor de opening
+  var nogDicht = Date.now() < OPEN_OP && !/[?&]test=1(&|$)/.test(location.search);
 
   tel('bezoek');
   var form = document.getElementById('bfForm');
