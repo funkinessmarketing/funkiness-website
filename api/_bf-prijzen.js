@@ -2,33 +2,33 @@
 // Downloads staan in een map met een onraadbare naam en worden niet geïndexeerd (zie vercel.json en robots.txt).
 const MAP = '/gifts/bf26-226dada8e958/';
 
-export const SOS_TERMIJN = 'by Friday, December 11, 2026'; // OPEN: termijn nog door Daisy goed te keuren
+export const SOS_TERMIJN = 'by Friday, December 11, 2026'; // gelijk aan de voorwaarden (sectie 6)
 
 export const PRIJZEN = {
   hooks: {
     naam: '10 Killer Hooks',
-    kort: 'Ten opening lines that stop the scroll, each with an example of how to use it.',
+    kort: 'Ten opening lines that stop the scroll, each with an example, plus a ready-to-use hook for 12 kinds of businesses on Curaçao.',
     download: MAP + 'funkiness-10-killer-hooks.pdf'
   },
   'ai-pack': {
     naam: 'AI Power Pack',
-    kort: 'Ten ready-to-use AI prompts for content, ideas, better copy and customer messages.',
+    kort: 'Ten ready-to-use AI prompts for content, ideas, better copy and customer messages, with fill-in examples for 12 kinds of businesses.',
     download: MAP + 'funkiness-ai-power-pack.pdf'
   },
   rescue: {
     naam: 'Content Rescue Kit',
-    kort: 'Five common content problems, the fix for each, before-and-after examples and a checklist.',
+    kort: 'Five common content problems, the fix for each, before-and-after examples, a checklist and the same fixes for six kinds of businesses.',
     download: MAP + 'funkiness-content-rescue-kit.pdf'
   },
   ideas: {
     naam: '30 Days of Ideas',
-    kort: 'Thirty content ideas for Instagram, Facebook and TikTok, with examples for different businesses.',
+    kort: 'Thirty content ideas for Instagram, Facebook and TikTok, with examples for different businesses and swaps for services and professionals.',
     download: MAP + 'funkiness-30-days-of-ideas.pdf'
   },
   mystery: {
     naam: 'Mystery FUNky Gift',
     onthulling: 'The 5-Minute Marketing Fix',
-    kort: 'A five-minute checklist to sharpen your social media profile, plus a bonus prompt for your bio.',
+    kort: 'A five-minute checklist to sharpen your online profile, with a Google check for businesses without Instagram, plus a bonus prompt for your bio.',
     download: MAP + 'funkiness-5-minute-marketing-fix.pdf'
   },
   sos: {

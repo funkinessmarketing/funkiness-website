@@ -102,6 +102,10 @@
     try { if (window.ttq) window.ttq.track(naam === 'Lead' ? 'SubmitForm' : naam, {}, { event_id: id }); } catch (e) {}
   }
 
+  // Voor de opening: formulier dicht (de server bewaakt het echt, dit voorkomt dat iemand eerst alles invult)
+  var OPEN_OP = Date.UTC(2026, 10, 26, 4, 0, 0); // 26 nov 00:00 Curaçao (UTC-4)
+  var nogDicht = Date.now() < OPEN_OP;
+
   tel('bezoek');
   var form = document.getElementById('bfForm');
   var gestart = false;
@@ -111,6 +115,11 @@
   var VINKJES = { curacao: 'bfCuracaoWrap', voorwaarden: 'bfVoorwaardenWrap' };
   var melding = document.getElementById('bfMelding');
   var knop = document.getElementById('bfButton');
+  if (nogDicht) {
+    knop.disabled = true; knop.textContent = 'OPENS THURSDAY, NOV 26';
+    document.getElementById('bfMelding').textContent = 'The wheel opens on Thursday, November 26. Come back then and spin!';
+    document.getElementById('bfMelding').style.display = 'block';
+  }
 
   function toonFouten(lijst) {
     Object.keys(VELDEN).forEach(function (k) { document.getElementById(VELDEN[k]).parentNode.classList.toggle('bf-fout', lijst.indexOf(k) >= 0); });
@@ -122,6 +131,7 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (nogDicht) return;
     zegIets('');
     var data = {
       naam: form.naam.value, bedrijf: form.bedrijf.value, email: form.email.value, whatsapp: form.whatsapp.value,
@@ -158,7 +168,7 @@
           knop.disabled = false; knop.textContent = 'SPIN THE FUN!';
           if (u.velden) { toonFouten(u.velden); return; }
           if (u.status === 'gesloten') return zegIets('SPIN THE FUN! has ended. Thanks for stopping by!');
-          if (u.status === 'nog-niet') return zegIets('The wheel opens soon. Come back on Monday, November 23!');
+          if (u.status === 'nog-niet') return zegIets('The wheel opens soon. Come back on Thursday, November 26!');
           return zegIets(u.error || 'The wheel is stuck. Please try again in a minute.');
         }
         if (document.getElementById('bfLetter').checked && !u.dubbel) {
@@ -185,7 +195,8 @@
       ? 'One spin per business, so this is your prize.'
       : u.download
         ? (u.mail ? 'We also sent it to ' + data.email + '.' : 'Download it now. Our email may take a little longer.')
-        : 'We sent the details to ' + data.email + '. Nothing to do right now.';
+        : (u.mail ? 'We sent the details to ' + data.email + '. Nothing to do right now.'
+                          : 'Your Marketing SOS is registered. We will contact you at ' + data.email + ' shortly. Nothing to do right now.');
     document.getElementById('bfResult').style.display = 'block';
     // Op mobiel staat de uitslag onder het rad: even laten zien waar het rad stopte, dan erheen
     setTimeout(function () { document.getElementById('bfCard').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 900);

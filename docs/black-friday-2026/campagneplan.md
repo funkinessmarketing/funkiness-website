@@ -1,6 +1,6 @@
 # SPIN THE FUN! Campagneplan Black Friday 2026
 
-Stand: 23-11-2026. Niets is live, er is geen budget geactiveerd. Advertenties gaan pas aan na Daisy's letterlijke GO.
+Stand: 25-11-2026 (actie 26 t/m 29 november, trekking 30 november). Niets is live, er is geen budget geactiveerd. Advertenties gaan pas aan na Daisy's letterlijke GO.
 
 ## Route en meting
 
@@ -42,10 +42,10 @@ Werkbudget van Daisy: USD 200 (voorstel Meta 140, TikTok 60).
 
 Advies: **USD 200 volledig naar Meta**, tenzij de check in TikTok Ads Manager laat zien dat Curaçao als locatie te kiezen is. TikTok noemt Curaçao nergens in zijn eigen hulppagina's als doelmarkt. Bij een kleine markt en één week werkt één kanaal met genoeg budget beter dan twee kanalen die allebei te weinig krijgen. TikTok dan organisch.
 
-- Looptijd advertenties: woensdag 25 t/m zondag 29 november (5 dagen).
-- Dagbudget Meta: USD 40 (5 x 40 = 200).
-- Op vrijdag 27 (Black Friday) en zaterdag 28: als de kosten per geldige deelname goed zijn, mag het budget daar zwaarder, binnen hetzelfde totaal (bijvoorbeeld wo 30, do 30, vr 50, za 50, zo 40).
-- Als TikTok wel kan: Meta 140 (USD 28 per dag), TikTok 60 (USD 12 per dag).
+- Looptijd advertenties: donderdag 26 t/m zondag 29 november (4 dagen). Nooit eerder: het rad opent pas op 26 november 00:00.
+- Dagbudget Meta: USD 50 (4 x 50 = 200).
+- Op vrijdag 27 (Black Friday) en zaterdag 28: als de kosten per geldige deelname goed zijn, mag het budget daar zwaarder, binnen hetzelfde totaal (bijvoorbeeld do 40, vr 60, za 60, zo 40).
+- Als TikTok wel kan: Meta 140 (USD 35 per dag), TikTok 60 (USD 15 per dag).
 
 ## Meta-campagne (Facebook + Instagram)
 
@@ -62,7 +62,7 @@ Eén campagne, één advertentieset, twee advertenties. Niet meer.
 - Locatie: Curaçao, "mensen die op deze locatie wonen".
 - Leeftijd 18-65+. Geen geslacht, geen interesses vastzetten. Advantage+ doelgroep aan, eventueel met suggesties "Kleine bedrijfseigenaren" en "Beheerders van Facebook-bedrijfspagina's".
 - Plaatsingen: Advantage+ (Facebook en Instagram feed, Reels, Stories).
-- Planning: 25-11-2026 00:00 tot 29-11-2026 23:59, tijdzone Curaçao.
+- Planning: 26-11-2026 00:00 tot 29-11-2026 23:59, tijdzone Curaçao.
 
 **Advertentie 1: rad-animatie 9:16 + 4:5**
 - Bestanden: `docs/Graphic-Design/social-media-posts/ad-EN-black-friday-just-got-funky-9x16.mp4` en `-4x5.mp4` (13 sec, eigen tumba-track).
@@ -98,9 +98,8 @@ Caption (Amerikaans Engels):
 
 | Dag | Wat |
 |---|---|
-| Di 24 (live) | Rad-animatie als Reel/TikTok/Short. Story met linksticker. Link in alle bio's. |
-| Wo 25 | Story: "Who spun already?" + poll. |
-| Do 26 | Story: "Marketing SOS still available today" (alleen als het klopt, check de sheet). |
+| Wo 25 | Geen link in de bio. Eventueel teaser: "The wheel opens tomorrow." |
+| Do 26 (open) | Rad-animatie als Reel/TikTok/Short. Story met linksticker. Link in alle bio's. Story: "Marketing SOS still available today" (alleen als het klopt, check de sheet). |
 | Vr 27 | Video met de oprichter (als klaar) of de rad-animatie opnieuw. Story's de hele dag. |
 | Za 28 | Story: "Last weekend to spin". |
 | Zo 29 | Story's: "Last day. Wheel closes at midnight." |

@@ -35,6 +35,7 @@ h1 {{ font-family: Poppins; font-weight: 900; font-size: 34pt; line-height: 1; m
 .intro {{ background: #fff; border-radius: 6mm; padding: 5mm 6mm; margin-bottom: 7mm; }}
 .intro p {{ margin: 0 0 2.5mm; }} .intro p:last-child {{ margin: 0; }}
 h2 {{ font-family: Poppins; font-weight: 900; font-size: 17pt; margin: 8mm 0 3mm; }}
+.blok {{ break-inside: avoid; page-break-inside: avoid; }}
 .card {{ background: #fff; border-radius: 6mm; padding: 4.5mm 6mm; margin-bottom: 4mm; break-inside: avoid; position: relative; }}
 .card h3 {{ font-family: Poppins; font-weight: 900; font-size: 13pt; margin: 0 0 2mm; line-height: 1.25; }}
 .num {{ font-family: 'Permanent Marker', cursive; color: #f21b7a; font-size: 20pt; float: left; width: 12mm; line-height: 1; }}
@@ -56,6 +57,10 @@ h2 {{ font-family: Poppins; font-weight: 900; font-size: 17pt; margin: 8mm 0 3mm
 .dag .d {{ font-family: 'Permanent Marker', cursive; color: #f21b7a; font-size: 15pt; line-height: 1.1; }}
 .dag b {{ font-family: Poppins; font-weight: 900; font-size: 11pt; }}
 .dag .ex {{ color: rgba(58,37,27,.7); }}
+.br {{ display: grid; grid-template-columns: 38mm 1fr; gap: 3mm; background: #fff; border-radius: 4mm; padding: 3mm 4.5mm; margin-bottom: 2.5mm; break-inside: avoid; font-size: 10pt; }}
+.br b {{ font-family: Poppins; font-weight: 900; font-size: 10pt; color: #f21b7a; }}
+.br .hk {{ font-weight: 700; }}
+.br .ex {{ color: rgba(58,37,27,.7); }}
 .slot {{ margin-top: 8mm; background: #f21b7a; color: #fff; border-radius: 6mm; padding: 5mm 6mm; break-inside: avoid; }}
 .slot p {{ margin: 0 0 3mm; font-weight: 700; }}
 .slot .sign {{ font-family: 'Permanent Marker', cursive; font-size: 15pt; margin: 0; }}
@@ -72,18 +77,26 @@ def pagina(c, inhoud):
 <div class="slot"><p>{e(c['slot'])}</p><p class="sign">Boring was never the plan.</p><p class="web">FUNkiness! · AI, social media &amp; marketing on Curaçao · funkiness.ai · WhatsApp +599 9 675 1737</p></div>
 </body></html>"""
 
+def kopje(c, sleutel):
+    t, u, _ = c[sleutel]
+    return f'<h2>{html.escape(t)}</h2><p>{e(u)}</p>'
+
+def hooks_branches(c):
+    return '<div class="blok">' + kopje(c, 'branches') + '</div>' + ''.join(f"""<div class="br"><b>{html.escape(b)}</b><div><span class="hk">{e(h)}</span><br><span class="ex">Idea: {e(f)}</span></div></div>""" for b, h, f in c['branches'][2])
+
 def hooks(c):
     return ''.join(f"""<div class="card"><span class="num">{i:02d}</span><div class="body"><h3>{e(h)}</h3>
-<p class="label">Example</p><p>{e(v)}</p><p class="label">Why it works</p><p>{e(w)}</p></div></div>""" for i, (h, v, w) in enumerate(c['items'], 1))
+<p class="label">Example</p><p>{e(v)}</p><p class="label">Why it works</p><p>{e(w)}</p></div></div>""" for i, (h, v, w) in enumerate(c['items'], 1)) + hooks_branches(c)
 
 def ai(c):
     uit, n = '', 0
     for groep, prompts in c['groepen']:
-        uit += f'<h2>{html.escape(groep)}</h2>'
-        for titel, prompt, tip in prompts:
+        kop = f'<h2>{html.escape(groep)}</h2>'
+        for j, (titel, prompt, tip) in enumerate(prompts):
             n += 1
-            uit += f"""<div class="card"><span class="num">{n:02d}</span><div class="body"><h3>{html.escape(titel)}</h3>
-<div class="prompt">{e(prompt)}</div><p class="label">Tip</p><p>{e(tip)}</p></div></div>"""
+            uit += ('<div class="blok">' + kop if j == 0 else '') + f"""<div class="card"><span class="num">{n:02d}</span><div class="body"><h3>{html.escape(titel)}</h3>
+<div class="prompt">{e(prompt)}</div><p class="label">Tip</p><p>{e(tip)}</p></div></div>""" + ('</div>' if j == 0 else '')
+    uit += '<div class="blok">' + kopje(c, 'branches') + '</div>' + ''.join(f'<div class="br"><b>{html.escape(b)}</b><div><span class="hk">[type of business]:</span> {e(t)}<br><span class="hk">[who they are]:</span> <span class="ex">{e(w)}</span></div></div>' for b, t, w in c['branches'][2])
     return uit
 
 def rescue(c):
@@ -91,17 +104,22 @@ def rescue(c):
     for i, (probleem, fix, voor, na) in enumerate(c['problemen'], 1):
         uit += f"""<div class="card"><span class="num">{i:02d}</span><div class="body"><h3>{e(probleem)}</h3>
 <p class="label">The fix</p><p>{e(fix)}</p><div class="ba"><div class="voor"><p class="label">Before</p>{e(voor)}</div><div class="na"><p class="label">After</p>{e(na)}</div></div></div></div>"""
-    uit += '<h2>Checklist for every post</h2><div class="card"><ul class="check">' + ''.join(f'<li>{e(x)}</li>' for x in c['checklist']) + '</ul></div>'
+    uit += '<div class="blok"><h2>Checklist for every post</h2><div class="card"><ul class="check">' + ''.join(f'<li>{e(x)}</li>' for x in c['checklist']) + '</ul></div></div>'
+    uit += '<div class="blok">' + kopje(c, 'branches') + '</div>' + ''.join(f'<div class="br"><b>{html.escape(b)}</b><div><span class="ex">Before:</span> {e(v)}<br><span class="hk">After:</span> {e(n)}</div></div>' for b, v, n in c['branches'][2])
     return uit
 
 def ideas(c):
-    return ''.join(f"""<div class="dag"><span class="d">{i}</span><div><span class="pill {t}">{t}</span><b>{e(titel)}</b><br>{e(uitleg)}<br><span class="ex">Example: {e(vb)}</span></div></div>""" for i, (t, titel, uitleg, vb) in enumerate(c['dagen'], 1))
+    t, u, lijst = c['extra']
+    extra = f'<div class="blok"><h2>{html.escape(t)}</h2><p>{e(u)}</p></div>' + ''.join(f'<div class="br"><b>{i}</b><div><span class="hk">{e(a)}</span><br><span class="ex">{e(b)}</span></div></div>' for i, (a, b) in enumerate(lijst, 1))
+    return ''.join(f"""<div class="dag"><span class="d">{i}</span><div><span class="pill {t}">{t}</span><b>{e(titel)}</b><br>{e(uitleg)}<br><span class="ex">Example: {e(vb)}</span></div></div>""" for i, (t, titel, uitleg, vb) in enumerate(c['dagen'], 1)) + extra
 
 def fix(c):
     uit = ''.join(f"""<div class="card"><span class="num">{i}</span><div class="body"><h3>{e(titel)} <span class="pill PERSONAL">{tijd}</span></h3>
 <p>{e(wat)}</p><p class="label">Example</p><p>{e(vb)}</p></div></div>""" for i, (tijd, titel, wat, vb) in enumerate(c['acties'], 1))
     titel, prompt = c['prompt']
-    return uit + f'<h2>{html.escape(titel)}</h2><div class="card"><div class="prompt">{e(prompt)}</div><p>Paste it into ChatGPT, Claude or Gemini, pick your favorite and adjust one word to make it sound like you.</p></div>'
+    gt, gu, gl = c['google']
+    google = f'<div class="blok"><h2>{html.escape(gt)}</h2><p>{e(gu)}</p><div class="card"><ul class="check">' + ''.join(f'<li>{e(x)}</li>' for x in gl) + '</ul></div></div>'
+    return uit + f'<div class="blok"><h2>{html.escape(titel)}</h2><div class="card"><div class="prompt">{e(prompt)}</div><p>Paste it into ChatGPT, Claude or Gemini, pick your favorite and adjust one word to make it sound like you.</p></div></div>' + google
 
 BOUW = {'funkiness-10-killer-hooks': hooks, 'funkiness-ai-power-pack': ai, 'funkiness-content-rescue-kit': rescue,
         'funkiness-30-days-of-ideas': ideas, 'funkiness-5-minute-marketing-fix': fix}

@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from build import tekst, plak, back, POP, MARK, INTER, PINK, BRUIN, WIT, ROOT, UIT, MUZIEK
 
-MAP = sys.argv[1]; C = os.path.join(MAP, '_v3'); FPS = 24; HI = 96
+MAP = sys.argv[1]; GEEN_TEKST = '--zonder-tekst' in sys.argv; C = os.path.join(MAP, '_v3'); FPS = 24; HI = 96
 POP7 = os.path.expanduser('~/Library/Fonts/Poppins-Black.ttf')
 WARM = 'colorbalance=rs=0.05:gs=0.015:bs=-0.07:rm=0.04:bm=-0.04,eq=saturation=1.12:brightness=0.03:contrast=1.04:gamma=1.05'
 W = os.path.join(MAP, '_v7'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
@@ -99,7 +99,7 @@ for fa, fb, m in seq:
         B, otb, ageb = render(fb); A = Image.blend(A, B, m)
         if m > 0.5: ot, age = otb, ageb
     fr = A.convert('RGBA')
-    if ot and age > 0.1:
+    if ot and age > 0.1 and not GEEN_TEKST:
         rg = OT[ot]
         plak(fr, rg[0], 540, 1300 if len(rg) > 1 else 1330, min(1, 0.9 + (age - 0.1) * 0.5), alpha=min(1, (age - 0.1) / 0.2))
         if len(rg) > 1 and age > 1.2: plak(fr, rg[1], 540, 1405, back((age - 1.2) / 0.3, 2.2), rot=-2)
@@ -109,7 +109,7 @@ logo = Image.open(os.path.join(ROOT, 'funkiness-logo.png')).convert('RGBA'); log
 E = {'e1': tekst('SPIN THE FUN!', POP, 112, WIT, 800), 'e2': tekst('Free for businesses on Curaçao', INTER, 50, WIT, 780),
      'e3': tekst('Everyone wins. Until Sunday, Nov 29.', INTER, 48, WIT, 800), 'e5': tekst('Spin online:', INTER, 50, WIT, 600),
      'e4': tekst('funkiness.ai/black-friday', MARK, 74, PINK, 860)}
-for k in range(int(EIND_T * FPS)):
+for k in range(0 if GEEN_TEKST else int(EIND_T * FPS)):
     e = k / FPS; fr = Image.new('RGBA', (1080, 1920), BRUIN + (255,)); yb = 560
     plak(fr, logo, 540, yb - 30, back(e / 0.4) * 0.9); plak(fr, E['e1'], 540, yb + 230, back((e - 0.15) / 0.35, 2.4))
     plak(fr, E['e2'], 540, yb + 380, 1, alpha=min(1, max(0, (e - 0.45) / 0.3))); plak(fr, E['e3'], 540, yb + 460, 1, alpha=min(1, max(0, (e - 0.6) / 0.3)))
@@ -149,7 +149,7 @@ fx = np.clip(fx, -1, 1); wav = os.path.join(W, 'fx.wav')
 with wave.open(wav, 'wb') as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((fx * 32000).astype(np.int16).tobytes())
 
-naam = os.path.join(UIT, 'reel-EN-spin-the-wheel-black-friday.mp4')
+naam = os.path.expanduser('~/Downloads/reel-EN-spin-the-wheel-black-friday-ZONDER-TEKST.mp4') if GEEN_TEKST else os.path.join(UIT, 'reel-EN-spin-the-wheel-black-friday.mp4')
 subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-framerate', str(FPS), '-i', os.path.join(OUT, '%05d.png'),
                 '-t', str(DUUR), '-i', MUZIEK, '-i', wav,
                 '-filter_complex',

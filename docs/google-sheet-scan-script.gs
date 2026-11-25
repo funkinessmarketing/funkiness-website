@@ -280,9 +280,9 @@ const BF_TAB = 'Black Friday';
 const BF_KOPPEN = ['Datum', 'ID', 'Naam', 'Bedrijf', 'Email', 'WhatsApp', 'Kanaal', 'KvK',
   'Prijs', 'Status', 'Bron', 'Campagne', 'Sleutel bedrijf', 'Sleutel kanaal', 'Geleverd'];
 const BF_TZ = 'America/Curacao';
-const BF_OPEN = '2026-11-23';   // eerste dag (Curaçao-tijd)
+const BF_OPEN = '2026-11-26';   // eerste dag (Curaçao-tijd)
 const BF_DICHT = '2026-11-29';  // laatste dag, t/m 23:59
-// Kansen in procenten. Marketing SOS: max 5 in totaal en max 1 per dag. Is die op,
+// Kansen in procenten. Marketing SOS: max 5 in totaal en max 2 per dag (de actie duurt 4 dagen). Is die op,
 // dan valt de draai op een van de vijf digitale cadeaus (gelijke kans).
 const BF_PRIJZEN = [
   { id: 'hooks', kans: 18 },
@@ -290,7 +290,7 @@ const BF_PRIJZEN = [
   { id: 'rescue', kans: 18 },
   { id: 'ideas', kans: 18 },
   { id: 'mystery', kans: 18 },
-  { id: 'sos', kans: 10, max: 5, maxPerDag: 1 }
+  { id: 'sos', kans: 10, max: 5, maxPerDag: 2 }
 ];
 const BF_NAMEN = { hooks: '10 Killer Hooks', 'ai-pack': 'AI Power Pack', rescue: 'Content Rescue Kit',
   ideas: '30 Days of Ideas', mystery: 'Mystery FUNky Gift', sos: 'Marketing SOS' };
@@ -298,9 +298,18 @@ const BF_NAMEN = { hooks: '10 Killer Hooks', 'ai-pack': 'AI Power Pack', rescue:
 const bfDag = d => Utilities.formatDate(d, BF_TZ, 'yyyy-MM-dd');
 const bfBedrijf = v => String(v || '').toLowerCase()
   .replace(/\b(n\.?v\.?|b\.?v\.?|llc|inc|ltd|v\.?o\.?f\.?|curacao|curaçao)\b/g, '').replace(/[^a-z0-9]/g, '');
-const bfKanaal = v => String(v || '').toLowerCase().trim()
-  .replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/^(instagram|facebook|fb)\.com\//, '$1:')
-  .replace(/^@/, 'instagram:').replace(/[/?#].*$/, '').replace(/\/+$/, '');
+// Sleutel van het kanaal. Instagram/Facebook op accountnaam; gedeelde domeinen (linktr.ee, wixsite enz.)
+// houden hun eerste padstuk, anders zou elk bedrijf op zo'n domein als hetzelfde gelden.
+const BF_GEDEELD = /^(linktr\.ee|linktree\.com|beacons\.ai|taplink\.cc|carrd\.co|wa\.me|wa\.link|bit\.ly|business\.site|[^/]+\.(wixsite|business\.site|godaddysites|mystrikingly|squarespace|weebly|webnode|myshopify|carrd)\.[a-z.]+)$/;
+const bfKanaal = v => {
+  let t = String(v || '').toLowerCase().trim().replace(/^https?:\/\//, '').replace(/^www\./, '');
+  const prof = t.match(/^(?:m\.|web\.|l\.)?facebook\.com\/profile\.php\?id=(\d+)/);
+  if (prof) return 'facebook:' + prof[1];
+  t = t.replace(/^(?:m\.|web\.|l\.)?(instagram|facebook|fb)\.com\//, '$1:').replace(/^@/, 'instagram:');
+  const host = t.split(/[/?#]/)[0];
+  if (BF_GEDEELD.test(host)) { const stuk = t.replace(/[?#].*$/, '').split('/').filter(Boolean)[1]; return host + (stuk ? '/' + stuk : ''); }
+  return t.replace(/[/?#].*$/, '').replace(/\/+$/, '');
+};
 
 function bfTab(naam, koppen) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();

@@ -20,7 +20,7 @@ HOOKS = {
          "It feels like a secret. People stay to find out what you almost kept to yourself."),
         ("The question we get every single week:",
          "Realtor: show the question on screen (\"Can I rent out my apartment when I'm not on the island?\") and answer it in 20 seconds.",
-         "If you get the question every week, many people who never asked have it too."),
+         "If you get the question every week, it is worth answering where everyone can see it."),
         ("[Number] seconds. That's how long it takes to [result].",
          "Hair salon: \"40 seconds. That's how long it takes to fix flat hair before a party.\" Film it, with a timer on screen.",
          "A clear number and a clear result. Viewers stay to see if you make it in time."),
@@ -138,7 +138,7 @@ RESCUE = {
         "Did I read it once out loud?",
         "Did I answer the first comments within the hour?",
     ],
-    "slot": "Rescue your old posts too: pick your three best posts from last year, fix them with this kit and post them again. Most of your followers never saw them."
+    "slot": "Rescue your old posts too: pick your three best posts from last year, fix them with this kit and post them again. New followers have never seen them."
 }
 
 IDEAS = {
@@ -191,7 +191,7 @@ FIX = {
     "titel": "The 5-Minute Marketing Fix",
     "sub": "Five quick upgrades for your social media profile. Set a timer, it really takes five minutes.",
     "intro": [
-        "Your profile is your shop window. Many people check it before they ever message, call or visit. These five actions make sure they understand in seconds what you do and how to reach you."
+        "Your profile is your shop window. It is the first thing people see when they find you online, before they message, call or visit. These five actions make sure they understand in seconds what you do and how to reach you."
     ],
     "acties": [
         ("1 minute", "Say what you do in the first line of your bio",
@@ -216,3 +216,74 @@ FIX = {
 }
 
 ALLE = [HOOKS, AI_PACK, RESCUE, IDEAS, FIX]
+
+
+# ---------------------------------------------------------------------------
+# Toevoeging 25-11-2026: elk cadeau werkt voor alle branches op Curaçao.
+# Twaalf branches: hotels en resorts, restaurants en bars, vakantieverhuur, makelaars,
+# tours en duiken, winkels, beauty en wellness, sport en gezondheid, autoverhuur en garages,
+# huis en klusbedrijven, zorg, en zakelijke dienstverlening (boekhouding, juridisch, verzekering, bank).
+# ---------------------------------------------------------------------------
+HOOKS['sub'] = "Ten opening lines that make people stop scrolling, plus a ready-to-use hook for 12 kinds of businesses on Curaçao. Swap the words in [brackets] and they are yours."
+HOOKS['branches'] = ("Your branch, ready to use", "One hook per branch, filled in. Copy it, film the idea next to it and post.", [
+    ("Hotels and resorts", "Nobody tells you this before you book a hotel on Curaçao.", "Film the room, the view and the three things that are included, in that order."),
+    ("Restaurants and bars", "POV: you sit down and the first plate is already on its way.", "Film from the guest's seat: the table, the plate arriving, the first bite."),
+    ("Vacation rentals", "Read this before you book a place on Curaçao.", "Show three things guests should check in any rental, then show them in yours."),
+    ("Real estate", "Stop scrolling if you want to buy on Curaçao and don't know where to start.", "Say the first three steps on camera, one sentence each."),
+    ("Tours, diving and water sports", "POV: you wake up and today's plan is a boat.", "Film the morning from the guest's eyes: the pier, the boat, the first splash."),
+    ("Shops and retail", "Three things we would buy first in this shop.", "Pick up each item, say in one sentence why, and show the price tag."),
+    ("Beauty and wellness", "[Number] minutes. That's all it takes to [result].", "Film the treatment sped up with a timer on screen, then the result."),
+    ("Sports and health", "Try this at your desk. It takes 30 seconds.", "Show one simple move, slowly, from the front. Add where to find you for more."),
+    ("Car rental and garages", "If your car makes this sound, don't wait.", "Record the sound, then show what you check first and how fast you can help."),
+    ("Home services (construction, airco, pool, cleaning)", "Before and after: the job we finished this week.", "Same angle before and after. Add one line on how long it took."),
+    ("Healthcare (doctor, dentist, physio)", "The question every patient asks us.", "Put the question on screen and answer it in plain words in 20 seconds."),
+    ("Professional services (accounting, legal, insurance, banking)", "Three things to bring before you meet us.", "Hold up each item or show it on screen. Then say how to book the first meeting."),
+])
+HOOKS['slot'] = "Your branch is not in the list? Use hooks 1 to 10 and write three versions for every post. Pick the one that would make YOU stop."
+
+AI_PACK['sub'] = "Ten prompts you can paste straight into ChatGPT, Claude, Gemini or any similar AI tool, plus fill-in examples for 12 kinds of businesses on Curaçao."
+AI_PACK['branches'] = ("Fill-in examples for your branch", "Copy the words that fit you into the [brackets] of any prompt above.", [
+    ("Hotel or resort", "hotel", "couples and families planning a holiday on the island"),
+    ("Restaurant or bar", "restaurant", "locals and tourists looking for a place to eat tonight"),
+    ("Vacation rental host", "vacation rental", "guests booking through Airbnb or directly"),
+    ("Real estate agent", "real estate agency", "people who want to buy, sell or rent on the island"),
+    ("Tours and diving", "dive shop", "visitors and residents who want to be out on the water"),
+    ("Shop or retail", "shop", "customers who walk in and customers who order by WhatsApp"),
+    ("Beauty and wellness", "hair and beauty salon", "regular clients and people who just moved here"),
+    ("Gym, sports and health", "gym", "people who want to start training or get back to it"),
+    ("Car rental or garage", "car rental company", "visitors who need a car and residents who need a quick fix"),
+    ("Home services", "airco and pool service company", "homeowners and property managers"),
+    ("Healthcare", "dental clinic", "families and individuals who want clear answers before booking"),
+    ("Professional services", "accounting firm", "business owners who want one clear person to ask"),
+])
+
+RESCUE['branches'] = ("The same fixes in your branch", "Pick your line and use it in your next post.", [
+    ("Hotels and resorts", "\"We are proud to offer comfortable rooms with great amenities.\"", "\"Wake up to this view. Here is what your first morning looks like.\""),
+    ("Restaurants and bars", "\"New menu available now.\"", "\"The dish our regulars order first. Film the first bite.\""),
+    ("Real estate", "\"Beautiful apartment for sale, call for details.\"", "\"Walk in with us: front door to balcony in 20 seconds. Send 'VIEW' on WhatsApp.\""),
+    ("Home services", "\"We offer all kinds of repair and maintenance services.\"", "\"Dripping airco? Here is the fix in 30 seconds. Send a photo on WhatsApp.\""),
+    ("Healthcare", "\"We provide quality dental care for the whole family.\"", "\"The question we hear every week, answered in 20 seconds.\""),
+    ("Professional services", "\"Our firm offers comprehensive solutions for your business.\"", "\"Three documents to bring to your first meeting. Book on WhatsApp.\""),
+])
+RESCUE['sub'] = "Five things that quietly hold your posts back, how to fix each one, a checklist for every post and the same fixes for six kinds of businesses."
+
+IDEAS['sub'] = "A month of content ideas for Instagram, Facebook and TikTok. Mix of useful, selling and personal. With swaps for services, B2B and professionals."
+IDEAS['extra'] = ("No shop window? Swap in these", "For accountants, lawyers, insurers, banks, clinics, contractors and any business that sells expertise or does the work at the customer's place. Replace any day above with one of these.", [
+    ("A client story in three sentences", "The problem, what you did, the result. Ask permission first."),
+    ("What happens in the first meeting", "Show step by step what a new customer can expect, so the first call feels easy."),
+    ("What decides the price", "Name the three things that make a job cost more or less."),
+    ("One word, explained", "Take the word your customers misunderstand most and say it in plain language."),
+    ("A job from start to finish", "Film a short job in three clips: arrival, work, done. Add one line on what you checked."),
+    ("Documents to bring", "A short list customers can screenshot before they visit or call."),
+    ("The mistake we fix most", "Say what goes wrong most often in your field and how to avoid it."),
+    ("Ask the expert", "Collect three questions from your comments or WhatsApp and answer them in one video."),
+])
+
+FIX['sub'] = "Five quick upgrades for your online profile, plus the same check on Google. Set a timer, it really takes five minutes."
+FIX['google'] = ("No Instagram? Same five minutes on Google", "Open your Google Business Profile (the box that shows when someone searches your business name) and check:", [
+    "Is your business name and category right?",
+    "Do your opening hours match today, including holidays?",
+    "Does the phone number work? Call it from another phone.",
+    "Does the website link open fast on a phone?",
+    "Are there at least three photos from this year of your real place or work?",
+])

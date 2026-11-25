@@ -24,7 +24,7 @@ def rot(c):
 
 # (clip, [(van, tot, snelheid)], ondertitel-sleutel, uitsnede (cx, cy, zoom) of None)
 DEEL = [
-    ('panter_open', [(0.0, 0.9, 0.5), (0.9, 3.4, 1.0)], 'open', None),
+    ('panter_open', [(0.2, 1.0, 1.4), (1.0, 3.6, 1.0)], 'open', None),   # meteen actie: mep op tempo, binnen 1 sec draait Daisy zich om
     ('p_spin', [(0.1, 1.6, 1.2), (1.6, 2.5, 0.4), (2.5, 3.7, 1.5)], 'gratis', None),     # aai, greep, zwiep: slow-mo als jullie wegduiken
     ('p_confetti', [(0.2, 1.3, 1.0), (1.3, 2.4, 0.45), (2.4, 3.4, 1.0)], 'gift', None), # slow-mo op de poot naar de confetti
     ('p_stop', [(0.8, 3.9, 1.0)], 'wins', None),
