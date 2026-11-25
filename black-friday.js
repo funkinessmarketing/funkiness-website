@@ -135,7 +135,7 @@
     zegIets('');
     var data = {
       naam: form.naam.value, bedrijf: form.bedrijf.value, email: form.email.value, whatsapp: form.whatsapp.value,
-      kanaal: form.kanaal.value, kvk: form.kvk.value, honeypot: form.honeypot.value,
+      kanaal: form.kanaal.value, honeypot: form.honeypot.value,
       curacao: document.getElementById('bfCuracao').checked, voorwaarden: document.getElementById('bfVoorwaarden').checked,
       bron: herkomst.bron, campagne: herkomst.campagne,
       toestemming: !!(window.funkinessConsent && window.funkinessConsent() === 'accepted'),
@@ -171,9 +171,12 @@
           if (u.status === 'nog-niet') return zegIets('The wheel opens soon. Come back on Thursday, November 26!');
           return zegIets(u.error || 'The wheel is stuck. Please try again in a minute.');
         }
-        if (document.getElementById('bfLetter').checked && !u.dubbel) {
+        var wilMarketing = document.getElementById('bfLetter').checked;
+        var wilAi = document.getElementById('bfLetterAi').checked;
+        if ((wilMarketing || wilAi) && !u.dubbel) {
+          var bron = 'black-friday-' + (wilMarketing && wilAi ? 'marketing-ai' : (wilAi ? 'ai' : 'marketing'));
           fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: data.email, taal: 'en', bron: 'black-friday' }) }).catch(function () {});
+            body: JSON.stringify({ email: data.email, taal: 'en', bron: bron }) }).catch(function () {});
         }
         draaiNaar(u.prijs, function () { toonUitslag(u, data); });
       })

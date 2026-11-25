@@ -16,7 +16,7 @@
 const KOPPEN = ['Datum', 'Type', 'Bedrijf', 'Sector', 'Naam', 'Functie', 'Email',
   'Telefoon CW', 'Telefoon NL', 'Instagram', 'Archetype', 'Score', 'Status', 'Rapport', 'ID', 'Website', 'Locatie',
   'Opvolging WhatsApp', 'Opvolging dag 3', 'Opvolging dag 8', 'Gereageerd', 'Opvolging status', 'Bezoek', 'Bezoekadres'];
-const MELDING_AAN = 'funkinessmarketing@gmail.com';
+const MELDING_AAN = 'sayhello@funkiness.ai';
 const VAN = 'sayhello@funkiness.ai';
 const VAN_NAAM = 'Daisy from FUNkiness!';
 const BEZOEK_MINUTEN = 60;
@@ -280,7 +280,7 @@ const BF_TAB = 'Black Friday';
 const BF_KOPPEN = ['Datum', 'ID', 'Naam', 'Bedrijf', 'Email', 'WhatsApp', 'Kanaal', 'KvK',
   'Prijs', 'Status', 'Bron', 'Campagne', 'Sleutel bedrijf', 'Sleutel kanaal', 'Geleverd'];
 const BF_TZ = 'America/Curacao';
-const BF_OPEN = '2026-11-26';   // eerste dag (Curaçao-tijd)
+const BF_OPEN = '2026-11-25';   // eerste dag (Curaçao-tijd)
 const BF_DICHT = '2026-11-29';  // laatste dag, t/m 23:59
 // Kansen in procenten. Marketing SOS: max 5 in totaal en max 2 per dag (de actie duurt 4 dagen). Is die op,
 // dan valt de draai op een van de vijf digitale cadeaus (gelijke kans).
