@@ -24,6 +24,7 @@ export function curacaoNummer(v) {
   return /^5999\d{7}$/.test(c) ? '+' + c : null;
 }
 
+const TEST_ADRESSEN = ['sayhello@funkiness.ai'];
 export function controleer(b) {
   const fout = [];
   const d = {
@@ -31,6 +32,8 @@ export function controleer(b) {
     whatsapp: curacaoNummer(b.whatsapp), kanaal: schoon(b.kanaal, 200), kvk: schoon(b.kvk, 20),
     bron: schoon(b.bron, 60), campagne: schoon(b.campagne, 60)
   };
+  // Testdeelname: alleen voor het eigen FUNkiness!-adres. Staat als TEST in de sheet en telt nergens mee, dus onbeperkt te herhalen.
+  if (b.test === true && TEST_ADRESSEN.includes(d.email)) d.test = true;
   if (d.naam.length < 2) fout.push('naam');
   if (d.bedrijf.length < 2) fout.push('bedrijf');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) fout.push('email');

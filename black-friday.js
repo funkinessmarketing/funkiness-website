@@ -211,6 +211,7 @@
       kanaal: form.kanaal.value, honeypot: form.honeypot.value,
       curacao: document.getElementById('bfCuracao').checked, voorwaarden: document.getElementById('bfVoorwaarden').checked,
       bron: herkomst.bron, campagne: herkomst.campagne,
+      test: /[?&]test=1(&|$)/.test(location.search),
       toestemming: !!(window.funkinessConsent && window.funkinessConsent() === 'accepted'),
       fbc: koekje('_fbc') || herkomst.fbc || '', fbp: koekje('_fbp') || ''
     };
