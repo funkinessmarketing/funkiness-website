@@ -47,7 +47,7 @@
     .bf-wheel.bf-wobble { animation: bfWobble .5s ease-in-out infinite alternate; transition: none; }
     @keyframes bfWobble { from { transform: rotate(var(--bf-r, 0deg)); } to { transform: rotate(calc(var(--bf-r, 0deg) + 14deg)); } }
     .bf-wheel text { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 15px; letter-spacing: .2px; }
-    .bf-pointer { position: absolute; top: -6px; left: 50%; width: 34px; height: 44px; transform: translateX(-50%); z-index: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,.25)); }
+    .bf-pointer { position: absolute; top: -6px; left: 50%; width: 34px; height: 44px; transform: translateX(-50%); transform-origin: 50% 20%; transition: transform .06s ease-out; z-index: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,.25)); }
     .bf-hub { position: absolute; inset: 0; margin: auto; width: 22%; height: 22%; border-radius: 50%; background: var(--black); color: white; display: grid; place-items: center; font-family: 'Permanent Marker', cursive; font-size: clamp(13px, 3.4vw, 18px); text-align: center; line-height: 1; box-shadow: 0 0 0 6px var(--cream); z-index: 1; }
 
     /* Formulier */
@@ -162,8 +162,7 @@
 
           <label class="bf-check" id="bfCuracaoWrap"><input type="checkbox" id="bfCuracao"> My business is based on Curaçao.</label>
           <label class="bf-check" id="bfVoorwaardenWrap"><input type="checkbox" id="bfVoorwaarden"> I accept the <a href="/black-friday-terms" target="_blank">terms of SPIN THE FUN!</a> and the <a href="/privacy-policy" target="_blank">privacy policy</a>.</label>
-          <label class="bf-check"><input type="checkbox" id="bfLetter"> Yes, send me marketing tips in the FUNky Letter. <small>(optional)</small></label>
-          <label class="bf-check"><input type="checkbox" id="bfLetterAi"> Yes, send me AI tips in the FUNky Letter too. <small>(optional)</small></label>
+          <label class="bf-check"><input type="checkbox" id="bfLetter"> Yes, send me marketing &amp; AI tips in the FUNky Letter. <small>(optional)</small></label>
 
           <button class="bf-spin" type="submit" id="bfButton">SPIN THE FUN!</button>
           <div class="bf-melding" id="bfMelding" role="alert"></div>

@@ -48,6 +48,77 @@
   });
   wiel.appendChild(el('circle', { cx: 0, cy: 0, r: R - 1.5, fill: 'none', stroke: '#3a251b', 'stroke-width': 5 }));
 
+  // Geluid: bij elk segment dat langs de wijzer gaat klikt het rad, op het ritme van het draaien.
+  // Gemaakt met Web Audio (geen bestand nodig). De AudioContext start bij de klik op de knop.
+  var audio = null;
+  function startAudio() {
+    try {
+      if (!audio) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        audio = new AC();
+      }
+      if (audio.state === 'suspended') audio.resume();
+    } catch (e) { audio = null; }
+  }
+  function tik(snelheid) {
+    if (!audio || audio.state !== 'running') return;
+    try {
+      var t = audio.currentTime;
+      var rustig = Math.min(1, Math.max(0, snelheid / 900));      // 0 = bijna stil, 1 = vol in gang
+      var toon = 620 + rustig * 520 + Math.random() * 60;
+      var o = audio.createOscillator(), g = audio.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(toon, t);
+      o.frequency.exponentialRampToValueAtTime(toon * 0.45, t + 0.035);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.32 - rustig * 0.1, t + 0.002);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+      o.connect(g); g.connect(audio.destination);
+      o.start(t); o.stop(t + 0.06);
+      // klein tikje van het pennetje: korte ruis
+      var n = audio.createBuffer(1, Math.floor(audio.sampleRate * 0.012), audio.sampleRate);
+      var d = n.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
+      var bron = audio.createBufferSource(), f = audio.createBiquadFilter(), g2 = audio.createGain();
+      bron.buffer = n; f.type = 'highpass'; f.frequency.value = 2500; g2.gain.value = 0.18;
+      bron.connect(f); f.connect(g2); g2.connect(audio.destination);
+      bron.start(t);
+    } catch (e) {}
+    var wijzer = document.querySelector('.bf-pointer');
+    if (wijzer) {
+      wijzer.style.transform = 'translateX(-50%) rotate(-16deg)';
+      setTimeout(function () { wijzer.style.transform = 'translateX(-50%) rotate(0deg)'; }, 55);
+    }
+  }
+  function vakNaarWijzer(graden) {
+    var a = (((-graden) % 360) + 360) % 360;
+    for (var i = 0; i < VAKKEN.length; i++) if (a >= VAKKEN[i].van && a < VAKKEN[i].tot) return i;
+    return 0;
+  }
+  function hoekNu() {
+    var m = getComputedStyle(wiel).transform;
+    if (!m || m === 'none') return 0;
+    var w = m.match(/matrix\(([^)]+)\)/);
+    if (!w) return 0;
+    var p = w[1].split(',');
+    return Math.atan2(parseFloat(p[1]), parseFloat(p[0])) * 180 / Math.PI;
+  }
+  function luisterNaarWiel(isKlaar) {
+    var vorigeHoek = hoekNu(), vorigVak = vakNaarWijzer(vorigeHoek), vorigeTijd = performance.now();
+    (function frame(nu) {
+      if (isKlaar()) return;
+      var h = hoekNu(), vak = vakNaarWijzer(h);
+      var dt = Math.max(1, nu - vorigeTijd);
+      var delta = ((h - vorigeHoek) % 360 + 360) % 360;
+      if (delta > 180) delta -= 360;
+      var snelheid = Math.abs(delta) / dt * 1000;
+      if (vak !== vorigVak) tik(snelheid);
+      vorigeHoek = h; vorigVak = vak; vorigeTijd = nu;
+      requestAnimationFrame(frame);
+    })(performance.now());
+  }
+
   function draaiNaar(prijsId, klaar) {
     var v = VAKKEN.filter(function (x) { return x.id === prijsId; })[0];
     var marge = (v.tot - v.van) * 0.35;
@@ -59,6 +130,7 @@
     wiel.style.transform = 'rotate(' + rotatie + 'deg)';
     var gedaan = false;
     function einde() { if (!gedaan) { gedaan = true; klaar(); } }
+    luisterNaarWiel(function () { return gedaan; });
     wiel.addEventListener('transitionend', einde, { once: true });
     setTimeout(einde, 6200);
   }
@@ -153,6 +225,7 @@
     toonFouten(fout);
     if (fout.length) return;
 
+    startAudio();
     knop.disabled = true; knop.textContent = 'SPINNING...';
     wiel.style.setProperty('--bf-r', (rotatie % 360) + 'deg');
     wiel.style.transform = 'rotate(' + (rotatie % 360) + 'deg)';
@@ -171,12 +244,9 @@
           if (u.status === 'nog-niet') return zegIets('The wheel opens soon. Come back on Thursday, November 26!');
           return zegIets(u.error || 'The wheel is stuck. Please try again in a minute.');
         }
-        var wilMarketing = document.getElementById('bfLetter').checked;
-        var wilAi = document.getElementById('bfLetterAi').checked;
-        if ((wilMarketing || wilAi) && !u.dubbel) {
-          var bron = 'black-friday-' + (wilMarketing && wilAi ? 'marketing-ai' : (wilAi ? 'ai' : 'marketing'));
+        if (document.getElementById('bfLetter').checked && !u.dubbel) {
           fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: data.email, taal: 'en', bron: bron }) }).catch(function () {});
+            body: JSON.stringify({ email: data.email, taal: 'en', bron: 'black-friday-marketing-ai' }) }).catch(function () {});
         }
         draaiNaar(u.prijs, function () { toonUitslag(u, data); });
       })
