@@ -280,7 +280,7 @@ const BF_TAB = 'Black Friday';
 const BF_KOPPEN = ['Datum', 'ID', 'Naam', 'Bedrijf', 'Email', 'WhatsApp', 'Kanaal', 'KvK',
   'Prijs', 'Status', 'Bron', 'Campagne', 'Sleutel bedrijf', 'Sleutel kanaal', 'Geleverd'];
 const BF_TZ = 'America/Curacao';
-const BF_OPEN = '2026-11-25';   // eerste dag (Curaçao-tijd)
+const BF_OPEN = '2026-11-26';   // eerste dag (Curaçao-tijd)
 const BF_DICHT = '2026-11-29';  // laatste dag, t/m 23:59
 // Kansen in procenten. Marketing SOS: max 5 in totaal en max 2 per dag (de actie duurt 4 dagen). Is die op,
 // dan valt de draai op een van de vijf digitale cadeaus (gelijke kans).
