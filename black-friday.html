@@ -64,6 +64,7 @@
     .bf-fout .bf-err { display: block; }
     .bf-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--black); margin-bottom: 12px; line-height: 1.4; }
     .bf-check input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--pink); }
+    .bf-letternote { margin: 10px 0 0; font-size: 12.5px; line-height: 1.4; text-align: center; color: var(--black); opacity: .75; }
     .bf-check a { color: var(--pink); font-family: 'Permanent Marker', cursive; }
     .bf-check.bf-fout { color: #d6002f; }
     .bf-hp { position: absolute; left: -9999px; }
@@ -162,9 +163,9 @@
 
           <label class="bf-check" id="bfCuracaoWrap"><input type="checkbox" id="bfCuracao"> My business is based on Curaçao.</label>
           <label class="bf-check" id="bfVoorwaardenWrap"><input type="checkbox" id="bfVoorwaarden"> I accept the <a href="/black-friday-terms" target="_blank">terms of SPIN THE FUN!</a> and the <a href="/privacy-policy" target="_blank">privacy policy</a>.</label>
-          <label class="bf-check"><input type="checkbox" id="bfLetter"> Yes, send me marketing &amp; AI tips in the FUNky Letter. <small>(optional)</small></label>
 
           <button class="bf-spin" type="submit" id="bfButton">SPIN THE FUN!</button>
+          <p class="bf-letternote">By spinning you also get the FUNky Letter with marketing &amp; AI tips. Unsubscribe anytime.</p>
           <div class="bf-melding" id="bfMelding" role="alert"></div>
         </form>
 

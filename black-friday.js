@@ -244,9 +244,9 @@
           if (u.status === 'nog-niet') return zegIets('The wheel opens soon. Come back on Thursday, November 26!');
           return zegIets(u.error || 'The wheel is stuck. Please try again in a minute.');
         }
-        if (document.getElementById('bfLetter').checked && !u.dubbel) {
+        if (!u.dubbel) {
           fetch('/api/newsletter', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: data.email, taal: 'en', bron: 'black-friday-marketing-ai' }) }).catch(function () {});
+            body: JSON.stringify({ email: data.email, taal: 'en', bron: 'black-friday' }) }).catch(function () {});
         }
         draaiNaar(u.prijs, function () { toonUitslag(u, data); });
       })
