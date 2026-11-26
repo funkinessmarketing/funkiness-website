@@ -282,15 +282,15 @@ const BF_KOPPEN = ['Datum', 'ID', 'Naam', 'Bedrijf', 'Email', 'WhatsApp', 'Kanaa
 const BF_TZ = 'America/Curacao';
 const BF_OPEN = '2026-11-26';   // eerste dag (Curaçao-tijd)
 const BF_DICHT = '2026-11-29';  // laatste dag, t/m 23:59
-// Kansen in procenten. Marketing SOS: max 5 in totaal en max 2 per dag (de actie duurt 4 dagen). Is die op,
+// Kansen in procenten: zes prijzen, elk 1 op 6 (16,7%). Marketing SOS: max 5 in totaal en max 2 per dag (de actie duurt 4 dagen). Is die op,
 // dan valt de draai op een van de vijf digitale cadeaus (gelijke kans).
 const BF_PRIJZEN = [
-  { id: 'hooks', kans: 18 },
-  { id: 'ai-pack', kans: 18 },
-  { id: 'rescue', kans: 18 },
-  { id: 'ideas', kans: 18 },
-  { id: 'mystery', kans: 18 },
-  { id: 'sos', kans: 10, max: 5, maxPerDag: 2 }
+  { id: 'hooks', kans: 100 / 6 },
+  { id: 'ai-pack', kans: 100 / 6 },
+  { id: 'rescue', kans: 100 / 6 },
+  { id: 'ideas', kans: 100 / 6 },
+  { id: 'mystery', kans: 100 / 6 },
+  { id: 'sos', kans: 100 / 6, max: 5, maxPerDag: 2 }
 ];
 const BF_NAMEN = { hooks: '10 Killer Hooks', 'ai-pack': 'AI Power Pack', rescue: 'Content Rescue Kit',
   ideas: '30 Days of Ideas', mystery: 'Mystery FUNky Gift', sos: 'Marketing SOS' };

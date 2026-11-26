@@ -62,7 +62,25 @@ export function prijsMail(d, id, prijsId) {
   return { onderwerp: 'You spun. You won: ' + p.naam, tekst: regels.join('\n\n'), html };
 }
 
-async function stuurMail(aan, m) {
+const MELDING_ADRES = 'sayhello@funkiness.ai';
+function meldingMail(d, id, prijsId) {
+  const p = PRIJZEN[prijsId];
+  const regels = [
+    (d.test ? '[TEST] ' : '') + 'Nieuwe deelname SPIN THE FUN!',
+    'Prijs: ' + p.naam,
+    'Naam: ' + d.naam,
+    'Bedrijf: ' + d.bedrijf,
+    'Email: ' + d.email,
+    'WhatsApp: ' + d.whatsapp,
+    'Kanaal: ' + d.kanaal,
+    'Herkomst: ' + (d.bron || 'direct') + (d.campagne ? ' / ' + d.campagne : ''),
+    'ID: ' + id
+  ];
+  const html = regels.map(r => `<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.4;color:#3a251b;margin:0 0 8px">${esc(r)}</p>`).join('');
+  return { onderwerp: (d.test ? '[TEST] ' : '') + 'Black Friday: ' + d.bedrijf + ' won ' + p.naam, tekst: regels.join('\n'), html };
+}
+
+async function stuurMail(aan, m, antwoordAan) {
   if (process.env.BREVO_API_KEY) {
     try {
       const r = await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -70,7 +88,7 @@ async function stuurMail(aan, m) {
         headers: { 'api-key': process.env.BREVO_API_KEY, 'Content-Type': 'application/json', accept: 'application/json' },
         body: JSON.stringify({
           sender: { name: 'FUNkiness!', email: 'sayhello@funkiness.ai' }, to: [{ email: aan }],
-          replyTo: { email: 'sayhello@funkiness.ai' }, subject: m.onderwerp,
+          replyTo: { email: antwoordAan || 'sayhello@funkiness.ai' }, subject: m.onderwerp,
           textContent: m.tekst, htmlContent: m.html, tags: ['black-friday-2026']
         })
       });
@@ -79,7 +97,7 @@ async function stuurMail(aan, m) {
     } catch (err) { console.error('Brevo BF-mail', err.message); }
   }
   if (!process.env.TITAN_PASSWORD) return false;
-  await mailer.sendMail({ from: '"FUNkiness!" <sayhello@funkiness.ai>', to: aan, subject: m.onderwerp, text: m.tekst, html: m.html });
+  await mailer.sendMail({ from: '"FUNkiness!" <sayhello@funkiness.ai>', to: aan, replyTo: antwoordAan || undefined, subject: m.onderwerp, text: m.tekst, html: m.html });
   return true;
 }
 
@@ -139,12 +157,14 @@ export default async function handler(req, res) {
   }
 
   // Vercel breekt alles af wat na het antwoord nog loopt, dus de mail eerst afwachten
-  const [m, capi] = await Promise.allSettled([
+  const [m, melding, capi] = await Promise.allSettled([
     stuurMail(d.email, prijsMail(d, uitslag.id, uitslag.prijs)),
+    stuurMail(MELDING_ADRES, meldingMail(d, uitslag.id, uitslag.prijs), d.email),
     metaLead(req, b, uitslag.id)
   ]);
   const mail = m.status === 'fulfilled' && m.value;
   if (m.status === 'rejected') console.error('BF mail error:', m.reason?.message);
+  if (melding.status === 'rejected') console.error('BF melding error:', melding.reason?.message);
   if (capi.status === 'rejected') console.error('BF CAPI error:', capi.reason?.message);
 
   return res.status(200).json({ success: true, id: uitslag.id, mail, ...antwoord });

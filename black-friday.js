@@ -2,14 +2,24 @@
 // De prijs komt van de server (api/spin.js + sheet-script). Dit script laat het rad alleen op die prijs stoppen.
 (function () {
   // Volgorde op het rad (met de klok mee vanaf boven). Kans bepaalt de breedte van het vak.
-  var VAKKEN = [
-    { id: 'hooks', label: '10 Killer Hooks', kans: 18, bg: '#f21b7a', fg: '#ffffff' },
-    { id: 'ai-pack', label: 'AI Power Pack', kans: 18, bg: '#3a251b', fg: '#ffffff' },
-    { id: 'rescue', label: 'Content Rescue Kit', kans: 18, bg: '#f7efe7', fg: '#3a251b' },
-    { id: 'ideas', label: '30 Days of Ideas', kans: 18, bg: '#f21b7a', fg: '#ffffff' },
-    { id: 'mystery', label: 'Mystery FUNky Gift', kans: 18, bg: '#3a251b', fg: '#ffffff' },
-    { id: 'sos', label: 'Marketing SOS', kans: 10, bg: '#f6b4a6', fg: '#3a251b' }
+  var PRIJSVOLGORDE = [
+    { id: 'hooks', label: '10 Killer Hooks' },
+    { id: 'ai-pack', label: 'AI Power Pack' },
+    { id: 'rescue', label: 'Content Rescue Kit' },
+    { id: 'ideas', label: '30 Days of Ideas' },
+    { id: 'sos', label: 'Marketing SOS' },
+    { id: 'mystery', label: 'Mystery FUNky Gift' }
   ];
+  // 6 gelijke vakken (1 op 6 per prijs), kleuren om en om zoals in de film.
+  var KLEUREN = [
+    { bg: '#f21b7a', fg: '#ffffff' },
+    { bg: '#3a251b', fg: '#ffffff' },
+    { bg: '#f7efe7', fg: '#3a251b' }
+  ];
+  var VAKKEN = PRIJSVOLGORDE.map(function (pr, n) {
+    var k = KLEUREN[n % 3];
+    return { id: pr.id, label: pr.label, kans: 100 / 6, bg: k.bg, fg: k.fg };
+  });
   var R = 200, NS = 'http://www.w3.org/2000/svg';
   var wiel = document.getElementById('bfWheel');
   var rotatie = 0;
@@ -120,7 +130,8 @@
   }
 
   function draaiNaar(prijsId, klaar) {
-    var v = VAKKEN.filter(function (x) { return x.id === prijsId; })[0];
+    var gelijk = VAKKEN.filter(function (x) { return x.id === prijsId; });
+    var v = gelijk[Math.floor(Math.random() * gelijk.length)];
     var marge = (v.tot - v.van) * 0.35;
     var doel = v.midden + (Math.random() * 2 - 1) * marge;
     var rest = ((-doel - rotatie) % 360 + 360) % 360;
