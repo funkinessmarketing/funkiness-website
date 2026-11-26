@@ -339,6 +339,7 @@ function bfSpin(d) {
   let sosTotaal = 0, sosVandaag = 0;
   for (const r of rijen) {
     if (r[k('Status')] === 'TEST') continue;   // testdeelnames tellen nergens mee
+    if (d.test === true) continue;              // een testdeelname wordt nooit als dubbel gezien
     const dubbel = (email && String(r[k('Email')]).toLowerCase() === email)
       || (tel && String(r[k('WhatsApp')]).replace(/\D/g, '') === tel)
       || (sBedrijf && r[k('Sleutel bedrijf')] === sBedrijf)
@@ -419,8 +420,10 @@ function bfVerwijderTests() {
   const tab = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(BF_TAB);
   if (!tab || tab.getLastRow() < 2) return 0;
   const status = tab.getRange(2, BF_KOPPEN.indexOf('Status') + 1, tab.getLastRow() - 1, 1).getValues();
+  const mail = tab.getRange(2, BF_KOPPEN.indexOf('Email') + 1, tab.getLastRow() - 1, 1).getValues();
   let weg = 0;
-  for (let i = status.length - 1; i >= 0; i--) if (status[i][0] === 'TEST') { tab.deleteRow(i + 2); weg++; }
+  // Ook rijen van het eigen testadres (van voor de testmodus) gaan weg.
+  for (let i = status.length - 1; i >= 0; i--) if (status[i][0] === 'TEST' || String(mail[i][0]).toLowerCase() === MELDING_AAN) { tab.deleteRow(i + 2); weg++; }
   return weg;
 }
 
