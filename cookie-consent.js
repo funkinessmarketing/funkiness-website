@@ -14,7 +14,7 @@ window.funkinessLoadAnalytics = function () {
 
 // Advertentiepixels (Black Friday 2026 en later). Leeg = niet geladen en de cookiebanner noemt ze niet.
 // Ze laden alleen na 'accepted', net als Google Analytics.
-var FUNKINESS_META_PIXEL_ID = '2366041270877563';
+var FUNKINESS_META_PIXEL_ID = '2502034796950833';
 var FUNKINESS_TIKTOK_PIXEL_ID = '';
 
 window.funkinessLoadAdPixels = function () {
