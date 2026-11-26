@@ -22,13 +22,13 @@ export const PRIJZEN = {
   },
   ideas: {
     naam: '30 Days of Ideas',
-    kort: 'Thirty content ideas for Instagram, Facebook and TikTok that you won't find in the usual lists, with examples for different businesses and swaps for services and professionals.',
+    kort: 'Thirty content ideas for Instagram, Facebook and TikTok that you will not find in the usual lists, with examples for different businesses and swaps for services and professionals.',
     download: MAP + 'funkiness-30-days-of-ideas.pdf'
   },
   mystery: {
     naam: 'Mystery FUNky Gift',
     onthulling: 'The 5-Minute Marketing Fix',
-    kort: 'Ten 30-second checks that look at your online profile through your customer's eyes, three more on Google, plus a bonus prompt for your bio.',
+    kort: 'Ten 30-second checks that look at your online profile through the eyes of your customer, three more on Google, plus a bonus prompt for your bio.',
     download: MAP + 'funkiness-5-minute-marketing-fix.pdf'
   },
   sos: {
