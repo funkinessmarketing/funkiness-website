@@ -17,18 +17,18 @@ export const PRIJZEN = {
   },
   rescue: {
     naam: 'Content Rescue Kit',
-    kort: 'Five common content problems, the fix for each, before-and-after examples, a checklist and the same fixes for six kinds of businesses.',
+    kort: 'Ten blind spots in your content, an unusual idea to fix each one, a tracker and the same ideas for six kinds of businesses.',
     download: MAP + 'funkiness-content-rescue-kit.pdf'
   },
   ideas: {
     naam: '30 Days of Ideas',
-    kort: 'Thirty content ideas for Instagram, Facebook and TikTok, with examples for different businesses and swaps for services and professionals.',
+    kort: 'Thirty content ideas for Instagram, Facebook and TikTok that you won't find in the usual lists, with examples for different businesses and swaps for services and professionals.',
     download: MAP + 'funkiness-30-days-of-ideas.pdf'
   },
   mystery: {
     naam: 'Mystery FUNky Gift',
     onthulling: 'The 5-Minute Marketing Fix',
-    kort: 'A five-minute checklist to sharpen your online profile, with a Google check for businesses without Instagram, plus a bonus prompt for your bio.',
+    kort: 'Ten 30-second checks that look at your online profile through your customer's eyes, three more on Google, plus a bonus prompt for your bio.',
     download: MAP + 'funkiness-5-minute-marketing-fix.pdf'
   },
   sos: {
