@@ -53,6 +53,8 @@ h2 {{ font-family: Poppins; font-weight: 900; font-size: 17pt; margin: 8mm 0 3mm
 .check li {{ list-style: none; margin: 0 0 2.5mm; padding-left: 9mm; position: relative; }}
 .check li::before {{ content: ''; position: absolute; left: 0; top: .5mm; width: 4.5mm; height: 4.5mm; border: 2px solid #f21b7a; border-radius: 1.5mm; }}
 .check {{ padding: 0; }}
+.steps {{ padding-left: 6mm; margin: 0; }}
+.steps li {{ margin: 0 0 2.5mm; padding-left: 1mm; }}
 .dag {{ display: grid; grid-template-columns: 11mm 1fr; gap: 3mm; background: #fff; border-radius: 4mm; padding: 3mm 4.5mm; margin-bottom: 2.5mm; break-inside: avoid; font-size: 10pt; }}
 .dag .d {{ font-family: 'Permanent Marker', cursive; color: #f21b7a; font-size: 15pt; line-height: 1.1; }}
 .dag b {{ font-family: Poppins; font-weight: 900; font-size: 11pt; }}
@@ -65,6 +67,8 @@ h2 {{ font-family: Poppins; font-weight: 900; font-size: 17pt; margin: 8mm 0 3mm
 .slot p {{ margin: 0 0 3mm; font-weight: 700; }}
 .slot .sign {{ font-family: 'Permanent Marker', cursive; font-size: 15pt; margin: 0; }}
 .slot .web {{ font-size: 9.5pt; font-weight: 400; margin: 1mm 0 0; }}
+.slot .boek {{ margin: 0 0 3mm; }}
+.slot .boek a {{ display: inline-block; background: #fff; color: #f21b7a; border-radius: 99px; padding: 2.6mm 6mm; font-family: Poppins; font-weight: 900; font-size: 11pt; text-decoration: none; }}
 """
 
 def pagina(c, inhoud):
@@ -74,7 +78,7 @@ def pagina(c, inhoud):
 <h1>{html.escape(c['titel'])}</h1><p class="sub">{html.escape(c['sub'])}</p>
 <div class="intro">{intro}</div>
 {inhoud}
-<div class="slot"><p>{e(c['slot'])}</p><p class="sign">Boring was never the plan.</p><p class="web">FUNkiness! · AI, social media &amp; marketing on Curaçao · funkiness.ai · WhatsApp +599 9 675 1737</p></div>
+<div class="slot"><p>{e(c['slot'])}</p><p class="boek"><a href="https://www.funkiness.ai/?utm_source=black-friday-gift&amp;utm_medium=pdf&amp;utm_campaign=spin-the-fun#book">Book your FREE marketing session with us ✚</a></p><p class="sign">Boring was never the plan.</p><p class="web">FUNkiness! · AI, social media &amp; marketing on Curaçao · funkiness.ai · WhatsApp +599 9 675 1737</p></div>
 </body></html>"""
 
 def kopje(c, sleutel):
@@ -100,11 +104,15 @@ def ai(c):
     return uit
 
 def rescue(c):
-    uit = '<h2>Five problems, five fixes</h2>'
-    for i, (probleem, fix, voor, na) in enumerate(c['problemen'], 1):
+    tk, tt = c['test']
+    uit = f'<div class="blok"><h2>{html.escape(tk)}</h2><div class="card"><p>{e(tt)}</p></div></div>'
+    uit += '<h2>Ten blind spots, ten ideas</h2>'
+    for i, (probleem, waarom, fix, nu, voor, na) in enumerate(c['problemen'], 1):
         uit += f"""<div class="card"><span class="num">{i:02d}</span><div class="body"><h3>{e(probleem)}</h3>
-<p class="label">The fix</p><p>{e(fix)}</p><div class="ba"><div class="voor"><p class="label">Before</p>{e(voor)}</div><div class="na"><p class="label">After</p>{e(na)}</div></div></div></div>"""
-    uit += '<div class="blok"><h2>Checklist for every post</h2><div class="card"><ul class="check">' + ''.join(f'<li>{e(x)}</li>' for x in c['checklist']) + '</ul></div></div>'
+<p class="label">The blind spot</p><p>{e(waarom)}</p><p class="label">The idea</p><p>{e(fix)}</p><p class="label">Do it now, 5 minutes</p><p>{e(nu)}</p><div class="ba"><div class="voor"><p class="label">Before</p>{e(voor)}</div><div class="na"><p class="label">After</p>{e(na)}</div></div></div></div>"""
+    uit += '<div class="blok"><h2>Your tracker: tick each idea once you have tried it</h2><div class="card"><ul class="check">' + ''.join(f'<li>{e(x)}</li>' for x in c['checklist']) + '</ul></div></div>'
+    sk, ss = c['stappen']
+    uit += f'<div class="blok"><h2>{html.escape(sk)}</h2><div class="card"><ol class="steps">' + ''.join(f'<li>{e(x)}</li>' for x in ss) + '</ol></div></div>'
     uit += '<div class="blok">' + kopje(c, 'branches') + '</div>' + ''.join(f'<div class="br"><b>{html.escape(b)}</b><div><span class="ex">Before:</span> {e(v)}<br><span class="hk">After:</span> {e(n)}</div></div>' for b, v, n in c['branches'][2])
     return uit
 
