@@ -123,20 +123,24 @@ window.funkinessConsent = function () {
     : { kop: 'BLACK FRIDAY ON CURAÇAO', tekst: 'Spin & win a free marketing gift.', knop: 'SPIN NOW', hero: 'Black Friday: spin & win' };
   var css = document.createElement('style');
   css.textContent =
-    '.bf-bar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;background:#f21b7a;color:#fff;text-decoration:none;padding:10px 16px;text-align:center;font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.3;position:relative;z-index:60}' +
-    '.bf-bar b{font-family:Poppins,Arial,sans-serif;font-weight:900;letter-spacing:.3px}' +
-    '.bf-bar .bf-go{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#f21b7a;border-radius:999px;padding:7px 16px;font-family:"Permanent Marker",cursive;font-size:15px;white-space:nowrap}' +
-    '.bf-bar:hover .bf-go,.bf-bar:focus-visible .bf-go{transform:rotate(-2deg)}' +
-    '.bf-hero-btn{display:inline-flex;align-items:center;gap:10px;background:#f21b7a;color:#fff;text-decoration:none;border-radius:999px;padding:14px 24px;font-family:Poppins,Arial,sans-serif;font-weight:900;font-size:16px;box-shadow:0 12px 30px rgba(242,27,122,.35);transition:transform 200ms ease}' +
+    '@keyframes bfPuls{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,255,255,.75)}50%{transform:scale(1.07);box-shadow:0 0 0 10px rgba(255,255,255,0)}}' +
+    '@keyframes bfGlans{0%{background-position:-200% 0}100%{background-position:200% 0}}' +
+    '@keyframes bfWip{0%,100%{transform:rotate(0)}50%{transform:rotate(-3deg) scale(1.05)}}' +
+    '.bf-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;background:linear-gradient(100deg,#f21b7a 0%,#ff4fa0 25%,#f21b7a 50%,#c8106a 75%,#f21b7a 100%);background-size:200% 100%;animation:bfGlans 6s linear infinite;color:#fff;text-decoration:none;padding:14px 16px;text-align:center;font-family:Inter,Arial,sans-serif;font-size:16px;line-height:1.3;position:sticky;top:0;z-index:40;box-shadow:0 4px 18px rgba(58,37,27,.25)}' +
+    '.bf-bar b{font-family:Poppins,Arial,sans-serif;font-weight:900;font-size:18px;letter-spacing:.4px}' +
+    '.bf-bar .bf-wiel{display:inline-block;font-size:22px;animation:bfWip 1.6s ease-in-out infinite}' +
+    '.bf-bar .bf-go{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#f21b7a;border-radius:999px;padding:9px 20px;font-family:"Permanent Marker",cursive;font-size:18px;white-space:nowrap;animation:bfPuls 1.6s ease-in-out infinite}' +
+    '.bf-hero-btn{display:inline-flex;align-items:center;gap:10px;background:#f21b7a;color:#fff;text-decoration:none;border-radius:999px;padding:16px 28px;font-family:Poppins,Arial,sans-serif;font-weight:900;font-size:18px;box-shadow:0 12px 30px rgba(242,27,122,.4);animation:bfPuls 1.8s ease-in-out infinite}' +
     '.bf-hero-btn:hover,.bf-hero-btn:focus-visible{transform:translateY(-2px) rotate(-1.5deg)}' +
-    '.menu a.bf-menu,.mobile-menu a.bf-menu{color:#f21b7a;font-family:"Permanent Marker",cursive;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}' +
-    '@media (min-width:700px){.bf-bar{font-size:16px;padding:12px 24px}.bf-bar .bf-go{font-size:17px}}';
+    '.menu a.bf-menu,.mobile-menu a.bf-menu{color:#f21b7a;font-family:"Permanent Marker",cursive;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;animation:bfWip 1.6s ease-in-out infinite;display:inline-block}' +
+    '@media (min-width:700px){.bf-bar{font-size:18px;padding:16px 24px}.bf-bar b{font-size:22px}.bf-bar .bf-go{font-size:20px;padding:10px 24px}}' +
+    '@media (prefers-reduced-motion:reduce){.bf-bar,.bf-bar .bf-wiel,.bf-bar .bf-go,.bf-hero-btn,.menu a.bf-menu,.mobile-menu a.bf-menu{animation:none}}';
   function zet() {
     if (document.querySelector('.bf-bar')) return;
     document.head.appendChild(css);
     var bar = document.createElement('a');
     bar.className = 'bf-bar'; bar.href = link;
-    bar.innerHTML = '<span><b>' + t.kop + '</b> ' + t.tekst + '</span><span class="bf-go">' + t.knop + ' ✚</span>';
+    bar.innerHTML = '<span><span class="bf-wiel" aria-hidden="true">🎡</span> <b>' + t.kop + '</b> ' + t.tekst + '</span><span class="bf-go">' + t.knop + ' ✚</span>';
     document.body.insertBefore(bar, document.body.firstChild);
     // menu: BLACK FRIDAY 2026 (desktop en mobiel)
     var menu = document.querySelector('nav.menu'), taal = menu && menu.querySelector('.lang-switch');
