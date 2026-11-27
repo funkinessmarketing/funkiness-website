@@ -108,3 +108,55 @@ window.funkinessConsent = function () {
     }
   });
 })();
+
+// Black Friday 2026: balk bovenaan elke pagina + knop in de hero van de homepage.
+// Zichtbaar van 26-11-2026 00:00 t/m 29-11-2026 23:59 (Curaçao, UTC-4), daarna verdwijnt hij vanzelf.
+(function () {
+  var start = Date.UTC(2026, 10, 26, 4, 0, 0), einde = Date.UTC(2026, 10, 30, 3, 59, 59);
+  var nu = Date.now();
+  if (nu < start || nu > einde) return;
+  if (/^\/black-friday/.test(location.pathname)) return;
+  var nl = document.documentElement.lang === 'nl';
+  var link = '/black-friday?utm_source=website&utm_medium=banner&utm_campaign=bf26_spin';
+  var t = nl
+    ? { kop: 'BLACK FRIDAY OP CURAÇAO', tekst: 'Draai en win een gratis marketingcadeau.', knop: 'DRAAI NU', hero: 'Black Friday: draai en win' }
+    : { kop: 'BLACK FRIDAY ON CURAÇAO', tekst: 'Spin & win a free marketing gift.', knop: 'SPIN NOW', hero: 'Black Friday: spin & win' };
+  var css = document.createElement('style');
+  css.textContent =
+    '.bf-bar{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;background:#f21b7a;color:#fff;text-decoration:none;padding:10px 16px;text-align:center;font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.3;position:relative;z-index:60}' +
+    '.bf-bar b{font-family:Poppins,Arial,sans-serif;font-weight:900;letter-spacing:.3px}' +
+    '.bf-bar .bf-go{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#f21b7a;border-radius:999px;padding:7px 16px;font-family:"Permanent Marker",cursive;font-size:15px;white-space:nowrap}' +
+    '.bf-bar:hover .bf-go,.bf-bar:focus-visible .bf-go{transform:rotate(-2deg)}' +
+    '.bf-hero-btn{display:inline-flex;align-items:center;gap:10px;background:#f21b7a;color:#fff;text-decoration:none;border-radius:999px;padding:14px 24px;font-family:Poppins,Arial,sans-serif;font-weight:900;font-size:16px;box-shadow:0 12px 30px rgba(242,27,122,.35);transition:transform 200ms ease}' +
+    '.bf-hero-btn:hover,.bf-hero-btn:focus-visible{transform:translateY(-2px) rotate(-1.5deg)}' +
+    '.menu a.bf-menu,.mobile-menu a.bf-menu{color:#f21b7a;font-family:"Permanent Marker",cursive;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}' +
+    '@media (min-width:700px){.bf-bar{font-size:16px;padding:12px 24px}.bf-bar .bf-go{font-size:17px}}';
+  function zet() {
+    if (document.querySelector('.bf-bar')) return;
+    document.head.appendChild(css);
+    var bar = document.createElement('a');
+    bar.className = 'bf-bar'; bar.href = link;
+    bar.innerHTML = '<span><b>' + t.kop + '</b> ' + t.tekst + '</span><span class="bf-go">' + t.knop + ' ✚</span>';
+    document.body.insertBefore(bar, document.body.firstChild);
+    // menu: BLACK FRIDAY 2026 (desktop en mobiel)
+    var menu = document.querySelector('nav.menu'), taal = menu && menu.querySelector('.lang-switch');
+    if (menu && taal) {
+      var plus = document.createElement('span'); plus.textContent = '✚';
+      var mi = document.createElement('a'); mi.className = 'bf-menu'; mi.href = link; mi.textContent = 'BLACK FRIDAY 2026';
+      menu.insertBefore(plus, taal); menu.insertBefore(mi, taal);
+    }
+    var mob = document.getElementById('mobileMenu'), mobTaal = mob && mob.querySelector('.lang-switch');
+    if (mob && mobTaal) {
+      var mm = document.createElement('a'); mm.className = 'bf-menu'; mm.href = link; mm.textContent = 'BLACK FRIDAY 2026';
+      mob.insertBefore(mm, mobTaal.nextSibling);
+    }
+    var scanKnop = document.querySelector('.hero-content .black-button');
+    if (scanKnop && scanKnop.parentNode) {
+      var knop = document.createElement('a');
+      knop.className = 'bf-hero-btn'; knop.href = link;
+      knop.innerHTML = '🎡 ' + t.hero + ' <span aria-hidden="true">→</span>';
+      scanKnop.parentNode.insertBefore(knop, scanKnop);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', zet); else zet();
+})();
